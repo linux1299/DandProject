@@ -1,2 +1,2 @@
-/home/lin/SpinalProjects/DandRiscvSoC/ysyx-workbench/nemu/tools/kconfig/build/obj-conf/expr.o: \
- expr.c lkc.h expr.h list.h lkc_proto.h
+/home/lin/DandProject/sw/nemu/tools/kconfig/build/obj-conf/expr.o: expr.c \
+ lkc.h expr.h list.h lkc_proto.h

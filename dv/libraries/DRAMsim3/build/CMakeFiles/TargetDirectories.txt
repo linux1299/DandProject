@@ -1,5 +1,0 @@
-/home/lin/oscpu/libraries/DRAMsim3/build/CMakeFiles/edit_cache.dir
-/home/lin/oscpu/libraries/DRAMsim3/build/CMakeFiles/dramsim3main.dir
-/home/lin/oscpu/libraries/DRAMsim3/build/CMakeFiles/dramsim3.dir
-/home/lin/oscpu/libraries/DRAMsim3/build/CMakeFiles/dramsim3test.dir
-/home/lin/oscpu/libraries/DRAMsim3/build/CMakeFiles/rebuild_cache.dir
