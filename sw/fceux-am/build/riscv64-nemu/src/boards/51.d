@@ -1,0 +1,22 @@
+/home/lin/DandProject/sw/fceux-am/build/riscv64-nemu/src/boards/51.o: \
+ /home/lin/DandProject/sw/fceux-am/src/boards/51.cpp \
+ /home/lin/DandProject/sw/fceux-am/src/boards/mapinc.h \
+ /home/lin/DandProject/sw/fceux-am/src/boards/../types.h \
+ /home/lin/DandProject/sw/abstract-machine/klib/include/klib.h \
+ /home/lin/DandProject/sw/abstract-machine/am/include/am.h \
+ /home/lin/DandProject/sw/abstract-machine/am/include/arch/riscv64-nemu.h \
+ /home/lin/DandProject/sw/abstract-machine/am/include/amdev.h \
+ /home/lin/DandProject/sw/fceux-am/src/boards/../utils/memory.h \
+ /home/lin/DandProject/sw/fceux-am/src/boards/../x6502.h \
+ /home/lin/DandProject/sw/fceux-am/src/boards/../x6502struct.h \
+ /home/lin/DandProject/sw/fceux-am/src/boards/../fceu.h \
+ /home/lin/DandProject/sw/fceux-am/src/boards/../types.h \
+ /home/lin/DandProject/sw/fceux-am/src/boards/../git.h \
+ /home/lin/DandProject/sw/fceux-am/src/boards/../utils/md5.h \
+ /home/lin/DandProject/sw/fceux-am/src/boards/../utils/../types.h \
+ /home/lin/DandProject/sw/fceux-am/src/boards/../utils/valuearray.h \
+ /home/lin/DandProject/sw/fceux-am/src/boards/../ppu.h \
+ /home/lin/DandProject/sw/fceux-am/src/boards/../sound.h \
+ /home/lin/DandProject/sw/fceux-am/src/boards/../state.h \
+ /home/lin/DandProject/sw/fceux-am/src/boards/../cart.h \
+ /home/lin/DandProject/sw/fceux-am/src/boards/../unif.h

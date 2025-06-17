@@ -1,0 +1,22 @@
+/home/lin/DandProject/sw/fceux-am/build/riscv64-nemu/src/drivers/sdl/input.o: \
+ /home/lin/DandProject/sw/fceux-am/src/drivers/sdl/input.cpp \
+ /home/lin/DandProject/sw/abstract-machine/klib/include/klib-macros.h \
+ /home/lin/DandProject/sw/fceux-am/src/drivers/sdl/main.h \
+ /home/lin/DandProject/sw/fceux-am/src/drivers/sdl/../../driver.h \
+ /home/lin/DandProject/sw/fceux-am/src/drivers/sdl/../../types.h \
+ /home/lin/DandProject/sw/abstract-machine/klib/include/klib.h \
+ /home/lin/DandProject/sw/abstract-machine/am/include/am.h \
+ /home/lin/DandProject/sw/abstract-machine/am/include/arch/riscv64-nemu.h \
+ /home/lin/DandProject/sw/abstract-machine/am/include/amdev.h \
+ /home/lin/DandProject/sw/fceux-am/src/drivers/sdl/../../git.h \
+ /home/lin/DandProject/sw/fceux-am/src/drivers/sdl/../../utils/md5.h \
+ /home/lin/DandProject/sw/fceux-am/src/drivers/sdl/../../utils/../types.h \
+ /home/lin/DandProject/sw/fceux-am/src/drivers/sdl/../../utils/valuearray.h \
+ /home/lin/DandProject/sw/fceux-am/src/drivers/sdl/../../file.h \
+ /home/lin/DandProject/sw/fceux-am/src/drivers/sdl/../../emufile.h \
+ /home/lin/DandProject/sw/fceux-am/src/drivers/sdl/dface.h \
+ /home/lin/DandProject/sw/fceux-am/src/drivers/sdl/input.h \
+ /home/lin/DandProject/sw/fceux-am/src/drivers/sdl/sdl-video.h \
+ /home/lin/DandProject/sw/fceux-am/src/drivers/sdl/sdl.h \
+ /home/lin/DandProject/sw/fceux-am/src/drivers/sdl/../../fceu.h \
+ /home/lin/DandProject/sw/fceux-am/src/drivers/sdl/keyscan.h

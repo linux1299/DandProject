@@ -1,0 +1,10 @@
+/home/lin/SpinalProjects/DandRiscvSoC/hw/verilog/uart_simple/fifo_sync.v
+/home/lin/SpinalProjects/DandRiscvSoC/hw/verilog/uart_simple/uart_simple.v
+/home/lin/SpinalProjects/DandRiscvSoC/hw/verilog/uart_simple/uart_send_preprocess.v
+/home/lin/SpinalProjects/DandRiscvSoC/hw/verilog/uart_simple/uart_send_data.v
+/home/lin/SpinalProjects/DandRiscvSoC/hw/verilog/uart_simple/uart_send.v
+/home/lin/SpinalProjects/DandRiscvSoC/hw/verilog/uart_simple/uart_recv.v
+/home/lin/SpinalProjects/DandRiscvSoC/hw/verilog/exu/div_gen_0.v
+./hw/gen/DandSoc.v
+/home/lin/SpinalProjects/DandRiscvSoC/hw/verilog/axi/axi_slave_mem.v
+./hw/verilog/tb/tb_DandSoc.sv
