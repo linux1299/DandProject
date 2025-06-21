@@ -6,3 +6,11 @@ Wed, 18 Jun 2025 20:02:10 +0800
 Wed, 18 Jun 2025 20:02:12 +0800
 3.44user 0.50system 0:04.07elapsed 97%CPU (0avgtext+0avgdata 106616maxresident)k
 5520inputs+33216outputs (1major+198189minor)pagefaults 0swaps
+\n[verilator] Generating C++ files...
+Sat, 21 Jun 2025 21:14:59 +0800
+1.74user 0.06system 0:01.81elapsed 99%CPU (0avgtext+0avgdata 69908maxresident)k
+0inputs+9408outputs (0major+18474minor)pagefaults 0swaps
+\n[g++] Compiling C++ files...
+Sat, 21 Jun 2025 21:15:01 +0800
+0.71user 0.19system 0:00.91elapsed 99%CPU (0avgtext+0avgdata 98488maxresident)k
+8inputs+7640outputs (0major+42896minor)pagefaults 0swaps
