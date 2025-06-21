@@ -3,7 +3,7 @@ deps_config := \
 	src/memory/Kconfig \
 	src/isa/riscv64/Kconfig \
 	src/isa/x86/Kconfig \
-	/home/lin/oscpu/NEMU/Kconfig
+	/home/lin/DandProject/dv/libraries/NEMU/Kconfig
 
 include/config/auto.conf: \
 	$(deps_config)
