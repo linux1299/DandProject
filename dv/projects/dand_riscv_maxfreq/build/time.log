@@ -1,32 +1,8 @@
 \n[verilator] Generating C++ files...
-Wed, 18 Jun 2025 20:02:10 +0800
-1.58user 0.06system 0:01.73elapsed 95%CPU (0avgtext+0avgdata 69848maxresident)k
-19224inputs+9400outputs (108major+18451minor)pagefaults 0swaps
+Sat, 21 Jun 2025 21:36:03 +0800
+1.62user 0.04system 0:01.67elapsed 99%CPU (0avgtext+0avgdata 69876maxresident)k
+0inputs+9400outputs (0major+18479minor)pagefaults 0swaps
 \n[g++] Compiling C++ files...
-Wed, 18 Jun 2025 20:02:12 +0800
-3.44user 0.50system 0:04.07elapsed 97%CPU (0avgtext+0avgdata 106616maxresident)k
-5520inputs+33216outputs (1major+198189minor)pagefaults 0swaps
-\n[verilator] Generating C++ files...
-Sat, 21 Jun 2025 21:14:59 +0800
-1.74user 0.06system 0:01.81elapsed 99%CPU (0avgtext+0avgdata 69908maxresident)k
-0inputs+9408outputs (0major+18474minor)pagefaults 0swaps
-\n[g++] Compiling C++ files...
-Sat, 21 Jun 2025 21:15:01 +0800
-0.71user 0.19system 0:00.91elapsed 99%CPU (0avgtext+0avgdata 98488maxresident)k
-8inputs+7640outputs (0major+42896minor)pagefaults 0swaps
-\n[verilator] Generating C++ files...
-Sat, 21 Jun 2025 21:16:20 +0800
-1.83user 0.04system 0:01.88elapsed 99%CPU (0avgtext+0avgdata 69824maxresident)k
-0inputs+9408outputs (0major+18491minor)pagefaults 0swaps
-\n[g++] Compiling C++ files...
-Sat, 21 Jun 2025 21:16:22 +0800
-0.73user 0.08system 0:00.82elapsed 99%CPU (0avgtext+0avgdata 98464maxresident)k
-0inputs+7640outputs (0major+42892minor)pagefaults 0swaps
-\n[verilator] Generating C++ files...
-Sat, 21 Jun 2025 21:17:06 +0800
-1.57user 0.04system 0:01.62elapsed 99%CPU (0avgtext+0avgdata 69996maxresident)k
-0inputs+9408outputs (0major+18486minor)pagefaults 0swaps
-\n[g++] Compiling C++ files...
-Sat, 21 Jun 2025 21:17:08 +0800
-0.70user 0.14system 0:00.86elapsed 99%CPU (0avgtext+0avgdata 98576maxresident)k
-8inputs+7640outputs (0major+42890minor)pagefaults 0swaps
+Sat, 21 Jun 2025 21:36:04 +0800
+0.74user 0.16system 0:00.94elapsed 95%CPU (0avgtext+0avgdata 98800maxresident)k
+48inputs+8496outputs (0major+46780minor)pagefaults 0swaps
