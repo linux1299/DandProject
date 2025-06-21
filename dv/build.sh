@@ -63,18 +63,18 @@ compile_dramsim3() {
     fi
 }
 
-compile_nemu() {
-    if [[ ! -f $NEMU_HOME/build/riscv64-nemu-interpreter-so ]]; then
-        cd $NEMU_HOME
-        make riscv64-ysyx-ref_defconfig
-        make
-        if [ $? -ne 0 ]; then
-            echo "Failed to compile nemu!!!"
-            exit 1
-        fi
-        cd $OSCPU_PATH
-    fi
-}
+# compile_nemu() {
+#     if [[ ! -f $NEMU_HOME/build/riscv64-nemu-interpreter-so ]]; then
+#         cd $NEMU_HOME
+#         make riscv64-ysyx-ref_defconfig
+#         make
+#         if [ $? -ne 0 ]; then
+#             echo "Failed to compile nemu!!!"
+#             exit 1
+#         fi
+#         cd $OSCPU_PATH
+#     fi
+# }
 
 compile_chisel() {
     if [[ -f $PROJECT_PATH/build.sc ]]; then
