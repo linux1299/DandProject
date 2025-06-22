@@ -5,7 +5,6 @@
  *
  */
 #define CONFIG_ISA_riscv64 1
-#define CONFIG_AC_HOST 1
 #define CONFIG_DIFFTEST_REF_NAME "none"
 #define CONFIG_ENGINE "interpreter"
 #define CONFIG_PC_RESET_OFFSET 0x0
@@ -24,6 +23,7 @@
 #define CONFIG_RT_CHECK 1
 #define CONFIG_ISA64 1
 #define CONFIG_GUIDED_EXEC 1
+#define CONFIG_AC_SOFT 1
 #define CONFIG_CC "gcc"
 #define CONFIG_CLINT_MMIO 0x38000000
 #define CONFIG_DIFFTEST_REF_PATH "none"
