@@ -32,13 +32,13 @@ const char *difftest_ref_so = NULL;
 NemuProxy::NemuProxy(int coreid) {
   if (difftest_ref_so == NULL) {
     printf("--diff is not given, "
-        "try to use $(NEMU_HOME)/build/riscv64-nemu-interpreter-so by default\n");
+        "try to use $(NEMU_HOME)/riscv64-nemu-interpreter-so by default\n");
     const char *nemu_home = getenv("NEMU_HOME");
     if (nemu_home == NULL) {
       printf("FATAL: $(NEMU_HOME) is not defined!\n");
       exit(1);
     }
-    const char *so = "/build/riscv64-nemu-interpreter-so";
+    const char *so = "/riscv64-nemu-interpreter-so";
     char *buf = (char *)malloc(strlen(nemu_home) + strlen(so) + 1);
     strcpy(buf, nemu_home);
     strcat(buf, so);

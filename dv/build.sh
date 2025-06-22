@@ -64,7 +64,7 @@ compile_dramsim3() {
 }
 
 compile_nemu() {
-    if [[ ! -f $NEMU_HOME/build/riscv64-nemu-interpreter-so ]]; then
+    if [[ ! -f $NEMU_HOME/riscv64-nemu-interpreter-so ]]; then
         cd $NEMU_HOME
         make riscv64-ysyx-ref_defconfig
         make
