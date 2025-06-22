@@ -6,3 +6,4 @@ simWorkspace/*
 target/*
 tmp/*
 **/build/
+sw/navy-apps/fsimg/bin/*

@@ -1,1 +1,1 @@
-/home/lin/SpinalProjects/DandRiscvSoC/ysyx-workbench/navy-apps/build/ramdisk.h
+/home/lin/DandProject/sw/navy-apps/build/ramdisk.h

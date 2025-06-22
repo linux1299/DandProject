@@ -26,33 +26,33 @@
 static uintptr_t loader(PCB *pcb, const char *filename) {
   // 1. open elf files, get file id:
   int fd = fs_open(filename,0,0);
-  printf("fd = %x\n", fd);
+  // printf("1. fd = %x\n", fd);
 
   // 2. read elf head:
   Elf_Ehdr *elf_head = (Elf_Ehdr*)malloc(sizeof(Elf_Ehdr));
+  // printf("2. read elf head\n");
   if(fs_read(fd,elf_head,sizeof(Elf_Ehdr)) == -1) assert(0);
-  // ramdisk_read(elf_head,0,sizeof(Elf_Ehdr));
   assert(*(uint32_t *)(elf_head->e_ident) == 0x464c457f);  // check reading file is elf.
   assert(elf_head->e_machine == EXPECT_TYPE);              // check architecture.
 
 
   // 3. read program headers, remeber pro_head is a struct pointer!!
   Elf_Phdr *pro_head = (Elf_Phdr*)malloc(sizeof(Elf_Phdr)*elf_head->e_phnum);
+  // printf("3. read program headers\n");
   if(fs_read(fd, pro_head,sizeof(Elf_Phdr)*elf_head->e_phnum) == -1)  assert(0);
-  // ramdisk_read((void*)(p->p_vaddr), p->p_offset, p->p_filesz);
 
   // 4. read text/rodata/data/bss segment to mem:
   for(Elf_Phdr *p=pro_head; p<pro_head+elf_head->e_phnum; p++){
-    printf("Start read text/rodata/data/bss segment to mem, fd = %x\n", fd);
+    // printf("Start read text/rodata/data/bss segment to mem\n");
 
     // 4.1 load text/rodata/data segment into mem:
+    // printf("4.1 read text/rodata/data segment into mem\n");
     if(fs_lseek(fd,p->p_offset,SEEK_SET) == -1) assert(0);
 
     if(fs_read(fd, (void*)(p->p_vaddr),p->p_filesz) == -1)  assert(0);
-    // ramdisk_read((void*)(p->p_vaddr), p->p_offset, p->p_filesz);
     
     // 4.2 init bss segment(set to zero):
-    printf("4.2 init bss segment\n");
+    // printf("4.2 init bss segment\n");
     memset((void *)(p->p_vaddr+p->p_filesz), 0, p->p_memsz - p->p_filesz);
   }
 

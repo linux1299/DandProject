@@ -4,7 +4,7 @@ source_/home/lin/DandProject/sw/nemu/build/obj-riscv64-nemu-interpreter/src/devi
 
 deps_/home/lin/DandProject/sw/nemu/build/obj-riscv64-nemu-interpreter/src/device/intr.o := \
   /home/lin/DandProject/sw/nemu/include/isa.h \
-  /home/lin/DandProject/sw/nemu/src/isa/riscv64/include/isa-def.h \
+  /home/lin/SpinalProjects/DandRiscvSoC/ysyx-workbench/nemu/src/isa/riscv64/include/isa-def.h \
   /home/lin/DandProject/sw/nemu/include/common.h \
     $(wildcard include/config/target/am.h) \
     $(wildcard include/config/mbase.h) \

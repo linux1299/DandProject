@@ -1,1 +1,1 @@
-/home/lin/SpinalProjects/DandRiscvSoC/ysyx-workbench/navy-apps/libs/libos/src/syscall.h
+/home/lin/DandProject/sw/navy-apps/libs/libos/src/syscall.h
