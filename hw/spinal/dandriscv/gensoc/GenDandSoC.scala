@@ -189,6 +189,7 @@ class DandSocV2(val config: DandConfig) extends Component{
     val axi_frame_buff = master(Axi4(Axi4Cfg32_id4))
     val axi_ddr = master(Axi4(Axi4Cfg32_id4))
     val axi_usb = slave(Axi4(Axi4Cfg32_id2))
+    val usb_done = in Bool()
   }
 
   val resetCtrlClockDomain = ClockDomain(
@@ -220,7 +221,15 @@ class DandSocV2(val config: DandConfig) extends Component{
 
   val axiClockDomain = ClockDomain(
     clock = io.axiClk,
-    reset = resetCtrl.axiReset,
+    reset = !io.asyncResetn,
+    frequency = FixedFrequency(50 MHz)
+  )
+
+  val cpu_rst = resetCtrl.axiReset || !io.usb_done
+
+  val cpuClockDomain = ClockDomain(
+    clock = io.axiClk,
+    reset = cpu_rst,
     frequency = FixedFrequency(50 MHz)
   )
 
@@ -239,7 +248,9 @@ class DandSocV2(val config: DandConfig) extends Component{
       idWidth      = 4
     )
 
-    val cpu = new DandMaxFreq()
+    val cpu_area = new ClockingArea(cpuClockDomain){
+      val cpu = new DandMaxFreq()
+    }
 
     val uartCtrl = Apb3Uart()
     uartCtrl.io.apb.addAttribute(Verilator.public)
@@ -256,9 +267,9 @@ class DandSocV2(val config: DandConfig) extends Component{
       downsizer.io.input -> (0x00000000L,   4 GB),   // all to downsizer
     )
     axiCrossbar64.addConnections(
-      cpu.icacheReader  -> List(downsizer.io.input),
-      cpu.dcacheReader  -> List(downsizer.io.input),
-      cpu.dcacheWriter  -> List(downsizer.io.input),
+      cpu_area.cpu.icacheReader  -> List(downsizer.io.input),
+      cpu_area.cpu.dcacheReader  -> List(downsizer.io.input),
+      cpu_area.cpu.dcacheWriter  -> List(downsizer.io.input),
       upsizer.io.output -> List(downsizer.io.input),
     )
     

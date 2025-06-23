@@ -1,6 +1,6 @@
 // Generator : SpinalHDL v1.8.1    git head : 2a7592004363e5b40ec43e1f122ed8641cd8965b
 // Component : DandSocV2
-// Git hash  : 5529e0130b450a064b090c9a06e1142adfd1d973
+// Git hash  : 7531e2415e1b5972fd32aa984f766ac58b3b39ee
 
 `timescale 1ns/1ps
 
@@ -125,14 +125,15 @@ module DandSocV2 (
   output     [31:0]   io_axi_usb_r_payload_data,
   output     [1:0]    io_axi_usb_r_payload_id,
   output     [1:0]    io_axi_usb_r_payload_resp,
-  output              io_axi_usb_r_payload_last
+  output              io_axi_usb_r_payload_last,
+  input               io_usb_done
 );
 
   wire                bufferCC_1_io_dataIn;
   wire       [15:0]   axi_uartCtrl_io_apb_PADDR;
   wire                axi_uartCtrl_io_resetn;
   wire       [7:0]    axi_timer_io_apb_PADDR;
-  wire       [1:0]    axi_cpu_dcache_decoder_1_io_outputs_0_b_payload_id;
+  wire       [1:0]    axi_cpu_area_cpu_dcache_decoder_1_io_outputs_0_b_payload_id;
   wire       [1:0]    toplevel_axi_upsizer_io_output_writeOnly_decoder_io_outputs_0_b_payload_id;
   wire       [2:0]    axi4WriteOnlyArbiter_1_io_inputs_0_aw_payload_id;
   wire       [2:0]    axi4WriteOnlyArbiter_1_io_inputs_1_aw_payload_id;
@@ -232,31 +233,31 @@ module DandSocV2 (
   wire                axi_apbBridge_io_apb_PENABLE;
   wire                axi_apbBridge_io_apb_PWRITE;
   wire       [31:0]   axi_apbBridge_io_apb_PWDATA;
-  wire                axi_cpu_icache_ar_valid;
-  wire       [31:0]   axi_cpu_icache_ar_payload_addr;
-  wire       [1:0]    axi_cpu_icache_ar_payload_id;
-  wire       [7:0]    axi_cpu_icache_ar_payload_len;
-  wire       [2:0]    axi_cpu_icache_ar_payload_size;
-  wire       [1:0]    axi_cpu_icache_ar_payload_burst;
-  wire                axi_cpu_icache_r_ready;
-  wire                axi_cpu_dcache_ar_valid;
-  wire       [31:0]   axi_cpu_dcache_ar_payload_addr;
-  wire       [1:0]    axi_cpu_dcache_ar_payload_id;
-  wire       [7:0]    axi_cpu_dcache_ar_payload_len;
-  wire       [2:0]    axi_cpu_dcache_ar_payload_size;
-  wire       [1:0]    axi_cpu_dcache_ar_payload_burst;
-  wire                axi_cpu_dcache_r_ready;
-  wire                axi_cpu_dcache_aw_valid;
-  wire       [31:0]   axi_cpu_dcache_aw_payload_addr;
-  wire       [1:0]    axi_cpu_dcache_aw_payload_id;
-  wire       [7:0]    axi_cpu_dcache_aw_payload_len;
-  wire       [2:0]    axi_cpu_dcache_aw_payload_size;
-  wire       [1:0]    axi_cpu_dcache_aw_payload_burst;
-  wire                axi_cpu_dcache_w_valid;
-  wire       [63:0]   axi_cpu_dcache_w_payload_data;
-  wire       [7:0]    axi_cpu_dcache_w_payload_strb;
-  wire                axi_cpu_dcache_w_payload_last;
-  wire                axi_cpu_dcache_b_ready;
+  wire                axi_cpu_area_cpu_icache_ar_valid;
+  wire       [31:0]   axi_cpu_area_cpu_icache_ar_payload_addr;
+  wire       [1:0]    axi_cpu_area_cpu_icache_ar_payload_id;
+  wire       [7:0]    axi_cpu_area_cpu_icache_ar_payload_len;
+  wire       [2:0]    axi_cpu_area_cpu_icache_ar_payload_size;
+  wire       [1:0]    axi_cpu_area_cpu_icache_ar_payload_burst;
+  wire                axi_cpu_area_cpu_icache_r_ready;
+  wire                axi_cpu_area_cpu_dcache_ar_valid;
+  wire       [31:0]   axi_cpu_area_cpu_dcache_ar_payload_addr;
+  wire       [1:0]    axi_cpu_area_cpu_dcache_ar_payload_id;
+  wire       [7:0]    axi_cpu_area_cpu_dcache_ar_payload_len;
+  wire       [2:0]    axi_cpu_area_cpu_dcache_ar_payload_size;
+  wire       [1:0]    axi_cpu_area_cpu_dcache_ar_payload_burst;
+  wire                axi_cpu_area_cpu_dcache_r_ready;
+  wire                axi_cpu_area_cpu_dcache_aw_valid;
+  wire       [31:0]   axi_cpu_area_cpu_dcache_aw_payload_addr;
+  wire       [1:0]    axi_cpu_area_cpu_dcache_aw_payload_id;
+  wire       [7:0]    axi_cpu_area_cpu_dcache_aw_payload_len;
+  wire       [2:0]    axi_cpu_area_cpu_dcache_aw_payload_size;
+  wire       [1:0]    axi_cpu_area_cpu_dcache_aw_payload_burst;
+  wire                axi_cpu_area_cpu_dcache_w_valid;
+  wire       [63:0]   axi_cpu_area_cpu_dcache_w_payload_data;
+  wire       [7:0]    axi_cpu_area_cpu_dcache_w_payload_strb;
+  wire                axi_cpu_area_cpu_dcache_w_payload_last;
+  wire                axi_cpu_area_cpu_dcache_b_ready;
   wire                axi_uartCtrl_io_apb_PREADY;
   wire       [31:0]   axi_uartCtrl_io_apb_PRDATA;
   wire                axi_uartCtrl_io_apb_PSLVERROR;
@@ -264,48 +265,48 @@ module DandSocV2 (
   wire                axi_timer_io_apb_PREADY;
   wire       [31:0]   axi_timer_io_apb_PRDATA;
   wire                axi_timer_io_apb_PSLVERROR;
-  wire                axi_cpu_icache_decoder_io_input_ar_ready;
-  wire                axi_cpu_icache_decoder_io_input_r_valid;
-  wire       [63:0]   axi_cpu_icache_decoder_io_input_r_payload_data;
-  wire       [1:0]    axi_cpu_icache_decoder_io_input_r_payload_id;
-  wire       [1:0]    axi_cpu_icache_decoder_io_input_r_payload_resp;
-  wire                axi_cpu_icache_decoder_io_input_r_payload_last;
-  wire                axi_cpu_icache_decoder_io_outputs_0_ar_valid;
-  wire       [31:0]   axi_cpu_icache_decoder_io_outputs_0_ar_payload_addr;
-  wire       [1:0]    axi_cpu_icache_decoder_io_outputs_0_ar_payload_id;
-  wire       [7:0]    axi_cpu_icache_decoder_io_outputs_0_ar_payload_len;
-  wire       [2:0]    axi_cpu_icache_decoder_io_outputs_0_ar_payload_size;
-  wire       [1:0]    axi_cpu_icache_decoder_io_outputs_0_ar_payload_burst;
-  wire                axi_cpu_icache_decoder_io_outputs_0_r_ready;
-  wire                axi_cpu_dcache_decoder_io_input_ar_ready;
-  wire                axi_cpu_dcache_decoder_io_input_r_valid;
-  wire       [63:0]   axi_cpu_dcache_decoder_io_input_r_payload_data;
-  wire       [1:0]    axi_cpu_dcache_decoder_io_input_r_payload_id;
-  wire       [1:0]    axi_cpu_dcache_decoder_io_input_r_payload_resp;
-  wire                axi_cpu_dcache_decoder_io_input_r_payload_last;
-  wire                axi_cpu_dcache_decoder_io_outputs_0_ar_valid;
-  wire       [31:0]   axi_cpu_dcache_decoder_io_outputs_0_ar_payload_addr;
-  wire       [1:0]    axi_cpu_dcache_decoder_io_outputs_0_ar_payload_id;
-  wire       [7:0]    axi_cpu_dcache_decoder_io_outputs_0_ar_payload_len;
-  wire       [2:0]    axi_cpu_dcache_decoder_io_outputs_0_ar_payload_size;
-  wire       [1:0]    axi_cpu_dcache_decoder_io_outputs_0_ar_payload_burst;
-  wire                axi_cpu_dcache_decoder_io_outputs_0_r_ready;
-  wire                axi_cpu_dcache_decoder_1_io_input_aw_ready;
-  wire                axi_cpu_dcache_decoder_1_io_input_w_ready;
-  wire                axi_cpu_dcache_decoder_1_io_input_b_valid;
-  wire       [1:0]    axi_cpu_dcache_decoder_1_io_input_b_payload_id;
-  wire       [1:0]    axi_cpu_dcache_decoder_1_io_input_b_payload_resp;
-  wire                axi_cpu_dcache_decoder_1_io_outputs_0_aw_valid;
-  wire       [31:0]   axi_cpu_dcache_decoder_1_io_outputs_0_aw_payload_addr;
-  wire       [1:0]    axi_cpu_dcache_decoder_1_io_outputs_0_aw_payload_id;
-  wire       [7:0]    axi_cpu_dcache_decoder_1_io_outputs_0_aw_payload_len;
-  wire       [2:0]    axi_cpu_dcache_decoder_1_io_outputs_0_aw_payload_size;
-  wire       [1:0]    axi_cpu_dcache_decoder_1_io_outputs_0_aw_payload_burst;
-  wire                axi_cpu_dcache_decoder_1_io_outputs_0_w_valid;
-  wire       [63:0]   axi_cpu_dcache_decoder_1_io_outputs_0_w_payload_data;
-  wire       [7:0]    axi_cpu_dcache_decoder_1_io_outputs_0_w_payload_strb;
-  wire                axi_cpu_dcache_decoder_1_io_outputs_0_w_payload_last;
-  wire                axi_cpu_dcache_decoder_1_io_outputs_0_b_ready;
+  wire                axi_cpu_area_cpu_icache_decoder_io_input_ar_ready;
+  wire                axi_cpu_area_cpu_icache_decoder_io_input_r_valid;
+  wire       [63:0]   axi_cpu_area_cpu_icache_decoder_io_input_r_payload_data;
+  wire       [1:0]    axi_cpu_area_cpu_icache_decoder_io_input_r_payload_id;
+  wire       [1:0]    axi_cpu_area_cpu_icache_decoder_io_input_r_payload_resp;
+  wire                axi_cpu_area_cpu_icache_decoder_io_input_r_payload_last;
+  wire                axi_cpu_area_cpu_icache_decoder_io_outputs_0_ar_valid;
+  wire       [31:0]   axi_cpu_area_cpu_icache_decoder_io_outputs_0_ar_payload_addr;
+  wire       [1:0]    axi_cpu_area_cpu_icache_decoder_io_outputs_0_ar_payload_id;
+  wire       [7:0]    axi_cpu_area_cpu_icache_decoder_io_outputs_0_ar_payload_len;
+  wire       [2:0]    axi_cpu_area_cpu_icache_decoder_io_outputs_0_ar_payload_size;
+  wire       [1:0]    axi_cpu_area_cpu_icache_decoder_io_outputs_0_ar_payload_burst;
+  wire                axi_cpu_area_cpu_icache_decoder_io_outputs_0_r_ready;
+  wire                axi_cpu_area_cpu_dcache_decoder_io_input_ar_ready;
+  wire                axi_cpu_area_cpu_dcache_decoder_io_input_r_valid;
+  wire       [63:0]   axi_cpu_area_cpu_dcache_decoder_io_input_r_payload_data;
+  wire       [1:0]    axi_cpu_area_cpu_dcache_decoder_io_input_r_payload_id;
+  wire       [1:0]    axi_cpu_area_cpu_dcache_decoder_io_input_r_payload_resp;
+  wire                axi_cpu_area_cpu_dcache_decoder_io_input_r_payload_last;
+  wire                axi_cpu_area_cpu_dcache_decoder_io_outputs_0_ar_valid;
+  wire       [31:0]   axi_cpu_area_cpu_dcache_decoder_io_outputs_0_ar_payload_addr;
+  wire       [1:0]    axi_cpu_area_cpu_dcache_decoder_io_outputs_0_ar_payload_id;
+  wire       [7:0]    axi_cpu_area_cpu_dcache_decoder_io_outputs_0_ar_payload_len;
+  wire       [2:0]    axi_cpu_area_cpu_dcache_decoder_io_outputs_0_ar_payload_size;
+  wire       [1:0]    axi_cpu_area_cpu_dcache_decoder_io_outputs_0_ar_payload_burst;
+  wire                axi_cpu_area_cpu_dcache_decoder_io_outputs_0_r_ready;
+  wire                axi_cpu_area_cpu_dcache_decoder_1_io_input_aw_ready;
+  wire                axi_cpu_area_cpu_dcache_decoder_1_io_input_w_ready;
+  wire                axi_cpu_area_cpu_dcache_decoder_1_io_input_b_valid;
+  wire       [1:0]    axi_cpu_area_cpu_dcache_decoder_1_io_input_b_payload_id;
+  wire       [1:0]    axi_cpu_area_cpu_dcache_decoder_1_io_input_b_payload_resp;
+  wire                axi_cpu_area_cpu_dcache_decoder_1_io_outputs_0_aw_valid;
+  wire       [31:0]   axi_cpu_area_cpu_dcache_decoder_1_io_outputs_0_aw_payload_addr;
+  wire       [1:0]    axi_cpu_area_cpu_dcache_decoder_1_io_outputs_0_aw_payload_id;
+  wire       [7:0]    axi_cpu_area_cpu_dcache_decoder_1_io_outputs_0_aw_payload_len;
+  wire       [2:0]    axi_cpu_area_cpu_dcache_decoder_1_io_outputs_0_aw_payload_size;
+  wire       [1:0]    axi_cpu_area_cpu_dcache_decoder_1_io_outputs_0_aw_payload_burst;
+  wire                axi_cpu_area_cpu_dcache_decoder_1_io_outputs_0_w_valid;
+  wire       [63:0]   axi_cpu_area_cpu_dcache_decoder_1_io_outputs_0_w_payload_data;
+  wire       [7:0]    axi_cpu_area_cpu_dcache_decoder_1_io_outputs_0_w_payload_strb;
+  wire                axi_cpu_area_cpu_dcache_decoder_1_io_outputs_0_w_payload_last;
+  wire                axi_cpu_area_cpu_dcache_decoder_1_io_outputs_0_b_ready;
   wire                toplevel_axi_upsizer_io_output_readOnly_decoder_io_input_ar_ready;
   wire                toplevel_axi_upsizer_io_output_readOnly_decoder_io_input_r_valid;
   wire       [63:0]   toplevel_axi_upsizer_io_output_readOnly_decoder_io_input_r_payload_data;
@@ -546,6 +547,8 @@ module DandSocV2 (
   reg        [5:0]    resetCtrl_systemResetCounter;
   wire       [5:0]    tmp_1;
   (* MAX_FANOUT=32 *) reg                 resetCtrl_axiReset;
+  wire                tmp_io_resetn;
+  wire                cpu_rst;
   wire                toplevel_axi_upsizer_io_output_readOnly_ar_valid;
   wire                toplevel_axi_upsizer_io_output_readOnly_ar_ready;
   wire       [31:0]   toplevel_axi_upsizer_io_output_readOnly_ar_payload_addr;
@@ -624,36 +627,36 @@ module DandSocV2 (
   wire                toplevel_axi_downsizer_io_output_writeOnly_b_ready;
   wire       [3:0]    toplevel_axi_downsizer_io_output_writeOnly_b_payload_id;
   wire       [1:0]    toplevel_axi_downsizer_io_output_writeOnly_b_payload_resp;
-  wire                toplevel_axi_cpu_icache_decoder_io_outputs_0_ar_validPipe_valid;
-  wire                toplevel_axi_cpu_icache_decoder_io_outputs_0_ar_validPipe_ready;
-  wire       [31:0]   toplevel_axi_cpu_icache_decoder_io_outputs_0_ar_validPipe_payload_addr;
-  wire       [1:0]    toplevel_axi_cpu_icache_decoder_io_outputs_0_ar_validPipe_payload_id;
-  wire       [7:0]    toplevel_axi_cpu_icache_decoder_io_outputs_0_ar_validPipe_payload_len;
-  wire       [2:0]    toplevel_axi_cpu_icache_decoder_io_outputs_0_ar_validPipe_payload_size;
-  wire       [1:0]    toplevel_axi_cpu_icache_decoder_io_outputs_0_ar_validPipe_payload_burst;
-  reg                 toplevel_axi_cpu_icache_decoder_io_outputs_0_ar_rValid;
-  wire                toplevel_axi_cpu_icache_decoder_io_outputs_0_ar_validPipe_fire;
-  wire                toplevel_axi_cpu_icache_decoder_io_outputs_0_ar_validPipe_fire_1;
-  wire                toplevel_axi_cpu_dcache_decoder_io_outputs_0_ar_validPipe_valid;
-  wire                toplevel_axi_cpu_dcache_decoder_io_outputs_0_ar_validPipe_ready;
-  wire       [31:0]   toplevel_axi_cpu_dcache_decoder_io_outputs_0_ar_validPipe_payload_addr;
-  wire       [1:0]    toplevel_axi_cpu_dcache_decoder_io_outputs_0_ar_validPipe_payload_id;
-  wire       [7:0]    toplevel_axi_cpu_dcache_decoder_io_outputs_0_ar_validPipe_payload_len;
-  wire       [2:0]    toplevel_axi_cpu_dcache_decoder_io_outputs_0_ar_validPipe_payload_size;
-  wire       [1:0]    toplevel_axi_cpu_dcache_decoder_io_outputs_0_ar_validPipe_payload_burst;
-  reg                 toplevel_axi_cpu_dcache_decoder_io_outputs_0_ar_rValid;
-  wire                toplevel_axi_cpu_dcache_decoder_io_outputs_0_ar_validPipe_fire;
-  wire                toplevel_axi_cpu_dcache_decoder_io_outputs_0_ar_validPipe_fire_1;
-  wire                toplevel_axi_cpu_dcache_decoder_1_io_outputs_0_aw_validPipe_valid;
-  wire                toplevel_axi_cpu_dcache_decoder_1_io_outputs_0_aw_validPipe_ready;
-  wire       [31:0]   toplevel_axi_cpu_dcache_decoder_1_io_outputs_0_aw_validPipe_payload_addr;
-  wire       [1:0]    toplevel_axi_cpu_dcache_decoder_1_io_outputs_0_aw_validPipe_payload_id;
-  wire       [7:0]    toplevel_axi_cpu_dcache_decoder_1_io_outputs_0_aw_validPipe_payload_len;
-  wire       [2:0]    toplevel_axi_cpu_dcache_decoder_1_io_outputs_0_aw_validPipe_payload_size;
-  wire       [1:0]    toplevel_axi_cpu_dcache_decoder_1_io_outputs_0_aw_validPipe_payload_burst;
-  reg                 toplevel_axi_cpu_dcache_decoder_1_io_outputs_0_aw_rValid;
-  wire                toplevel_axi_cpu_dcache_decoder_1_io_outputs_0_aw_validPipe_fire;
-  wire                toplevel_axi_cpu_dcache_decoder_1_io_outputs_0_aw_validPipe_fire_1;
+  wire                toplevel_axi_cpu_area_cpu_icache_decoder_io_outputs_0_ar_validPipe_valid;
+  wire                toplevel_axi_cpu_area_cpu_icache_decoder_io_outputs_0_ar_validPipe_ready;
+  wire       [31:0]   toplevel_axi_cpu_area_cpu_icache_decoder_io_outputs_0_ar_validPipe_payload_addr;
+  wire       [1:0]    toplevel_axi_cpu_area_cpu_icache_decoder_io_outputs_0_ar_validPipe_payload_id;
+  wire       [7:0]    toplevel_axi_cpu_area_cpu_icache_decoder_io_outputs_0_ar_validPipe_payload_len;
+  wire       [2:0]    toplevel_axi_cpu_area_cpu_icache_decoder_io_outputs_0_ar_validPipe_payload_size;
+  wire       [1:0]    toplevel_axi_cpu_area_cpu_icache_decoder_io_outputs_0_ar_validPipe_payload_burst;
+  reg                 toplevel_axi_cpu_area_cpu_icache_decoder_io_outputs_0_ar_rValid;
+  wire                toplevel_axi_cpu_area_cpu_icache_decoder_io_outputs_0_ar_validPipe_fire;
+  wire                toplevel_axi_cpu_area_cpu_icache_decoder_io_outputs_0_ar_validPipe_fire_1;
+  wire                toplevel_axi_cpu_area_cpu_dcache_decoder_io_outputs_0_ar_validPipe_valid;
+  wire                toplevel_axi_cpu_area_cpu_dcache_decoder_io_outputs_0_ar_validPipe_ready;
+  wire       [31:0]   toplevel_axi_cpu_area_cpu_dcache_decoder_io_outputs_0_ar_validPipe_payload_addr;
+  wire       [1:0]    toplevel_axi_cpu_area_cpu_dcache_decoder_io_outputs_0_ar_validPipe_payload_id;
+  wire       [7:0]    toplevel_axi_cpu_area_cpu_dcache_decoder_io_outputs_0_ar_validPipe_payload_len;
+  wire       [2:0]    toplevel_axi_cpu_area_cpu_dcache_decoder_io_outputs_0_ar_validPipe_payload_size;
+  wire       [1:0]    toplevel_axi_cpu_area_cpu_dcache_decoder_io_outputs_0_ar_validPipe_payload_burst;
+  reg                 toplevel_axi_cpu_area_cpu_dcache_decoder_io_outputs_0_ar_rValid;
+  wire                toplevel_axi_cpu_area_cpu_dcache_decoder_io_outputs_0_ar_validPipe_fire;
+  wire                toplevel_axi_cpu_area_cpu_dcache_decoder_io_outputs_0_ar_validPipe_fire_1;
+  wire                toplevel_axi_cpu_area_cpu_dcache_decoder_1_io_outputs_0_aw_validPipe_valid;
+  wire                toplevel_axi_cpu_area_cpu_dcache_decoder_1_io_outputs_0_aw_validPipe_ready;
+  wire       [31:0]   toplevel_axi_cpu_area_cpu_dcache_decoder_1_io_outputs_0_aw_validPipe_payload_addr;
+  wire       [1:0]    toplevel_axi_cpu_area_cpu_dcache_decoder_1_io_outputs_0_aw_validPipe_payload_id;
+  wire       [7:0]    toplevel_axi_cpu_area_cpu_dcache_decoder_1_io_outputs_0_aw_validPipe_payload_len;
+  wire       [2:0]    toplevel_axi_cpu_area_cpu_dcache_decoder_1_io_outputs_0_aw_validPipe_payload_size;
+  wire       [1:0]    toplevel_axi_cpu_area_cpu_dcache_decoder_1_io_outputs_0_aw_validPipe_payload_burst;
+  reg                 toplevel_axi_cpu_area_cpu_dcache_decoder_1_io_outputs_0_aw_rValid;
+  wire                toplevel_axi_cpu_area_cpu_dcache_decoder_1_io_outputs_0_aw_validPipe_fire;
+  wire                toplevel_axi_cpu_area_cpu_dcache_decoder_1_io_outputs_0_aw_validPipe_fire_1;
   wire                toplevel_toplevel_axi_upsizer_io_output_readOnly_decoder_io_outputs_0_ar_validPipe_valid;
   wire                toplevel_toplevel_axi_upsizer_io_output_readOnly_decoder_io_outputs_0_ar_validPipe_ready;
   wire       [31:0]   toplevel_toplevel_axi_upsizer_io_output_readOnly_decoder_io_outputs_0_ar_validPipe_payload_addr;
@@ -865,7 +868,7 @@ module DandSocV2 (
     .io_output_r_payload_resp    (toplevel_axi_downsizer_io_output_readOnly_r_payload_resp[1:0] ), //i
     .io_output_r_payload_last    (toplevel_axi_downsizer_io_output_readOnly_r_payload_last      ), //i
     .io_axiClk                   (io_axiClk                                                     ), //i
-    .resetCtrl_axiReset          (resetCtrl_axiReset                                            )  //i
+    .tmp_io_resetn               (tmp_io_resetn                                                 )  //i
   );
   Axi4Upsizer axi_upsizer (
     .io_input_aw_valid           (io_axi_usb_aw_valid                                         ), //i
@@ -947,7 +950,7 @@ module DandSocV2 (
     .io_output_r_payload_resp    (toplevel_axi_upsizer_io_output_readOnly_r_payload_resp[1:0] ), //i
     .io_output_r_payload_last    (toplevel_axi_upsizer_io_output_readOnly_r_payload_last      ), //i
     .io_axiClk                   (io_axiClk                                                   ), //i
-    .resetCtrl_axiReset          (resetCtrl_axiReset                                          )  //i
+    .tmp_io_resetn               (tmp_io_resetn                                               )  //i
   );
   Axi4SharedToApb3Bridge axi_apbBridge (
     .io_axi_arw_valid         (axi_apbBridge_io_axi_arbiter_io_output_arw_valid             ), //i
@@ -982,53 +985,53 @@ module DandSocV2 (
     .io_apb_PRDATA            (io_apb_decoder_io_input_PRDATA[31:0]                         ), //i
     .io_apb_PSLVERROR         (io_apb_decoder_io_input_PSLVERROR                            ), //i
     .io_axiClk                (io_axiClk                                                    ), //i
-    .resetCtrl_axiReset       (resetCtrl_axiReset                                           )  //i
+    .tmp_io_resetn            (tmp_io_resetn                                                )  //i
   );
-  DandMaxFreq axi_cpu (
-    .icache_ar_valid         (axi_cpu_icache_ar_valid                              ), //o
-    .icache_ar_ready         (axi_cpu_icache_decoder_io_input_ar_ready             ), //i
-    .icache_ar_payload_addr  (axi_cpu_icache_ar_payload_addr[31:0]                 ), //o
-    .icache_ar_payload_id    (axi_cpu_icache_ar_payload_id[1:0]                    ), //o
-    .icache_ar_payload_len   (axi_cpu_icache_ar_payload_len[7:0]                   ), //o
-    .icache_ar_payload_size  (axi_cpu_icache_ar_payload_size[2:0]                  ), //o
-    .icache_ar_payload_burst (axi_cpu_icache_ar_payload_burst[1:0]                 ), //o
-    .icache_r_valid          (axi_cpu_icache_decoder_io_input_r_valid              ), //i
-    .icache_r_ready          (axi_cpu_icache_r_ready                               ), //o
-    .icache_r_payload_data   (axi_cpu_icache_decoder_io_input_r_payload_data[63:0] ), //i
-    .icache_r_payload_id     (axi_cpu_icache_decoder_io_input_r_payload_id[1:0]    ), //i
-    .icache_r_payload_resp   (axi_cpu_icache_decoder_io_input_r_payload_resp[1:0]  ), //i
-    .icache_r_payload_last   (axi_cpu_icache_decoder_io_input_r_payload_last       ), //i
-    .dcache_ar_valid         (axi_cpu_dcache_ar_valid                              ), //o
-    .dcache_ar_ready         (axi_cpu_dcache_decoder_io_input_ar_ready             ), //i
-    .dcache_ar_payload_addr  (axi_cpu_dcache_ar_payload_addr[31:0]                 ), //o
-    .dcache_ar_payload_id    (axi_cpu_dcache_ar_payload_id[1:0]                    ), //o
-    .dcache_ar_payload_len   (axi_cpu_dcache_ar_payload_len[7:0]                   ), //o
-    .dcache_ar_payload_size  (axi_cpu_dcache_ar_payload_size[2:0]                  ), //o
-    .dcache_ar_payload_burst (axi_cpu_dcache_ar_payload_burst[1:0]                 ), //o
-    .dcache_r_valid          (axi_cpu_dcache_decoder_io_input_r_valid              ), //i
-    .dcache_r_ready          (axi_cpu_dcache_r_ready                               ), //o
-    .dcache_r_payload_data   (axi_cpu_dcache_decoder_io_input_r_payload_data[63:0] ), //i
-    .dcache_r_payload_id     (axi_cpu_dcache_decoder_io_input_r_payload_id[1:0]    ), //i
-    .dcache_r_payload_resp   (axi_cpu_dcache_decoder_io_input_r_payload_resp[1:0]  ), //i
-    .dcache_r_payload_last   (axi_cpu_dcache_decoder_io_input_r_payload_last       ), //i
-    .dcache_aw_valid         (axi_cpu_dcache_aw_valid                              ), //o
-    .dcache_aw_ready         (axi_cpu_dcache_decoder_1_io_input_aw_ready           ), //i
-    .dcache_aw_payload_addr  (axi_cpu_dcache_aw_payload_addr[31:0]                 ), //o
-    .dcache_aw_payload_id    (axi_cpu_dcache_aw_payload_id[1:0]                    ), //o
-    .dcache_aw_payload_len   (axi_cpu_dcache_aw_payload_len[7:0]                   ), //o
-    .dcache_aw_payload_size  (axi_cpu_dcache_aw_payload_size[2:0]                  ), //o
-    .dcache_aw_payload_burst (axi_cpu_dcache_aw_payload_burst[1:0]                 ), //o
-    .dcache_w_valid          (axi_cpu_dcache_w_valid                               ), //o
-    .dcache_w_ready          (axi_cpu_dcache_decoder_1_io_input_w_ready            ), //i
-    .dcache_w_payload_data   (axi_cpu_dcache_w_payload_data[63:0]                  ), //o
-    .dcache_w_payload_strb   (axi_cpu_dcache_w_payload_strb[7:0]                   ), //o
-    .dcache_w_payload_last   (axi_cpu_dcache_w_payload_last                        ), //o
-    .dcache_b_valid          (axi_cpu_dcache_decoder_1_io_input_b_valid            ), //i
-    .dcache_b_ready          (axi_cpu_dcache_b_ready                               ), //o
-    .dcache_b_payload_id     (axi_cpu_dcache_decoder_1_io_input_b_payload_id[1:0]  ), //i
-    .dcache_b_payload_resp   (axi_cpu_dcache_decoder_1_io_input_b_payload_resp[1:0]), //i
-    .io_axiClk               (io_axiClk                                            ), //i
-    .resetCtrl_axiReset      (resetCtrl_axiReset                                   )  //i
+  DandMaxFreq axi_cpu_area_cpu (
+    .icache_ar_valid         (axi_cpu_area_cpu_icache_ar_valid                              ), //o
+    .icache_ar_ready         (axi_cpu_area_cpu_icache_decoder_io_input_ar_ready             ), //i
+    .icache_ar_payload_addr  (axi_cpu_area_cpu_icache_ar_payload_addr[31:0]                 ), //o
+    .icache_ar_payload_id    (axi_cpu_area_cpu_icache_ar_payload_id[1:0]                    ), //o
+    .icache_ar_payload_len   (axi_cpu_area_cpu_icache_ar_payload_len[7:0]                   ), //o
+    .icache_ar_payload_size  (axi_cpu_area_cpu_icache_ar_payload_size[2:0]                  ), //o
+    .icache_ar_payload_burst (axi_cpu_area_cpu_icache_ar_payload_burst[1:0]                 ), //o
+    .icache_r_valid          (axi_cpu_area_cpu_icache_decoder_io_input_r_valid              ), //i
+    .icache_r_ready          (axi_cpu_area_cpu_icache_r_ready                               ), //o
+    .icache_r_payload_data   (axi_cpu_area_cpu_icache_decoder_io_input_r_payload_data[63:0] ), //i
+    .icache_r_payload_id     (axi_cpu_area_cpu_icache_decoder_io_input_r_payload_id[1:0]    ), //i
+    .icache_r_payload_resp   (axi_cpu_area_cpu_icache_decoder_io_input_r_payload_resp[1:0]  ), //i
+    .icache_r_payload_last   (axi_cpu_area_cpu_icache_decoder_io_input_r_payload_last       ), //i
+    .dcache_ar_valid         (axi_cpu_area_cpu_dcache_ar_valid                              ), //o
+    .dcache_ar_ready         (axi_cpu_area_cpu_dcache_decoder_io_input_ar_ready             ), //i
+    .dcache_ar_payload_addr  (axi_cpu_area_cpu_dcache_ar_payload_addr[31:0]                 ), //o
+    .dcache_ar_payload_id    (axi_cpu_area_cpu_dcache_ar_payload_id[1:0]                    ), //o
+    .dcache_ar_payload_len   (axi_cpu_area_cpu_dcache_ar_payload_len[7:0]                   ), //o
+    .dcache_ar_payload_size  (axi_cpu_area_cpu_dcache_ar_payload_size[2:0]                  ), //o
+    .dcache_ar_payload_burst (axi_cpu_area_cpu_dcache_ar_payload_burst[1:0]                 ), //o
+    .dcache_r_valid          (axi_cpu_area_cpu_dcache_decoder_io_input_r_valid              ), //i
+    .dcache_r_ready          (axi_cpu_area_cpu_dcache_r_ready                               ), //o
+    .dcache_r_payload_data   (axi_cpu_area_cpu_dcache_decoder_io_input_r_payload_data[63:0] ), //i
+    .dcache_r_payload_id     (axi_cpu_area_cpu_dcache_decoder_io_input_r_payload_id[1:0]    ), //i
+    .dcache_r_payload_resp   (axi_cpu_area_cpu_dcache_decoder_io_input_r_payload_resp[1:0]  ), //i
+    .dcache_r_payload_last   (axi_cpu_area_cpu_dcache_decoder_io_input_r_payload_last       ), //i
+    .dcache_aw_valid         (axi_cpu_area_cpu_dcache_aw_valid                              ), //o
+    .dcache_aw_ready         (axi_cpu_area_cpu_dcache_decoder_1_io_input_aw_ready           ), //i
+    .dcache_aw_payload_addr  (axi_cpu_area_cpu_dcache_aw_payload_addr[31:0]                 ), //o
+    .dcache_aw_payload_id    (axi_cpu_area_cpu_dcache_aw_payload_id[1:0]                    ), //o
+    .dcache_aw_payload_len   (axi_cpu_area_cpu_dcache_aw_payload_len[7:0]                   ), //o
+    .dcache_aw_payload_size  (axi_cpu_area_cpu_dcache_aw_payload_size[2:0]                  ), //o
+    .dcache_aw_payload_burst (axi_cpu_area_cpu_dcache_aw_payload_burst[1:0]                 ), //o
+    .dcache_w_valid          (axi_cpu_area_cpu_dcache_w_valid                               ), //o
+    .dcache_w_ready          (axi_cpu_area_cpu_dcache_decoder_1_io_input_w_ready            ), //i
+    .dcache_w_payload_data   (axi_cpu_area_cpu_dcache_w_payload_data[63:0]                  ), //o
+    .dcache_w_payload_strb   (axi_cpu_area_cpu_dcache_w_payload_strb[7:0]                   ), //o
+    .dcache_w_payload_last   (axi_cpu_area_cpu_dcache_w_payload_last                        ), //o
+    .dcache_b_valid          (axi_cpu_area_cpu_dcache_decoder_1_io_input_b_valid            ), //i
+    .dcache_b_ready          (axi_cpu_area_cpu_dcache_b_ready                               ), //o
+    .dcache_b_payload_id     (axi_cpu_area_cpu_dcache_decoder_1_io_input_b_payload_id[1:0]  ), //i
+    .dcache_b_payload_resp   (axi_cpu_area_cpu_dcache_decoder_1_io_input_b_payload_resp[1:0]), //i
+    .io_axiClk               (io_axiClk                                                     ), //i
+    .cpu_rst                 (cpu_rst                                                       )  //i
   );
   Apb3Uart axi_uartCtrl (
     .io_apb_PADDR     (axi_uartCtrl_io_apb_PADDR[15:0]       ), //i
@@ -1045,112 +1048,112 @@ module DandSocV2 (
     .io_resetn        (axi_uartCtrl_io_resetn                )  //i
   );
   Apb3Timer axi_timer (
-    .io_apb_PADDR       (axi_timer_io_apb_PADDR[7:0]           ), //i
-    .io_apb_PSEL        (apb3Router_1_io_outputs_1_PSEL        ), //i
-    .io_apb_PENABLE     (apb3Router_1_io_outputs_1_PENABLE     ), //i
-    .io_apb_PREADY      (axi_timer_io_apb_PREADY               ), //o
-    .io_apb_PWRITE      (apb3Router_1_io_outputs_1_PWRITE      ), //i
-    .io_apb_PWDATA      (apb3Router_1_io_outputs_1_PWDATA[31:0]), //i
-    .io_apb_PRDATA      (axi_timer_io_apb_PRDATA[31:0]         ), //o
-    .io_apb_PSLVERROR   (axi_timer_io_apb_PSLVERROR            ), //o
-    .io_axiClk          (io_axiClk                             ), //i
-    .resetCtrl_axiReset (resetCtrl_axiReset                    )  //i
+    .io_apb_PADDR     (axi_timer_io_apb_PADDR[7:0]           ), //i
+    .io_apb_PSEL      (apb3Router_1_io_outputs_1_PSEL        ), //i
+    .io_apb_PENABLE   (apb3Router_1_io_outputs_1_PENABLE     ), //i
+    .io_apb_PREADY    (axi_timer_io_apb_PREADY               ), //o
+    .io_apb_PWRITE    (apb3Router_1_io_outputs_1_PWRITE      ), //i
+    .io_apb_PWDATA    (apb3Router_1_io_outputs_1_PWDATA[31:0]), //i
+    .io_apb_PRDATA    (axi_timer_io_apb_PRDATA[31:0]         ), //o
+    .io_apb_PSLVERROR (axi_timer_io_apb_PSLVERROR            ), //o
+    .io_axiClk        (io_axiClk                             ), //i
+    .tmp_io_resetn    (tmp_io_resetn                         )  //i
   );
-  Axi4ReadOnlyDecoder axi_cpu_icache_decoder (
-    .io_input_ar_valid             (axi_cpu_icache_ar_valid                                         ), //i
-    .io_input_ar_ready             (axi_cpu_icache_decoder_io_input_ar_ready                        ), //o
-    .io_input_ar_payload_addr      (axi_cpu_icache_ar_payload_addr[31:0]                            ), //i
-    .io_input_ar_payload_id        (axi_cpu_icache_ar_payload_id[1:0]                               ), //i
-    .io_input_ar_payload_len       (axi_cpu_icache_ar_payload_len[7:0]                              ), //i
-    .io_input_ar_payload_size      (axi_cpu_icache_ar_payload_size[2:0]                             ), //i
-    .io_input_ar_payload_burst     (axi_cpu_icache_ar_payload_burst[1:0]                            ), //i
-    .io_input_r_valid              (axi_cpu_icache_decoder_io_input_r_valid                         ), //o
-    .io_input_r_ready              (axi_cpu_icache_r_ready                                          ), //i
-    .io_input_r_payload_data       (axi_cpu_icache_decoder_io_input_r_payload_data[63:0]            ), //o
-    .io_input_r_payload_id         (axi_cpu_icache_decoder_io_input_r_payload_id[1:0]               ), //o
-    .io_input_r_payload_resp       (axi_cpu_icache_decoder_io_input_r_payload_resp[1:0]             ), //o
-    .io_input_r_payload_last       (axi_cpu_icache_decoder_io_input_r_payload_last                  ), //o
-    .io_outputs_0_ar_valid         (axi_cpu_icache_decoder_io_outputs_0_ar_valid                    ), //o
-    .io_outputs_0_ar_ready         (toplevel_axi_cpu_icache_decoder_io_outputs_0_ar_validPipe_fire_1), //i
-    .io_outputs_0_ar_payload_addr  (axi_cpu_icache_decoder_io_outputs_0_ar_payload_addr[31:0]       ), //o
-    .io_outputs_0_ar_payload_id    (axi_cpu_icache_decoder_io_outputs_0_ar_payload_id[1:0]          ), //o
-    .io_outputs_0_ar_payload_len   (axi_cpu_icache_decoder_io_outputs_0_ar_payload_len[7:0]         ), //o
-    .io_outputs_0_ar_payload_size  (axi_cpu_icache_decoder_io_outputs_0_ar_payload_size[2:0]        ), //o
-    .io_outputs_0_ar_payload_burst (axi_cpu_icache_decoder_io_outputs_0_ar_payload_burst[1:0]       ), //o
-    .io_outputs_0_r_valid          (axi4ReadOnlyArbiter_1_io_inputs_0_r_valid                       ), //i
-    .io_outputs_0_r_ready          (axi_cpu_icache_decoder_io_outputs_0_r_ready                     ), //o
-    .io_outputs_0_r_payload_data   (axi4ReadOnlyArbiter_1_io_inputs_0_r_payload_data[63:0]          ), //i
-    .io_outputs_0_r_payload_id     (axi4ReadOnlyArbiter_1_io_inputs_0_r_payload_id[1:0]             ), //i
-    .io_outputs_0_r_payload_resp   (axi4ReadOnlyArbiter_1_io_inputs_0_r_payload_resp[1:0]           ), //i
-    .io_outputs_0_r_payload_last   (axi4ReadOnlyArbiter_1_io_inputs_0_r_payload_last                ), //i
-    .io_axiClk                     (io_axiClk                                                       ), //i
-    .resetCtrl_axiReset            (resetCtrl_axiReset                                              )  //i
+  Axi4ReadOnlyDecoder axi_cpu_area_cpu_icache_decoder (
+    .io_input_ar_valid             (axi_cpu_area_cpu_icache_ar_valid                                         ), //i
+    .io_input_ar_ready             (axi_cpu_area_cpu_icache_decoder_io_input_ar_ready                        ), //o
+    .io_input_ar_payload_addr      (axi_cpu_area_cpu_icache_ar_payload_addr[31:0]                            ), //i
+    .io_input_ar_payload_id        (axi_cpu_area_cpu_icache_ar_payload_id[1:0]                               ), //i
+    .io_input_ar_payload_len       (axi_cpu_area_cpu_icache_ar_payload_len[7:0]                              ), //i
+    .io_input_ar_payload_size      (axi_cpu_area_cpu_icache_ar_payload_size[2:0]                             ), //i
+    .io_input_ar_payload_burst     (axi_cpu_area_cpu_icache_ar_payload_burst[1:0]                            ), //i
+    .io_input_r_valid              (axi_cpu_area_cpu_icache_decoder_io_input_r_valid                         ), //o
+    .io_input_r_ready              (axi_cpu_area_cpu_icache_r_ready                                          ), //i
+    .io_input_r_payload_data       (axi_cpu_area_cpu_icache_decoder_io_input_r_payload_data[63:0]            ), //o
+    .io_input_r_payload_id         (axi_cpu_area_cpu_icache_decoder_io_input_r_payload_id[1:0]               ), //o
+    .io_input_r_payload_resp       (axi_cpu_area_cpu_icache_decoder_io_input_r_payload_resp[1:0]             ), //o
+    .io_input_r_payload_last       (axi_cpu_area_cpu_icache_decoder_io_input_r_payload_last                  ), //o
+    .io_outputs_0_ar_valid         (axi_cpu_area_cpu_icache_decoder_io_outputs_0_ar_valid                    ), //o
+    .io_outputs_0_ar_ready         (toplevel_axi_cpu_area_cpu_icache_decoder_io_outputs_0_ar_validPipe_fire_1), //i
+    .io_outputs_0_ar_payload_addr  (axi_cpu_area_cpu_icache_decoder_io_outputs_0_ar_payload_addr[31:0]       ), //o
+    .io_outputs_0_ar_payload_id    (axi_cpu_area_cpu_icache_decoder_io_outputs_0_ar_payload_id[1:0]          ), //o
+    .io_outputs_0_ar_payload_len   (axi_cpu_area_cpu_icache_decoder_io_outputs_0_ar_payload_len[7:0]         ), //o
+    .io_outputs_0_ar_payload_size  (axi_cpu_area_cpu_icache_decoder_io_outputs_0_ar_payload_size[2:0]        ), //o
+    .io_outputs_0_ar_payload_burst (axi_cpu_area_cpu_icache_decoder_io_outputs_0_ar_payload_burst[1:0]       ), //o
+    .io_outputs_0_r_valid          (axi4ReadOnlyArbiter_1_io_inputs_0_r_valid                                ), //i
+    .io_outputs_0_r_ready          (axi_cpu_area_cpu_icache_decoder_io_outputs_0_r_ready                     ), //o
+    .io_outputs_0_r_payload_data   (axi4ReadOnlyArbiter_1_io_inputs_0_r_payload_data[63:0]                   ), //i
+    .io_outputs_0_r_payload_id     (axi4ReadOnlyArbiter_1_io_inputs_0_r_payload_id[1:0]                      ), //i
+    .io_outputs_0_r_payload_resp   (axi4ReadOnlyArbiter_1_io_inputs_0_r_payload_resp[1:0]                    ), //i
+    .io_outputs_0_r_payload_last   (axi4ReadOnlyArbiter_1_io_inputs_0_r_payload_last                         ), //i
+    .io_axiClk                     (io_axiClk                                                                ), //i
+    .tmp_io_resetn                 (tmp_io_resetn                                                            )  //i
   );
-  Axi4ReadOnlyDecoder axi_cpu_dcache_decoder (
-    .io_input_ar_valid             (axi_cpu_dcache_ar_valid                                         ), //i
-    .io_input_ar_ready             (axi_cpu_dcache_decoder_io_input_ar_ready                        ), //o
-    .io_input_ar_payload_addr      (axi_cpu_dcache_ar_payload_addr[31:0]                            ), //i
-    .io_input_ar_payload_id        (axi_cpu_dcache_ar_payload_id[1:0]                               ), //i
-    .io_input_ar_payload_len       (axi_cpu_dcache_ar_payload_len[7:0]                              ), //i
-    .io_input_ar_payload_size      (axi_cpu_dcache_ar_payload_size[2:0]                             ), //i
-    .io_input_ar_payload_burst     (axi_cpu_dcache_ar_payload_burst[1:0]                            ), //i
-    .io_input_r_valid              (axi_cpu_dcache_decoder_io_input_r_valid                         ), //o
-    .io_input_r_ready              (axi_cpu_dcache_r_ready                                          ), //i
-    .io_input_r_payload_data       (axi_cpu_dcache_decoder_io_input_r_payload_data[63:0]            ), //o
-    .io_input_r_payload_id         (axi_cpu_dcache_decoder_io_input_r_payload_id[1:0]               ), //o
-    .io_input_r_payload_resp       (axi_cpu_dcache_decoder_io_input_r_payload_resp[1:0]             ), //o
-    .io_input_r_payload_last       (axi_cpu_dcache_decoder_io_input_r_payload_last                  ), //o
-    .io_outputs_0_ar_valid         (axi_cpu_dcache_decoder_io_outputs_0_ar_valid                    ), //o
-    .io_outputs_0_ar_ready         (toplevel_axi_cpu_dcache_decoder_io_outputs_0_ar_validPipe_fire_1), //i
-    .io_outputs_0_ar_payload_addr  (axi_cpu_dcache_decoder_io_outputs_0_ar_payload_addr[31:0]       ), //o
-    .io_outputs_0_ar_payload_id    (axi_cpu_dcache_decoder_io_outputs_0_ar_payload_id[1:0]          ), //o
-    .io_outputs_0_ar_payload_len   (axi_cpu_dcache_decoder_io_outputs_0_ar_payload_len[7:0]         ), //o
-    .io_outputs_0_ar_payload_size  (axi_cpu_dcache_decoder_io_outputs_0_ar_payload_size[2:0]        ), //o
-    .io_outputs_0_ar_payload_burst (axi_cpu_dcache_decoder_io_outputs_0_ar_payload_burst[1:0]       ), //o
-    .io_outputs_0_r_valid          (axi4ReadOnlyArbiter_1_io_inputs_1_r_valid                       ), //i
-    .io_outputs_0_r_ready          (axi_cpu_dcache_decoder_io_outputs_0_r_ready                     ), //o
-    .io_outputs_0_r_payload_data   (axi4ReadOnlyArbiter_1_io_inputs_1_r_payload_data[63:0]          ), //i
-    .io_outputs_0_r_payload_id     (axi4ReadOnlyArbiter_1_io_inputs_1_r_payload_id[1:0]             ), //i
-    .io_outputs_0_r_payload_resp   (axi4ReadOnlyArbiter_1_io_inputs_1_r_payload_resp[1:0]           ), //i
-    .io_outputs_0_r_payload_last   (axi4ReadOnlyArbiter_1_io_inputs_1_r_payload_last                ), //i
-    .io_axiClk                     (io_axiClk                                                       ), //i
-    .resetCtrl_axiReset            (resetCtrl_axiReset                                              )  //i
+  Axi4ReadOnlyDecoder axi_cpu_area_cpu_dcache_decoder (
+    .io_input_ar_valid             (axi_cpu_area_cpu_dcache_ar_valid                                         ), //i
+    .io_input_ar_ready             (axi_cpu_area_cpu_dcache_decoder_io_input_ar_ready                        ), //o
+    .io_input_ar_payload_addr      (axi_cpu_area_cpu_dcache_ar_payload_addr[31:0]                            ), //i
+    .io_input_ar_payload_id        (axi_cpu_area_cpu_dcache_ar_payload_id[1:0]                               ), //i
+    .io_input_ar_payload_len       (axi_cpu_area_cpu_dcache_ar_payload_len[7:0]                              ), //i
+    .io_input_ar_payload_size      (axi_cpu_area_cpu_dcache_ar_payload_size[2:0]                             ), //i
+    .io_input_ar_payload_burst     (axi_cpu_area_cpu_dcache_ar_payload_burst[1:0]                            ), //i
+    .io_input_r_valid              (axi_cpu_area_cpu_dcache_decoder_io_input_r_valid                         ), //o
+    .io_input_r_ready              (axi_cpu_area_cpu_dcache_r_ready                                          ), //i
+    .io_input_r_payload_data       (axi_cpu_area_cpu_dcache_decoder_io_input_r_payload_data[63:0]            ), //o
+    .io_input_r_payload_id         (axi_cpu_area_cpu_dcache_decoder_io_input_r_payload_id[1:0]               ), //o
+    .io_input_r_payload_resp       (axi_cpu_area_cpu_dcache_decoder_io_input_r_payload_resp[1:0]             ), //o
+    .io_input_r_payload_last       (axi_cpu_area_cpu_dcache_decoder_io_input_r_payload_last                  ), //o
+    .io_outputs_0_ar_valid         (axi_cpu_area_cpu_dcache_decoder_io_outputs_0_ar_valid                    ), //o
+    .io_outputs_0_ar_ready         (toplevel_axi_cpu_area_cpu_dcache_decoder_io_outputs_0_ar_validPipe_fire_1), //i
+    .io_outputs_0_ar_payload_addr  (axi_cpu_area_cpu_dcache_decoder_io_outputs_0_ar_payload_addr[31:0]       ), //o
+    .io_outputs_0_ar_payload_id    (axi_cpu_area_cpu_dcache_decoder_io_outputs_0_ar_payload_id[1:0]          ), //o
+    .io_outputs_0_ar_payload_len   (axi_cpu_area_cpu_dcache_decoder_io_outputs_0_ar_payload_len[7:0]         ), //o
+    .io_outputs_0_ar_payload_size  (axi_cpu_area_cpu_dcache_decoder_io_outputs_0_ar_payload_size[2:0]        ), //o
+    .io_outputs_0_ar_payload_burst (axi_cpu_area_cpu_dcache_decoder_io_outputs_0_ar_payload_burst[1:0]       ), //o
+    .io_outputs_0_r_valid          (axi4ReadOnlyArbiter_1_io_inputs_1_r_valid                                ), //i
+    .io_outputs_0_r_ready          (axi_cpu_area_cpu_dcache_decoder_io_outputs_0_r_ready                     ), //o
+    .io_outputs_0_r_payload_data   (axi4ReadOnlyArbiter_1_io_inputs_1_r_payload_data[63:0]                   ), //i
+    .io_outputs_0_r_payload_id     (axi4ReadOnlyArbiter_1_io_inputs_1_r_payload_id[1:0]                      ), //i
+    .io_outputs_0_r_payload_resp   (axi4ReadOnlyArbiter_1_io_inputs_1_r_payload_resp[1:0]                    ), //i
+    .io_outputs_0_r_payload_last   (axi4ReadOnlyArbiter_1_io_inputs_1_r_payload_last                         ), //i
+    .io_axiClk                     (io_axiClk                                                                ), //i
+    .tmp_io_resetn                 (tmp_io_resetn                                                            )  //i
   );
-  Axi4WriteOnlyDecoder axi_cpu_dcache_decoder_1 (
-    .io_input_aw_valid             (axi_cpu_dcache_aw_valid                                           ), //i
-    .io_input_aw_ready             (axi_cpu_dcache_decoder_1_io_input_aw_ready                        ), //o
-    .io_input_aw_payload_addr      (axi_cpu_dcache_aw_payload_addr[31:0]                              ), //i
-    .io_input_aw_payload_id        (axi_cpu_dcache_aw_payload_id[1:0]                                 ), //i
-    .io_input_aw_payload_len       (axi_cpu_dcache_aw_payload_len[7:0]                                ), //i
-    .io_input_aw_payload_size      (axi_cpu_dcache_aw_payload_size[2:0]                               ), //i
-    .io_input_aw_payload_burst     (axi_cpu_dcache_aw_payload_burst[1:0]                              ), //i
-    .io_input_w_valid              (axi_cpu_dcache_w_valid                                            ), //i
-    .io_input_w_ready              (axi_cpu_dcache_decoder_1_io_input_w_ready                         ), //o
-    .io_input_w_payload_data       (axi_cpu_dcache_w_payload_data[63:0]                               ), //i
-    .io_input_w_payload_strb       (axi_cpu_dcache_w_payload_strb[7:0]                                ), //i
-    .io_input_w_payload_last       (axi_cpu_dcache_w_payload_last                                     ), //i
-    .io_input_b_valid              (axi_cpu_dcache_decoder_1_io_input_b_valid                         ), //o
-    .io_input_b_ready              (axi_cpu_dcache_b_ready                                            ), //i
-    .io_input_b_payload_id         (axi_cpu_dcache_decoder_1_io_input_b_payload_id[1:0]               ), //o
-    .io_input_b_payload_resp       (axi_cpu_dcache_decoder_1_io_input_b_payload_resp[1:0]             ), //o
-    .io_outputs_0_aw_valid         (axi_cpu_dcache_decoder_1_io_outputs_0_aw_valid                    ), //o
-    .io_outputs_0_aw_ready         (toplevel_axi_cpu_dcache_decoder_1_io_outputs_0_aw_validPipe_fire_1), //i
-    .io_outputs_0_aw_payload_addr  (axi_cpu_dcache_decoder_1_io_outputs_0_aw_payload_addr[31:0]       ), //o
-    .io_outputs_0_aw_payload_id    (axi_cpu_dcache_decoder_1_io_outputs_0_aw_payload_id[1:0]          ), //o
-    .io_outputs_0_aw_payload_len   (axi_cpu_dcache_decoder_1_io_outputs_0_aw_payload_len[7:0]         ), //o
-    .io_outputs_0_aw_payload_size  (axi_cpu_dcache_decoder_1_io_outputs_0_aw_payload_size[2:0]        ), //o
-    .io_outputs_0_aw_payload_burst (axi_cpu_dcache_decoder_1_io_outputs_0_aw_payload_burst[1:0]       ), //o
-    .io_outputs_0_w_valid          (axi_cpu_dcache_decoder_1_io_outputs_0_w_valid                     ), //o
-    .io_outputs_0_w_ready          (axi4WriteOnlyArbiter_1_io_inputs_0_w_ready                        ), //i
-    .io_outputs_0_w_payload_data   (axi_cpu_dcache_decoder_1_io_outputs_0_w_payload_data[63:0]        ), //o
-    .io_outputs_0_w_payload_strb   (axi_cpu_dcache_decoder_1_io_outputs_0_w_payload_strb[7:0]         ), //o
-    .io_outputs_0_w_payload_last   (axi_cpu_dcache_decoder_1_io_outputs_0_w_payload_last              ), //o
-    .io_outputs_0_b_valid          (axi4WriteOnlyArbiter_1_io_inputs_0_b_valid                        ), //i
-    .io_outputs_0_b_ready          (axi_cpu_dcache_decoder_1_io_outputs_0_b_ready                     ), //o
-    .io_outputs_0_b_payload_id     (axi_cpu_dcache_decoder_1_io_outputs_0_b_payload_id[1:0]           ), //i
-    .io_outputs_0_b_payload_resp   (axi4WriteOnlyArbiter_1_io_inputs_0_b_payload_resp[1:0]            ), //i
-    .io_axiClk                     (io_axiClk                                                         ), //i
-    .resetCtrl_axiReset            (resetCtrl_axiReset                                                )  //i
+  Axi4WriteOnlyDecoder axi_cpu_area_cpu_dcache_decoder_1 (
+    .io_input_aw_valid             (axi_cpu_area_cpu_dcache_aw_valid                                           ), //i
+    .io_input_aw_ready             (axi_cpu_area_cpu_dcache_decoder_1_io_input_aw_ready                        ), //o
+    .io_input_aw_payload_addr      (axi_cpu_area_cpu_dcache_aw_payload_addr[31:0]                              ), //i
+    .io_input_aw_payload_id        (axi_cpu_area_cpu_dcache_aw_payload_id[1:0]                                 ), //i
+    .io_input_aw_payload_len       (axi_cpu_area_cpu_dcache_aw_payload_len[7:0]                                ), //i
+    .io_input_aw_payload_size      (axi_cpu_area_cpu_dcache_aw_payload_size[2:0]                               ), //i
+    .io_input_aw_payload_burst     (axi_cpu_area_cpu_dcache_aw_payload_burst[1:0]                              ), //i
+    .io_input_w_valid              (axi_cpu_area_cpu_dcache_w_valid                                            ), //i
+    .io_input_w_ready              (axi_cpu_area_cpu_dcache_decoder_1_io_input_w_ready                         ), //o
+    .io_input_w_payload_data       (axi_cpu_area_cpu_dcache_w_payload_data[63:0]                               ), //i
+    .io_input_w_payload_strb       (axi_cpu_area_cpu_dcache_w_payload_strb[7:0]                                ), //i
+    .io_input_w_payload_last       (axi_cpu_area_cpu_dcache_w_payload_last                                     ), //i
+    .io_input_b_valid              (axi_cpu_area_cpu_dcache_decoder_1_io_input_b_valid                         ), //o
+    .io_input_b_ready              (axi_cpu_area_cpu_dcache_b_ready                                            ), //i
+    .io_input_b_payload_id         (axi_cpu_area_cpu_dcache_decoder_1_io_input_b_payload_id[1:0]               ), //o
+    .io_input_b_payload_resp       (axi_cpu_area_cpu_dcache_decoder_1_io_input_b_payload_resp[1:0]             ), //o
+    .io_outputs_0_aw_valid         (axi_cpu_area_cpu_dcache_decoder_1_io_outputs_0_aw_valid                    ), //o
+    .io_outputs_0_aw_ready         (toplevel_axi_cpu_area_cpu_dcache_decoder_1_io_outputs_0_aw_validPipe_fire_1), //i
+    .io_outputs_0_aw_payload_addr  (axi_cpu_area_cpu_dcache_decoder_1_io_outputs_0_aw_payload_addr[31:0]       ), //o
+    .io_outputs_0_aw_payload_id    (axi_cpu_area_cpu_dcache_decoder_1_io_outputs_0_aw_payload_id[1:0]          ), //o
+    .io_outputs_0_aw_payload_len   (axi_cpu_area_cpu_dcache_decoder_1_io_outputs_0_aw_payload_len[7:0]         ), //o
+    .io_outputs_0_aw_payload_size  (axi_cpu_area_cpu_dcache_decoder_1_io_outputs_0_aw_payload_size[2:0]        ), //o
+    .io_outputs_0_aw_payload_burst (axi_cpu_area_cpu_dcache_decoder_1_io_outputs_0_aw_payload_burst[1:0]       ), //o
+    .io_outputs_0_w_valid          (axi_cpu_area_cpu_dcache_decoder_1_io_outputs_0_w_valid                     ), //o
+    .io_outputs_0_w_ready          (axi4WriteOnlyArbiter_1_io_inputs_0_w_ready                                 ), //i
+    .io_outputs_0_w_payload_data   (axi_cpu_area_cpu_dcache_decoder_1_io_outputs_0_w_payload_data[63:0]        ), //o
+    .io_outputs_0_w_payload_strb   (axi_cpu_area_cpu_dcache_decoder_1_io_outputs_0_w_payload_strb[7:0]         ), //o
+    .io_outputs_0_w_payload_last   (axi_cpu_area_cpu_dcache_decoder_1_io_outputs_0_w_payload_last              ), //o
+    .io_outputs_0_b_valid          (axi4WriteOnlyArbiter_1_io_inputs_0_b_valid                                 ), //i
+    .io_outputs_0_b_ready          (axi_cpu_area_cpu_dcache_decoder_1_io_outputs_0_b_ready                     ), //o
+    .io_outputs_0_b_payload_id     (axi_cpu_area_cpu_dcache_decoder_1_io_outputs_0_b_payload_id[1:0]           ), //i
+    .io_outputs_0_b_payload_resp   (axi4WriteOnlyArbiter_1_io_inputs_0_b_payload_resp[1:0]                     ), //i
+    .io_axiClk                     (io_axiClk                                                                  ), //i
+    .tmp_io_resetn                 (tmp_io_resetn                                                              )  //i
   );
   Axi4ReadOnlyDecoder_2 toplevel_axi_upsizer_io_output_readOnly_decoder (
     .io_input_ar_valid              (toplevel_axi_upsizer_io_output_readOnly_ar_valid                                         ), //i
@@ -1190,7 +1193,7 @@ module DandSocV2 (
     .io_outputs_0_r_payload_resp    (axi4ReadOnlyArbiter_1_io_inputs_2_r_payload_resp[1:0]                                    ), //i
     .io_outputs_0_r_payload_last    (axi4ReadOnlyArbiter_1_io_inputs_2_r_payload_last                                         ), //i
     .io_axiClk                      (io_axiClk                                                                                ), //i
-    .resetCtrl_axiReset             (resetCtrl_axiReset                                                                       )  //i
+    .tmp_io_resetn                  (tmp_io_resetn                                                                            )  //i
   );
   Axi4WriteOnlyDecoder_1 toplevel_axi_upsizer_io_output_writeOnly_decoder (
     .io_input_aw_valid              (toplevel_axi_upsizer_io_output_writeOnly_aw_valid                                         ), //i
@@ -1236,41 +1239,41 @@ module DandSocV2 (
     .io_outputs_0_b_payload_id      (toplevel_axi_upsizer_io_output_writeOnly_decoder_io_outputs_0_b_payload_id[1:0]           ), //i
     .io_outputs_0_b_payload_resp    (axi4WriteOnlyArbiter_1_io_inputs_1_b_payload_resp[1:0]                                    ), //i
     .io_axiClk                      (io_axiClk                                                                                 ), //i
-    .resetCtrl_axiReset             (resetCtrl_axiReset                                                                        )  //i
+    .tmp_io_resetn                  (tmp_io_resetn                                                                             )  //i
   );
   Axi4ReadOnlyArbiter axi4ReadOnlyArbiter_1 (
-    .io_inputs_0_ar_valid          (toplevel_axi_cpu_icache_decoder_io_outputs_0_ar_validPipe_valid                                       ), //i
+    .io_inputs_0_ar_valid          (toplevel_axi_cpu_area_cpu_icache_decoder_io_outputs_0_ar_validPipe_valid                              ), //i
     .io_inputs_0_ar_ready          (axi4ReadOnlyArbiter_1_io_inputs_0_ar_ready                                                            ), //o
-    .io_inputs_0_ar_payload_addr   (toplevel_axi_cpu_icache_decoder_io_outputs_0_ar_validPipe_payload_addr[31:0]                          ), //i
-    .io_inputs_0_ar_payload_id     (toplevel_axi_cpu_icache_decoder_io_outputs_0_ar_validPipe_payload_id[1:0]                             ), //i
+    .io_inputs_0_ar_payload_addr   (toplevel_axi_cpu_area_cpu_icache_decoder_io_outputs_0_ar_validPipe_payload_addr[31:0]                 ), //i
+    .io_inputs_0_ar_payload_id     (toplevel_axi_cpu_area_cpu_icache_decoder_io_outputs_0_ar_validPipe_payload_id[1:0]                    ), //i
     .io_inputs_0_ar_payload_region (tmp_io_inputs_0_ar_payload_region[3:0]                                                                ), //i
-    .io_inputs_0_ar_payload_len    (toplevel_axi_cpu_icache_decoder_io_outputs_0_ar_validPipe_payload_len[7:0]                            ), //i
-    .io_inputs_0_ar_payload_size   (toplevel_axi_cpu_icache_decoder_io_outputs_0_ar_validPipe_payload_size[2:0]                           ), //i
-    .io_inputs_0_ar_payload_burst  (toplevel_axi_cpu_icache_decoder_io_outputs_0_ar_validPipe_payload_burst[1:0]                          ), //i
+    .io_inputs_0_ar_payload_len    (toplevel_axi_cpu_area_cpu_icache_decoder_io_outputs_0_ar_validPipe_payload_len[7:0]                   ), //i
+    .io_inputs_0_ar_payload_size   (toplevel_axi_cpu_area_cpu_icache_decoder_io_outputs_0_ar_validPipe_payload_size[2:0]                  ), //i
+    .io_inputs_0_ar_payload_burst  (toplevel_axi_cpu_area_cpu_icache_decoder_io_outputs_0_ar_validPipe_payload_burst[1:0]                 ), //i
     .io_inputs_0_ar_payload_lock   (1'b0                                                                                                  ), //i
     .io_inputs_0_ar_payload_cache  (4'b0000                                                                                               ), //i
     .io_inputs_0_ar_payload_qos    (4'b0000                                                                                               ), //i
     .io_inputs_0_ar_payload_prot   (3'b010                                                                                                ), //i
     .io_inputs_0_r_valid           (axi4ReadOnlyArbiter_1_io_inputs_0_r_valid                                                             ), //o
-    .io_inputs_0_r_ready           (axi_cpu_icache_decoder_io_outputs_0_r_ready                                                           ), //i
+    .io_inputs_0_r_ready           (axi_cpu_area_cpu_icache_decoder_io_outputs_0_r_ready                                                  ), //i
     .io_inputs_0_r_payload_data    (axi4ReadOnlyArbiter_1_io_inputs_0_r_payload_data[63:0]                                                ), //o
     .io_inputs_0_r_payload_id      (axi4ReadOnlyArbiter_1_io_inputs_0_r_payload_id[1:0]                                                   ), //o
     .io_inputs_0_r_payload_resp    (axi4ReadOnlyArbiter_1_io_inputs_0_r_payload_resp[1:0]                                                 ), //o
     .io_inputs_0_r_payload_last    (axi4ReadOnlyArbiter_1_io_inputs_0_r_payload_last                                                      ), //o
-    .io_inputs_1_ar_valid          (toplevel_axi_cpu_dcache_decoder_io_outputs_0_ar_validPipe_valid                                       ), //i
+    .io_inputs_1_ar_valid          (toplevel_axi_cpu_area_cpu_dcache_decoder_io_outputs_0_ar_validPipe_valid                              ), //i
     .io_inputs_1_ar_ready          (axi4ReadOnlyArbiter_1_io_inputs_1_ar_ready                                                            ), //o
-    .io_inputs_1_ar_payload_addr   (toplevel_axi_cpu_dcache_decoder_io_outputs_0_ar_validPipe_payload_addr[31:0]                          ), //i
-    .io_inputs_1_ar_payload_id     (toplevel_axi_cpu_dcache_decoder_io_outputs_0_ar_validPipe_payload_id[1:0]                             ), //i
+    .io_inputs_1_ar_payload_addr   (toplevel_axi_cpu_area_cpu_dcache_decoder_io_outputs_0_ar_validPipe_payload_addr[31:0]                 ), //i
+    .io_inputs_1_ar_payload_id     (toplevel_axi_cpu_area_cpu_dcache_decoder_io_outputs_0_ar_validPipe_payload_id[1:0]                    ), //i
     .io_inputs_1_ar_payload_region (tmp_io_inputs_1_ar_payload_region[3:0]                                                                ), //i
-    .io_inputs_1_ar_payload_len    (toplevel_axi_cpu_dcache_decoder_io_outputs_0_ar_validPipe_payload_len[7:0]                            ), //i
-    .io_inputs_1_ar_payload_size   (toplevel_axi_cpu_dcache_decoder_io_outputs_0_ar_validPipe_payload_size[2:0]                           ), //i
-    .io_inputs_1_ar_payload_burst  (toplevel_axi_cpu_dcache_decoder_io_outputs_0_ar_validPipe_payload_burst[1:0]                          ), //i
+    .io_inputs_1_ar_payload_len    (toplevel_axi_cpu_area_cpu_dcache_decoder_io_outputs_0_ar_validPipe_payload_len[7:0]                   ), //i
+    .io_inputs_1_ar_payload_size   (toplevel_axi_cpu_area_cpu_dcache_decoder_io_outputs_0_ar_validPipe_payload_size[2:0]                  ), //i
+    .io_inputs_1_ar_payload_burst  (toplevel_axi_cpu_area_cpu_dcache_decoder_io_outputs_0_ar_validPipe_payload_burst[1:0]                 ), //i
     .io_inputs_1_ar_payload_lock   (1'b0                                                                                                  ), //i
     .io_inputs_1_ar_payload_cache  (4'b0000                                                                                               ), //i
     .io_inputs_1_ar_payload_qos    (4'b0000                                                                                               ), //i
     .io_inputs_1_ar_payload_prot   (3'b010                                                                                                ), //i
     .io_inputs_1_r_valid           (axi4ReadOnlyArbiter_1_io_inputs_1_r_valid                                                             ), //o
-    .io_inputs_1_r_ready           (axi_cpu_dcache_decoder_io_outputs_0_r_ready                                                           ), //i
+    .io_inputs_1_r_ready           (axi_cpu_area_cpu_dcache_decoder_io_outputs_0_r_ready                                                  ), //i
     .io_inputs_1_r_payload_data    (axi4ReadOnlyArbiter_1_io_inputs_1_r_payload_data[63:0]                                                ), //o
     .io_inputs_1_r_payload_id      (axi4ReadOnlyArbiter_1_io_inputs_1_r_payload_id[1:0]                                                   ), //o
     .io_inputs_1_r_payload_resp    (axi4ReadOnlyArbiter_1_io_inputs_1_r_payload_resp[1:0]                                                 ), //o
@@ -1312,28 +1315,28 @@ module DandSocV2 (
     .io_output_r_payload_resp      (axi_downsizer_io_input_r_payload_resp[1:0]                                                            ), //i
     .io_output_r_payload_last      (axi_downsizer_io_input_r_payload_last                                                                 ), //i
     .io_axiClk                     (io_axiClk                                                                                             ), //i
-    .resetCtrl_axiReset            (resetCtrl_axiReset                                                                                    )  //i
+    .tmp_io_resetn                 (tmp_io_resetn                                                                                         )  //i
   );
   Axi4WriteOnlyArbiter axi4WriteOnlyArbiter_1 (
-    .io_inputs_0_aw_valid          (toplevel_axi_cpu_dcache_decoder_1_io_outputs_0_aw_validPipe_valid                                      ), //i
+    .io_inputs_0_aw_valid          (toplevel_axi_cpu_area_cpu_dcache_decoder_1_io_outputs_0_aw_validPipe_valid                             ), //i
     .io_inputs_0_aw_ready          (axi4WriteOnlyArbiter_1_io_inputs_0_aw_ready                                                            ), //o
-    .io_inputs_0_aw_payload_addr   (toplevel_axi_cpu_dcache_decoder_1_io_outputs_0_aw_validPipe_payload_addr[31:0]                         ), //i
+    .io_inputs_0_aw_payload_addr   (toplevel_axi_cpu_area_cpu_dcache_decoder_1_io_outputs_0_aw_validPipe_payload_addr[31:0]                ), //i
     .io_inputs_0_aw_payload_id     (axi4WriteOnlyArbiter_1_io_inputs_0_aw_payload_id[2:0]                                                  ), //i
     .io_inputs_0_aw_payload_region (tmp_io_inputs_0_aw_payload_region[3:0]                                                                 ), //i
-    .io_inputs_0_aw_payload_len    (toplevel_axi_cpu_dcache_decoder_1_io_outputs_0_aw_validPipe_payload_len[7:0]                           ), //i
-    .io_inputs_0_aw_payload_size   (toplevel_axi_cpu_dcache_decoder_1_io_outputs_0_aw_validPipe_payload_size[2:0]                          ), //i
-    .io_inputs_0_aw_payload_burst  (toplevel_axi_cpu_dcache_decoder_1_io_outputs_0_aw_validPipe_payload_burst[1:0]                         ), //i
+    .io_inputs_0_aw_payload_len    (toplevel_axi_cpu_area_cpu_dcache_decoder_1_io_outputs_0_aw_validPipe_payload_len[7:0]                  ), //i
+    .io_inputs_0_aw_payload_size   (toplevel_axi_cpu_area_cpu_dcache_decoder_1_io_outputs_0_aw_validPipe_payload_size[2:0]                 ), //i
+    .io_inputs_0_aw_payload_burst  (toplevel_axi_cpu_area_cpu_dcache_decoder_1_io_outputs_0_aw_validPipe_payload_burst[1:0]                ), //i
     .io_inputs_0_aw_payload_lock   (1'b0                                                                                                   ), //i
     .io_inputs_0_aw_payload_cache  (4'b0000                                                                                                ), //i
     .io_inputs_0_aw_payload_qos    (4'b0000                                                                                                ), //i
     .io_inputs_0_aw_payload_prot   (3'b010                                                                                                 ), //i
-    .io_inputs_0_w_valid           (axi_cpu_dcache_decoder_1_io_outputs_0_w_valid                                                          ), //i
+    .io_inputs_0_w_valid           (axi_cpu_area_cpu_dcache_decoder_1_io_outputs_0_w_valid                                                 ), //i
     .io_inputs_0_w_ready           (axi4WriteOnlyArbiter_1_io_inputs_0_w_ready                                                             ), //o
-    .io_inputs_0_w_payload_data    (axi_cpu_dcache_decoder_1_io_outputs_0_w_payload_data[63:0]                                             ), //i
-    .io_inputs_0_w_payload_strb    (axi_cpu_dcache_decoder_1_io_outputs_0_w_payload_strb[7:0]                                              ), //i
-    .io_inputs_0_w_payload_last    (axi_cpu_dcache_decoder_1_io_outputs_0_w_payload_last                                                   ), //i
+    .io_inputs_0_w_payload_data    (axi_cpu_area_cpu_dcache_decoder_1_io_outputs_0_w_payload_data[63:0]                                    ), //i
+    .io_inputs_0_w_payload_strb    (axi_cpu_area_cpu_dcache_decoder_1_io_outputs_0_w_payload_strb[7:0]                                     ), //i
+    .io_inputs_0_w_payload_last    (axi_cpu_area_cpu_dcache_decoder_1_io_outputs_0_w_payload_last                                          ), //i
     .io_inputs_0_b_valid           (axi4WriteOnlyArbiter_1_io_inputs_0_b_valid                                                             ), //o
-    .io_inputs_0_b_ready           (axi_cpu_dcache_decoder_1_io_outputs_0_b_ready                                                          ), //i
+    .io_inputs_0_b_ready           (axi_cpu_area_cpu_dcache_decoder_1_io_outputs_0_b_ready                                                 ), //i
     .io_inputs_0_b_payload_id      (axi4WriteOnlyArbiter_1_io_inputs_0_b_payload_id[2:0]                                                   ), //o
     .io_inputs_0_b_payload_resp    (axi4WriteOnlyArbiter_1_io_inputs_0_b_payload_resp[1:0]                                                 ), //o
     .io_inputs_1_aw_valid          (toplevel_toplevel_axi_upsizer_io_output_writeOnly_decoder_io_outputs_0_aw_validPipe_valid              ), //i
@@ -1379,7 +1382,7 @@ module DandSocV2 (
     .io_output_b_payload_id        (axi_downsizer_io_input_b_payload_id[3:0]                                                               ), //i
     .io_output_b_payload_resp      (axi_downsizer_io_input_b_payload_resp[1:0]                                                             ), //i
     .io_axiClk                     (io_axiClk                                                                                              ), //i
-    .resetCtrl_axiReset            (resetCtrl_axiReset                                                                                     )  //i
+    .tmp_io_resetn                 (tmp_io_resetn                                                                                          )  //i
   );
   Axi4ReadOnlyDecoder_3 toplevel_axi_downsizer_io_output_readOnly_decoder (
     .io_input_ar_valid              (toplevel_axi_downsizer_io_output_readOnly_ar_valid                                         ), //i
@@ -1455,7 +1458,7 @@ module DandSocV2 (
     .io_outputs_2_r_payload_resp    (io_axi_ddr_r_payload_resp[1:0]                                                             ), //i
     .io_outputs_2_r_payload_last    (io_axi_ddr_r_payload_last                                                                  ), //i
     .io_axiClk                      (io_axiClk                                                                                  ), //i
-    .resetCtrl_axiReset             (resetCtrl_axiReset                                                                         )  //i
+    .tmp_io_resetn                  (tmp_io_resetn                                                                              )  //i
   );
   Axi4WriteOnlyDecoder_2 toplevel_axi_downsizer_io_output_writeOnly_decoder (
     .io_input_aw_valid              (toplevel_axi_downsizer_io_output_writeOnly_aw_valid                                         ), //i
@@ -1543,7 +1546,7 @@ module DandSocV2 (
     .io_outputs_2_b_payload_id      (io_axi_ddr_b_payload_id[3:0]                                                                ), //i
     .io_outputs_2_b_payload_resp    (io_axi_ddr_b_payload_resp[1:0]                                                              ), //i
     .io_axiClk                      (io_axiClk                                                                                   ), //i
-    .resetCtrl_axiReset             (resetCtrl_axiReset                                                                          )  //i
+    .tmp_io_resetn                  (tmp_io_resetn                                                                               )  //i
   );
   Axi4SharedArbiter axi_apbBridge_io_axi_arbiter (
     .io_readInputs_0_ar_valid          (toplevel_toplevel_axi_downsizer_io_output_readOnly_decoder_io_outputs_0_ar_validPipe_valid              ), //i
@@ -1599,7 +1602,7 @@ module DandSocV2 (
     .io_output_r_payload_resp          (axi_apbBridge_io_axi_r_payload_resp[1:0]                                                                ), //i
     .io_output_r_payload_last          (axi_apbBridge_io_axi_r_payload_last                                                                     ), //i
     .io_axiClk                         (io_axiClk                                                                                               ), //i
-    .resetCtrl_axiReset                (resetCtrl_axiReset                                                                                      )  //i
+    .tmp_io_resetn                     (tmp_io_resetn                                                                                           )  //i
   );
   Apb3Decoder io_apb_decoder (
     .io_input_PADDR      (axi_apbBridge_io_apb_PADDR[19:0]     ), //i
@@ -1645,29 +1648,31 @@ module DandSocV2 (
     .io_outputs_1_PRDATA    (axi_timer_io_apb_PRDATA[31:0]         ), //i
     .io_outputs_1_PSLVERROR (axi_timer_io_apb_PSLVERROR            ), //i
     .io_axiClk              (io_axiClk                             ), //i
-    .resetCtrl_axiReset     (resetCtrl_axiReset                    )  //i
+    .tmp_io_resetn          (tmp_io_resetn                         )  //i
   );
   always @(*) begin
-    resetCtrl_systemResetUnbuffered = 1'b0; // @ GenDandSoC.scala l205
+    resetCtrl_systemResetUnbuffered = 1'b0; // @ GenDandSoC.scala l206
     if(tmp_when) begin
-      resetCtrl_systemResetUnbuffered = 1'b1; // @ GenDandSoC.scala l211
+      resetCtrl_systemResetUnbuffered = 1'b1; // @ GenDandSoC.scala l212
     end
   end
 
   assign tmp_1[5 : 0] = 6'h3f; // @ Literal.scala l88
   assign bufferCC_1_io_dataIn = (! io_asyncResetn); // @ CrossClock.scala l9
-  assign axi_uartCtrl_io_resetn = (! resetCtrl_axiReset); // @ GenDandSoC.scala l247
-  assign io_axi_usb_aw_ready = axi_upsizer_io_input_aw_ready; // @ GenDandSoC.scala l251
-  assign io_axi_usb_w_ready = axi_upsizer_io_input_w_ready; // @ GenDandSoC.scala l251
-  assign io_axi_usb_b_valid = axi_upsizer_io_input_b_valid; // @ GenDandSoC.scala l251
-  assign io_axi_usb_b_payload_id = axi_upsizer_io_input_b_payload_id; // @ GenDandSoC.scala l251
-  assign io_axi_usb_b_payload_resp = axi_upsizer_io_input_b_payload_resp; // @ GenDandSoC.scala l251
-  assign io_axi_usb_ar_ready = axi_upsizer_io_input_ar_ready; // @ GenDandSoC.scala l251
-  assign io_axi_usb_r_valid = axi_upsizer_io_input_r_valid; // @ GenDandSoC.scala l251
-  assign io_axi_usb_r_payload_data = axi_upsizer_io_input_r_payload_data; // @ GenDandSoC.scala l251
-  assign io_axi_usb_r_payload_id = axi_upsizer_io_input_r_payload_id; // @ GenDandSoC.scala l251
-  assign io_axi_usb_r_payload_resp = axi_upsizer_io_input_r_payload_resp; // @ GenDandSoC.scala l251
-  assign io_axi_usb_r_payload_last = axi_upsizer_io_input_r_payload_last; // @ GenDandSoC.scala l251
+  assign tmp_io_resetn = (! io_asyncResetn); // @ BaseType.scala l299
+  assign cpu_rst = (resetCtrl_axiReset || (! io_usb_done)); // @ BaseType.scala l305
+  assign axi_uartCtrl_io_resetn = (! tmp_io_resetn); // @ GenDandSoC.scala l258
+  assign io_axi_usb_aw_ready = axi_upsizer_io_input_aw_ready; // @ GenDandSoC.scala l262
+  assign io_axi_usb_w_ready = axi_upsizer_io_input_w_ready; // @ GenDandSoC.scala l262
+  assign io_axi_usb_b_valid = axi_upsizer_io_input_b_valid; // @ GenDandSoC.scala l262
+  assign io_axi_usb_b_payload_id = axi_upsizer_io_input_b_payload_id; // @ GenDandSoC.scala l262
+  assign io_axi_usb_b_payload_resp = axi_upsizer_io_input_b_payload_resp; // @ GenDandSoC.scala l262
+  assign io_axi_usb_ar_ready = axi_upsizer_io_input_ar_ready; // @ GenDandSoC.scala l262
+  assign io_axi_usb_r_valid = axi_upsizer_io_input_r_valid; // @ GenDandSoC.scala l262
+  assign io_axi_usb_r_payload_data = axi_upsizer_io_input_r_payload_data; // @ GenDandSoC.scala l262
+  assign io_axi_usb_r_payload_id = axi_upsizer_io_input_r_payload_id; // @ GenDandSoC.scala l262
+  assign io_axi_usb_r_payload_resp = axi_upsizer_io_input_r_payload_resp; // @ GenDandSoC.scala l262
+  assign io_axi_usb_r_payload_last = axi_upsizer_io_input_r_payload_last; // @ GenDandSoC.scala l262
   assign toplevel_axi_upsizer_io_output_readOnly_ar_valid = axi_upsizer_io_output_ar_valid; // @ Stream.scala l303
   assign toplevel_axi_upsizer_io_output_readOnly_ar_payload_addr = axi_upsizer_io_output_ar_payload_addr; // @ Axi4Channel.scala l361
   assign toplevel_axi_upsizer_io_output_readOnly_ar_payload_id = axi_upsizer_io_output_ar_payload_id; // @ Axi4Channel.scala l352
@@ -1780,34 +1785,34 @@ module DandSocV2 (
   assign toplevel_axi_downsizer_io_output_writeOnly_w_payload_strb = axi_downsizer_io_output_w_payload_strb; // @ Axi4Channel.scala l352
   assign toplevel_axi_downsizer_io_output_writeOnly_w_payload_last = axi_downsizer_io_output_w_payload_last; // @ Axi4Channel.scala l352
   assign toplevel_axi_downsizer_io_output_writeOnly_b_ready = axi_downsizer_io_output_b_ready; // @ Stream.scala l304
-  assign toplevel_axi_cpu_icache_decoder_io_outputs_0_ar_validPipe_fire = (toplevel_axi_cpu_icache_decoder_io_outputs_0_ar_validPipe_valid && toplevel_axi_cpu_icache_decoder_io_outputs_0_ar_validPipe_ready); // @ BaseType.scala l305
-  assign toplevel_axi_cpu_icache_decoder_io_outputs_0_ar_validPipe_fire_1 = (toplevel_axi_cpu_icache_decoder_io_outputs_0_ar_validPipe_valid && toplevel_axi_cpu_icache_decoder_io_outputs_0_ar_validPipe_ready); // @ BaseType.scala l305
-  assign toplevel_axi_cpu_icache_decoder_io_outputs_0_ar_validPipe_valid = toplevel_axi_cpu_icache_decoder_io_outputs_0_ar_rValid; // @ Stream.scala l402
-  assign toplevel_axi_cpu_icache_decoder_io_outputs_0_ar_validPipe_payload_addr = axi_cpu_icache_decoder_io_outputs_0_ar_payload_addr; // @ Stream.scala l403
-  assign toplevel_axi_cpu_icache_decoder_io_outputs_0_ar_validPipe_payload_id = axi_cpu_icache_decoder_io_outputs_0_ar_payload_id; // @ Stream.scala l403
-  assign toplevel_axi_cpu_icache_decoder_io_outputs_0_ar_validPipe_payload_len = axi_cpu_icache_decoder_io_outputs_0_ar_payload_len; // @ Stream.scala l403
-  assign toplevel_axi_cpu_icache_decoder_io_outputs_0_ar_validPipe_payload_size = axi_cpu_icache_decoder_io_outputs_0_ar_payload_size; // @ Stream.scala l403
-  assign toplevel_axi_cpu_icache_decoder_io_outputs_0_ar_validPipe_payload_burst = axi_cpu_icache_decoder_io_outputs_0_ar_payload_burst; // @ Stream.scala l403
-  assign toplevel_axi_cpu_icache_decoder_io_outputs_0_ar_validPipe_ready = axi4ReadOnlyArbiter_1_io_inputs_0_ar_ready; // @ Stream.scala l295
-  assign toplevel_axi_cpu_dcache_decoder_io_outputs_0_ar_validPipe_fire = (toplevel_axi_cpu_dcache_decoder_io_outputs_0_ar_validPipe_valid && toplevel_axi_cpu_dcache_decoder_io_outputs_0_ar_validPipe_ready); // @ BaseType.scala l305
-  assign toplevel_axi_cpu_dcache_decoder_io_outputs_0_ar_validPipe_fire_1 = (toplevel_axi_cpu_dcache_decoder_io_outputs_0_ar_validPipe_valid && toplevel_axi_cpu_dcache_decoder_io_outputs_0_ar_validPipe_ready); // @ BaseType.scala l305
-  assign toplevel_axi_cpu_dcache_decoder_io_outputs_0_ar_validPipe_valid = toplevel_axi_cpu_dcache_decoder_io_outputs_0_ar_rValid; // @ Stream.scala l402
-  assign toplevel_axi_cpu_dcache_decoder_io_outputs_0_ar_validPipe_payload_addr = axi_cpu_dcache_decoder_io_outputs_0_ar_payload_addr; // @ Stream.scala l403
-  assign toplevel_axi_cpu_dcache_decoder_io_outputs_0_ar_validPipe_payload_id = axi_cpu_dcache_decoder_io_outputs_0_ar_payload_id; // @ Stream.scala l403
-  assign toplevel_axi_cpu_dcache_decoder_io_outputs_0_ar_validPipe_payload_len = axi_cpu_dcache_decoder_io_outputs_0_ar_payload_len; // @ Stream.scala l403
-  assign toplevel_axi_cpu_dcache_decoder_io_outputs_0_ar_validPipe_payload_size = axi_cpu_dcache_decoder_io_outputs_0_ar_payload_size; // @ Stream.scala l403
-  assign toplevel_axi_cpu_dcache_decoder_io_outputs_0_ar_validPipe_payload_burst = axi_cpu_dcache_decoder_io_outputs_0_ar_payload_burst; // @ Stream.scala l403
-  assign toplevel_axi_cpu_dcache_decoder_io_outputs_0_ar_validPipe_ready = axi4ReadOnlyArbiter_1_io_inputs_1_ar_ready; // @ Stream.scala l295
-  assign toplevel_axi_cpu_dcache_decoder_1_io_outputs_0_aw_validPipe_fire = (toplevel_axi_cpu_dcache_decoder_1_io_outputs_0_aw_validPipe_valid && toplevel_axi_cpu_dcache_decoder_1_io_outputs_0_aw_validPipe_ready); // @ BaseType.scala l305
-  assign toplevel_axi_cpu_dcache_decoder_1_io_outputs_0_aw_validPipe_fire_1 = (toplevel_axi_cpu_dcache_decoder_1_io_outputs_0_aw_validPipe_valid && toplevel_axi_cpu_dcache_decoder_1_io_outputs_0_aw_validPipe_ready); // @ BaseType.scala l305
-  assign toplevel_axi_cpu_dcache_decoder_1_io_outputs_0_aw_validPipe_valid = toplevel_axi_cpu_dcache_decoder_1_io_outputs_0_aw_rValid; // @ Stream.scala l402
-  assign toplevel_axi_cpu_dcache_decoder_1_io_outputs_0_aw_validPipe_payload_addr = axi_cpu_dcache_decoder_1_io_outputs_0_aw_payload_addr; // @ Stream.scala l403
-  assign toplevel_axi_cpu_dcache_decoder_1_io_outputs_0_aw_validPipe_payload_id = axi_cpu_dcache_decoder_1_io_outputs_0_aw_payload_id; // @ Stream.scala l403
-  assign toplevel_axi_cpu_dcache_decoder_1_io_outputs_0_aw_validPipe_payload_len = axi_cpu_dcache_decoder_1_io_outputs_0_aw_payload_len; // @ Stream.scala l403
-  assign toplevel_axi_cpu_dcache_decoder_1_io_outputs_0_aw_validPipe_payload_size = axi_cpu_dcache_decoder_1_io_outputs_0_aw_payload_size; // @ Stream.scala l403
-  assign toplevel_axi_cpu_dcache_decoder_1_io_outputs_0_aw_validPipe_payload_burst = axi_cpu_dcache_decoder_1_io_outputs_0_aw_payload_burst; // @ Stream.scala l403
-  assign toplevel_axi_cpu_dcache_decoder_1_io_outputs_0_aw_validPipe_ready = axi4WriteOnlyArbiter_1_io_inputs_0_aw_ready; // @ Stream.scala l295
-  assign axi_cpu_dcache_decoder_1_io_outputs_0_b_payload_id = axi4WriteOnlyArbiter_1_io_inputs_0_b_payload_id[1:0]; // @ Stream.scala l296
+  assign toplevel_axi_cpu_area_cpu_icache_decoder_io_outputs_0_ar_validPipe_fire = (toplevel_axi_cpu_area_cpu_icache_decoder_io_outputs_0_ar_validPipe_valid && toplevel_axi_cpu_area_cpu_icache_decoder_io_outputs_0_ar_validPipe_ready); // @ BaseType.scala l305
+  assign toplevel_axi_cpu_area_cpu_icache_decoder_io_outputs_0_ar_validPipe_fire_1 = (toplevel_axi_cpu_area_cpu_icache_decoder_io_outputs_0_ar_validPipe_valid && toplevel_axi_cpu_area_cpu_icache_decoder_io_outputs_0_ar_validPipe_ready); // @ BaseType.scala l305
+  assign toplevel_axi_cpu_area_cpu_icache_decoder_io_outputs_0_ar_validPipe_valid = toplevel_axi_cpu_area_cpu_icache_decoder_io_outputs_0_ar_rValid; // @ Stream.scala l402
+  assign toplevel_axi_cpu_area_cpu_icache_decoder_io_outputs_0_ar_validPipe_payload_addr = axi_cpu_area_cpu_icache_decoder_io_outputs_0_ar_payload_addr; // @ Stream.scala l403
+  assign toplevel_axi_cpu_area_cpu_icache_decoder_io_outputs_0_ar_validPipe_payload_id = axi_cpu_area_cpu_icache_decoder_io_outputs_0_ar_payload_id; // @ Stream.scala l403
+  assign toplevel_axi_cpu_area_cpu_icache_decoder_io_outputs_0_ar_validPipe_payload_len = axi_cpu_area_cpu_icache_decoder_io_outputs_0_ar_payload_len; // @ Stream.scala l403
+  assign toplevel_axi_cpu_area_cpu_icache_decoder_io_outputs_0_ar_validPipe_payload_size = axi_cpu_area_cpu_icache_decoder_io_outputs_0_ar_payload_size; // @ Stream.scala l403
+  assign toplevel_axi_cpu_area_cpu_icache_decoder_io_outputs_0_ar_validPipe_payload_burst = axi_cpu_area_cpu_icache_decoder_io_outputs_0_ar_payload_burst; // @ Stream.scala l403
+  assign toplevel_axi_cpu_area_cpu_icache_decoder_io_outputs_0_ar_validPipe_ready = axi4ReadOnlyArbiter_1_io_inputs_0_ar_ready; // @ Stream.scala l295
+  assign toplevel_axi_cpu_area_cpu_dcache_decoder_io_outputs_0_ar_validPipe_fire = (toplevel_axi_cpu_area_cpu_dcache_decoder_io_outputs_0_ar_validPipe_valid && toplevel_axi_cpu_area_cpu_dcache_decoder_io_outputs_0_ar_validPipe_ready); // @ BaseType.scala l305
+  assign toplevel_axi_cpu_area_cpu_dcache_decoder_io_outputs_0_ar_validPipe_fire_1 = (toplevel_axi_cpu_area_cpu_dcache_decoder_io_outputs_0_ar_validPipe_valid && toplevel_axi_cpu_area_cpu_dcache_decoder_io_outputs_0_ar_validPipe_ready); // @ BaseType.scala l305
+  assign toplevel_axi_cpu_area_cpu_dcache_decoder_io_outputs_0_ar_validPipe_valid = toplevel_axi_cpu_area_cpu_dcache_decoder_io_outputs_0_ar_rValid; // @ Stream.scala l402
+  assign toplevel_axi_cpu_area_cpu_dcache_decoder_io_outputs_0_ar_validPipe_payload_addr = axi_cpu_area_cpu_dcache_decoder_io_outputs_0_ar_payload_addr; // @ Stream.scala l403
+  assign toplevel_axi_cpu_area_cpu_dcache_decoder_io_outputs_0_ar_validPipe_payload_id = axi_cpu_area_cpu_dcache_decoder_io_outputs_0_ar_payload_id; // @ Stream.scala l403
+  assign toplevel_axi_cpu_area_cpu_dcache_decoder_io_outputs_0_ar_validPipe_payload_len = axi_cpu_area_cpu_dcache_decoder_io_outputs_0_ar_payload_len; // @ Stream.scala l403
+  assign toplevel_axi_cpu_area_cpu_dcache_decoder_io_outputs_0_ar_validPipe_payload_size = axi_cpu_area_cpu_dcache_decoder_io_outputs_0_ar_payload_size; // @ Stream.scala l403
+  assign toplevel_axi_cpu_area_cpu_dcache_decoder_io_outputs_0_ar_validPipe_payload_burst = axi_cpu_area_cpu_dcache_decoder_io_outputs_0_ar_payload_burst; // @ Stream.scala l403
+  assign toplevel_axi_cpu_area_cpu_dcache_decoder_io_outputs_0_ar_validPipe_ready = axi4ReadOnlyArbiter_1_io_inputs_1_ar_ready; // @ Stream.scala l295
+  assign toplevel_axi_cpu_area_cpu_dcache_decoder_1_io_outputs_0_aw_validPipe_fire = (toplevel_axi_cpu_area_cpu_dcache_decoder_1_io_outputs_0_aw_validPipe_valid && toplevel_axi_cpu_area_cpu_dcache_decoder_1_io_outputs_0_aw_validPipe_ready); // @ BaseType.scala l305
+  assign toplevel_axi_cpu_area_cpu_dcache_decoder_1_io_outputs_0_aw_validPipe_fire_1 = (toplevel_axi_cpu_area_cpu_dcache_decoder_1_io_outputs_0_aw_validPipe_valid && toplevel_axi_cpu_area_cpu_dcache_decoder_1_io_outputs_0_aw_validPipe_ready); // @ BaseType.scala l305
+  assign toplevel_axi_cpu_area_cpu_dcache_decoder_1_io_outputs_0_aw_validPipe_valid = toplevel_axi_cpu_area_cpu_dcache_decoder_1_io_outputs_0_aw_rValid; // @ Stream.scala l402
+  assign toplevel_axi_cpu_area_cpu_dcache_decoder_1_io_outputs_0_aw_validPipe_payload_addr = axi_cpu_area_cpu_dcache_decoder_1_io_outputs_0_aw_payload_addr; // @ Stream.scala l403
+  assign toplevel_axi_cpu_area_cpu_dcache_decoder_1_io_outputs_0_aw_validPipe_payload_id = axi_cpu_area_cpu_dcache_decoder_1_io_outputs_0_aw_payload_id; // @ Stream.scala l403
+  assign toplevel_axi_cpu_area_cpu_dcache_decoder_1_io_outputs_0_aw_validPipe_payload_len = axi_cpu_area_cpu_dcache_decoder_1_io_outputs_0_aw_payload_len; // @ Stream.scala l403
+  assign toplevel_axi_cpu_area_cpu_dcache_decoder_1_io_outputs_0_aw_validPipe_payload_size = axi_cpu_area_cpu_dcache_decoder_1_io_outputs_0_aw_payload_size; // @ Stream.scala l403
+  assign toplevel_axi_cpu_area_cpu_dcache_decoder_1_io_outputs_0_aw_validPipe_payload_burst = axi_cpu_area_cpu_dcache_decoder_1_io_outputs_0_aw_payload_burst; // @ Stream.scala l403
+  assign toplevel_axi_cpu_area_cpu_dcache_decoder_1_io_outputs_0_aw_validPipe_ready = axi4WriteOnlyArbiter_1_io_inputs_0_aw_ready; // @ Stream.scala l295
+  assign axi_cpu_area_cpu_dcache_decoder_1_io_outputs_0_b_payload_id = axi4WriteOnlyArbiter_1_io_inputs_0_b_payload_id[1:0]; // @ Stream.scala l296
   assign toplevel_toplevel_axi_upsizer_io_output_readOnly_decoder_io_outputs_0_ar_validPipe_fire = (toplevel_toplevel_axi_upsizer_io_output_readOnly_decoder_io_outputs_0_ar_validPipe_valid && toplevel_toplevel_axi_upsizer_io_output_readOnly_decoder_io_outputs_0_ar_validPipe_ready); // @ BaseType.scala l305
   assign toplevel_toplevel_axi_upsizer_io_output_readOnly_decoder_io_outputs_0_ar_validPipe_fire_1 = (toplevel_toplevel_axi_upsizer_io_output_readOnly_decoder_io_outputs_0_ar_validPipe_valid && toplevel_toplevel_axi_upsizer_io_output_readOnly_decoder_io_outputs_0_ar_validPipe_ready); // @ BaseType.scala l305
   assign toplevel_toplevel_axi_upsizer_io_output_readOnly_decoder_io_outputs_0_ar_validPipe_valid = toplevel_toplevel_axi_upsizer_io_output_readOnly_decoder_io_outputs_0_ar_rValid; // @ Stream.scala l402
@@ -1850,7 +1855,7 @@ module DandSocV2 (
   assign toplevel_axi_upsizer_io_output_writeOnly_b_payload_resp = toplevel_axi_upsizer_io_output_writeOnly_decoder_io_input_b_payload_resp; // @ Axi4Channel.scala l352
   assign tmp_io_inputs_0_ar_payload_region[3 : 0] = 4'b0000; // @ Literal.scala l88
   assign tmp_io_inputs_1_ar_payload_region[3 : 0] = 4'b0000; // @ Literal.scala l88
-  assign axi4WriteOnlyArbiter_1_io_inputs_0_aw_payload_id = {1'd0, toplevel_axi_cpu_dcache_decoder_1_io_outputs_0_aw_validPipe_payload_id}; // @ Axi4Channel.scala l352
+  assign axi4WriteOnlyArbiter_1_io_inputs_0_aw_payload_id = {1'd0, toplevel_axi_cpu_area_cpu_dcache_decoder_1_io_outputs_0_aw_validPipe_payload_id}; // @ Axi4Channel.scala l352
   assign tmp_io_inputs_0_aw_payload_region[3 : 0] = 4'b0000; // @ Literal.scala l88
   assign axi4WriteOnlyArbiter_1_io_inputs_1_aw_payload_id = {1'd0, toplevel_toplevel_axi_upsizer_io_output_writeOnly_decoder_io_outputs_0_aw_validPipe_payload_id}; // @ Axi4Channel.scala l352
   assign toplevel_toplevel_axi_downsizer_io_output_readOnly_decoder_io_outputs_0_ar_validPipe_fire = (toplevel_toplevel_axi_downsizer_io_output_readOnly_decoder_io_outputs_0_ar_validPipe_valid && toplevel_toplevel_axi_downsizer_io_output_readOnly_decoder_io_outputs_0_ar_validPipe_ready); // @ BaseType.scala l305
@@ -1952,16 +1957,16 @@ module DandSocV2 (
   assign axi_apbBridge_io_axi_arbiter_io_writeInputs_0_aw_payload_addr = toplevel_toplevel_axi_downsizer_io_output_writeOnly_decoder_io_outputs_0_aw_validPipe_payload_addr[19:0]; // @ Axi4Channel.scala l361
   assign axi_uartCtrl_io_apb_PADDR = apb3Router_1_io_outputs_0_PADDR[15:0]; // @ APB3.scala l72
   assign axi_timer_io_apb_PADDR = apb3Router_1_io_outputs_1_PADDR[7:0]; // @ APB3.scala l72
-  assign io_uart_txd = axi_uartCtrl_io_uart_txd; // @ GenDandSoC.scala l290
+  assign io_uart_txd = axi_uartCtrl_io_uart_txd; // @ GenDandSoC.scala l301
   always @(posedge io_axiClk or negedge io_asyncResetn) begin
     if(!io_asyncResetn) begin
       resetCtrl_systemResetCounter <= 6'h0; // @ Data.scala l400
     end else begin
       if(tmp_when) begin
-        resetCtrl_systemResetCounter <= (resetCtrl_systemResetCounter + 6'h01); // @ GenDandSoC.scala l210
+        resetCtrl_systemResetCounter <= (resetCtrl_systemResetCounter + 6'h01); // @ GenDandSoC.scala l211
       end
       if(bufferCC_1_io_dataOut) begin
-        resetCtrl_systemResetCounter <= 6'h0; // @ GenDandSoC.scala l214
+        resetCtrl_systemResetCounter <= 6'h0; // @ GenDandSoC.scala l215
       end
     end
   end
@@ -1970,11 +1975,11 @@ module DandSocV2 (
     resetCtrl_axiReset <= resetCtrl_systemResetUnbuffered; // @ Reg.scala l39
   end
 
-  always @(posedge io_axiClk or posedge resetCtrl_axiReset) begin
-    if(resetCtrl_axiReset) begin
-      toplevel_axi_cpu_icache_decoder_io_outputs_0_ar_rValid <= 1'b0; // @ Data.scala l400
-      toplevel_axi_cpu_dcache_decoder_io_outputs_0_ar_rValid <= 1'b0; // @ Data.scala l400
-      toplevel_axi_cpu_dcache_decoder_1_io_outputs_0_aw_rValid <= 1'b0; // @ Data.scala l400
+  always @(posedge io_axiClk or posedge tmp_io_resetn) begin
+    if(tmp_io_resetn) begin
+      toplevel_axi_cpu_area_cpu_icache_decoder_io_outputs_0_ar_rValid <= 1'b0; // @ Data.scala l400
+      toplevel_axi_cpu_area_cpu_dcache_decoder_io_outputs_0_ar_rValid <= 1'b0; // @ Data.scala l400
+      toplevel_axi_cpu_area_cpu_dcache_decoder_1_io_outputs_0_aw_rValid <= 1'b0; // @ Data.scala l400
       toplevel_toplevel_axi_upsizer_io_output_readOnly_decoder_io_outputs_0_ar_rValid <= 1'b0; // @ Data.scala l400
       toplevel_toplevel_axi_upsizer_io_output_writeOnly_decoder_io_outputs_0_aw_rValid <= 1'b0; // @ Data.scala l400
       toplevel_toplevel_axi_downsizer_io_output_readOnly_decoder_io_outputs_0_ar_rValid <= 1'b0; // @ Data.scala l400
@@ -1984,23 +1989,23 @@ module DandSocV2 (
       toplevel_toplevel_axi_downsizer_io_output_writeOnly_decoder_io_outputs_1_aw_rValid <= 1'b0; // @ Data.scala l400
       toplevel_toplevel_axi_downsizer_io_output_writeOnly_decoder_io_outputs_2_aw_rValid <= 1'b0; // @ Data.scala l400
     end else begin
-      if(axi_cpu_icache_decoder_io_outputs_0_ar_valid) begin
-        toplevel_axi_cpu_icache_decoder_io_outputs_0_ar_rValid <= 1'b1; // @ Stream.scala l398
+      if(axi_cpu_area_cpu_icache_decoder_io_outputs_0_ar_valid) begin
+        toplevel_axi_cpu_area_cpu_icache_decoder_io_outputs_0_ar_rValid <= 1'b1; // @ Stream.scala l398
       end
-      if(toplevel_axi_cpu_icache_decoder_io_outputs_0_ar_validPipe_fire) begin
-        toplevel_axi_cpu_icache_decoder_io_outputs_0_ar_rValid <= 1'b0; // @ Stream.scala l398
+      if(toplevel_axi_cpu_area_cpu_icache_decoder_io_outputs_0_ar_validPipe_fire) begin
+        toplevel_axi_cpu_area_cpu_icache_decoder_io_outputs_0_ar_rValid <= 1'b0; // @ Stream.scala l398
       end
-      if(axi_cpu_dcache_decoder_io_outputs_0_ar_valid) begin
-        toplevel_axi_cpu_dcache_decoder_io_outputs_0_ar_rValid <= 1'b1; // @ Stream.scala l398
+      if(axi_cpu_area_cpu_dcache_decoder_io_outputs_0_ar_valid) begin
+        toplevel_axi_cpu_area_cpu_dcache_decoder_io_outputs_0_ar_rValid <= 1'b1; // @ Stream.scala l398
       end
-      if(toplevel_axi_cpu_dcache_decoder_io_outputs_0_ar_validPipe_fire) begin
-        toplevel_axi_cpu_dcache_decoder_io_outputs_0_ar_rValid <= 1'b0; // @ Stream.scala l398
+      if(toplevel_axi_cpu_area_cpu_dcache_decoder_io_outputs_0_ar_validPipe_fire) begin
+        toplevel_axi_cpu_area_cpu_dcache_decoder_io_outputs_0_ar_rValid <= 1'b0; // @ Stream.scala l398
       end
-      if(axi_cpu_dcache_decoder_1_io_outputs_0_aw_valid) begin
-        toplevel_axi_cpu_dcache_decoder_1_io_outputs_0_aw_rValid <= 1'b1; // @ Stream.scala l398
+      if(axi_cpu_area_cpu_dcache_decoder_1_io_outputs_0_aw_valid) begin
+        toplevel_axi_cpu_area_cpu_dcache_decoder_1_io_outputs_0_aw_rValid <= 1'b1; // @ Stream.scala l398
       end
-      if(toplevel_axi_cpu_dcache_decoder_1_io_outputs_0_aw_validPipe_fire) begin
-        toplevel_axi_cpu_dcache_decoder_1_io_outputs_0_aw_rValid <= 1'b0; // @ Stream.scala l398
+      if(toplevel_axi_cpu_area_cpu_dcache_decoder_1_io_outputs_0_aw_validPipe_fire) begin
+        toplevel_axi_cpu_area_cpu_dcache_decoder_1_io_outputs_0_aw_rValid <= 1'b0; // @ Stream.scala l398
       end
       if(toplevel_axi_upsizer_io_output_readOnly_decoder_io_outputs_0_ar_valid) begin
         toplevel_toplevel_axi_upsizer_io_output_readOnly_decoder_io_outputs_0_ar_rValid <= 1'b1; // @ Stream.scala l398
@@ -2082,7 +2087,7 @@ module Apb3Router (
   input      [31:0]   io_outputs_1_PRDATA,
   input               io_outputs_1_PSLVERROR,
   input               io_axiClk,
-  input               resetCtrl_axiReset
+  input               tmp_io_resetn
 );
 
   reg                 tmp_io_input_PREADY;
@@ -2230,7 +2235,7 @@ module Axi4SharedArbiter (
   input      [1:0]    io_output_r_payload_resp,
   input               io_output_r_payload_last,
   input               io_axiClk,
-  input               resetCtrl_axiReset
+  input               tmp_io_resetn
 );
 
   reg                 cmdArbiter_io_output_ready;
@@ -2334,17 +2339,17 @@ module Axi4SharedArbiter (
     .io_chosen                 (cmdArbiter_io_chosen                   ), //o
     .io_chosenOH               (cmdArbiter_io_chosenOH[1:0]            ), //o
     .io_axiClk                 (io_axiClk                              ), //i
-    .resetCtrl_axiReset        (resetCtrl_axiReset                     )  //i
+    .tmp_io_resetn             (tmp_io_resetn                          )  //i
   );
   StreamFifoLowLatency cmdRouteFork_thrown_translated_fifo (
-    .io_push_valid      (cmdRouteFork_thrown_translated_valid                 ), //i
-    .io_push_ready      (cmdRouteFork_thrown_translated_fifo_io_push_ready    ), //o
-    .io_pop_valid       (cmdRouteFork_thrown_translated_fifo_io_pop_valid     ), //o
-    .io_pop_ready       (cmdRouteFork_thrown_translated_fifo_io_pop_ready     ), //i
-    .io_flush           (1'b0                                                 ), //i
-    .io_occupancy       (cmdRouteFork_thrown_translated_fifo_io_occupancy[2:0]), //o
-    .io_axiClk          (io_axiClk                                            ), //i
-    .resetCtrl_axiReset (resetCtrl_axiReset                                   )  //i
+    .io_push_valid (cmdRouteFork_thrown_translated_valid                 ), //i
+    .io_push_ready (cmdRouteFork_thrown_translated_fifo_io_push_ready    ), //o
+    .io_pop_valid  (cmdRouteFork_thrown_translated_fifo_io_pop_valid     ), //o
+    .io_pop_ready  (cmdRouteFork_thrown_translated_fifo_io_pop_ready     ), //i
+    .io_flush      (1'b0                                                 ), //i
+    .io_occupancy  (cmdRouteFork_thrown_translated_fifo_io_occupancy[2:0]), //o
+    .io_axiClk     (io_axiClk                                            ), //i
+    .tmp_io_resetn (tmp_io_resetn                                        )  //i
   );
   assign inputsCmd_0_valid = io_readInputs_0_ar_valid; // @ Stream.scala l303
   assign io_readInputs_0_ar_ready = inputsCmd_0_ready; // @ Stream.scala l304
@@ -2445,8 +2450,8 @@ module Axi4SharedArbiter (
   assign io_readInputs_0_r_payload_last = io_output_r_payload_last; // @ Axi4Arbiter.scala l208
   assign io_readInputs_0_r_payload_id = io_output_r_payload_id; // @ Axi4Arbiter.scala l210
   assign io_output_r_ready = io_readInputs_0_r_ready; // @ Axi4Arbiter.scala l212
-  always @(posedge io_axiClk or posedge resetCtrl_axiReset) begin
-    if(resetCtrl_axiReset) begin
+  always @(posedge io_axiClk or posedge tmp_io_resetn) begin
+    if(tmp_io_resetn) begin
       axi_apbBridge_io_axi_arbiter_cmdArbiter_io_output_fork2_logic_linkEnable_0 <= 1'b1; // @ Data.scala l400
       axi_apbBridge_io_axi_arbiter_cmdArbiter_io_output_fork2_logic_linkEnable_1 <= 1'b1; // @ Data.scala l400
     end else begin
@@ -2552,7 +2557,7 @@ module Axi4WriteOnlyDecoder_2 (
   input      [3:0]    io_outputs_2_b_payload_id,
   input      [1:0]    io_outputs_2_b_payload_resp,
   input               io_axiClk,
-  input               resetCtrl_axiReset
+  input               tmp_io_resetn
 );
 
   wire                errorSlave_io_axi_aw_valid;
@@ -2616,7 +2621,7 @@ module Axi4WriteOnlyDecoder_2 (
     .io_axi_b_payload_id      (errorSlave_io_axi_b_payload_id[3:0]  ), //o
     .io_axi_b_payload_resp    (errorSlave_io_axi_b_payload_resp[1:0]), //o
     .io_axiClk                (io_axiClk                            ), //i
-    .resetCtrl_axiReset       (resetCtrl_axiReset                   )  //i
+    .tmp_io_resetn            (tmp_io_resetn                        )  //i
   );
   always @(*) begin
     case(writeRspIndex)
@@ -2771,8 +2776,8 @@ module Axi4WriteOnlyDecoder_2 (
   assign io_outputs_0_b_ready = io_input_b_ready; // @ Axi4Decoder.scala l128
   assign io_outputs_1_b_ready = io_input_b_ready; // @ Axi4Decoder.scala l128
   assign io_outputs_2_b_ready = io_input_b_ready; // @ Axi4Decoder.scala l128
-  always @(posedge io_axiClk or posedge resetCtrl_axiReset) begin
-    if(resetCtrl_axiReset) begin
+  always @(posedge io_axiClk or posedge tmp_io_resetn) begin
+    if(tmp_io_resetn) begin
       pendingCmdCounter_value <= 3'b000; // @ Data.scala l400
       pendingDataCounter_value <= 3'b000; // @ Data.scala l400
       pendingSels <= 3'b000; // @ Data.scala l400
@@ -2873,7 +2878,7 @@ module Axi4ReadOnlyDecoder_3 (
   input      [1:0]    io_outputs_2_r_payload_resp,
   input               io_outputs_2_r_payload_last,
   input               io_axiClk,
-  input               resetCtrl_axiReset
+  input               tmp_io_resetn
 );
 
   wire                errorSlave_io_axi_ar_valid;
@@ -2925,7 +2930,7 @@ module Axi4ReadOnlyDecoder_3 (
     .io_axi_r_payload_resp    (errorSlave_io_axi_r_payload_resp[1:0] ), //o
     .io_axi_r_payload_last    (errorSlave_io_axi_r_payload_last      ), //o
     .io_axiClk                (io_axiClk                             ), //i
-    .resetCtrl_axiReset       (resetCtrl_axiReset                    )  //i
+    .tmp_io_resetn            (tmp_io_resetn                         )  //i
   );
   always @(*) begin
     case(readRspIndex)
@@ -3054,8 +3059,8 @@ module Axi4ReadOnlyDecoder_3 (
   assign io_outputs_0_r_ready = io_input_r_ready; // @ Axi4Decoder.scala l57
   assign io_outputs_1_r_ready = io_input_r_ready; // @ Axi4Decoder.scala l57
   assign io_outputs_2_r_ready = io_input_r_ready; // @ Axi4Decoder.scala l57
-  always @(posedge io_axiClk or posedge resetCtrl_axiReset) begin
-    if(resetCtrl_axiReset) begin
+  always @(posedge io_axiClk or posedge tmp_io_resetn) begin
+    if(tmp_io_resetn) begin
       pendingCmdCounter_value <= 3'b000; // @ Data.scala l400
       pendingSels <= 3'b000; // @ Data.scala l400
       pendingError <= 1'b0; // @ Data.scala l400
@@ -3138,7 +3143,7 @@ module Axi4WriteOnlyArbiter (
   input      [3:0]    io_output_b_payload_id,
   input      [1:0]    io_output_b_payload_resp,
   input               io_axiClk,
-  input               resetCtrl_axiReset
+  input               tmp_io_resetn
 );
 
   reg                 cmdArbiter_io_output_ready;
@@ -3243,19 +3248,19 @@ module Axi4WriteOnlyArbiter (
     .io_chosen                  (cmdArbiter_io_chosen                    ), //o
     .io_chosenOH                (cmdArbiter_io_chosenOH[1:0]             ), //o
     .io_axiClk                  (io_axiClk                               ), //i
-    .resetCtrl_axiReset         (resetCtrl_axiReset                      )  //i
+    .tmp_io_resetn              (tmp_io_resetn                           )  //i
   );
   StreamFifoLowLatency_1 cmdRouteFork_translated_fifo (
-    .io_push_valid      (cmdRouteFork_translated_valid                 ), //i
-    .io_push_ready      (cmdRouteFork_translated_fifo_io_push_ready    ), //o
-    .io_push_payload    (cmdRouteFork_translated_payload               ), //i
-    .io_pop_valid       (cmdRouteFork_translated_fifo_io_pop_valid     ), //o
-    .io_pop_ready       (cmdRouteFork_translated_fifo_io_pop_ready     ), //i
-    .io_pop_payload     (cmdRouteFork_translated_fifo_io_pop_payload   ), //o
-    .io_flush           (1'b0                                          ), //i
-    .io_occupancy       (cmdRouteFork_translated_fifo_io_occupancy[2:0]), //o
-    .io_axiClk          (io_axiClk                                     ), //i
-    .resetCtrl_axiReset (resetCtrl_axiReset                            )  //i
+    .io_push_valid   (cmdRouteFork_translated_valid                 ), //i
+    .io_push_ready   (cmdRouteFork_translated_fifo_io_push_ready    ), //o
+    .io_push_payload (cmdRouteFork_translated_payload               ), //i
+    .io_pop_valid    (cmdRouteFork_translated_fifo_io_pop_valid     ), //o
+    .io_pop_ready    (cmdRouteFork_translated_fifo_io_pop_ready     ), //i
+    .io_pop_payload  (cmdRouteFork_translated_fifo_io_pop_payload   ), //o
+    .io_flush        (1'b0                                          ), //i
+    .io_occupancy    (cmdRouteFork_translated_fifo_io_occupancy[2:0]), //o
+    .io_axiClk       (io_axiClk                                     ), //i
+    .tmp_io_resetn   (tmp_io_resetn                                 )  //i
   );
   always @(*) begin
     case(cmdRouteFork_translated_fifo_io_pop_payload)
@@ -3351,8 +3356,8 @@ module Axi4WriteOnlyArbiter (
   assign io_inputs_1_b_payload_resp = io_output_b_payload_resp; // @ Axi4Arbiter.scala l89
   assign io_inputs_1_b_payload_id = io_output_b_payload_id[2 : 0]; // @ Axi4Arbiter.scala l91
   assign io_output_b_ready = tmp_io_output_b_ready; // @ Axi4Arbiter.scala l93
-  always @(posedge io_axiClk or posedge resetCtrl_axiReset) begin
-    if(resetCtrl_axiReset) begin
+  always @(posedge io_axiClk or posedge tmp_io_resetn) begin
+    if(tmp_io_resetn) begin
       axi4WriteOnlyArbiter_1_cmdArbiter_io_output_fork2_logic_linkEnable_0 <= 1'b1; // @ Data.scala l400
       axi4WriteOnlyArbiter_1_cmdArbiter_io_output_fork2_logic_linkEnable_1 <= 1'b1; // @ Data.scala l400
     end else begin
@@ -3446,7 +3451,7 @@ module Axi4ReadOnlyArbiter (
   input      [1:0]    io_output_r_payload_resp,
   input               io_output_r_payload_last,
   input               io_axiClk,
-  input               resetCtrl_axiReset
+  input               tmp_io_resetn
 );
 
   wire                cmdArbiter_io_inputs_0_ready;
@@ -3523,7 +3528,7 @@ module Axi4ReadOnlyArbiter (
     .io_chosen                  (cmdArbiter_io_chosen[1:0]               ), //o
     .io_chosenOH                (cmdArbiter_io_chosenOH[2:0]             ), //o
     .io_axiClk                  (io_axiClk                               ), //i
-    .resetCtrl_axiReset         (resetCtrl_axiReset                      )  //i
+    .tmp_io_resetn              (tmp_io_resetn                           )  //i
   );
   always @(*) begin
     case(readRspIndex)
@@ -3614,7 +3619,7 @@ module Axi4WriteOnlyDecoder_1 (
   input      [1:0]    io_outputs_0_b_payload_id,
   input      [1:0]    io_outputs_0_b_payload_resp,
   input               io_axiClk,
-  input               resetCtrl_axiReset
+  input               tmp_io_resetn
 );
 
   wire                cmdAllowedStart;
@@ -3730,8 +3735,8 @@ module Axi4WriteOnlyDecoder_1 (
   assign io_input_b_payload_id = io_outputs_0_b_payload_id; // @ Axi4Decoder.scala l120
   assign io_input_b_payload_resp = io_outputs_0_b_payload_resp; // @ Axi4Decoder.scala l120
   assign io_outputs_0_b_ready = io_input_b_ready; // @ Axi4Decoder.scala l128
-  always @(posedge io_axiClk or posedge resetCtrl_axiReset) begin
-    if(resetCtrl_axiReset) begin
+  always @(posedge io_axiClk or posedge tmp_io_resetn) begin
+    if(tmp_io_resetn) begin
       pendingCmdCounter_value <= 3'b000; // @ Data.scala l400
       pendingDataCounter_value <= 3'b000; // @ Data.scala l400
       pendingSels <= 1'b0; // @ Data.scala l400
@@ -3796,7 +3801,7 @@ module Axi4ReadOnlyDecoder_2 (
   input      [1:0]    io_outputs_0_r_payload_resp,
   input               io_outputs_0_r_payload_last,
   input               io_axiClk,
-  input               resetCtrl_axiReset
+  input               tmp_io_resetn
 );
 
   wire                io_input_ar_fire;
@@ -3866,8 +3871,8 @@ module Axi4ReadOnlyDecoder_2 (
   assign io_input_r_payload_resp = io_outputs_0_r_payload_resp; // @ Axi4Decoder.scala l47
   assign io_input_r_payload_last = io_outputs_0_r_payload_last; // @ Axi4Decoder.scala l47
   assign io_outputs_0_r_ready = io_input_r_ready; // @ Axi4Decoder.scala l57
-  always @(posedge io_axiClk or posedge resetCtrl_axiReset) begin
-    if(resetCtrl_axiReset) begin
+  always @(posedge io_axiClk or posedge tmp_io_resetn) begin
+    if(tmp_io_resetn) begin
       pendingCmdCounter_value <= 3'b000; // @ Data.scala l400
       pendingSels <= 1'b0; // @ Data.scala l400
       pendingError <= 1'b0; // @ Data.scala l400
@@ -3919,7 +3924,7 @@ module Axi4WriteOnlyDecoder (
   input      [1:0]    io_outputs_0_b_payload_id,
   input      [1:0]    io_outputs_0_b_payload_resp,
   input               io_axiClk,
-  input               resetCtrl_axiReset
+  input               tmp_io_resetn
 );
 
   wire                cmdAllowedStart;
@@ -4030,8 +4035,8 @@ module Axi4WriteOnlyDecoder (
   assign io_input_b_payload_id = io_outputs_0_b_payload_id; // @ Axi4Decoder.scala l120
   assign io_input_b_payload_resp = io_outputs_0_b_payload_resp; // @ Axi4Decoder.scala l120
   assign io_outputs_0_b_ready = io_input_b_ready; // @ Axi4Decoder.scala l128
-  always @(posedge io_axiClk or posedge resetCtrl_axiReset) begin
-    if(resetCtrl_axiReset) begin
+  always @(posedge io_axiClk or posedge tmp_io_resetn) begin
+    if(tmp_io_resetn) begin
       pendingCmdCounter_value <= 3'b000; // @ Data.scala l400
       pendingDataCounter_value <= 3'b000; // @ Data.scala l400
       pendingSels <= 1'b0; // @ Data.scala l400
@@ -4088,7 +4093,7 @@ module Axi4ReadOnlyDecoder (
   input      [1:0]    io_outputs_0_r_payload_resp,
   input               io_outputs_0_r_payload_last,
   input               io_axiClk,
-  input               resetCtrl_axiReset
+  input               tmp_io_resetn
 );
 
   wire                io_input_ar_fire;
@@ -4153,8 +4158,8 @@ module Axi4ReadOnlyDecoder (
   assign io_input_r_payload_resp = io_outputs_0_r_payload_resp; // @ Axi4Decoder.scala l47
   assign io_input_r_payload_last = io_outputs_0_r_payload_last; // @ Axi4Decoder.scala l47
   assign io_outputs_0_r_ready = io_input_r_ready; // @ Axi4Decoder.scala l57
-  always @(posedge io_axiClk or posedge resetCtrl_axiReset) begin
-    if(resetCtrl_axiReset) begin
+  always @(posedge io_axiClk or posedge tmp_io_resetn) begin
+    if(tmp_io_resetn) begin
       pendingCmdCounter_value <= 3'b000; // @ Data.scala l400
       pendingSels <= 1'b0; // @ Data.scala l400
       pendingError <= 1'b0; // @ Data.scala l400
@@ -4182,7 +4187,7 @@ module Apb3Timer (
   output reg [31:0]   io_apb_PRDATA,
   output              io_apb_PSLVERROR,
   input               io_axiClk,
-  input               resetCtrl_axiReset
+  input               tmp_io_resetn
 );
 
   reg        [63:0]   timer_1;
@@ -4202,8 +4207,8 @@ module Apb3Timer (
   end
 
   assign io_apb_PSLVERROR = 1'b0; // @ ApbTimer.scala l58
-  always @(posedge io_axiClk or posedge resetCtrl_axiReset) begin
-    if(resetCtrl_axiReset) begin
+  always @(posedge io_axiClk or posedge tmp_io_resetn) begin
+    if(tmp_io_resetn) begin
       timer_1 <= 64'h0; // @ Data.scala l400
       cycle_cnt <= 32'h0; // @ Data.scala l400
     end else begin
@@ -4310,7 +4315,7 @@ module DandMaxFreq (
   input      [1:0]    dcache_b_payload_id,
   input      [1:0]    dcache_b_payload_resp,
   input               io_axiClk,
-  input               resetCtrl_axiReset
+  input               cpu_rst
 );
   localparam AluCtrlEnum_IDLE = 5'd0;
   localparam AluCtrlEnum_ADD = 5'd1;
@@ -4536,7 +4541,7 @@ module DandMaxFreq (
     .bpu_predict_jal                  (fetch_1_bpu_predict_jal                     ), //o
     .bpu_predict_branch               (fetch_1_bpu_predict_branch                  ), //o
     .io_axiClk                        (io_axiClk                                   ), //i
-    .resetCtrl_axiReset               (resetCtrl_axiReset                          )  //i
+    .cpu_rst                          (cpu_rst                                     )  //i
   );
   ICacheTop icache_1 (
     .flush                         (1'b0                                        ), //i
@@ -4559,7 +4564,7 @@ module DandMaxFreq (
     .icache_r_payload_resp         (icache_r_payload_resp[1:0]                  ), //i
     .icache_r_payload_last         (icache_r_payload_last                       ), //i
     .io_axiClk                     (io_axiClk                                   ), //i
-    .resetCtrl_axiReset            (resetCtrl_axiReset                          )  //i
+    .cpu_rst                       (cpu_rst                                     )  //i
   );
   static_predictor bpu (
     .predict_pc     (fetch_1_bpu_predict_pc[31:0]), //i
@@ -4643,7 +4648,7 @@ module DandMaxFreq (
     .wb_ports_lsu_payload_pc                       (lsu_1_dst_ports_payload_pc[31:0]                          ), //i
     .wb_ports_lsu_payload_instruction              (lsu_1_dst_ports_payload_instruction[31:0]                 ), //i
     .io_axiClk                                     (io_axiClk                                                 ), //i
-    .resetCtrl_axiReset                            (resetCtrl_axiReset                                        )  //i
+    .cpu_rst                                       (cpu_rst                                                   )  //i
   );
   BJU bju_1 (
     .flush                                      (1'b0                                                      ), //i
@@ -4689,7 +4694,7 @@ module DandMaxFreq (
     .interrupt_pc                               (bju_1_interrupt_pc[31:0]                                  ), //o
     .timer_int                                  (timer_1_timer_int                                         ), //i
     .io_axiClk                                  (io_axiClk                                                 ), //i
-    .resetCtrl_axiReset                         (resetCtrl_axiReset                                        )  //i
+    .cpu_rst                                    (cpu_rst                                                   )  //i
   );
   ALU alu_1 (
     .flush                                  (1'b0                                                    ), //i
@@ -4713,7 +4718,7 @@ module DandMaxFreq (
     .dst_ports_payload_pc                   (alu_1_dst_ports_payload_pc[31:0]                        ), //o
     .dst_ports_payload_instruction          (alu_1_dst_ports_payload_instruction[31:0]               ), //o
     .io_axiClk                              (io_axiClk                                               ), //i
-    .resetCtrl_axiReset                     (resetCtrl_axiReset                                      )  //i
+    .cpu_rst                                (cpu_rst                                                 )  //i
   );
   LSU lsu_1 (
     .flush                                   (1'b0                                                    ), //i
@@ -4752,7 +4757,7 @@ module DandMaxFreq (
     .timer_addr                              (lsu_1_timer_addr[31:0]                                  ), //o
     .timer_wdata                             (lsu_1_timer_wdata[63:0]                                 ), //o
     .io_axiClk                               (io_axiClk                                               ), //i
-    .resetCtrl_axiReset                      (resetCtrl_axiReset                                      )  //i
+    .cpu_rst                                 (cpu_rst                                                 )  //i
   );
   BIUTop dcache (
     .stall                          (dcache_stall                              ), //o
@@ -4796,17 +4801,17 @@ module DandMaxFreq (
     .dcache_b_payload_id            (dcache_b_payload_id[1:0]                  ), //i
     .dcache_b_payload_resp          (dcache_b_payload_resp[1:0]                ), //i
     .io_axiClk                      (io_axiClk                                 ), //i
-    .resetCtrl_axiReset             (resetCtrl_axiReset                        )  //i
+    .cpu_rst                        (cpu_rst                                   )  //i
   );
   Timer timer_1 (
-    .cen                (lsu_1_timer_cen        ), //i
-    .wen                (lsu_1_timer_wen        ), //i
-    .addr               (lsu_1_timer_addr[31:0] ), //i
-    .wdata              (lsu_1_timer_wdata[63:0]), //i
-    .rdata              (timer_1_rdata[63:0]    ), //o
-    .timer_int          (timer_1_timer_int      ), //o
-    .io_axiClk          (io_axiClk              ), //i
-    .resetCtrl_axiReset (resetCtrl_axiReset     )  //i
+    .cen       (lsu_1_timer_cen        ), //i
+    .wen       (lsu_1_timer_wen        ), //i
+    .addr      (lsu_1_timer_addr[31:0] ), //i
+    .wdata     (lsu_1_timer_wdata[63:0]), //i
+    .rdata     (timer_1_rdata[63:0]    ), //o
+    .timer_int (timer_1_timer_int      ), //o
+    .io_axiClk (io_axiClk              ), //i
+    .cpu_rst   (cpu_rst                )  //i
   );
   assign change_flow = (bju_1_interrupt_valid || bju_1_redirect_valid); // @ BaseType.scala l305
   assign bpu_predict_imm = fetch_1_bpu_predict_imm[31 : 0]; // @ DandMaxFreq.scala l115
@@ -4871,7 +4876,7 @@ module Axi4SharedToApb3Bridge (
   input      [31:0]   io_apb_PRDATA,
   input               io_apb_PSLVERROR,
   input               io_axiClk,
-  input               resetCtrl_axiReset
+  input               tmp_io_resetn
 );
   localparam Axi4ToApb3BridgePhase_SETUP = 2'd0;
   localparam Axi4ToApb3BridgePhase_ACCESS_1 = 2'd1;
@@ -5012,8 +5017,8 @@ module Axi4SharedToApb3Bridge (
   assign io_axi_b_payload_id = id; // @ Axi4SharedToApb3Bridge.scala l139
   assign io_axi_r_payload_data = readedData; // @ Axi4SharedToApb3Bridge.scala l140
   assign io_axi_r_payload_last = 1'b1; // @ Axi4SharedToApb3Bridge.scala l141
-  always @(posedge io_axiClk or posedge resetCtrl_axiReset) begin
-    if(resetCtrl_axiReset) begin
+  always @(posedge io_axiClk or posedge tmp_io_resetn) begin
+    if(tmp_io_resetn) begin
       phase <= Axi4ToApb3BridgePhase_SETUP; // @ Data.scala l400
     end else begin
       case(phase)
@@ -5144,7 +5149,7 @@ module Axi4Upsizer (
   input      [1:0]    io_output_r_payload_resp,
   input               io_output_r_payload_last,
   input               io_axiClk,
-  input               resetCtrl_axiReset
+  input               tmp_io_resetn
 );
 
   wire                readOnly_io_input_ar_ready;
@@ -5225,7 +5230,7 @@ module Axi4Upsizer (
     .io_output_r_payload_resp    (io_output_r_payload_resp[1:0]            ), //i
     .io_output_r_payload_last    (io_output_r_payload_last                 ), //i
     .io_axiClk                   (io_axiClk                                ), //i
-    .resetCtrl_axiReset          (resetCtrl_axiReset                       )  //i
+    .tmp_io_resetn               (tmp_io_resetn                            )  //i
   );
   Axi4WriteOnlyUpsizer writeOnly (
     .io_input_aw_valid           (io_input_aw_valid                         ), //i
@@ -5271,7 +5276,7 @@ module Axi4Upsizer (
     .io_output_b_payload_id      (io_output_b_payload_id[1:0]               ), //i
     .io_output_b_payload_resp    (io_output_b_payload_resp[1:0]             ), //i
     .io_axiClk                   (io_axiClk                                 ), //i
-    .resetCtrl_axiReset          (resetCtrl_axiReset                        )  //i
+    .tmp_io_resetn               (tmp_io_resetn                             )  //i
   );
   assign io_input_ar_ready = readOnly_io_input_ar_ready; // @ Axi4Upsizer.scala l163
   assign io_input_r_valid = readOnly_io_input_r_valid; // @ Axi4Upsizer.scala l164
@@ -5395,7 +5400,7 @@ module Axi4Downsizer (
   input      [1:0]    io_output_r_payload_resp,
   input               io_output_r_payload_last,
   input               io_axiClk,
-  input               resetCtrl_axiReset
+  input               tmp_io_resetn
 );
 
   wire                readOnly_io_input_ar_ready;
@@ -5476,7 +5481,7 @@ module Axi4Downsizer (
     .io_output_r_payload_resp    (io_output_r_payload_resp[1:0]            ), //i
     .io_output_r_payload_last    (io_output_r_payload_last                 ), //i
     .io_axiClk                   (io_axiClk                                ), //i
-    .resetCtrl_axiReset          (resetCtrl_axiReset                       )  //i
+    .tmp_io_resetn               (tmp_io_resetn                            )  //i
   );
   Axi4WriteOnlyDownsizer writeOnly (
     .io_input_aw_valid           (io_input_aw_valid                         ), //i
@@ -5522,7 +5527,7 @@ module Axi4Downsizer (
     .io_output_b_payload_id      (io_output_b_payload_id[3:0]               ), //i
     .io_output_b_payload_resp    (io_output_b_payload_resp[1:0]             ), //i
     .io_axiClk                   (io_axiClk                                 ), //i
-    .resetCtrl_axiReset          (resetCtrl_axiReset                        )  //i
+    .tmp_io_resetn               (tmp_io_resetn                             )  //i
   );
   assign io_input_ar_ready = readOnly_io_input_ar_ready; // @ Axi4Downsizer.scala l285
   assign io_input_r_valid = readOnly_io_input_r_valid; // @ Axi4Downsizer.scala l286
@@ -5593,7 +5598,7 @@ module StreamFifoLowLatency (
   input               io_flush,
   output     [2:0]    io_occupancy,
   input               io_axiClk,
-  input               resetCtrl_axiReset
+  input               tmp_io_resetn
 );
 
   wire       [1:0]    tmp_pushPtr_valueNext;
@@ -5686,8 +5691,8 @@ module StreamFifoLowLatency (
 
   assign ptrDif = (pushPtr_value - popPtr_value); // @ BaseType.scala l299
   assign io_occupancy = {(risingOccupancy && ptrMatch),ptrDif}; // @ Stream.scala l1246
-  always @(posedge io_axiClk or posedge resetCtrl_axiReset) begin
-    if(resetCtrl_axiReset) begin
+  always @(posedge io_axiClk or posedge tmp_io_resetn) begin
+    if(tmp_io_resetn) begin
       pushPtr_value <= 2'b00; // @ Data.scala l400
       popPtr_value <= 2'b00; // @ Data.scala l400
       risingOccupancy <= 1'b0; // @ Data.scala l400
@@ -5734,7 +5739,7 @@ module StreamArbiter (
   output     [0:0]    io_chosen,
   output     [1:0]    io_chosenOH,
   input               io_axiClk,
-  input               resetCtrl_axiReset
+  input               tmp_io_resetn
 );
 
   wire       [3:0]    tmp_tmp_maskProposal_0_2;
@@ -5778,8 +5783,8 @@ module StreamArbiter (
   assign io_chosenOH = {maskRouted_1,maskRouted_0}; // @ Stream.scala l697
   assign tmp_io_chosen = io_chosenOH[1]; // @ BaseType.scala l305
   assign io_chosen = tmp_io_chosen; // @ Stream.scala l698
-  always @(posedge io_axiClk or posedge resetCtrl_axiReset) begin
-    if(resetCtrl_axiReset) begin
+  always @(posedge io_axiClk or posedge tmp_io_resetn) begin
+    if(tmp_io_resetn) begin
       locked <= 1'b0; // @ Data.scala l400
       maskLocked_0 <= 1'b0; // @ Data.scala l400
       maskLocked_1 <= 1'b1; // @ Data.scala l400
@@ -5823,7 +5828,7 @@ module Axi4WriteOnlyErrorSlave (
   output     [3:0]    io_axi_b_payload_id,
   output     [1:0]    io_axi_b_payload_resp,
   input               io_axiClk,
-  input               resetCtrl_axiReset
+  input               tmp_io_resetn
 );
 
   reg                 consumeData;
@@ -5841,8 +5846,8 @@ module Axi4WriteOnlyErrorSlave (
   assign io_axi_b_payload_resp = 2'b11; // @ Axi4Channel.scala l195
   assign io_axi_b_payload_id = id; // @ Axi4ErrorSlave.scala l31
   assign io_axi_b_fire = (io_axi_b_valid && io_axi_b_ready); // @ BaseType.scala l305
-  always @(posedge io_axiClk or posedge resetCtrl_axiReset) begin
-    if(resetCtrl_axiReset) begin
+  always @(posedge io_axiClk or posedge tmp_io_resetn) begin
+    if(tmp_io_resetn) begin
       consumeData <= 1'b0; // @ Data.scala l400
       sendRsp <= 1'b0; // @ Data.scala l400
     end else begin
@@ -5888,7 +5893,7 @@ module Axi4ReadOnlyErrorSlave (
   output     [1:0]    io_axi_r_payload_resp,
   output              io_axi_r_payload_last,
   input               io_axiClk,
-  input               resetCtrl_axiReset
+  input               tmp_io_resetn
 );
 
   reg                 sendRsp;
@@ -5904,8 +5909,8 @@ module Axi4ReadOnlyErrorSlave (
   assign io_axi_r_payload_id = id; // @ Axi4ErrorSlave.scala l56
   assign io_axi_r_payload_resp = 2'b11; // @ Axi4Channel.scala l225
   assign io_axi_r_payload_last = remainingZero; // @ Axi4ErrorSlave.scala l58
-  always @(posedge io_axiClk or posedge resetCtrl_axiReset) begin
-    if(resetCtrl_axiReset) begin
+  always @(posedge io_axiClk or posedge tmp_io_resetn) begin
+    if(tmp_io_resetn) begin
       sendRsp <= 1'b0; // @ Data.scala l400
     end else begin
       if(io_axi_ar_fire) begin
@@ -5946,7 +5951,7 @@ module StreamFifoLowLatency_1 (
   input               io_flush,
   output     [2:0]    io_occupancy,
   input               io_axiClk,
-  input               resetCtrl_axiReset
+  input               tmp_io_resetn
 );
 
   wire       [0:0]    tmp_ram_port0;
@@ -6070,8 +6075,8 @@ module StreamFifoLowLatency_1 (
 
   assign ptrDif = (pushPtr_value - popPtr_value); // @ BaseType.scala l299
   assign io_occupancy = {(risingOccupancy && ptrMatch),ptrDif}; // @ Stream.scala l1246
-  always @(posedge io_axiClk or posedge resetCtrl_axiReset) begin
-    if(resetCtrl_axiReset) begin
+  always @(posedge io_axiClk or posedge tmp_io_resetn) begin
+    if(tmp_io_resetn) begin
       pushPtr_value <= 2'b00; // @ Data.scala l400
       popPtr_value <= 2'b00; // @ Data.scala l400
       risingOccupancy <= 1'b0; // @ Data.scala l400
@@ -6130,7 +6135,7 @@ module StreamArbiter_1 (
   output     [0:0]    io_chosen,
   output     [1:0]    io_chosenOH,
   input               io_axiClk,
-  input               resetCtrl_axiReset
+  input               tmp_io_resetn
 );
 
   wire       [3:0]    tmp_tmp_maskProposal_0_2;
@@ -6178,8 +6183,8 @@ module StreamArbiter_1 (
   assign io_chosenOH = {maskRouted_1,maskRouted_0}; // @ Stream.scala l697
   assign tmp_io_chosen = io_chosenOH[1]; // @ BaseType.scala l305
   assign io_chosen = tmp_io_chosen; // @ Stream.scala l698
-  always @(posedge io_axiClk or posedge resetCtrl_axiReset) begin
-    if(resetCtrl_axiReset) begin
+  always @(posedge io_axiClk or posedge tmp_io_resetn) begin
+    if(tmp_io_resetn) begin
       locked <= 1'b0; // @ Data.scala l400
       maskLocked_0 <= 1'b0; // @ Data.scala l400
       maskLocked_1 <= 1'b1; // @ Data.scala l400
@@ -6252,7 +6257,7 @@ module StreamArbiter_2 (
   output     [1:0]    io_chosen,
   output     [2:0]    io_chosenOH,
   input               io_axiClk,
-  input               resetCtrl_axiReset
+  input               tmp_io_resetn
 );
 
   wire       [5:0]    tmp_tmp_maskProposal_0_2;
@@ -6361,8 +6366,8 @@ module StreamArbiter_2 (
   assign tmp_io_chosen = io_chosenOH[1]; // @ BaseType.scala l305
   assign tmp_io_chosen_1 = io_chosenOH[2]; // @ BaseType.scala l305
   assign io_chosen = {tmp_io_chosen_1,tmp_io_chosen}; // @ Stream.scala l698
-  always @(posedge io_axiClk or posedge resetCtrl_axiReset) begin
-    if(resetCtrl_axiReset) begin
+  always @(posedge io_axiClk or posedge tmp_io_resetn) begin
+    if(tmp_io_resetn) begin
       locked <= 1'b0; // @ Data.scala l400
       maskLocked_0 <= 1'b0; // @ Data.scala l400
       maskLocked_1 <= 1'b0; // @ Data.scala l400
@@ -6393,7 +6398,7 @@ module Timer (
   output reg [63:0]   rdata,
   output              timer_int,
   input               io_axiClk,
-  input               resetCtrl_axiReset
+  input               cpu_rst
 );
 
   wire       [63:0]   tmp_mtime;
@@ -6414,8 +6419,8 @@ module Timer (
   end
 
   assign timer_int = (mtimecmp <= mtime); // @ Exception.scala l243
-  always @(posedge io_axiClk or posedge resetCtrl_axiReset) begin
-    if(resetCtrl_axiReset) begin
+  always @(posedge io_axiClk or posedge cpu_rst) begin
+    if(cpu_rst) begin
       mtime <= 64'h0; // @ Data.scala l400
       mtimecmp <= 64'hffffffffffffffff; // @ Data.scala l400
     end else begin
@@ -6481,7 +6486,7 @@ module BIUTop (
   input      [1:0]    dcache_b_payload_id,
   input      [1:0]    dcache_b_payload_resp,
   input               io_axiClk,
-  input               resetCtrl_axiReset
+  input               cpu_rst
 );
 
   wire                biu_1_cpu_bypass_rsp_valid;
@@ -6541,7 +6546,7 @@ module BIUTop (
     .cpu_bypass_rsp_valid         (biu_1_cpu_bypass_rsp_valid              ), //i
     .cpu_bypass_rsp_payload_data  (dcache_r_payload_data[63:0]             ), //i
     .io_axiClk                    (io_axiClk                               ), //i
-    .resetCtrl_axiReset           (resetCtrl_axiReset                      )  //i
+    .cpu_rst                      (cpu_rst                                 )  //i
   );
   assign dcache_ports_cmd_ready = biu_1_cpu_cmd_ready; // @ DCache.scala l332
   assign dcache_ports_rsp_valid = biu_1_cpu_rsp_valid; // @ DCache.scala l333
@@ -6568,8 +6573,8 @@ module BIUTop (
   assign dcache_w_fire_5 = (dcache_w_valid && dcache_w_ready); // @ BaseType.scala l305
   assign aw_and_w_fire = ((dcache_aw_fire_4 && dcache_w_fire_4) || (handshake_cnt && (dcache_aw_fire_5 || dcache_w_fire_5))); // @ BaseType.scala l305
   assign biu_1_cpu_bypass_rsp_valid = (bypass_reg ? (bypass_write_reg ? dcache_b_valid : (dcache_r_valid && (dcache_r_payload_id == 2'b01))) : 1'b0); // @ DCache.scala l455
-  always @(posedge io_axiClk or posedge resetCtrl_axiReset) begin
-    if(resetCtrl_axiReset) begin
+  always @(posedge io_axiClk or posedge cpu_rst) begin
+    if(cpu_rst) begin
       handshake_cnt <= 1'b0; // @ Data.scala l400
       ar_len_cnt <= 4'b0000; // @ Data.scala l400
       bypass_write_reg <= 1'b0; // @ Data.scala l400
@@ -6722,7 +6727,7 @@ module LSU (
   output     [31:0]   timer_addr,
   output     [63:0]   timer_wdata,
   input               io_axiClk,
-  input               resetCtrl_axiReset
+  input               cpu_rst
 );
   localparam LsuCtrlEnum_IDLE = 4'd0;
   localparam LsuCtrlEnum_LB = 4'd1;
@@ -7573,8 +7578,8 @@ module LSU (
     end
   end
 
-  always @(posedge io_axiClk or posedge resetCtrl_axiReset) begin
-    if(resetCtrl_axiReset) begin
+  always @(posedge io_axiClk or posedge cpu_rst) begin
+    if(cpu_rst) begin
       rd_wen_reg <= 1'b0; // @ Data.scala l400
       rd_rob_ptr_reg <= 4'b0000; // @ Data.scala l400
       tmp_dst_stream_payload_pc <= 32'h0; // @ Data.scala l400
@@ -7626,7 +7631,7 @@ module ALU (
   output     [31:0]   dst_ports_payload_pc,
   output     [31:0]   dst_ports_payload_instruction,
   input               io_axiClk,
-  input               resetCtrl_axiReset
+  input               cpu_rst
 );
   localparam AluCtrlEnum_IDLE = 5'd0;
   localparam AluCtrlEnum_ADD = 5'd1;
@@ -8135,19 +8140,19 @@ module ALU (
   assign tmp_mul_result_163 = tmp_mul_result_4;
   assign tmp_mul_result_164 = {tmp_mul_result_4,tmp_mul_result_4};
   Divider div (
-    .io_flush           (flush                 ), //i
-    .io_start           (div_start             ), //i
-    .io_busy            (div_io_busy           ), //o
-    .io_done_valid      (div_io_done_valid     ), //o
-    .io_done_ready      (dst_stream_ready      ), //i
-    .io_op_is_word      (div_io_op_is_word     ), //i
-    .io_op_is_signed    (div_io_op_is_signed   ), //i
-    .io_dividend        (div_io_dividend[63:0] ), //i
-    .io_divisor         (div_io_divisor[63:0]  ), //i
-    .io_quotient        (div_io_quotient[63:0] ), //o
-    .io_remainder       (div_io_remainder[63:0]), //o
-    .io_axiClk          (io_axiClk             ), //i
-    .resetCtrl_axiReset (resetCtrl_axiReset    )  //i
+    .io_flush        (flush                 ), //i
+    .io_start        (div_start             ), //i
+    .io_busy         (div_io_busy           ), //o
+    .io_done_valid   (div_io_done_valid     ), //o
+    .io_done_ready   (dst_stream_ready      ), //i
+    .io_op_is_word   (div_io_op_is_word     ), //i
+    .io_op_is_signed (div_io_op_is_signed   ), //i
+    .io_dividend     (div_io_dividend[63:0] ), //i
+    .io_divisor      (div_io_divisor[63:0]  ), //i
+    .io_quotient     (div_io_quotient[63:0] ), //o
+    .io_remainder    (div_io_remainder[63:0]), //o
+    .io_axiClk       (io_axiClk             ), //i
+    .cpu_rst         (cpu_rst               )  //i
   );
   `ifndef SYNTHESIS
   always @(*) begin
@@ -8660,8 +8665,8 @@ module ALU (
     end
   end
 
-  always @(posedge io_axiClk or posedge resetCtrl_axiReset) begin
-    if(resetCtrl_axiReset) begin
+  always @(posedge io_axiClk or posedge cpu_rst) begin
+    if(cpu_rst) begin
       rd_wen_reg <= 1'b0; // @ Data.scala l400
       rd_rob_ptr_reg <= 4'b0000; // @ Data.scala l400
       alu_is_quo_reg <= 1'b0; // @ Data.scala l400
@@ -8733,7 +8738,7 @@ module BJU (
   output     [31:0]   interrupt_pc,
   input               timer_int,
   input               io_axiClk,
-  input               resetCtrl_axiReset
+  input               cpu_rst
 );
   localparam BjuCtrlEnum_IDLE = 4'd0;
   localparam BjuCtrlEnum_AUIPC = 4'd1;
@@ -8852,7 +8857,7 @@ module BJU (
     .interrupt_pc             (bju_kernel_1_interrupt_pc[31:0]               ), //o
     .timer_int                (timer_int                                     ), //i
     .io_axiClk                (io_axiClk                                     ), //i
-    .resetCtrl_axiReset       (resetCtrl_axiReset                            )  //i
+    .cpu_rst                  (cpu_rst                                       )  //i
   );
   `ifndef SYNTHESIS
   always @(*) begin
@@ -8991,8 +8996,8 @@ module BJU (
   assign dst_ports_payload_rd_rob_ptr = dst_stream_m2sPipe_payload_rd_rob_ptr; // @ Stream.scala l296
   assign dst_ports_payload_pc = dst_stream_m2sPipe_payload_pc; // @ Stream.scala l296
   assign dst_ports_payload_instruction = dst_stream_m2sPipe_payload_instruction; // @ Stream.scala l296
-  always @(posedge io_axiClk or posedge resetCtrl_axiReset) begin
-    if(resetCtrl_axiReset) begin
+  always @(posedge io_axiClk or posedge cpu_rst) begin
+    if(cpu_rst) begin
       dst_stream_rValid <= 1'b0; // @ Data.scala l400
     end else begin
       if(dst_stream_ready) begin
@@ -9087,7 +9092,7 @@ module Control (
   input      [31:0]   wb_ports_lsu_payload_pc,
   input      [31:0]   wb_ports_lsu_payload_instruction,
   input               io_axiClk,
-  input               resetCtrl_axiReset
+  input               cpu_rst
 );
   localparam AluCtrlEnum_IDLE = 5'd0;
   localparam AluCtrlEnum_ADD = 5'd1;
@@ -9400,7 +9405,7 @@ module Control (
     .write_ports_rd_addr (write_back_payload_rd_addr[4:0] ), //i
     .write_ports_rd_wen  (arf_1_write_ports_rd_wen        ), //i
     .io_axiClk           (io_axiClk                       ), //i
-    .resetCtrl_axiReset  (resetCtrl_axiReset              )  //i
+    .cpu_rst             (cpu_rst                         )  //i
   );
   Decode decode_1 (
     .pc                           (src_stream_payload_pc[31:0]             ), //i
@@ -9959,8 +9964,8 @@ module Control (
   assign write_back_payload_pc = stream_wb_m2sPipe_payload_pc; // @ Stream.scala l296
   assign write_back_payload_instruction = stream_wb_m2sPipe_payload_instruction; // @ Stream.scala l296
   assign write_back_ready = 1'b1; // @ Control.scala l206
-  always @(posedge io_axiClk or posedge resetCtrl_axiReset) begin
-    if(resetCtrl_axiReset) begin
+  always @(posedge io_axiClk or posedge cpu_rst) begin
+    if(cpu_rst) begin
       ready <= 1'b1; // @ Data.scala l400
       alu_busy <= 1'b0; // @ Data.scala l400
       bju_busy <= 1'b0; // @ Data.scala l400
@@ -10156,7 +10161,7 @@ module ICacheTop (
   input      [1:0]    icache_r_payload_resp,
   input               icache_r_payload_last,
   input               io_axiClk,
-  input               resetCtrl_axiReset
+  input               cpu_rst
 );
 
   wire                icache_1_next_level_rsp_valid;
@@ -10243,7 +10248,7 @@ module ICacheTop (
     .next_level_rsp_valid           (icache_1_next_level_rsp_valid                ), //i
     .next_level_rsp_payload_data    (icache_r_payload_data[63:0]                  ), //i
     .io_axiClk                      (io_axiClk                                    ), //i
-    .resetCtrl_axiReset             (resetCtrl_axiReset                           )  //i
+    .cpu_rst                        (cpu_rst                                      )  //i
   );
   Sram sram_area_0_sram (
     .ports_cmd_valid         (icache_1_sram_0_ports_cmd_valid              ), //i
@@ -10254,7 +10259,7 @@ module ICacheTop (
     .ports_rsp_valid         (sram_area_0_sram_ports_rsp_valid             ), //o
     .ports_rsp_payload_data  (sram_area_0_sram_ports_rsp_payload_data[31:0]), //o
     .io_axiClk               (io_axiClk                                    ), //i
-    .resetCtrl_axiReset      (resetCtrl_axiReset                           )  //i
+    .cpu_rst                 (cpu_rst                                      )  //i
   );
   Sram sram_area_1_sram (
     .ports_cmd_valid         (icache_1_sram_1_ports_cmd_valid              ), //i
@@ -10265,7 +10270,7 @@ module ICacheTop (
     .ports_rsp_valid         (sram_area_1_sram_ports_rsp_valid             ), //o
     .ports_rsp_payload_data  (sram_area_1_sram_ports_rsp_payload_data[31:0]), //o
     .io_axiClk               (io_axiClk                                    ), //i
-    .resetCtrl_axiReset      (resetCtrl_axiReset                           )  //i
+    .cpu_rst                 (cpu_rst                                      )  //i
   );
   Sram sram_area_2_sram (
     .ports_cmd_valid         (icache_1_sram_2_ports_cmd_valid              ), //i
@@ -10276,7 +10281,7 @@ module ICacheTop (
     .ports_rsp_valid         (sram_area_2_sram_ports_rsp_valid             ), //o
     .ports_rsp_payload_data  (sram_area_2_sram_ports_rsp_payload_data[31:0]), //o
     .io_axiClk               (io_axiClk                                    ), //i
-    .resetCtrl_axiReset      (resetCtrl_axiReset                           )  //i
+    .cpu_rst                 (cpu_rst                                      )  //i
   );
   Sram sram_area_3_sram (
     .ports_cmd_valid         (icache_1_sram_3_ports_cmd_valid              ), //i
@@ -10287,7 +10292,7 @@ module ICacheTop (
     .ports_rsp_valid         (sram_area_3_sram_ports_rsp_valid             ), //o
     .ports_rsp_payload_data  (sram_area_3_sram_ports_rsp_payload_data[31:0]), //o
     .io_axiClk               (io_axiClk                                    ), //i
-    .resetCtrl_axiReset      (resetCtrl_axiReset                           )  //i
+    .cpu_rst                 (cpu_rst                                      )  //i
   );
   assign icache_ports_cmd_ready = icache_1_cpu_cmd_ready; // @ ICache.scala l226
   assign icache_ports_rsp_valid = icache_1_cpu_rsp_valid; // @ ICache.scala l227
@@ -10297,8 +10302,8 @@ module ICacheTop (
   assign icache_ar_fire_2 = (icache_ar_valid && icache_ar_ready); // @ BaseType.scala l305
   assign icache_r_ready = 1'b1; // @ ICache.scala l297
   assign icache_1_next_level_rsp_valid = (icache_r_valid && (icache_r_payload_id == 2'b00)); // @ ICache.scala l298
-  always @(posedge io_axiClk or posedge resetCtrl_axiReset) begin
-    if(resetCtrl_axiReset) begin
+  always @(posedge io_axiClk or posedge cpu_rst) begin
+    if(cpu_rst) begin
       icache_ar_valid <= 1'b0; // @ Data.scala l400
       icache_ar_payload_id <= 2'b00; // @ Data.scala l400
       icache_ar_payload_len <= 8'h0; // @ Data.scala l400
@@ -10368,7 +10373,7 @@ module FetchStage (
   output              bpu_predict_jal,
   output              bpu_predict_branch,
   input               io_axiClk,
-  input               resetCtrl_axiReset
+  input               cpu_rst
 );
 
   wire                fetch_1_dst_ports_ready;
@@ -10430,7 +10435,7 @@ module FetchStage (
     .bpu_predict_jal                  (fetch_1_bpu_predict_jal                    ), //o
     .bpu_predict_branch               (fetch_1_bpu_predict_branch                 ), //o
     .io_axiClk                        (io_axiClk                                  ), //i
-    .resetCtrl_axiReset               (resetCtrl_axiReset                         )  //i
+    .cpu_rst                          (cpu_rst                                    )  //i
   );
   assign icache_ports_cmd_valid = fetch_1_icache_ports_cmd_valid; // @ Fetch.scala l235
   assign icache_ports_cmd_payload_addr = fetch_1_icache_ports_cmd_payload_addr; // @ Fetch.scala l235
@@ -10477,8 +10482,8 @@ module FetchStage (
   assign dst_ports_payload_pc_next = src_stream_m2sPipe_payload_pc_next; // @ Stream.scala l296
   assign dst_ports_payload_bpu_pred_taken = src_stream_m2sPipe_payload_bpu_pred_taken; // @ Stream.scala l296
   assign dst_ports_payload_instruction = src_stream_m2sPipe_payload_instruction; // @ Stream.scala l296
-  always @(posedge io_axiClk or posedge resetCtrl_axiReset) begin
-    if(resetCtrl_axiReset) begin
+  always @(posedge io_axiClk or posedge cpu_rst) begin
+    if(cpu_rst) begin
       src_stream_rValid <= 1'b0; // @ Data.scala l400
     end else begin
       if(src_stream_ready) begin
@@ -10543,7 +10548,7 @@ module Axi4WriteOnlyUpsizer (
   input      [1:0]    io_output_b_payload_id,
   input      [1:0]    io_output_b_payload_resp,
   input               io_axiClk,
-  input               resetCtrl_axiReset
+  input               tmp_io_resetn
 );
 
   wire       [14:0]   tmp_cmdLogic_byteCount;
@@ -10709,8 +10714,8 @@ module Axi4WriteOnlyUpsizer (
   assign io_output_b_ready = io_input_b_ready; // @ Stream.scala l295
   assign io_input_b_payload_id = io_output_b_payload_id; // @ Stream.scala l296
   assign io_input_b_payload_resp = io_output_b_payload_resp; // @ Stream.scala l296
-  always @(posedge io_axiClk or posedge resetCtrl_axiReset) begin
-    if(resetCtrl_axiReset) begin
+  always @(posedge io_axiClk or posedge tmp_io_resetn) begin
+    if(tmp_io_resetn) begin
       io_input_aw_fork2_logic_linkEnable_0 <= 1'b1; // @ Data.scala l400
       io_input_aw_fork2_logic_linkEnable_1 <= 1'b1; // @ Data.scala l400
       dataLogic_outputValid <= 1'b0; // @ Data.scala l400
@@ -10858,7 +10863,7 @@ module Axi4ReadOnlyUpsizer (
   input      [1:0]    io_output_r_payload_resp,
   input               io_output_r_payload_last,
   input               io_axiClk,
-  input               resetCtrl_axiReset
+  input               tmp_io_resetn
 );
 
   wire                dataLogic_cmdPush_fifo_io_pop_ready;
@@ -10953,7 +10958,7 @@ module Axi4ReadOnlyUpsizer (
     .io_occupancy            (dataLogic_cmdPush_fifo_io_occupancy[2:0]          ), //o
     .io_availability         (dataLogic_cmdPush_fifo_io_availability[2:0]       ), //o
     .io_axiClk               (io_axiClk                                         ), //i
-    .resetCtrl_axiReset      (resetCtrl_axiReset                                )  //i
+    .tmp_io_resetn           (tmp_io_resetn                                     )  //i
   );
   always @(*) begin
     case(tmp_io_input_r_payload_data_1)
@@ -11027,8 +11032,8 @@ module Axi4ReadOnlyUpsizer (
   assign io_input_r_payload_data = tmp_io_input_r_payload_data; // @ Axi4Upsizer.scala l144
   assign io_input_r_payload_id = dataLogic_id; // @ Axi4Upsizer.scala l145
   assign io_output_r_ready = ((dataLogic_busy && io_input_r_ready) && (io_input_r_payload_last || dataLogic_byteCounterNext[3])); // @ Axi4Upsizer.scala l146
-  always @(posedge io_axiClk or posedge resetCtrl_axiReset) begin
-    if(resetCtrl_axiReset) begin
+  always @(posedge io_axiClk or posedge tmp_io_resetn) begin
+    if(tmp_io_resetn) begin
       io_input_ar_fork2_logic_linkEnable_0 <= 1'b1; // @ Data.scala l400
       io_input_ar_fork2_logic_linkEnable_1 <= 1'b1; // @ Data.scala l400
       dataLogic_busy <= 1'b0; // @ Data.scala l400
@@ -11113,7 +11118,7 @@ module Axi4WriteOnlyDownsizer (
   input      [3:0]    io_output_b_payload_id,
   input      [1:0]    io_output_b_payload_resp,
   input               io_axiClk,
-  input               resetCtrl_axiReset
+  input               tmp_io_resetn
 );
 
   wire                generator_io_input_ready;
@@ -11329,31 +11334,31 @@ module Axi4WriteOnlyDownsizer (
     .io_last                  (generator_io_last                      ), //o
     .io_done                  (generator_io_done                      ), //o
     .io_axiClk                (io_axiClk                              ), //i
-    .resetCtrl_axiReset       (resetCtrl_axiReset                     )  //i
+    .tmp_io_resetn            (tmp_io_resetn                          )  //i
   );
   StreamTransactionCounter inputDataCounter (
-    .io_ctrlFire        (writeCmd_fire                 ), //i
-    .io_targetFire      (writeData_fire                ), //i
-    .io_available       (inputDataCounter_io_available ), //o
-    .io_count           (writeCmd_payload_len[7:0]     ), //i
-    .io_working         (inputDataCounter_io_working   ), //o
-    .io_last            (inputDataCounter_io_last      ), //o
-    .io_done            (inputDataCounter_io_done      ), //o
-    .io_value           (inputDataCounter_io_value[7:0]), //o
-    .io_axiClk          (io_axiClk                     ), //i
-    .resetCtrl_axiReset (resetCtrl_axiReset            )  //i
+    .io_ctrlFire   (writeCmd_fire                 ), //i
+    .io_targetFire (writeData_fire                ), //i
+    .io_available  (inputDataCounter_io_available ), //o
+    .io_count      (writeCmd_payload_len[7:0]     ), //i
+    .io_working    (inputDataCounter_io_working   ), //o
+    .io_last       (inputDataCounter_io_last      ), //o
+    .io_done       (inputDataCounter_io_done      ), //o
+    .io_value      (inputDataCounter_io_value[7:0]), //o
+    .io_axiClk     (io_axiClk                     ), //i
+    .tmp_io_resetn (tmp_io_resetn                 )  //i
   );
   StreamTransactionCounter streamCounter (
-    .io_ctrlFire        (countCmdStream_fire_1          ), //i
-    .io_targetFire      (dataStream_fire                ), //i
-    .io_available       (streamCounter_io_available     ), //o
-    .io_count           (countCmdStream_payload_len[7:0]), //i
-    .io_working         (streamCounter_io_working       ), //o
-    .io_last            (streamCounter_io_last          ), //o
-    .io_done            (streamCounter_io_done          ), //o
-    .io_value           (streamCounter_io_value[7:0]    ), //o
-    .io_axiClk          (io_axiClk                      ), //i
-    .resetCtrl_axiReset (resetCtrl_axiReset             )  //i
+    .io_ctrlFire   (countCmdStream_fire_1          ), //i
+    .io_targetFire (dataStream_fire                ), //i
+    .io_available  (streamCounter_io_available     ), //o
+    .io_count      (countCmdStream_payload_len[7:0]), //i
+    .io_working    (streamCounter_io_working       ), //o
+    .io_last       (streamCounter_io_last          ), //o
+    .io_done       (streamCounter_io_done          ), //o
+    .io_value      (streamCounter_io_value[7:0]    ), //o
+    .io_axiClk     (io_axiClk                      ), //i
+    .tmp_io_resetn (tmp_io_resetn                  )  //i
   );
   StreamTransactionExtender dataExtender (
     .io_count               (generator_io_ratio[6:0]                  ), //i
@@ -11372,20 +11377,20 @@ module Axi4WriteOnlyDownsizer (
     .io_last                (dataExtender_io_last                     ), //o
     .io_done                (dataExtender_io_done                     ), //o
     .io_axiClk              (io_axiClk                                ), //i
-    .resetCtrl_axiReset     (resetCtrl_axiReset                       )  //i
+    .tmp_io_resetn          (tmp_io_resetn                            )  //i
   );
   StreamFifo_1 rspCtrlStream_fifo (
-    .io_push_valid      (rspCtrlStream_valid                    ), //i
-    .io_push_ready      (rspCtrlStream_fifo_io_push_ready       ), //o
-    .io_push_payload    (rspCtrlStream_payload                  ), //i
-    .io_pop_valid       (rspCtrlStream_fifo_io_pop_valid        ), //o
-    .io_pop_ready       (rspStream_fire                         ), //i
-    .io_pop_payload     (rspCtrlStream_fifo_io_pop_payload      ), //o
-    .io_flush           (1'b0                                   ), //i
-    .io_occupancy       (rspCtrlStream_fifo_io_occupancy[1:0]   ), //o
-    .io_availability    (rspCtrlStream_fifo_io_availability[1:0]), //o
-    .io_axiClk          (io_axiClk                              ), //i
-    .resetCtrl_axiReset (resetCtrl_axiReset                     )  //i
+    .io_push_valid   (rspCtrlStream_valid                    ), //i
+    .io_push_ready   (rspCtrlStream_fifo_io_push_ready       ), //o
+    .io_push_payload (rspCtrlStream_payload                  ), //i
+    .io_pop_valid    (rspCtrlStream_fifo_io_pop_valid        ), //o
+    .io_pop_ready    (rspStream_fire                         ), //i
+    .io_pop_payload  (rspCtrlStream_fifo_io_pop_payload      ), //o
+    .io_flush        (1'b0                                   ), //i
+    .io_occupancy    (rspCtrlStream_fifo_io_occupancy[1:0]   ), //o
+    .io_availability (rspCtrlStream_fifo_io_availability[1:0]), //o
+    .io_axiClk       (io_axiClk                              ), //i
+    .tmp_io_resetn   (tmp_io_resetn                          )  //i
   );
   assign tmp_io_input_aw_ready = (! dataWorking); // @ BaseType.scala l299
   assign writeCmd_valid = (io_input_aw_valid && tmp_io_input_aw_ready); // @ Stream.scala l426
@@ -11562,8 +11567,8 @@ module Axi4WriteOnlyDownsizer (
   assign io_output_b_ready = writeStream_b_ready; // @ Stream.scala l304
   assign writeStream_b_payload_id = io_output_b_payload_id; // @ Axi4Channel.scala l352
   assign writeStream_b_payload_resp = io_output_b_payload_resp; // @ Axi4Channel.scala l352
-  always @(posedge io_axiClk or posedge resetCtrl_axiReset) begin
-    if(resetCtrl_axiReset) begin
+  always @(posedge io_axiClk or posedge tmp_io_resetn) begin
+    if(tmp_io_resetn) begin
       cmdStream_fork3_logic_linkEnable_0 <= 1'b1; // @ Data.scala l400
       cmdStream_fork3_logic_linkEnable_1 <= 1'b1; // @ Data.scala l400
       cmdStream_fork3_logic_linkEnable_2 <= 1'b1; // @ Data.scala l400
@@ -11635,7 +11640,7 @@ module Axi4ReadOnlyDownsizer (
   input      [1:0]    io_output_r_payload_resp,
   input               io_output_r_payload_last,
   input               io_axiClk,
-  input               resetCtrl_axiReset
+  input               tmp_io_resetn
 );
 
   wire                generator_io_input_ready;
@@ -11799,7 +11804,7 @@ module Axi4ReadOnlyDownsizer (
     .io_last                  (generator_io_last                      ), //o
     .io_done                  (generator_io_done                      ), //o
     .io_axiClk                (io_axiClk                              ), //i
-    .resetCtrl_axiReset       (resetCtrl_axiReset                     )  //i
+    .tmp_io_resetn            (tmp_io_resetn                          )  //i
   );
   StreamTransactionExtender_1 dataOutCounter (
     .io_count                (countCmdStream_payload_len[7:0]             ), //i
@@ -11820,7 +11825,7 @@ module Axi4ReadOnlyDownsizer (
     .io_last                 (dataOutCounter_io_last                      ), //o
     .io_done                 (dataOutCounter_io_done                      ), //o
     .io_axiClk               (io_axiClk                                   ), //i
-    .resetCtrl_axiReset      (resetCtrl_axiReset                          )  //i
+    .tmp_io_resetn           (tmp_io_resetn                               )  //i
   );
   StreamTransactionExtender_2 dataCounter (
     .io_count                (countOutStream_payload_ratio[6:0]        ), //i
@@ -11841,7 +11846,7 @@ module Axi4ReadOnlyDownsizer (
     .io_last                 (dataCounter_io_last                      ), //o
     .io_done                 (dataCounter_io_done                      ), //o
     .io_axiClk               (io_axiClk                                ), //i
-    .resetCtrl_axiReset      (resetCtrl_axiReset                       )  //i
+    .tmp_io_resetn           (tmp_io_resetn                            )  //i
   );
   always @(*) begin
     dataReg_aheadValue = dataReg; // @ Phase.scala l1785
@@ -11952,8 +11957,8 @@ module Axi4ReadOnlyDownsizer (
   assign io_input_r_payload_id = dataOut_payload_id; // @ Stream.scala l296
   assign io_input_r_payload_resp = dataOut_payload_resp; // @ Stream.scala l296
   assign io_input_r_payload_last = dataOut_payload_last; // @ Stream.scala l296
-  always @(posedge io_axiClk or posedge resetCtrl_axiReset) begin
-    if(resetCtrl_axiReset) begin
+  always @(posedge io_axiClk or posedge tmp_io_resetn) begin
+    if(tmp_io_resetn) begin
       dataReg <= 64'h0; // @ Data.scala l400
       beatOffset <= 3'b000; // @ Data.scala l400
       lastLast <= 1'b0; // @ Data.scala l400
@@ -12001,7 +12006,7 @@ module BIU (
   input               cpu_bypass_rsp_valid,
   input      [63:0]   cpu_bypass_rsp_payload_data,
   input               io_axiClk,
-  input               resetCtrl_axiReset
+  input               cpu_rst
 );
 
   wire                cpu_stall;
@@ -12023,8 +12028,8 @@ module BIU (
   assign cpu_rsp_valid = bypass_rsp_valid_d1; // @ DCache.scala l310
   assign cpu_cmd_ready = cpu_cmd_ready_1; // @ DCache.scala l311
   assign stall = (((! cpu_cmd_ready) && (! bypass_rsp_valid_d1)) || bypass); // @ DCache.scala l312
-  always @(posedge io_axiClk or posedge resetCtrl_axiReset) begin
-    if(resetCtrl_axiReset) begin
+  always @(posedge io_axiClk or posedge cpu_rst) begin
+    if(cpu_rst) begin
       cpu_cmd_ready_1 <= 1'b1; // @ Data.scala l400
       bypass_reg <= 1'b0; // @ Data.scala l400
     end else begin
@@ -12066,7 +12071,7 @@ module Divider (
   output     [63:0]   io_quotient,
   output     [63:0]   io_remainder,
   input               io_axiClk,
-  input               resetCtrl_axiReset
+  input               cpu_rst
 );
 
   wire       [63:0]   u_div_s_axis_divisor_tdata;
@@ -12438,8 +12443,8 @@ module Divider (
   assign io_remainder = remainder_wrapper; // @ Divider.scala l128
   assign io_done_valid = (u_div_m_axis_dout_tvalid && busy_reg); // @ Divider.scala l129
   assign io_busy = busy_reg; // @ Divider.scala l130
-  always @(posedge io_axiClk or posedge resetCtrl_axiReset) begin
-    if(resetCtrl_axiReset) begin
+  always @(posedge io_axiClk or posedge cpu_rst) begin
+    if(cpu_rst) begin
       busy_reg <= 1'b0; // @ Data.scala l400
     end else begin
       if(io_flush) begin
@@ -12492,7 +12497,7 @@ module BJU_kernel (
   output     [31:0]   interrupt_pc,
   input               timer_int,
   input               io_axiClk,
-  input               resetCtrl_axiReset
+  input               cpu_rst
 );
   localparam BjuCtrlEnum_IDLE = 4'd0;
   localparam BjuCtrlEnum_AUIPC = 4'd1;
@@ -12633,7 +12638,7 @@ module BJU_kernel (
     .clint_ports_mtime_int_pend (csr_regfile_clint_ports_mtime_int_pend), //o
     .timer_int                  (timer_int                             ), //i
     .io_axiClk                  (io_axiClk                             ), //i
-    .resetCtrl_axiReset         (resetCtrl_axiReset                    )  //i
+    .cpu_rst                    (cpu_rst                               )  //i
   );
   Clint clint_1 (
     .pc                       (pc[31:0]                              ), //i
@@ -12865,8 +12870,8 @@ module BJU_kernel (
 
   assign interrupt_valid = clint_1_int_en; // @ BJU.scala l213
   assign interrupt_pc = clint_1_int_pc; // @ BJU.scala l214
-  always @(posedge io_axiClk or posedge resetCtrl_axiReset) begin
-    if(resetCtrl_axiReset) begin
+  always @(posedge io_axiClk or posedge cpu_rst) begin
+    if(cpu_rst) begin
       branch_history <= 5'h0; // @ Data.scala l400
     end else begin
       if(in_valid) begin
@@ -16156,7 +16161,7 @@ module ARF (
   input      [4:0]    write_ports_rd_addr,
   input               write_ports_rd_wen,
   input               io_axiClk,
-  input               resetCtrl_axiReset
+  input               cpu_rst
 );
 
   reg        [63:0]   tmp_read_ports_rs1_data;
@@ -16398,8 +16403,8 @@ module ARF (
   assign reg_file_wdata_31 = write_ports_rd_data; // @ Tables.scala l79
   assign read_ports_rs1_data = ((write_ports_rd_wen && (write_ports_rd_addr == read_ports_rs1_addr)) ? write_ports_rd_data : tmp_read_ports_rs1_data); // @ Tables.scala l86
   assign read_ports_rs2_data = ((write_ports_rd_wen && (write_ports_rd_addr == read_ports_rs2_addr)) ? write_ports_rd_data : tmp_read_ports_rs2_data); // @ Tables.scala l87
-  always @(posedge io_axiClk or posedge resetCtrl_axiReset) begin
-    if(resetCtrl_axiReset) begin
+  always @(posedge io_axiClk or posedge cpu_rst) begin
+    if(cpu_rst) begin
       reg_file_0 <= 64'h0; // @ Data.scala l400
       reg_file_1 <= 64'h0; // @ Data.scala l400
       reg_file_2 <= 64'h0; // @ Data.scala l400
@@ -16550,7 +16555,7 @@ module Sram (
   output              ports_rsp_valid,
   output     [31:0]   ports_rsp_payload_data,
   input               io_axiClk,
-  input               resetCtrl_axiReset
+  input               cpu_rst
 );
 
   reg        [31:0]   tmp_mem_port1;
@@ -16595,8 +16600,8 @@ module Sram (
 
   assign ports_rsp_payload_data = tmp_mem_port1; // @ Sram.scala l21
   assign ports_rsp_valid = rsp_valid; // @ Sram.scala l32
-  always @(posedge io_axiClk or posedge resetCtrl_axiReset) begin
-    if(resetCtrl_axiReset) begin
+  always @(posedge io_axiClk or posedge cpu_rst) begin
+    if(cpu_rst) begin
       rsp_valid <= 1'b0; // @ Data.scala l400
     end else begin
       if((ports_cmd_valid && (! ports_cmd_payload_wen))) begin
@@ -16653,7 +16658,7 @@ module ICache (
   input               next_level_rsp_valid,
   input      [63:0]   next_level_rsp_payload_data,
   input               io_axiClk,
-  input               resetCtrl_axiReset
+  input               cpu_rst
 );
 
   wire       [6:0]    tmp_flush_cnt_valueNext;
@@ -21336,8 +21341,8 @@ module ICache (
   assign next_level_cmd_payload_len = 4'b0111; // @ ICache.scala l206
   assign next_level_cmd_payload_size = 3'b011; // @ ICache.scala l207
   assign next_level_cmd_valid = next_level_cmd_valid_1; // @ ICache.scala l208
-  always @(posedge io_axiClk or posedge resetCtrl_axiReset) begin
-    if(resetCtrl_axiReset) begin
+  always @(posedge io_axiClk or posedge cpu_rst) begin
+    if(cpu_rst) begin
       ways_0_metas_0_vld <= 1'b0; // @ Data.scala l400
       ways_0_metas_0_tag <= 19'h0; // @ Data.scala l400
       ways_0_metas_0_mru <= 1'b0; // @ Data.scala l400
@@ -27595,7 +27600,7 @@ module Fetch (
   output              bpu_predict_jal,
   output              bpu_predict_branch,
   input               io_axiClk,
-  input               resetCtrl_axiReset
+  input               cpu_rst
 );
   localparam FetchEnum_IDLE = 2'd0;
   localparam FetchEnum_FETCH = 2'd1;
@@ -27694,7 +27699,7 @@ module Fetch (
     .next_payload          (pc_stream_fifo_next_payload[31:0]         ), //o
     .next_valid            (pc_stream_fifo_next_valid                 ), //o
     .io_axiClk             (io_axiClk                                 ), //i
-    .resetCtrl_axiReset    (resetCtrl_axiReset                        )  //i
+    .cpu_rst               (cpu_rst                                   )  //i
   );
   FIFO pc_next_stream_fifo (
     .ports_s_ports_valid   (pc_next_in_stream_valid                        ), //i
@@ -27708,7 +27713,7 @@ module Fetch (
     .next_payload          (pc_next_stream_fifo_next_payload[31:0]         ), //o
     .next_valid            (pc_next_stream_fifo_next_valid                 ), //o
     .io_axiClk             (io_axiClk                                      ), //i
-    .resetCtrl_axiReset    (resetCtrl_axiReset                             )  //i
+    .cpu_rst               (cpu_rst                                        )  //i
   );
   FIFO_2 bpu_pred_taken_fifo (
     .ports_s_ports_valid   (bpu_pred_taken_in_valid                  ), //i
@@ -27720,7 +27725,7 @@ module Fetch (
     .flush                 (flush                                    ), //i
     .has_space             (bpu_pred_taken_fifo_has_space            ), //o
     .io_axiClk             (io_axiClk                                ), //i
-    .resetCtrl_axiReset    (resetCtrl_axiReset                       )  //i
+    .cpu_rst               (cpu_rst                                  )  //i
   );
   FIFO_3 instr_stream_fifo (
     .ports_s_ports_valid   (instr_in_stream_valid                        ), //i
@@ -27732,7 +27737,7 @@ module Fetch (
     .flush                 (flush                                        ), //i
     .has_space             (instr_stream_fifo_has_space                  ), //o
     .io_axiClk             (io_axiClk                                    ), //i
-    .resetCtrl_axiReset    (resetCtrl_axiReset                           )  //i
+    .cpu_rst               (cpu_rst                                      )  //i
   );
   `ifndef SYNTHESIS
   always @(*) begin
@@ -27930,8 +27935,8 @@ module Fetch (
   assign bpu_predict_valid = instr_in_stream_valid; // @ Fetch.scala l191
   assign bpu_predict_pc = pc_regNextWhen; // @ Fetch.scala l192
   assign icache_ports_cmd_valid = ((fetch_valid && (! flush)) && (! bpu_predict_taken)); // @ Fetch.scala l193
-  always @(posedge io_axiClk or posedge resetCtrl_axiReset) begin
-    if(resetCtrl_axiReset) begin
+  always @(posedge io_axiClk or posedge cpu_rst) begin
+    if(cpu_rst) begin
       pc <= 32'h80000000; // @ Data.scala l400
       fetch_valid <= 1'b0; // @ Data.scala l400
       rsp_flush <= 1'b0; // @ Data.scala l400
@@ -28004,7 +28009,7 @@ module StreamFifo (
   output     [2:0]    io_occupancy,
   output     [2:0]    io_availability,
   input               io_axiClk,
-  input               resetCtrl_axiReset
+  input               tmp_io_resetn
 );
 
   reg        [10:0]   tmp_logic_ram_port0;
@@ -28127,8 +28132,8 @@ module StreamFifo (
   assign logic_ptrDif = (logic_pushPtr_value - logic_popPtr_value); // @ BaseType.scala l299
   assign io_occupancy = {(logic_risingOccupancy && logic_ptrMatch),logic_ptrDif}; // @ Stream.scala l1135
   assign io_availability = {((! logic_risingOccupancy) && logic_ptrMatch),tmp_io_availability}; // @ Stream.scala l1136
-  always @(posedge io_axiClk or posedge resetCtrl_axiReset) begin
-    if(resetCtrl_axiReset) begin
+  always @(posedge io_axiClk or posedge tmp_io_resetn) begin
+    if(tmp_io_resetn) begin
       logic_pushPtr_value <= 2'b00; // @ Data.scala l400
       logic_popPtr_value <= 2'b00; // @ Data.scala l400
       logic_risingOccupancy <= 1'b0; // @ Data.scala l400
@@ -28160,7 +28165,7 @@ module StreamFifo_1 (
   output     [1:0]    io_occupancy,
   output     [1:0]    io_availability,
   input               io_axiClk,
-  input               resetCtrl_axiReset
+  input               tmp_io_resetn
 );
 
   reg        [0:0]    tmp_logic_ram_port0;
@@ -28270,8 +28275,8 @@ module StreamFifo_1 (
   assign logic_ptrDif = (logic_pushPtr_value - logic_popPtr_value); // @ BaseType.scala l299
   assign io_occupancy = {(logic_risingOccupancy && logic_ptrMatch),logic_ptrDif}; // @ Stream.scala l1135
   assign io_availability = {((! logic_risingOccupancy) && logic_ptrMatch),tmp_io_availability}; // @ Stream.scala l1136
-  always @(posedge io_axiClk or posedge resetCtrl_axiReset) begin
-    if(resetCtrl_axiReset) begin
+  always @(posedge io_axiClk or posedge tmp_io_resetn) begin
+    if(tmp_io_resetn) begin
       logic_pushPtr_value <= 1'b0; // @ Data.scala l400
       logic_popPtr_value <= 1'b0; // @ Data.scala l400
       logic_risingOccupancy <= 1'b0; // @ Data.scala l400
@@ -28309,7 +28314,7 @@ module StreamTransactionExtender (
   output              io_last,
   output              io_done,
   input               io_axiClk,
-  input               resetCtrl_axiReset
+  input               tmp_io_resetn
 );
 
   wire                counter_io_available;
@@ -28328,16 +28333,16 @@ module StreamTransactionExtender (
   wire                io_input_fire_1;
 
   StreamTransactionCounter_6 counter (
-    .io_ctrlFire        (io_input_fire        ), //i
-    .io_targetFire      (io_output_fire       ), //i
-    .io_available       (counter_io_available ), //o
-    .io_count           (io_count[6:0]        ), //i
-    .io_working         (counter_io_working   ), //o
-    .io_last            (counter_io_last      ), //o
-    .io_done            (counter_io_done      ), //o
-    .io_value           (counter_io_value[6:0]), //o
-    .io_axiClk          (io_axiClk            ), //i
-    .resetCtrl_axiReset (resetCtrl_axiReset   )  //i
+    .io_ctrlFire   (io_input_fire        ), //i
+    .io_targetFire (io_output_fire       ), //i
+    .io_available  (counter_io_available ), //o
+    .io_count      (io_count[6:0]        ), //i
+    .io_working    (counter_io_working   ), //o
+    .io_last       (counter_io_last      ), //o
+    .io_done       (counter_io_done      ), //o
+    .io_value      (counter_io_value[6:0]), //o
+    .io_axiClk     (io_axiClk            ), //i
+    .tmp_io_resetn (tmp_io_resetn        )  //i
   );
   assign io_input_fire = (io_input_valid && io_input_ready); // @ BaseType.scala l305
   assign io_output_fire = (io_output_valid && io_output_ready); // @ BaseType.scala l305
@@ -28377,7 +28382,7 @@ module StreamTransactionCounter (
   output              io_done,
   output     [7:0]    io_value,
   input               io_axiClk,
-  input               resetCtrl_axiReset
+  input               tmp_io_resetn
 );
 
   wire       [7:0]    tmp_counter_valueNext;
@@ -28443,8 +28448,8 @@ module StreamTransactionCounter (
   assign io_done = (done && working); // @ Stream.scala l1897
   assign io_value = counter_value; // @ Stream.scala l1898
   assign io_available = (! running); // @ Stream.scala l1899
-  always @(posedge io_axiClk or posedge resetCtrl_axiReset) begin
-    if(resetCtrl_axiReset) begin
+  always @(posedge io_axiClk or posedge tmp_io_resetn) begin
+    if(tmp_io_resetn) begin
       counter_value <= 8'h0; // @ Data.scala l400
       running <= 1'b0; // @ Data.scala l400
     end else begin
@@ -28485,7 +28490,7 @@ module StreamTransactionExtender_2 (
   output              io_last,
   output              io_done,
   input               io_axiClk,
-  input               resetCtrl_axiReset
+  input               tmp_io_resetn
 );
 
   wire                counter_io_available;
@@ -28506,16 +28511,16 @@ module StreamTransactionExtender_2 (
   wire                io_input_fire_1;
 
   StreamTransactionCounter_6 counter (
-    .io_ctrlFire        (io_input_fire        ), //i
-    .io_targetFire      (io_output_fire       ), //i
-    .io_available       (counter_io_available ), //o
-    .io_count           (io_count[6:0]        ), //i
-    .io_working         (counter_io_working   ), //o
-    .io_last            (counter_io_last      ), //o
-    .io_done            (counter_io_done      ), //o
-    .io_value           (counter_io_value[6:0]), //o
-    .io_axiClk          (io_axiClk            ), //i
-    .resetCtrl_axiReset (resetCtrl_axiReset   )  //i
+    .io_ctrlFire   (io_input_fire        ), //i
+    .io_targetFire (io_output_fire       ), //i
+    .io_available  (counter_io_available ), //o
+    .io_count      (io_count[6:0]        ), //i
+    .io_working    (counter_io_working   ), //o
+    .io_last       (counter_io_last      ), //o
+    .io_done       (counter_io_done      ), //o
+    .io_value      (counter_io_value[6:0]), //o
+    .io_axiClk     (io_axiClk            ), //i
+    .tmp_io_resetn (tmp_io_resetn        )  //i
   );
   assign io_input_fire = (io_input_valid && io_input_ready); // @ BaseType.scala l305
   assign io_output_fire = (io_output_valid && io_output_ready); // @ BaseType.scala l305
@@ -28565,7 +28570,7 @@ module StreamTransactionExtender_1 (
   output              io_last,
   output              io_done,
   input               io_axiClk,
-  input               resetCtrl_axiReset
+  input               tmp_io_resetn
 );
 
   wire                counter_io_available;
@@ -28586,16 +28591,16 @@ module StreamTransactionExtender_1 (
   wire                io_input_fire_1;
 
   StreamTransactionCounter_4 counter (
-    .io_ctrlFire        (io_input_fire        ), //i
-    .io_targetFire      (io_output_fire       ), //i
-    .io_available       (counter_io_available ), //o
-    .io_count           (io_count[7:0]        ), //i
-    .io_working         (counter_io_working   ), //o
-    .io_last            (counter_io_last      ), //o
-    .io_done            (counter_io_done      ), //o
-    .io_value           (counter_io_value[7:0]), //o
-    .io_axiClk          (io_axiClk            ), //i
-    .resetCtrl_axiReset (resetCtrl_axiReset   )  //i
+    .io_ctrlFire   (io_input_fire        ), //i
+    .io_targetFire (io_output_fire       ), //i
+    .io_available  (counter_io_available ), //o
+    .io_count      (io_count[7:0]        ), //i
+    .io_working    (counter_io_working   ), //o
+    .io_last       (counter_io_last      ), //o
+    .io_done       (counter_io_done      ), //o
+    .io_value      (counter_io_value[7:0]), //o
+    .io_axiClk     (io_axiClk            ), //i
+    .tmp_io_resetn (tmp_io_resetn        )  //i
   );
   assign io_input_fire = (io_input_valid && io_input_ready); // @ BaseType.scala l305
   assign io_output_fire = (io_output_valid && io_output_ready); // @ BaseType.scala l305
@@ -28658,7 +28663,7 @@ module Axi4DownsizerSubTransactionGenerator_1 (
   output              io_last,
   output              io_done,
   input               io_axiClk,
-  input               resetCtrl_axiReset
+  input               tmp_io_resetn
 );
 
   wire                cmdExtender_io_input_ready;
@@ -28773,7 +28778,7 @@ module Axi4DownsizerSubTransactionGenerator_1 (
     .io_last                  (cmdExtender_io_last                      ), //o
     .io_done                  (cmdExtender_io_done                      ), //o
     .io_axiClk                (io_axiClk                                ), //i
-    .resetCtrl_axiReset       (resetCtrl_axiReset                       )  //i
+    .tmp_io_resetn            (tmp_io_resetn                            )  //i
   );
   assign sizeDiff = (io_input_payload_size - 3'b010); // @ BaseType.scala l299
   always @(*) begin
@@ -28873,8 +28878,8 @@ module Axi4DownsizerSubTransactionGenerator_1 (
   assign io_output_payload_cache = cmdStream_payload_cache; // @ Stream.scala l296
   assign io_output_payload_qos = cmdStream_payload_qos; // @ Stream.scala l296
   assign io_output_payload_prot = cmdStream_payload_prot; // @ Stream.scala l296
-  always @(posedge io_axiClk or posedge resetCtrl_axiReset) begin
-    if(resetCtrl_axiReset) begin
+  always @(posedge io_axiClk or posedge tmp_io_resetn) begin
+    if(tmp_io_resetn) begin
       size <= 3'b010; // @ Data.scala l400
       address <= 32'h0; // @ Data.scala l400
       dataRatio <= 7'h0; // @ Data.scala l400
@@ -29134,7 +29139,7 @@ module CsrRegfile (
   output              clint_ports_mtime_int_pend,
   input               timer_int,
   input               io_axiClk,
-  input               resetCtrl_axiReset
+  input               cpu_rst
 );
 
   wire       [63:0]   tmp_mcycle;
@@ -29195,8 +29200,8 @@ module CsrRegfile (
   assign clint_ports_global_int_en = mstatus[3]; // @ Exception.scala l111
   assign clint_ports_mtime_int_en = mie[7]; // @ Exception.scala l112
   assign clint_ports_mtime_int_pend = mip[7]; // @ Exception.scala l113
-  always @(posedge io_axiClk or posedge resetCtrl_axiReset) begin
-    if(resetCtrl_axiReset) begin
+  always @(posedge io_axiClk or posedge cpu_rst) begin
+    if(cpu_rst) begin
       mstatus <= {51'h0,13'h1880}; // @ Data.scala l400
       mie <= 64'h0; // @ Data.scala l400
       mtvec <= 64'h0; // @ Data.scala l400
@@ -29267,7 +29272,7 @@ module FIFO_3 (
   input               flush,
   output              has_space,
   input               io_axiClk,
-  input               resetCtrl_axiReset
+  input               cpu_rst
 );
 
   reg        [31:0]   tmp_ports_m_ports_payload;
@@ -29329,8 +29334,8 @@ module FIFO_3 (
   assign ports_m_ports_valid = (! fifo_empty); // @ FIFO.scala l69
   assign ports_m_ports_payload = tmp_ports_m_ports_payload; // @ FIFO.scala l70
   assign has_space = (3'b001 < empty_entry_cnt_next); // @ FIFO.scala l71
-  always @(posedge io_axiClk or posedge resetCtrl_axiReset) begin
-    if(resetCtrl_axiReset) begin
+  always @(posedge io_axiClk or posedge cpu_rst) begin
+    if(cpu_rst) begin
       read_ptr <= 3'b000; // @ Data.scala l400
       write_ptr <= 3'b000; // @ Data.scala l400
       empty_entry_cnt <= 3'b100; // @ Data.scala l400
@@ -29389,7 +29394,7 @@ module FIFO_2 (
   input               flush,
   output              has_space,
   input               io_axiClk,
-  input               resetCtrl_axiReset
+  input               cpu_rst
 );
 
   reg                 tmp_ports_m_ports_payload;
@@ -29451,8 +29456,8 @@ module FIFO_2 (
   assign ports_m_ports_valid = (! fifo_empty); // @ FIFO.scala l69
   assign ports_m_ports_payload = tmp_ports_m_ports_payload; // @ FIFO.scala l70
   assign has_space = (3'b001 < empty_entry_cnt_next); // @ FIFO.scala l71
-  always @(posedge io_axiClk or posedge resetCtrl_axiReset) begin
-    if(resetCtrl_axiReset) begin
+  always @(posedge io_axiClk or posedge cpu_rst) begin
+    if(cpu_rst) begin
       read_ptr <= 3'b000; // @ Data.scala l400
       write_ptr <= 3'b000; // @ Data.scala l400
       empty_entry_cnt <= 3'b100; // @ Data.scala l400
@@ -29515,7 +29520,7 @@ module FIFO (
   output     [31:0]   next_payload,
   output              next_valid,
   input               io_axiClk,
-  input               resetCtrl_axiReset
+  input               cpu_rst
 );
 
   reg        [31:0]   tmp_ports_m_ports_payload;
@@ -29598,8 +29603,8 @@ module FIFO (
   assign ports_s_ports_fire_4 = (ports_s_ports_valid && ports_s_ports_ready); // @ BaseType.scala l305
   assign ports_m_ports_fire_4 = (ports_m_ports_valid && ports_m_ports_ready); // @ BaseType.scala l305
   assign next_valid = (3'b010 <= fifo_cnt); // @ FIFO.scala l90
-  always @(posedge io_axiClk or posedge resetCtrl_axiReset) begin
-    if(resetCtrl_axiReset) begin
+  always @(posedge io_axiClk or posedge cpu_rst) begin
+    if(cpu_rst) begin
       read_ptr <= 3'b000; // @ Data.scala l400
       write_ptr <= 3'b000; // @ Data.scala l400
       empty_entry_cnt <= 3'b100; // @ Data.scala l400
@@ -29676,7 +29681,7 @@ module StreamTransactionCounter_4 (
   output              io_done,
   output     [7:0]    io_value,
   input               io_axiClk,
-  input               resetCtrl_axiReset
+  input               tmp_io_resetn
 );
 
   wire       [7:0]    tmp_counter_valueNext;
@@ -29736,8 +29741,8 @@ module StreamTransactionCounter_4 (
     end
   end
 
-  always @(posedge io_axiClk or posedge resetCtrl_axiReset) begin
-    if(resetCtrl_axiReset) begin
+  always @(posedge io_axiClk or posedge tmp_io_resetn) begin
+    if(tmp_io_resetn) begin
       counter_value <= 8'h0; // @ Data.scala l400
       running <= 1'b0; // @ Data.scala l400
     end else begin
@@ -29786,7 +29791,7 @@ module StreamTransactionExtender_4 (
   output              io_last,
   output              io_done,
   input               io_axiClk,
-  input               resetCtrl_axiReset
+  input               tmp_io_resetn
 );
 
   wire                counter_io_available;
@@ -29819,16 +29824,16 @@ module StreamTransactionExtender_4 (
   wire                io_input_fire_1;
 
   StreamTransactionCounter_6 counter (
-    .io_ctrlFire        (io_input_fire        ), //i
-    .io_targetFire      (io_output_fire       ), //i
-    .io_available       (counter_io_available ), //o
-    .io_count           (io_count[6:0]        ), //i
-    .io_working         (counter_io_working   ), //o
-    .io_last            (counter_io_last      ), //o
-    .io_done            (counter_io_done      ), //o
-    .io_value           (counter_io_value[6:0]), //o
-    .io_axiClk          (io_axiClk            ), //i
-    .resetCtrl_axiReset (resetCtrl_axiReset   )  //i
+    .io_ctrlFire   (io_input_fire        ), //i
+    .io_targetFire (io_output_fire       ), //i
+    .io_available  (counter_io_available ), //o
+    .io_count      (io_count[6:0]        ), //i
+    .io_working    (counter_io_working   ), //o
+    .io_last       (counter_io_last      ), //o
+    .io_done       (counter_io_done      ), //o
+    .io_value      (counter_io_value[6:0]), //o
+    .io_axiClk     (io_axiClk            ), //i
+    .tmp_io_resetn (tmp_io_resetn        )  //i
   );
   assign io_input_fire = (io_input_valid && io_input_ready); // @ BaseType.scala l305
   assign io_output_fire = (io_output_valid && io_output_ready); // @ BaseType.scala l305
@@ -29889,7 +29894,7 @@ module StreamTransactionCounter_6 (
   output              io_done,
   output     [6:0]    io_value,
   input               io_axiClk,
-  input               resetCtrl_axiReset
+  input               tmp_io_resetn
 );
 
   wire       [6:0]    tmp_counter_valueNext;
@@ -29949,8 +29954,8 @@ module StreamTransactionCounter_6 (
     end
   end
 
-  always @(posedge io_axiClk or posedge resetCtrl_axiReset) begin
-    if(resetCtrl_axiReset) begin
+  always @(posedge io_axiClk or posedge tmp_io_resetn) begin
+    if(tmp_io_resetn) begin
       counter_value <= 7'h0; // @ Data.scala l400
       running <= 1'b0; // @ Data.scala l400
     end else begin
