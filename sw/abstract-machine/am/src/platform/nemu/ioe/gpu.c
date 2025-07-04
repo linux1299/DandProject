@@ -13,6 +13,7 @@ void __am_gpu_init() {
   for (i = 0; i < w * h; i ++){
   // for (i = 0; i < w * h / 300; i ++){
     fb[i] = 0;
+
     // if(i/40000==0)
     //   fb[i] = 0xff0000; // R
     // if(i/40000==1)

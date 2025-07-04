@@ -1,6 +1,6 @@
 // Generator : SpinalHDL v1.8.1    git head : 2a7592004363e5b40ec43e1f122ed8641cd8965b
 // Component : DandSocV2
-// Git hash  : 7531e2415e1b5972fd32aa984f766ac58b3b39ee
+// Git hash  : 0f4049a9b012ccac8d9776153adfc6180c32f213
 
 `timescale 1ns/1ps
 
@@ -7497,67 +7497,79 @@ module LSU (
         lsu_rdata = dcache_rdata_lb; // @ LSU.scala l97
       end
       LsuCtrlEnum_LBU : begin
-        lsu_rdata = dcache_rdata_lbu; // @ LSU.scala l101
+        lsu_rdata = dcache_rdata_lbu; // @ LSU.scala l100
       end
       LsuCtrlEnum_LH : begin
-        lsu_rdata = dcache_rdata_lh; // @ LSU.scala l105
+        lsu_rdata = dcache_rdata_lh; // @ LSU.scala l103
       end
       LsuCtrlEnum_LHU : begin
-        lsu_rdata = dcache_rdata_lhu; // @ LSU.scala l109
+        lsu_rdata = dcache_rdata_lhu; // @ LSU.scala l106
       end
       LsuCtrlEnum_LW : begin
-        lsu_rdata = dcache_rdata_lw; // @ LSU.scala l113
+        lsu_rdata = dcache_rdata_lw; // @ LSU.scala l109
       end
       LsuCtrlEnum_LWU : begin
-        lsu_rdata = dcache_rdata_lwu; // @ LSU.scala l117
+        lsu_rdata = dcache_rdata_lwu; // @ LSU.scala l112
       end
       LsuCtrlEnum_LD : begin
-        lsu_rdata = dcache_rdata; // @ LSU.scala l121
+        lsu_rdata = dcache_rdata; // @ LSU.scala l115
       end
       default : begin
-        lsu_rdata = 64'h0; // @ LSU.scala l125
+        lsu_rdata = 64'h0; // @ LSU.scala l118
       end
     endcase
   end
 
   always @(*) begin
-    case(lsu_ctrl_op_reg)
+    case(src_ports_payload_micro_op_lsu_ctrl_op)
+      LsuCtrlEnum_SB : begin
+        dcache_size = 3'b000; // @ LSU.scala l124
+      end
+      LsuCtrlEnum_SH : begin
+        dcache_size = 3'b001; // @ LSU.scala l127
+      end
+      LsuCtrlEnum_SW : begin
+        dcache_size = 3'b010; // @ LSU.scala l130
+      end
+      LsuCtrlEnum_SD : begin
+        dcache_size = 3'b011; // @ LSU.scala l133
+      end
       LsuCtrlEnum_LB : begin
-        dcache_size = 3'b000; // @ LSU.scala l98
+        dcache_size = 3'b000; // @ LSU.scala l136
       end
       LsuCtrlEnum_LBU : begin
-        dcache_size = 3'b000; // @ LSU.scala l102
+        dcache_size = 3'b000; // @ LSU.scala l139
       end
       LsuCtrlEnum_LH : begin
-        dcache_size = 3'b001; // @ LSU.scala l106
+        dcache_size = 3'b001; // @ LSU.scala l142
       end
       LsuCtrlEnum_LHU : begin
-        dcache_size = 3'b001; // @ LSU.scala l110
+        dcache_size = 3'b001; // @ LSU.scala l145
       end
       LsuCtrlEnum_LW : begin
-        dcache_size = 3'b010; // @ LSU.scala l114
+        dcache_size = 3'b010; // @ LSU.scala l148
       end
       LsuCtrlEnum_LWU : begin
-        dcache_size = 3'b010; // @ LSU.scala l118
+        dcache_size = 3'b010; // @ LSU.scala l151
       end
       LsuCtrlEnum_LD : begin
-        dcache_size = 3'b011; // @ LSU.scala l122
+        dcache_size = 3'b011; // @ LSU.scala l154
       end
       default : begin
-        dcache_size = 3'b000; // @ LSU.scala l126
+        dcache_size = 3'b000; // @ LSU.scala l157
       end
     endcase
   end
 
   assign src_stream_fire = (src_stream_valid && src_stream_ready); // @ BaseType.scala l305
-  assign src_stream_ready = dcache_cmd_stream_ready; // @ LSU.scala l144
-  assign dst_stream_valid = dcache_ports_rsp_valid; // @ LSU.scala l145
-  assign dst_stream_payload_result = lsu_rdata; // @ LSU.scala l146
-  assign dst_stream_payload_rd_wen = rd_wen_reg; // @ LSU.scala l147
-  assign dst_stream_payload_rd_rob_ptr = rd_rob_ptr_reg; // @ LSU.scala l148
+  assign src_stream_ready = dcache_cmd_stream_ready; // @ LSU.scala l175
+  assign dst_stream_valid = dcache_ports_rsp_valid; // @ LSU.scala l176
+  assign dst_stream_payload_result = lsu_rdata; // @ LSU.scala l177
+  assign dst_stream_payload_rd_wen = rd_wen_reg; // @ LSU.scala l178
+  assign dst_stream_payload_rd_rob_ptr = rd_rob_ptr_reg; // @ LSU.scala l179
   assign src_stream_fire_1 = (src_stream_valid && src_stream_ready); // @ BaseType.scala l305
-  assign dst_stream_payload_pc = tmp_dst_stream_payload_pc; // @ LSU.scala l160
-  assign dst_stream_payload_instruction = tmp_dst_stream_payload_instruction; // @ LSU.scala l161
+  assign dst_stream_payload_pc = tmp_dst_stream_payload_pc; // @ LSU.scala l191
+  assign dst_stream_payload_instruction = tmp_dst_stream_payload_instruction; // @ LSU.scala l192
   assign dst_ports_valid = dst_stream_valid; // @ Stream.scala l294
   assign dst_stream_ready = dst_ports_ready; // @ Stream.scala l295
   assign dst_ports_payload_result = dst_stream_payload_result; // @ Stream.scala l296
@@ -7565,10 +7577,10 @@ module LSU (
   assign dst_ports_payload_rd_rob_ptr = dst_stream_payload_rd_rob_ptr; // @ Stream.scala l296
   assign dst_ports_payload_pc = dst_stream_payload_pc; // @ Stream.scala l296
   assign dst_ports_payload_instruction = dst_stream_payload_instruction; // @ Stream.scala l296
-  assign timer_cen = (lsu_addr_is_timer && lsu_cen); // @ LSU.scala l166
-  assign timer_wen = src_ports_payload_micro_op_lsu_is_store; // @ LSU.scala l167
-  assign timer_addr = dcache_addr[31:0]; // @ LSU.scala l168
-  assign timer_wdata = dcache_wdata; // @ LSU.scala l169
+  assign timer_cen = (lsu_addr_is_timer && lsu_cen); // @ LSU.scala l197
+  assign timer_wen = src_ports_payload_micro_op_lsu_is_store; // @ LSU.scala l198
+  assign timer_addr = dcache_addr[31:0]; // @ LSU.scala l199
+  assign timer_wdata = dcache_wdata; // @ LSU.scala l200
   always @(posedge io_axiClk) begin
     if(src_ports_fire) begin
       lsu_addr_offset_reg <= lsu_addr_offset; // @ LSU.scala l50
@@ -7586,21 +7598,21 @@ module LSU (
       tmp_dst_stream_payload_instruction <= 32'h0; // @ Data.scala l400
     end else begin
       if(flush) begin
-        rd_wen_reg <= 1'b0; // @ LSU.scala l136
-        rd_rob_ptr_reg <= 4'b0000; // @ LSU.scala l137
+        rd_wen_reg <= 1'b0; // @ LSU.scala l167
+        rd_rob_ptr_reg <= 4'b0000; // @ LSU.scala l168
       end else begin
         if(src_stream_fire) begin
-          rd_wen_reg <= src_ports_payload_micro_op_rd_wen; // @ LSU.scala l140
-          rd_rob_ptr_reg <= src_ports_payload_rd_rob_ptr; // @ LSU.scala l141
+          rd_wen_reg <= src_ports_payload_micro_op_rd_wen; // @ LSU.scala l171
+          rd_rob_ptr_reg <= src_ports_payload_rd_rob_ptr; // @ LSU.scala l172
         end
       end
       if(flush) begin
-        tmp_dst_stream_payload_pc <= 32'h0; // @ LSU.scala l153
-        tmp_dst_stream_payload_instruction <= 32'h0; // @ LSU.scala l154
+        tmp_dst_stream_payload_pc <= 32'h0; // @ LSU.scala l184
+        tmp_dst_stream_payload_instruction <= 32'h0; // @ LSU.scala l185
       end else begin
         if(src_stream_fire_1) begin
-          tmp_dst_stream_payload_pc <= src_ports_payload_pc; // @ LSU.scala l157
-          tmp_dst_stream_payload_instruction <= src_ports_payload_instruction; // @ LSU.scala l158
+          tmp_dst_stream_payload_pc <= src_ports_payload_pc; // @ LSU.scala l188
+          tmp_dst_stream_payload_instruction <= src_ports_payload_instruction; // @ LSU.scala l189
         end
       end
     end

@@ -95,34 +95,65 @@ case class LSU(AW:Int=32, DW:Int=64) extends Component {
   switch(lsu_ctrl_op_reg){
     is(LB){
       lsu_rdata := dcache_rdata_lb
-      dcache_size := U(0)
     }
     is(LBU){
       lsu_rdata := dcache_rdata_lbu
-      dcache_size := U(0)
     }
     is(LH){
       lsu_rdata := dcache_rdata_lh
-      dcache_size := U(1)
     }
     is(LHU){
       lsu_rdata := dcache_rdata_lhu
-      dcache_size := U(1)
     }
     is(LW){
       lsu_rdata := dcache_rdata_lw
-      dcache_size := U(2)
     }
     is(LWU){
       lsu_rdata := dcache_rdata_lwu
-      dcache_size := U(2)
     }
     is(LD){
       lsu_rdata := dcache_rdata
-      dcache_size := U(3)
     }
     default{
       lsu_rdata := B(0, XLEN bits)
+    }
+  }
+
+  switch(micro_op.lsu_ctrl_op){
+    is(SB){
+      dcache_size := U(0)
+    }
+    is(SH){
+      dcache_size := U(1)
+    }
+    is(SW){
+      dcache_size := U(2)
+    }
+    is(SD){
+      dcache_size := U(3)
+    }
+    is(LB){
+      dcache_size := U(0)
+    }
+    is(LBU){
+      dcache_size := U(0)
+    }
+    is(LH){
+      dcache_size := U(1)
+    }
+    is(LHU){
+      dcache_size := U(1)
+    }
+    is(LW){
+      dcache_size := U(2)
+    }
+    is(LWU){
+      dcache_size := U(2)
+    }
+    is(LD){
+      dcache_size := U(3)
+    }
+    default{
       dcache_size := U(0)
     }
   }

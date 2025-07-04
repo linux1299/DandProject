@@ -47,18 +47,20 @@ void *iterate(void *pres) {
 	res->crcstate=0;
 	ee_printf("Iterations : %d\n",iterations);
 	for (i=0; i<iterations; i++) {
-		ee_printf("i=%d\n",i);
 		crc=core_bench_list(res,1);
+		// ee_printf("crc: %x\n",crc);
 		res->crc=crcu16(crc,res->crc);
+		ee_printf("res.crc: %x\n",res->crc);
 		crc=core_bench_list(res,-1);
 		res->crc=crcu16(crc,res->crc);
 		if (i==0) res->crclist=res->crc;
+		// debug
+		// ee_printf("i = %d\n",i);
+		// ee_printf("res.crc: %x\n",res->crc);
+		// ee_printf("res.crclist: %x\n",res->crclist);
+		// ee_printf("res.crcmatrix: %x\n",res->crcmatrix);
+		// ee_printf("res.crcstate: %x\n",res->crcstate);
 	}
-	// ee_printf("Iterations num: %d\n",i);
-	// ee_printf("res.crc: %x\n",res->crc);
-	// ee_printf("res.crclist: %x\n",res->crclist);
-	// ee_printf("res.crcmatrix: %x\n",res->crcmatrix);
-	// ee_printf("res.crcstate: %x\n",res->crcstate);
 	return NULL;
 }
 

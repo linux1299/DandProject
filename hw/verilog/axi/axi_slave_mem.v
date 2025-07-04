@@ -98,6 +98,8 @@ module axi_slave_mem #(
   reg                      sig_r_last;
   reg [AXI_USER_WIDTH-1:0] sig_r_user;
   reg                      sig_r_valid;
+  reg [AXI_ID_WIDTH-1:0]   sig_r_id;
+  reg [AXI_ID_WIDTH-1:0]   sig_b_id;
 
   wire aw_wrap_en, ar_wrap_en;  //determines wrap boundary and enables wrapping
   wire [31:0] aw_wrap_size, ar_wrap_size; //the size of write/read transfer
@@ -116,8 +118,8 @@ module axi_slave_mem #(
   assign r_last   = sig_r_last;
   assign r_user   = sig_r_user;
   assign r_valid  = sig_r_valid;
-  assign b_id     = aw_id;
-  assign r_id     = ar_id;
+  assign b_id     = sig_b_id;
+  assign r_id     = sig_r_id;
   //could be optimized
   assign aw_wrap_size = (AXI_DATA_WIDTH/8 * (aw_len));
   assign ar_wrap_size = (AXI_DATA_WIDTH/8 * (ar_len));
@@ -226,10 +228,13 @@ module axi_slave_mem #(
       sig_b_valid <= 0;
       sig_b_resp <= 2'b0;
       sig_b_user <= 0;
+      sig_b_id   <= 0;
     end else begin
       if (axi_awv_awr_flag && sig_w_ready && w_valid && ~sig_b_valid && w_last) begin
         sig_b_valid <= 1'b1;
         sig_b_resp <= 2'b0;
+        sig_b_user <= aw_user;
+        sig_b_id   <= aw_id;
       end else begin
         if(b_ready && sig_b_valid) begin
           sig_b_valid <= 1'b0;
@@ -272,6 +277,7 @@ module axi_slave_mem #(
       sig_ar_len <= 0;
       sig_r_last <= 1'b0;
       sig_r_user <= 0;
+      sig_r_id   <= 0;
     end else begin
       if (~sig_ar_ready && ar_valid && ~axi_arv_arr_flag) begin
         sig_ar_addr <= ar_addr[AXI_ADDR_WIDTH-1:0];
@@ -279,7 +285,8 @@ module axi_slave_mem #(
         sig_ar_len <= ar_len;
         ar_len_cntr <= 0;
         sig_r_last <= 1'b0;
-        sig_r_user <= 0;
+        sig_r_user <= ar_user;
+        sig_r_id   <= ar_id;
       end else begin
         if (sig_ar_ready && ar_valid && ~axi_arv_arr_flag) begin
           sig_ar_addr <= ar_addr[AXI_ADDR_WIDTH-1:0];

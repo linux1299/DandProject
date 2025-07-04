@@ -1,5 +1,5 @@
 clean:
-	rm -rf  *simv*  *.vpd DVEfiles csrc simv* ucli* *.log *novas*  vpd2fsdb* v* V* *fsdb* verdilog* *bin* *stack.info*
+	rm -rf  *simv*  *.vpd DVEfiles csrc simv* ucli* *.log *novas*  vpd2fsdb* v* V* *fsdb* verdilog* *bin* *stack.info* novas.conf novas.rc
 
 all: clean com sim
 re: com sim
@@ -138,3 +138,23 @@ sim_soc2:
 
 ver_soc2:
 	verdi  ./simWorkspace/tb_DandSoc/tb_DandSoc.fsdb -f ./hw/verilog/tb/tb_DandSoc.f -ssf -sv -v2k &
+
+v2: clean comv2 simv2
+rev2: comv2 simv2
+comv2:
+	vcs -sverilog  \
+	+v2k -timescale=1ns/1ns  -full64 -cpp g++ -cc gcc -LDFLAGS -Wl,--no-as-needed \
+	-f ./hw/verilog/tb/tb_DandSocV2.f                       \
+	-debug_all                                 \
+	-o ./simWorkspace/tb_DandSocV2/tb_DandSocV2.simv  \
+	-l ./simWorkspace/tb_DandSocV2/compile.log                             \
+	-fsdb                                      \
+	-top tb_DandSocV2
+
+simv2:
+	./simWorkspace/tb_DandSocV2/tb_DandSocV2.simv -l ./simWorkspace/tb_DandSocV2/sim.log  +nospecify +notimingcheck +fsdb+autoflush \
+	-lca -cm line+tgl+cond+fsm \
+  urg -dir ./simWorkspace/tb_DandSocV2/tb_DandSocV2.simv.vdb/ -report both  
+
+verv2:
+	verdi  ./simWorkspace/tb_DandSocV2/tb_DandSocV2.fsdb -f ./hw/verilog/tb/tb_DandSocV2.f -ssf -sv -v2k &

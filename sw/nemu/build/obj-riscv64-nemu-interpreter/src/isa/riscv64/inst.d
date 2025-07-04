@@ -20,7 +20,7 @@ deps_/home/lin/DandProject/sw/nemu/build/obj-riscv64-nemu-interpreter/src/isa/ri
   /home/lin/DandProject/sw/nemu/include/cpu/decode.h \
     $(wildcard include/config/itrace.h) \
   /home/lin/DandProject/sw/nemu/include/isa.h \
-  /home/lin/SpinalProjects/DandRiscvSoC/ysyx-workbench/nemu/src/isa/riscv64/include/isa-def.h \
+  /home/lin/DandProject/sw/nemu/src/isa/riscv64/include/isa-def.h \
 
 /home/lin/DandProject/sw/nemu/build/obj-riscv64-nemu-interpreter/src/isa/riscv64/inst.o: $(deps_/home/lin/DandProject/sw/nemu/build/obj-riscv64-nemu-interpreter/src/isa/riscv64/inst.o)
 

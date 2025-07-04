@@ -1,0 +1,10 @@
+./hw/gen/DandSocV2.v
+./hw/verilog/uart_simple/fifo_sync.v
+./hw/verilog/uart_simple/uart_simple.v
+./hw/verilog/uart_simple/uart_send_preprocess.v
+./hw/verilog/uart_simple/uart_send_data.v
+./hw/verilog/uart_simple/uart_send.v
+./hw/verilog/uart_simple/uart_recv.v
+./hw/verilog/exu/div_gen_0.v
+./hw/verilog/axi/axi_slave_mem.v
+./hw/verilog/tb/tb_DandSocV2.sv
