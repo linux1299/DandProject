@@ -1,0 +1,243 @@
+package dandriscv.tulip
+
+import spinal.core._
+import spinal.lib.bus.amba4.axi._
+import spinal.lib._
+
+case class Tulip() extends Component {
+  import CpuConfig._
+
+  
+
+  // ================= Config ===============
+  val icache_config = ICacheConfig(
+    cacheSize = 16*1024, // 16 KB
+    wayCount = 2
+  )
+  val dcache_config = DCacheConfig(
+    cacheSize = 16*1024, // 16 KB
+    wayCount = 2,
+    bypassAddrLow0  = 0x10000000l,
+    bypassAddrHigh0 = 0x3fffffffl,
+    bypassAddrLow1  = 0x10001000l,
+    bypassAddrHigh1 = 0x10001fffl,
+    bypassAddrLow2  = 0x80000000l,
+    bypassAddrHigh2 = 0xffffffffl
+  )
+  val icache_axi_config = Axi4Config(
+    addressWidth=32, 
+    dataWidth=64, 
+    idWidth=2,
+    useId=true, 
+    useLast=true, 
+    useRegion=false, 
+    useBurst=true, 
+    useLock=false, 
+    useCache=false, 
+    useSize=true, 
+    useQos=false,
+    useLen=true, 
+    useResp=true, 
+    useProt=false, 
+    useStrb=false
+  )
+  val dcache_axi_config = Axi4Config(
+    addressWidth=32, 
+    dataWidth=64, 
+    idWidth=2,
+    useId=true, 
+    useLast=true, 
+    useRegion=false, 
+    useBurst=true, 
+    useLock=false, 
+    useCache=false, 
+    useSize=true, 
+    useQos=false,
+    useLen=true, 
+    useResp=true, 
+    useProt=false, 
+    useStrb=true
+  )
+  val gshare_config = PredictorConfig(
+    RAS_ENTRIES = 4, 
+    BTB_ENTRIES = 4, 
+    PHT_ENTRIES = 32
+  )
+
+
+  // ================= IO ===============
+  // for Test
+  val retire_ready = in Bool()
+  // icache next level AXI ports/ direct ports
+  val icacheReader = master(Axi4ReadOnly(icache_axi_config)).setName("icache")
+  // dcache next level AXI ports/ or direct ports
+  val dcacheReader = master(Axi4ReadOnly(dcache_axi_config)).setName("dcache")
+  val dcacheWriter = master(Axi4WriteOnly(dcache_axi_config)).setName("dcache")
+
+
+  // ================= Instance ===============
+  val fetch  = new Fetch(0x80000000l)
+  val icache = new ICacheTop(icache_config, icache_axi_config)
+  val bpu    = new gshare_predictor(gshare_config)
+  val decode = new Decode()
+  val issue  = new Issue()
+  val dispat = new Dispatch()
+  val regfile= new Regfile()
+  val commit = new Commit()
+  val bju_0  = new BJU()
+  val alu_1  = new ALU()
+  val alu_2  = new ALU()
+  val div_3  = new DIV()
+  val lsu_4  = new LSU()
+  val dcache = new DCacheTop(dcache_config, dcache_axi_config)
+
+  val change_flow = bju_0.interrupt_valid || bju_0.redirect_valid
+
+  // ================= Fetch ===============
+  fetch.flush             := change_flow
+  fetch.interrupt_vld     := bju_0.interrupt_valid
+  fetch.interrupt_pc      := bju_0.interrupt_pc
+  fetch.redirect_vld      := bju_0.redirect_valid
+  fetch.redirect_pc       := bju_0.redirect_pc
+  fetch.icache_ports.rsp  << icache.icache_src.rsp
+  
+  fetch.branch_taken      := bpu.predict_taken
+  fetch.branch_pc         := bpu.target_pc
+
+  // ================= ICache ===============
+  icache.flush           := False
+  icache.icache_src.cmd  << fetch.icache_ports.cmd
+  
+  // ================= BPU ===============
+  bpu.predict_pc         := fetch.predict_pc
+  bpu.predict_valid      := fetch.predict_valid
+  bpu.train_valid        := bju_0.train_valid
+  bpu.train_taken        := bju_0.train_taken
+  bpu.train_mispredicted := bju_0.train_mispred
+  bpu.train_history      := bju_0.train_history
+  bpu.train_pc           := bju_0.train_pc
+  bpu.train_pc_next      := bju_0.train_pc_next
+  bpu.train_is_call      := bju_0.train_is_call
+  bpu.train_is_ret       := bju_0.train_is_ret
+  bpu.train_is_jmp       := bju_0.train_is_jmp
+
+  // ================= Decode ===============
+  decode.flush           := change_flow
+  decode.dec_src(0)      << fetch.fch_dst(0)
+  decode.dec_src(1)      << fetch.fch_dst(1)
+
+  // ================= ISSUE ===============
+  issue.flush      := change_flow
+  issue.iss_src(0) << decode.dec_dst(0)
+  issue.iss_src(1) << decode.dec_dst(1)
+
+  // ================= Dispatch ===============
+  dispat.flush      := commit.flush
+  dispat.dis_src(0) << issue.iss_dst(0)
+  dispat.dis_src(1) << issue.iss_dst(1)
+
+  dispat.wbc_rd_wen(0) := bju_0.bju_dst.fire && bju_0.bju_dst.rd_wen
+  dispat.wbc_rd_wen(1) := alu_1.alu_dst.fire && alu_1.alu_dst.rd_wen
+  dispat.wbc_rd_wen(2) := alu_2.alu_dst.fire && alu_2.alu_dst.rd_wen
+  dispat.wbc_rd_wen(3) := div_3.div_dst.fire && div_3.div_dst.rd_wen
+  dispat.wbc_rd_wen(4) := lsu_4.lsu_dst.fire && lsu_4.lsu_dst.rd_wen
+
+  dispat.wbc_rd_addr(0) := bju_0.bju_dst.rd_addr
+  dispat.wbc_rd_addr(1) := alu_1.alu_dst.rd_addr
+  dispat.wbc_rd_addr(2) := alu_2.alu_dst.rd_addr
+  dispat.wbc_rd_addr(3) := div_3.div_dst.rd_addr
+  dispat.wbc_rd_addr(4) := lsu_4.lsu_dst.rd_addr
+
+  dispat.wbc_rd_data(0) := bju_0.bju_dst.rd_data
+  dispat.wbc_rd_data(1) := alu_1.alu_dst.rd_data
+  dispat.wbc_rd_data(2) := alu_2.alu_dst.rd_data
+  dispat.wbc_rd_data(3) := div_3.div_dst.rd_data
+  dispat.wbc_rd_data(4) := lsu_4.lsu_dst.rd_data
+
+  dispat.ret_rd_wen(0) := commit.ret_dst(0).fire && commit.ret_dst(0).rd_wen
+  dispat.ret_rd_wen(1) := commit.ret_dst(1).fire && commit.ret_dst(1).rd_wen
+
+  dispat.ret_rd_addr(0) := commit.ret_dst(0).rd_addr
+  dispat.ret_rd_addr(1) := commit.ret_dst(1).rd_addr
+
+  dispat.ret_rd_data(0) := commit.ret_dst(0).rd_data
+  dispat.ret_rd_data(1) := commit.ret_dst(1).rd_data
+
+  // =============== regfile ===============
+  regfile.read_0 <> dispat.read_regfile(0)
+  regfile.read_1 <> dispat.read_regfile(1)
+  regfile.write_0.rd_wen := commit.ret_dst(0).fire && commit.ret_dst(0).rd_wen
+  regfile.write_1.rd_wen := commit.ret_dst(1).fire && commit.ret_dst(1).rd_wen
+  regfile.write_0.rd_addr := commit.ret_dst(0).rd_addr
+  regfile.write_1.rd_addr := commit.ret_dst(1).rd_addr
+  regfile.write_0.rd_data := commit.ret_dst(0).rd_data
+  regfile.write_1.rd_data := commit.ret_dst(1).rd_data
+
+
+  // ================= BJU ===============
+  bju_0.flush          := False
+  bju_0.bju_src        << dispat.dis_to_bju
+  bju_0.timer_int      := lsu_4.timer_int
+
+  // ================= ALU 1 ===============
+  alu_1.flush     := commit.flush
+  alu_1.alu_src   << dispat.dis_to_al1
+
+  // ================= ALU 1 ===============
+  alu_2.flush     := commit.flush
+  alu_2.alu_src   << dispat.dis_to_al2
+
+  // ================= DIV ===============
+  div_3.flush     := commit.flush
+  div_3.div_src   << dispat.dis_to_div
+
+  // ================= LSU ===============
+  lsu_4.flush            := commit.flush
+  lsu_4.lsu_src          << dispat.dis_to_lsu
+  lsu_4.dcache_ports.rsp << dcache.dcache_src.rsp
+
+  // ================= Commit ===============
+  commit.change_flow := change_flow
+  commit.wbc_src(0) << bju_0.bju_dst
+  commit.wbc_src(1) << alu_1.alu_dst
+  commit.wbc_src(2) << alu_2.alu_dst
+  commit.wbc_src(3) << div_3.div_dst
+  commit.wbc_src(4) << lsu_4.lsu_dst
+
+  commit.exe_fire(0) := bju_0.bju_src.fire
+  commit.exe_fire(1) := alu_1.alu_src.fire
+  commit.exe_fire(2) := alu_2.alu_src.fire
+  commit.exe_fire(3) := div_3.div_src.fire
+  commit.exe_fire(4) := lsu_4.lsu_src.fire
+
+  commit.exe_older(0) := bju_0.bju_src.older
+  commit.exe_older(1) := alu_1.alu_src.older
+  commit.exe_older(2) := alu_2.alu_src.older
+  commit.exe_older(3) := div_3.div_src.older
+  commit.exe_older(4) := lsu_4.lsu_src.older
+
+  commit.ret_dst(0).ready := retire_ready
+  commit.ret_dst(1).ready := retire_ready
+
+
+  // ================= DCache ===============
+  dcache.flush            := False
+  dcache.dcache_src.cmd   << lsu_4.dcache_ports.cmd
+  
+
+  // ================= Top AXI IF ===============
+  icacheReader.ar << icache.icacheReader.ar
+  icacheReader.r  >> icache.icacheReader.r
+
+  dcacheReader.ar << dcache.dcacheReader.ar
+  dcacheReader.r  >> dcache.dcacheReader.r
+  dcacheWriter.aw << dcache.dcacheWriter.aw
+  dcacheWriter.w  << dcache.dcacheWriter.w
+  dcacheWriter.b  >> dcache.dcacheWriter.b
+  
+}
+
+
+object GenTulip extends App {
+  GenConfig.spinal.generateVerilog(Tulip())
+}

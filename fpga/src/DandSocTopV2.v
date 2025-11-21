@@ -11,38 +11,38 @@ input           cpu_start_n,
 output          io_uart_txd,
 input           io_uart_rxd,
 // LCD
-output             lcd_hs  ,       //LCD è¡ŒåŒæ­¥ä¿¡å?
-output             lcd_vs  ,       //LCD åœºåŒæ­¥ä¿¡å?
-output             lcd_de  ,       //LCD æ•°æ®è¾�?�å�?�¥ä½¿èƒ�?
-inout      [23:0]  lcd_rgb ,       //LCD RGB565é¢œè‰²æ�?�°æ�?
-output             lcd_bl  ,       //LCD èƒŒå…�?�æŽ§åˆ¶ä¿¡å�?
-output             lcd_rst,        //LCDå¤ä½
-output             lcd_clk,         //LCD é‡�?�æ ·æ�?�¶é�?��?
+output             lcd_hs  ,       
+output             lcd_vs  ,       
+output             lcd_de  ,       
+inout      [23:0]  lcd_rgb ,       
+output             lcd_bl  ,       
+output             lcd_rst,        
+output             lcd_clk,        
 
 // DDR3
-    inout   [31:0]        ddr3_dq      ,  //DDR3 Ã¦â¢Â°Ã¦ÂÂ?
-    inout   [3:0]         ddr3_dqs_n   ,  //DDR3 dqsÃ¨Â´?
-    inout   [3:0]         ddr3_dqs_p   ,  //DDR3 dqsÃ¦Â­?  
-    output  [13:0]        ddr3_addr    ,  //DDR3 Ã¥Å“Â°Ã¥ÂÂ�?   
-    output  [2:0]         ddr3_ba      ,  //DDR3 banck Ã©Ââ°Ã¦â?¹Â?
-    output                ddr3_ras_n   ,  //DDR3 Ã¨Â¡Å’Ã�??â°Ã¦â?¹Â?
-    output                ddr3_cas_n   ,  //DDR3 Ã¥Ë†â�?”�???â°Ã¦â?¹Â?
-    output                ddr3_we_n    ,  //DDR3 Ã¨Â¯Â»Ã¥â â„¢Ã©Â�?â°Ã¦â?¹Â?
-    output                ddr3_reset_n ,  //DDR3 Ã¥Â¤ÂÃ¤Â½Â
-    output  [0:0]         ddr3_ck_p    ,  //DDR3 Ã¦â”Â¶Ã©�??™Å¸Ã¦�???
-    output  [0:0]         ddr3_ck_n    ,  //DDR3 Ã¦â”Â¶Ã©�??™Å¸Ã¨�???
-    output  [0:0]         ddr3_cke     ,  //DDR3 Ã¦â”Â¶Ã©�??™Å¸Ã¤Â½Â¿Ã¨Æ�?��??
-    output  [0:0]         ddr3_cs_n    ,  //DDR3 Ã§â°â?¡Ã???
-    output  [3:0]         ddr3_dm      ,  //DDR3_dm
-    output  [0:0]         ddr3_odt     ,  //DDR3_odt
+    inout   [31:0]        ddr3_dq      ,  
+    inout   [3:0]         ddr3_dqs_n   ,  
+    inout   [3:0]         ddr3_dqs_p   ,  
+    output  [13:0]        ddr3_addr    ,  
+    output  [2:0]         ddr3_ba      ,  
+    output                ddr3_ras_n   ,  
+    output                ddr3_cas_n   ,  
+    output                ddr3_we_n    ,  
+    output                ddr3_reset_n ,  
+    output  [0:0]         ddr3_ck_p    ,  
+    output  [0:0]         ddr3_ck_n    ,  
+    output  [0:0]         ddr3_cke     ,  
+    output  [0:0]         ddr3_cs_n    ,  
+    output  [3:0]         ddr3_dm      ,  
+    output  [0:0]         ddr3_odt     ,  
 // USB
-    input               usb_rxf_n,    //FT232HÃ¦â¢Â°Ã¦ÂÂ®FIFOÃ¥ÂÂ¯Ã¨Â¯Â»Ã¦Å’â�?¡Ã§Â¤ÂºÃ¤Â¿Â¡Ã¥ÂÂ? 
-    input               usb_txe_n,    //FT232HÃ¦â¢Â°Ã¦ÂÂ®FIFOÃ¥ÂÂ¯Ã¥â â„¢Ã¤Â¿Â¡Ã¥ÂÂ�?
-    output              usb_oe_n,     //FT232HÃ¦â¢Â°Ã¦ÂÂ®Ã¨Â¾â?œÃ¥â?¡ÂºÃ¤Â½Â¿Ã¨Æ’�??
-    output              usb_rd_n,     //FT232HFIFOÃ¨Â¯Â»Ã¤Â½Â¿Ã¨Æ’Â½Ã¤Â¿Â¡Ã¥Â�??
-    output              usb_wr_n,     //FT232HFIFOÃ¥â â„¢Ã¤Â½Â¿Ã¨Æ�?�Â½Ã¤Â¿Â¡Ã¥Â�??
-    output              usb_siwu_n,   //send immediate/wake up
-    inout[7:0]          usb_data      //FT232 Ã¦â¢Â°Ã¦ÂÂ®Ã¦Â?Â»Ã§ÂºÂ¿
+    input               usb_rxf_n,    
+    input               usb_txe_n,    
+    output              usb_oe_n,     
+    output              usb_rd_n,     
+    output              usb_wr_n,     
+    output              usb_siwu_n,   
+    inout[7:0]          usb_data      
     
 );
 

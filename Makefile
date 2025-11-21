@@ -158,3 +158,25 @@ simv2:
 
 verv2:
 	verdi  ./simWorkspace/tb_DandSocV2/tb_DandSocV2.fsdb -f ./hw/verilog/tb/tb_DandSocV2.f -ssf -sv -v2k &
+
+allt: clean comt simt
+ret: comt simt
+
+comt:
+	vcs -sverilog +v2k -timescale=1ns/1ns  -full64 -cpp g++ -cc gcc -LDFLAGS -Wl,--no-as-needed \
+	-f ./hw/verilog/tb/tb_Tulip.f                       \
+	-debug_all                                 \
+	-o ./simWorkspace/tb_Tulip/tb_Tulip.simv  \
+	-l ./simWorkspace/tb_Tulip/compile.log                             \
+	-fsdb                                      \
+	-top tb_Tulip
+
+
+simt:
+	./simWorkspace/tb_Tulip/tb_Tulip.simv -l ./simWorkspace/tb_Tulip/sim.log  +nospecify +notimingcheck +fsdb+autoflush \
+	-lca -cm line+tgl+cond+fsm \
+  urg -dir ./simWorkspace/tb_Tulip/tb_Tulip.simv.vdb/ -report both  
+
+
+vert:
+	verdi  ./simWorkspace/tb_Tulip/tb_Tulip.fsdb -f ./hw/verilog/tb/tb_Tulip.f -ssf -sv -v2k &
