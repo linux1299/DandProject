@@ -1,1 +1,0 @@
-../../../../hw/verilog/uart_simple/fifo_sync.v
