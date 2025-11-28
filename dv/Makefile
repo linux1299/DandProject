@@ -30,5 +30,8 @@ hellotest:
 simple:
 	./build.sh -e dand_riscv_simple -d -s -a "-i custom-output/hello/amtest-hello.bin -b 0" -m "EMU_TRACE=1" -b
 
-tulip_cm:
+tulip:
 	./build.sh -e dand_riscv_tulip -d -s -a "-i mytests/benchmarks/coremark/coremark-riscv64-nemu.bin -b 0" -m "EMU_TRACE=1" -b
+
+tulipw:
+	./build.sh -e dand_riscv_tulip -d -s -a "-i mytests/benchmarks/coremark/coremark-riscv64-nemu.bin --dump-wave -b 0" -m "EMU_TRACE=1" -b
