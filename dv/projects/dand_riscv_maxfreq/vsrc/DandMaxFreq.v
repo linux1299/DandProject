@@ -1,1 +1,1 @@
-/home/lin/SpinalProjects/DandRiscvSoC/hw/gen/DandMaxFreq.v
+../../../../hw/gen/DandMaxFreq.v
