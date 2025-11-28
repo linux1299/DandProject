@@ -22,8 +22,8 @@ case class Tulip() extends Component {
     bypassAddrHigh0 = 0x3fffffffl,
     bypassAddrLow1  = 0x10001000l,
     bypassAddrHigh1 = 0x10001fffl,
-    bypassAddrLow2  = 0x00000000l,
-    bypassAddrHigh2 = 0x00000000l
+    bypassAddrLow2  = 0x10001000l,
+    bypassAddrHigh2 = 0x10001fffl
   )
   val icache_axi_config = Axi4Config(
     addressWidth=32, 

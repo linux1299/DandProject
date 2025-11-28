@@ -1,6 +1,6 @@
 // Generator : SpinalHDL v1.8.1    git head : 2a7592004363e5b40ec43e1f122ed8641cd8965b
 // Component : Tulip
-// Git hash  : 506308cb8f07c3c1b60baf7428df0dc7f128bec8
+// Git hash  : 931952802da05b806ec2d2c5a3c461eebadad443
 
 `timescale 1ns/1ps
 
@@ -22978,7 +22978,7 @@ module DCache (
   assign cpu_bank_addr = cpu_cmd_addr[12 : 3]; // @ BaseType.scala l299
   assign bypass_cond_0 = ((32'h10000000 <= cpu_cmd_addr) && (cpu_cmd_addr <= 32'h3fffffff)); // @ BaseType.scala l305
   assign bypass_cond_1 = ((32'h10001000 <= cpu_cmd_addr) && (cpu_cmd_addr <= 32'h10001fff)); // @ BaseType.scala l305
-  assign bypass_cond_2 = ((32'h0 <= cpu_cmd_addr) && (cpu_cmd_addr <= 32'h0)); // @ BaseType.scala l305
+  assign bypass_cond_2 = ((32'h10001000 <= cpu_cmd_addr) && (cpu_cmd_addr <= 32'h10001fff)); // @ BaseType.scala l305
   assign cpu_cmd_fire = (cpu_cmd_valid && cpu_cmd_ready); // @ BaseType.scala l305
   assign bypass = (((bypass_cond_0 || bypass_cond_1) || bypass_cond_2) && cpu_cmd_fire); // @ BaseType.scala l305
   assign cpu_bypass_cmd_valid = bypass; // @ DCache.scala l47
@@ -34528,12 +34528,6 @@ module Sram_2ports (
   reg [7:0] tmp_memsymbol_read_7;
 
   assign tmp_mem_port = (ports_0_cmd_valid && ports_0_cmd_wen);
-  initial begin
-    $readmemb("Tulip.v_toplevel_icache_sram_6_mem_symbol0.bin",mem_symbol0);
-    $readmemb("Tulip.v_toplevel_icache_sram_6_mem_symbol1.bin",mem_symbol1);
-    $readmemb("Tulip.v_toplevel_icache_sram_6_mem_symbol2.bin",mem_symbol2);
-    $readmemb("Tulip.v_toplevel_icache_sram_6_mem_symbol3.bin",mem_symbol3);
-  end
   always @(*) begin
     tmp_mem_port1 = {tmp_memsymbol_read_3, tmp_memsymbol_read_2, tmp_memsymbol_read_1, tmp_memsymbol_read};
   end
