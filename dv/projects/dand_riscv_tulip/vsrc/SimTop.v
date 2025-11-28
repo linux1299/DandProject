@@ -437,6 +437,46 @@ always @(posedge clock) begin
   end
 end
 
+always @(posedge clock) begin
+  if (reset) begin
+    regs_diff[0] <= 0;
+    regs_diff[1] <= 0;
+    regs_diff[2] <= 0;
+    regs_diff[3] <= 0;
+    regs_diff[4] <= 0;
+    regs_diff[5] <= 0;
+    regs_diff[6] <= 0;
+    regs_diff[7] <= 0;
+    regs_diff[8] <= 0;
+    regs_diff[9] <= 0;
+    regs_diff[10] <= 0;
+    regs_diff[11] <= 0;
+    regs_diff[12] <= 0;
+    regs_diff[13] <= 0;
+    regs_diff[14] <= 0;
+    regs_diff[15] <= 0;
+    regs_diff[16] <= 0;
+    regs_diff[17] <= 0;
+    regs_diff[18] <= 0;
+    regs_diff[19] <= 0;
+    regs_diff[20] <= 0;
+    regs_diff[21] <= 0;
+    regs_diff[22] <= 0;
+    regs_diff[23] <= 0;
+    regs_diff[24] <= 0;
+    regs_diff[25] <= 0;
+    regs_diff[26] <= 0;
+    regs_diff[27] <= 0;
+    regs_diff[28] <= 0;
+    regs_diff[29] <= 0;
+    regs_diff[30] <= 0;
+    regs_diff[31] <= 0;
+  end
+  else if (writeback_valid && writeback_wen) begin
+    regs_diff[writeback_addr] <= writeback_data;
+  end
+end
+
 reg skip;
 always @(posedge clock) begin
   if (reset)
@@ -465,38 +505,38 @@ DifftestInstrCommit DifftestInstrCommit(
 DifftestArchIntRegState DifftestArchIntRegState (
   .clock              (clock),
   .coreid             (0),
-  .gpr_0              (cpu_regs[0]),
-  .gpr_1              (cpu_regs[1]),
-  .gpr_2              (cpu_regs[2]),
-  .gpr_3              (cpu_regs[3]),
-  .gpr_4              (cpu_regs[4]),
-  .gpr_5              (cpu_regs[5]),
-  .gpr_6              (cpu_regs[6]),
-  .gpr_7              (cpu_regs[7]),
-  .gpr_8              (cpu_regs[8]),
-  .gpr_9              (cpu_regs[9]),
-  .gpr_10             (cpu_regs[10]),
-  .gpr_11             (cpu_regs[11]),
-  .gpr_12             (cpu_regs[12]),
-  .gpr_13             (cpu_regs[13]),
-  .gpr_14             (cpu_regs[14]),
-  .gpr_15             (cpu_regs[15]),
-  .gpr_16             (cpu_regs[16]),
-  .gpr_17             (cpu_regs[17]),
-  .gpr_18             (cpu_regs[18]),
-  .gpr_19             (cpu_regs[19]),
-  .gpr_20             (cpu_regs[20]),
-  .gpr_21             (cpu_regs[21]),
-  .gpr_22             (cpu_regs[22]),
-  .gpr_23             (cpu_regs[23]),
-  .gpr_24             (cpu_regs[24]),
-  .gpr_25             (cpu_regs[25]),
-  .gpr_26             (cpu_regs[26]),
-  .gpr_27             (cpu_regs[27]),
-  .gpr_28             (cpu_regs[28]),
-  .gpr_29             (cpu_regs[29]),
-  .gpr_30             (cpu_regs[30]),
-  .gpr_31             (cpu_regs[31])
+  .gpr_0              (regs_diff[0]),
+  .gpr_1              (regs_diff[1]),
+  .gpr_2              (regs_diff[2]),
+  .gpr_3              (regs_diff[3]),
+  .gpr_4              (regs_diff[4]),
+  .gpr_5              (regs_diff[5]),
+  .gpr_6              (regs_diff[6]),
+  .gpr_7              (regs_diff[7]),
+  .gpr_8              (regs_diff[8]),
+  .gpr_9              (regs_diff[9]),
+  .gpr_10             (regs_diff[10]),
+  .gpr_11             (regs_diff[11]),
+  .gpr_12             (regs_diff[12]),
+  .gpr_13             (regs_diff[13]),
+  .gpr_14             (regs_diff[14]),
+  .gpr_15             (regs_diff[15]),
+  .gpr_16             (regs_diff[16]),
+  .gpr_17             (regs_diff[17]),
+  .gpr_18             (regs_diff[18]),
+  .gpr_19             (regs_diff[19]),
+  .gpr_20             (regs_diff[20]),
+  .gpr_21             (regs_diff[21]),
+  .gpr_22             (regs_diff[22]),
+  .gpr_23             (regs_diff[23]),
+  .gpr_24             (regs_diff[24]),
+  .gpr_25             (regs_diff[25]),
+  .gpr_26             (regs_diff[26]),
+  .gpr_27             (regs_diff[27]),
+  .gpr_28             (regs_diff[28]),
+  .gpr_29             (regs_diff[29]),
+  .gpr_30             (regs_diff[30]),
+  .gpr_31             (regs_diff[31])
 );
 
 DifftestTrapEvent DifftestTrapEvent(

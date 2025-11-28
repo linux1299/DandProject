@@ -32,6 +32,7 @@ simple:
 
 tulip:
 	./build.sh -e dand_riscv_tulip -d -s -a "-i mytests/benchmarks/coremark/coremark-riscv64-nemu.bin -b 0" -m "EMU_TRACE=1" -b
-
 tulipw:
 	./build.sh -e dand_riscv_tulip -d -s -a "-i mytests/benchmarks/coremark/coremark-riscv64-nemu.bin --dump-wave -b 0" -m "EMU_TRACE=1" -b
+tulipww:
+	./build.sh -e dand_riscv_tulip -d -w
