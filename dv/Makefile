@@ -1,5 +1,6 @@
 clean:
 	rm -rf  *.log
+
 cputest:
 	./build.sh -e dand_riscv_maxfreq -d -b -r  "non-output/cpu-tests"
 rvtest:
@@ -28,3 +29,6 @@ hellotest:
 	./build.sh -e dand_riscv_maxfreq -d -s -a "-i custom-output/hello/amtest-hello.bin -b 0" -m "EMU_TRACE=1" -b
 simple:
 	./build.sh -e dand_riscv_simple -d -s -a "-i custom-output/hello/amtest-hello.bin -b 0" -m "EMU_TRACE=1" -b
+
+tulip_cm:
+	./build.sh -e dand_riscv_tulip -d -s -a "-i mytests/benchmarks/coremark/coremark-riscv64-nemu.bin -b 0" -m "EMU_TRACE=1" -b
