@@ -111,7 +111,7 @@ wire [63:0] dram_wmask={{8{ram_d_mem_strb[7]}},
                         {8{ram_d_mem_strb[1]}}, 
                         {8{ram_d_mem_strb[0]}}};
 
-reg [7:0] ram_tmp [0:4096-1];
+reg [7:0] ram_tmp [0:4096*4-1];
 integer fd;
 integer tmp;
 integer i;
