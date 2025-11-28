@@ -66,6 +66,7 @@ object CpuConfig{
   // def BPU_TYPE = "static"
   def BPU_TYPE = "gshare"
   def BPU_HISTORY_LEN = 5
+  def DIFFTEST = true
 }
 
 // ================ Gshare ==================

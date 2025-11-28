@@ -12,7 +12,6 @@ case class ALU() extends Component {
   import MyUtils._
 
   // =================== IO ===================
-  val flush = in Bool()
   val alu_src = slave(Stream(ExeSrc("ALU")))
   val alu_dst = master(Stream(ExeDst()))
 
@@ -57,7 +56,6 @@ case class ALU() extends Component {
     mul_type_mulhu  ||
     mul_type_mulw
 
-  val src_stream = alu_src.throwWhen(flush)
   val dst_stream = Stream(ExeDst())
 
   // ================= caclulate alu result =====================
@@ -137,14 +135,14 @@ case class ALU() extends Component {
   val mul_result      = dataMux(mul_sel, mul_data)
 
   // ================= stream control =====================
-  src_stream.ready    := dst_stream.ready
-  dst_stream.valid    := src_stream.valid
-  dst_stream.rd_wen   := src_stream.uop_com.rd_wen
-  dst_stream.rd_addr  := src_stream.rd_addr
+  alu_src.ready       := dst_stream.ready
+  dst_stream.valid    := alu_src.valid
+  dst_stream.rd_wen   := alu_src.uop_com.rd_wen
+  dst_stream.rd_addr  := alu_src.rd_addr
   dst_stream.rd_data  := alu_is_mul ? mul_result | alu_result
-  dst_stream.pc       := src_stream.pc
-  dst_stream.instr    := src_stream.instr
-  dst_stream.older    := src_stream.older
+  dst_stream.pc       := alu_src.pc
+  dst_stream.instr    := alu_src.instr
+  dst_stream.tail_adr := alu_src.tail_adr
 
   dst_stream >-> alu_dst
 

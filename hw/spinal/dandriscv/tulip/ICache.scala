@@ -68,9 +68,9 @@ case class ICache(p : ICacheConfig) extends Component{
 
   // next level related
   val next_level_cmd_valid = RegInit(False)
-  val next_level_data_cnt  = Counter(0 to 7)
+  val next_level_data_cnt  = Counter(0 to busBurstLen-1)
   val next_level_bank_addr = next_level.cmd.addr(bankAddrRange)
-  val next_level_done      = RegNext(next_level.rsp.valid && next_level_data_cnt===7)
+  val next_level_done      = RegNext(next_level.rsp.valid && next_level_data_cnt===(busBurstLen-1))
 
   when(is_miss){
     next_level_cmd_valid := True
@@ -208,8 +208,44 @@ case class ICache(p : ICacheConfig) extends Component{
 
 }
 
+// ==================== ITCM 4KB =============================
+case class ITCM(p : ICacheConfig) extends Component{
+  import p._
 
-case class ICacheTop(val config : ICacheConfig, val axiConfig : Axi4Config) extends Component {
+  val flush   = in Bool()
+  val cpu     = slave(ICachePorts(32, 64))
+  val sram    = for(i<-0 until 2) yield new Area{
+    val ports = master(SramPorts(12, 32))
+  }
+  val next_level = master(ICacheNextLevelPorts(AW=32, DW=64))
+
+  // sram
+  sram(0).ports.cmd.valid := cpu.cmd.valid
+  sram(0).ports.cmd.addr  := cpu.cmd.addr(13 downto 2)
+  sram(0).ports.cmd.wen   := False
+  sram(0).ports.cmd.wdata := B(0, 32 bits)
+  sram(0).ports.cmd.wstrb := B(0, 32/8 bits)
+
+  sram(1).ports.cmd.valid := cpu.cmd.valid
+  sram(1).ports.cmd.addr  := cpu.cmd.addr(13 downto 2) + 1
+  sram(1).ports.cmd.wen   := False
+  sram(1).ports.cmd.wdata := B(0, 32 bits)
+  sram(1).ports.cmd.wstrb := B(0, 32/8 bits)
+
+  // resp to cpu ports
+  cpu.rsp.data  := sram(1).ports.rsp.data ## sram(0).ports.rsp.data
+  cpu.rsp.valid := Delay(cpu.cmd.valid, 1)
+  cpu.cmd.ready := True
+
+  // cmd to next level cache
+  next_level.cmd.addr  := 0
+  next_level.cmd.len   := 0
+  next_level.cmd.size  := 0
+  next_level.cmd.valid := False
+
+}
+
+case class ICacheTop(val itcm_en : Boolean, val config : ICacheConfig, val axiConfig : Axi4Config) extends Component {
 
   import config._
 
@@ -219,32 +255,67 @@ case class ICacheTop(val config : ICacheConfig, val axiConfig : Axi4Config) exte
   // next level AXI ports/ direct ports
   val icacheReader = master(Axi4ReadOnly(axiConfig)).setName("icache")
   
-  // connect icache and cpu ports
-  val icache = new ICache(config)
-  icache_src.cmd <> icache.cpu.cmd
-  icache_src.rsp <> icache.cpu.rsp
-  icache.flush := flush
-  // sram ports
-  val sram_area = for(i<-0 until wayCount*2) yield new Area{
+
+  val icache = ifGen(!itcm_en) (new ICache(config))
+  val itcm   = ifGen(itcm_en) (new ITCM(config))
+  val sram = ifGen(itcm_en) (new Sram_2ports(bankWidth=32, bankDepthBits=12)).setName("sram")
+  val sram_area = ifGen(itcm_en) (for(i<-0 until wayCount*2) yield new Area{
     val sram = new Sram(32, banAddrWidth)
-  }
-  for(i<-0 until wayCount*2) {
-    icache.sram(i).ports <> sram_area(i).sram.ports
+  })
+
+  if(itcm_en) {
+    itcm.sram(0).ports <> sram.ports_0
+    itcm.sram(1).ports <> sram.ports_1
+
+    icache_src.cmd <> itcm.cpu.cmd
+    icache_src.rsp <> itcm.cpu.rsp
+    itcm.flush := flush
+
+    // ==================== AXI output, has burst ================
+    // ar channel
+    icacheReader.ar.valid := itcm.next_level.cmd.valid
+    icacheReader.ar.id := U(0)
+    icacheReader.ar.len := itcm.next_level.cmd.len.resized
+    icacheReader.ar.size := itcm.next_level.cmd.size
+    icacheReader.ar.burst := B(1) // INCR
+    icacheReader.ar.addr := itcm.next_level.cmd.addr.resize(32)
+    itcm.next_level.cmd.ready := icacheReader.ar.ready
+    // r channel
+    icacheReader.r.ready := True
+    itcm.next_level.rsp.valid := icacheReader.r.valid && (icacheReader.r.id===U(0))
+    itcm.next_level.rsp.data := icacheReader.r.data
   }
 
-  // ==================== AXI output, has burst ================
-  // ar channel
-  icacheReader.ar.valid := icache.next_level.cmd.valid
-  icacheReader.ar.id := U(0)
-  icacheReader.ar.len := icache.next_level.cmd.len.resized
-  icacheReader.ar.size := icache.next_level.cmd.size
-  icacheReader.ar.burst := B(1) // INCR
-  icacheReader.ar.addr := icache.next_level.cmd.addr.resize(32)
-  icache.next_level.cmd.ready := icacheReader.ar.ready
-  // r channel
-  icacheReader.r.ready := True
-  icache.next_level.rsp.valid := icacheReader.r.valid && (icacheReader.r.id===U(0))
-  icache.next_level.rsp.data := icacheReader.r.data
+  else {
+    for(i<-0 until wayCount*2) {
+      icache.sram(i).ports <> sram_area(i).sram.ports
+    }
+
+    icache_src.cmd <> icache.cpu.cmd
+    icache_src.rsp <> icache.cpu.rsp
+    icache.flush := flush
+
+    // ==================== AXI output, has burst ================
+    // ar channel
+    icacheReader.ar.valid := icache.next_level.cmd.valid
+    icacheReader.ar.id := U(0)
+    icacheReader.ar.len := icache.next_level.cmd.len.resized
+    icacheReader.ar.size := icache.next_level.cmd.size
+    icacheReader.ar.burst := B(1) // INCR
+    icacheReader.ar.addr := icache.next_level.cmd.addr.resize(32)
+    icache.next_level.cmd.ready := icacheReader.ar.ready
+    // r channel
+    icacheReader.r.ready := True
+    icache.next_level.rsp.valid := icacheReader.r.valid && (icacheReader.r.id===U(0))
+    icache.next_level.rsp.data := icacheReader.r.data
+  }
+
+  
+  
+
+  
+
+  
 
   StreamRenameUtil(this)
 }
@@ -274,5 +345,5 @@ object GenICacheTop extends App {
     useProt = false,
     useStrb = false
   )
-  GenConfig.spinal.generateVerilog(ICacheTop(icache_config, icache_axi_config))
+  GenConfig.spinal.generateVerilog(ICacheTop(true, icache_config, icache_axi_config))
 }

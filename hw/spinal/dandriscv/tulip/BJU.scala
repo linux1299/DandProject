@@ -219,7 +219,6 @@ case class BJU() extends Component {
   import ExpCtrlEnum._
 
   // =================== IO ===================
-  val flush          = in Bool()
   val bju_src        = slave(Stream(ExeSrc("BJU")))
   val bju_dst        = master(Stream(ExeDst()))
   val redirect_valid = out Bool()
@@ -240,18 +239,18 @@ case class BJU() extends Component {
   val timer_int       = in Bool()
 
   // =================== Stream ===================
-  val src_stream = bju_src.throwWhen(flush)
   val dst_stream = Stream(ExeDst())
+  val trap_or_print = (DIFFTEST) generate ((bju_src.instr===B"32'h6b" || bju_src.instr===B"32'h7b"))
 
   val bju_kernel = new BJU_kernel()
-  bju_kernel.in_valid     := src_stream.fire
-  bju_kernel.uop_bju      := src_stream.uop_bju
-  bju_kernel.pc           := src_stream.pc
-  bju_kernel.imm          := src_stream.imm
-  bju_kernel.rs1_data     := src_stream.src1_data
-  bju_kernel.rs2_data     := src_stream.src2_data
-  bju_kernel.branch_taken := src_stream.branch_taken
-  bju_kernel.branch_pc    := src_stream.branch_pc
+  bju_kernel.in_valid     := bju_src.fire && !trap_or_print
+  bju_kernel.uop_bju      := bju_src.uop_bju
+  bju_kernel.pc           := bju_src.pc
+  bju_kernel.imm          := bju_src.imm
+  bju_kernel.rs1_data     := bju_src.src1_data
+  bju_kernel.rs2_data     := bju_src.src2_data
+  bju_kernel.branch_taken := bju_src.branch_taken
+  bju_kernel.branch_pc    := bju_src.branch_pc
   redirect_valid          := bju_kernel.redirect_valid
   redirect_pc             := bju_kernel.redirect_pc
   train_valid             := bju_kernel.train_valid
@@ -268,14 +267,14 @@ case class BJU() extends Component {
   bju_kernel.timer_int    := timer_int
 
   // =================== output ===================
-  src_stream.ready   := dst_stream.ready
-  dst_stream.valid   := src_stream.valid
+  bju_src.ready      := dst_stream.ready
+  dst_stream.valid   := bju_src.valid
   dst_stream.rd_data := bju_kernel.rd_data
-  dst_stream.rd_addr := src_stream.rd_addr
-  dst_stream.rd_wen  := src_stream.uop_com.rd_wen
-  dst_stream.older   := src_stream.older
-  dst_stream.pc      := src_stream.pc
-  dst_stream.instr   := src_stream.instr
+  dst_stream.rd_addr := bju_src.rd_addr
+  dst_stream.rd_wen  := bju_src.uop_com.rd_wen
+  dst_stream.pc      := bju_src.pc
+  dst_stream.instr   := bju_src.instr
+  dst_stream.tail_adr := bju_src.tail_adr
 
   dst_stream >-> bju_dst
 

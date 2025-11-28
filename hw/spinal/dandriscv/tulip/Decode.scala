@@ -276,7 +276,6 @@ case class DecodeComb() extends Component {
 case class Decode() extends Component {
 
   // ==================== IO =============================
-  val flush   = in Bool()
   val dec_src = Vec(slave(Stream(DecSrc())), 2)
   val dec_dst = Vec(master(Stream(IssueSrc())), 2)
 
@@ -284,26 +283,22 @@ case class Decode() extends Component {
   val decode_comb = Array.fill(2)(new DecodeComb())
   
   // ==================== stream =============================
-  val src_stream = Array.fill(2)(Stream(DecSrc())) 
   val dst_stream = Array.fill(2)(Stream(IssueSrc()))
 
   // ==================== connect =============================
   for(i <- 0 until 2){
-    
-    // src stream
-    src_stream(i) << dec_src(i).throwWhen(flush)
-    src_stream(i).ready := dst_stream(i).ready
 
     // decode instance
-    decode_comb(i).pc    := src_stream(i).pc
-    decode_comb(i).instr := src_stream(i).instr
+    decode_comb(i).pc          := dec_src(i).pc
+    decode_comb(i).instr       := dec_src(i).instr
 
     // dst stream
-    dst_stream(i).valid        := src_stream(i).valid
-    dst_stream(i).pc           := src_stream(i).pc
-    dst_stream(i).branch_pc    := src_stream(i).branch_pc
-    dst_stream(i).branch_taken := src_stream(i).branch_taken
-    dst_stream(i).instr        := src_stream(i).instr
+    dec_src(i).ready           := dst_stream(i).ready
+    dst_stream(i).valid        := dec_src(i).valid
+    dst_stream(i).pc           := dec_src(i).pc
+    dst_stream(i).branch_pc    := dec_src(i).branch_pc
+    dst_stream(i).branch_taken := dec_src(i).branch_taken
+    dst_stream(i).instr        := dec_src(i).instr
     dst_stream(i).micro_op     := decode_comb(i).micro_op
     dst_stream(i).exe_sel      := decode_comb(i).exe_sel
     dst_stream(i).rs1_addr     := decode_comb(i).rs1_addr
