@@ -23,6 +23,7 @@ case class Regfile() extends Component{
   wen_0(0) := False
   wen_1(0) := False
 
+  reg(0) := B(64 bits, default -> False) // x0 is always zero
   for(i <- 1 until 32){
     wen_0(i) := (write_0.rd_wen && write_0.rd_addr===U(i))
     wen_1(i) := (write_1.rd_wen && write_1.rd_addr===U(i))

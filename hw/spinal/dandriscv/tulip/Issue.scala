@@ -8,6 +8,7 @@ import BundleImplicit._
 
 // issue 2 instructions/cycle in FIFO order
 case class Issue() extends Component{
+  import CpuConfig._
   import ExeSelEnum._
 
   // =================== IO ===================
@@ -18,6 +19,11 @@ case class Issue() extends Component{
   // =============== Entries of Issue =================
   val head = Array.fill(2)(new IssueEntry())
   val skid = Array.fill(2)(new IssueEntry())
+
+  val trap_or_print_0 = (DIFFTEST) generate ((iss_src(0).instr===B"32'h6b" || iss_src(0).instr===B"32'h7b"))
+  val trap_or_print_1 = (DIFFTEST) generate ((iss_src(1).instr===B"32'h6b" || iss_src(1).instr===B"32'h7b"))
+  val skid_trap_or_print_0 = (DIFFTEST) generate ((skid(0).iss_pkg.instr===B"32'h6b" || skid(0).iss_pkg.instr===B"32'h7b"))
+  val skid_trap_or_print_1 = (DIFFTEST) generate ((skid(1).iss_pkg.instr===B"32'h6b" || skid(1).iss_pkg.instr===B"32'h7b"))
 
   // =============== Update Head entry =================
   for(i <- 0 until 2){
@@ -34,12 +40,12 @@ case class Issue() extends Component{
     head(i).ready         := !head(i).valid || iss_dst(i).ready
     head(i).update        := head(0).ready && head(1).ready
 
-    // update head.iss_pkg
+    // update head entry
     when(head(i).update){
-      when(skid(i).valid){
+      when(skid(i).valid){ // form skid buffer
         head(i).iss_pkg := skid(i).iss_pkg
         if(i==0){
-          when(skid(i).iss_pkg.exe_sel===BJU){
+          when(skid(i).iss_pkg.exe_sel===BJU || skid_trap_or_print_0){
             head(i).exe_sel_oh := B"00001"
           }
           .elsewhen(skid(i).iss_pkg.exe_sel===ALU){
@@ -52,7 +58,7 @@ case class Issue() extends Component{
             head(i).exe_sel_oh := B"10000"
           }
         } else {
-          when(skid(i).iss_pkg.exe_sel===BJU){
+          when(skid(i).iss_pkg.exe_sel===BJU || skid_trap_or_print_1){
             head(i).exe_sel_oh := B"00001"
           }
           .elsewhen(skid(i).iss_pkg.exe_sel===ALU){
@@ -66,10 +72,10 @@ case class Issue() extends Component{
           }
         }
       }
-      .elsewhen(iss_src(i).valid){
+      .elsewhen(iss_src(i).valid){ // from issue input
         head(i).iss_pkg := iss_src(i).payload
         if(i==0){
-          when(iss_src(i).exe_sel===BJU){
+          when(iss_src(i).exe_sel===BJU || trap_or_print_0){
             head(i).exe_sel_oh := B"00001"
           }
           .elsewhen(iss_src(i).exe_sel===ALU){
@@ -82,7 +88,7 @@ case class Issue() extends Component{
             head(i).exe_sel_oh := B"10000"
           }
         } else {
-          when(iss_src(i).exe_sel===BJU){
+          when(iss_src(i).exe_sel===BJU || trap_or_print_1){
             head(i).exe_sel_oh := B"00001"
           }
           .elsewhen(iss_src(i).exe_sel===ALU){
@@ -113,11 +119,7 @@ case class Issue() extends Component{
     when(skid(i).update){
       skid(i).iss_pkg := iss_src(i).payload
     }
-
-    // =============== output exe sel onehot =================
-    
-
-    
+ 
     // =================== Output ===================
     iss_src(i).ready := skid(i).ready
     iss_dst(i).valid := head(i).valid

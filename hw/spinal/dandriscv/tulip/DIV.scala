@@ -21,7 +21,6 @@ case class DIV() extends Component {
   val src2        = div_src.src2_data
   val alu_ctrl_op = div_src.uop_alu.alu_ctrl_op
   val alu_is_word = div_src.uop_alu.alu_is_word
-  val src_stream  = div_src.throwWhen(flush)
   val dst_stream  = Stream(ExeDst())
 
   val alu_is_quo =
@@ -40,7 +39,7 @@ case class DIV() extends Component {
 
   // ================= caclulate div =====================
   val divider = Divider()
-  val div_start = src_stream.fire && (
+  val div_start = div_src.fire && (
     (alu_ctrl_op === AluCtrlEnum.DIV)   ||
     (alu_ctrl_op === DIVU)  ||
     (alu_ctrl_op === REM)   ||
@@ -55,10 +54,10 @@ case class DIV() extends Component {
     (alu_ctrl_op === REM)  ||
     (alu_ctrl_op === DIVW) ||
     (alu_ctrl_op === REMW)
-  val div_op_is_word_reg   = RegNextWhen(div_op_is_word, src_stream.fire)
-  val div_op_is_signed_reg = RegNextWhen(div_op_is_signed, src_stream.fire)
-  val div_src1_reg         = RegNextWhen(src1, src_stream.fire)
-  val div_src2_reg         = RegNextWhen(src2, src_stream.fire)
+  val div_op_is_word_reg   = RegNextWhen(div_op_is_word, div_src.fire)
+  val div_op_is_signed_reg = RegNextWhen(div_op_is_signed, div_src.fire)
+  val div_src1_reg         = RegNextWhen(src1, div_src.fire)
+  val div_src2_reg         = RegNextWhen(src2, div_src.fire)
 
   divider.io.flush        := flush
   divider.io.start        := div_start
@@ -71,23 +70,23 @@ case class DIV() extends Component {
   val div_result_remainder = divider.io.remainder
 
   // ================= stream control =====================
-  val rd_wen_reg     = RegNextWhen(src_stream.uop_com.rd_wen, src_stream.fire) init(false)
-  val rd_addr_reg    = RegNextWhen(src_stream.rd_addr, src_stream.fire) init(0)
-  val older_reg      = RegNextWhen(src_stream.older, src_stream.fire) init(false)
-  val pc_reg         = RegNextWhen(src_stream.pc, src_stream.fire) init(0)
-  val instr_reg      = RegNextWhen(src_stream.instr, src_stream.fire) init(0)
-  val alu_is_quo_reg = RegNextWhen(alu_is_quo, src_stream.fire) init(false)
-  val alu_is_rem_reg = RegNextWhen(alu_is_rem, src_stream.fire) init(false)
+  val rd_wen_reg     = RegNextWhen(div_src.uop_com.rd_wen, div_src.fire) init(false)
+  val rd_addr_reg    = RegNextWhen(div_src.rd_addr, div_src.fire) init(0)
+  val pc_reg         = RegNextWhen(div_src.pc, div_src.fire) init(0)
+  val instr_reg      = RegNextWhen(div_src.instr, div_src.fire) init(0)
+  val tail_adr_reg   = RegNextWhen(div_src.tail_adr, div_src.fire) init(0)
+  val alu_is_quo_reg = RegNextWhen(alu_is_quo, div_src.fire) init(false)
+  val alu_is_rem_reg = RegNextWhen(alu_is_rem, div_src.fire) init(false)
 
   // ================= stream control =====================
-  src_stream.ready    := dst_stream.ready
+  div_src.ready       := dst_stream.ready
   dst_stream.valid    := divider.io.done_valid
   dst_stream.rd_wen   := rd_wen_reg
   dst_stream.rd_addr  := rd_addr_reg
   dst_stream.rd_data  := alu_is_quo_reg ? div_result_quotient | div_result_remainder
   dst_stream.pc       := pc_reg
   dst_stream.instr    := instr_reg
-  dst_stream.older    := older_reg
+  dst_stream.tail_adr := tail_adr_reg
 
   dst_stream >-> div_dst
 

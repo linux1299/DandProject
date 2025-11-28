@@ -3,6 +3,7 @@ package dandriscv.tulip
 import spinal.core._
 import spinal.lib.bus.amba4.axi._
 import spinal.lib._
+import spinal.lib.misc._
 
 case class Tulip() extends Component {
   import CpuConfig._
@@ -21,8 +22,8 @@ case class Tulip() extends Component {
     bypassAddrHigh0 = 0x3fffffffl,
     bypassAddrLow1  = 0x10001000l,
     bypassAddrHigh1 = 0x10001fffl,
-    bypassAddrLow2  = 0x80000000l,
-    bypassAddrHigh2 = 0xffffffffl
+    bypassAddrLow2  = 0x00000000l,
+    bypassAddrHigh2 = 0x00000000l
   )
   val icache_axi_config = Axi4Config(
     addressWidth=32, 
@@ -67,7 +68,8 @@ case class Tulip() extends Component {
 
   // ================= IO ===============
   // for Test
-  val retire_ready = in Bool()
+  val retire_ready_0 = in Bool()
+  val retire_ready_1 = in Bool()
   // icache next level AXI ports/ direct ports
   val icacheReader = master(Axi4ReadOnly(icache_axi_config)).setName("icache")
   // dcache next level AXI ports/ or direct ports
@@ -77,7 +79,7 @@ case class Tulip() extends Component {
 
   // ================= Instance ===============
   val fetch  = new Fetch(0x80000000l)
-  val icache = new ICacheTop(icache_config, icache_axi_config)
+  val icache = new ICacheTop(itcm_en=true, icache_config, icache_axi_config)
   val bpu    = new gshare_predictor(gshare_config)
   val decode = new Decode()
   val issue  = new Issue()
@@ -122,9 +124,8 @@ case class Tulip() extends Component {
   bpu.train_is_jmp       := bju_0.train_is_jmp
 
   // ================= Decode ===============
-  decode.flush           := change_flow
-  decode.dec_src(0)      << fetch.fch_dst(0)
-  decode.dec_src(1)      << fetch.fch_dst(1)
+  decode.dec_src(0)      << fetch.fch_dst(0).throwWhen(change_flow)
+  decode.dec_src(1)      << fetch.fch_dst(1).throwWhen(change_flow)
 
   // ================= ISSUE ===============
   issue.flush      := change_flow
@@ -132,9 +133,12 @@ case class Tulip() extends Component {
   issue.iss_src(1) << decode.dec_dst(1)
 
   // ================= Dispatch ===============
-  dispat.flush      := commit.flush
-  dispat.dis_src(0) << issue.iss_dst(0)
-  dispat.dis_src(1) << issue.iss_dst(1)
+  dispat.flush               := change_flow
+  dispat.commit_fifo_ready   := commit.commit_fifo_ready
+  dispat.tail_adr_older      := commit.tail_adr_older
+  dispat.tail_adr_newer      := commit.tail_adr_newer
+  dispat.dis_src(0) << issue.iss_dst(0).throwWhen(change_flow)
+  dispat.dis_src(1) << issue.iss_dst(1).throwWhen(change_flow)
 
   dispat.wbc_rd_wen(0) := bju_0.bju_dst.fire && bju_0.bju_dst.rd_wen
   dispat.wbc_rd_wen(1) := alu_1.alu_dst.fire && alu_1.alu_dst.rd_wen
@@ -154,46 +158,45 @@ case class Tulip() extends Component {
   dispat.wbc_rd_data(3) := div_3.div_dst.rd_data
   dispat.wbc_rd_data(4) := lsu_4.lsu_dst.rd_data
 
-  dispat.ret_rd_wen(0) := commit.ret_dst(0).fire && commit.ret_dst(0).rd_wen
-  dispat.ret_rd_wen(1) := commit.ret_dst(1).fire && commit.ret_dst(1).rd_wen
+  dispat.ret_rd_wen(0) := commit.wbc_dst(0).fire && commit.wbc_dst(0).rd_wen
+  dispat.ret_rd_wen(1) := commit.wbc_dst(1).fire && commit.wbc_dst(1).rd_wen
 
-  dispat.ret_rd_addr(0) := commit.ret_dst(0).rd_addr
-  dispat.ret_rd_addr(1) := commit.ret_dst(1).rd_addr
+  dispat.ret_rd_addr(0) := commit.wbc_dst(0).rd_addr
+  dispat.ret_rd_addr(1) := commit.wbc_dst(1).rd_addr
 
-  dispat.ret_rd_data(0) := commit.ret_dst(0).rd_data
-  dispat.ret_rd_data(1) := commit.ret_dst(1).rd_data
+  dispat.ret_rd_data(0) := commit.wbc_dst(0).rd_data
+  dispat.ret_rd_data(1) := commit.wbc_dst(1).rd_data
 
   // =============== regfile ===============
   regfile.read_0 <> dispat.read_regfile(0)
   regfile.read_1 <> dispat.read_regfile(1)
-  regfile.write_0.rd_wen := commit.ret_dst(0).fire && commit.ret_dst(0).rd_wen
-  regfile.write_1.rd_wen := commit.ret_dst(1).fire && commit.ret_dst(1).rd_wen
-  regfile.write_0.rd_addr := commit.ret_dst(0).rd_addr
-  regfile.write_1.rd_addr := commit.ret_dst(1).rd_addr
-  regfile.write_0.rd_data := commit.ret_dst(0).rd_data
-  regfile.write_1.rd_data := commit.ret_dst(1).rd_data
+  regfile.write_0.rd_wen  := commit.wbc_dst(0).fire && commit.wbc_dst(0).rd_wen
+  regfile.write_1.rd_wen  := commit.wbc_dst(1).fire && commit.wbc_dst(1).rd_wen
+  regfile.write_0.rd_addr := commit.wbc_dst(0).rd_addr
+  regfile.write_1.rd_addr := commit.wbc_dst(1).rd_addr
+  regfile.write_0.rd_data := commit.wbc_dst(0).rd_data
+  regfile.write_1.rd_data := commit.wbc_dst(1).rd_data
 
 
   // ================= BJU ===============
-  bju_0.flush          := False
   bju_0.bju_src        << dispat.dis_to_bju
   bju_0.timer_int      := lsu_4.timer_int
 
   // ================= ALU 1 ===============
-  alu_1.flush     := commit.flush
-  alu_1.alu_src   << dispat.dis_to_al1
+  alu_1.alu_src   << dispat.dis_to_al1.throwWhen(commit.flush)
 
   // ================= ALU 1 ===============
-  alu_2.flush     := commit.flush
-  alu_2.alu_src   << dispat.dis_to_al2
+  alu_2.alu_src   << dispat.dis_to_al2.throwWhen(commit.flush)
 
   // ================= DIV ===============
   div_3.flush     := commit.flush
-  div_3.div_src   << dispat.dis_to_div
+  div_3.div_src   << dispat.dis_to_div.throwWhen(commit.flush)
 
   // ================= LSU ===============
-  lsu_4.flush            := commit.flush
-  lsu_4.lsu_src          << dispat.dis_to_lsu
+  val lsu_to_head_distance = lsu_4.lsu_src.tail_adr - commit.head_adr_out
+  val bju_to_head_distance = bju_0.bju_src.tail_adr - commit.head_adr_out
+  lsu_4.flush            := change_flow && (lsu_to_head_distance > bju_to_head_distance)
+  lsu_4.lsu_src          << dispat.dis_to_lsu.throwWhen(lsu_4.flush)
   lsu_4.dcache_ports.rsp << dcache.dcache_src.rsp
 
   // ================= Commit ===============
@@ -204,24 +207,21 @@ case class Tulip() extends Component {
   commit.wbc_src(3) << div_3.div_dst
   commit.wbc_src(4) << lsu_4.lsu_dst
 
-  commit.exe_fire(0) := bju_0.bju_src.fire
-  commit.exe_fire(1) := alu_1.alu_src.fire
-  commit.exe_fire(2) := alu_2.alu_src.fire
-  commit.exe_fire(3) := div_3.div_src.fire
-  commit.exe_fire(4) := lsu_4.lsu_src.fire
+  commit.dis_valid(0) := dispat.dis_src(0).valid
+  commit.dis_valid(1) := dispat.dis_src(1).valid
+  commit.dis_fire(0)  := dispat.dis_src(0).fire
+  commit.dis_fire(1)  := dispat.dis_src(1).fire
+  commit.dis_onehot(0):= dispat.dis_src(0).exe_sel_oh
+  commit.dis_onehot(1):= dispat.dis_src(1).exe_sel_oh
+  commit.dis_pc(0)    := dispat.dis_src(0).iss_pkg.pc
+  commit.dis_pc(1)    := dispat.dis_src(1).iss_pkg.pc
 
-  commit.exe_older(0) := bju_0.bju_src.older
-  commit.exe_older(1) := alu_1.alu_src.older
-  commit.exe_older(2) := alu_2.alu_src.older
-  commit.exe_older(3) := div_3.div_src.older
-  commit.exe_older(4) := lsu_4.lsu_src.older
-
-  commit.ret_dst(0).ready := retire_ready
-  commit.ret_dst(1).ready := retire_ready
+  commit.wbc_dst(0).ready := retire_ready_0
+  commit.wbc_dst(1).ready := retire_ready_1
 
 
   // ================= DCache ===============
-  dcache.flush            := False
+  dcache.flush            := commit.flush
   dcache.dcache_src.cmd   << lsu_4.dcache_ports.cmd
   
 
@@ -240,4 +240,14 @@ case class Tulip() extends Component {
 
 object GenTulip extends App {
   GenConfig.spinal.generateVerilog(Tulip())
+}
+
+object GenTulipWithMemoryInit{
+  def main(args: Array[String]) {
+    GenConfig.spinal.generateVerilog({
+      val toplevel = new Tulip()
+      BinTools.initRam(toplevel.icache.sram.mem, "/home/lin/DandProject/dv/bin/mytests/benchmarks/coremark/coremark-riscv64-nemu.bin", false)
+      toplevel
+    })
+  }
 }

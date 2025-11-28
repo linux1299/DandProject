@@ -25,11 +25,14 @@ case class Dispatch() extends Component{
   val ret_rd_addr   = Vec(in UInt(5 bits), 2)
   val ret_rd_data   = Vec(in Bits(64 bits), 2)
   val read_regfile  = Vec(master(ReadRegfile()), 2)
+  val commit_fifo_ready = in Bool()
+  val tail_adr_older= in UInt(3 bits)
+  val tail_adr_newer= in UInt(3 bits)
   
 
   // =============== Entries of Dispatch =================
   val entry = new Area{
-    val fu_oh    = Vec(Reg(Bits(5 bits)) init(0), 32) // FU onehot
+    val sel      = Vec(Reg(Bits(5 bits)) init(0), 32) // FU onehot
     val arf      = Vec(RegInit(True), 32)
     val wbc      = Vec(RegInit(False), 32)
     val ret      = Vec(RegInit(False), 32)
@@ -40,7 +43,6 @@ case class Dispatch() extends Component{
   }
 
   // =============== Stream =================
-  val dis_stream    = Vec(Stream(IssueDst()), 2) // dis stage
   val exe_stream    = Vec(Stream(ExeSrc("ALL")), 5) // dis stage
   val bju_stream    = Stream(ExeSrc("BJU")) // dis stage BJU
   val al1_stream    = Stream(ExeSrc("ALU")) // dis stage ALU 1
@@ -65,10 +67,10 @@ case class Dispatch() extends Component{
   val rs2_ret_sel   = Vec(Bits(2 bits), 2)
   val wbc_data      = wbc_rd_data.asBits
   val ret_data      = ret_rd_data.asBits
+  val dis_older_vld = exe_sel_valid(0).orR
+  val dis_newer_vld = exe_sel_valid(1).orR
 
   for(i <- 0 until 2){
-    dis_stream(i) << dis_src(i).throwWhen(flush)
-
     rs1_addr(i)   := dis_src(i).iss_pkg.rs1_addr
     rs2_addr(i)   := dis_src(i).iss_pkg.rs2_addr
     rd_addr(i)    := dis_src(i).iss_pkg.rd_addr
@@ -85,13 +87,13 @@ case class Dispatch() extends Component{
                    entry.ret(rs2_addr(0)) ||
                    dis_src(0).iss_pkg.micro_op.uop_com.src2_is_imm
 
-  src1_valid(1) := (rs1_addr(1) =/= rd_addr(0) || !dis_stream(0).valid) &&
+  src1_valid(1) := (rs1_addr(1) =/= rd_addr(0) || !dis_src(0).valid) &&
                     (entry.arf(rs1_addr(1)) ||
                      entry.wbc(rs1_addr(1)) ||
                      entry.ret(rs1_addr(1)))
                   
 
-  src2_valid(1) := ((rs2_addr(1) =/= rd_addr(0) || !dis_stream(0).valid) &&
+  src2_valid(1) := ((rs2_addr(1) =/= rd_addr(0) || !dis_src(0).valid) &&
                     (entry.arf(rs2_addr(1))  ||
                      entry.wbc(rs2_addr(1))  ||
                      entry.ret(rs2_addr(1)))) ||
@@ -100,12 +102,12 @@ case class Dispatch() extends Component{
   exe_sel_valid(0) := dis_src(0).exe_sel_oh & 
                       B(5 bits, default -> src1_valid(0)) & 
                       B(5 bits, default -> src2_valid(0)) & 
-                      B(5 bits, default -> dis_stream(0).valid)
+                      B(5 bits, default -> dis_src(0).valid)
 
   exe_sel_valid(1) := dis_src(1).exe_sel_oh & 
                       B(5 bits, default -> src1_valid(1)) & 
                       B(5 bits, default -> src2_valid(1)) & 
-                      B(5 bits, default -> dis_stream(1).valid) & 
+                      B(5 bits, default -> dis_src(1).valid) & 
                       ~exe_sel_valid(0)
 
   rs1_arf_data(0) := read_regfile(0).rs1_data
@@ -113,10 +115,10 @@ case class Dispatch() extends Component{
   rs1_arf_data(1) := read_regfile(1).rs1_data
   rs2_arf_data(1) := read_regfile(1).rs2_data
 
-  rs1_wbc_sel(0)  := entry.fu_oh(rs1_addr(0))
-  rs2_wbc_sel(0)  := entry.fu_oh(rs2_addr(0))
-  rs1_wbc_sel(1)  := entry.fu_oh(rs1_addr(1))
-  rs2_wbc_sel(1)  := entry.fu_oh(rs2_addr(1))
+  rs1_wbc_sel(0)  := entry.sel(rs1_addr(0))
+  rs2_wbc_sel(0)  := entry.sel(rs2_addr(0))
+  rs1_wbc_sel(1)  := entry.sel(rs1_addr(1))
+  rs2_wbc_sel(1)  := entry.sel(rs2_addr(1))
 
   rs1_ret_sel(0)  := ((rs1_addr(0)===ret_rd_addr(1)) && ret_rd_wen(1)) ? B(2, 2 bits) | B(1, 2 bits) // newer instruction with prior
   rs2_ret_sel(0)  := ((rs2_addr(0)===ret_rd_addr(1)) && ret_rd_wen(1)) ? B(2, 2 bits) | B(1, 2 bits) // newer instruction with prior
@@ -135,15 +137,15 @@ case class Dispatch() extends Component{
 
 
   // =============== Update entry =================
-  entry.fu_oh(0) := B(0, 5 bits)
-  entry.arf  (0) := True
-  entry.wbc  (0) := False
-  entry.ret  (0) := False
+  entry.sel(0) := B(0, 5 bits)
+  entry.arf(0) := True
+  entry.wbc(0) := False
+  entry.ret(0) := False
 
   for(i <- 1 until 32){
     // fire
-    entry.dis_fire(i) := dis_stream(0).fire && dis_stream(0).iss_pkg.micro_op.uop_com.rd_wen && dis_stream(0).iss_pkg.rd_addr===U(i) ||
-                         dis_stream(1).fire && dis_stream(1).iss_pkg.micro_op.uop_com.rd_wen && dis_stream(1).iss_pkg.rd_addr===U(i)
+    entry.dis_fire(i) := dis_src(0).fire && dis_src(0).iss_pkg.micro_op.uop_com.rd_wen && dis_src(0).iss_pkg.rd_addr===U(i) ||
+                         dis_src(1).fire && dis_src(1).iss_pkg.micro_op.uop_com.rd_wen && dis_src(1).iss_pkg.rd_addr===U(i)
 
     entry.exe_fire(i) := dis_to_bju.fire && dis_to_bju.uop_com.rd_wen && dis_to_bju.rd_addr===U(i) ||
                          dis_to_al1.fire && dis_to_al1.uop_com.rd_wen && dis_to_al1.rd_addr===U(i) ||
@@ -161,20 +163,20 @@ case class Dispatch() extends Component{
                          ret_rd_wen(1) && ret_rd_addr(1)===U(i)
     
 
-    // fu_oh
+    // sel
     when(flush){
-      entry.fu_oh(i) := B(0)
+      entry.sel(i) := B(0)
     }
-    .elsewhen(dis_stream(0).fire && dis_stream(0).iss_pkg.micro_op.uop_com.rd_wen && dis_stream(0).iss_pkg.rd_addr===U(i)){
-      entry.fu_oh(i) := exe_sel_valid(0)
+    .elsewhen(dis_src(0).fire && dis_src(0).iss_pkg.micro_op.uop_com.rd_wen && dis_src(0).iss_pkg.rd_addr===U(i)){
+      entry.sel(i) := exe_sel_valid(0)
     }
-    .elsewhen(dis_stream(1).fire && dis_stream(1).iss_pkg.micro_op.uop_com.rd_wen && dis_stream(1).iss_pkg.rd_addr===U(i)){
-      entry.fu_oh(i) := exe_sel_valid(1)
+    .elsewhen(dis_src(1).fire && dis_src(1).iss_pkg.micro_op.uop_com.rd_wen && dis_src(1).iss_pkg.rd_addr===U(i)){
+      entry.sel(i) := exe_sel_valid(1)
     }
 
     // arf
     when(flush){
-      entry.arf(i) := False
+      entry.arf(i) := True
     }
     .elsewhen(entry.dis_fire(i)){
       entry.arf(i) := False
@@ -208,31 +210,31 @@ case class Dispatch() extends Component{
   }
 
   // =================== Output ===================
-  dis_stream(0).ready := (exe_sel_valid(0)(0) && exe_stream(0).ready) ||
+  dis_src(0).ready :=    (exe_sel_valid(0)(0) && exe_stream(0).ready) ||
                          (exe_sel_valid(0)(1) && exe_stream(1).ready) ||
                          (exe_sel_valid(0)(2) && exe_stream(2).ready) ||
                          (exe_sel_valid(0)(3) && exe_stream(3).ready) ||
                          (exe_sel_valid(0)(4) && exe_stream(4).ready)
 
-  dis_stream(1).ready :=((exe_sel_valid(1)(0) && exe_stream(0).ready) ||
+  dis_src(1).ready :=   ((exe_sel_valid(1)(0) && exe_stream(0).ready) ||
                          (exe_sel_valid(1)(1) && exe_stream(1).ready) ||
                          (exe_sel_valid(1)(2) && exe_stream(2).ready) ||
                          (exe_sel_valid(1)(3) && exe_stream(3).ready) ||
-                         (exe_sel_valid(1)(4) && exe_stream(4).ready)) && dis_stream(0).ready
+                         (exe_sel_valid(1)(4) && exe_stream(4).ready)) && dis_src(0).ready
 
   for(i <- 0 until 5){
-    exe_stream(i).valid        := exe_sel_valid(0)(i) || (exe_sel_valid(1)(i) && dis_stream(0).ready)
-    exe_stream(i).uop_com      := exe_sel_valid(0)(i) ? dis_stream(0).iss_pkg.micro_op.uop_com | dis_stream(1).iss_pkg.micro_op.uop_com
-    exe_stream(i).rd_addr      := exe_sel_valid(0)(i) ? dis_stream(0).iss_pkg.rd_addr          | dis_stream(1).iss_pkg.rd_addr
-    exe_stream(i).pc           := exe_sel_valid(0)(i) ? dis_stream(0).iss_pkg.pc               | dis_stream(1).iss_pkg.pc
-    exe_stream(i).instr        := exe_sel_valid(0)(i) ? dis_stream(0).iss_pkg.instr            | dis_stream(1).iss_pkg.instr
-    exe_stream(i).older        := exe_sel_valid(0)(i) ? True                                   | False
-    exe_stream(i).uop_alu      := exe_sel_valid(0)(i) ? dis_stream(0).iss_pkg.micro_op.uop_alu | dis_stream(1).iss_pkg.micro_op.uop_alu
-    exe_stream(i).imm          := exe_sel_valid(0)(i) ? dis_stream(0).iss_pkg.imm              | dis_stream(1).iss_pkg.imm
-    exe_stream(i).uop_bju      := exe_sel_valid(0)(i) ? dis_stream(0).iss_pkg.micro_op.uop_bju | dis_stream(1).iss_pkg.micro_op.uop_bju
-    exe_stream(i).branch_pc    := exe_sel_valid(0)(i) ? dis_stream(0).iss_pkg.branch_pc        | dis_stream(1).iss_pkg.branch_pc
-    exe_stream(i).branch_taken := exe_sel_valid(0)(i) ? dis_stream(0).iss_pkg.branch_taken     | dis_stream(1).iss_pkg.branch_taken
-    exe_stream(i).uop_lsu      := exe_sel_valid(0)(i) ? dis_stream(0).iss_pkg.micro_op.uop_lsu | dis_stream(1).iss_pkg.micro_op.uop_lsu
+    exe_stream(i).valid        := (exe_sel_valid(0)(i) || (exe_sel_valid(1)(i) && dis_src(0).ready)) && commit_fifo_ready // older instr has priority
+    exe_stream(i).uop_com      := exe_sel_valid(0)(i) ? dis_src(0).iss_pkg.micro_op.uop_com | dis_src(1).iss_pkg.micro_op.uop_com
+    exe_stream(i).rd_addr      := exe_sel_valid(0)(i) ? dis_src(0).iss_pkg.rd_addr          | dis_src(1).iss_pkg.rd_addr
+    exe_stream(i).pc           := exe_sel_valid(0)(i) ? dis_src(0).iss_pkg.pc               | dis_src(1).iss_pkg.pc
+    exe_stream(i).instr        := exe_sel_valid(0)(i) ? dis_src(0).iss_pkg.instr            | dis_src(1).iss_pkg.instr
+    exe_stream(i).tail_adr     := (exe_sel_valid(1)(i) && dis_older_vld && dis_newer_vld) ? tail_adr_newer | tail_adr_older
+    exe_stream(i).uop_alu      := exe_sel_valid(0)(i) ? dis_src(0).iss_pkg.micro_op.uop_alu | dis_src(1).iss_pkg.micro_op.uop_alu
+    exe_stream(i).imm          := exe_sel_valid(0)(i) ? dis_src(0).iss_pkg.imm              | dis_src(1).iss_pkg.imm
+    exe_stream(i).uop_bju      := exe_sel_valid(0)(i) ? dis_src(0).iss_pkg.micro_op.uop_bju | dis_src(1).iss_pkg.micro_op.uop_bju
+    exe_stream(i).branch_pc    := exe_sel_valid(0)(i) ? dis_src(0).iss_pkg.branch_pc        | dis_src(1).iss_pkg.branch_pc
+    exe_stream(i).branch_taken := exe_sel_valid(0)(i) ? dis_src(0).iss_pkg.branch_taken     | dis_src(1).iss_pkg.branch_taken
+    exe_stream(i).uop_lsu      := exe_sel_valid(0)(i) ? dis_src(0).iss_pkg.micro_op.uop_lsu | dis_src(1).iss_pkg.micro_op.uop_lsu
 
     when(exe_sel_valid(0)(i)){
       when(entry.wbc(rs1_addr(0))){

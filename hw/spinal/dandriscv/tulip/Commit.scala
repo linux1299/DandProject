@@ -14,25 +14,38 @@ case class Commit() extends Component{
   val flush     = out Bool()
   val change_flow = in Bool()
   val wbc_src   = Vec(slave(Stream(ExeDst())), 5) // wbc stage
-  val exe_fire  = Vec(in Bool(), 5)
-  val exe_older = Vec(in Bool(), 5)
-  val ret_dst   = Vec(master(Stream(ExeDst())), 2) // ret stage
-  
+  val dis_valid = Vec(in Bool(), 2)
+  val dis_fire  = Vec(in Bool(), 2)
+  val dis_onehot= Vec(in Bits(5 bits), 2)
+  val dis_pc    = Vec(in UInt(32 bits), 2)
+  val wbc_dst   = Vec(master(Stream(ExeDst())), 2) // ret stage
+  val commit_fifo_ready = out Bool()
+  val tail_adr_older = out UInt(3 bits)
+  val tail_adr_newer = out UInt(3 bits)
+  val head_adr_out   = out UInt(3 bits)
+
 
   // =============== Entries of Commit =================
-  val head_ptr      = Reg(UInt(3 bits)) init(0)
-  val tail_ptr      = Reg(UInt(3 bits)) init(0)
-  val head_ptr_next = UInt(3 bits)
-  val tail_ptr_next = UInt(3 bits)
-  val head_ptr_end  = UInt(3 bits)
-  val tail_ptr_end  = UInt(3 bits)
+  val head_ptr      = Reg(UInt(4 bits)) init(0)
+  val tail_ptr      = Reg(UInt(4 bits)) init(0)
+  val head_ptr_next = UInt(4 bits)
+  val tail_ptr_next = UInt(4 bits)
+  val head_ptr_last = UInt(4 bits)
+  val tail_ptr_last = UInt(4 bits)
+  val head_adr      = head_ptr(2 downto 0)
+  val tail_adr      = tail_ptr(2 downto 0)
+  val head_adr_last = head_ptr_last(2 downto 0)
+  val tail_adr_last = tail_ptr_last(2 downto 0)
   val entry         = new Area{
-    val exe_onehot  = Vec(Reg(Bits(5 bits)) init(0), 5)
+    val onehot      = Vec(Reg(Bits(5 bits)) init(0), 8)
+    val pc          = Vec(Reg(UInt(32 bits)) init(0), 8)
   }
-  val exe_fire_num      = UInt(3 bits)
-  val exe_onehot_head_a = Bits(5 bits)
-  val exe_onehot_head_b = Bits(5 bits)
-  val wbc_src_valid     = Bits(5 bits)
+  val entry_cnt        = Reg(UInt(4 bits)) init(0)
+  val dis_fire_num     = UInt(2 bits)
+  val wbc_fire_num     = UInt(2 bits)
+  val head_entry_older = Bits(5 bits)
+  val head_entry_newer = Bits(5 bits)
+  val wbc_src_valid    = Bits(5 bits)
   val wbc_src_rd_data = wbc_src(4).rd_data ##
                         wbc_src(3).rd_data ##
                         wbc_src(2).rd_data ##
@@ -58,18 +71,11 @@ case class Commit() extends Component{
                         wbc_src(2).instr ##
                         wbc_src(1).instr ##
                         wbc_src(0).instr
-  val wbc_src_older   = wbc_src(4).older ##
-                        wbc_src(3).older ##
-                        wbc_src(2).older ##
-                        wbc_src(1).older ##
-                        wbc_src(0).older
 
   // =============== Stream =================
-  val ret_stream = Vec(Stream(ExeDst()), 2) // wbc stage
-  val ret_stream_fire = Vec(Bool(), 2)
-  for(i <- 0 until 2){
-    ret_stream_fire(i) := ret_stream(i).fire
-  }
+  val wbc_stream = Vec(Stream(ExeDst()), 2) // wbc stage
+  dis_fire_num := CountOne(dis_fire)
+  wbc_fire_num := wbc_stream(0).fire.asUInt.resize(2 bits) + wbc_stream(1).fire.asUInt.resize(2 bits)
 
   // =============== Update head ptr =================
   when(flush){
@@ -79,44 +85,8 @@ case class Commit() extends Component{
     head_ptr := head_ptr_next
   }
 
-  switch(head_ptr){
-    is(U(4, 3 bits)){
-      when(ret_stream_fire(0) && ret_stream_fire(1)){
-        head_ptr_next := U(1, 3 bits)
-      }
-      .elsewhen(ret_stream_fire(0) || ret_stream_fire(1)){
-        head_ptr_next := U(0, 3 bits)
-      }
-      .otherwise{
-        head_ptr_next := U(4, 3 bits)
-      }
-      head_ptr_end := U(0, 3 bits)
-    }
-    is(U(3, 3 bits)){
-      when(ret_stream_fire(0) && ret_stream_fire(1)){
-        head_ptr_next := U(0, 3 bits)
-      }
-      .elsewhen(ret_stream_fire(0) || ret_stream_fire(1)){
-        head_ptr_next := U(4, 3 bits)
-      }
-      .otherwise{
-        head_ptr_next := U(3, 3 bits)
-      }
-      head_ptr_end := U(4, 3 bits)
-    }
-    default{
-      when(ret_stream_fire(0) && ret_stream_fire(1)){
-        head_ptr_next := head_ptr + 2
-      }
-      .elsewhen(ret_stream_fire(0) || ret_stream_fire(1)){
-        head_ptr_next := head_ptr + 1
-      }
-      .otherwise{
-        head_ptr_next := head_ptr
-      }
-      head_ptr_end := head_ptr + 1
-    }
-  }
+  head_ptr_next := head_ptr + wbc_fire_num
+  head_ptr_last := head_ptr + 1
 
   // =============== Update tail ptr =================
   when(flush){
@@ -126,81 +96,56 @@ case class Commit() extends Component{
     tail_ptr := tail_ptr_next
   }
 
-  exe_fire_num := CountOne(exe_fire)
-
-  switch(tail_ptr){
-    is(U(4, 3 bits)){
-      when(exe_fire_num===U(2)){
-        tail_ptr_next := U(1, 3 bits)
-      }
-      .elsewhen(exe_fire_num===U(1)){
-        tail_ptr_next := U(0, 3 bits)
-      }
-      .otherwise{
-        tail_ptr_next := U(4, 3 bits)
-      }
-      tail_ptr_end := U(0, 3 bits)
-    }
-    is(U(3, 3 bits)){
-      when(exe_fire_num===U(2)){
-        tail_ptr_next := U(0, 3 bits)
-      }
-      .elsewhen(exe_fire_num===U(1)){
-        tail_ptr_next := U(4, 3 bits)
-      }
-      .otherwise{
-        tail_ptr_next := U(3, 3 bits)
-      }
-      tail_ptr_end := U(4, 3 bits)
-    }
-    default{
-      when(exe_fire_num===U(2)){
-        tail_ptr_next := tail_ptr + 2
-      }
-      .elsewhen(exe_fire_num===U(1)){
-        tail_ptr_next := tail_ptr + 1
-      }
-      .otherwise{
-        tail_ptr_next := tail_ptr
-      }
-      tail_ptr_end := tail_ptr + 1
-    }
-  }
+  tail_ptr_next := tail_ptr + dis_fire_num
+  tail_ptr_last := tail_ptr + 1
 
   // =============== Update Entry =================
-  for(i <- 0 until 5){
+  for(i <- 0 until 8){
     when(flush){
-      entry.exe_onehot(i) := B(0)
+      entry.onehot(i) := B(0)
+      entry.pc(i)     := U(0)
     }
-    .elsewhen(exe_fire_num===U(2) && tail_ptr_end===U(i)){
-      entry.exe_onehot(i) := (exe_fire(4) && !exe_older(4)) ##
-                             (exe_fire(3) && !exe_older(3)) ##
-                             (exe_fire(2) && !exe_older(2)) ##
-                             (exe_fire(1) && !exe_older(1)) ##
-                             (exe_fire(0) && !exe_older(0))
+    .elsewhen(dis_fire_num===U(2) && tail_adr_last===U(i)){ // dispatch 2 instr, write to tail_adr_last
+      entry.onehot(i) := dis_onehot(1)
+      entry.pc(i)     := dis_pc(1)
     }
-    .elsewhen(tail_ptr===U(i)){
-      entry.exe_onehot(i) := (exe_fire(4) && exe_older(4)) ##
-                             (exe_fire(3) && exe_older(3)) ##
-                             (exe_fire(2) && exe_older(2)) ##
-                             (exe_fire(1) && exe_older(1)) ##
-                             (exe_fire(0) && exe_older(0))
+    .elsewhen(dis_fire_num===U(2) && tail_adr===U(i)){ // dispatch 2 instr, write to tail_adr
+      entry.onehot(i) := dis_onehot(0)
+      entry.pc(i)     := dis_pc(0)
     }
-    .elsewhen((ret_stream_fire(0) && ret_stream_fire(1)) && head_ptr_end===U(i)){
-      entry.exe_onehot(i) := B(0)
+    .elsewhen(dis_fire_num===U(1) && tail_adr===U(i) && dis_valid(0)){ // dispatch 1 instr, from older, write tail_adr
+      entry.onehot(i) := dis_onehot(0)
+      entry.pc(i)     := dis_pc(0)
     }
-    .elsewhen((ret_stream_fire(0) || ret_stream_fire(1)) && head_ptr===U(i)){
-      entry.exe_onehot(i) := B(0)
+    .elsewhen(dis_fire_num===U(1) && tail_adr===U(i) && dis_valid(1)){ // dispatch 1 instr, from newer, write tail_adr
+      entry.onehot(i) := dis_onehot(1)
+      entry.pc(i)     := dis_pc(1)
+    }
+
+    when((wbc_stream(0).fire && wbc_stream(1).fire) && head_adr_last===U(i)){ // pop 2 instr, head_adr_last
+      entry.onehot(i) := B(0)
+      entry.pc(i)     := U(0)
+    }
+    .elsewhen((wbc_stream(0).fire || wbc_stream(1).fire) && head_adr===U(i)){ // pop 1 instr, head_adr
+      entry.onehot(i) := B(0)
+      entry.pc(i)     := U(0)
     }
   }
 
-  exe_onehot_head_a := entry.exe_onehot(head_ptr)
-  exe_onehot_head_b := entry.exe_onehot(head_ptr_end)
+  head_entry_older := entry.onehot(head_adr)
+  head_entry_newer := entry.onehot(head_adr_last)
+
+  when(flush){
+    entry_cnt := U(0)
+  }
+  .otherwise{
+    entry_cnt := entry_cnt + dis_fire_num - wbc_fire_num
+  }
 
 
   // =================== Output ===================
   val flush_reg = RegInit(False)
-  when(change_flow){
+  when(change_flow && head_entry_older(0)){ // when BJU's instruction is at head, flush next cycle
     flush_reg := True
   }
   .elsewhen(flush){
@@ -210,29 +155,29 @@ case class Commit() extends Component{
 
   for(i <- 0 until 5){
     wbc_src_valid(i) := wbc_src(i).valid
-    if(i==0)
-      wbc_src(i).ready := exe_onehot_head_a(i) || (ret_stream_fire(0) && exe_onehot_head_b(i))
-    else
-      wbc_src(i).ready := exe_onehot_head_a(i) || (ret_stream_fire(0) && exe_onehot_head_b(i)) || flush
+    wbc_src(i).ready := (head_entry_older(i) && wbc_stream(0).fire) || (head_entry_newer(i) && wbc_stream(1).fire)
   }
 
-  ret_stream(0).valid   := (exe_onehot_head_a & wbc_src_valid).orR
-  ret_stream(1).valid   := (exe_onehot_head_b & wbc_src_valid).orR && ret_stream(0).fire
-  ret_stream(0).rd_data := dataMux(exe_onehot_head_a, wbc_src_rd_data)
-  ret_stream(1).rd_data := dataMux(exe_onehot_head_b, wbc_src_rd_data)
-  ret_stream(0).rd_addr := dataMux(exe_onehot_head_a, wbc_src_rd_addr).asUInt
-  ret_stream(1).rd_addr := dataMux(exe_onehot_head_b, wbc_src_rd_addr).asUInt
-  ret_stream(0).rd_wen  := dataMux(exe_onehot_head_a, wbc_src_rd_wen).asBool
-  ret_stream(1).rd_wen  := dataMux(exe_onehot_head_b, wbc_src_rd_wen).asBool
-  ret_stream(0).pc      := dataMux(exe_onehot_head_a, wbc_src_pc).asUInt
-  ret_stream(1).pc      := dataMux(exe_onehot_head_b, wbc_src_pc).asUInt
-  ret_stream(0).instr   := dataMux(exe_onehot_head_a, wbc_src_instr)
-  ret_stream(1).instr   := dataMux(exe_onehot_head_b, wbc_src_instr)
-  ret_stream(0).older   := dataMux(exe_onehot_head_a, wbc_src_older).asBool
-  ret_stream(1).older   := dataMux(exe_onehot_head_b, wbc_src_older).asBool
+  wbc_stream(0).valid   := (head_entry_older & wbc_src_valid).orR
+  wbc_stream(1).valid   := (head_entry_newer & wbc_src_valid).orR && wbc_stream(0).fire
+  wbc_stream(0).rd_data := dataMux(head_entry_older, wbc_src_rd_data)
+  wbc_stream(1).rd_data := dataMux(head_entry_newer, wbc_src_rd_data)
+  wbc_stream(0).rd_addr := dataMux(head_entry_older, wbc_src_rd_addr).asUInt
+  wbc_stream(1).rd_addr := dataMux(head_entry_newer, wbc_src_rd_addr).asUInt
+  wbc_stream(0).rd_wen  := dataMux(head_entry_older, wbc_src_rd_wen).asBool
+  wbc_stream(1).rd_wen  := dataMux(head_entry_newer, wbc_src_rd_wen).asBool
+  wbc_stream(0).pc      := dataMux(head_entry_older, wbc_src_pc).asUInt
+  wbc_stream(1).pc      := dataMux(head_entry_newer, wbc_src_pc).asUInt
+  wbc_stream(0).instr   := dataMux(head_entry_older, wbc_src_instr)
+  wbc_stream(1).instr   := dataMux(head_entry_newer, wbc_src_instr)
 
-  ret_stream(0) >-> ret_dst(0)
-  ret_stream(1) >-> ret_dst(1)
+  wbc_stream(0) >-> wbc_dst(0)
+  wbc_stream(1) >-> wbc_dst(1)
+
+  tail_adr_older := tail_adr
+  tail_adr_newer := tail_adr_last
+  head_adr_out   := head_adr
+  commit_fifo_ready := (entry_cnt <= U(6))
 
   StreamRenameUtil(this)
 }

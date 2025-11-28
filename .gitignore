@@ -12,3 +12,4 @@ hw/gen/*.bin
 novas*
 ucli.key
 csrc
+verdiLog

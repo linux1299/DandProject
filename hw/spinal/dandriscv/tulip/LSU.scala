@@ -54,7 +54,6 @@ case class LSU() extends Component {
   val dcache_ports = master(DCachePorts(32, 64))
 
   // =========== stream control ================
-  val src_stream    = lsu_src.throwWhen(flush)
   val dst_stream    = Stream(ExeDst())
   val dcache_stream = Stream(DCacheCmd(32, 64))
 
@@ -105,7 +104,7 @@ case class LSU() extends Component {
   timer_int   := timer.timer_int
 
   // =================== stage 0 access dcache ===================
-  dcache_stream.valid := dcache_cen && src_stream.valid
+  dcache_stream.valid := dcache_cen && lsu_src.valid
   dcache_stream.addr  := dcache_addr
   dcache_stream.wen   := dcache_wen
   dcache_stream.wdata := dcache_wdata
@@ -212,30 +211,29 @@ case class LSU() extends Component {
   val older_reg  = Reg(Bool()) init(false)
   val pc_reg     = Reg(UInt(32 bits)) init(0)
   val instr_reg  = Reg(Bits(32 bits)) init(0)
+  val tail_adr_reg = Reg(UInt(3 bits)) init(0)
 
   when(flush){
     rd_wen_reg := False
     rd_addr_reg:= 0
-    older_reg  := False
     pc_reg     := 0
     instr_reg  := 0
   }
-  .elsewhen(src_stream.fire){
+  .elsewhen(lsu_src.fire){
     rd_wen_reg := lsu_src.uop_com.rd_wen
     rd_addr_reg:= lsu_src.rd_addr
-    older_reg  := lsu_src.older
     pc_reg     := lsu_src.pc
     instr_reg  := lsu_src.instr
   }
 
-  src_stream.ready   := dcache_stream.ready
+  lsu_src.ready      := dcache_stream.ready
   dst_stream.valid   := dcache_ports.rsp.valid
   dst_stream.rd_data := lsu_addr_is_timer ? timer_rdata | lsu_rdata
   dst_stream.rd_wen  := rd_wen_reg
   dst_stream.rd_addr := rd_addr_reg
-  dst_stream.older   := older_reg
   dst_stream.pc      := pc_reg
   dst_stream.instr   := instr_reg
+  dst_stream.tail_adr := tail_adr_reg
 
   dst_stream >-> lsu_dst
 
