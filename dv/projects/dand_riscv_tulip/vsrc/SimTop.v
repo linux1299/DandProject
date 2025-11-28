@@ -118,8 +118,7 @@ integer i;
 integer j;
 
 initial begin
-  fd = $fopen ("/home/lin/oscpu/bin/tests/coremark/coremark-riscv64-nemu.bin", "rb");
-  // fd = $fopen ("/home/lin/oscpu/bin/non-output/coremark/coremark.bin", "rb");
+  fd = $fopen ("/home/lin/DandProject/dv/bin/mytests/benchmarks/coremark/coremark-riscv64-nemu.bin", "rb");
   tmp = $fread(ram_tmp, fd);
   for (i = 0; i < 4096; i = i + 1) begin
     SimTop.u_Tulip.icache.sram_6.mem_symbol0[i] = ram_tmp[i*4 + 0][7:0];
