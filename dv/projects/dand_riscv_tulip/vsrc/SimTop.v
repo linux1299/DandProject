@@ -504,7 +504,7 @@ DifftestInstrCommit DifftestInstrCommit(
 DifftestArchIntRegState DifftestArchIntRegState (
   .clock              (clock),
   .coreid             (0),
-  .gpr_0              (regs_diff[0]),
+  .gpr_0              (0),
   .gpr_1              (regs_diff[1]),
   .gpr_2              (regs_diff[2]),
   .gpr_3              (regs_diff[3]),
