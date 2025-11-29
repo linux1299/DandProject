@@ -3,6 +3,7 @@
 
 #include "VSimTop.h"
 #include "VSimTop__Syms.h"
+#include "verilated_vcd_c.h"
 #include "verilated_dpi.h"
 
 //============================================================
@@ -56,6 +57,7 @@ static void _eval_initial_loop(VSimTop__Syms* __restrict vlSymsp) {
     // Evaluate till stable
     int __VclockLoop = 0;
     QData __Vchange = 1;
+    vlSymsp->__Vm_activity = true;
     do {
         VL_DEBUG_IF(VL_DBG_MSGF("+ Initial loop\n"););
         VSimTop___024root___eval_settle(&(vlSymsp->TOP));
@@ -87,6 +89,7 @@ void VSimTop::eval_step() {
     // Evaluate till stable
     int __VclockLoop = 0;
     QData __Vchange = 1;
+    vlSymsp->__Vm_activity = true;
     do {
         VL_DEBUG_IF(VL_DBG_MSGF("+ Clock loop\n"););
         VSimTop___024root___eval(&(vlSymsp->TOP));
@@ -123,4 +126,33 @@ const char* VSimTop::name() const {
 
 VL_ATTR_COLD void VSimTop::final() {
     VSimTop___024root___final(&(vlSymsp->TOP));
+}
+
+//============================================================
+// Trace configuration
+
+void VSimTop___024root__trace_init_top(VSimTop___024root* vlSelf, VerilatedVcd* tracep);
+
+VL_ATTR_COLD static void trace_init(void* voidSelf, VerilatedVcd* tracep, uint32_t code) {
+    // Callback from tracep->open()
+    VSimTop___024root* const __restrict vlSelf VL_ATTR_UNUSED = static_cast<VSimTop___024root*>(voidSelf);
+    VSimTop__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
+    if (!vlSymsp->_vm_contextp__->calcUnusedSigs()) {
+        VL_FATAL_MT(__FILE__, __LINE__, __FILE__,
+            "Turning on wave traces requires Verilated::traceEverOn(true) call before time 0.");
+    }
+    vlSymsp->__Vm_baseCode = code;
+    tracep->scopeEscape(' ');
+    tracep->pushNamePrefix(std::string{vlSymsp->name()} + ' ');
+    VSimTop___024root__trace_init_top(vlSelf, tracep);
+    tracep->popNamePrefix();
+    tracep->scopeEscape('.');
+}
+
+VL_ATTR_COLD void VSimTop___024root__trace_register(VSimTop___024root* vlSelf, VerilatedVcd* tracep);
+
+VL_ATTR_COLD void VSimTop::trace(VerilatedVcdC* tfp, int levels, int options) {
+    if (false && levels && options) {}  // Prevent unused
+    tfp->spTrace()->addInitCb(&trace_init, &(vlSymsp->TOP));
+    VSimTop___024root__trace_register(&(vlSymsp->TOP), tfp->spTrace());
 }

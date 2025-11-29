@@ -7,10 +7,10 @@
 
 #include "VSimTop___024root.h"
 
-VL_INLINE_OPT void VSimTop___024root___sequent__TOP__3(VSimTop___024root* vlSelf) {
+VL_INLINE_OPT void VSimTop___024root___sequent__TOP__4(VSimTop___024root* vlSelf) {
     if (false && vlSelf) {}  // Prevent unused
     VSimTop__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
-    VL_DEBUG_IF(VL_DBG_MSGF("+    VSimTop___024root___sequent__TOP__3\n"); );
+    VL_DEBUG_IF(VL_DBG_MSGF("+    VSimTop___024root___sequent__TOP__4\n"); );
     // Init
     VlWide<4>/*127:0*/ __Vtemp_hc961b8db__0;
     VlWide<4>/*127:0*/ __Vtemp_h6780fafd__0;
@@ -3611,6 +3611,8 @@ VL_INLINE_OPT void VSimTop___024root___sequent__TOP__3(VSimTop___024root* vlSelf
         = vlSelf->SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__bpu_pred_taken_fifo__DOT__write_ptr;
     vlSelf->__Vdly__SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__bpu_pred_taken_fifo__DOT__read_ptr 
         = vlSelf->SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__bpu_pred_taken_fifo__DOT__read_ptr;
+    vlSelf->__Vdly__SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__pc_stream_fifo__DOT__fifo_cnt 
+        = vlSelf->SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__pc_stream_fifo__DOT__fifo_cnt;
     vlSelf->__Vdly__SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__pc_next_stream_fifo__DOT__write_ptr 
         = vlSelf->SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__pc_next_stream_fifo__DOT__write_ptr;
     vlSelf->__Vdly__SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__instr_stream_fifo__DOT__write_ptr 
@@ -3623,14 +3625,50 @@ VL_INLINE_OPT void VSimTop___024root___sequent__TOP__3(VSimTop___024root* vlSelf
         = vlSelf->SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__instr_stream_fifo__DOT__read_ptr;
     vlSelf->__Vdly__SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__pc_stream_fifo__DOT__read_ptr 
         = vlSelf->SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__pc_stream_fifo__DOT__read_ptr;
-    vlSelf->__Vdly__SimTop__DOT__u_SuperScalar__DOT__icache_1_icache_ar_payload_addr 
-        = vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1_icache_ar_payload_addr;
+    vlSelf->__Vdly__SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__pc_next_stream_fifo__DOT__fifo_cnt 
+        = vlSelf->SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__pc_next_stream_fifo__DOT__fifo_cnt;
     vlSelf->__Vdly__SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__bju_busy 
         = vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__bju_busy;
     vlSelf->__Vdly__SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__pc 
         = vlSelf->SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__pc;
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1_icache_ar_payload_id = 0U;
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__dcache_dcache_ar_payload_len = 0U;
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1_icache_ar_payload_len = 0U;
     if (vlSelf->SimTop__DOT____Vcellinp__u_SuperScalar__resetn) {
+        vlSelf->SimTop__DOT__u_SuperScalar__DOT__dcache_dcache_aw_payload_burst = 1U;
         vlSelf->SimTop__DOT__u_SuperScalar__DOT__dcache_dcache_ar_payload_id = 1U;
+        vlSelf->SimTop__DOT__u_SuperScalar__DOT__dcache_dcache_aw_payload_id = 2U;
+        vlSelf->SimTop__DOT__u_SuperScalar__DOT__dcache_dcache_ar_payload_burst = 1U;
+        vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1_icache_ar_payload_size = 3U;
+        vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1_icache_ar_payload_burst = 1U;
+        if (vlSelf->SimTop__DOT__u_SuperScalar__DOT__dcache__DOT__bypass_write) {
+            vlSelf->SimTop__DOT__u_SuperScalar__DOT__dcache_dcache_w_payload_last = 1U;
+        }
+        if (vlSelf->SimTop__DOT__u_SuperScalar__DOT__dcache__DOT__bypass_read) {
+            vlSelf->SimTop__DOT__u_SuperScalar__DOT__dcache_dcache_ar_payload_size 
+                = vlSelf->SimTop__DOT__u_SuperScalar__DOT__lsu_1__DOT__dcache_size;
+        }
+        if (vlSelf->SimTop__DOT__u_SuperScalar__DOT__dcache__DOT__bypass_write) {
+            vlSelf->SimTop__DOT__u_SuperScalar__DOT__dcache_dcache_w_payload_data 
+                = vlSelf->SimTop__DOT__u_SuperScalar__DOT__lsu_1__DOT__dcache_wdata;
+            vlSelf->SimTop__DOT__u_SuperScalar__DOT__dcache_dcache_aw_payload_size 
+                = vlSelf->SimTop__DOT__u_SuperScalar__DOT__lsu_1__DOT__dcache_size;
+            vlSelf->SimTop__DOT__u_SuperScalar__DOT__dcache_dcache_aw_payload_len = 0U;
+        }
+        if (vlSelf->SimTop__DOT__u_SuperScalar__DOT__lsu_1__DOT__src_stream_fire) {
+            vlSelf->SimTop__DOT__u_SuperScalar__DOT__lsu_1__DOT__rd_rob_ptr_reg 
+                = vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_lsu_rData_rd_rob_ptr;
+        }
+        vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__sram_area_3_sram__DOT__rsp_valid 
+            = ((IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1_sram_3_ports_cmd_valid) 
+               & (~ (IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1_sram_3_ports_cmd_payload_wen)));
+        vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__sram_area_1_sram__DOT__rsp_valid 
+            = ((IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1_sram_1_ports_cmd_valid) 
+               & (~ (IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1_sram_1_ports_cmd_payload_wen)));
+        if (vlSelf->SimTop__DOT__u_SuperScalar__DOT__lsu_1__DOT__src_stream_fire) {
+            vlSelf->SimTop__DOT__u_SuperScalar__DOT__lsu_1__DOT__rd_wen_reg 
+                = vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_lsu_rData_micro_op_rd_wen;
+        }
         if (vlSelf->SimTop__DOT__u_SuperScalar__DOT__dcache__DOT__bypass_write) {
             vlSelf->SimTop__DOT__u_SuperScalar__DOT__dcache__DOT__bypass_write_reg = 1U;
         } else if (vlSelf->SimTop__DOT__u_SuperScalar__DOT__dcache__DOT__biu_1_cpu_bypass_rsp_valid) {
@@ -3646,12 +3684,48 @@ VL_INLINE_OPT void VSimTop___024root___sequent__TOP__3(VSimTop___024root* vlSelf
             = vlSelf->SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__fetchFSM_state_next;
         vlSelf->SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__bju_kernel_1__DOT__csr_regfile__DOT__mcycle 
             = vlSelf->SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__bju_kernel_1__DOT__csr_regfile__DOT__tmp_mcycle;
+        if (vlSelf->SimTop__DOT__u_SuperScalar__DOT__dcache__DOT__biu_1__DOT__bypass) {
+            vlSelf->SimTop__DOT__u_SuperScalar__DOT__dcache__DOT__biu_1__DOT__bypass_reg = 1U;
+        } else if (vlSelf->SimTop__DOT__u_SuperScalar__DOT__dcache__DOT__biu_1__DOT__bypass_rsp_valid_d1) {
+            vlSelf->SimTop__DOT__u_SuperScalar__DOT__dcache__DOT__biu_1__DOT__bypass_reg = 0U;
+        }
         if (((IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_lsu_valid) 
              & (IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_lsu_ready))) {
             vlSelf->__Vdly__SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__lsu_busy = 1U;
         } else if (((IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__lsu_busy) 
                     & (IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__dcache__DOT__biu_1__DOT__bypass_rsp_valid_d1))) {
             vlSelf->__Vdly__SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__lsu_busy = 0U;
+        }
+        if (vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_wb_ready) {
+            vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_wb_rValid 
+                = vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_wb_valid;
+        }
+        if (vlSelf->SimTop__DOT__u_SuperScalar__DOT__dcache__DOT__bypass_write) {
+            vlSelf->SimTop__DOT__u_SuperScalar__DOT__dcache_dcache_aw_payload_addr 
+                = (IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__lsu_1__DOT__lsu_addr);
+            vlSelf->SimTop__DOT__u_SuperScalar__DOT__dcache_dcache_w_payload_strb 
+                = ((8U & (IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_lsu_rData_micro_op_lsu_ctrl_op))
+                    ? ((4U & (IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_lsu_rData_micro_op_lsu_ctrl_op))
+                        ? 0U : (0xffU & ((2U & (IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_lsu_rData_micro_op_lsu_ctrl_op))
+                                          ? ((1U & (IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_lsu_rData_micro_op_lsu_ctrl_op))
+                                              ? ((IData)(0xffU) 
+                                                 << 
+                                                 (7U 
+                                                  & (IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__lsu_1__DOT__lsu_addr)))
+                                              : ((IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__lsu_1__DOT__tmp_6) 
+                                                 << 
+                                                 (7U 
+                                                  & (IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__lsu_1__DOT__lsu_addr))))
+                                          : ((1U & (IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_lsu_rData_micro_op_lsu_ctrl_op))
+                                              ? ((IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__lsu_1__DOT__tmp_5) 
+                                                 << 
+                                                 (7U 
+                                                  & (IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__lsu_1__DOT__lsu_addr)))
+                                              : ((IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__lsu_1__DOT__tmp_4) 
+                                                 << 
+                                                 (7U 
+                                                  & (IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__lsu_1__DOT__lsu_addr)))))))
+                    : 0U);
         }
         if (vlSelf->SimTop__DOT__u_SuperScalar__DOT__dcache__DOT__bypass_read) {
             vlSelf->__Vdly__SimTop__DOT__u_SuperScalar__DOT__dcache_dcache_ar_payload_addr 
@@ -3661,7 +3735,33 @@ VL_INLINE_OPT void VSimTop___024root___sequent__TOP__3(VSimTop___024root* vlSelf
             vlSelf->__Vdly__SimTop__DOT__u_SuperScalar__DOT__dcache_dcache_ar_payload_addr 
                 = ((IData)(8U) + vlSelf->SimTop__DOT__u_SuperScalar__DOT__dcache_dcache_ar_payload_addr);
         }
-        vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1_icache_ar_payload_id = 0U;
+        if (vlSelf->SimTop__DOT__u_SuperScalar__DOT__dcache__DOT__handshake_cnt) {
+            if (vlSelf->SimTop__DOT__u_SuperScalar__DOT__dcache__DOT__handshake_cnt) {
+                if ((((IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__dcache_dcache_aw_valid) 
+                      & (IData)(vlSelf->SimTop__DOT__u_axi_slave_mem_d__DOT__sig_aw_ready)) 
+                     | ((IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__dcache_dcache_w_valid) 
+                        & (IData)(vlSelf->SimTop__DOT__u_axi_slave_mem_d__DOT__sig_w_ready)))) {
+                    vlSelf->SimTop__DOT__u_SuperScalar__DOT__dcache__DOT__handshake_cnt = 0U;
+                }
+            }
+        } else if ((((IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__dcache_dcache_aw_valid) 
+                     & (IData)(vlSelf->SimTop__DOT__u_axi_slave_mem_d__DOT__sig_aw_ready)) 
+                    & ((IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__dcache_dcache_w_valid) 
+                       & (IData)(vlSelf->SimTop__DOT__u_axi_slave_mem_d__DOT__sig_w_ready)))) {
+            vlSelf->SimTop__DOT__u_SuperScalar__DOT__dcache__DOT__handshake_cnt = 0U;
+        } else if ((((IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__dcache_dcache_aw_valid) 
+                     & (IData)(vlSelf->SimTop__DOT__u_axi_slave_mem_d__DOT__sig_aw_ready)) 
+                    | ((IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__dcache_dcache_w_valid) 
+                       & (IData)(vlSelf->SimTop__DOT__u_axi_slave_mem_d__DOT__sig_w_ready)))) {
+            vlSelf->SimTop__DOT__u_SuperScalar__DOT__dcache__DOT__handshake_cnt = 1U;
+        }
+        if (((IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_alu_rValid) 
+             & (IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__alu_1__DOT__src_stream_ready))) {
+            vlSelf->SimTop__DOT__u_SuperScalar__DOT__alu_1__DOT__rd_rob_ptr_reg 
+                = vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_alu_rData_rd_rob_ptr;
+            vlSelf->SimTop__DOT__u_SuperScalar__DOT__alu_1__DOT__rd_wen_reg 
+                = vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_alu_rData_micro_op_rd_wen;
+        }
         if (vlSelf->SimTop__DOT__u_SuperScalar__DOT__alu_1__DOT__div_start) {
             vlSelf->SimTop__DOT__u_SuperScalar__DOT__alu_1__DOT__div__DOT__busy_reg = 1U;
         } else if (vlSelf->SimTop__DOT__u_SuperScalar__DOT__alu_1__DOT__div_io_done_valid) {
@@ -3681,11 +3781,13 @@ VL_INLINE_OPT void VSimTop___024root___sequent__TOP__3(VSimTop___024root* vlSelf
             vlSelf->__Vdly__SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__alu_busy = 0U;
         }
         if (vlSelf->SimTop__DOT__u_SuperScalar__DOT__change_flow) {
+            vlSelf->SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__pc_next_stream_fifo__DOT__empty_entry_cnt = 4U;
             vlSelf->SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__instr_stream_fifo__DOT__empty_entry_cnt = 4U;
             vlSelf->SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__bpu_pred_taken_fifo__DOT__empty_entry_cnt = 4U;
             vlSelf->SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__pc_stream_fifo__DOT__empty_entry_cnt = 4U;
             vlSelf->__Vdly__SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__bpu_pred_taken_fifo__DOT__write_ptr = 0U;
             vlSelf->__Vdly__SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__bpu_pred_taken_fifo__DOT__read_ptr = 0U;
+            vlSelf->__Vdly__SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__pc_stream_fifo__DOT__fifo_cnt = 0U;
             vlSelf->__Vdly__SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__pc_next_stream_fifo__DOT__write_ptr = 0U;
             vlSelf->__Vdly__SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__instr_stream_fifo__DOT__write_ptr = 0U;
             vlSelf->__Vdly__SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__pc_stream_fifo__DOT__write_ptr = 0U;
@@ -3693,7 +3795,10 @@ VL_INLINE_OPT void VSimTop___024root___sequent__TOP__3(VSimTop___024root* vlSelf
             vlSelf->__Vdly__SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__instr_stream_fifo__DOT__read_ptr = 0U;
             vlSelf->__Vdly__SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__pc_stream_fifo__DOT__read_ptr = 0U;
             vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__ready = 1U;
+            vlSelf->__Vdly__SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__pc_next_stream_fifo__DOT__fifo_cnt = 0U;
         } else {
+            vlSelf->SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__pc_next_stream_fifo__DOT__empty_entry_cnt 
+                = vlSelf->SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__pc_next_stream_fifo__DOT__empty_entry_cnt_next;
             vlSelf->SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__instr_stream_fifo__DOT__empty_entry_cnt 
                 = vlSelf->SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__instr_stream_fifo__DOT__empty_entry_cnt_next;
             vlSelf->SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__bpu_pred_taken_fifo__DOT__empty_entry_cnt 
@@ -3708,6 +3813,20 @@ VL_INLINE_OPT void VSimTop___024root___sequent__TOP__3(VSimTop___024root* vlSelf
                  & (IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__dst_ports_fire_2))) {
                 vlSelf->__Vdly__SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__bpu_pred_taken_fifo__DOT__read_ptr 
                     = (7U & ((IData)(1U) + (IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__bpu_pred_taken_fifo__DOT__read_ptr)));
+            }
+            if ((((IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__icache_ports_cmd_fire_1) 
+                  & (~ (IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__pc_stream_fifo__DOT__fifo_full))) 
+                 & (~ ((~ (IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__pc_stream_fifo__DOT__fifo_empty)) 
+                       & (IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__dst_ports_fire))))) {
+                vlSelf->__Vdly__SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__pc_stream_fifo__DOT__fifo_cnt 
+                    = (7U & ((IData)(1U) + (IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__pc_stream_fifo__DOT__fifo_cnt)));
+            } else if (((~ ((IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__icache_ports_cmd_fire_1) 
+                            & (~ (IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__pc_stream_fifo__DOT__fifo_full)))) 
+                        & ((~ (IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__pc_stream_fifo__DOT__fifo_empty)) 
+                           & (IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__dst_ports_fire)))) {
+                vlSelf->__Vdly__SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__pc_stream_fifo__DOT__fifo_cnt 
+                    = (7U & ((IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__pc_stream_fifo__DOT__fifo_cnt) 
+                             - (IData)(1U)));
             }
             if (vlSelf->SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__pc_next_stream_fifo__DOT__ports_s_ports_fire) {
                 vlSelf->__Vdly__SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__pc_next_stream_fifo__DOT__write_ptr 
@@ -3745,6 +3864,20 @@ VL_INLINE_OPT void VSimTop___024root___sequent__TOP__3(VSimTop___024root* vlSelf
                         & (IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_wb_ready))) {
                 vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__ready = 1U;
             }
+            if ((((IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__instr_in_stream_valid) 
+                  & (~ (IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__pc_next_stream_fifo__DOT__fifo_full))) 
+                 & (~ ((~ (IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__pc_next_stream_fifo__DOT__fifo_empty)) 
+                       & (IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__dst_ports_fire_1))))) {
+                vlSelf->__Vdly__SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__pc_next_stream_fifo__DOT__fifo_cnt 
+                    = (7U & ((IData)(1U) + (IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__pc_next_stream_fifo__DOT__fifo_cnt)));
+            } else if (((~ ((IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__instr_in_stream_valid) 
+                            & (~ (IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__pc_next_stream_fifo__DOT__fifo_full)))) 
+                        & ((~ (IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__pc_next_stream_fifo__DOT__fifo_empty)) 
+                           & (IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__dst_ports_fire_1)))) {
+                vlSelf->__Vdly__SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__pc_next_stream_fifo__DOT__fifo_cnt 
+                    = (7U & ((IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__pc_next_stream_fifo__DOT__fifo_cnt) 
+                             - (IData)(1U)));
+            }
         }
         vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__sram_area_2_sram__DOT__rsp_valid 
             = ((IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1_sram_2_ports_cmd_valid) 
@@ -3752,6 +3885,10 @@ VL_INLINE_OPT void VSimTop___024root___sequent__TOP__3(VSimTop___024root* vlSelf
         vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__sram_area_0_sram__DOT__rsp_valid 
             = ((IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1_sram_0_ports_cmd_valid) 
                & (~ (IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1_sram_0_ports_cmd_payload_wen)));
+        if (vlSelf->SimTop__DOT__u_SuperScalar__DOT__lsu_1__DOT__src_stream_fire_1) {
+            vlSelf->SimTop__DOT__u_SuperScalar__DOT__lsu_1__DOT__tmp_dst_stream_payload_pc 
+                = vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_lsu_rData_pc;
+        }
         if (vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__cpu_cmd_ready_1) {
             if (vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1_cpu_rsp_valid) {
                 vlSelf->SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__rsp_flush = 0U;
@@ -3762,6 +3899,18 @@ VL_INLINE_OPT void VSimTop___024root___sequent__TOP__3(VSimTop___024root* vlSelf
             vlSelf->SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__rsp_flush = 1U;
         } else if (vlSelf->SimTop__DOT__u_SuperScalar__DOT__bpu_predict_taken) {
             vlSelf->SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__rsp_flush = 1U;
+        }
+        if (vlSelf->SimTop__DOT__u_SuperScalar__DOT__lsu_1__DOT__src_stream_fire_1) {
+            vlSelf->SimTop__DOT__u_SuperScalar__DOT__lsu_1__DOT__tmp_dst_stream_payload_instruction 
+                = vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_lsu_rData_instruction;
+        }
+        vlSelf->SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__bju_kernel_1__DOT__csr_regfile__DOT__mip 
+            = ((QData)((IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__timer_1_timer_int)) 
+               << 7U);
+        if (vlSelf->SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__src_stream_fire) {
+            vlSelf->SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__bju_kernel_1__DOT__branch_history 
+                = ((0x1eU & ((IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__bju_kernel_1__DOT__branch_history) 
+                             << 1U)) | (IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__bju_kernel_1__DOT__branch_taken));
         }
         if (((IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_lsu_rData_micro_op_lsu_is_store) 
              & (IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__lsu_1_timer_cen))) {
@@ -3781,10 +3930,10 @@ VL_INLINE_OPT void VSimTop___024root___sequent__TOP__3(VSimTop___024root* vlSelf
         }
         if (((IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1_icache_ar_valid) 
              & (IData)(vlSelf->SimTop__DOT__u_axi_slave_mem_i__DOT__sig_ar_ready))) {
-            vlSelf->__Vdly__SimTop__DOT__u_SuperScalar__DOT__icache_1_icache_ar_payload_addr 
+            vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1_icache_ar_payload_addr 
                 = ((IData)(8U) + vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1_icache_ar_payload_addr);
         } else if (vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__next_level_cmd_valid_1) {
-            vlSelf->__Vdly__SimTop__DOT__u_SuperScalar__DOT__icache_1_icache_ar_payload_addr 
+            vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1_icache_ar_payload_addr 
                 = (0xffffffc0U & vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__cpu_addr_d1);
         }
         if (((IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__next_level_done) 
@@ -21222,182 +21371,46 @@ VL_INLINE_OPT void VSimTop___024root___sequent__TOP__3(VSimTop___024root* vlSelf
                 }
             }
         }
-        if (vlSelf->SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__bju_kernel_1__DOT__csr_wen_regNext) {
-            if (((((((((0x300U == (IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__bju_kernel_1__DOT__micro_op_exp_csr_addr_regNext)) 
-                       | (0x304U == (IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__bju_kernel_1__DOT__micro_op_exp_csr_addr_regNext))) 
-                      | (0x305U == (IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__bju_kernel_1__DOT__micro_op_exp_csr_addr_regNext))) 
-                     | (0x341U == (IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__bju_kernel_1__DOT__micro_op_exp_csr_addr_regNext))) 
-                    | (0x342U == (IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__bju_kernel_1__DOT__micro_op_exp_csr_addr_regNext))) 
-                   | (0x343U == (IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__bju_kernel_1__DOT__micro_op_exp_csr_addr_regNext))) 
-                  | (0xf14U == (IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__bju_kernel_1__DOT__micro_op_exp_csr_addr_regNext))) 
-                 | (0x340U == (IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__bju_kernel_1__DOT__micro_op_exp_csr_addr_regNext)))) {
-                if ((0x300U != (IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__bju_kernel_1__DOT__micro_op_exp_csr_addr_regNext))) {
-                    if ((0x304U != (IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__bju_kernel_1__DOT__micro_op_exp_csr_addr_regNext))) {
-                        if ((0x305U != (IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__bju_kernel_1__DOT__micro_op_exp_csr_addr_regNext))) {
-                            if ((0x341U != (IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__bju_kernel_1__DOT__micro_op_exp_csr_addr_regNext))) {
-                                if ((0x342U != (IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__bju_kernel_1__DOT__micro_op_exp_csr_addr_regNext))) {
-                                    if ((0x343U != (IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__bju_kernel_1__DOT__micro_op_exp_csr_addr_regNext))) {
-                                        if ((0xf14U 
-                                             == (IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__bju_kernel_1__DOT__micro_op_exp_csr_addr_regNext))) {
-                                            vlSelf->SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__bju_kernel_1__DOT__csr_regfile__DOT__mhartid 
-                                                = vlSelf->SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__bju_kernel_1__DOT__csr_wdata_regNext;
-                                        }
-                                    }
-                                    if ((0x343U == (IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__bju_kernel_1__DOT__micro_op_exp_csr_addr_regNext))) {
-                                        vlSelf->SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__bju_kernel_1__DOT__csr_regfile__DOT__mtval 
-                                            = vlSelf->SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__bju_kernel_1__DOT__csr_wdata_regNext;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        if ((((IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__arf_1_write_ports_rd_wen) 
-              & (0x1fU == (IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_wb_rData_rd_addr))) 
-             & (0U != (IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_wb_rData_rd_addr)))) {
-            vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__arf_1__DOT__reg_file_31 
-                = vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_wb_rData_rd_data;
-        }
-        if ((((IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__arf_1_write_ports_rd_wen) 
-              & (0x1eU == (IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_wb_rData_rd_addr))) 
-             & (0U != (IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_wb_rData_rd_addr)))) {
-            vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__arf_1__DOT__reg_file_30 
-                = vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_wb_rData_rd_data;
-        }
-        if ((((IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__arf_1_write_ports_rd_wen) 
-              & (0x1dU == (IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_wb_rData_rd_addr))) 
-             & (0U != (IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_wb_rData_rd_addr)))) {
-            vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__arf_1__DOT__reg_file_29 
-                = vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_wb_rData_rd_data;
-        }
-        if ((((IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__arf_1_write_ports_rd_wen) 
-              & (0x1cU == (IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_wb_rData_rd_addr))) 
-             & (0U != (IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_wb_rData_rd_addr)))) {
-            vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__arf_1__DOT__reg_file_28 
-                = vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_wb_rData_rd_data;
-        }
-        if ((((IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__arf_1_write_ports_rd_wen) 
-              & (0x1bU == (IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_wb_rData_rd_addr))) 
-             & (0U != (IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_wb_rData_rd_addr)))) {
-            vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__arf_1__DOT__reg_file_27 
-                = vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_wb_rData_rd_data;
-        }
-        if ((((IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__arf_1_write_ports_rd_wen) 
-              & (0x1aU == (IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_wb_rData_rd_addr))) 
-             & (0U != (IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_wb_rData_rd_addr)))) {
-            vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__arf_1__DOT__reg_file_26 
-                = vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_wb_rData_rd_data;
-        }
-        if ((((IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__arf_1_write_ports_rd_wen) 
-              & (0x19U == (IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_wb_rData_rd_addr))) 
-             & (0U != (IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_wb_rData_rd_addr)))) {
-            vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__arf_1__DOT__reg_file_25 
-                = vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_wb_rData_rd_data;
-        }
-        if ((((IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__arf_1_write_ports_rd_wen) 
-              & (0x18U == (IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_wb_rData_rd_addr))) 
-             & (0U != (IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_wb_rData_rd_addr)))) {
-            vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__arf_1__DOT__reg_file_24 
-                = vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_wb_rData_rd_data;
-        }
-        if ((((IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__arf_1_write_ports_rd_wen) 
-              & (0x17U == (IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_wb_rData_rd_addr))) 
-             & (0U != (IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_wb_rData_rd_addr)))) {
-            vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__arf_1__DOT__reg_file_23 
-                = vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_wb_rData_rd_data;
-        }
-        if ((((IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__arf_1_write_ports_rd_wen) 
-              & (9U == (IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_wb_rData_rd_addr))) 
-             & (0U != (IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_wb_rData_rd_addr)))) {
-            vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__arf_1__DOT__reg_file_9 
-                = vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_wb_rData_rd_data;
-        }
-        if ((((IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__arf_1_write_ports_rd_wen) 
-              & (8U == (IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_wb_rData_rd_addr))) 
-             & (0U != (IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_wb_rData_rd_addr)))) {
-            vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__arf_1__DOT__reg_file_8 
-                = vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_wb_rData_rd_data;
-        }
-        if ((((IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__arf_1_write_ports_rd_wen) 
-              & (6U == (IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_wb_rData_rd_addr))) 
-             & (0U != (IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_wb_rData_rd_addr)))) {
-            vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__arf_1__DOT__reg_file_6 
-                = vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_wb_rData_rd_data;
-        }
-        if ((((IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__arf_1_write_ports_rd_wen) 
-              & (5U == (IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_wb_rData_rd_addr))) 
-             & (0U != (IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_wb_rData_rd_addr)))) {
-            vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__arf_1__DOT__reg_file_5 
-                = vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_wb_rData_rd_data;
-        }
-        if ((((IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__arf_1_write_ports_rd_wen) 
-              & (0U == (IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_wb_rData_rd_addr))) 
-             & (0U != (IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_wb_rData_rd_addr)))) {
-            vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__arf_1__DOT__reg_file_0 
-                = vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_wb_rData_rd_data;
-        }
-        if ((((IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__arf_1_write_ports_rd_wen) 
-              & (1U == (IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_wb_rData_rd_addr))) 
-             & (0U != (IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_wb_rData_rd_addr)))) {
-            vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__arf_1__DOT__reg_file_1 
-                = vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_wb_rData_rd_data;
-        }
-        if ((((IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__arf_1_write_ports_rd_wen) 
-              & (7U == (IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_wb_rData_rd_addr))) 
-             & (0U != (IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_wb_rData_rd_addr)))) {
-            vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__arf_1__DOT__reg_file_7 
-                = vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_wb_rData_rd_data;
-        }
-        if ((((IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__arf_1_write_ports_rd_wen) 
-              & (0xfU == (IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_wb_rData_rd_addr))) 
-             & (0U != (IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_wb_rData_rd_addr)))) {
-            vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__arf_1__DOT__reg_file_15 
-                = vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_wb_rData_rd_data;
-        }
-        if ((((IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__arf_1_write_ports_rd_wen) 
-              & (3U == (IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_wb_rData_rd_addr))) 
-             & (0U != (IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_wb_rData_rd_addr)))) {
-            vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__arf_1__DOT__reg_file_3 
-                = vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_wb_rData_rd_data;
-        }
-        if ((((IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__arf_1_write_ports_rd_wen) 
-              & (2U == (IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_wb_rData_rd_addr))) 
-             & (0U != (IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_wb_rData_rd_addr)))) {
-            vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__arf_1__DOT__reg_file_2 
-                = vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_wb_rData_rd_data;
-        }
-        if ((((IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__arf_1_write_ports_rd_wen) 
-              & (4U == (IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_wb_rData_rd_addr))) 
-             & (0U != (IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_wb_rData_rd_addr)))) {
-            vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__arf_1__DOT__reg_file_4 
-                = vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_wb_rData_rd_data;
-        }
-        if ((((IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__arf_1_write_ports_rd_wen) 
-              & (0xbU == (IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_wb_rData_rd_addr))) 
-             & (0U != (IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_wb_rData_rd_addr)))) {
-            vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__arf_1__DOT__reg_file_11 
-                = vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_wb_rData_rd_data;
-        }
     } else {
+        vlSelf->SimTop__DOT__u_SuperScalar__DOT__dcache_dcache_aw_payload_burst = 0U;
         vlSelf->SimTop__DOT__u_SuperScalar__DOT__dcache_dcache_ar_payload_id = 0U;
+        vlSelf->SimTop__DOT__u_SuperScalar__DOT__dcache_dcache_aw_payload_id = 0U;
+        vlSelf->SimTop__DOT__u_SuperScalar__DOT__dcache_dcache_ar_payload_burst = 0U;
+        vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1_icache_ar_payload_size = 0U;
+        vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1_icache_ar_payload_burst = 0U;
+        vlSelf->SimTop__DOT__u_SuperScalar__DOT__dcache_dcache_w_payload_last = 0U;
+        vlSelf->SimTop__DOT__u_SuperScalar__DOT__dcache_dcache_ar_payload_size = 0U;
+        vlSelf->SimTop__DOT__u_SuperScalar__DOT__dcache_dcache_w_payload_data = 0ULL;
+        vlSelf->SimTop__DOT__u_SuperScalar__DOT__dcache_dcache_aw_payload_size = 0U;
+        vlSelf->SimTop__DOT__u_SuperScalar__DOT__dcache_dcache_aw_payload_len = 0U;
+        vlSelf->SimTop__DOT__u_SuperScalar__DOT__lsu_1__DOT__rd_rob_ptr_reg = 0U;
+        vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__sram_area_3_sram__DOT__rsp_valid = 0U;
+        vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__sram_area_1_sram__DOT__rsp_valid = 0U;
+        vlSelf->SimTop__DOT__u_SuperScalar__DOT__lsu_1__DOT__rd_wen_reg = 0U;
         vlSelf->SimTop__DOT__u_SuperScalar__DOT__dcache__DOT__bypass_write_reg = 0U;
         vlSelf->SimTop__DOT__u_SuperScalar__DOT__dcache__DOT__bypass_reg = 0U;
         vlSelf->SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__fetchFSM_state_curr = 0U;
         vlSelf->SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__bju_kernel_1__DOT__csr_regfile__DOT__mcycle = 0ULL;
+        vlSelf->SimTop__DOT__u_SuperScalar__DOT__dcache__DOT__biu_1__DOT__bypass_reg = 0U;
         vlSelf->__Vdly__SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__lsu_busy = 0U;
+        vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_wb_rValid = 0U;
+        vlSelf->SimTop__DOT__u_SuperScalar__DOT__dcache_dcache_aw_payload_addr = 0U;
+        vlSelf->SimTop__DOT__u_SuperScalar__DOT__dcache_dcache_w_payload_strb = 0U;
         vlSelf->__Vdly__SimTop__DOT__u_SuperScalar__DOT__dcache_dcache_ar_payload_addr = 0U;
-        vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1_icache_ar_payload_id = 0U;
+        vlSelf->SimTop__DOT__u_SuperScalar__DOT__dcache__DOT__handshake_cnt = 0U;
+        vlSelf->SimTop__DOT__u_SuperScalar__DOT__alu_1__DOT__rd_rob_ptr_reg = 0U;
+        vlSelf->SimTop__DOT__u_SuperScalar__DOT__alu_1__DOT__rd_wen_reg = 0U;
         vlSelf->SimTop__DOT__u_SuperScalar__DOT__alu_1__DOT__div__DOT__busy_reg = 0U;
         vlSelf->SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__src_stream_rValid = 0U;
         vlSelf->SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__fetch_valid = 0U;
         vlSelf->__Vdly__SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__alu_busy = 0U;
+        vlSelf->SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__pc_next_stream_fifo__DOT__empty_entry_cnt = 4U;
         vlSelf->SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__instr_stream_fifo__DOT__empty_entry_cnt = 4U;
         vlSelf->SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__bpu_pred_taken_fifo__DOT__empty_entry_cnt = 4U;
         vlSelf->SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__pc_stream_fifo__DOT__empty_entry_cnt = 4U;
         vlSelf->__Vdly__SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__bpu_pred_taken_fifo__DOT__write_ptr = 0U;
         vlSelf->__Vdly__SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__bpu_pred_taken_fifo__DOT__read_ptr = 0U;
+        vlSelf->__Vdly__SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__pc_stream_fifo__DOT__fifo_cnt = 0U;
         vlSelf->__Vdly__SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__pc_next_stream_fifo__DOT__write_ptr = 0U;
         vlSelf->__Vdly__SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__instr_stream_fifo__DOT__write_ptr = 0U;
         vlSelf->__Vdly__SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__pc_stream_fifo__DOT__write_ptr = 0U;
@@ -21405,12 +21418,17 @@ VL_INLINE_OPT void VSimTop___024root___sequent__TOP__3(VSimTop___024root* vlSelf
         vlSelf->__Vdly__SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__instr_stream_fifo__DOT__read_ptr = 0U;
         vlSelf->__Vdly__SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__pc_stream_fifo__DOT__read_ptr = 0U;
         vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__ready = 1U;
+        vlSelf->__Vdly__SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__pc_next_stream_fifo__DOT__fifo_cnt = 0U;
         vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__sram_area_2_sram__DOT__rsp_valid = 0U;
         vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__sram_area_0_sram__DOT__rsp_valid = 0U;
+        vlSelf->SimTop__DOT__u_SuperScalar__DOT__lsu_1__DOT__tmp_dst_stream_payload_pc = 0U;
         vlSelf->SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__rsp_flush = 0U;
+        vlSelf->SimTop__DOT__u_SuperScalar__DOT__lsu_1__DOT__tmp_dst_stream_payload_instruction = 0U;
+        vlSelf->SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__bju_kernel_1__DOT__csr_regfile__DOT__mip = 0ULL;
+        vlSelf->SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__bju_kernel_1__DOT__branch_history = 0U;
         vlSelf->SimTop__DOT__u_SuperScalar__DOT__timer_1__DOT__mtimecmp = 0xffffffffffffffffULL;
         vlSelf->SimTop__DOT__u_SuperScalar__DOT__timer_1__DOT__mtime = 0ULL;
-        vlSelf->__Vdly__SimTop__DOT__u_SuperScalar__DOT__icache_1_icache_ar_payload_addr = 0U;
+        vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1_icache_ar_payload_addr = 0U;
         vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_0_metas_0_tag = 0U;
         vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_0_metas_18_tag = 0U;
         vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_0_metas_17_tag = 0U;
@@ -22179,28 +22197,5 @@ VL_INLINE_OPT void VSimTop___024root___sequent__TOP__3(VSimTop___024root* vlSelf
         vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_1_metas_126_mru = 0U;
         vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_1_metas_127_vld = 0U;
         vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_1_metas_127_mru = 0U;
-        vlSelf->SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__bju_kernel_1__DOT__csr_regfile__DOT__mhartid = 0ULL;
-        vlSelf->SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__bju_kernel_1__DOT__csr_regfile__DOT__mtval = 0ULL;
-        vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__arf_1__DOT__reg_file_31 = 0ULL;
-        vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__arf_1__DOT__reg_file_30 = 0ULL;
-        vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__arf_1__DOT__reg_file_29 = 0ULL;
-        vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__arf_1__DOT__reg_file_28 = 0ULL;
-        vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__arf_1__DOT__reg_file_27 = 0ULL;
-        vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__arf_1__DOT__reg_file_26 = 0ULL;
-        vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__arf_1__DOT__reg_file_25 = 0ULL;
-        vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__arf_1__DOT__reg_file_24 = 0ULL;
-        vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__arf_1__DOT__reg_file_23 = 0ULL;
-        vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__arf_1__DOT__reg_file_9 = 0ULL;
-        vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__arf_1__DOT__reg_file_8 = 0ULL;
-        vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__arf_1__DOT__reg_file_6 = 0ULL;
-        vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__arf_1__DOT__reg_file_5 = 0ULL;
-        vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__arf_1__DOT__reg_file_0 = 0ULL;
-        vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__arf_1__DOT__reg_file_1 = 0ULL;
-        vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__arf_1__DOT__reg_file_7 = 0ULL;
-        vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__arf_1__DOT__reg_file_15 = 0ULL;
-        vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__arf_1__DOT__reg_file_3 = 0ULL;
-        vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__arf_1__DOT__reg_file_2 = 0ULL;
-        vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__arf_1__DOT__reg_file_4 = 0ULL;
-        vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__arf_1__DOT__reg_file_11 = 0ULL;
     }
 }

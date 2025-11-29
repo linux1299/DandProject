@@ -15,14 +15,13 @@ VL_ATTR_COLD void VSimTop___024root___initial__TOP__1(VSimTop___024root* vlSelf)
     VL_DEBUG_IF(VL_DBG_MSGF("+    VSimTop___024root___initial__TOP__1\n"); );
     // Init
     VlUnpacked<CData/*7:0*/, 131072> SimTop__DOT__ram_tmp;
-    IData/*31:0*/ SimTop__DOT__fd;
-    IData/*31:0*/ SimTop__DOT__tmp;
     // Body
-    SimTop__DOT__fd = VL_FOPEN_NN(VL_CVT_PACK_STR_NW(15, VSimTop__ConstPool__CONST_hc724afa4_0)
-                                  , std::string("rb"));
-    SimTop__DOT__tmp = VL_FREAD_I(8,0,131072, &(SimTop__DOT__ram_tmp)
-                                  , SimTop__DOT__fd
-                                  , 0, 131072);
+    vlSelf->SimTop__DOT__fd = VL_FOPEN_NN(VL_CVT_PACK_STR_NW(15, VSimTop__ConstPool__CONST_hc724afa4_0)
+                                          , std::string("rb"));
+    vlSelf->SimTop__DOT__tmp = VL_FREAD_I(8,0,131072
+                                          , &(SimTop__DOT__ram_tmp)
+                                          , vlSelf->SimTop__DOT__fd
+                                          , 0, 131072);
 }
 
 VL_ATTR_COLD void VSimTop___024root___eval_initial(VSimTop___024root* vlSelf) {
@@ -31,9 +30,15 @@ VL_ATTR_COLD void VSimTop___024root___eval_initial(VSimTop___024root* vlSelf) {
     VL_DEBUG_IF(VL_DBG_MSGF("+    VSimTop___024root___eval_initial\n"); );
     // Body
     VSimTop___024root___initial__TOP__1(vlSelf);
+    vlSelf->__Vm_traceActivity[5U] = 1U;
+    vlSelf->__Vm_traceActivity[4U] = 1U;
+    vlSelf->__Vm_traceActivity[3U] = 1U;
+    vlSelf->__Vm_traceActivity[2U] = 1U;
+    vlSelf->__Vm_traceActivity[1U] = 1U;
+    vlSelf->__Vm_traceActivity[0U] = 1U;
+    vlSelf->__Vclklast__TOP__clock = vlSelf->clock;
     vlSelf->__Vclklast__TOP____VinpClk__TOP__SimTop__DOT____Vcellinp__u_SuperScalar__resetn 
         = vlSelf->__VinpClk__TOP__SimTop__DOT____Vcellinp__u_SuperScalar__resetn;
-    vlSelf->__Vclklast__TOP__clock = vlSelf->clock;
 }
 
 VL_ATTR_COLD void VSimTop___024root___settle__TOP__6(VSimTop___024root* vlSelf);
@@ -44,6 +49,12 @@ VL_ATTR_COLD void VSimTop___024root___eval_settle(VSimTop___024root* vlSelf) {
     VL_DEBUG_IF(VL_DBG_MSGF("+    VSimTop___024root___eval_settle\n"); );
     // Body
     VSimTop___024root___settle__TOP__6(vlSelf);
+    vlSelf->__Vm_traceActivity[5U] = 1U;
+    vlSelf->__Vm_traceActivity[4U] = 1U;
+    vlSelf->__Vm_traceActivity[3U] = 1U;
+    vlSelf->__Vm_traceActivity[2U] = 1U;
+    vlSelf->__Vm_traceActivity[1U] = 1U;
+    vlSelf->__Vm_traceActivity[0U] = 1U;
 }
 
 VL_ATTR_COLD void VSimTop___024root___final(VSimTop___024root* vlSelf) {
@@ -68,8 +79,18 @@ VL_ATTR_COLD void VSimTop___024root___ctor_var_reset(VSimTop___024root* vlSelf) 
     vlSelf->io_uart_out_ch = VL_RAND_RESET_I(8);
     vlSelf->io_uart_in_valid = VL_RAND_RESET_I(1);
     vlSelf->io_uart_in_ch = VL_RAND_RESET_I(8);
+    vlSelf->SimTop__DOT__ram_i_mem_rvalid = VL_RAND_RESET_I(1);
+    vlSelf->SimTop__DOT__ram_i_mem_rdata = VL_RAND_RESET_Q(64);
+    vlSelf->SimTop__DOT__ram_i_mem_rsp_valid = VL_RAND_RESET_I(1);
     vlSelf->SimTop__DOT__ram_i_mem_rsp_rdata = VL_RAND_RESET_Q(64);
+    vlSelf->SimTop__DOT__ram_d_mem_rvalid = VL_RAND_RESET_I(1);
+    vlSelf->SimTop__DOT__ram_d_mem_rdata = VL_RAND_RESET_Q(64);
+    vlSelf->SimTop__DOT__ram_d_mem_rsp_valid = VL_RAND_RESET_I(1);
     vlSelf->SimTop__DOT__ram_d_mem_rsp_rdata = VL_RAND_RESET_Q(64);
+    vlSelf->SimTop__DOT__fd = 0;
+    vlSelf->SimTop__DOT__tmp = VL_RAND_RESET_I(32);
+    vlSelf->SimTop__DOT__i = VL_RAND_RESET_I(32);
+    vlSelf->SimTop__DOT__j = VL_RAND_RESET_I(32);
     vlSelf->SimTop__DOT____Vcellinp__u_SuperScalar__resetn = VL_RAND_RESET_I(1);
     vlSelf->SimTop__DOT__cmt_wen = VL_RAND_RESET_I(1);
     vlSelf->SimTop__DOT__cmt_wdest = VL_RAND_RESET_I(8);
@@ -82,25 +103,36 @@ VL_ATTR_COLD void VSimTop___024root___ctor_var_reset(VSimTop___024root* vlSelf) 
     vlSelf->SimTop__DOT__cycleCnt = VL_RAND_RESET_Q(64);
     vlSelf->SimTop__DOT__instrCnt = VL_RAND_RESET_Q(64);
     for (int __Vi0=0; __Vi0<32; ++__Vi0) {
+        vlSelf->SimTop__DOT__regs_diff[__Vi0] = VL_RAND_RESET_Q(64);
+    }
+    for (int __Vi0=0; __Vi0<32; ++__Vi0) {
         vlSelf->SimTop__DOT__cpu_regs[__Vi0] = VL_RAND_RESET_Q(64);
     }
+    vlSelf->SimTop__DOT__writeback_a_ready = VL_RAND_RESET_I(1);
+    vlSelf->SimTop__DOT__writeback_b_ready = VL_RAND_RESET_I(1);
     vlSelf->SimTop__DOT__skip = VL_RAND_RESET_I(1);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1_icache_ar_valid = VL_RAND_RESET_I(1);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1_icache_ar_payload_addr = VL_RAND_RESET_I(32);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1_icache_ar_payload_id = VL_RAND_RESET_I(2);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1_icache_ar_payload_len = VL_RAND_RESET_I(8);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1_icache_ar_payload_size = VL_RAND_RESET_I(3);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1_icache_ar_payload_burst = VL_RAND_RESET_I(2);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__bpu_predict_taken = VL_RAND_RESET_I(1);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__bpu_target_pc = VL_RAND_RESET_I(32);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1_src_ports_ready = VL_RAND_RESET_I(1);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__lsu_1_timer_cen = VL_RAND_RESET_I(1);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__dcache_stall = VL_RAND_RESET_I(1);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__dcache_dcache_ar_valid = VL_RAND_RESET_I(1);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__dcache_dcache_ar_payload_addr = VL_RAND_RESET_I(32);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__dcache_dcache_ar_payload_id = VL_RAND_RESET_I(2);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__dcache_dcache_ar_payload_len = VL_RAND_RESET_I(8);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__dcache_dcache_ar_payload_size = VL_RAND_RESET_I(3);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__dcache_dcache_ar_payload_burst = VL_RAND_RESET_I(2);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__dcache_dcache_aw_valid = VL_RAND_RESET_I(1);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__dcache_dcache_aw_payload_addr = VL_RAND_RESET_I(32);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__dcache_dcache_aw_payload_id = VL_RAND_RESET_I(2);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__dcache_dcache_aw_payload_len = VL_RAND_RESET_I(8);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__dcache_dcache_aw_payload_size = VL_RAND_RESET_I(3);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__dcache_dcache_aw_payload_burst = VL_RAND_RESET_I(2);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__dcache_dcache_w_valid = VL_RAND_RESET_I(1);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__dcache_dcache_w_payload_data = VL_RAND_RESET_Q(64);
@@ -109,6 +141,9 @@ VL_ATTR_COLD void VSimTop___024root___ctor_var_reset(VSimTop___024root* vlSelf) 
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__timer_1_timer_int = VL_RAND_RESET_I(1);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__change_flow = VL_RAND_RESET_I(1);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1_icache_ports_cmd_valid = VL_RAND_RESET_I(1);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1_dst_ports_valid = VL_RAND_RESET_I(1);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1_bpu_predict_imm = VL_RAND_RESET_Q(64);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__tmp_dst_ports_ready = VL_RAND_RESET_I(1);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__src_stream_valid = VL_RAND_RESET_I(1);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__src_stream_ready = VL_RAND_RESET_I(1);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__src_stream_rValid = VL_RAND_RESET_I(1);
@@ -119,8 +154,10 @@ VL_ATTR_COLD void VSimTop___024root___ctor_var_reset(VSimTop___024root* vlSelf) 
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__pc = VL_RAND_RESET_I(32);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__fetch_valid = VL_RAND_RESET_I(1);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__rsp_flush = VL_RAND_RESET_I(1);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__instr_in_stream_valid = VL_RAND_RESET_I(1);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__fetchFSM_state_next = VL_RAND_RESET_I(2);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__fetchFSM_state_curr = VL_RAND_RESET_I(2);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__icache_ports_cmd_fire_1 = VL_RAND_RESET_I(1);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__dst_ports_fire = VL_RAND_RESET_I(1);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__dst_ports_fire_1 = VL_RAND_RESET_I(1);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__dst_ports_fire_2 = VL_RAND_RESET_I(1);
@@ -129,6 +166,7 @@ VL_ATTR_COLD void VSimTop___024root___ctor_var_reset(VSimTop___024root* vlSelf) 
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__pc_stream_fifo__DOT__read_ptr = VL_RAND_RESET_I(3);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__pc_stream_fifo__DOT__write_ptr = VL_RAND_RESET_I(3);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__pc_stream_fifo__DOT__fifo_empty = VL_RAND_RESET_I(1);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__pc_stream_fifo__DOT__fifo_full = VL_RAND_RESET_I(1);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__pc_stream_fifo__DOT__fifo_ram_0 = VL_RAND_RESET_I(32);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__pc_stream_fifo__DOT__fifo_ram_1 = VL_RAND_RESET_I(32);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__pc_stream_fifo__DOT__fifo_ram_2 = VL_RAND_RESET_I(32);
@@ -136,6 +174,7 @@ VL_ATTR_COLD void VSimTop___024root___ctor_var_reset(VSimTop___024root* vlSelf) 
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__pc_stream_fifo__DOT__ports_s_ports_fire = VL_RAND_RESET_I(1);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__pc_stream_fifo__DOT__empty_entry_cnt = VL_RAND_RESET_I(3);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__pc_stream_fifo__DOT__empty_entry_cnt_next = VL_RAND_RESET_I(3);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__pc_stream_fifo__DOT__fifo_cnt = VL_RAND_RESET_I(3);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__pc_next_stream_fifo__DOT__read_ptr = VL_RAND_RESET_I(3);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__pc_next_stream_fifo__DOT__write_ptr = VL_RAND_RESET_I(3);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__pc_next_stream_fifo__DOT__fifo_empty = VL_RAND_RESET_I(1);
@@ -145,6 +184,9 @@ VL_ATTR_COLD void VSimTop___024root___ctor_var_reset(VSimTop___024root* vlSelf) 
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__pc_next_stream_fifo__DOT__fifo_ram_2 = VL_RAND_RESET_I(32);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__pc_next_stream_fifo__DOT__fifo_ram_3 = VL_RAND_RESET_I(32);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__pc_next_stream_fifo__DOT__ports_s_ports_fire = VL_RAND_RESET_I(1);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__pc_next_stream_fifo__DOT__empty_entry_cnt = VL_RAND_RESET_I(3);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__pc_next_stream_fifo__DOT__empty_entry_cnt_next = VL_RAND_RESET_I(3);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__pc_next_stream_fifo__DOT__fifo_cnt = VL_RAND_RESET_I(3);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__bpu_pred_taken_fifo__DOT__read_ptr = VL_RAND_RESET_I(3);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__bpu_pred_taken_fifo__DOT__write_ptr = VL_RAND_RESET_I(3);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__bpu_pred_taken_fifo__DOT__fifo_empty = VL_RAND_RESET_I(1);
@@ -159,6 +201,7 @@ VL_ATTR_COLD void VSimTop___024root___ctor_var_reset(VSimTop___024root* vlSelf) 
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__instr_stream_fifo__DOT__read_ptr = VL_RAND_RESET_I(3);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__instr_stream_fifo__DOT__write_ptr = VL_RAND_RESET_I(3);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__instr_stream_fifo__DOT__fifo_empty = VL_RAND_RESET_I(1);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__instr_stream_fifo__DOT__fifo_full = VL_RAND_RESET_I(1);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__instr_stream_fifo__DOT__fifo_ram_0 = VL_RAND_RESET_I(32);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__instr_stream_fifo__DOT__fifo_ram_1 = VL_RAND_RESET_I(32);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__instr_stream_fifo__DOT__fifo_ram_2 = VL_RAND_RESET_I(32);
@@ -176,6 +219,7 @@ VL_ATTR_COLD void VSimTop___024root___ctor_var_reset(VSimTop___024root* vlSelf) 
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1_sram_0_ports_cmd_payload_wstrb = VL_RAND_RESET_I(4);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1_sram_1_ports_cmd_valid = VL_RAND_RESET_I(1);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1_sram_1_ports_cmd_payload_addr = VL_RAND_RESET_I(10);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1_sram_1_ports_cmd_payload_wen = VL_RAND_RESET_I(1);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1_sram_1_ports_cmd_payload_wdata = VL_RAND_RESET_I(32);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1_sram_1_ports_cmd_payload_wstrb = VL_RAND_RESET_I(4);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1_sram_2_ports_cmd_valid = VL_RAND_RESET_I(1);
@@ -185,19 +229,35 @@ VL_ATTR_COLD void VSimTop___024root___ctor_var_reset(VSimTop___024root* vlSelf) 
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1_sram_2_ports_cmd_payload_wstrb = VL_RAND_RESET_I(4);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1_sram_3_ports_cmd_valid = VL_RAND_RESET_I(1);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1_sram_3_ports_cmd_payload_addr = VL_RAND_RESET_I(10);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1_sram_3_ports_cmd_payload_wen = VL_RAND_RESET_I(1);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1_sram_3_ports_cmd_payload_wdata = VL_RAND_RESET_I(32);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1_sram_3_ports_cmd_payload_wstrb = VL_RAND_RESET_I(4);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__ar_len_cnt = VL_RAND_RESET_I(4);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_ar_fire = VL_RAND_RESET_I(1);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_ar_fire_1 = VL_RAND_RESET_I(1);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__tmp_when = VL_RAND_RESET_I(1);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__tmp_cache_tag_0 = VL_RAND_RESET_I(19);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__tmp_cache_hit_0 = VL_RAND_RESET_I(1);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__tmp_cache_mru_0 = VL_RAND_RESET_I(1);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__tmp_cache_invld_d1_0 = VL_RAND_RESET_I(1);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__tmp_cache_lru_d1_0 = VL_RAND_RESET_I(1);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__tmp_when_1 = VL_RAND_RESET_I(1);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__tmp_when_2 = VL_RAND_RESET_I(1);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__tmp_when_3 = VL_RAND_RESET_I(1);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__tmp_when_4 = VL_RAND_RESET_I(1);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__tmp_when_5 = VL_RAND_RESET_I(1);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__tmp_when_6 = VL_RAND_RESET_I(1);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__tmp_cache_tag_1 = VL_RAND_RESET_I(19);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__tmp_cache_hit_1 = VL_RAND_RESET_I(1);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__tmp_cache_mru_1 = VL_RAND_RESET_I(1);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__tmp_cache_invld_d1_1 = VL_RAND_RESET_I(1);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__tmp_cache_lru_d1_1 = VL_RAND_RESET_I(1);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__tmp_when_7 = VL_RAND_RESET_I(1);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__tmp_when_8 = VL_RAND_RESET_I(1);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__tmp_when_9 = VL_RAND_RESET_I(1);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__tmp_when_10 = VL_RAND_RESET_I(1);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__tmp_when_11 = VL_RAND_RESET_I(1);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__tmp_when_12 = VL_RAND_RESET_I(1);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__tmp_cpu_rsp_payload_data = VL_RAND_RESET_I(32);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__tmp_cpu_rsp_payload_data_1 = VL_RAND_RESET_I(32);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_0_metas_0_vld = VL_RAND_RESET_I(1);
@@ -977,13 +1037,19 @@ VL_ATTR_COLD void VSimTop___024root___ctor_var_reset(VSimTop___024root* vlSelf) 
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__is_hit_d1 = VL_RAND_RESET_I(1);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__is_miss = VL_RAND_RESET_I(1);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__flush_busy = VL_RAND_RESET_I(1);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__flush_cnt_willIncrement = VL_RAND_RESET_I(1);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__flush_cnt_willClear = VL_RAND_RESET_I(1);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__flush_cnt_valueNext = VL_RAND_RESET_I(7);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__flush_cnt_value = VL_RAND_RESET_I(7);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__flush_done = VL_RAND_RESET_I(1);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__evict_id_miss = VL_RAND_RESET_I(1);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__cpu_addr_d1 = VL_RAND_RESET_I(32);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__cpu_cmd_ready_1 = VL_RAND_RESET_I(1);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__sram_banks_data_0 = VL_RAND_RESET_I(32);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__sram_banks_data_1 = VL_RAND_RESET_I(32);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__next_level_cmd_valid_1 = VL_RAND_RESET_I(1);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__next_level_data_cnt_willIncrement = VL_RAND_RESET_I(1);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__next_level_data_cnt_willClear = VL_RAND_RESET_I(1);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__next_level_data_cnt_valueNext = VL_RAND_RESET_I(3);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__next_level_data_cnt_value = VL_RAND_RESET_I(3);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__next_level_done = VL_RAND_RESET_I(1);
@@ -1007,6 +1073,7 @@ VL_ATTR_COLD void VSimTop___024root___ctor_var_reset(VSimTop___024root* vlSelf) 
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__sram_area_0_sram__DOT__tmp_memsymbol_read_2 = VL_RAND_RESET_I(8);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__sram_area_0_sram__DOT__tmp_memsymbol_read_3 = VL_RAND_RESET_I(8);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__sram_area_1_sram__DOT__tmp_mem_port = VL_RAND_RESET_I(1);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__sram_area_1_sram__DOT__rsp_valid = VL_RAND_RESET_I(1);
     for (int __Vi0=0; __Vi0<1024; ++__Vi0) {
         vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__sram_area_1_sram__DOT__mem_symbol0[__Vi0] = VL_RAND_RESET_I(8);
     }
@@ -1042,6 +1109,7 @@ VL_ATTR_COLD void VSimTop___024root___ctor_var_reset(VSimTop___024root* vlSelf) 
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__sram_area_2_sram__DOT__tmp_memsymbol_read_2 = VL_RAND_RESET_I(8);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__sram_area_2_sram__DOT__tmp_memsymbol_read_3 = VL_RAND_RESET_I(8);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__sram_area_3_sram__DOT__tmp_mem_port = VL_RAND_RESET_I(1);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__sram_area_3_sram__DOT__rsp_valid = VL_RAND_RESET_I(1);
     for (int __Vi0=0; __Vi0<1024; ++__Vi0) {
         vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__sram_area_3_sram__DOT__mem_symbol0[__Vi0] = VL_RAND_RESET_I(8);
     }
@@ -1058,6 +1126,8 @@ VL_ATTR_COLD void VSimTop___024root___ctor_var_reset(VSimTop___024root* vlSelf) 
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__sram_area_3_sram__DOT__tmp_memsymbol_read_1 = VL_RAND_RESET_I(8);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__sram_area_3_sram__DOT__tmp_memsymbol_read_2 = VL_RAND_RESET_I(8);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__sram_area_3_sram__DOT__tmp_memsymbol_read_3 = VL_RAND_RESET_I(8);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__bpu__DOT__tmp_when = VL_RAND_RESET_I(1);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__bpu__DOT__tmp_when_1 = VL_RAND_RESET_I(1);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__arf_1_write_ports_rd_wen = VL_RAND_RESET_I(1);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__decode_1_imm = VL_RAND_RESET_Q(64);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__decode_1_rob_micro_op = VL_RAND_RESET_I(2);
@@ -1069,6 +1139,7 @@ VL_ATTR_COLD void VSimTop___024root___ctor_var_reset(VSimTop___024root* vlSelf) 
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_lsu_ready = VL_RAND_RESET_I(1);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_wb_valid = VL_RAND_RESET_I(1);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_wb_ready = VL_RAND_RESET_I(1);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__src_stream_valid = VL_RAND_RESET_I(1);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__ready = VL_RAND_RESET_I(1);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__fire = VL_RAND_RESET_I(1);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__src1 = VL_RAND_RESET_Q(64);
@@ -1079,7 +1150,9 @@ VL_ATTR_COLD void VSimTop___024root___ctor_var_reset(VSimTop___024root* vlSelf) 
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__rd_addr_reg = VL_RAND_RESET_I(5);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__trap_or_print = VL_RAND_RESET_I(1);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_alu_rValid = VL_RAND_RESET_I(1);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_alu_rData_rd_rob_ptr = VL_RAND_RESET_I(4);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_alu_rData_micro_op_rd_wen = VL_RAND_RESET_I(1);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_alu_rData_micro_op_src2_is_imm = VL_RAND_RESET_I(1);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_alu_rData_micro_op_alu_ctrl_op = VL_RAND_RESET_I(5);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_alu_rData_micro_op_alu_is_word = VL_RAND_RESET_I(1);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_alu_rData_src1_data = VL_RAND_RESET_Q(64);
@@ -1087,8 +1160,13 @@ VL_ATTR_COLD void VSimTop___024root___ctor_var_reset(VSimTop___024root* vlSelf) 
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_alu_rData_pc = VL_RAND_RESET_I(32);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_alu_rData_instruction = VL_RAND_RESET_I(32);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_bju_rValid = VL_RAND_RESET_I(1);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_bju_rData_rd_rob_ptr = VL_RAND_RESET_I(4);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_bju_rData_micro_op_rd_wen = VL_RAND_RESET_I(1);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_bju_rData_micro_op_src2_is_imm = VL_RAND_RESET_I(1);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_bju_rData_micro_op_bju_ctrl_op = VL_RAND_RESET_I(4);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_bju_rData_micro_op_bju_rd_eq_rs1 = VL_RAND_RESET_I(1);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_bju_rData_micro_op_bju_rd_is_link = VL_RAND_RESET_I(1);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_bju_rData_micro_op_bju_rs1_is_link = VL_RAND_RESET_I(1);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_bju_rData_micro_op_exp_ctrl_op = VL_RAND_RESET_I(4);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_bju_rData_micro_op_exp_csr_addr = VL_RAND_RESET_I(12);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_bju_rData_micro_op_exp_csr_wen = VL_RAND_RESET_I(1);
@@ -1100,7 +1178,9 @@ VL_ATTR_COLD void VSimTop___024root___ctor_var_reset(VSimTop___024root* vlSelf) 
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_bju_rData_bpu_pred_taken = VL_RAND_RESET_I(1);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_bju_rData_instruction = VL_RAND_RESET_I(32);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_lsu_rValid = VL_RAND_RESET_I(1);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_lsu_rData_rd_rob_ptr = VL_RAND_RESET_I(4);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_lsu_rData_micro_op_rd_wen = VL_RAND_RESET_I(1);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_lsu_rData_micro_op_src2_is_imm = VL_RAND_RESET_I(1);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_lsu_rData_micro_op_lsu_ctrl_op = VL_RAND_RESET_I(4);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_lsu_rData_micro_op_lsu_is_load = VL_RAND_RESET_I(1);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_lsu_rData_micro_op_lsu_is_store = VL_RAND_RESET_I(1);
@@ -1113,8 +1193,27 @@ VL_ATTR_COLD void VSimTop___024root___ctor_var_reset(VSimTop___024root* vlSelf) 
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_wb_rData_rd_addr = VL_RAND_RESET_I(5);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_wb_rData_rd_data = VL_RAND_RESET_Q(64);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_wb_rData_rd_wen = VL_RAND_RESET_I(1);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_wb_rData_rob_ptr = VL_RAND_RESET_I(4);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_wb_rData_pc = VL_RAND_RESET_I(32);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_wb_rData_instruction = VL_RAND_RESET_I(32);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__to_ports_alu_payload_micro_op_alu_ctrl_op_string = VL_RAND_RESET_Q(48);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__to_ports_bju_payload_micro_op_bju_ctrl_op_string = VL_RAND_RESET_Q(40);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__to_ports_bju_payload_micro_op_exp_ctrl_op_string = VL_RAND_RESET_Q(48);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__to_ports_lsu_payload_micro_op_lsu_ctrl_op_string = VL_RAND_RESET_I(32);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_alu_payload_micro_op_alu_ctrl_op_string = VL_RAND_RESET_Q(48);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_bju_payload_micro_op_bju_ctrl_op_string = VL_RAND_RESET_Q(40);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_bju_payload_micro_op_exp_ctrl_op_string = VL_RAND_RESET_Q(48);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_lsu_payload_micro_op_lsu_ctrl_op_string = VL_RAND_RESET_I(32);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_alu_m2sPipe_payload_micro_op_alu_ctrl_op_string = VL_RAND_RESET_Q(48);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_alu_rData_micro_op_alu_ctrl_op_string = VL_RAND_RESET_Q(48);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_bju_m2sPipe_payload_micro_op_bju_ctrl_op_string = VL_RAND_RESET_Q(40);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_bju_m2sPipe_payload_micro_op_exp_ctrl_op_string = VL_RAND_RESET_Q(48);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_bju_rData_micro_op_bju_ctrl_op_string = VL_RAND_RESET_Q(40);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_bju_rData_micro_op_exp_ctrl_op_string = VL_RAND_RESET_Q(48);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_lsu_m2sPipe_payload_micro_op_lsu_ctrl_op_string = VL_RAND_RESET_I(32);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_lsu_rData_micro_op_lsu_ctrl_op_string = VL_RAND_RESET_I(32);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__arf_1__DOT__tmp_read_ports_rs1_data = VL_RAND_RESET_Q(64);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__arf_1__DOT__tmp_read_ports_rs2_data = VL_RAND_RESET_Q(64);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__arf_1__DOT__reg_file_0 = VL_RAND_RESET_Q(64);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__arf_1__DOT__reg_file_1 = VL_RAND_RESET_Q(64);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__arf_1__DOT__reg_file_2 = VL_RAND_RESET_Q(64);
@@ -1147,15 +1246,38 @@ VL_ATTR_COLD void VSimTop___024root___ctor_var_reset(VSimTop___024root* vlSelf) 
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__arf_1__DOT__reg_file_29 = VL_RAND_RESET_Q(64);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__arf_1__DOT__reg_file_30 = VL_RAND_RESET_Q(64);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__arf_1__DOT__reg_file_31 = VL_RAND_RESET_Q(64);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__decode_1__DOT__tmp_alu_ctrl_sel = VL_RAND_RESET_I(13);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__decode_1__DOT__ebreak = VL_RAND_RESET_I(1);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__decode_1__DOT__ecall = VL_RAND_RESET_I(1);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__decode_1__DOT__mret = VL_RAND_RESET_I(1);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__decode_1__DOT__csrrw = VL_RAND_RESET_I(1);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__decode_1__DOT__csrrs = VL_RAND_RESET_I(1);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__decode_1__DOT__csrrc = VL_RAND_RESET_I(1);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__decode_1__DOT__csrrwi = VL_RAND_RESET_I(1);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__decode_1__DOT__csrrsi = VL_RAND_RESET_I(1);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__decode_1__DOT__csrrci = VL_RAND_RESET_I(1);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__decode_1__DOT__csri = VL_RAND_RESET_I(1);
+    VL_RAND_RESET_W(384, vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__decode_1__DOT__imm_data);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__decode_1__DOT__imm_type = VL_RAND_RESET_I(6);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__decode_1__DOT__alu_ctrl_sel = VL_RAND_RESET_I(24);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__decode_1__DOT__alu_ctrl_op = VL_RAND_RESET_I(5);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__decode_1__DOT__bju_ctrl_sel = VL_RAND_RESET_I(10);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__decode_1__DOT__bju_ctrl_op = VL_RAND_RESET_I(4);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__decode_1__DOT__exp_ctrl_sel = VL_RAND_RESET_I(9);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__decode_1__DOT__exp_ctrl_op = VL_RAND_RESET_I(4);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__decode_1__DOT__lsu_ctrl_sel = VL_RAND_RESET_I(11);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__decode_1__DOT__lsu_ctrl_op = VL_RAND_RESET_I(4);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__decode_1__DOT__rd_wen = VL_RAND_RESET_I(1);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__decode_1__DOT__src2_is_imm = VL_RAND_RESET_I(1);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__decode_1__DOT__alu_micro_op_alu_ctrl_op_string = VL_RAND_RESET_Q(48);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__decode_1__DOT__lsu_micro_op_lsu_ctrl_op_string = VL_RAND_RESET_I(32);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__decode_1__DOT__bju_micro_op_bju_ctrl_op_string = VL_RAND_RESET_Q(40);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__decode_1__DOT__bju_micro_op_exp_ctrl_op_string = VL_RAND_RESET_Q(48);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__decode_1__DOT__exception_string = VL_RAND_RESET_Q(48);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__decode_1__DOT__tmp_alu_micro_op_alu_ctrl_op_string = VL_RAND_RESET_Q(48);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__decode_1__DOT__tmp_lsu_micro_op_lsu_ctrl_op_string = VL_RAND_RESET_I(32);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__decode_1__DOT__tmp_bju_micro_op_bju_ctrl_op_string = VL_RAND_RESET_Q(40);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__decode_1__DOT__tmp_bju_micro_op_exp_ctrl_op_string = VL_RAND_RESET_Q(48);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__bju_kernel_1_redirect_valid = VL_RAND_RESET_I(1);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__bju_kernel_1_redirect_pc = VL_RAND_RESET_I(32);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__dst_stream_ready = VL_RAND_RESET_I(1);
@@ -1163,8 +1285,13 @@ VL_ATTR_COLD void VSimTop___024root___ctor_var_reset(VSimTop___024root* vlSelf) 
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__dst_stream_rValid = VL_RAND_RESET_I(1);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__dst_stream_rData_result = VL_RAND_RESET_Q(64);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__dst_stream_rData_rd_wen = VL_RAND_RESET_I(1);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__dst_stream_rData_rd_rob_ptr = VL_RAND_RESET_I(4);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__dst_stream_rData_pc = VL_RAND_RESET_I(32);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__dst_stream_rData_instruction = VL_RAND_RESET_I(32);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__src_ports_payload_micro_op_bju_ctrl_op_string = VL_RAND_RESET_Q(40);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__src_ports_payload_micro_op_exp_ctrl_op_string = VL_RAND_RESET_Q(48);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__src_stream_payload_micro_op_bju_ctrl_op_string = VL_RAND_RESET_Q(40);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__src_stream_payload_micro_op_exp_ctrl_op_string = VL_RAND_RESET_Q(48);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__bju_kernel_1__DOT__csr_regfile_cpu_ports_rdata = VL_RAND_RESET_Q(64);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__bju_kernel_1__DOT__csr_regfile_clint_ports_mtvec = VL_RAND_RESET_Q(64);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__bju_kernel_1__DOT__clint_1_csr_ports_mepc_wen = VL_RAND_RESET_I(1);
@@ -1173,11 +1300,18 @@ VL_ATTR_COLD void VSimTop___024root___ctor_var_reset(VSimTop___024root* vlSelf) 
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__bju_kernel_1__DOT__clint_1_csr_ports_mstatus_wdata = VL_RAND_RESET_Q(64);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__bju_kernel_1__DOT__clint_1_int_en = VL_RAND_RESET_I(1);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__bju_kernel_1__DOT__tmp_when = VL_RAND_RESET_I(1);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__bju_kernel_1__DOT__pc_next = VL_RAND_RESET_I(32);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__bju_kernel_1__DOT__branch_or_jump = VL_RAND_RESET_I(1);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__bju_kernel_1__DOT__is_call = VL_RAND_RESET_I(1);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__bju_kernel_1__DOT__is_ret = VL_RAND_RESET_I(1);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__bju_kernel_1__DOT__is_jmp = VL_RAND_RESET_I(1);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__bju_kernel_1__DOT__branch_taken = VL_RAND_RESET_I(1);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__bju_kernel_1__DOT__branch_history = VL_RAND_RESET_I(5);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__bju_kernel_1__DOT__csr_wdata_regNext = VL_RAND_RESET_Q(64);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__bju_kernel_1__DOT__csr_wen_regNext = VL_RAND_RESET_I(1);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__bju_kernel_1__DOT__micro_op_exp_csr_addr_regNext = VL_RAND_RESET_I(12);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__bju_kernel_1__DOT__micro_op_bju_ctrl_op_string = VL_RAND_RESET_Q(40);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__bju_kernel_1__DOT__micro_op_exp_ctrl_op_string = VL_RAND_RESET_Q(48);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__bju_kernel_1__DOT__csr_regfile__DOT__tmp_mcycle = VL_RAND_RESET_Q(64);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__bju_kernel_1__DOT__csr_regfile__DOT__mstatus = VL_RAND_RESET_Q(64);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__bju_kernel_1__DOT__csr_regfile__DOT__mie = VL_RAND_RESET_Q(64);
@@ -1192,7 +1326,11 @@ VL_ATTR_COLD void VSimTop___024root___ctor_var_reset(VSimTop___024root* vlSelf) 
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__bju_kernel_1__DOT__clint_1__DOT__int_state = VL_RAND_RESET_I(3);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__bju_kernel_1__DOT__clint_1__DOT__mepc_wdata = VL_RAND_RESET_Q(64);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__bju_kernel_1__DOT__clint_1__DOT__mcause_wdata = VL_RAND_RESET_Q(64);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__bju_kernel_1__DOT__clint_1__DOT__int_state_string = VL_RAND_RESET_Q(48);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__alu_1__DOT__div_io_op_is_word = VL_RAND_RESET_I(1);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__alu_1__DOT__div_io_op_is_signed = VL_RAND_RESET_I(1);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__alu_1__DOT__div_io_dividend = VL_RAND_RESET_Q(64);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__alu_1__DOT__div_io_divisor = VL_RAND_RESET_Q(64);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__alu_1__DOT__div_io_done_valid = VL_RAND_RESET_I(1);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__alu_1__DOT__add_result = VL_RAND_RESET_Q(64);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__alu_1__DOT__sub_result = VL_RAND_RESET_Q(64);
@@ -1205,6 +1343,8 @@ VL_ATTR_COLD void VSimTop___024root___ctor_var_reset(VSimTop___024root* vlSelf) 
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__alu_1__DOT__src_stream_ready = VL_RAND_RESET_I(1);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__alu_1__DOT__dst_stream_ready = VL_RAND_RESET_I(1);
     VL_RAND_RESET_W(128, vlSelf->SimTop__DOT__u_SuperScalar__DOT__alu_1__DOT__mul_temp_u);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__alu_1__DOT__mul_sel = VL_RAND_RESET_I(5);
+    VL_RAND_RESET_W(320, vlSelf->SimTop__DOT__u_SuperScalar__DOT__alu_1__DOT__mul_data);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__alu_1__DOT__mul_result = VL_RAND_RESET_Q(64);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__alu_1__DOT__div_start = VL_RAND_RESET_I(1);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__alu_1__DOT__div_op_is_signed = VL_RAND_RESET_I(1);
@@ -1213,15 +1353,22 @@ VL_ATTR_COLD void VSimTop___024root___ctor_var_reset(VSimTop___024root* vlSelf) 
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__alu_1__DOT__div_src1_reg = VL_RAND_RESET_Q(64);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__alu_1__DOT__div_src2_reg = VL_RAND_RESET_Q(64);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__alu_1__DOT__rd_wen_reg = VL_RAND_RESET_I(1);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__alu_1__DOT__rd_rob_ptr_reg = VL_RAND_RESET_I(4);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__alu_1__DOT__alu_is_quo_reg = VL_RAND_RESET_I(1);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__alu_1__DOT__alu_is_rem_reg = VL_RAND_RESET_I(1);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__alu_1__DOT__dst_stream_rValid = VL_RAND_RESET_I(1);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__alu_1__DOT__dst_stream_rData_result = VL_RAND_RESET_Q(64);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__alu_1__DOT__dst_stream_rData_rd_wen = VL_RAND_RESET_I(1);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__alu_1__DOT__dst_stream_rData_rd_rob_ptr = VL_RAND_RESET_I(4);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__alu_1__DOT__dst_stream_rData_pc = VL_RAND_RESET_I(32);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__alu_1__DOT__dst_stream_rData_instruction = VL_RAND_RESET_I(32);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__alu_1__DOT__src_ports_payload_micro_op_alu_ctrl_op_string = VL_RAND_RESET_Q(48);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__alu_1__DOT__tmp_src_stream_payload_micro_op_alu_ctrl_op_string = VL_RAND_RESET_Q(48);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__alu_1__DOT__src_stream_payload_micro_op_alu_ctrl_op_string = VL_RAND_RESET_Q(48);
     VL_RAND_RESET_W(128, vlSelf->SimTop__DOT__u_SuperScalar__DOT__alu_1__DOT__div__DOT__u_div_m_axis_dout_tdata);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__alu_1__DOT__div__DOT__busy_reg = VL_RAND_RESET_I(1);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__alu_1__DOT__div__DOT__dividend_word_extd = VL_RAND_RESET_Q(64);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__alu_1__DOT__div__DOT__divisor_word_extd = VL_RAND_RESET_Q(64);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__alu_1__DOT__div__DOT__dividend_abs = VL_RAND_RESET_Q(64);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__alu_1__DOT__div__DOT__divisor_abs = VL_RAND_RESET_Q(64);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__alu_1__DOT__div__DOT__dividend_positive = VL_RAND_RESET_I(1);
@@ -1233,22 +1380,30 @@ VL_ATTR_COLD void VSimTop___024root___ctor_var_reset(VSimTop___024root* vlSelf) 
         vlSelf->SimTop__DOT__u_SuperScalar__DOT__alu_1__DOT__div__DOT__u_div__DOT__remainder[__Vi0] = VL_RAND_RESET_Q(64);
     }
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__alu_1__DOT__div__DOT__u_div__DOT__out_valid = VL_RAND_RESET_Q(60);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__lsu_1__DOT__dcache_ports_stall = VL_RAND_RESET_I(1);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__lsu_1__DOT__lsu_cen = VL_RAND_RESET_I(1);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__lsu_1__DOT__lsu_addr = VL_RAND_RESET_Q(64);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__lsu_1__DOT__lsu_addr_is_timer = VL_RAND_RESET_I(1);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__lsu_1__DOT__dcache_wdata = VL_RAND_RESET_Q(64);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__lsu_1__DOT__dcache_size = VL_RAND_RESET_I(3);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__lsu_1__DOT__lsu_addr_offset_reg = VL_RAND_RESET_I(3);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__lsu_1__DOT__dcache_rdata = VL_RAND_RESET_Q(64);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__lsu_1__DOT__lsu_ctrl_op_reg = VL_RAND_RESET_I(4);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__lsu_1__DOT__rd_wen_reg = VL_RAND_RESET_I(1);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__lsu_1__DOT__rd_rob_ptr_reg = VL_RAND_RESET_I(4);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__lsu_1__DOT__src_stream_fire = VL_RAND_RESET_I(1);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__lsu_1__DOT__tmp_dst_stream_payload_pc = VL_RAND_RESET_I(32);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__lsu_1__DOT__tmp_dst_stream_payload_instruction = VL_RAND_RESET_I(32);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__lsu_1__DOT__src_stream_fire_1 = VL_RAND_RESET_I(1);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__lsu_1__DOT__src_ports_payload_micro_op_lsu_ctrl_op_string = VL_RAND_RESET_I(32);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__lsu_1__DOT__tmp_src_stream_payload_micro_op_lsu_ctrl_op_string = VL_RAND_RESET_I(32);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__lsu_1__DOT__src_stream_payload_micro_op_lsu_ctrl_op_string = VL_RAND_RESET_I(32);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__lsu_1__DOT__lsu_ctrl_op_reg_string = VL_RAND_RESET_I(32);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__lsu_1__DOT__tmp_4 = VL_RAND_RESET_I(8);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__lsu_1__DOT__tmp_5 = VL_RAND_RESET_I(8);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__lsu_1__DOT__tmp_6 = VL_RAND_RESET_I(8);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__dcache__DOT__biu_1_cpu_bypass_rsp_valid = VL_RAND_RESET_I(1);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__dcache__DOT__handshake_cnt = VL_RAND_RESET_I(1);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__dcache__DOT__ar_len_cnt = VL_RAND_RESET_I(4);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__dcache__DOT__bypass_read = VL_RAND_RESET_I(1);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__dcache__DOT__bypass_write = VL_RAND_RESET_I(1);
@@ -1258,35 +1413,59 @@ VL_ATTR_COLD void VSimTop___024root___ctor_var_reset(VSimTop___024root* vlSelf) 
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__dcache__DOT__dcache_ar_fire_1 = VL_RAND_RESET_I(1);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__dcache__DOT__dcache_aw_fire = VL_RAND_RESET_I(1);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__dcache__DOT__dcache_w_fire = VL_RAND_RESET_I(1);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__dcache__DOT__biu_1__DOT__cpu_stall = VL_RAND_RESET_I(1);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__dcache__DOT__biu_1__DOT__cpu_bypass_stall = VL_RAND_RESET_I(1);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__dcache__DOT__biu_1__DOT__cpu_cmd_ready_1 = VL_RAND_RESET_I(1);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__dcache__DOT__biu_1__DOT__bypass = VL_RAND_RESET_I(1);
+    vlSelf->SimTop__DOT__u_SuperScalar__DOT__dcache__DOT__biu_1__DOT__bypass_reg = VL_RAND_RESET_I(1);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__dcache__DOT__biu_1__DOT__bypass_rsp_valid_d1 = VL_RAND_RESET_I(1);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__dcache__DOT__biu_1__DOT__bypass_rsp_data_d1 = VL_RAND_RESET_Q(64);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__timer_1__DOT__tmp_mtime = VL_RAND_RESET_Q(64);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__timer_1__DOT__mtime = VL_RAND_RESET_Q(64);
     vlSelf->SimTop__DOT__u_SuperScalar__DOT__timer_1__DOT__mtimecmp = VL_RAND_RESET_Q(64);
+    vlSelf->SimTop__DOT__u_axi_slave_mem_i__DOT__sig_aw_addr = VL_RAND_RESET_I(32);
+    vlSelf->SimTop__DOT__u_axi_slave_mem_i__DOT__sig_aw_ready = VL_RAND_RESET_I(1);
+    vlSelf->SimTop__DOT__u_axi_slave_mem_i__DOT__sig_aw_burst = VL_RAND_RESET_I(2);
+    vlSelf->SimTop__DOT__u_axi_slave_mem_i__DOT__sig_aw_len = VL_RAND_RESET_I(8);
+    vlSelf->SimTop__DOT__u_axi_slave_mem_i__DOT__sig_w_ready = VL_RAND_RESET_I(1);
+    vlSelf->SimTop__DOT__u_axi_slave_mem_i__DOT__sig_b_resp = VL_RAND_RESET_I(2);
+    vlSelf->SimTop__DOT__u_axi_slave_mem_i__DOT__sig_b_user = VL_RAND_RESET_I(1);
+    vlSelf->SimTop__DOT__u_axi_slave_mem_i__DOT__sig_b_valid = VL_RAND_RESET_I(1);
     vlSelf->SimTop__DOT__u_axi_slave_mem_i__DOT__sig_ar_addr = VL_RAND_RESET_I(32);
     vlSelf->SimTop__DOT__u_axi_slave_mem_i__DOT__sig_ar_ready = VL_RAND_RESET_I(1);
     vlSelf->SimTop__DOT__u_axi_slave_mem_i__DOT__sig_ar_burst = VL_RAND_RESET_I(2);
     vlSelf->SimTop__DOT__u_axi_slave_mem_i__DOT__sig_ar_len = VL_RAND_RESET_I(8);
+    vlSelf->SimTop__DOT__u_axi_slave_mem_i__DOT__sig_r_data = VL_RAND_RESET_Q(64);
+    vlSelf->SimTop__DOT__u_axi_slave_mem_i__DOT__sig_r_resp = VL_RAND_RESET_I(2);
     vlSelf->SimTop__DOT__u_axi_slave_mem_i__DOT__sig_r_last = VL_RAND_RESET_I(1);
+    vlSelf->SimTop__DOT__u_axi_slave_mem_i__DOT__sig_r_user = VL_RAND_RESET_I(1);
     vlSelf->SimTop__DOT__u_axi_slave_mem_i__DOT__sig_r_valid = VL_RAND_RESET_I(1);
+    vlSelf->SimTop__DOT__u_axi_slave_mem_i__DOT__sig_r_id = VL_RAND_RESET_I(4);
+    vlSelf->SimTop__DOT__u_axi_slave_mem_i__DOT__sig_b_id = VL_RAND_RESET_I(4);
     vlSelf->SimTop__DOT__u_axi_slave_mem_i__DOT__ar_wrap_en = VL_RAND_RESET_I(1);
     vlSelf->SimTop__DOT__u_axi_slave_mem_i__DOT__axi_awv_awr_flag = VL_RAND_RESET_I(1);
     vlSelf->SimTop__DOT__u_axi_slave_mem_i__DOT__axi_arv_arr_flag = VL_RAND_RESET_I(1);
+    vlSelf->SimTop__DOT__u_axi_slave_mem_i__DOT__aw_len_cntr = VL_RAND_RESET_I(8);
     vlSelf->SimTop__DOT__u_axi_slave_mem_i__DOT__ar_len_cntr = VL_RAND_RESET_I(8);
     vlSelf->SimTop__DOT__u_axi_slave_mem_d__DOT__sig_aw_addr = VL_RAND_RESET_I(32);
     vlSelf->SimTop__DOT__u_axi_slave_mem_d__DOT__sig_aw_ready = VL_RAND_RESET_I(1);
     vlSelf->SimTop__DOT__u_axi_slave_mem_d__DOT__sig_aw_burst = VL_RAND_RESET_I(2);
     vlSelf->SimTop__DOT__u_axi_slave_mem_d__DOT__sig_aw_len = VL_RAND_RESET_I(8);
     vlSelf->SimTop__DOT__u_axi_slave_mem_d__DOT__sig_w_ready = VL_RAND_RESET_I(1);
+    vlSelf->SimTop__DOT__u_axi_slave_mem_d__DOT__sig_b_resp = VL_RAND_RESET_I(2);
+    vlSelf->SimTop__DOT__u_axi_slave_mem_d__DOT__sig_b_user = VL_RAND_RESET_I(1);
     vlSelf->SimTop__DOT__u_axi_slave_mem_d__DOT__sig_b_valid = VL_RAND_RESET_I(1);
     vlSelf->SimTop__DOT__u_axi_slave_mem_d__DOT__sig_ar_addr = VL_RAND_RESET_I(32);
     vlSelf->SimTop__DOT__u_axi_slave_mem_d__DOT__sig_ar_ready = VL_RAND_RESET_I(1);
     vlSelf->SimTop__DOT__u_axi_slave_mem_d__DOT__sig_ar_burst = VL_RAND_RESET_I(2);
     vlSelf->SimTop__DOT__u_axi_slave_mem_d__DOT__sig_ar_len = VL_RAND_RESET_I(8);
+    vlSelf->SimTop__DOT__u_axi_slave_mem_d__DOT__sig_r_data = VL_RAND_RESET_Q(64);
+    vlSelf->SimTop__DOT__u_axi_slave_mem_d__DOT__sig_r_resp = VL_RAND_RESET_I(2);
     vlSelf->SimTop__DOT__u_axi_slave_mem_d__DOT__sig_r_last = VL_RAND_RESET_I(1);
+    vlSelf->SimTop__DOT__u_axi_slave_mem_d__DOT__sig_r_user = VL_RAND_RESET_I(1);
     vlSelf->SimTop__DOT__u_axi_slave_mem_d__DOT__sig_r_valid = VL_RAND_RESET_I(1);
+    vlSelf->SimTop__DOT__u_axi_slave_mem_d__DOT__sig_r_id = VL_RAND_RESET_I(4);
+    vlSelf->SimTop__DOT__u_axi_slave_mem_d__DOT__sig_b_id = VL_RAND_RESET_I(4);
     vlSelf->SimTop__DOT__u_axi_slave_mem_d__DOT__aw_wrap_en = VL_RAND_RESET_I(1);
     vlSelf->SimTop__DOT__u_axi_slave_mem_d__DOT__ar_wrap_en = VL_RAND_RESET_I(1);
     vlSelf->SimTop__DOT__u_axi_slave_mem_d__DOT__axi_awv_awr_flag = VL_RAND_RESET_I(1);
@@ -1295,9 +1474,15 @@ VL_ATTR_COLD void VSimTop___024root___ctor_var_reset(VSimTop___024root* vlSelf) 
     vlSelf->SimTop__DOT__u_axi_slave_mem_d__DOT__ar_len_cntr = VL_RAND_RESET_I(8);
     vlSelf->__Vfunc_ram_read_helper__8__Vfuncout = 0;
     vlSelf->__Vfunc_ram_read_helper__10__Vfuncout = 0;
+    vlSelf->__Vdly__SimTop__DOT__u_axi_slave_mem_i__DOT__sig_ar_ready = VL_RAND_RESET_I(1);
+    vlSelf->__Vdly__SimTop__DOT__u_axi_slave_mem_d__DOT__sig_aw_ready = VL_RAND_RESET_I(1);
+    vlSelf->__Vdly__SimTop__DOT__u_axi_slave_mem_d__DOT__sig_w_ready = VL_RAND_RESET_I(1);
+    vlSelf->__Vdly__SimTop__DOT__u_axi_slave_mem_d__DOT__sig_ar_ready = VL_RAND_RESET_I(1);
     vlSelf->__Vdly__SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__pc = VL_RAND_RESET_I(32);
+    vlSelf->__Vdly__SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__pc_stream_fifo__DOT__fifo_cnt = VL_RAND_RESET_I(3);
     vlSelf->__Vdly__SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__pc_stream_fifo__DOT__write_ptr = VL_RAND_RESET_I(3);
     vlSelf->__Vdly__SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__pc_stream_fifo__DOT__read_ptr = VL_RAND_RESET_I(3);
+    vlSelf->__Vdly__SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__pc_next_stream_fifo__DOT__fifo_cnt = VL_RAND_RESET_I(3);
     vlSelf->__Vdly__SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__pc_next_stream_fifo__DOT__write_ptr = VL_RAND_RESET_I(3);
     vlSelf->__Vdly__SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__pc_next_stream_fifo__DOT__read_ptr = VL_RAND_RESET_I(3);
     vlSelf->__Vdly__SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__bpu_pred_taken_fifo__DOT__read_ptr = VL_RAND_RESET_I(3);
@@ -1305,7 +1490,6 @@ VL_ATTR_COLD void VSimTop___024root___ctor_var_reset(VSimTop___024root* vlSelf) 
     vlSelf->__Vdly__SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__instr_stream_fifo__DOT__read_ptr = VL_RAND_RESET_I(3);
     vlSelf->__Vdly__SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__instr_stream_fifo__DOT__write_ptr = VL_RAND_RESET_I(3);
     vlSelf->__Vdly__SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__ar_len_cnt = VL_RAND_RESET_I(4);
-    vlSelf->__Vdly__SimTop__DOT__u_SuperScalar__DOT__icache_1_icache_ar_payload_addr = VL_RAND_RESET_I(32);
     vlSelf->__Vdly__SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__alu_busy = VL_RAND_RESET_I(1);
     vlSelf->__Vdly__SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__bju_busy = VL_RAND_RESET_I(1);
     vlSelf->__Vdly__SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__lsu_busy = VL_RAND_RESET_I(1);
@@ -1313,4 +1497,7 @@ VL_ATTR_COLD void VSimTop___024root___ctor_var_reset(VSimTop___024root* vlSelf) 
     vlSelf->__Vdly__SimTop__DOT__u_SuperScalar__DOT__dcache__DOT__ar_len_cnt = VL_RAND_RESET_I(4);
     vlSelf->__VinpClk__TOP__SimTop__DOT____Vcellinp__u_SuperScalar__resetn = VL_RAND_RESET_I(1);
     vlSelf->__Vchglast__TOP__SimTop__DOT____Vcellinp__u_SuperScalar__resetn = VL_RAND_RESET_I(1);
+    for (int __Vi0=0; __Vi0<6; ++__Vi0) {
+        vlSelf->__Vm_traceActivity[__Vi0] = VL_RAND_RESET_I(1);
+    }
 }

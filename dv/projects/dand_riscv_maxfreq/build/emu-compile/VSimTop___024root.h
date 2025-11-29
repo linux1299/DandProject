@@ -27,24 +27,36 @@ VL_MODULE(VSimTop___024root) {
         VL_OUT8(io_uart_out_ch,7,0);
         VL_OUT8(io_uart_in_valid,0,0);
         VL_IN8(io_uart_in_ch,7,0);
+        CData/*0:0*/ SimTop__DOT__ram_i_mem_rvalid;
+        CData/*0:0*/ SimTop__DOT__ram_i_mem_rsp_valid;
+        CData/*0:0*/ SimTop__DOT__ram_d_mem_rvalid;
+        CData/*0:0*/ SimTop__DOT__ram_d_mem_rsp_valid;
         CData/*0:0*/ SimTop__DOT__cmt_wen;
         CData/*7:0*/ SimTop__DOT__cmt_wdest;
         CData/*0:0*/ SimTop__DOT__cmt_valid;
         CData/*0:0*/ SimTop__DOT__trap;
         CData/*7:0*/ SimTop__DOT__trap_code;
+        CData/*0:0*/ SimTop__DOT__writeback_a_ready;
+        CData/*0:0*/ SimTop__DOT__writeback_b_ready;
         CData/*0:0*/ SimTop__DOT__skip;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1_icache_ar_valid;
         CData/*1:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1_icache_ar_payload_id;
         CData/*7:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1_icache_ar_payload_len;
+        CData/*2:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1_icache_ar_payload_size;
         CData/*1:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1_icache_ar_payload_burst;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__bpu_predict_taken;
+        CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1_src_ports_ready;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__lsu_1_timer_cen;
+        CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__dcache_stall;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__dcache_dcache_ar_valid;
         CData/*1:0*/ SimTop__DOT__u_SuperScalar__DOT__dcache_dcache_ar_payload_id;
         CData/*7:0*/ SimTop__DOT__u_SuperScalar__DOT__dcache_dcache_ar_payload_len;
+        CData/*2:0*/ SimTop__DOT__u_SuperScalar__DOT__dcache_dcache_ar_payload_size;
         CData/*1:0*/ SimTop__DOT__u_SuperScalar__DOT__dcache_dcache_ar_payload_burst;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__dcache_dcache_aw_valid;
+        CData/*1:0*/ SimTop__DOT__u_SuperScalar__DOT__dcache_dcache_aw_payload_id;
         CData/*7:0*/ SimTop__DOT__u_SuperScalar__DOT__dcache_dcache_aw_payload_len;
+        CData/*2:0*/ SimTop__DOT__u_SuperScalar__DOT__dcache_dcache_aw_payload_size;
         CData/*1:0*/ SimTop__DOT__u_SuperScalar__DOT__dcache_dcache_aw_payload_burst;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__dcache_dcache_w_valid;
         CData/*7:0*/ SimTop__DOT__u_SuperScalar__DOT__dcache_dcache_w_payload_strb;
@@ -52,29 +64,40 @@ VL_MODULE(VSimTop___024root) {
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__timer_1_timer_int;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__change_flow;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1_icache_ports_cmd_valid;
+        CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1_dst_ports_valid;
+        CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__tmp_dst_ports_ready;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__src_stream_valid;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__src_stream_ready;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__src_stream_rValid;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__src_stream_rData_bpu_pred_taken;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__fetch_valid;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__rsp_flush;
+        CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__instr_in_stream_valid;
         CData/*1:0*/ SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__fetchFSM_state_next;
         CData/*1:0*/ SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__fetchFSM_state_curr;
+        CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__icache_ports_cmd_fire_1;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__dst_ports_fire;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__dst_ports_fire_1;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__dst_ports_fire_2;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__dst_ports_fire_3;
         CData/*2:0*/ SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__pc_stream_fifo__DOT__read_ptr;
         CData/*2:0*/ SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__pc_stream_fifo__DOT__write_ptr;
+    };
+    struct {
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__pc_stream_fifo__DOT__fifo_empty;
+        CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__pc_stream_fifo__DOT__fifo_full;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__pc_stream_fifo__DOT__ports_s_ports_fire;
         CData/*2:0*/ SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__pc_stream_fifo__DOT__empty_entry_cnt;
         CData/*2:0*/ SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__pc_stream_fifo__DOT__empty_entry_cnt_next;
+        CData/*2:0*/ SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__pc_stream_fifo__DOT__fifo_cnt;
         CData/*2:0*/ SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__pc_next_stream_fifo__DOT__read_ptr;
         CData/*2:0*/ SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__pc_next_stream_fifo__DOT__write_ptr;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__pc_next_stream_fifo__DOT__fifo_empty;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__pc_next_stream_fifo__DOT__fifo_full;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__pc_next_stream_fifo__DOT__ports_s_ports_fire;
+        CData/*2:0*/ SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__pc_next_stream_fifo__DOT__empty_entry_cnt;
+        CData/*2:0*/ SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__pc_next_stream_fifo__DOT__empty_entry_cnt_next;
+        CData/*2:0*/ SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__pc_next_stream_fifo__DOT__fifo_cnt;
         CData/*2:0*/ SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__bpu_pred_taken_fifo__DOT__read_ptr;
         CData/*2:0*/ SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__bpu_pred_taken_fifo__DOT__write_ptr;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__bpu_pred_taken_fifo__DOT__fifo_empty;
@@ -82,8 +105,6 @@ VL_MODULE(VSimTop___024root) {
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__bpu_pred_taken_fifo__DOT__fifo_ram_0;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__bpu_pred_taken_fifo__DOT__fifo_ram_1;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__bpu_pred_taken_fifo__DOT__fifo_ram_2;
-    };
-    struct {
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__bpu_pred_taken_fifo__DOT__fifo_ram_3;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__bpu_pred_taken_fifo__DOT__ports_s_ports_fire;
         CData/*2:0*/ SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__bpu_pred_taken_fifo__DOT__empty_entry_cnt;
@@ -91,6 +112,7 @@ VL_MODULE(VSimTop___024root) {
         CData/*2:0*/ SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__instr_stream_fifo__DOT__read_ptr;
         CData/*2:0*/ SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__instr_stream_fifo__DOT__write_ptr;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__instr_stream_fifo__DOT__fifo_empty;
+        CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__instr_stream_fifo__DOT__fifo_full;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__instr_stream_fifo__DOT__ports_s_ports_fire;
         CData/*2:0*/ SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__instr_stream_fifo__DOT__empty_entry_cnt;
         CData/*2:0*/ SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__instr_stream_fifo__DOT__empty_entry_cnt_next;
@@ -100,23 +122,40 @@ VL_MODULE(VSimTop___024root) {
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1_sram_0_ports_cmd_payload_wen;
         CData/*3:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1_sram_0_ports_cmd_payload_wstrb;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1_sram_1_ports_cmd_valid;
+        CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1_sram_1_ports_cmd_payload_wen;
         CData/*3:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1_sram_1_ports_cmd_payload_wstrb;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1_sram_2_ports_cmd_valid;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1_sram_2_ports_cmd_payload_wen;
         CData/*3:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1_sram_2_ports_cmd_payload_wstrb;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1_sram_3_ports_cmd_valid;
+        CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1_sram_3_ports_cmd_payload_wen;
         CData/*3:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1_sram_3_ports_cmd_payload_wstrb;
         CData/*3:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__ar_len_cnt;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_ar_fire;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_ar_fire_1;
+        CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__tmp_when;
+        CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__tmp_cache_hit_0;
+        CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__tmp_cache_mru_0;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__tmp_cache_invld_d1_0;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__tmp_cache_lru_d1_0;
+        CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__tmp_when_1;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__tmp_when_2;
+        CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__tmp_when_3;
+        CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__tmp_when_4;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__tmp_when_5;
+        CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__tmp_when_6;
+        CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__tmp_cache_hit_1;
+        CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__tmp_cache_mru_1;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__tmp_cache_invld_d1_1;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__tmp_cache_lru_d1_1;
+    };
+    struct {
+        CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__tmp_when_7;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__tmp_when_8;
+        CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__tmp_when_9;
+        CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__tmp_when_10;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__tmp_when_11;
+        CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__tmp_when_12;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_0_metas_0_vld;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_0_metas_0_mru;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_0_metas_1_vld;
@@ -148,8 +187,6 @@ VL_MODULE(VSimTop___024root) {
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_0_metas_14_vld;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_0_metas_14_mru;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_0_metas_15_vld;
-    };
-    struct {
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_0_metas_15_mru;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_0_metas_16_vld;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_0_metas_16_mru;
@@ -177,6 +214,8 @@ VL_MODULE(VSimTop___024root) {
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_0_metas_27_mru;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_0_metas_28_vld;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_0_metas_28_mru;
+    };
+    struct {
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_0_metas_29_vld;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_0_metas_29_mru;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_0_metas_30_vld;
@@ -214,8 +253,6 @@ VL_MODULE(VSimTop___024root) {
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_0_metas_46_vld;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_0_metas_46_mru;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_0_metas_47_vld;
-    };
-    struct {
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_0_metas_47_mru;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_0_metas_48_vld;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_0_metas_48_mru;
@@ -243,6 +280,8 @@ VL_MODULE(VSimTop___024root) {
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_0_metas_59_mru;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_0_metas_60_vld;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_0_metas_60_mru;
+    };
+    struct {
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_0_metas_61_vld;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_0_metas_61_mru;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_0_metas_62_vld;
@@ -280,8 +319,6 @@ VL_MODULE(VSimTop___024root) {
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_0_metas_78_vld;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_0_metas_78_mru;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_0_metas_79_vld;
-    };
-    struct {
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_0_metas_79_mru;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_0_metas_80_vld;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_0_metas_80_mru;
@@ -309,6 +346,8 @@ VL_MODULE(VSimTop___024root) {
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_0_metas_91_mru;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_0_metas_92_vld;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_0_metas_92_mru;
+    };
+    struct {
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_0_metas_93_vld;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_0_metas_93_mru;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_0_metas_94_vld;
@@ -346,8 +385,6 @@ VL_MODULE(VSimTop___024root) {
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_0_metas_110_vld;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_0_metas_110_mru;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_0_metas_111_vld;
-    };
-    struct {
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_0_metas_111_mru;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_0_metas_112_vld;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_0_metas_112_mru;
@@ -375,6 +412,8 @@ VL_MODULE(VSimTop___024root) {
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_0_metas_123_mru;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_0_metas_124_vld;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_0_metas_124_mru;
+    };
+    struct {
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_0_metas_125_vld;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_0_metas_125_mru;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_0_metas_126_vld;
@@ -412,8 +451,6 @@ VL_MODULE(VSimTop___024root) {
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_1_metas_14_vld;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_1_metas_14_mru;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_1_metas_15_vld;
-    };
-    struct {
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_1_metas_15_mru;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_1_metas_16_vld;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_1_metas_16_mru;
@@ -441,6 +478,8 @@ VL_MODULE(VSimTop___024root) {
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_1_metas_27_mru;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_1_metas_28_vld;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_1_metas_28_mru;
+    };
+    struct {
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_1_metas_29_vld;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_1_metas_29_mru;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_1_metas_30_vld;
@@ -478,8 +517,6 @@ VL_MODULE(VSimTop___024root) {
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_1_metas_46_vld;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_1_metas_46_mru;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_1_metas_47_vld;
-    };
-    struct {
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_1_metas_47_mru;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_1_metas_48_vld;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_1_metas_48_mru;
@@ -507,6 +544,8 @@ VL_MODULE(VSimTop___024root) {
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_1_metas_59_mru;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_1_metas_60_vld;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_1_metas_60_mru;
+    };
+    struct {
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_1_metas_61_vld;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_1_metas_61_mru;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_1_metas_62_vld;
@@ -544,8 +583,6 @@ VL_MODULE(VSimTop___024root) {
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_1_metas_78_vld;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_1_metas_78_mru;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_1_metas_79_vld;
-    };
-    struct {
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_1_metas_79_mru;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_1_metas_80_vld;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_1_metas_80_mru;
@@ -573,6 +610,8 @@ VL_MODULE(VSimTop___024root) {
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_1_metas_91_mru;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_1_metas_92_vld;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_1_metas_92_mru;
+    };
+    struct {
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_1_metas_93_vld;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_1_metas_93_mru;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_1_metas_94_vld;
@@ -610,8 +649,6 @@ VL_MODULE(VSimTop___024root) {
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_1_metas_110_vld;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_1_metas_110_mru;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_1_metas_111_vld;
-    };
-    struct {
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_1_metas_111_mru;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_1_metas_112_vld;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_1_metas_112_mru;
@@ -639,6 +676,8 @@ VL_MODULE(VSimTop___024root) {
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_1_metas_123_mru;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_1_metas_124_vld;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_1_metas_124_mru;
+    };
+    struct {
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_1_metas_125_vld;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_1_metas_125_mru;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_1_metas_126_vld;
@@ -654,12 +693,16 @@ VL_MODULE(VSimTop___024root) {
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__is_hit_d1;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__is_miss;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__flush_busy;
+        CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__flush_cnt_willIncrement;
+        CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__flush_cnt_willClear;
         CData/*6:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__flush_cnt_valueNext;
         CData/*6:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__flush_cnt_value;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__flush_done;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__evict_id_miss;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__cpu_cmd_ready_1;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__next_level_cmd_valid_1;
+        CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__next_level_data_cnt_willIncrement;
+        CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__next_level_data_cnt_willClear;
         CData/*2:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__next_level_data_cnt_valueNext;
         CData/*2:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__next_level_data_cnt_value;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__next_level_done;
@@ -671,23 +714,25 @@ VL_MODULE(VSimTop___024root) {
         CData/*7:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__sram_area_0_sram__DOT__tmp_memsymbol_read_2;
         CData/*7:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__sram_area_0_sram__DOT__tmp_memsymbol_read_3;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__sram_area_1_sram__DOT__tmp_mem_port;
+        CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__sram_area_1_sram__DOT__rsp_valid;
         CData/*7:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__sram_area_1_sram__DOT__tmp_memsymbol_read;
         CData/*7:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__sram_area_1_sram__DOT__tmp_memsymbol_read_1;
         CData/*7:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__sram_area_1_sram__DOT__tmp_memsymbol_read_2;
         CData/*7:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__sram_area_1_sram__DOT__tmp_memsymbol_read_3;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__sram_area_2_sram__DOT__tmp_mem_port;
-    };
-    struct {
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__sram_area_2_sram__DOT__rsp_valid;
         CData/*7:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__sram_area_2_sram__DOT__tmp_memsymbol_read;
         CData/*7:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__sram_area_2_sram__DOT__tmp_memsymbol_read_1;
         CData/*7:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__sram_area_2_sram__DOT__tmp_memsymbol_read_2;
         CData/*7:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__sram_area_2_sram__DOT__tmp_memsymbol_read_3;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__sram_area_3_sram__DOT__tmp_mem_port;
+        CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__sram_area_3_sram__DOT__rsp_valid;
         CData/*7:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__sram_area_3_sram__DOT__tmp_memsymbol_read;
         CData/*7:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__sram_area_3_sram__DOT__tmp_memsymbol_read_1;
         CData/*7:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__sram_area_3_sram__DOT__tmp_memsymbol_read_2;
         CData/*7:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__sram_area_3_sram__DOT__tmp_memsymbol_read_3;
+        CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__bpu__DOT__tmp_when;
+        CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__bpu__DOT__tmp_when_1;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__arf_1_write_ports_rd_wen;
         CData/*1:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__decode_1_rob_micro_op;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_alu_valid;
@@ -697,7 +742,10 @@ VL_MODULE(VSimTop___024root) {
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_lsu_valid;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_lsu_ready;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_wb_valid;
+    };
+    struct {
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_wb_ready;
+        CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__src_stream_valid;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__ready;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__fire;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__alu_busy;
@@ -706,26 +754,44 @@ VL_MODULE(VSimTop___024root) {
         CData/*4:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__rd_addr_reg;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__trap_or_print;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_alu_rValid;
+        CData/*3:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_alu_rData_rd_rob_ptr;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_alu_rData_micro_op_rd_wen;
+        CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_alu_rData_micro_op_src2_is_imm;
         CData/*4:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_alu_rData_micro_op_alu_ctrl_op;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_alu_rData_micro_op_alu_is_word;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_bju_rValid;
+        CData/*3:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_bju_rData_rd_rob_ptr;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_bju_rData_micro_op_rd_wen;
+        CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_bju_rData_micro_op_src2_is_imm;
         CData/*3:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_bju_rData_micro_op_bju_ctrl_op;
+        CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_bju_rData_micro_op_bju_rd_eq_rs1;
+        CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_bju_rData_micro_op_bju_rd_is_link;
+        CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_bju_rData_micro_op_bju_rs1_is_link;
         CData/*3:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_bju_rData_micro_op_exp_ctrl_op;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_bju_rData_micro_op_exp_csr_wen;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_bju_rData_bpu_pred_taken;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_lsu_rValid;
+        CData/*3:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_lsu_rData_rd_rob_ptr;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_lsu_rData_micro_op_rd_wen;
+        CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_lsu_rData_micro_op_src2_is_imm;
         CData/*3:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_lsu_rData_micro_op_lsu_ctrl_op;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_lsu_rData_micro_op_lsu_is_load;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_lsu_rData_micro_op_lsu_is_store;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_wb_rValid;
         CData/*4:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_wb_rData_rd_addr;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_wb_rData_rd_wen;
+        CData/*3:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_wb_rData_rob_ptr;
+        CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__decode_1__DOT__ebreak;
+        CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__decode_1__DOT__ecall;
+        CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__decode_1__DOT__mret;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__decode_1__DOT__csrrw;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__decode_1__DOT__csrrs;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__decode_1__DOT__csrrc;
+        CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__decode_1__DOT__csrrwi;
+        CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__decode_1__DOT__csrrsi;
+        CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__decode_1__DOT__csrrci;
+        CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__decode_1__DOT__csri;
+        CData/*5:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__decode_1__DOT__imm_type;
         CData/*4:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__decode_1__DOT__alu_ctrl_op;
         CData/*3:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__decode_1__DOT__bju_ctrl_op;
         CData/*3:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__decode_1__DOT__exp_ctrl_op;
@@ -737,46 +803,59 @@ VL_MODULE(VSimTop___024root) {
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__src_stream_fire;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__dst_stream_rValid;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__dst_stream_rData_rd_wen;
+        CData/*3:0*/ SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__dst_stream_rData_rd_rob_ptr;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__bju_kernel_1__DOT__clint_1_csr_ports_mepc_wen;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__bju_kernel_1__DOT__clint_1_csr_ports_mcause_wen;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__bju_kernel_1__DOT__clint_1_csr_ports_mstatus_wen;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__bju_kernel_1__DOT__clint_1_int_en;
-        CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__bju_kernel_1__DOT__tmp_when;
     };
     struct {
+        CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__bju_kernel_1__DOT__tmp_when;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__bju_kernel_1__DOT__branch_or_jump;
+        CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__bju_kernel_1__DOT__is_call;
+        CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__bju_kernel_1__DOT__is_ret;
+        CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__bju_kernel_1__DOT__is_jmp;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__bju_kernel_1__DOT__branch_taken;
+        CData/*4:0*/ SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__bju_kernel_1__DOT__branch_history;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__bju_kernel_1__DOT__csr_wen_regNext;
         CData/*2:0*/ SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__bju_kernel_1__DOT__clint_1__DOT__int_state;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__alu_1__DOT__div_io_op_is_word;
+        CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__alu_1__DOT__div_io_op_is_signed;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__alu_1__DOT__div_io_done_valid;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__alu_1__DOT__alu_is_quo;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__alu_1__DOT__alu_is_rem;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__alu_1__DOT__src_stream_ready;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__alu_1__DOT__dst_stream_ready;
+        CData/*4:0*/ SimTop__DOT__u_SuperScalar__DOT__alu_1__DOT__mul_sel;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__alu_1__DOT__div_start;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__alu_1__DOT__div_op_is_signed;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__alu_1__DOT__div_op_is_word_reg;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__alu_1__DOT__div_op_is_signed_reg;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__alu_1__DOT__rd_wen_reg;
+        CData/*3:0*/ SimTop__DOT__u_SuperScalar__DOT__alu_1__DOT__rd_rob_ptr_reg;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__alu_1__DOT__alu_is_quo_reg;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__alu_1__DOT__alu_is_rem_reg;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__alu_1__DOT__dst_stream_rValid;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__alu_1__DOT__dst_stream_rData_rd_wen;
+        CData/*3:0*/ SimTop__DOT__u_SuperScalar__DOT__alu_1__DOT__dst_stream_rData_rd_rob_ptr;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__alu_1__DOT__div__DOT__busy_reg;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__alu_1__DOT__div__DOT__dividend_positive;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__alu_1__DOT__div__DOT__divisor_positive;
+        CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__lsu_1__DOT__dcache_ports_stall;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__lsu_1__DOT__lsu_cen;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__lsu_1__DOT__lsu_addr_is_timer;
+        CData/*2:0*/ SimTop__DOT__u_SuperScalar__DOT__lsu_1__DOT__dcache_size;
         CData/*2:0*/ SimTop__DOT__u_SuperScalar__DOT__lsu_1__DOT__lsu_addr_offset_reg;
         CData/*3:0*/ SimTop__DOT__u_SuperScalar__DOT__lsu_1__DOT__lsu_ctrl_op_reg;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__lsu_1__DOT__rd_wen_reg;
+        CData/*3:0*/ SimTop__DOT__u_SuperScalar__DOT__lsu_1__DOT__rd_rob_ptr_reg;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__lsu_1__DOT__src_stream_fire;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__lsu_1__DOT__src_stream_fire_1;
         CData/*7:0*/ SimTop__DOT__u_SuperScalar__DOT__lsu_1__DOT__tmp_4;
         CData/*7:0*/ SimTop__DOT__u_SuperScalar__DOT__lsu_1__DOT__tmp_5;
         CData/*7:0*/ SimTop__DOT__u_SuperScalar__DOT__lsu_1__DOT__tmp_6;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__dcache__DOT__biu_1_cpu_bypass_rsp_valid;
+        CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__dcache__DOT__handshake_cnt;
         CData/*3:0*/ SimTop__DOT__u_SuperScalar__DOT__dcache__DOT__ar_len_cnt;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__dcache__DOT__bypass_read;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__dcache__DOT__bypass_write;
@@ -786,38 +865,65 @@ VL_MODULE(VSimTop___024root) {
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__dcache__DOT__dcache_ar_fire_1;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__dcache__DOT__dcache_aw_fire;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__dcache__DOT__dcache_w_fire;
+        CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__dcache__DOT__biu_1__DOT__cpu_stall;
+        CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__dcache__DOT__biu_1__DOT__cpu_bypass_stall;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__dcache__DOT__biu_1__DOT__cpu_cmd_ready_1;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__dcache__DOT__biu_1__DOT__bypass;
+        CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__dcache__DOT__biu_1__DOT__bypass_reg;
         CData/*0:0*/ SimTop__DOT__u_SuperScalar__DOT__dcache__DOT__biu_1__DOT__bypass_rsp_valid_d1;
+        CData/*0:0*/ SimTop__DOT__u_axi_slave_mem_i__DOT__sig_aw_ready;
+        CData/*1:0*/ SimTop__DOT__u_axi_slave_mem_i__DOT__sig_aw_burst;
+        CData/*7:0*/ SimTop__DOT__u_axi_slave_mem_i__DOT__sig_aw_len;
+    };
+    struct {
+        CData/*0:0*/ SimTop__DOT__u_axi_slave_mem_i__DOT__sig_w_ready;
+        CData/*1:0*/ SimTop__DOT__u_axi_slave_mem_i__DOT__sig_b_resp;
+        CData/*0:0*/ SimTop__DOT__u_axi_slave_mem_i__DOT__sig_b_user;
+        CData/*0:0*/ SimTop__DOT__u_axi_slave_mem_i__DOT__sig_b_valid;
         CData/*0:0*/ SimTop__DOT__u_axi_slave_mem_i__DOT__sig_ar_ready;
         CData/*1:0*/ SimTop__DOT__u_axi_slave_mem_i__DOT__sig_ar_burst;
         CData/*7:0*/ SimTop__DOT__u_axi_slave_mem_i__DOT__sig_ar_len;
+        CData/*1:0*/ SimTop__DOT__u_axi_slave_mem_i__DOT__sig_r_resp;
         CData/*0:0*/ SimTop__DOT__u_axi_slave_mem_i__DOT__sig_r_last;
+        CData/*0:0*/ SimTop__DOT__u_axi_slave_mem_i__DOT__sig_r_user;
         CData/*0:0*/ SimTop__DOT__u_axi_slave_mem_i__DOT__sig_r_valid;
+        CData/*3:0*/ SimTop__DOT__u_axi_slave_mem_i__DOT__sig_r_id;
+        CData/*3:0*/ SimTop__DOT__u_axi_slave_mem_i__DOT__sig_b_id;
         CData/*0:0*/ SimTop__DOT__u_axi_slave_mem_i__DOT__ar_wrap_en;
         CData/*0:0*/ SimTop__DOT__u_axi_slave_mem_i__DOT__axi_awv_awr_flag;
         CData/*0:0*/ SimTop__DOT__u_axi_slave_mem_i__DOT__axi_arv_arr_flag;
+        CData/*7:0*/ SimTop__DOT__u_axi_slave_mem_i__DOT__aw_len_cntr;
         CData/*7:0*/ SimTop__DOT__u_axi_slave_mem_i__DOT__ar_len_cntr;
         CData/*0:0*/ SimTop__DOT__u_axi_slave_mem_d__DOT__sig_aw_ready;
         CData/*1:0*/ SimTop__DOT__u_axi_slave_mem_d__DOT__sig_aw_burst;
         CData/*7:0*/ SimTop__DOT__u_axi_slave_mem_d__DOT__sig_aw_len;
         CData/*0:0*/ SimTop__DOT__u_axi_slave_mem_d__DOT__sig_w_ready;
+        CData/*1:0*/ SimTop__DOT__u_axi_slave_mem_d__DOT__sig_b_resp;
+        CData/*0:0*/ SimTop__DOT__u_axi_slave_mem_d__DOT__sig_b_user;
         CData/*0:0*/ SimTop__DOT__u_axi_slave_mem_d__DOT__sig_b_valid;
         CData/*0:0*/ SimTop__DOT__u_axi_slave_mem_d__DOT__sig_ar_ready;
         CData/*1:0*/ SimTop__DOT__u_axi_slave_mem_d__DOT__sig_ar_burst;
         CData/*7:0*/ SimTop__DOT__u_axi_slave_mem_d__DOT__sig_ar_len;
+        CData/*1:0*/ SimTop__DOT__u_axi_slave_mem_d__DOT__sig_r_resp;
         CData/*0:0*/ SimTop__DOT__u_axi_slave_mem_d__DOT__sig_r_last;
+        CData/*0:0*/ SimTop__DOT__u_axi_slave_mem_d__DOT__sig_r_user;
         CData/*0:0*/ SimTop__DOT__u_axi_slave_mem_d__DOT__sig_r_valid;
-    };
-    struct {
+        CData/*3:0*/ SimTop__DOT__u_axi_slave_mem_d__DOT__sig_r_id;
+        CData/*3:0*/ SimTop__DOT__u_axi_slave_mem_d__DOT__sig_b_id;
         CData/*0:0*/ SimTop__DOT__u_axi_slave_mem_d__DOT__aw_wrap_en;
         CData/*0:0*/ SimTop__DOT__u_axi_slave_mem_d__DOT__ar_wrap_en;
         CData/*0:0*/ SimTop__DOT__u_axi_slave_mem_d__DOT__axi_awv_awr_flag;
         CData/*0:0*/ SimTop__DOT__u_axi_slave_mem_d__DOT__axi_arv_arr_flag;
         CData/*7:0*/ SimTop__DOT__u_axi_slave_mem_d__DOT__aw_len_cntr;
         CData/*7:0*/ SimTop__DOT__u_axi_slave_mem_d__DOT__ar_len_cntr;
+        CData/*0:0*/ __Vdly__SimTop__DOT__u_axi_slave_mem_i__DOT__sig_ar_ready;
+        CData/*0:0*/ __Vdly__SimTop__DOT__u_axi_slave_mem_d__DOT__sig_aw_ready;
+        CData/*0:0*/ __Vdly__SimTop__DOT__u_axi_slave_mem_d__DOT__sig_w_ready;
+        CData/*0:0*/ __Vdly__SimTop__DOT__u_axi_slave_mem_d__DOT__sig_ar_ready;
+        CData/*2:0*/ __Vdly__SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__pc_stream_fifo__DOT__fifo_cnt;
         CData/*2:0*/ __Vdly__SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__pc_stream_fifo__DOT__write_ptr;
         CData/*2:0*/ __Vdly__SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__pc_stream_fifo__DOT__read_ptr;
+        CData/*2:0*/ __Vdly__SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__pc_next_stream_fifo__DOT__fifo_cnt;
         CData/*2:0*/ __Vdly__SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__pc_next_stream_fifo__DOT__write_ptr;
         CData/*2:0*/ __Vdly__SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__pc_next_stream_fifo__DOT__read_ptr;
         CData/*2:0*/ __Vdly__SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__bpu_pred_taken_fifo__DOT__read_ptr;
@@ -830,15 +936,25 @@ VL_MODULE(VSimTop___024root) {
         CData/*0:0*/ __Vdly__SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__lsu_busy;
         CData/*3:0*/ __Vdly__SimTop__DOT__u_SuperScalar__DOT__dcache__DOT__ar_len_cnt;
         CData/*0:0*/ __VinpClk__TOP__SimTop__DOT____Vcellinp__u_SuperScalar__resetn;
-        CData/*0:0*/ __Vclklast__TOP____VinpClk__TOP__SimTop__DOT____Vcellinp__u_SuperScalar__resetn;
         CData/*0:0*/ __Vclklast__TOP__clock;
+        CData/*0:0*/ __Vclklast__TOP____VinpClk__TOP__SimTop__DOT____Vcellinp__u_SuperScalar__resetn;
         CData/*0:0*/ __Vchglast__TOP__SimTop__DOT____Vcellinp__u_SuperScalar__resetn;
         SData/*9:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1_sram_0_ports_cmd_payload_addr;
+    };
+    struct {
         SData/*9:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1_sram_1_ports_cmd_payload_addr;
         SData/*9:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1_sram_2_ports_cmd_payload_addr;
         SData/*9:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1_sram_3_ports_cmd_payload_addr;
         SData/*11:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_bju_rData_micro_op_exp_csr_addr;
+        SData/*12:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__decode_1__DOT__tmp_alu_ctrl_sel;
+        SData/*9:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__decode_1__DOT__bju_ctrl_sel;
+        SData/*8:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__decode_1__DOT__exp_ctrl_sel;
+        SData/*10:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__decode_1__DOT__lsu_ctrl_sel;
         SData/*11:0*/ SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__bju_kernel_1__DOT__micro_op_exp_csr_addr_regNext;
+        IData/*31:0*/ SimTop__DOT__fd;
+        IData/*31:0*/ SimTop__DOT__tmp;
+        IData/*31:0*/ SimTop__DOT__i;
+        IData/*31:0*/ SimTop__DOT__j;
         IData/*31:0*/ SimTop__DOT__cmt_pc;
         IData/*31:0*/ SimTop__DOT__cmt_inst;
         IData/*31:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1_icache_ar_payload_addr;
@@ -867,6 +983,8 @@ VL_MODULE(VSimTop___024root) {
         IData/*31:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1_sram_1_ports_cmd_payload_wdata;
         IData/*31:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1_sram_2_ports_cmd_payload_wdata;
         IData/*31:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1_sram_3_ports_cmd_payload_wdata;
+        IData/*18:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__tmp_cache_tag_0;
+        IData/*18:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__tmp_cache_tag_1;
         IData/*31:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__tmp_cpu_rsp_payload_data;
         IData/*31:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__tmp_cpu_rsp_payload_data_1;
         IData/*18:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_0_metas_0_tag;
@@ -874,8 +992,6 @@ VL_MODULE(VSimTop___024root) {
         IData/*18:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_0_metas_2_tag;
         IData/*18:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_0_metas_3_tag;
         IData/*18:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_0_metas_4_tag;
-    };
-    struct {
         IData/*18:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_0_metas_5_tag;
         IData/*18:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_0_metas_6_tag;
         IData/*18:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_0_metas_7_tag;
@@ -890,6 +1006,8 @@ VL_MODULE(VSimTop___024root) {
         IData/*18:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_0_metas_16_tag;
         IData/*18:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_0_metas_17_tag;
         IData/*18:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_0_metas_18_tag;
+    };
+    struct {
         IData/*18:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_0_metas_19_tag;
         IData/*18:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_0_metas_20_tag;
         IData/*18:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_0_metas_21_tag;
@@ -940,8 +1058,6 @@ VL_MODULE(VSimTop___024root) {
         IData/*18:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_0_metas_66_tag;
         IData/*18:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_0_metas_67_tag;
         IData/*18:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_0_metas_68_tag;
-    };
-    struct {
         IData/*18:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_0_metas_69_tag;
         IData/*18:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_0_metas_70_tag;
         IData/*18:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_0_metas_71_tag;
@@ -956,6 +1072,8 @@ VL_MODULE(VSimTop___024root) {
         IData/*18:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_0_metas_80_tag;
         IData/*18:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_0_metas_81_tag;
         IData/*18:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_0_metas_82_tag;
+    };
+    struct {
         IData/*18:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_0_metas_83_tag;
         IData/*18:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_0_metas_84_tag;
         IData/*18:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_0_metas_85_tag;
@@ -1006,8 +1124,6 @@ VL_MODULE(VSimTop___024root) {
         IData/*18:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_1_metas_2_tag;
         IData/*18:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_1_metas_3_tag;
         IData/*18:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_1_metas_4_tag;
-    };
-    struct {
         IData/*18:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_1_metas_5_tag;
         IData/*18:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_1_metas_6_tag;
         IData/*18:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_1_metas_7_tag;
@@ -1022,6 +1138,8 @@ VL_MODULE(VSimTop___024root) {
         IData/*18:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_1_metas_16_tag;
         IData/*18:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_1_metas_17_tag;
         IData/*18:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_1_metas_18_tag;
+    };
+    struct {
         IData/*18:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_1_metas_19_tag;
         IData/*18:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_1_metas_20_tag;
         IData/*18:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_1_metas_21_tag;
@@ -1072,8 +1190,6 @@ VL_MODULE(VSimTop___024root) {
         IData/*18:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_1_metas_66_tag;
         IData/*18:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_1_metas_67_tag;
         IData/*18:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_1_metas_68_tag;
-    };
-    struct {
         IData/*18:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_1_metas_69_tag;
         IData/*18:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_1_metas_70_tag;
         IData/*18:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_1_metas_71_tag;
@@ -1088,6 +1204,8 @@ VL_MODULE(VSimTop___024root) {
         IData/*18:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_1_metas_80_tag;
         IData/*18:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_1_metas_81_tag;
         IData/*18:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_1_metas_82_tag;
+    };
+    struct {
         IData/*18:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_1_metas_83_tag;
         IData/*18:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_1_metas_84_tag;
         IData/*18:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_1_metas_85_tag;
@@ -1134,44 +1252,63 @@ VL_MODULE(VSimTop___024root) {
         IData/*18:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_1_metas_126_tag;
         IData/*18:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__ways_1_metas_127_tag;
         IData/*31:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__cpu_addr_d1;
+        IData/*31:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__sram_banks_data_0;
+        IData/*31:0*/ SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__icache_1__DOT__sram_banks_data_1;
         IData/*31:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_alu_rData_pc;
         IData/*31:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_alu_rData_instruction;
         IData/*31:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_bju_rData_pc;
         IData/*31:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_bju_rData_pc_next;
-    };
-    struct {
         IData/*31:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_bju_rData_instruction;
         IData/*31:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_lsu_rData_pc;
         IData/*31:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_lsu_rData_instruction;
         IData/*31:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_wb_rData_pc;
         IData/*31:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_wb_rData_instruction;
+        IData/*31:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__to_ports_lsu_payload_micro_op_lsu_ctrl_op_string;
+        IData/*31:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_lsu_payload_micro_op_lsu_ctrl_op_string;
+        IData/*31:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_lsu_m2sPipe_payload_micro_op_lsu_ctrl_op_string;
+        IData/*31:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_lsu_rData_micro_op_lsu_ctrl_op_string;
+        VlWide<12>/*383:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__decode_1__DOT__imm_data;
+        IData/*23:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__decode_1__DOT__alu_ctrl_sel;
+        IData/*31:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__decode_1__DOT__lsu_micro_op_lsu_ctrl_op_string;
+    };
+    struct {
+        IData/*31:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__decode_1__DOT__tmp_lsu_micro_op_lsu_ctrl_op_string;
         IData/*31:0*/ SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__bju_kernel_1_redirect_pc;
         IData/*31:0*/ SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__dst_stream_rData_pc;
         IData/*31:0*/ SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__dst_stream_rData_instruction;
+        IData/*31:0*/ SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__bju_kernel_1__DOT__pc_next;
         IData/*31:0*/ SimTop__DOT__u_SuperScalar__DOT__alu_1__DOT__sllw_temp;
         IData/*31:0*/ SimTop__DOT__u_SuperScalar__DOT__alu_1__DOT__srlw_temp;
         IData/*31:0*/ SimTop__DOT__u_SuperScalar__DOT__alu_1__DOT__sraw_temp;
         VlWide<4>/*127:0*/ SimTop__DOT__u_SuperScalar__DOT__alu_1__DOT__mul_temp_u;
+        VlWide<10>/*319:0*/ SimTop__DOT__u_SuperScalar__DOT__alu_1__DOT__mul_data;
         IData/*31:0*/ SimTop__DOT__u_SuperScalar__DOT__alu_1__DOT__dst_stream_rData_pc;
         IData/*31:0*/ SimTop__DOT__u_SuperScalar__DOT__alu_1__DOT__dst_stream_rData_instruction;
         VlWide<4>/*127:0*/ SimTop__DOT__u_SuperScalar__DOT__alu_1__DOT__div__DOT__u_div_m_axis_dout_tdata;
         IData/*31:0*/ SimTop__DOT__u_SuperScalar__DOT__lsu_1__DOT__tmp_dst_stream_payload_pc;
         IData/*31:0*/ SimTop__DOT__u_SuperScalar__DOT__lsu_1__DOT__tmp_dst_stream_payload_instruction;
+        IData/*31:0*/ SimTop__DOT__u_SuperScalar__DOT__lsu_1__DOT__src_ports_payload_micro_op_lsu_ctrl_op_string;
+        IData/*31:0*/ SimTop__DOT__u_SuperScalar__DOT__lsu_1__DOT__tmp_src_stream_payload_micro_op_lsu_ctrl_op_string;
+        IData/*31:0*/ SimTop__DOT__u_SuperScalar__DOT__lsu_1__DOT__src_stream_payload_micro_op_lsu_ctrl_op_string;
+        IData/*31:0*/ SimTop__DOT__u_SuperScalar__DOT__lsu_1__DOT__lsu_ctrl_op_reg_string;
+        IData/*31:0*/ SimTop__DOT__u_axi_slave_mem_i__DOT__sig_aw_addr;
         IData/*31:0*/ SimTop__DOT__u_axi_slave_mem_i__DOT__sig_ar_addr;
         IData/*31:0*/ SimTop__DOT__u_axi_slave_mem_d__DOT__sig_aw_addr;
         IData/*31:0*/ SimTop__DOT__u_axi_slave_mem_d__DOT__sig_ar_addr;
         IData/*31:0*/ __Vdly__SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1__DOT__pc;
-        IData/*31:0*/ __Vdly__SimTop__DOT__u_SuperScalar__DOT__icache_1_icache_ar_payload_addr;
         IData/*31:0*/ __Vdly__SimTop__DOT__u_SuperScalar__DOT__dcache_dcache_ar_payload_addr;
         VL_IN64(io_logCtrl_log_begin,63,0);
         VL_IN64(io_logCtrl_log_end,63,0);
         VL_IN64(io_logCtrl_log_level,63,0);
+        QData/*63:0*/ SimTop__DOT__ram_i_mem_rdata;
         QData/*63:0*/ SimTop__DOT__ram_i_mem_rsp_rdata;
+        QData/*63:0*/ SimTop__DOT__ram_d_mem_rdata;
         QData/*63:0*/ SimTop__DOT__ram_d_mem_rsp_rdata;
         QData/*63:0*/ SimTop__DOT__cmt_wdata;
         QData/*63:0*/ SimTop__DOT__cycleCnt;
         QData/*63:0*/ SimTop__DOT__instrCnt;
         QData/*63:0*/ SimTop__DOT__u_SuperScalar__DOT__dcache_dcache_w_payload_data;
+        QData/*63:0*/ SimTop__DOT__u_SuperScalar__DOT__fetch_1__DOT__fetch_1_bpu_predict_imm;
         QData/*63:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__decode_1_imm;
         QData/*63:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__src1;
         QData/*63:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__src2;
@@ -1184,7 +1321,23 @@ VL_MODULE(VSimTop___024root) {
         QData/*63:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_lsu_rData_src2_data;
         QData/*63:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_lsu_rData_imm;
         QData/*63:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_wb_rData_rd_data;
+        QData/*47:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__to_ports_alu_payload_micro_op_alu_ctrl_op_string;
+        QData/*39:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__to_ports_bju_payload_micro_op_bju_ctrl_op_string;
+        QData/*47:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__to_ports_bju_payload_micro_op_exp_ctrl_op_string;
+        QData/*47:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_alu_payload_micro_op_alu_ctrl_op_string;
+        QData/*39:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_bju_payload_micro_op_bju_ctrl_op_string;
+        QData/*47:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_bju_payload_micro_op_exp_ctrl_op_string;
+        QData/*47:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_alu_m2sPipe_payload_micro_op_alu_ctrl_op_string;
+        QData/*47:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_alu_rData_micro_op_alu_ctrl_op_string;
+        QData/*39:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_bju_m2sPipe_payload_micro_op_bju_ctrl_op_string;
+        QData/*47:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_bju_m2sPipe_payload_micro_op_exp_ctrl_op_string;
+        QData/*39:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_bju_rData_micro_op_bju_ctrl_op_string;
+        QData/*47:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_bju_rData_micro_op_exp_ctrl_op_string;
+        QData/*63:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__arf_1__DOT__tmp_read_ports_rs1_data;
+        QData/*63:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__arf_1__DOT__tmp_read_ports_rs2_data;
         QData/*63:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__arf_1__DOT__reg_file_0;
+    };
+    struct {
         QData/*63:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__arf_1__DOT__reg_file_1;
         QData/*63:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__arf_1__DOT__reg_file_2;
         QData/*63:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__arf_1__DOT__reg_file_3;
@@ -1204,8 +1357,6 @@ VL_MODULE(VSimTop___024root) {
         QData/*63:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__arf_1__DOT__reg_file_17;
         QData/*63:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__arf_1__DOT__reg_file_18;
         QData/*63:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__arf_1__DOT__reg_file_19;
-    };
-    struct {
         QData/*63:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__arf_1__DOT__reg_file_20;
         QData/*63:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__arf_1__DOT__reg_file_21;
         QData/*63:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__arf_1__DOT__reg_file_22;
@@ -1218,11 +1369,24 @@ VL_MODULE(VSimTop___024root) {
         QData/*63:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__arf_1__DOT__reg_file_29;
         QData/*63:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__arf_1__DOT__reg_file_30;
         QData/*63:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__arf_1__DOT__reg_file_31;
+        QData/*47:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__decode_1__DOT__alu_micro_op_alu_ctrl_op_string;
+        QData/*39:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__decode_1__DOT__bju_micro_op_bju_ctrl_op_string;
+        QData/*47:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__decode_1__DOT__bju_micro_op_exp_ctrl_op_string;
+        QData/*47:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__decode_1__DOT__exception_string;
+        QData/*47:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__decode_1__DOT__tmp_alu_micro_op_alu_ctrl_op_string;
+        QData/*39:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__decode_1__DOT__tmp_bju_micro_op_bju_ctrl_op_string;
+        QData/*47:0*/ SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__decode_1__DOT__tmp_bju_micro_op_exp_ctrl_op_string;
         QData/*63:0*/ SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__dst_stream_rData_result;
+        QData/*39:0*/ SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__src_ports_payload_micro_op_bju_ctrl_op_string;
+        QData/*47:0*/ SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__src_ports_payload_micro_op_exp_ctrl_op_string;
+        QData/*39:0*/ SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__src_stream_payload_micro_op_bju_ctrl_op_string;
+        QData/*47:0*/ SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__src_stream_payload_micro_op_exp_ctrl_op_string;
         QData/*63:0*/ SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__bju_kernel_1__DOT__csr_regfile_cpu_ports_rdata;
         QData/*63:0*/ SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__bju_kernel_1__DOT__csr_regfile_clint_ports_mtvec;
         QData/*63:0*/ SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__bju_kernel_1__DOT__clint_1_csr_ports_mstatus_wdata;
         QData/*63:0*/ SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__bju_kernel_1__DOT__csr_wdata_regNext;
+        QData/*39:0*/ SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__bju_kernel_1__DOT__micro_op_bju_ctrl_op_string;
+        QData/*47:0*/ SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__bju_kernel_1__DOT__micro_op_exp_ctrl_op_string;
         QData/*63:0*/ SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__bju_kernel_1__DOT__csr_regfile__DOT__tmp_mcycle;
         QData/*63:0*/ SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__bju_kernel_1__DOT__csr_regfile__DOT__mstatus;
         QData/*63:0*/ SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__bju_kernel_1__DOT__csr_regfile__DOT__mie;
@@ -1236,6 +1400,11 @@ VL_MODULE(VSimTop___024root) {
         QData/*63:0*/ SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__bju_kernel_1__DOT__csr_regfile__DOT__mscratch;
         QData/*63:0*/ SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__bju_kernel_1__DOT__clint_1__DOT__mepc_wdata;
         QData/*63:0*/ SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__bju_kernel_1__DOT__clint_1__DOT__mcause_wdata;
+        QData/*47:0*/ SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__bju_kernel_1__DOT__clint_1__DOT__int_state_string;
+        QData/*63:0*/ SimTop__DOT__u_SuperScalar__DOT__alu_1__DOT__div_io_dividend;
+    };
+    struct {
+        QData/*63:0*/ SimTop__DOT__u_SuperScalar__DOT__alu_1__DOT__div_io_divisor;
         QData/*63:0*/ SimTop__DOT__u_SuperScalar__DOT__alu_1__DOT__add_result;
         QData/*63:0*/ SimTop__DOT__u_SuperScalar__DOT__alu_1__DOT__sub_result;
         QData/*63:0*/ SimTop__DOT__u_SuperScalar__DOT__alu_1__DOT__alu_result;
@@ -1243,6 +1412,11 @@ VL_MODULE(VSimTop___024root) {
         QData/*63:0*/ SimTop__DOT__u_SuperScalar__DOT__alu_1__DOT__div_src1_reg;
         QData/*63:0*/ SimTop__DOT__u_SuperScalar__DOT__alu_1__DOT__div_src2_reg;
         QData/*63:0*/ SimTop__DOT__u_SuperScalar__DOT__alu_1__DOT__dst_stream_rData_result;
+        QData/*47:0*/ SimTop__DOT__u_SuperScalar__DOT__alu_1__DOT__src_ports_payload_micro_op_alu_ctrl_op_string;
+        QData/*47:0*/ SimTop__DOT__u_SuperScalar__DOT__alu_1__DOT__tmp_src_stream_payload_micro_op_alu_ctrl_op_string;
+        QData/*47:0*/ SimTop__DOT__u_SuperScalar__DOT__alu_1__DOT__src_stream_payload_micro_op_alu_ctrl_op_string;
+        QData/*63:0*/ SimTop__DOT__u_SuperScalar__DOT__alu_1__DOT__div__DOT__dividend_word_extd;
+        QData/*63:0*/ SimTop__DOT__u_SuperScalar__DOT__alu_1__DOT__div__DOT__divisor_word_extd;
         QData/*63:0*/ SimTop__DOT__u_SuperScalar__DOT__alu_1__DOT__div__DOT__dividend_abs;
         QData/*63:0*/ SimTop__DOT__u_SuperScalar__DOT__alu_1__DOT__div__DOT__divisor_abs;
         QData/*59:0*/ SimTop__DOT__u_SuperScalar__DOT__alu_1__DOT__div__DOT__u_div__DOT__out_valid;
@@ -1253,8 +1427,11 @@ VL_MODULE(VSimTop___024root) {
         QData/*63:0*/ SimTop__DOT__u_SuperScalar__DOT__timer_1__DOT__tmp_mtime;
         QData/*63:0*/ SimTop__DOT__u_SuperScalar__DOT__timer_1__DOT__mtime;
         QData/*63:0*/ SimTop__DOT__u_SuperScalar__DOT__timer_1__DOT__mtimecmp;
+        QData/*63:0*/ SimTop__DOT__u_axi_slave_mem_i__DOT__sig_r_data;
+        QData/*63:0*/ SimTop__DOT__u_axi_slave_mem_d__DOT__sig_r_data;
         QData/*63:0*/ __Vfunc_ram_read_helper__8__Vfuncout;
         QData/*63:0*/ __Vfunc_ram_read_helper__10__Vfuncout;
+        VlUnpacked<QData/*63:0*/, 32> SimTop__DOT__regs_diff;
         VlUnpacked<QData/*63:0*/, 32> SimTop__DOT__cpu_regs;
         VlUnpacked<CData/*7:0*/, 1024> SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__sram_area_0_sram__DOT__mem_symbol0;
         VlUnpacked<CData/*7:0*/, 1024> SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__sram_area_0_sram__DOT__mem_symbol1;
@@ -1270,12 +1447,11 @@ VL_MODULE(VSimTop___024root) {
         VlUnpacked<CData/*7:0*/, 1024> SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__sram_area_2_sram__DOT__mem_symbol3;
         VlUnpacked<CData/*7:0*/, 1024> SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__sram_area_3_sram__DOT__mem_symbol0;
         VlUnpacked<CData/*7:0*/, 1024> SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__sram_area_3_sram__DOT__mem_symbol1;
-    };
-    struct {
         VlUnpacked<CData/*7:0*/, 1024> SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__sram_area_3_sram__DOT__mem_symbol2;
         VlUnpacked<CData/*7:0*/, 1024> SimTop__DOT__u_SuperScalar__DOT__icache_1__DOT__sram_area_3_sram__DOT__mem_symbol3;
         VlUnpacked<QData/*63:0*/, 60> SimTop__DOT__u_SuperScalar__DOT__alu_1__DOT__div__DOT__u_div__DOT__quotient;
         VlUnpacked<QData/*63:0*/, 60> SimTop__DOT__u_SuperScalar__DOT__alu_1__DOT__div__DOT__u_div__DOT__remainder;
+        VlUnpacked<CData/*0:0*/, 6> __Vm_traceActivity;
     };
 
     // INTERNAL VARIABLES
