@@ -392,8 +392,8 @@ assign cpu_regs[31] = SimTop.u_Tulip.regfile_1.reg_31[63:0];
 // 2 wb to 1 in FIFO
 wire fifo_empty, fifo_full;
 fifo_2write#(
-    .PTR_WIDTH  ( 1024 ),
-    .FIFO_DEPTH ( 16 ),
+    .PTR_WIDTH  ( 16 ),
+    .FIFO_DEPTH ( 1024 ),
     .FIFO_WIDTH ( 1+32+32+5+64 )
 )u_fifo_2write(
     .clk        ( clock      ),
