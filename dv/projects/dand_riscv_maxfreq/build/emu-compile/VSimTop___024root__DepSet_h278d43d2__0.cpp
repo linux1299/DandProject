@@ -443,20 +443,21 @@ VL_INLINE_OPT void VSimTop___024root___sequent__TOP__2(VSimTop___024root* vlSelf
                                                                               [0x1eU], 
                                                                               vlSelf->SimTop__DOT__cpu_regs
                                                                               [0x1fU]);
+    if (VL_UNLIKELY((((((~ (IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__lsu_1__DOT__lsu_addr_is_timer)) 
+                        & (IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__lsu_1__DOT__lsu_cen)) 
+                       & (IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_lsu_rValid)) 
+                      & (IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__dcache__DOT__biu_1__DOT__cpu_cmd_ready_1)) 
+                     & (IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_lsu_rData_micro_op_lsu_is_store)))) {
+        VL_WRITEF("dcache write addr:%x data:%x\n",
+                  32,(IData)(vlSelf->SimTop__DOT__u_SuperScalar__DOT__lsu_1__DOT__lsu_addr),
+                  64,vlSelf->SimTop__DOT__u_SuperScalar__DOT__lsu_1__DOT__dcache_wdata);
+    }
     VSimTop___024unit____Vdpiimwrap_v_difftest_CSRState_TOP____024unit(0U, 3U, vlSelf->SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__bju_kernel_1__DOT__csr_regfile__DOT__mstatus, 0ULL, vlSelf->SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__bju_kernel_1__DOT__csr_regfile__DOT__mepc, 0ULL, 0ULL, 0ULL, vlSelf->SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__bju_kernel_1__DOT__csr_regfile__DOT__mtvec, 0ULL, vlSelf->SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__bju_kernel_1__DOT__csr_regfile__DOT__mcause, 0ULL, 0ULL, vlSelf->SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__bju_kernel_1__DOT__csr_regfile__DOT__mip, vlSelf->SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__bju_kernel_1__DOT__csr_regfile__DOT__mie, vlSelf->SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__bju_kernel_1__DOT__csr_regfile__DOT__mscratch, 0ULL, 0ULL, 0ULL);
     VSimTop___024unit____Vdpiimwrap_v_difftest_TrapEvent_TOP____024unit(0U, (IData)(vlSelf->SimTop__DOT__trap), 
                                                                         (7U 
                                                                          & (IData)(vlSelf->SimTop__DOT__trap_code)), (QData)((IData)(vlSelf->SimTop__DOT__cmt_pc)), vlSelf->SimTop__DOT__cycleCnt, vlSelf->SimTop__DOT__instrCnt);
     if (vlSelf->SimTop__DOT__cmt_valid) {
         VSimTop___024unit____Vdpiimwrap_v_difftest_InstrCommit_TOP____024unit(0U, 0U, (IData)(vlSelf->SimTop__DOT__cmt_valid), (QData)((IData)(vlSelf->SimTop__DOT__cmt_pc)), vlSelf->SimTop__DOT__cmt_inst, (IData)(vlSelf->SimTop__DOT__skip), 0U, 0U, (IData)(vlSelf->SimTop__DOT__cmt_wen), vlSelf->SimTop__DOT__cmt_wdest, vlSelf->SimTop__DOT__cmt_wdata);
-    }
-    if (VL_UNLIKELY(vlSelf->SimTop__DOT__cmt_valid)) {
-        VL_WRITEF("pc:%x, inst:%x, cmt_wen:%b rd_addr:%x, rd_data:%x, mstatus:%x\n",
-                  32,vlSelf->SimTop__DOT__cmt_pc,32,
-                  vlSelf->SimTop__DOT__cmt_inst,1,(IData)(vlSelf->SimTop__DOT__cmt_wen),
-                  8,vlSelf->SimTop__DOT__cmt_wdest,
-                  64,vlSelf->SimTop__DOT__cmt_wdata,
-                  64,vlSelf->SimTop__DOT__u_SuperScalar__DOT__bju_1__DOT__bju_kernel_1__DOT__csr_regfile__DOT__mstatus);
     }
     vlSelf->SimTop__DOT__u_axi_slave_mem_i__DOT__sig_aw_ready = 0U;
     if (vlSelf->SimTop__DOT__u_SuperScalar__DOT__control_1__DOT__stream_wb_ready) {

@@ -503,9 +503,9 @@ always @(posedge clock) begin
 end
 
 always@(posedge clock) begin
-  if (cmt_valid) begin
-    $display("pc:%h, inst:%h, cmt_wen:%b rd_addr:%h, rd_data:%h, mstatus:%h", cmt_pc, cmt_inst, cmt_wen, cmt_wdest, cmt_wdata, u_SuperScalar.bju_1.bju_kernel_1.csr_regfile.mstatus);
-  end
+  // if (cmt_valid) begin
+  //   $display("pc:%h, inst:%h, cmt_wen:%b rd_addr:%h, rd_data:%h, mstatus:%h", cmt_pc, cmt_inst, cmt_wen, cmt_wdest, cmt_wdata, u_SuperScalar.bju_1.bju_kernel_1.csr_regfile.mstatus);
+  // end
   // if (dcache_ar_valid && dcache_ar_ready)
   //   $display("ar addr:%h", dcache_ar_payload_addr);
   // if (dcache_aw_valid && dcache_aw_ready)
@@ -513,6 +513,10 @@ always@(posedge clock) begin
 
   // if(cmt_valid && cmt_inst==32'h73) // ecall
   //   $display("yield");
+
+  if(u_SuperScalar.lsu_1_dcache_ports_cmd_valid && u_SuperScalar.dcache_dcache_ports_cmd_ready && u_SuperScalar.lsu_1_dcache_ports_cmd_payload_wen) begin
+    $display("dcache write addr:%h data:%h", u_SuperScalar.lsu_1_dcache_ports_cmd_payload_addr, u_SuperScalar.lsu_1_dcache_ports_cmd_payload_wdata);
+  end
 
 end
 
