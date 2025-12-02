@@ -429,10 +429,6 @@ always @(posedge clock) begin
     cmt_pc    <= writeback_pc;
     cmt_inst  <= writeback_inst;
     cmt_valid <= writeback_valid;
-<<<<<<< HEAD
-=======
-    regs_diff <= cpu_regs;
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
     trap      <= writeback_inst[6:0] == 7'h6b && writeback_valid;
     trap_code <= cpu_regs[10][7:0];
     cycleCnt  <= cycleCnt + 1;
