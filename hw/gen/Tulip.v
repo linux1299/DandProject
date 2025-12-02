@@ -1,10 +1,6 @@
 // Generator : SpinalHDL v1.8.1    git head : 2a7592004363e5b40ec43e1f122ed8641cd8965b
 // Component : Tulip
-<<<<<<< HEAD
-// Git hash  : c90159209d72bbfd30001d42c75e81e8b5c9d4bd
-=======
-// Git hash  : 931952802da05b806ec2d2c5a3c461eebadad443
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
+// Git hash  : dffd0c96bd10526b77ae35af4c5be59e5a916495
 
 `timescale 1ns/1ps
 
@@ -124,11 +120,8 @@ module Tulip (
   reg                 fetch_1_fch_dst_1_ready;
   reg                 issue_1_iss_dst_0_ready;
   reg                 issue_1_iss_dst_1_ready;
-<<<<<<< HEAD
   wire                dispat_dis_src_0_valid;
   wire                dispat_dis_src_1_valid;
-=======
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
   reg                 dispat_dis_to_al1_ready;
   reg                 dispat_dis_to_al2_ready;
   reg                 dispat_dis_to_div_ready;
@@ -142,15 +135,11 @@ module Tulip (
   wire                dispat_ret_rd_wen_1;
   wire                regfile_1_write_0_rd_wen;
   wire                regfile_1_write_1_rd_wen;
-<<<<<<< HEAD
   reg                 alu_1_1_alu_dst_ready;
   reg                 alu_2_alu_dst_ready;
   reg                 div_3_div_dst_ready;
   wire                lsu_4_flush;
   reg                 lsu_4_lsu_dst_ready;
-=======
-  wire                lsu_4_flush;
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
   wire                fetch_1_icache_ports_cmd_valid;
   wire       [31:0]   fetch_1_icache_ports_cmd_addr;
   wire       [31:0]   fetch_1_predict_pc;
@@ -504,15 +493,12 @@ module Tulip (
   wire                toplevel_issue_1_iss_dst_0_thrown_payload_iss_pkg_branch_taken;
   wire       [31:0]   toplevel_issue_1_iss_dst_0_thrown_payload_iss_pkg_instr;
   wire       [4:0]    toplevel_issue_1_iss_dst_0_thrown_payload_exe_sel_oh;
-<<<<<<< HEAD
   wire                tmp_toplevel_issue_iss_dst_0_thrown_ready;
   wire       [4:0]    tmp_dis_src_0_iss_pkg_micro_op_uop_alu_alu_ctrl_op;
   wire       [3:0]    tmp_dis_src_0_iss_pkg_micro_op_uop_bju_bju_ctrl_op;
   wire       [3:0]    tmp_dis_src_0_iss_pkg_micro_op_uop_bju_exp_ctrl_op;
   wire       [3:0]    tmp_dis_src_0_iss_pkg_micro_op_uop_lsu_lsu_ctrl_op;
   wire       [2:0]    tmp_dis_src_0_iss_pkg_exe_sel;
-=======
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
   reg                 toplevel_issue_1_iss_dst_1_thrown_valid;
   wire                toplevel_issue_1_iss_dst_1_thrown_ready;
   wire                toplevel_issue_1_iss_dst_1_thrown_payload_iss_pkg_micro_op_uop_com_rd_wen;
@@ -539,15 +525,12 @@ module Tulip (
   wire                toplevel_issue_1_iss_dst_1_thrown_payload_iss_pkg_branch_taken;
   wire       [31:0]   toplevel_issue_1_iss_dst_1_thrown_payload_iss_pkg_instr;
   wire       [4:0]    toplevel_issue_1_iss_dst_1_thrown_payload_exe_sel_oh;
-<<<<<<< HEAD
   wire                tmp_toplevel_issue_iss_dst_1_thrown_ready;
   wire       [4:0]    tmp_dis_src_1_iss_pkg_micro_op_uop_alu_alu_ctrl_op;
   wire       [3:0]    tmp_dis_src_1_iss_pkg_micro_op_uop_bju_bju_ctrl_op;
   wire       [3:0]    tmp_dis_src_1_iss_pkg_micro_op_uop_bju_exp_ctrl_op;
   wire       [3:0]    tmp_dis_src_1_iss_pkg_micro_op_uop_lsu_lsu_ctrl_op;
   wire       [2:0]    tmp_dis_src_1_iss_pkg_exe_sel;
-=======
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
   wire                toplevel_bju_0_bju_dst_fire;
   wire                toplevel_alu_1_1_alu_dst_fire;
   wire                toplevel_alu_2_alu_dst_fire;
@@ -609,7 +592,6 @@ module Tulip (
   wire       [3:0]    toplevel_dispat_dis_to_lsu_thrown_payload_uop_lsu_lsu_ctrl_op;
   wire                toplevel_dispat_dis_to_lsu_thrown_payload_uop_lsu_lsu_is_load;
   wire                toplevel_dispat_dis_to_lsu_thrown_payload_uop_lsu_lsu_is_store;
-<<<<<<< HEAD
   reg                 toplevel_alu_1_1_alu_dst_thrown_valid;
   wire                toplevel_alu_1_1_alu_dst_thrown_ready;
   wire       [63:0]   toplevel_alu_1_1_alu_dst_thrown_payload_rd_data;
@@ -642,8 +624,6 @@ module Tulip (
   wire       [31:0]   toplevel_lsu_4_lsu_dst_thrown_payload_pc;
   wire       [31:0]   toplevel_lsu_4_lsu_dst_thrown_payload_instr;
   wire       [2:0]    toplevel_lsu_4_lsu_dst_thrown_payload_tail_adr;
-=======
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
   wire                toplevel_dispat_dis_src_0_fire;
   wire                toplevel_dispat_dis_src_1_fire;
   `ifndef SYNTHESIS
@@ -652,27 +632,21 @@ module Tulip (
   reg [47:0] toplevel_issue_1_iss_dst_0_thrown_payload_iss_pkg_micro_op_uop_bju_exp_ctrl_op_string;
   reg [31:0] toplevel_issue_1_iss_dst_0_thrown_payload_iss_pkg_micro_op_uop_lsu_lsu_ctrl_op_string;
   reg [31:0] toplevel_issue_1_iss_dst_0_thrown_payload_iss_pkg_exe_sel_string;
-<<<<<<< HEAD
   reg [47:0] tmp_dis_src_0_iss_pkg_micro_op_uop_alu_alu_ctrl_op_string;
   reg [39:0] tmp_dis_src_0_iss_pkg_micro_op_uop_bju_bju_ctrl_op_string;
   reg [47:0] tmp_dis_src_0_iss_pkg_micro_op_uop_bju_exp_ctrl_op_string;
   reg [31:0] tmp_dis_src_0_iss_pkg_micro_op_uop_lsu_lsu_ctrl_op_string;
   reg [31:0] tmp_dis_src_0_iss_pkg_exe_sel_string;
-=======
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
   reg [47:0] toplevel_issue_1_iss_dst_1_thrown_payload_iss_pkg_micro_op_uop_alu_alu_ctrl_op_string;
   reg [39:0] toplevel_issue_1_iss_dst_1_thrown_payload_iss_pkg_micro_op_uop_bju_bju_ctrl_op_string;
   reg [47:0] toplevel_issue_1_iss_dst_1_thrown_payload_iss_pkg_micro_op_uop_bju_exp_ctrl_op_string;
   reg [31:0] toplevel_issue_1_iss_dst_1_thrown_payload_iss_pkg_micro_op_uop_lsu_lsu_ctrl_op_string;
   reg [31:0] toplevel_issue_1_iss_dst_1_thrown_payload_iss_pkg_exe_sel_string;
-<<<<<<< HEAD
   reg [47:0] tmp_dis_src_1_iss_pkg_micro_op_uop_alu_alu_ctrl_op_string;
   reg [39:0] tmp_dis_src_1_iss_pkg_micro_op_uop_bju_bju_ctrl_op_string;
   reg [47:0] tmp_dis_src_1_iss_pkg_micro_op_uop_bju_exp_ctrl_op_string;
   reg [31:0] tmp_dis_src_1_iss_pkg_micro_op_uop_lsu_lsu_ctrl_op_string;
   reg [31:0] tmp_dis_src_1_iss_pkg_exe_sel_string;
-=======
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
   reg [47:0] toplevel_dispat_dis_to_al1_thrown_payload_uop_alu_alu_ctrl_op_string;
   reg [47:0] toplevel_dispat_dis_to_al2_thrown_payload_uop_alu_alu_ctrl_op_string;
   reg [47:0] toplevel_dispat_dis_to_div_thrown_payload_uop_alu_alu_ctrl_op_string;
@@ -924,7 +898,6 @@ module Tulip (
   );
   Dispatch dispat (
     .flush                                              (change_flow                                                                          ), //i
-<<<<<<< HEAD
     .dis_src_0_valid                                    (dispat_dis_src_0_valid                                                               ), //i
     .dis_src_0_ready                                    (dispat_dis_src_0_ready                                                               ), //o
     .dis_src_0_iss_pkg_micro_op_uop_com_rd_wen          (toplevel_issue_1_iss_dst_0_thrown_payload_iss_pkg_micro_op_uop_com_rd_wen            ), //i
@@ -942,25 +915,6 @@ module Tulip (
     .dis_src_0_iss_pkg_micro_op_uop_lsu_lsu_is_load     (toplevel_issue_1_iss_dst_0_thrown_payload_iss_pkg_micro_op_uop_lsu_lsu_is_load       ), //i
     .dis_src_0_iss_pkg_micro_op_uop_lsu_lsu_is_store    (toplevel_issue_1_iss_dst_0_thrown_payload_iss_pkg_micro_op_uop_lsu_lsu_is_store      ), //i
     .dis_src_0_iss_pkg_exe_sel                          (tmp_dis_src_0_iss_pkg_exe_sel[2:0]                                                   ), //i
-=======
-    .dis_src_0_valid                                    (toplevel_issue_1_iss_dst_0_thrown_valid                                              ), //i
-    .dis_src_0_ready                                    (dispat_dis_src_0_ready                                                               ), //o
-    .dis_src_0_iss_pkg_micro_op_uop_com_rd_wen          (toplevel_issue_1_iss_dst_0_thrown_payload_iss_pkg_micro_op_uop_com_rd_wen            ), //i
-    .dis_src_0_iss_pkg_micro_op_uop_com_src2_is_imm     (toplevel_issue_1_iss_dst_0_thrown_payload_iss_pkg_micro_op_uop_com_src2_is_imm       ), //i
-    .dis_src_0_iss_pkg_micro_op_uop_alu_alu_ctrl_op     (toplevel_issue_1_iss_dst_0_thrown_payload_iss_pkg_micro_op_uop_alu_alu_ctrl_op[4:0]  ), //i
-    .dis_src_0_iss_pkg_micro_op_uop_alu_alu_is_word     (toplevel_issue_1_iss_dst_0_thrown_payload_iss_pkg_micro_op_uop_alu_alu_is_word       ), //i
-    .dis_src_0_iss_pkg_micro_op_uop_bju_bju_ctrl_op     (toplevel_issue_1_iss_dst_0_thrown_payload_iss_pkg_micro_op_uop_bju_bju_ctrl_op[3:0]  ), //i
-    .dis_src_0_iss_pkg_micro_op_uop_bju_bju_rd_eq_rs1   (toplevel_issue_1_iss_dst_0_thrown_payload_iss_pkg_micro_op_uop_bju_bju_rd_eq_rs1     ), //i
-    .dis_src_0_iss_pkg_micro_op_uop_bju_bju_rd_is_link  (toplevel_issue_1_iss_dst_0_thrown_payload_iss_pkg_micro_op_uop_bju_bju_rd_is_link    ), //i
-    .dis_src_0_iss_pkg_micro_op_uop_bju_bju_rs1_is_link (toplevel_issue_1_iss_dst_0_thrown_payload_iss_pkg_micro_op_uop_bju_bju_rs1_is_link   ), //i
-    .dis_src_0_iss_pkg_micro_op_uop_bju_exp_ctrl_op     (toplevel_issue_1_iss_dst_0_thrown_payload_iss_pkg_micro_op_uop_bju_exp_ctrl_op[3:0]  ), //i
-    .dis_src_0_iss_pkg_micro_op_uop_bju_exp_csr_addr    (toplevel_issue_1_iss_dst_0_thrown_payload_iss_pkg_micro_op_uop_bju_exp_csr_addr[11:0]), //i
-    .dis_src_0_iss_pkg_micro_op_uop_bju_exp_csr_wen     (toplevel_issue_1_iss_dst_0_thrown_payload_iss_pkg_micro_op_uop_bju_exp_csr_wen       ), //i
-    .dis_src_0_iss_pkg_micro_op_uop_lsu_lsu_ctrl_op     (toplevel_issue_1_iss_dst_0_thrown_payload_iss_pkg_micro_op_uop_lsu_lsu_ctrl_op[3:0]  ), //i
-    .dis_src_0_iss_pkg_micro_op_uop_lsu_lsu_is_load     (toplevel_issue_1_iss_dst_0_thrown_payload_iss_pkg_micro_op_uop_lsu_lsu_is_load       ), //i
-    .dis_src_0_iss_pkg_micro_op_uop_lsu_lsu_is_store    (toplevel_issue_1_iss_dst_0_thrown_payload_iss_pkg_micro_op_uop_lsu_lsu_is_store      ), //i
-    .dis_src_0_iss_pkg_exe_sel                          (toplevel_issue_1_iss_dst_0_thrown_payload_iss_pkg_exe_sel[2:0]                       ), //i
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
     .dis_src_0_iss_pkg_rs1_addr                         (toplevel_issue_1_iss_dst_0_thrown_payload_iss_pkg_rs1_addr[4:0]                      ), //i
     .dis_src_0_iss_pkg_rs2_addr                         (toplevel_issue_1_iss_dst_0_thrown_payload_iss_pkg_rs2_addr[4:0]                      ), //i
     .dis_src_0_iss_pkg_rd_addr                          (toplevel_issue_1_iss_dst_0_thrown_payload_iss_pkg_rd_addr[4:0]                       ), //i
@@ -970,7 +924,6 @@ module Tulip (
     .dis_src_0_iss_pkg_branch_taken                     (toplevel_issue_1_iss_dst_0_thrown_payload_iss_pkg_branch_taken                       ), //i
     .dis_src_0_iss_pkg_instr                            (toplevel_issue_1_iss_dst_0_thrown_payload_iss_pkg_instr[31:0]                        ), //i
     .dis_src_0_exe_sel_oh                               (toplevel_issue_1_iss_dst_0_thrown_payload_exe_sel_oh[4:0]                            ), //i
-<<<<<<< HEAD
     .dis_src_1_valid                                    (dispat_dis_src_1_valid                                                               ), //i
     .dis_src_1_ready                                    (dispat_dis_src_1_ready                                                               ), //o
     .dis_src_1_iss_pkg_micro_op_uop_com_rd_wen          (toplevel_issue_1_iss_dst_1_thrown_payload_iss_pkg_micro_op_uop_com_rd_wen            ), //i
@@ -988,25 +941,6 @@ module Tulip (
     .dis_src_1_iss_pkg_micro_op_uop_lsu_lsu_is_load     (toplevel_issue_1_iss_dst_1_thrown_payload_iss_pkg_micro_op_uop_lsu_lsu_is_load       ), //i
     .dis_src_1_iss_pkg_micro_op_uop_lsu_lsu_is_store    (toplevel_issue_1_iss_dst_1_thrown_payload_iss_pkg_micro_op_uop_lsu_lsu_is_store      ), //i
     .dis_src_1_iss_pkg_exe_sel                          (tmp_dis_src_1_iss_pkg_exe_sel[2:0]                                                   ), //i
-=======
-    .dis_src_1_valid                                    (toplevel_issue_1_iss_dst_1_thrown_valid                                              ), //i
-    .dis_src_1_ready                                    (dispat_dis_src_1_ready                                                               ), //o
-    .dis_src_1_iss_pkg_micro_op_uop_com_rd_wen          (toplevel_issue_1_iss_dst_1_thrown_payload_iss_pkg_micro_op_uop_com_rd_wen            ), //i
-    .dis_src_1_iss_pkg_micro_op_uop_com_src2_is_imm     (toplevel_issue_1_iss_dst_1_thrown_payload_iss_pkg_micro_op_uop_com_src2_is_imm       ), //i
-    .dis_src_1_iss_pkg_micro_op_uop_alu_alu_ctrl_op     (toplevel_issue_1_iss_dst_1_thrown_payload_iss_pkg_micro_op_uop_alu_alu_ctrl_op[4:0]  ), //i
-    .dis_src_1_iss_pkg_micro_op_uop_alu_alu_is_word     (toplevel_issue_1_iss_dst_1_thrown_payload_iss_pkg_micro_op_uop_alu_alu_is_word       ), //i
-    .dis_src_1_iss_pkg_micro_op_uop_bju_bju_ctrl_op     (toplevel_issue_1_iss_dst_1_thrown_payload_iss_pkg_micro_op_uop_bju_bju_ctrl_op[3:0]  ), //i
-    .dis_src_1_iss_pkg_micro_op_uop_bju_bju_rd_eq_rs1   (toplevel_issue_1_iss_dst_1_thrown_payload_iss_pkg_micro_op_uop_bju_bju_rd_eq_rs1     ), //i
-    .dis_src_1_iss_pkg_micro_op_uop_bju_bju_rd_is_link  (toplevel_issue_1_iss_dst_1_thrown_payload_iss_pkg_micro_op_uop_bju_bju_rd_is_link    ), //i
-    .dis_src_1_iss_pkg_micro_op_uop_bju_bju_rs1_is_link (toplevel_issue_1_iss_dst_1_thrown_payload_iss_pkg_micro_op_uop_bju_bju_rs1_is_link   ), //i
-    .dis_src_1_iss_pkg_micro_op_uop_bju_exp_ctrl_op     (toplevel_issue_1_iss_dst_1_thrown_payload_iss_pkg_micro_op_uop_bju_exp_ctrl_op[3:0]  ), //i
-    .dis_src_1_iss_pkg_micro_op_uop_bju_exp_csr_addr    (toplevel_issue_1_iss_dst_1_thrown_payload_iss_pkg_micro_op_uop_bju_exp_csr_addr[11:0]), //i
-    .dis_src_1_iss_pkg_micro_op_uop_bju_exp_csr_wen     (toplevel_issue_1_iss_dst_1_thrown_payload_iss_pkg_micro_op_uop_bju_exp_csr_wen       ), //i
-    .dis_src_1_iss_pkg_micro_op_uop_lsu_lsu_ctrl_op     (toplevel_issue_1_iss_dst_1_thrown_payload_iss_pkg_micro_op_uop_lsu_lsu_ctrl_op[3:0]  ), //i
-    .dis_src_1_iss_pkg_micro_op_uop_lsu_lsu_is_load     (toplevel_issue_1_iss_dst_1_thrown_payload_iss_pkg_micro_op_uop_lsu_lsu_is_load       ), //i
-    .dis_src_1_iss_pkg_micro_op_uop_lsu_lsu_is_store    (toplevel_issue_1_iss_dst_1_thrown_payload_iss_pkg_micro_op_uop_lsu_lsu_is_store      ), //i
-    .dis_src_1_iss_pkg_exe_sel                          (toplevel_issue_1_iss_dst_1_thrown_payload_iss_pkg_exe_sel[2:0]                       ), //i
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
     .dis_src_1_iss_pkg_rs1_addr                         (toplevel_issue_1_iss_dst_1_thrown_payload_iss_pkg_rs1_addr[4:0]                      ), //i
     .dis_src_1_iss_pkg_rs2_addr                         (toplevel_issue_1_iss_dst_1_thrown_payload_iss_pkg_rs2_addr[4:0]                      ), //i
     .dis_src_1_iss_pkg_rd_addr                          (toplevel_issue_1_iss_dst_1_thrown_payload_iss_pkg_rd_addr[4:0]                       ), //i
@@ -1141,16 +1075,12 @@ module Tulip (
   );
   Commit commit_1 (
     .flush              (commit_1_flush                                            ), //o
-<<<<<<< HEAD
     .flush_al1          (commit_1_flush_al1                                        ), //o
     .flush_al2          (commit_1_flush_al2                                        ), //o
     .flush_div          (commit_1_flush_div                                        ), //o
     .dis_stall          (commit_1_dis_stall                                        ), //o
     .change_flow        (change_flow                                               ), //i
     .change_flow_adr    (dispat_dis_to_bju_tail_adr[2:0]                           ), //i
-=======
-    .change_flow        (change_flow                                               ), //i
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
     .wbc_src_0_valid    (bju_0_bju_dst_valid                                       ), //i
     .wbc_src_0_ready    (commit_1_wbc_src_0_ready                                  ), //o
     .wbc_src_0_rd_data  (bju_0_bju_dst_rd_data[63:0]                               ), //i
@@ -1159,7 +1089,6 @@ module Tulip (
     .wbc_src_0_pc       (bju_0_bju_dst_pc[31:0]                                    ), //i
     .wbc_src_0_instr    (bju_0_bju_dst_instr[31:0]                                 ), //i
     .wbc_src_0_tail_adr (bju_0_bju_dst_tail_adr[2:0]                               ), //i
-<<<<<<< HEAD
     .wbc_src_1_valid    (toplevel_alu_1_1_alu_dst_thrown_valid                     ), //i
     .wbc_src_1_ready    (commit_1_wbc_src_1_ready                                  ), //o
     .wbc_src_1_rd_data  (toplevel_alu_1_1_alu_dst_thrown_payload_rd_data[63:0]     ), //i
@@ -1194,42 +1123,6 @@ module Tulip (
     .wbc_src_4_tail_adr (toplevel_lsu_4_lsu_dst_thrown_payload_tail_adr[2:0]       ), //i
     .dis_valid_0        (dispat_dis_src_0_valid                                    ), //i
     .dis_valid_1        (dispat_dis_src_1_valid                                    ), //i
-=======
-    .wbc_src_1_valid    (alu_1_1_alu_dst_valid                                     ), //i
-    .wbc_src_1_ready    (commit_1_wbc_src_1_ready                                  ), //o
-    .wbc_src_1_rd_data  (alu_1_1_alu_dst_rd_data[63:0]                             ), //i
-    .wbc_src_1_rd_addr  (alu_1_1_alu_dst_rd_addr[4:0]                              ), //i
-    .wbc_src_1_rd_wen   (alu_1_1_alu_dst_rd_wen                                    ), //i
-    .wbc_src_1_pc       (alu_1_1_alu_dst_pc[31:0]                                  ), //i
-    .wbc_src_1_instr    (alu_1_1_alu_dst_instr[31:0]                               ), //i
-    .wbc_src_1_tail_adr (alu_1_1_alu_dst_tail_adr[2:0]                             ), //i
-    .wbc_src_2_valid    (alu_2_alu_dst_valid                                       ), //i
-    .wbc_src_2_ready    (commit_1_wbc_src_2_ready                                  ), //o
-    .wbc_src_2_rd_data  (alu_2_alu_dst_rd_data[63:0]                               ), //i
-    .wbc_src_2_rd_addr  (alu_2_alu_dst_rd_addr[4:0]                                ), //i
-    .wbc_src_2_rd_wen   (alu_2_alu_dst_rd_wen                                      ), //i
-    .wbc_src_2_pc       (alu_2_alu_dst_pc[31:0]                                    ), //i
-    .wbc_src_2_instr    (alu_2_alu_dst_instr[31:0]                                 ), //i
-    .wbc_src_2_tail_adr (alu_2_alu_dst_tail_adr[2:0]                               ), //i
-    .wbc_src_3_valid    (div_3_div_dst_valid                                       ), //i
-    .wbc_src_3_ready    (commit_1_wbc_src_3_ready                                  ), //o
-    .wbc_src_3_rd_data  (div_3_div_dst_rd_data[63:0]                               ), //i
-    .wbc_src_3_rd_addr  (div_3_div_dst_rd_addr[4:0]                                ), //i
-    .wbc_src_3_rd_wen   (div_3_div_dst_rd_wen                                      ), //i
-    .wbc_src_3_pc       (div_3_div_dst_pc[31:0]                                    ), //i
-    .wbc_src_3_instr    (div_3_div_dst_instr[31:0]                                 ), //i
-    .wbc_src_3_tail_adr (div_3_div_dst_tail_adr[2:0]                               ), //i
-    .wbc_src_4_valid    (lsu_4_lsu_dst_valid                                       ), //i
-    .wbc_src_4_ready    (commit_1_wbc_src_4_ready                                  ), //o
-    .wbc_src_4_rd_data  (lsu_4_lsu_dst_rd_data[63:0]                               ), //i
-    .wbc_src_4_rd_addr  (lsu_4_lsu_dst_rd_addr[4:0]                                ), //i
-    .wbc_src_4_rd_wen   (lsu_4_lsu_dst_rd_wen                                      ), //i
-    .wbc_src_4_pc       (lsu_4_lsu_dst_pc[31:0]                                    ), //i
-    .wbc_src_4_instr    (lsu_4_lsu_dst_instr[31:0]                                 ), //i
-    .wbc_src_4_tail_adr (lsu_4_lsu_dst_tail_adr[2:0]                               ), //i
-    .dis_valid_0        (toplevel_issue_1_iss_dst_0_thrown_valid                   ), //i
-    .dis_valid_1        (toplevel_issue_1_iss_dst_1_thrown_valid                   ), //i
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
     .dis_fire_0         (toplevel_dispat_dis_src_0_fire                            ), //i
     .dis_fire_1         (toplevel_dispat_dis_src_1_fire                            ), //i
     .dis_onehot_0       (toplevel_issue_1_iss_dst_0_thrown_payload_exe_sel_oh[4:0] ), //i
@@ -1319,11 +1212,7 @@ module Tulip (
     .alu_src_uop_alu_alu_ctrl_op (toplevel_dispat_dis_to_al1_thrown_payload_uop_alu_alu_ctrl_op[4:0]), //i
     .alu_src_uop_alu_alu_is_word (toplevel_dispat_dis_to_al1_thrown_payload_uop_alu_alu_is_word     ), //i
     .alu_dst_valid               (alu_1_1_alu_dst_valid                                             ), //o
-<<<<<<< HEAD
     .alu_dst_ready               (alu_1_1_alu_dst_ready                                             ), //i
-=======
-    .alu_dst_ready               (commit_1_wbc_src_1_ready                                          ), //i
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
     .alu_dst_rd_data             (alu_1_1_alu_dst_rd_data[63:0]                                     ), //o
     .alu_dst_rd_addr             (alu_1_1_alu_dst_rd_addr[4:0]                                      ), //o
     .alu_dst_rd_wen              (alu_1_1_alu_dst_rd_wen                                            ), //o
@@ -1347,11 +1236,7 @@ module Tulip (
     .alu_src_uop_alu_alu_ctrl_op (toplevel_dispat_dis_to_al2_thrown_payload_uop_alu_alu_ctrl_op[4:0]), //i
     .alu_src_uop_alu_alu_is_word (toplevel_dispat_dis_to_al2_thrown_payload_uop_alu_alu_is_word     ), //i
     .alu_dst_valid               (alu_2_alu_dst_valid                                               ), //o
-<<<<<<< HEAD
     .alu_dst_ready               (alu_2_alu_dst_ready                                               ), //i
-=======
-    .alu_dst_ready               (commit_1_wbc_src_2_ready                                          ), //i
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
     .alu_dst_rd_data             (alu_2_alu_dst_rd_data[63:0]                                       ), //o
     .alu_dst_rd_addr             (alu_2_alu_dst_rd_addr[4:0]                                        ), //o
     .alu_dst_rd_wen              (alu_2_alu_dst_rd_wen                                              ), //o
@@ -1376,11 +1261,7 @@ module Tulip (
     .div_src_uop_alu_alu_ctrl_op (toplevel_dispat_dis_to_div_thrown_payload_uop_alu_alu_ctrl_op[4:0]), //i
     .div_src_uop_alu_alu_is_word (toplevel_dispat_dis_to_div_thrown_payload_uop_alu_alu_is_word     ), //i
     .div_dst_valid               (div_3_div_dst_valid                                               ), //o
-<<<<<<< HEAD
     .div_dst_ready               (div_3_div_dst_ready                                               ), //i
-=======
-    .div_dst_ready               (commit_1_wbc_src_3_ready                                          ), //i
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
     .div_dst_rd_data             (div_3_div_dst_rd_data[63:0]                                       ), //o
     .div_dst_rd_addr             (div_3_div_dst_rd_addr[4:0]                                        ), //o
     .div_dst_rd_wen              (div_3_div_dst_rd_wen                                              ), //o
@@ -1408,11 +1289,7 @@ module Tulip (
     .lsu_src_uop_lsu_lsu_is_load  (toplevel_dispat_dis_to_lsu_thrown_payload_uop_lsu_lsu_is_load     ), //i
     .lsu_src_uop_lsu_lsu_is_store (toplevel_dispat_dis_to_lsu_thrown_payload_uop_lsu_lsu_is_store    ), //i
     .lsu_dst_valid                (lsu_4_lsu_dst_valid                                               ), //o
-<<<<<<< HEAD
     .lsu_dst_ready                (lsu_4_lsu_dst_ready                                               ), //i
-=======
-    .lsu_dst_ready                (commit_1_wbc_src_4_ready                                          ), //i
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
     .lsu_dst_rd_data              (lsu_4_lsu_dst_rd_data[63:0]                                       ), //o
     .lsu_dst_rd_addr              (lsu_4_lsu_dst_rd_addr[4:0]                                        ), //o
     .lsu_dst_rd_wen               (lsu_4_lsu_dst_rd_wen                                              ), //o
@@ -1420,17 +1297,12 @@ module Tulip (
     .lsu_dst_instr                (lsu_4_lsu_dst_instr[31:0]                                         ), //o
     .lsu_dst_tail_adr             (lsu_4_lsu_dst_tail_adr[2:0]                                       ), //o
     .dcache_ports_cmd_valid       (lsu_4_dcache_ports_cmd_valid                                      ), //o
-<<<<<<< HEAD
     .dcache_ports_cmd_ready       (dcache_dcache_src_cmd_ready                                       ), //i
-=======
-    .dcache_ports_cmd_ready       (dcache_1_dcache_src_cmd_ready                                     ), //i
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
     .dcache_ports_cmd_addr        (lsu_4_dcache_ports_cmd_addr[31:0]                                 ), //o
     .dcache_ports_cmd_wen         (lsu_4_dcache_ports_cmd_wen                                        ), //o
     .dcache_ports_cmd_wdata       (lsu_4_dcache_ports_cmd_wdata[63:0]                                ), //o
     .dcache_ports_cmd_wstrb       (lsu_4_dcache_ports_cmd_wstrb[7:0]                                 ), //o
     .dcache_ports_cmd_size        (lsu_4_dcache_ports_cmd_size[2:0]                                  ), //o
-<<<<<<< HEAD
     .dcache_ports_rsp_valid       (dcache_dcache_src_rsp_valid                                       ), //i
     .dcache_ports_rsp_data        (dcache_dcache_src_rsp_payload_data[63:0]                          ), //i
     .clk                          (clk                                                               ), //i
@@ -1479,55 +1351,6 @@ module Tulip (
     .dcache_b_payload_resp        (dcache_b_payload_resp[1:0]              ), //i
     .clk                          (clk                                     ), //i
     .reset                        (reset                                   )  //i
-=======
-    .dcache_ports_rsp_valid       (dcache_1_dcache_src_rsp_valid                                     ), //i
-    .dcache_ports_rsp_data        (dcache_1_dcache_src_rsp_data[63:0]                                ), //i
-    .clk                          (clk                                                               ), //i
-    .reset                        (reset                                                             )  //i
-  );
-  DCacheTop dcache_1 (
-    .flush                (commit_1_flush                    ), //i
-    .dcache_src_cmd_valid (lsu_4_dcache_ports_cmd_valid      ), //i
-    .dcache_src_cmd_ready (dcache_1_dcache_src_cmd_ready     ), //o
-    .dcache_src_cmd_addr  (lsu_4_dcache_ports_cmd_addr[31:0] ), //i
-    .dcache_src_cmd_wen   (lsu_4_dcache_ports_cmd_wen        ), //i
-    .dcache_src_cmd_wdata (lsu_4_dcache_ports_cmd_wdata[63:0]), //i
-    .dcache_src_cmd_wstrb (lsu_4_dcache_ports_cmd_wstrb[7:0] ), //i
-    .dcache_src_cmd_size  (lsu_4_dcache_ports_cmd_size[2:0]  ), //i
-    .dcache_src_rsp_valid (dcache_1_dcache_src_rsp_valid     ), //o
-    .dcache_src_rsp_data  (dcache_1_dcache_src_rsp_data[63:0]), //o
-    .dcache_ar_valid      (dcache_1_dcache_ar_valid          ), //o
-    .dcache_ar_ready      (dcache_ar_ready                   ), //i
-    .dcache_ar_addr       (dcache_1_dcache_ar_addr[31:0]     ), //o
-    .dcache_ar_id         (dcache_1_dcache_ar_id[1:0]        ), //o
-    .dcache_ar_len        (dcache_1_dcache_ar_len[7:0]       ), //o
-    .dcache_ar_size       (dcache_1_dcache_ar_size[2:0]      ), //o
-    .dcache_ar_burst      (dcache_1_dcache_ar_burst[1:0]     ), //o
-    .dcache_r_valid       (dcache_r_valid                    ), //i
-    .dcache_r_ready       (dcache_1_dcache_r_ready           ), //o
-    .dcache_r_data        (dcache_r_payload_data[63:0]       ), //i
-    .dcache_r_id          (dcache_r_payload_id[1:0]          ), //i
-    .dcache_r_resp        (dcache_r_payload_resp[1:0]        ), //i
-    .dcache_r_last        (dcache_r_payload_last             ), //i
-    .dcache_aw_valid      (dcache_1_dcache_aw_valid          ), //o
-    .dcache_aw_ready      (dcache_aw_ready                   ), //i
-    .dcache_aw_addr       (dcache_1_dcache_aw_addr[31:0]     ), //o
-    .dcache_aw_id         (dcache_1_dcache_aw_id[1:0]        ), //o
-    .dcache_aw_len        (dcache_1_dcache_aw_len[7:0]       ), //o
-    .dcache_aw_size       (dcache_1_dcache_aw_size[2:0]      ), //o
-    .dcache_aw_burst      (dcache_1_dcache_aw_burst[1:0]     ), //o
-    .dcache_w_valid       (dcache_1_dcache_w_valid           ), //o
-    .dcache_w_ready       (dcache_w_ready                    ), //i
-    .dcache_w_data        (dcache_1_dcache_w_data[63:0]      ), //o
-    .dcache_w_strb        (dcache_1_dcache_w_strb[7:0]       ), //o
-    .dcache_w_last        (dcache_1_dcache_w_last            ), //o
-    .dcache_b_valid       (dcache_b_valid                    ), //i
-    .dcache_b_ready       (dcache_1_dcache_b_ready           ), //o
-    .dcache_b_id          (dcache_b_payload_id[1:0]          ), //i
-    .dcache_b_resp        (dcache_b_payload_resp[1:0]        ), //i
-    .clk                  (clk                               ), //i
-    .reset                (reset                             )  //i
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
   );
   `ifndef SYNTHESIS
   always @(*) begin
@@ -1619,7 +1442,6 @@ module Tulip (
     endcase
   end
   always @(*) begin
-<<<<<<< HEAD
     case(tmp_dis_src_0_iss_pkg_micro_op_uop_alu_alu_ctrl_op)
       AluCtrlEnum_IDLE : tmp_dis_src_0_iss_pkg_micro_op_uop_alu_alu_ctrl_op_string = "IDLE  ";
       AluCtrlEnum_ADD : tmp_dis_src_0_iss_pkg_micro_op_uop_alu_alu_ctrl_op_string = "ADD   ";
@@ -1708,8 +1530,6 @@ module Tulip (
     endcase
   end
   always @(*) begin
-=======
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
     case(toplevel_issue_1_iss_dst_1_thrown_payload_iss_pkg_micro_op_uop_alu_alu_ctrl_op)
       AluCtrlEnum_IDLE : toplevel_issue_1_iss_dst_1_thrown_payload_iss_pkg_micro_op_uop_alu_alu_ctrl_op_string = "IDLE  ";
       AluCtrlEnum_ADD : toplevel_issue_1_iss_dst_1_thrown_payload_iss_pkg_micro_op_uop_alu_alu_ctrl_op_string = "ADD   ";
@@ -1798,7 +1618,6 @@ module Tulip (
     endcase
   end
   always @(*) begin
-<<<<<<< HEAD
     case(tmp_dis_src_1_iss_pkg_micro_op_uop_alu_alu_ctrl_op)
       AluCtrlEnum_IDLE : tmp_dis_src_1_iss_pkg_micro_op_uop_alu_alu_ctrl_op_string = "IDLE  ";
       AluCtrlEnum_ADD : tmp_dis_src_1_iss_pkg_micro_op_uop_alu_alu_ctrl_op_string = "ADD   ";
@@ -1887,8 +1706,6 @@ module Tulip (
     endcase
   end
   always @(*) begin
-=======
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
     case(toplevel_dispat_dis_to_al1_thrown_payload_uop_alu_alu_ctrl_op)
       AluCtrlEnum_IDLE : toplevel_dispat_dis_to_al1_thrown_payload_uop_alu_alu_ctrl_op_string = "IDLE  ";
       AluCtrlEnum_ADD : toplevel_dispat_dis_to_al1_thrown_payload_uop_alu_alu_ctrl_op_string = "ADD   ";
@@ -2074,7 +1891,6 @@ module Tulip (
   assign toplevel_issue_1_iss_dst_0_thrown_payload_iss_pkg_branch_taken = issue_1_iss_dst_0_iss_pkg_branch_taken; // @ Stream.scala l296
   assign toplevel_issue_1_iss_dst_0_thrown_payload_iss_pkg_instr = issue_1_iss_dst_0_iss_pkg_instr; // @ Stream.scala l296
   assign toplevel_issue_1_iss_dst_0_thrown_payload_exe_sel_oh = issue_1_iss_dst_0_exe_sel_oh; // @ Stream.scala l296
-<<<<<<< HEAD
   assign tmp_toplevel_issue_iss_dst_0_thrown_ready = (! commit_1_dis_stall); // @ BaseType.scala l299
   assign toplevel_issue_1_iss_dst_0_thrown_ready = (dispat_dis_src_0_ready && tmp_toplevel_issue_iss_dst_0_thrown_ready); // @ Stream.scala l427
   assign tmp_dis_src_0_iss_pkg_micro_op_uop_alu_alu_ctrl_op = toplevel_issue_1_iss_dst_0_thrown_payload_iss_pkg_micro_op_uop_alu_alu_ctrl_op; // @ Stream.scala l428
@@ -2083,9 +1899,6 @@ module Tulip (
   assign tmp_dis_src_0_iss_pkg_micro_op_uop_lsu_lsu_ctrl_op = toplevel_issue_1_iss_dst_0_thrown_payload_iss_pkg_micro_op_uop_lsu_lsu_ctrl_op; // @ Stream.scala l428
   assign tmp_dis_src_0_iss_pkg_exe_sel = toplevel_issue_1_iss_dst_0_thrown_payload_iss_pkg_exe_sel; // @ Stream.scala l428
   assign dispat_dis_src_0_valid = (toplevel_issue_1_iss_dst_0_thrown_valid && tmp_toplevel_issue_iss_dst_0_thrown_ready); // @ Stream.scala l294
-=======
-  assign toplevel_issue_1_iss_dst_0_thrown_ready = dispat_dis_src_0_ready; // @ Stream.scala l295
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
   always @(*) begin
     toplevel_issue_1_iss_dst_1_thrown_valid = issue_1_iss_dst_1_valid; // @ Stream.scala l294
     if(change_flow) begin
@@ -2124,7 +1937,6 @@ module Tulip (
   assign toplevel_issue_1_iss_dst_1_thrown_payload_iss_pkg_branch_taken = issue_1_iss_dst_1_iss_pkg_branch_taken; // @ Stream.scala l296
   assign toplevel_issue_1_iss_dst_1_thrown_payload_iss_pkg_instr = issue_1_iss_dst_1_iss_pkg_instr; // @ Stream.scala l296
   assign toplevel_issue_1_iss_dst_1_thrown_payload_exe_sel_oh = issue_1_iss_dst_1_exe_sel_oh; // @ Stream.scala l296
-<<<<<<< HEAD
   assign tmp_toplevel_issue_iss_dst_1_thrown_ready = (! commit_1_dis_stall); // @ BaseType.scala l299
   assign toplevel_issue_1_iss_dst_1_thrown_ready = (dispat_dis_src_1_ready && tmp_toplevel_issue_iss_dst_1_thrown_ready); // @ Stream.scala l427
   assign tmp_dis_src_1_iss_pkg_micro_op_uop_alu_alu_ctrl_op = toplevel_issue_1_iss_dst_1_thrown_payload_iss_pkg_micro_op_uop_alu_alu_ctrl_op; // @ Stream.scala l428
@@ -2151,27 +1963,6 @@ module Tulip (
   assign regfile_1_write_0_rd_wen = (toplevel_commit_1_wbc_dst_0_fire_1 && commit_1_wbc_dst_0_rd_wen); // @ Tulip.scala l174
   assign toplevel_commit_1_wbc_dst_1_fire_1 = (commit_1_wbc_dst_1_valid && retire_ready_1); // @ BaseType.scala l305
   assign regfile_1_write_1_rd_wen = (toplevel_commit_1_wbc_dst_1_fire_1 && commit_1_wbc_dst_1_rd_wen); // @ Tulip.scala l175
-=======
-  assign toplevel_issue_1_iss_dst_1_thrown_ready = dispat_dis_src_1_ready; // @ Stream.scala l295
-  assign toplevel_bju_0_bju_dst_fire = (bju_0_bju_dst_valid && commit_1_wbc_src_0_ready); // @ BaseType.scala l305
-  assign dispat_wbc_rd_wen_0 = (toplevel_bju_0_bju_dst_fire && bju_0_bju_dst_rd_wen); // @ Tulip.scala l143
-  assign toplevel_alu_1_1_alu_dst_fire = (alu_1_1_alu_dst_valid && commit_1_wbc_src_1_ready); // @ BaseType.scala l305
-  assign dispat_wbc_rd_wen_1 = (toplevel_alu_1_1_alu_dst_fire && alu_1_1_alu_dst_rd_wen); // @ Tulip.scala l144
-  assign toplevel_alu_2_alu_dst_fire = (alu_2_alu_dst_valid && commit_1_wbc_src_2_ready); // @ BaseType.scala l305
-  assign dispat_wbc_rd_wen_2 = (toplevel_alu_2_alu_dst_fire && alu_2_alu_dst_rd_wen); // @ Tulip.scala l145
-  assign toplevel_div_3_div_dst_fire = (div_3_div_dst_valid && commit_1_wbc_src_3_ready); // @ BaseType.scala l305
-  assign dispat_wbc_rd_wen_3 = (toplevel_div_3_div_dst_fire && div_3_div_dst_rd_wen); // @ Tulip.scala l146
-  assign toplevel_lsu_4_lsu_dst_fire = (lsu_4_lsu_dst_valid && commit_1_wbc_src_4_ready); // @ BaseType.scala l305
-  assign dispat_wbc_rd_wen_4 = (toplevel_lsu_4_lsu_dst_fire && lsu_4_lsu_dst_rd_wen); // @ Tulip.scala l147
-  assign toplevel_commit_1_wbc_dst_0_fire = (commit_1_wbc_dst_0_valid && retire_ready_0); // @ BaseType.scala l305
-  assign dispat_ret_rd_wen_0 = (toplevel_commit_1_wbc_dst_0_fire && commit_1_wbc_dst_0_rd_wen); // @ Tulip.scala l161
-  assign toplevel_commit_1_wbc_dst_1_fire = (commit_1_wbc_dst_1_valid && retire_ready_1); // @ BaseType.scala l305
-  assign dispat_ret_rd_wen_1 = (toplevel_commit_1_wbc_dst_1_fire && commit_1_wbc_dst_1_rd_wen); // @ Tulip.scala l162
-  assign toplevel_commit_1_wbc_dst_0_fire_1 = (commit_1_wbc_dst_0_valid && retire_ready_0); // @ BaseType.scala l305
-  assign regfile_1_write_0_rd_wen = (toplevel_commit_1_wbc_dst_0_fire_1 && commit_1_wbc_dst_0_rd_wen); // @ Tulip.scala l173
-  assign toplevel_commit_1_wbc_dst_1_fire_1 = (commit_1_wbc_dst_1_valid && retire_ready_1); // @ BaseType.scala l305
-  assign regfile_1_write_1_rd_wen = (toplevel_commit_1_wbc_dst_1_fire_1 && commit_1_wbc_dst_1_rd_wen); // @ Tulip.scala l174
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
   always @(*) begin
     toplevel_dispat_dis_to_al1_thrown_valid = dispat_dis_to_al1_valid; // @ Stream.scala l294
     if(commit_1_flush) begin
@@ -2249,11 +2040,7 @@ module Tulip (
   assign toplevel_dispat_dis_to_div_thrown_ready = div_3_div_src_ready; // @ Stream.scala l295
   assign lsu_to_head_distance = (toplevel_dispat_dis_to_lsu_thrown_payload_tail_adr - commit_1_head_adr_out); // @ BaseType.scala l299
   assign bju_to_head_distance = (dispat_dis_to_bju_tail_adr - commit_1_head_adr_out); // @ BaseType.scala l299
-<<<<<<< HEAD
   assign lsu_4_flush = (change_flow && (bju_to_head_distance < lsu_to_head_distance)); // @ Tulip.scala l199
-=======
-  assign lsu_4_flush = (change_flow && (bju_to_head_distance < lsu_to_head_distance)); // @ Tulip.scala l198
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
   always @(*) begin
     toplevel_dispat_dis_to_lsu_thrown_valid = dispat_dis_to_lsu_valid; // @ Stream.scala l294
     if(lsu_4_flush) begin
@@ -2281,7 +2068,6 @@ module Tulip (
   assign toplevel_dispat_dis_to_lsu_thrown_payload_uop_lsu_lsu_is_load = dispat_dis_to_lsu_uop_lsu_lsu_is_load; // @ Stream.scala l296
   assign toplevel_dispat_dis_to_lsu_thrown_payload_uop_lsu_lsu_is_store = dispat_dis_to_lsu_uop_lsu_lsu_is_store; // @ Stream.scala l296
   assign toplevel_dispat_dis_to_lsu_thrown_ready = lsu_4_lsu_src_ready; // @ Stream.scala l295
-<<<<<<< HEAD
   always @(*) begin
     toplevel_alu_1_1_alu_dst_thrown_valid = alu_1_1_alu_dst_valid; // @ Stream.scala l294
     if(commit_1_flush_al1) begin
@@ -2368,10 +2154,6 @@ module Tulip (
   assign toplevel_lsu_4_lsu_dst_thrown_ready = commit_1_wbc_src_4_ready; // @ Stream.scala l295
   assign toplevel_dispat_dis_src_0_fire = (dispat_dis_src_0_valid && dispat_dis_src_0_ready); // @ BaseType.scala l305
   assign toplevel_dispat_dis_src_1_fire = (dispat_dis_src_1_valid && dispat_dis_src_1_ready); // @ BaseType.scala l305
-=======
-  assign toplevel_dispat_dis_src_0_fire = (toplevel_issue_1_iss_dst_0_thrown_valid && dispat_dis_src_0_ready); // @ BaseType.scala l305
-  assign toplevel_dispat_dis_src_1_fire = (toplevel_issue_1_iss_dst_1_thrown_valid && dispat_dis_src_1_ready); // @ BaseType.scala l305
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
   assign icache_ar_valid = icache_icache_ar_valid; // @ Stream.scala l294
   assign icache_ar_payload_addr = icache_icache_ar_addr; // @ Stream.scala l296
   assign icache_ar_payload_id = icache_icache_ar_id; // @ Stream.scala l296
@@ -2379,7 +2161,6 @@ module Tulip (
   assign icache_ar_payload_size = icache_icache_ar_size; // @ Stream.scala l296
   assign icache_ar_payload_burst = icache_icache_ar_burst; // @ Stream.scala l296
   assign icache_r_ready = icache_icache_r_ready; // @ Stream.scala l295
-<<<<<<< HEAD
   assign dcache_ar_valid = dcache_dcache_ar_valid; // @ Stream.scala l294
   assign dcache_ar_payload_addr = dcache_dcache_ar_payload_addr; // @ Stream.scala l296
   assign dcache_ar_payload_id = dcache_dcache_ar_payload_id; // @ Stream.scala l296
@@ -2398,26 +2179,6 @@ module Tulip (
   assign dcache_w_payload_strb = dcache_dcache_w_payload_strb; // @ Stream.scala l296
   assign dcache_w_payload_last = dcache_dcache_w_payload_last; // @ Stream.scala l296
   assign dcache_b_ready = dcache_dcache_b_ready; // @ Stream.scala l295
-=======
-  assign dcache_ar_valid = dcache_1_dcache_ar_valid; // @ Stream.scala l294
-  assign dcache_ar_payload_addr = dcache_1_dcache_ar_addr; // @ Stream.scala l296
-  assign dcache_ar_payload_id = dcache_1_dcache_ar_id; // @ Stream.scala l296
-  assign dcache_ar_payload_len = dcache_1_dcache_ar_len; // @ Stream.scala l296
-  assign dcache_ar_payload_size = dcache_1_dcache_ar_size; // @ Stream.scala l296
-  assign dcache_ar_payload_burst = dcache_1_dcache_ar_burst; // @ Stream.scala l296
-  assign dcache_r_ready = dcache_1_dcache_r_ready; // @ Stream.scala l295
-  assign dcache_aw_valid = dcache_1_dcache_aw_valid; // @ Stream.scala l294
-  assign dcache_aw_payload_addr = dcache_1_dcache_aw_addr; // @ Stream.scala l296
-  assign dcache_aw_payload_id = dcache_1_dcache_aw_id; // @ Stream.scala l296
-  assign dcache_aw_payload_len = dcache_1_dcache_aw_len; // @ Stream.scala l296
-  assign dcache_aw_payload_size = dcache_1_dcache_aw_size; // @ Stream.scala l296
-  assign dcache_aw_payload_burst = dcache_1_dcache_aw_burst; // @ Stream.scala l296
-  assign dcache_w_valid = dcache_1_dcache_w_valid; // @ Stream.scala l294
-  assign dcache_w_payload_data = dcache_1_dcache_w_data; // @ Stream.scala l296
-  assign dcache_w_payload_strb = dcache_1_dcache_w_strb; // @ Stream.scala l296
-  assign dcache_w_payload_last = dcache_1_dcache_w_last; // @ Stream.scala l296
-  assign dcache_b_ready = dcache_1_dcache_b_ready; // @ Stream.scala l295
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
 
 endmodule
 
@@ -2789,11 +2550,7 @@ module LSU (
   wire                older_reg;
   reg        [31:0]   pc_reg;
   reg        [31:0]   instr_reg;
-<<<<<<< HEAD
   reg        [2:0]    tail_adr_reg;
-=======
-  wire       [2:0]    tail_adr_reg;
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
   wire                lsu_src_fire_2;
   wire                dst_stream_m2sPipe_valid;
   wire                dst_stream_m2sPipe_ready;
@@ -3493,7 +3250,6 @@ module LSU (
   end
 
   assign older_reg = 1'b0;
-<<<<<<< HEAD
   assign lsu_src_fire_2 = (lsu_src_valid && lsu_src_ready); // @ BaseType.scala l305
   assign lsu_src_ready = dcache_stream_ready; // @ LSU.scala l231
   assign dst_stream_valid = dcache_ports_rsp_valid; // @ LSU.scala l232
@@ -3503,18 +3259,6 @@ module LSU (
   assign dst_stream_pc = pc_reg; // @ LSU.scala l236
   assign dst_stream_instr = instr_reg; // @ LSU.scala l237
   assign dst_stream_tail_adr = tail_adr_reg; // @ LSU.scala l238
-=======
-  assign tail_adr_reg = 3'b000;
-  assign lsu_src_fire_2 = (lsu_src_valid && lsu_src_ready); // @ BaseType.scala l305
-  assign lsu_src_ready = dcache_stream_ready; // @ LSU.scala l229
-  assign dst_stream_valid = dcache_ports_rsp_valid; // @ LSU.scala l230
-  assign dst_stream_rd_data = (lsu_addr_is_timer ? timer_1_rdata : lsu_rdata); // @ LSU.scala l231
-  assign dst_stream_rd_wen = rd_wen_reg; // @ LSU.scala l232
-  assign dst_stream_rd_addr = rd_addr_reg; // @ LSU.scala l233
-  assign dst_stream_pc = pc_reg; // @ LSU.scala l234
-  assign dst_stream_instr = instr_reg; // @ LSU.scala l235
-  assign dst_stream_tail_adr = tail_adr_reg; // @ LSU.scala l236
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
   always @(*) begin
     dst_stream_ready = dst_stream_m2sPipe_ready; // @ Stream.scala l367
     if((! dst_stream_m2sPipe_valid)) begin
@@ -3568,7 +3312,6 @@ module LSU (
         rd_addr_reg <= 5'h0; // @ LSU.scala l218
         pc_reg <= 32'h0; // @ LSU.scala l219
         instr_reg <= 32'h0; // @ LSU.scala l220
-<<<<<<< HEAD
         tail_adr_reg <= 3'b000; // @ LSU.scala l221
       end else begin
         if(lsu_src_fire_2) begin
@@ -3577,14 +3320,6 @@ module LSU (
           pc_reg <= lsu_src_pc; // @ LSU.scala l226
           instr_reg <= lsu_src_instr; // @ LSU.scala l227
           tail_adr_reg <= lsu_src_tail_adr; // @ LSU.scala l228
-=======
-      end else begin
-        if(lsu_src_fire_2) begin
-          rd_wen_reg <= lsu_src_uop_com_rd_wen; // @ LSU.scala l223
-          rd_addr_reg <= lsu_src_rd_addr; // @ LSU.scala l224
-          pc_reg <= lsu_src_pc; // @ LSU.scala l225
-          instr_reg <= lsu_src_instr; // @ LSU.scala l226
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
         end
       end
       if(dst_stream_ready) begin
@@ -5122,15 +4857,10 @@ module Commit (
   wire       [0:0]    tmp_wbc_fire_num_3;
   wire       [3:0]    tmp_head_ptr_next;
   wire       [3:0]    tmp_tail_ptr_next;
-<<<<<<< HEAD
   reg        [4:0]    tmp_head_oh_older;
   reg        [4:0]    tmp_head_oh_newer;
   reg        [31:0]   tmp_head_pc_older;
   reg        [31:0]   tmp_head_pc_newer;
-=======
-  reg        [4:0]    tmp_head_entry_older;
-  reg        [4:0]    tmp_head_entry_newer;
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
   wire       [3:0]    tmp_entry_cnt;
   wire       [3:0]    tmp_entry_cnt_1;
   wire       [3:0]    tmp_entry_cnt_2;
@@ -5833,17 +5563,12 @@ module Commit (
   reg        [3:0]    entry_cnt;
   wire       [1:0]    dis_fire_num;
   wire       [1:0]    wbc_fire_num;
-<<<<<<< HEAD
   wire       [4:0]    head_oh_older;
   wire       [4:0]    head_oh_newer;
   wire       [31:0]   head_pc_older;
   wire       [31:0]   head_pc_newer;
   reg        [4:0]    head_older_valid;
   reg        [4:0]    head_newer_valid;
-=======
-  wire       [4:0]    head_entry_older;
-  wire       [4:0]    head_entry_newer;
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
   reg        [4:0]    wbc_src_valid;
   wire       [319:0]  wbc_src_rd_data;
   wire       [24:0]   wbc_src_rd_addr;
@@ -5903,10 +5628,7 @@ module Commit (
   reg                 flush_reg;
   reg        [2:0]    flush_adr;
   wire                wbc_src_0_fire;
-<<<<<<< HEAD
   reg                 tmp_flush;
-=======
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
   wire                wbc_stream_0_fire_17;
   wire                wbc_stream_1_fire_17;
   wire                wbc_stream_0_fire_18;
@@ -5988,13 +5710,10 @@ module Commit (
   reg        [31:0]   wbc_stream_1_rData_pc;
   reg        [31:0]   wbc_stream_1_rData_instr;
   reg        [2:0]    wbc_stream_1_rData_tail_adr;
-<<<<<<< HEAD
   wire       [2:0]    bju_to_head_distance;
   wire       [2:0]    al1_to_head_distance;
   wire       [2:0]    al2_to_head_distance;
   wire       [2:0]    div_to_head_distance;
-=======
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
 
   assign tmp_wbc_fire_num_1 = wbc_stream_0_fire;
   assign tmp_wbc_fire_num = {1'd0, tmp_wbc_fire_num_1};
@@ -6005,13 +5724,8 @@ module Commit (
   assign tmp_entry_cnt = (entry_cnt + tmp_entry_cnt_1);
   assign tmp_entry_cnt_1 = {2'd0, dis_fire_num};
   assign tmp_entry_cnt_2 = {2'd0, wbc_fire_num};
-<<<<<<< HEAD
   assign tmp_wbc_stream_0_rd_wen = (((((wbc_src_rd_wen[0 : 0] & head_older_valid[0]) | (wbc_src_rd_wen[1 : 1] & head_older_valid[1])) | (wbc_src_rd_wen[2 : 2] & head_older_valid[2])) | (wbc_src_rd_wen[3 : 3] & head_older_valid[3])) | (wbc_src_rd_wen[4 : 4] & head_older_valid[4]));
   assign tmp_wbc_stream_1_rd_wen = (((((wbc_src_rd_wen[0 : 0] & head_newer_valid[0]) | (wbc_src_rd_wen[1 : 1] & head_newer_valid[1])) | (wbc_src_rd_wen[2 : 2] & head_newer_valid[2])) | (wbc_src_rd_wen[3 : 3] & head_newer_valid[3])) | (wbc_src_rd_wen[4 : 4] & head_newer_valid[4]));
-=======
-  assign tmp_wbc_stream_0_rd_wen = (((((wbc_src_rd_wen[0 : 0] & head_entry_older[0]) | (wbc_src_rd_wen[1 : 1] & head_entry_older[1])) | (wbc_src_rd_wen[2 : 2] & head_entry_older[2])) | (wbc_src_rd_wen[3 : 3] & head_entry_older[3])) | (wbc_src_rd_wen[4 : 4] & head_entry_older[4]));
-  assign tmp_wbc_stream_1_rd_wen = (((((wbc_src_rd_wen[0 : 0] & head_entry_newer[0]) | (wbc_src_rd_wen[1 : 1] & head_entry_newer[1])) | (wbc_src_rd_wen[2 : 2] & head_entry_newer[2])) | (wbc_src_rd_wen[3 : 3] & head_entry_newer[3])) | (wbc_src_rd_wen[4 : 4] & head_entry_newer[4]));
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
   assign tmp_dis_fire_num_1 = {dis_fire_1,dis_fire_0};
   assign tmp_wbc_stream_0_rd_data_5 = wbc_src_rd_data[63 : 0];
   assign tmp_wbc_stream_0_rd_data_6 = {tmp_wbc_stream_0_rd_data,{tmp_wbc_stream_0_rd_data,{tmp_wbc_stream_0_rd_data_7,tmp_wbc_stream_0_rd_data_8}}};
@@ -6692,7 +6406,6 @@ module Commit (
 
   always @(*) begin
     case(head_adr)
-<<<<<<< HEAD
       3'b000 : begin
         tmp_head_oh_older = entry_onehot_0;
         tmp_head_pc_older = entry_pc_0;
@@ -7122,369 +6835,12 @@ module Commit (
               if((((dis_fire_num == 2'b01) && (tail_adr == 3'b011)) && dis_valid_1)) begin
                 entry_onehot_3 <= dis_onehot_1; // @ Commit.scala l130
                 entry_pc_3 <= dis_pc_1; // @ Commit.scala l131
-=======
-      3'b000 : tmp_head_entry_older = entry_onehot_0;
-      3'b001 : tmp_head_entry_older = entry_onehot_1;
-      3'b010 : tmp_head_entry_older = entry_onehot_2;
-      3'b011 : tmp_head_entry_older = entry_onehot_3;
-      3'b100 : tmp_head_entry_older = entry_onehot_4;
-      3'b101 : tmp_head_entry_older = entry_onehot_5;
-      3'b110 : tmp_head_entry_older = entry_onehot_6;
-      default : tmp_head_entry_older = entry_onehot_7;
-    endcase
-  end
-
-  always @(*) begin
-    case(head_adr_last)
-      3'b000 : tmp_head_entry_newer = entry_onehot_0;
-      3'b001 : tmp_head_entry_newer = entry_onehot_1;
-      3'b010 : tmp_head_entry_newer = entry_onehot_2;
-      3'b011 : tmp_head_entry_newer = entry_onehot_3;
-      3'b100 : tmp_head_entry_newer = entry_onehot_4;
-      3'b101 : tmp_head_entry_newer = entry_onehot_5;
-      3'b110 : tmp_head_entry_newer = entry_onehot_6;
-      default : tmp_head_entry_newer = entry_onehot_7;
-    endcase
-  end
-
-  assign head_adr = head_ptr[2 : 0]; // @ BaseType.scala l299
-  assign tail_adr = tail_ptr[2 : 0]; // @ BaseType.scala l299
-  assign head_adr_last = head_ptr_last[2 : 0]; // @ BaseType.scala l299
-  assign tail_adr_last = tail_ptr_last[2 : 0]; // @ BaseType.scala l299
-  assign wbc_src_rd_data = {{{{wbc_src_4_rd_data,wbc_src_3_rd_data},wbc_src_2_rd_data},wbc_src_1_rd_data},wbc_src_0_rd_data}; // @ BaseType.scala l299
-  assign wbc_src_rd_addr = {{{{wbc_src_4_rd_addr,wbc_src_3_rd_addr},wbc_src_2_rd_addr},wbc_src_1_rd_addr},wbc_src_0_rd_addr}; // @ BaseType.scala l299
-  assign wbc_src_rd_wen = {{{{wbc_src_4_rd_wen,wbc_src_3_rd_wen},wbc_src_2_rd_wen},wbc_src_1_rd_wen},wbc_src_0_rd_wen}; // @ BaseType.scala l299
-  assign wbc_src_pc = {{{{wbc_src_4_pc,wbc_src_3_pc},wbc_src_2_pc},wbc_src_1_pc},wbc_src_0_pc}; // @ BaseType.scala l299
-  assign wbc_src_instr = {{{{wbc_src_4_instr,wbc_src_3_instr},wbc_src_2_instr},wbc_src_1_instr},wbc_src_0_instr}; // @ BaseType.scala l299
-  assign dis_fire_num = tmp_dis_fire_num; // @ Commit.scala l77
-  assign wbc_stream_0_fire = (wbc_stream_0_valid && wbc_stream_0_ready); // @ BaseType.scala l305
-  assign wbc_stream_1_fire = (wbc_stream_1_valid && wbc_stream_1_ready); // @ BaseType.scala l305
-  assign wbc_fire_num = (tmp_wbc_fire_num + tmp_wbc_fire_num_2); // @ Commit.scala l78
-  assign head_ptr_next = (head_ptr + tmp_head_ptr_next); // @ Commit.scala l88
-  assign head_ptr_last = (head_ptr + 4'b0001); // @ Commit.scala l89
-  assign tail_ptr_next = (tail_ptr + tmp_tail_ptr_next); // @ Commit.scala l99
-  assign tail_ptr_last = (tail_ptr + 4'b0001); // @ Commit.scala l100
-  assign wbc_stream_0_fire_1 = (wbc_stream_0_valid && wbc_stream_0_ready); // @ BaseType.scala l305
-  assign wbc_stream_1_fire_1 = (wbc_stream_1_valid && wbc_stream_1_ready); // @ BaseType.scala l305
-  assign wbc_stream_0_fire_2 = (wbc_stream_0_valid && wbc_stream_0_ready); // @ BaseType.scala l305
-  assign wbc_stream_1_fire_2 = (wbc_stream_1_valid && wbc_stream_1_ready); // @ BaseType.scala l305
-  assign wbc_stream_0_fire_3 = (wbc_stream_0_valid && wbc_stream_0_ready); // @ BaseType.scala l305
-  assign wbc_stream_1_fire_3 = (wbc_stream_1_valid && wbc_stream_1_ready); // @ BaseType.scala l305
-  assign wbc_stream_0_fire_4 = (wbc_stream_0_valid && wbc_stream_0_ready); // @ BaseType.scala l305
-  assign wbc_stream_1_fire_4 = (wbc_stream_1_valid && wbc_stream_1_ready); // @ BaseType.scala l305
-  assign wbc_stream_0_fire_5 = (wbc_stream_0_valid && wbc_stream_0_ready); // @ BaseType.scala l305
-  assign wbc_stream_1_fire_5 = (wbc_stream_1_valid && wbc_stream_1_ready); // @ BaseType.scala l305
-  assign wbc_stream_0_fire_6 = (wbc_stream_0_valid && wbc_stream_0_ready); // @ BaseType.scala l305
-  assign wbc_stream_1_fire_6 = (wbc_stream_1_valid && wbc_stream_1_ready); // @ BaseType.scala l305
-  assign wbc_stream_0_fire_7 = (wbc_stream_0_valid && wbc_stream_0_ready); // @ BaseType.scala l305
-  assign wbc_stream_1_fire_7 = (wbc_stream_1_valid && wbc_stream_1_ready); // @ BaseType.scala l305
-  assign wbc_stream_0_fire_8 = (wbc_stream_0_valid && wbc_stream_0_ready); // @ BaseType.scala l305
-  assign wbc_stream_1_fire_8 = (wbc_stream_1_valid && wbc_stream_1_ready); // @ BaseType.scala l305
-  assign wbc_stream_0_fire_9 = (wbc_stream_0_valid && wbc_stream_0_ready); // @ BaseType.scala l305
-  assign wbc_stream_1_fire_9 = (wbc_stream_1_valid && wbc_stream_1_ready); // @ BaseType.scala l305
-  assign wbc_stream_0_fire_10 = (wbc_stream_0_valid && wbc_stream_0_ready); // @ BaseType.scala l305
-  assign wbc_stream_1_fire_10 = (wbc_stream_1_valid && wbc_stream_1_ready); // @ BaseType.scala l305
-  assign wbc_stream_0_fire_11 = (wbc_stream_0_valid && wbc_stream_0_ready); // @ BaseType.scala l305
-  assign wbc_stream_1_fire_11 = (wbc_stream_1_valid && wbc_stream_1_ready); // @ BaseType.scala l305
-  assign wbc_stream_0_fire_12 = (wbc_stream_0_valid && wbc_stream_0_ready); // @ BaseType.scala l305
-  assign wbc_stream_1_fire_12 = (wbc_stream_1_valid && wbc_stream_1_ready); // @ BaseType.scala l305
-  assign wbc_stream_0_fire_13 = (wbc_stream_0_valid && wbc_stream_0_ready); // @ BaseType.scala l305
-  assign wbc_stream_1_fire_13 = (wbc_stream_1_valid && wbc_stream_1_ready); // @ BaseType.scala l305
-  assign wbc_stream_0_fire_14 = (wbc_stream_0_valid && wbc_stream_0_ready); // @ BaseType.scala l305
-  assign wbc_stream_1_fire_14 = (wbc_stream_1_valid && wbc_stream_1_ready); // @ BaseType.scala l305
-  assign wbc_stream_0_fire_15 = (wbc_stream_0_valid && wbc_stream_0_ready); // @ BaseType.scala l305
-  assign wbc_stream_1_fire_15 = (wbc_stream_1_valid && wbc_stream_1_ready); // @ BaseType.scala l305
-  assign wbc_stream_0_fire_16 = (wbc_stream_0_valid && wbc_stream_0_ready); // @ BaseType.scala l305
-  assign wbc_stream_1_fire_16 = (wbc_stream_1_valid && wbc_stream_1_ready); // @ BaseType.scala l305
-  assign head_entry_older = tmp_head_entry_older; // @ Commit.scala l135
-  assign head_entry_newer = tmp_head_entry_newer; // @ Commit.scala l136
-  assign wbc_src_0_fire = (wbc_src_0_valid && wbc_src_0_ready); // @ BaseType.scala l305
-  assign flush = (flush_reg && wbc_src_0_fire); // @ Commit.scala l154
-  always @(*) begin
-    wbc_src_valid[0] = wbc_src_0_valid; // @ Commit.scala l157
-    wbc_src_valid[1] = wbc_src_1_valid; // @ Commit.scala l157
-    wbc_src_valid[2] = wbc_src_2_valid; // @ Commit.scala l157
-    wbc_src_valid[3] = wbc_src_3_valid; // @ Commit.scala l157
-    wbc_src_valid[4] = wbc_src_4_valid; // @ Commit.scala l157
-  end
-
-  assign wbc_stream_0_fire_17 = (wbc_stream_0_valid && wbc_stream_0_ready); // @ BaseType.scala l305
-  assign wbc_stream_1_fire_17 = (wbc_stream_1_valid && wbc_stream_1_ready); // @ BaseType.scala l305
-  assign wbc_src_0_ready = ((head_entry_older[0] && wbc_stream_0_fire_17) || (head_entry_newer[0] && wbc_stream_1_fire_17)); // @ Commit.scala l158
-  assign wbc_stream_0_fire_18 = (wbc_stream_0_valid && wbc_stream_0_ready); // @ BaseType.scala l305
-  assign wbc_stream_1_fire_18 = (wbc_stream_1_valid && wbc_stream_1_ready); // @ BaseType.scala l305
-  assign wbc_src_1_ready = ((head_entry_older[1] && wbc_stream_0_fire_18) || (head_entry_newer[1] && wbc_stream_1_fire_18)); // @ Commit.scala l158
-  assign wbc_stream_0_fire_19 = (wbc_stream_0_valid && wbc_stream_0_ready); // @ BaseType.scala l305
-  assign wbc_stream_1_fire_19 = (wbc_stream_1_valid && wbc_stream_1_ready); // @ BaseType.scala l305
-  assign wbc_src_2_ready = ((head_entry_older[2] && wbc_stream_0_fire_19) || (head_entry_newer[2] && wbc_stream_1_fire_19)); // @ Commit.scala l158
-  assign wbc_stream_0_fire_20 = (wbc_stream_0_valid && wbc_stream_0_ready); // @ BaseType.scala l305
-  assign wbc_stream_1_fire_20 = (wbc_stream_1_valid && wbc_stream_1_ready); // @ BaseType.scala l305
-  assign wbc_src_3_ready = ((head_entry_older[3] && wbc_stream_0_fire_20) || (head_entry_newer[3] && wbc_stream_1_fire_20)); // @ Commit.scala l158
-  assign wbc_stream_0_fire_21 = (wbc_stream_0_valid && wbc_stream_0_ready); // @ BaseType.scala l305
-  assign wbc_stream_1_fire_21 = (wbc_stream_1_valid && wbc_stream_1_ready); // @ BaseType.scala l305
-  assign wbc_src_4_ready = ((head_entry_older[4] && wbc_stream_0_fire_21) || (head_entry_newer[4] && wbc_stream_1_fire_21)); // @ Commit.scala l158
-  assign wbc_stream_0_valid = (|(head_entry_older & wbc_src_valid)); // @ Commit.scala l161
-  assign wbc_stream_0_fire_22 = (wbc_stream_0_valid && wbc_stream_0_ready); // @ BaseType.scala l305
-  assign wbc_stream_1_valid = ((|(head_entry_newer & wbc_src_valid)) && wbc_stream_0_fire_22); // @ Commit.scala l162
-  assign tmp_wbc_stream_0_rd_data = head_entry_older[0]; // @ BaseType.scala l305
-  assign tmp_wbc_stream_0_rd_data_1 = head_entry_older[1]; // @ BaseType.scala l305
-  assign tmp_wbc_stream_0_rd_data_2 = head_entry_older[2]; // @ BaseType.scala l305
-  assign tmp_wbc_stream_0_rd_data_3 = head_entry_older[3]; // @ BaseType.scala l305
-  assign tmp_wbc_stream_0_rd_data_4 = head_entry_older[4]; // @ BaseType.scala l305
-  assign wbc_stream_0_rd_data = (((((tmp_wbc_stream_0_rd_data_5 & tmp_wbc_stream_0_rd_data_6) | (tmp_wbc_stream_0_rd_data_37 & tmp_wbc_stream_0_rd_data_38)) | (wbc_src_rd_data[191 : 128] & {tmp_wbc_stream_0_rd_data_69,tmp_wbc_stream_0_rd_data_70})) | (wbc_src_rd_data[255 : 192] & {tmp_wbc_stream_0_rd_data_3,{tmp_wbc_stream_0_rd_data_101,tmp_wbc_stream_0_rd_data_102}})) | (wbc_src_rd_data[319 : 256] & {tmp_wbc_stream_0_rd_data_4,{tmp_wbc_stream_0_rd_data_4,{tmp_wbc_stream_0_rd_data_133,tmp_wbc_stream_0_rd_data_134}}})); // @ Commit.scala l163
-  assign tmp_wbc_stream_1_rd_data = head_entry_newer[0]; // @ BaseType.scala l305
-  assign tmp_wbc_stream_1_rd_data_1 = head_entry_newer[1]; // @ BaseType.scala l305
-  assign tmp_wbc_stream_1_rd_data_2 = head_entry_newer[2]; // @ BaseType.scala l305
-  assign tmp_wbc_stream_1_rd_data_3 = head_entry_newer[3]; // @ BaseType.scala l305
-  assign tmp_wbc_stream_1_rd_data_4 = head_entry_newer[4]; // @ BaseType.scala l305
-  assign wbc_stream_1_rd_data = (((((tmp_wbc_stream_1_rd_data_5 & tmp_wbc_stream_1_rd_data_6) | (tmp_wbc_stream_1_rd_data_37 & tmp_wbc_stream_1_rd_data_38)) | (wbc_src_rd_data[191 : 128] & {tmp_wbc_stream_1_rd_data_69,tmp_wbc_stream_1_rd_data_70})) | (wbc_src_rd_data[255 : 192] & {tmp_wbc_stream_1_rd_data_3,{tmp_wbc_stream_1_rd_data_101,tmp_wbc_stream_1_rd_data_102}})) | (wbc_src_rd_data[319 : 256] & {tmp_wbc_stream_1_rd_data_4,{tmp_wbc_stream_1_rd_data_4,{tmp_wbc_stream_1_rd_data_133,tmp_wbc_stream_1_rd_data_134}}})); // @ Commit.scala l164
-  assign tmp_wbc_stream_0_rd_addr = head_entry_older[0]; // @ BaseType.scala l305
-  assign tmp_wbc_stream_0_rd_addr_1 = head_entry_older[1]; // @ BaseType.scala l305
-  assign tmp_wbc_stream_0_rd_addr_2 = head_entry_older[2]; // @ BaseType.scala l305
-  assign tmp_wbc_stream_0_rd_addr_3 = head_entry_older[3]; // @ BaseType.scala l305
-  assign tmp_wbc_stream_0_rd_addr_4 = head_entry_older[4]; // @ BaseType.scala l305
-  assign wbc_stream_0_rd_addr = (((((tmp_wbc_stream_0_rd_addr_5 & tmp_wbc_stream_0_rd_addr_6) | (tmp_wbc_stream_0_rd_addr_9 & tmp_wbc_stream_0_rd_addr_10)) | (wbc_src_rd_addr[14 : 10] & {tmp_wbc_stream_0_rd_addr_13,tmp_wbc_stream_0_rd_addr_14})) | (wbc_src_rd_addr[19 : 15] & {tmp_wbc_stream_0_rd_addr_3,{tmp_wbc_stream_0_rd_addr_15,tmp_wbc_stream_0_rd_addr_16}})) | (wbc_src_rd_addr[24 : 20] & {tmp_wbc_stream_0_rd_addr_4,{tmp_wbc_stream_0_rd_addr_4,{tmp_wbc_stream_0_rd_addr_17,tmp_wbc_stream_0_rd_addr_18}}})); // @ Commit.scala l165
-  assign tmp_wbc_stream_1_rd_addr = head_entry_newer[0]; // @ BaseType.scala l305
-  assign tmp_wbc_stream_1_rd_addr_1 = head_entry_newer[1]; // @ BaseType.scala l305
-  assign tmp_wbc_stream_1_rd_addr_2 = head_entry_newer[2]; // @ BaseType.scala l305
-  assign tmp_wbc_stream_1_rd_addr_3 = head_entry_newer[3]; // @ BaseType.scala l305
-  assign tmp_wbc_stream_1_rd_addr_4 = head_entry_newer[4]; // @ BaseType.scala l305
-  assign wbc_stream_1_rd_addr = (((((tmp_wbc_stream_1_rd_addr_5 & tmp_wbc_stream_1_rd_addr_6) | (tmp_wbc_stream_1_rd_addr_9 & tmp_wbc_stream_1_rd_addr_10)) | (wbc_src_rd_addr[14 : 10] & {tmp_wbc_stream_1_rd_addr_13,tmp_wbc_stream_1_rd_addr_14})) | (wbc_src_rd_addr[19 : 15] & {tmp_wbc_stream_1_rd_addr_3,{tmp_wbc_stream_1_rd_addr_15,tmp_wbc_stream_1_rd_addr_16}})) | (wbc_src_rd_addr[24 : 20] & {tmp_wbc_stream_1_rd_addr_4,{tmp_wbc_stream_1_rd_addr_4,{tmp_wbc_stream_1_rd_addr_17,tmp_wbc_stream_1_rd_addr_18}}})); // @ Commit.scala l166
-  assign wbc_stream_0_rd_wen = tmp_wbc_stream_0_rd_wen[0]; // @ Commit.scala l167
-  assign wbc_stream_1_rd_wen = tmp_wbc_stream_1_rd_wen[0]; // @ Commit.scala l168
-  assign tmp_wbc_stream_0_pc = head_entry_older[0]; // @ BaseType.scala l305
-  assign tmp_wbc_stream_0_pc_1 = head_entry_older[1]; // @ BaseType.scala l305
-  assign tmp_wbc_stream_0_pc_2 = head_entry_older[2]; // @ BaseType.scala l305
-  assign tmp_wbc_stream_0_pc_3 = head_entry_older[3]; // @ BaseType.scala l305
-  assign tmp_wbc_stream_0_pc_4 = head_entry_older[4]; // @ BaseType.scala l305
-  assign wbc_stream_0_pc = (((((tmp_wbc_stream_0_pc_5 & tmp_wbc_stream_0_pc_6) | (tmp_wbc_stream_0_pc_21 & tmp_wbc_stream_0_pc_22)) | (wbc_src_pc[95 : 64] & {tmp_wbc_stream_0_pc_37,tmp_wbc_stream_0_pc_38})) | (wbc_src_pc[127 : 96] & {tmp_wbc_stream_0_pc_3,{tmp_wbc_stream_0_pc_53,tmp_wbc_stream_0_pc_54}})) | (wbc_src_pc[159 : 128] & {tmp_wbc_stream_0_pc_4,{tmp_wbc_stream_0_pc_4,{tmp_wbc_stream_0_pc_69,tmp_wbc_stream_0_pc_70}}})); // @ Commit.scala l169
-  assign tmp_wbc_stream_1_pc = head_entry_newer[0]; // @ BaseType.scala l305
-  assign tmp_wbc_stream_1_pc_1 = head_entry_newer[1]; // @ BaseType.scala l305
-  assign tmp_wbc_stream_1_pc_2 = head_entry_newer[2]; // @ BaseType.scala l305
-  assign tmp_wbc_stream_1_pc_3 = head_entry_newer[3]; // @ BaseType.scala l305
-  assign tmp_wbc_stream_1_pc_4 = head_entry_newer[4]; // @ BaseType.scala l305
-  assign wbc_stream_1_pc = (((((tmp_wbc_stream_1_pc_5 & tmp_wbc_stream_1_pc_6) | (tmp_wbc_stream_1_pc_21 & tmp_wbc_stream_1_pc_22)) | (wbc_src_pc[95 : 64] & {tmp_wbc_stream_1_pc_37,tmp_wbc_stream_1_pc_38})) | (wbc_src_pc[127 : 96] & {tmp_wbc_stream_1_pc_3,{tmp_wbc_stream_1_pc_53,tmp_wbc_stream_1_pc_54}})) | (wbc_src_pc[159 : 128] & {tmp_wbc_stream_1_pc_4,{tmp_wbc_stream_1_pc_4,{tmp_wbc_stream_1_pc_69,tmp_wbc_stream_1_pc_70}}})); // @ Commit.scala l170
-  assign tmp_wbc_stream_0_instr = head_entry_older[0]; // @ BaseType.scala l305
-  assign tmp_wbc_stream_0_instr_1 = head_entry_older[1]; // @ BaseType.scala l305
-  assign tmp_wbc_stream_0_instr_2 = head_entry_older[2]; // @ BaseType.scala l305
-  assign tmp_wbc_stream_0_instr_3 = head_entry_older[3]; // @ BaseType.scala l305
-  assign tmp_wbc_stream_0_instr_4 = head_entry_older[4]; // @ BaseType.scala l305
-  assign wbc_stream_0_instr = (((((tmp_wbc_stream_0_instr_5 & tmp_wbc_stream_0_instr_6) | (tmp_wbc_stream_0_instr_21 & tmp_wbc_stream_0_instr_22)) | (wbc_src_instr[95 : 64] & {tmp_wbc_stream_0_instr_37,tmp_wbc_stream_0_instr_38})) | (wbc_src_instr[127 : 96] & {tmp_wbc_stream_0_instr_3,{tmp_wbc_stream_0_instr_53,tmp_wbc_stream_0_instr_54}})) | (wbc_src_instr[159 : 128] & {tmp_wbc_stream_0_instr_4,{tmp_wbc_stream_0_instr_4,{tmp_wbc_stream_0_instr_69,tmp_wbc_stream_0_instr_70}}})); // @ Commit.scala l171
-  assign tmp_wbc_stream_1_instr = head_entry_newer[0]; // @ BaseType.scala l305
-  assign tmp_wbc_stream_1_instr_1 = head_entry_newer[1]; // @ BaseType.scala l305
-  assign tmp_wbc_stream_1_instr_2 = head_entry_newer[2]; // @ BaseType.scala l305
-  assign tmp_wbc_stream_1_instr_3 = head_entry_newer[3]; // @ BaseType.scala l305
-  assign tmp_wbc_stream_1_instr_4 = head_entry_newer[4]; // @ BaseType.scala l305
-  assign wbc_stream_1_instr = (((((tmp_wbc_stream_1_instr_5 & tmp_wbc_stream_1_instr_6) | (tmp_wbc_stream_1_instr_21 & tmp_wbc_stream_1_instr_22)) | (wbc_src_instr[95 : 64] & {tmp_wbc_stream_1_instr_37,tmp_wbc_stream_1_instr_38})) | (wbc_src_instr[127 : 96] & {tmp_wbc_stream_1_instr_3,{tmp_wbc_stream_1_instr_53,tmp_wbc_stream_1_instr_54}})) | (wbc_src_instr[159 : 128] & {tmp_wbc_stream_1_instr_4,{tmp_wbc_stream_1_instr_4,{tmp_wbc_stream_1_instr_69,tmp_wbc_stream_1_instr_70}}})); // @ Commit.scala l172
-  always @(*) begin
-    wbc_stream_0_ready = wbc_stream_0_m2sPipe_ready; // @ Stream.scala l367
-    if((! wbc_stream_0_m2sPipe_valid)) begin
-      wbc_stream_0_ready = 1'b1; // @ Stream.scala l368
-    end
-  end
-
-  assign wbc_stream_0_m2sPipe_valid = wbc_stream_0_rValid; // @ Stream.scala l370
-  assign wbc_stream_0_m2sPipe_rd_data = wbc_stream_0_rData_rd_data; // @ Stream.scala l371
-  assign wbc_stream_0_m2sPipe_rd_addr = wbc_stream_0_rData_rd_addr; // @ Stream.scala l371
-  assign wbc_stream_0_m2sPipe_rd_wen = wbc_stream_0_rData_rd_wen; // @ Stream.scala l371
-  assign wbc_stream_0_m2sPipe_pc = wbc_stream_0_rData_pc; // @ Stream.scala l371
-  assign wbc_stream_0_m2sPipe_instr = wbc_stream_0_rData_instr; // @ Stream.scala l371
-  assign wbc_stream_0_m2sPipe_tail_adr = wbc_stream_0_rData_tail_adr; // @ Stream.scala l371
-  assign wbc_dst_0_valid = wbc_stream_0_m2sPipe_valid; // @ Stream.scala l294
-  assign wbc_stream_0_m2sPipe_ready = wbc_dst_0_ready; // @ Stream.scala l295
-  assign wbc_dst_0_rd_data = wbc_stream_0_m2sPipe_rd_data; // @ Stream.scala l296
-  assign wbc_dst_0_rd_addr = wbc_stream_0_m2sPipe_rd_addr; // @ Stream.scala l296
-  assign wbc_dst_0_rd_wen = wbc_stream_0_m2sPipe_rd_wen; // @ Stream.scala l296
-  assign wbc_dst_0_pc = wbc_stream_0_m2sPipe_pc; // @ Stream.scala l296
-  assign wbc_dst_0_instr = wbc_stream_0_m2sPipe_instr; // @ Stream.scala l296
-  assign wbc_dst_0_tail_adr = wbc_stream_0_m2sPipe_tail_adr; // @ Stream.scala l296
-  always @(*) begin
-    wbc_stream_1_ready = wbc_stream_1_m2sPipe_ready; // @ Stream.scala l367
-    if((! wbc_stream_1_m2sPipe_valid)) begin
-      wbc_stream_1_ready = 1'b1; // @ Stream.scala l368
-    end
-  end
-
-  assign wbc_stream_1_m2sPipe_valid = wbc_stream_1_rValid; // @ Stream.scala l370
-  assign wbc_stream_1_m2sPipe_rd_data = wbc_stream_1_rData_rd_data; // @ Stream.scala l371
-  assign wbc_stream_1_m2sPipe_rd_addr = wbc_stream_1_rData_rd_addr; // @ Stream.scala l371
-  assign wbc_stream_1_m2sPipe_rd_wen = wbc_stream_1_rData_rd_wen; // @ Stream.scala l371
-  assign wbc_stream_1_m2sPipe_pc = wbc_stream_1_rData_pc; // @ Stream.scala l371
-  assign wbc_stream_1_m2sPipe_instr = wbc_stream_1_rData_instr; // @ Stream.scala l371
-  assign wbc_stream_1_m2sPipe_tail_adr = wbc_stream_1_rData_tail_adr; // @ Stream.scala l371
-  assign wbc_dst_1_valid = wbc_stream_1_m2sPipe_valid; // @ Stream.scala l294
-  assign wbc_stream_1_m2sPipe_ready = wbc_dst_1_ready; // @ Stream.scala l295
-  assign wbc_dst_1_rd_data = wbc_stream_1_m2sPipe_rd_data; // @ Stream.scala l296
-  assign wbc_dst_1_rd_addr = wbc_stream_1_m2sPipe_rd_addr; // @ Stream.scala l296
-  assign wbc_dst_1_rd_wen = wbc_stream_1_m2sPipe_rd_wen; // @ Stream.scala l296
-  assign wbc_dst_1_pc = wbc_stream_1_m2sPipe_pc; // @ Stream.scala l296
-  assign wbc_dst_1_instr = wbc_stream_1_m2sPipe_instr; // @ Stream.scala l296
-  assign wbc_dst_1_tail_adr = wbc_stream_1_m2sPipe_tail_adr; // @ Stream.scala l296
-  assign tail_adr_older = tail_adr; // @ Commit.scala l177
-  assign tail_adr_newer = tail_adr_last; // @ Commit.scala l178
-  assign head_adr_out = head_adr; // @ Commit.scala l179
-  assign commit_fifo_ready = (entry_cnt <= 4'b0110); // @ Commit.scala l180
-  always @(posedge clk or posedge reset) begin
-    if(reset) begin
-      head_ptr <= 4'b0000; // @ Data.scala l400
-      tail_ptr <= 4'b0000; // @ Data.scala l400
-      entry_onehot_0 <= 5'h0; // @ Data.scala l400
-      entry_onehot_1 <= 5'h0; // @ Data.scala l400
-      entry_onehot_2 <= 5'h0; // @ Data.scala l400
-      entry_onehot_3 <= 5'h0; // @ Data.scala l400
-      entry_onehot_4 <= 5'h0; // @ Data.scala l400
-      entry_onehot_5 <= 5'h0; // @ Data.scala l400
-      entry_onehot_6 <= 5'h0; // @ Data.scala l400
-      entry_onehot_7 <= 5'h0; // @ Data.scala l400
-      entry_pc_0 <= 32'h0; // @ Data.scala l400
-      entry_pc_1 <= 32'h0; // @ Data.scala l400
-      entry_pc_2 <= 32'h0; // @ Data.scala l400
-      entry_pc_3 <= 32'h0; // @ Data.scala l400
-      entry_pc_4 <= 32'h0; // @ Data.scala l400
-      entry_pc_5 <= 32'h0; // @ Data.scala l400
-      entry_pc_6 <= 32'h0; // @ Data.scala l400
-      entry_pc_7 <= 32'h0; // @ Data.scala l400
-      entry_cnt <= 4'b0000; // @ Data.scala l400
-      flush_reg <= 1'b0; // @ Data.scala l400
-      wbc_stream_0_rValid <= 1'b0; // @ Data.scala l400
-      wbc_stream_1_rValid <= 1'b0; // @ Data.scala l400
-    end else begin
-      if(flush) begin
-        head_ptr <= 4'b0000; // @ Commit.scala l82
-      end else begin
-        head_ptr <= head_ptr_next; // @ Commit.scala l85
-      end
-      if(flush) begin
-        tail_ptr <= 4'b0000; // @ Commit.scala l93
-      end else begin
-        tail_ptr <= tail_ptr_next; // @ Commit.scala l96
-      end
-      if(flush) begin
-        entry_onehot_0 <= 5'h0; // @ Commit.scala l105
-        entry_pc_0 <= 32'h0; // @ Commit.scala l106
-      end else begin
-        if(((dis_fire_num == 2'b10) && (tail_adr_last == 3'b000))) begin
-          entry_onehot_0 <= dis_onehot_1; // @ Commit.scala l109
-          entry_pc_0 <= dis_pc_1; // @ Commit.scala l110
-        end else begin
-          if(((dis_fire_num == 2'b10) && (tail_adr == 3'b000))) begin
-            entry_onehot_0 <= dis_onehot_0; // @ Commit.scala l113
-            entry_pc_0 <= dis_pc_0; // @ Commit.scala l114
-          end else begin
-            if((((dis_fire_num == 2'b01) && (tail_adr == 3'b000)) && dis_valid_0)) begin
-              entry_onehot_0 <= dis_onehot_0; // @ Commit.scala l117
-              entry_pc_0 <= dis_pc_0; // @ Commit.scala l118
-            end else begin
-              if((((dis_fire_num == 2'b01) && (tail_adr == 3'b000)) && dis_valid_1)) begin
-                entry_onehot_0 <= dis_onehot_1; // @ Commit.scala l121
-                entry_pc_0 <= dis_pc_1; // @ Commit.scala l122
-              end
-            end
-          end
-        end
-      end
-      if(((wbc_stream_0_fire_1 && wbc_stream_1_fire_1) && (head_adr_last == 3'b000))) begin
-        entry_onehot_0 <= 5'h0; // @ Commit.scala l126
-        entry_pc_0 <= 32'h0; // @ Commit.scala l127
-      end else begin
-        if(((wbc_stream_0_fire_2 || wbc_stream_1_fire_2) && (head_adr == 3'b000))) begin
-          entry_onehot_0 <= 5'h0; // @ Commit.scala l130
-          entry_pc_0 <= 32'h0; // @ Commit.scala l131
-        end
-      end
-      if(flush) begin
-        entry_onehot_1 <= 5'h0; // @ Commit.scala l105
-        entry_pc_1 <= 32'h0; // @ Commit.scala l106
-      end else begin
-        if(((dis_fire_num == 2'b10) && (tail_adr_last == 3'b001))) begin
-          entry_onehot_1 <= dis_onehot_1; // @ Commit.scala l109
-          entry_pc_1 <= dis_pc_1; // @ Commit.scala l110
-        end else begin
-          if(((dis_fire_num == 2'b10) && (tail_adr == 3'b001))) begin
-            entry_onehot_1 <= dis_onehot_0; // @ Commit.scala l113
-            entry_pc_1 <= dis_pc_0; // @ Commit.scala l114
-          end else begin
-            if((((dis_fire_num == 2'b01) && (tail_adr == 3'b001)) && dis_valid_0)) begin
-              entry_onehot_1 <= dis_onehot_0; // @ Commit.scala l117
-              entry_pc_1 <= dis_pc_0; // @ Commit.scala l118
-            end else begin
-              if((((dis_fire_num == 2'b01) && (tail_adr == 3'b001)) && dis_valid_1)) begin
-                entry_onehot_1 <= dis_onehot_1; // @ Commit.scala l121
-                entry_pc_1 <= dis_pc_1; // @ Commit.scala l122
-              end
-            end
-          end
-        end
-      end
-      if(((wbc_stream_0_fire_3 && wbc_stream_1_fire_3) && (head_adr_last == 3'b001))) begin
-        entry_onehot_1 <= 5'h0; // @ Commit.scala l126
-        entry_pc_1 <= 32'h0; // @ Commit.scala l127
-      end else begin
-        if(((wbc_stream_0_fire_4 || wbc_stream_1_fire_4) && (head_adr == 3'b001))) begin
-          entry_onehot_1 <= 5'h0; // @ Commit.scala l130
-          entry_pc_1 <= 32'h0; // @ Commit.scala l131
-        end
-      end
-      if(flush) begin
-        entry_onehot_2 <= 5'h0; // @ Commit.scala l105
-        entry_pc_2 <= 32'h0; // @ Commit.scala l106
-      end else begin
-        if(((dis_fire_num == 2'b10) && (tail_adr_last == 3'b010))) begin
-          entry_onehot_2 <= dis_onehot_1; // @ Commit.scala l109
-          entry_pc_2 <= dis_pc_1; // @ Commit.scala l110
-        end else begin
-          if(((dis_fire_num == 2'b10) && (tail_adr == 3'b010))) begin
-            entry_onehot_2 <= dis_onehot_0; // @ Commit.scala l113
-            entry_pc_2 <= dis_pc_0; // @ Commit.scala l114
-          end else begin
-            if((((dis_fire_num == 2'b01) && (tail_adr == 3'b010)) && dis_valid_0)) begin
-              entry_onehot_2 <= dis_onehot_0; // @ Commit.scala l117
-              entry_pc_2 <= dis_pc_0; // @ Commit.scala l118
-            end else begin
-              if((((dis_fire_num == 2'b01) && (tail_adr == 3'b010)) && dis_valid_1)) begin
-                entry_onehot_2 <= dis_onehot_1; // @ Commit.scala l121
-                entry_pc_2 <= dis_pc_1; // @ Commit.scala l122
-              end
-            end
-          end
-        end
-      end
-      if(((wbc_stream_0_fire_5 && wbc_stream_1_fire_5) && (head_adr_last == 3'b010))) begin
-        entry_onehot_2 <= 5'h0; // @ Commit.scala l126
-        entry_pc_2 <= 32'h0; // @ Commit.scala l127
-      end else begin
-        if(((wbc_stream_0_fire_6 || wbc_stream_1_fire_6) && (head_adr == 3'b010))) begin
-          entry_onehot_2 <= 5'h0; // @ Commit.scala l130
-          entry_pc_2 <= 32'h0; // @ Commit.scala l131
-        end
-      end
-      if(flush) begin
-        entry_onehot_3 <= 5'h0; // @ Commit.scala l105
-        entry_pc_3 <= 32'h0; // @ Commit.scala l106
-      end else begin
-        if(((dis_fire_num == 2'b10) && (tail_adr_last == 3'b011))) begin
-          entry_onehot_3 <= dis_onehot_1; // @ Commit.scala l109
-          entry_pc_3 <= dis_pc_1; // @ Commit.scala l110
-        end else begin
-          if(((dis_fire_num == 2'b10) && (tail_adr == 3'b011))) begin
-            entry_onehot_3 <= dis_onehot_0; // @ Commit.scala l113
-            entry_pc_3 <= dis_pc_0; // @ Commit.scala l114
-          end else begin
-            if((((dis_fire_num == 2'b01) && (tail_adr == 3'b011)) && dis_valid_0)) begin
-              entry_onehot_3 <= dis_onehot_0; // @ Commit.scala l117
-              entry_pc_3 <= dis_pc_0; // @ Commit.scala l118
-            end else begin
-              if((((dis_fire_num == 2'b01) && (tail_adr == 3'b011)) && dis_valid_1)) begin
-                entry_onehot_3 <= dis_onehot_1; // @ Commit.scala l121
-                entry_pc_3 <= dis_pc_1; // @ Commit.scala l122
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
               end
             end
           end
         end
       end
       if(((wbc_stream_0_fire_7 && wbc_stream_1_fire_7) && (head_adr_last == 3'b011))) begin
-<<<<<<< HEAD
         entry_onehot_3 <= 5'h0; // @ Commit.scala l135
         entry_pc_3 <= 32'h0; // @ Commit.scala l136
       end else begin
@@ -7512,42 +6868,12 @@ module Commit (
               if((((dis_fire_num == 2'b01) && (tail_adr == 3'b100)) && dis_valid_1)) begin
                 entry_onehot_4 <= dis_onehot_1; // @ Commit.scala l130
                 entry_pc_4 <= dis_pc_1; // @ Commit.scala l131
-=======
-        entry_onehot_3 <= 5'h0; // @ Commit.scala l126
-        entry_pc_3 <= 32'h0; // @ Commit.scala l127
-      end else begin
-        if(((wbc_stream_0_fire_8 || wbc_stream_1_fire_8) && (head_adr == 3'b011))) begin
-          entry_onehot_3 <= 5'h0; // @ Commit.scala l130
-          entry_pc_3 <= 32'h0; // @ Commit.scala l131
-        end
-      end
-      if(flush) begin
-        entry_onehot_4 <= 5'h0; // @ Commit.scala l105
-        entry_pc_4 <= 32'h0; // @ Commit.scala l106
-      end else begin
-        if(((dis_fire_num == 2'b10) && (tail_adr_last == 3'b100))) begin
-          entry_onehot_4 <= dis_onehot_1; // @ Commit.scala l109
-          entry_pc_4 <= dis_pc_1; // @ Commit.scala l110
-        end else begin
-          if(((dis_fire_num == 2'b10) && (tail_adr == 3'b100))) begin
-            entry_onehot_4 <= dis_onehot_0; // @ Commit.scala l113
-            entry_pc_4 <= dis_pc_0; // @ Commit.scala l114
-          end else begin
-            if((((dis_fire_num == 2'b01) && (tail_adr == 3'b100)) && dis_valid_0)) begin
-              entry_onehot_4 <= dis_onehot_0; // @ Commit.scala l117
-              entry_pc_4 <= dis_pc_0; // @ Commit.scala l118
-            end else begin
-              if((((dis_fire_num == 2'b01) && (tail_adr == 3'b100)) && dis_valid_1)) begin
-                entry_onehot_4 <= dis_onehot_1; // @ Commit.scala l121
-                entry_pc_4 <= dis_pc_1; // @ Commit.scala l122
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
               end
             end
           end
         end
       end
       if(((wbc_stream_0_fire_9 && wbc_stream_1_fire_9) && (head_adr_last == 3'b100))) begin
-<<<<<<< HEAD
         entry_onehot_4 <= 5'h0; // @ Commit.scala l135
         entry_pc_4 <= 32'h0; // @ Commit.scala l136
       end else begin
@@ -7575,42 +6901,12 @@ module Commit (
               if((((dis_fire_num == 2'b01) && (tail_adr == 3'b101)) && dis_valid_1)) begin
                 entry_onehot_5 <= dis_onehot_1; // @ Commit.scala l130
                 entry_pc_5 <= dis_pc_1; // @ Commit.scala l131
-=======
-        entry_onehot_4 <= 5'h0; // @ Commit.scala l126
-        entry_pc_4 <= 32'h0; // @ Commit.scala l127
-      end else begin
-        if(((wbc_stream_0_fire_10 || wbc_stream_1_fire_10) && (head_adr == 3'b100))) begin
-          entry_onehot_4 <= 5'h0; // @ Commit.scala l130
-          entry_pc_4 <= 32'h0; // @ Commit.scala l131
-        end
-      end
-      if(flush) begin
-        entry_onehot_5 <= 5'h0; // @ Commit.scala l105
-        entry_pc_5 <= 32'h0; // @ Commit.scala l106
-      end else begin
-        if(((dis_fire_num == 2'b10) && (tail_adr_last == 3'b101))) begin
-          entry_onehot_5 <= dis_onehot_1; // @ Commit.scala l109
-          entry_pc_5 <= dis_pc_1; // @ Commit.scala l110
-        end else begin
-          if(((dis_fire_num == 2'b10) && (tail_adr == 3'b101))) begin
-            entry_onehot_5 <= dis_onehot_0; // @ Commit.scala l113
-            entry_pc_5 <= dis_pc_0; // @ Commit.scala l114
-          end else begin
-            if((((dis_fire_num == 2'b01) && (tail_adr == 3'b101)) && dis_valid_0)) begin
-              entry_onehot_5 <= dis_onehot_0; // @ Commit.scala l117
-              entry_pc_5 <= dis_pc_0; // @ Commit.scala l118
-            end else begin
-              if((((dis_fire_num == 2'b01) && (tail_adr == 3'b101)) && dis_valid_1)) begin
-                entry_onehot_5 <= dis_onehot_1; // @ Commit.scala l121
-                entry_pc_5 <= dis_pc_1; // @ Commit.scala l122
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
               end
             end
           end
         end
       end
       if(((wbc_stream_0_fire_11 && wbc_stream_1_fire_11) && (head_adr_last == 3'b101))) begin
-<<<<<<< HEAD
         entry_onehot_5 <= 5'h0; // @ Commit.scala l135
         entry_pc_5 <= 32'h0; // @ Commit.scala l136
       end else begin
@@ -7638,42 +6934,12 @@ module Commit (
               if((((dis_fire_num == 2'b01) && (tail_adr == 3'b110)) && dis_valid_1)) begin
                 entry_onehot_6 <= dis_onehot_1; // @ Commit.scala l130
                 entry_pc_6 <= dis_pc_1; // @ Commit.scala l131
-=======
-        entry_onehot_5 <= 5'h0; // @ Commit.scala l126
-        entry_pc_5 <= 32'h0; // @ Commit.scala l127
-      end else begin
-        if(((wbc_stream_0_fire_12 || wbc_stream_1_fire_12) && (head_adr == 3'b101))) begin
-          entry_onehot_5 <= 5'h0; // @ Commit.scala l130
-          entry_pc_5 <= 32'h0; // @ Commit.scala l131
-        end
-      end
-      if(flush) begin
-        entry_onehot_6 <= 5'h0; // @ Commit.scala l105
-        entry_pc_6 <= 32'h0; // @ Commit.scala l106
-      end else begin
-        if(((dis_fire_num == 2'b10) && (tail_adr_last == 3'b110))) begin
-          entry_onehot_6 <= dis_onehot_1; // @ Commit.scala l109
-          entry_pc_6 <= dis_pc_1; // @ Commit.scala l110
-        end else begin
-          if(((dis_fire_num == 2'b10) && (tail_adr == 3'b110))) begin
-            entry_onehot_6 <= dis_onehot_0; // @ Commit.scala l113
-            entry_pc_6 <= dis_pc_0; // @ Commit.scala l114
-          end else begin
-            if((((dis_fire_num == 2'b01) && (tail_adr == 3'b110)) && dis_valid_0)) begin
-              entry_onehot_6 <= dis_onehot_0; // @ Commit.scala l117
-              entry_pc_6 <= dis_pc_0; // @ Commit.scala l118
-            end else begin
-              if((((dis_fire_num == 2'b01) && (tail_adr == 3'b110)) && dis_valid_1)) begin
-                entry_onehot_6 <= dis_onehot_1; // @ Commit.scala l121
-                entry_pc_6 <= dis_pc_1; // @ Commit.scala l122
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
               end
             end
           end
         end
       end
       if(((wbc_stream_0_fire_13 && wbc_stream_1_fire_13) && (head_adr_last == 3'b110))) begin
-<<<<<<< HEAD
         entry_onehot_6 <= 5'h0; // @ Commit.scala l135
         entry_pc_6 <= 32'h0; // @ Commit.scala l136
       end else begin
@@ -7701,42 +6967,12 @@ module Commit (
               if((((dis_fire_num == 2'b01) && (tail_adr == 3'b111)) && dis_valid_1)) begin
                 entry_onehot_7 <= dis_onehot_1; // @ Commit.scala l130
                 entry_pc_7 <= dis_pc_1; // @ Commit.scala l131
-=======
-        entry_onehot_6 <= 5'h0; // @ Commit.scala l126
-        entry_pc_6 <= 32'h0; // @ Commit.scala l127
-      end else begin
-        if(((wbc_stream_0_fire_14 || wbc_stream_1_fire_14) && (head_adr == 3'b110))) begin
-          entry_onehot_6 <= 5'h0; // @ Commit.scala l130
-          entry_pc_6 <= 32'h0; // @ Commit.scala l131
-        end
-      end
-      if(flush) begin
-        entry_onehot_7 <= 5'h0; // @ Commit.scala l105
-        entry_pc_7 <= 32'h0; // @ Commit.scala l106
-      end else begin
-        if(((dis_fire_num == 2'b10) && (tail_adr_last == 3'b111))) begin
-          entry_onehot_7 <= dis_onehot_1; // @ Commit.scala l109
-          entry_pc_7 <= dis_pc_1; // @ Commit.scala l110
-        end else begin
-          if(((dis_fire_num == 2'b10) && (tail_adr == 3'b111))) begin
-            entry_onehot_7 <= dis_onehot_0; // @ Commit.scala l113
-            entry_pc_7 <= dis_pc_0; // @ Commit.scala l114
-          end else begin
-            if((((dis_fire_num == 2'b01) && (tail_adr == 3'b111)) && dis_valid_0)) begin
-              entry_onehot_7 <= dis_onehot_0; // @ Commit.scala l117
-              entry_pc_7 <= dis_pc_0; // @ Commit.scala l118
-            end else begin
-              if((((dis_fire_num == 2'b01) && (tail_adr == 3'b111)) && dis_valid_1)) begin
-                entry_onehot_7 <= dis_onehot_1; // @ Commit.scala l121
-                entry_pc_7 <= dis_pc_1; // @ Commit.scala l122
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
               end
             end
           end
         end
       end
       if(((wbc_stream_0_fire_15 && wbc_stream_1_fire_15) && (head_adr_last == 3'b111))) begin
-<<<<<<< HEAD
         entry_onehot_7 <= 5'h0; // @ Commit.scala l135
         entry_pc_7 <= 32'h0; // @ Commit.scala l136
       end else begin
@@ -7756,26 +6992,6 @@ module Commit (
       end else begin
         if(flush) begin
           flush_reg <= 1'b0; // @ Commit.scala l167
-=======
-        entry_onehot_7 <= 5'h0; // @ Commit.scala l126
-        entry_pc_7 <= 32'h0; // @ Commit.scala l127
-      end else begin
-        if(((wbc_stream_0_fire_16 || wbc_stream_1_fire_16) && (head_adr == 3'b111))) begin
-          entry_onehot_7 <= 5'h0; // @ Commit.scala l130
-          entry_pc_7 <= 32'h0; // @ Commit.scala l131
-        end
-      end
-      if(flush) begin
-        entry_cnt <= 4'b0000; // @ Commit.scala l139
-      end else begin
-        entry_cnt <= (tmp_entry_cnt - tmp_entry_cnt_2); // @ Commit.scala l142
-      end
-      if((change_flow && head_entry_older[0])) begin
-        flush_reg <= 1'b1; // @ Commit.scala l149
-      end else begin
-        if(flush) begin
-          flush_reg <= 1'b0; // @ Commit.scala l152
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
         end
       end
       if(wbc_stream_0_ready) begin
@@ -7788,10 +7004,7 @@ module Commit (
   end
 
   always @(posedge clk) begin
-<<<<<<< HEAD
     tmp_flush <= (flush_reg && wbc_src_0_fire); // @ Reg.scala l39
-=======
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
     if(wbc_stream_0_ready) begin
       wbc_stream_0_rData_rd_data <= wbc_stream_0_rd_data; // @ Stream.scala l362
       wbc_stream_0_rData_rd_addr <= wbc_stream_0_rd_addr; // @ Stream.scala l362
@@ -11409,7 +10622,6 @@ module Dispatch (
   always @(*) begin
     case(rs1_addr_0)
       5'b00000 : begin
-<<<<<<< HEAD
         tmp_tmp_src1_valid_0 = entry_exe_0;
         tmp_tmp_src1_valid_0_1 = entry_wbc_0;
         tmp_tmp_src1_valid_0_2 = entry_ret_0;
@@ -11663,197 +10875,6 @@ module Dispatch (
         tmp_tmp_src1_valid_0_2 = entry_ret_31;
         tmp_src1_valid_0_3 = entry_arf_31;
         tmp_src1_valid_0_4 = entry_wbc_fire_31;
-=======
-        tmp_tmp_src1_valid_0 = entry_wbc_0;
-        tmp_tmp_src1_valid_0_1 = entry_ret_0;
-        tmp_src1_valid_0_2 = entry_arf_0;
-        tmp_rs1_wbc_sel_0 = entry_sel_0;
-      end
-      5'b00001 : begin
-        tmp_tmp_src1_valid_0 = entry_wbc_1;
-        tmp_tmp_src1_valid_0_1 = entry_ret_1;
-        tmp_src1_valid_0_2 = entry_arf_1;
-        tmp_rs1_wbc_sel_0 = entry_sel_1;
-      end
-      5'b00010 : begin
-        tmp_tmp_src1_valid_0 = entry_wbc_2;
-        tmp_tmp_src1_valid_0_1 = entry_ret_2;
-        tmp_src1_valid_0_2 = entry_arf_2;
-        tmp_rs1_wbc_sel_0 = entry_sel_2;
-      end
-      5'b00011 : begin
-        tmp_tmp_src1_valid_0 = entry_wbc_3;
-        tmp_tmp_src1_valid_0_1 = entry_ret_3;
-        tmp_src1_valid_0_2 = entry_arf_3;
-        tmp_rs1_wbc_sel_0 = entry_sel_3;
-      end
-      5'b00100 : begin
-        tmp_tmp_src1_valid_0 = entry_wbc_4;
-        tmp_tmp_src1_valid_0_1 = entry_ret_4;
-        tmp_src1_valid_0_2 = entry_arf_4;
-        tmp_rs1_wbc_sel_0 = entry_sel_4;
-      end
-      5'b00101 : begin
-        tmp_tmp_src1_valid_0 = entry_wbc_5;
-        tmp_tmp_src1_valid_0_1 = entry_ret_5;
-        tmp_src1_valid_0_2 = entry_arf_5;
-        tmp_rs1_wbc_sel_0 = entry_sel_5;
-      end
-      5'b00110 : begin
-        tmp_tmp_src1_valid_0 = entry_wbc_6;
-        tmp_tmp_src1_valid_0_1 = entry_ret_6;
-        tmp_src1_valid_0_2 = entry_arf_6;
-        tmp_rs1_wbc_sel_0 = entry_sel_6;
-      end
-      5'b00111 : begin
-        tmp_tmp_src1_valid_0 = entry_wbc_7;
-        tmp_tmp_src1_valid_0_1 = entry_ret_7;
-        tmp_src1_valid_0_2 = entry_arf_7;
-        tmp_rs1_wbc_sel_0 = entry_sel_7;
-      end
-      5'b01000 : begin
-        tmp_tmp_src1_valid_0 = entry_wbc_8;
-        tmp_tmp_src1_valid_0_1 = entry_ret_8;
-        tmp_src1_valid_0_2 = entry_arf_8;
-        tmp_rs1_wbc_sel_0 = entry_sel_8;
-      end
-      5'b01001 : begin
-        tmp_tmp_src1_valid_0 = entry_wbc_9;
-        tmp_tmp_src1_valid_0_1 = entry_ret_9;
-        tmp_src1_valid_0_2 = entry_arf_9;
-        tmp_rs1_wbc_sel_0 = entry_sel_9;
-      end
-      5'b01010 : begin
-        tmp_tmp_src1_valid_0 = entry_wbc_10;
-        tmp_tmp_src1_valid_0_1 = entry_ret_10;
-        tmp_src1_valid_0_2 = entry_arf_10;
-        tmp_rs1_wbc_sel_0 = entry_sel_10;
-      end
-      5'b01011 : begin
-        tmp_tmp_src1_valid_0 = entry_wbc_11;
-        tmp_tmp_src1_valid_0_1 = entry_ret_11;
-        tmp_src1_valid_0_2 = entry_arf_11;
-        tmp_rs1_wbc_sel_0 = entry_sel_11;
-      end
-      5'b01100 : begin
-        tmp_tmp_src1_valid_0 = entry_wbc_12;
-        tmp_tmp_src1_valid_0_1 = entry_ret_12;
-        tmp_src1_valid_0_2 = entry_arf_12;
-        tmp_rs1_wbc_sel_0 = entry_sel_12;
-      end
-      5'b01101 : begin
-        tmp_tmp_src1_valid_0 = entry_wbc_13;
-        tmp_tmp_src1_valid_0_1 = entry_ret_13;
-        tmp_src1_valid_0_2 = entry_arf_13;
-        tmp_rs1_wbc_sel_0 = entry_sel_13;
-      end
-      5'b01110 : begin
-        tmp_tmp_src1_valid_0 = entry_wbc_14;
-        tmp_tmp_src1_valid_0_1 = entry_ret_14;
-        tmp_src1_valid_0_2 = entry_arf_14;
-        tmp_rs1_wbc_sel_0 = entry_sel_14;
-      end
-      5'b01111 : begin
-        tmp_tmp_src1_valid_0 = entry_wbc_15;
-        tmp_tmp_src1_valid_0_1 = entry_ret_15;
-        tmp_src1_valid_0_2 = entry_arf_15;
-        tmp_rs1_wbc_sel_0 = entry_sel_15;
-      end
-      5'b10000 : begin
-        tmp_tmp_src1_valid_0 = entry_wbc_16;
-        tmp_tmp_src1_valid_0_1 = entry_ret_16;
-        tmp_src1_valid_0_2 = entry_arf_16;
-        tmp_rs1_wbc_sel_0 = entry_sel_16;
-      end
-      5'b10001 : begin
-        tmp_tmp_src1_valid_0 = entry_wbc_17;
-        tmp_tmp_src1_valid_0_1 = entry_ret_17;
-        tmp_src1_valid_0_2 = entry_arf_17;
-        tmp_rs1_wbc_sel_0 = entry_sel_17;
-      end
-      5'b10010 : begin
-        tmp_tmp_src1_valid_0 = entry_wbc_18;
-        tmp_tmp_src1_valid_0_1 = entry_ret_18;
-        tmp_src1_valid_0_2 = entry_arf_18;
-        tmp_rs1_wbc_sel_0 = entry_sel_18;
-      end
-      5'b10011 : begin
-        tmp_tmp_src1_valid_0 = entry_wbc_19;
-        tmp_tmp_src1_valid_0_1 = entry_ret_19;
-        tmp_src1_valid_0_2 = entry_arf_19;
-        tmp_rs1_wbc_sel_0 = entry_sel_19;
-      end
-      5'b10100 : begin
-        tmp_tmp_src1_valid_0 = entry_wbc_20;
-        tmp_tmp_src1_valid_0_1 = entry_ret_20;
-        tmp_src1_valid_0_2 = entry_arf_20;
-        tmp_rs1_wbc_sel_0 = entry_sel_20;
-      end
-      5'b10101 : begin
-        tmp_tmp_src1_valid_0 = entry_wbc_21;
-        tmp_tmp_src1_valid_0_1 = entry_ret_21;
-        tmp_src1_valid_0_2 = entry_arf_21;
-        tmp_rs1_wbc_sel_0 = entry_sel_21;
-      end
-      5'b10110 : begin
-        tmp_tmp_src1_valid_0 = entry_wbc_22;
-        tmp_tmp_src1_valid_0_1 = entry_ret_22;
-        tmp_src1_valid_0_2 = entry_arf_22;
-        tmp_rs1_wbc_sel_0 = entry_sel_22;
-      end
-      5'b10111 : begin
-        tmp_tmp_src1_valid_0 = entry_wbc_23;
-        tmp_tmp_src1_valid_0_1 = entry_ret_23;
-        tmp_src1_valid_0_2 = entry_arf_23;
-        tmp_rs1_wbc_sel_0 = entry_sel_23;
-      end
-      5'b11000 : begin
-        tmp_tmp_src1_valid_0 = entry_wbc_24;
-        tmp_tmp_src1_valid_0_1 = entry_ret_24;
-        tmp_src1_valid_0_2 = entry_arf_24;
-        tmp_rs1_wbc_sel_0 = entry_sel_24;
-      end
-      5'b11001 : begin
-        tmp_tmp_src1_valid_0 = entry_wbc_25;
-        tmp_tmp_src1_valid_0_1 = entry_ret_25;
-        tmp_src1_valid_0_2 = entry_arf_25;
-        tmp_rs1_wbc_sel_0 = entry_sel_25;
-      end
-      5'b11010 : begin
-        tmp_tmp_src1_valid_0 = entry_wbc_26;
-        tmp_tmp_src1_valid_0_1 = entry_ret_26;
-        tmp_src1_valid_0_2 = entry_arf_26;
-        tmp_rs1_wbc_sel_0 = entry_sel_26;
-      end
-      5'b11011 : begin
-        tmp_tmp_src1_valid_0 = entry_wbc_27;
-        tmp_tmp_src1_valid_0_1 = entry_ret_27;
-        tmp_src1_valid_0_2 = entry_arf_27;
-        tmp_rs1_wbc_sel_0 = entry_sel_27;
-      end
-      5'b11100 : begin
-        tmp_tmp_src1_valid_0 = entry_wbc_28;
-        tmp_tmp_src1_valid_0_1 = entry_ret_28;
-        tmp_src1_valid_0_2 = entry_arf_28;
-        tmp_rs1_wbc_sel_0 = entry_sel_28;
-      end
-      5'b11101 : begin
-        tmp_tmp_src1_valid_0 = entry_wbc_29;
-        tmp_tmp_src1_valid_0_1 = entry_ret_29;
-        tmp_src1_valid_0_2 = entry_arf_29;
-        tmp_rs1_wbc_sel_0 = entry_sel_29;
-      end
-      5'b11110 : begin
-        tmp_tmp_src1_valid_0 = entry_wbc_30;
-        tmp_tmp_src1_valid_0_1 = entry_ret_30;
-        tmp_src1_valid_0_2 = entry_arf_30;
-        tmp_rs1_wbc_sel_0 = entry_sel_30;
-      end
-      default : begin
-        tmp_tmp_src1_valid_0 = entry_wbc_31;
-        tmp_tmp_src1_valid_0_1 = entry_ret_31;
-        tmp_src1_valid_0_2 = entry_arf_31;
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
         tmp_rs1_wbc_sel_0 = entry_sel_31;
       end
     endcase
@@ -11862,7 +10883,6 @@ module Dispatch (
   always @(*) begin
     case(rs2_addr_0)
       5'b00000 : begin
-<<<<<<< HEAD
         tmp_tmp_src2_valid_0 = entry_exe_0;
         tmp_tmp_src2_valid_0_1 = entry_wbc_0;
         tmp_tmp_src2_valid_0_2 = entry_ret_0;
@@ -12116,197 +11136,6 @@ module Dispatch (
         tmp_tmp_src2_valid_0_2 = entry_ret_31;
         tmp_src2_valid_0_3 = entry_arf_31;
         tmp_src2_valid_0_4 = entry_wbc_fire_31;
-=======
-        tmp_tmp_src2_valid_0 = entry_wbc_0;
-        tmp_tmp_src2_valid_0_1 = entry_ret_0;
-        tmp_src2_valid_0_2 = entry_arf_0;
-        tmp_rs2_wbc_sel_0 = entry_sel_0;
-      end
-      5'b00001 : begin
-        tmp_tmp_src2_valid_0 = entry_wbc_1;
-        tmp_tmp_src2_valid_0_1 = entry_ret_1;
-        tmp_src2_valid_0_2 = entry_arf_1;
-        tmp_rs2_wbc_sel_0 = entry_sel_1;
-      end
-      5'b00010 : begin
-        tmp_tmp_src2_valid_0 = entry_wbc_2;
-        tmp_tmp_src2_valid_0_1 = entry_ret_2;
-        tmp_src2_valid_0_2 = entry_arf_2;
-        tmp_rs2_wbc_sel_0 = entry_sel_2;
-      end
-      5'b00011 : begin
-        tmp_tmp_src2_valid_0 = entry_wbc_3;
-        tmp_tmp_src2_valid_0_1 = entry_ret_3;
-        tmp_src2_valid_0_2 = entry_arf_3;
-        tmp_rs2_wbc_sel_0 = entry_sel_3;
-      end
-      5'b00100 : begin
-        tmp_tmp_src2_valid_0 = entry_wbc_4;
-        tmp_tmp_src2_valid_0_1 = entry_ret_4;
-        tmp_src2_valid_0_2 = entry_arf_4;
-        tmp_rs2_wbc_sel_0 = entry_sel_4;
-      end
-      5'b00101 : begin
-        tmp_tmp_src2_valid_0 = entry_wbc_5;
-        tmp_tmp_src2_valid_0_1 = entry_ret_5;
-        tmp_src2_valid_0_2 = entry_arf_5;
-        tmp_rs2_wbc_sel_0 = entry_sel_5;
-      end
-      5'b00110 : begin
-        tmp_tmp_src2_valid_0 = entry_wbc_6;
-        tmp_tmp_src2_valid_0_1 = entry_ret_6;
-        tmp_src2_valid_0_2 = entry_arf_6;
-        tmp_rs2_wbc_sel_0 = entry_sel_6;
-      end
-      5'b00111 : begin
-        tmp_tmp_src2_valid_0 = entry_wbc_7;
-        tmp_tmp_src2_valid_0_1 = entry_ret_7;
-        tmp_src2_valid_0_2 = entry_arf_7;
-        tmp_rs2_wbc_sel_0 = entry_sel_7;
-      end
-      5'b01000 : begin
-        tmp_tmp_src2_valid_0 = entry_wbc_8;
-        tmp_tmp_src2_valid_0_1 = entry_ret_8;
-        tmp_src2_valid_0_2 = entry_arf_8;
-        tmp_rs2_wbc_sel_0 = entry_sel_8;
-      end
-      5'b01001 : begin
-        tmp_tmp_src2_valid_0 = entry_wbc_9;
-        tmp_tmp_src2_valid_0_1 = entry_ret_9;
-        tmp_src2_valid_0_2 = entry_arf_9;
-        tmp_rs2_wbc_sel_0 = entry_sel_9;
-      end
-      5'b01010 : begin
-        tmp_tmp_src2_valid_0 = entry_wbc_10;
-        tmp_tmp_src2_valid_0_1 = entry_ret_10;
-        tmp_src2_valid_0_2 = entry_arf_10;
-        tmp_rs2_wbc_sel_0 = entry_sel_10;
-      end
-      5'b01011 : begin
-        tmp_tmp_src2_valid_0 = entry_wbc_11;
-        tmp_tmp_src2_valid_0_1 = entry_ret_11;
-        tmp_src2_valid_0_2 = entry_arf_11;
-        tmp_rs2_wbc_sel_0 = entry_sel_11;
-      end
-      5'b01100 : begin
-        tmp_tmp_src2_valid_0 = entry_wbc_12;
-        tmp_tmp_src2_valid_0_1 = entry_ret_12;
-        tmp_src2_valid_0_2 = entry_arf_12;
-        tmp_rs2_wbc_sel_0 = entry_sel_12;
-      end
-      5'b01101 : begin
-        tmp_tmp_src2_valid_0 = entry_wbc_13;
-        tmp_tmp_src2_valid_0_1 = entry_ret_13;
-        tmp_src2_valid_0_2 = entry_arf_13;
-        tmp_rs2_wbc_sel_0 = entry_sel_13;
-      end
-      5'b01110 : begin
-        tmp_tmp_src2_valid_0 = entry_wbc_14;
-        tmp_tmp_src2_valid_0_1 = entry_ret_14;
-        tmp_src2_valid_0_2 = entry_arf_14;
-        tmp_rs2_wbc_sel_0 = entry_sel_14;
-      end
-      5'b01111 : begin
-        tmp_tmp_src2_valid_0 = entry_wbc_15;
-        tmp_tmp_src2_valid_0_1 = entry_ret_15;
-        tmp_src2_valid_0_2 = entry_arf_15;
-        tmp_rs2_wbc_sel_0 = entry_sel_15;
-      end
-      5'b10000 : begin
-        tmp_tmp_src2_valid_0 = entry_wbc_16;
-        tmp_tmp_src2_valid_0_1 = entry_ret_16;
-        tmp_src2_valid_0_2 = entry_arf_16;
-        tmp_rs2_wbc_sel_0 = entry_sel_16;
-      end
-      5'b10001 : begin
-        tmp_tmp_src2_valid_0 = entry_wbc_17;
-        tmp_tmp_src2_valid_0_1 = entry_ret_17;
-        tmp_src2_valid_0_2 = entry_arf_17;
-        tmp_rs2_wbc_sel_0 = entry_sel_17;
-      end
-      5'b10010 : begin
-        tmp_tmp_src2_valid_0 = entry_wbc_18;
-        tmp_tmp_src2_valid_0_1 = entry_ret_18;
-        tmp_src2_valid_0_2 = entry_arf_18;
-        tmp_rs2_wbc_sel_0 = entry_sel_18;
-      end
-      5'b10011 : begin
-        tmp_tmp_src2_valid_0 = entry_wbc_19;
-        tmp_tmp_src2_valid_0_1 = entry_ret_19;
-        tmp_src2_valid_0_2 = entry_arf_19;
-        tmp_rs2_wbc_sel_0 = entry_sel_19;
-      end
-      5'b10100 : begin
-        tmp_tmp_src2_valid_0 = entry_wbc_20;
-        tmp_tmp_src2_valid_0_1 = entry_ret_20;
-        tmp_src2_valid_0_2 = entry_arf_20;
-        tmp_rs2_wbc_sel_0 = entry_sel_20;
-      end
-      5'b10101 : begin
-        tmp_tmp_src2_valid_0 = entry_wbc_21;
-        tmp_tmp_src2_valid_0_1 = entry_ret_21;
-        tmp_src2_valid_0_2 = entry_arf_21;
-        tmp_rs2_wbc_sel_0 = entry_sel_21;
-      end
-      5'b10110 : begin
-        tmp_tmp_src2_valid_0 = entry_wbc_22;
-        tmp_tmp_src2_valid_0_1 = entry_ret_22;
-        tmp_src2_valid_0_2 = entry_arf_22;
-        tmp_rs2_wbc_sel_0 = entry_sel_22;
-      end
-      5'b10111 : begin
-        tmp_tmp_src2_valid_0 = entry_wbc_23;
-        tmp_tmp_src2_valid_0_1 = entry_ret_23;
-        tmp_src2_valid_0_2 = entry_arf_23;
-        tmp_rs2_wbc_sel_0 = entry_sel_23;
-      end
-      5'b11000 : begin
-        tmp_tmp_src2_valid_0 = entry_wbc_24;
-        tmp_tmp_src2_valid_0_1 = entry_ret_24;
-        tmp_src2_valid_0_2 = entry_arf_24;
-        tmp_rs2_wbc_sel_0 = entry_sel_24;
-      end
-      5'b11001 : begin
-        tmp_tmp_src2_valid_0 = entry_wbc_25;
-        tmp_tmp_src2_valid_0_1 = entry_ret_25;
-        tmp_src2_valid_0_2 = entry_arf_25;
-        tmp_rs2_wbc_sel_0 = entry_sel_25;
-      end
-      5'b11010 : begin
-        tmp_tmp_src2_valid_0 = entry_wbc_26;
-        tmp_tmp_src2_valid_0_1 = entry_ret_26;
-        tmp_src2_valid_0_2 = entry_arf_26;
-        tmp_rs2_wbc_sel_0 = entry_sel_26;
-      end
-      5'b11011 : begin
-        tmp_tmp_src2_valid_0 = entry_wbc_27;
-        tmp_tmp_src2_valid_0_1 = entry_ret_27;
-        tmp_src2_valid_0_2 = entry_arf_27;
-        tmp_rs2_wbc_sel_0 = entry_sel_27;
-      end
-      5'b11100 : begin
-        tmp_tmp_src2_valid_0 = entry_wbc_28;
-        tmp_tmp_src2_valid_0_1 = entry_ret_28;
-        tmp_src2_valid_0_2 = entry_arf_28;
-        tmp_rs2_wbc_sel_0 = entry_sel_28;
-      end
-      5'b11101 : begin
-        tmp_tmp_src2_valid_0 = entry_wbc_29;
-        tmp_tmp_src2_valid_0_1 = entry_ret_29;
-        tmp_src2_valid_0_2 = entry_arf_29;
-        tmp_rs2_wbc_sel_0 = entry_sel_29;
-      end
-      5'b11110 : begin
-        tmp_tmp_src2_valid_0 = entry_wbc_30;
-        tmp_tmp_src2_valid_0_1 = entry_ret_30;
-        tmp_src2_valid_0_2 = entry_arf_30;
-        tmp_rs2_wbc_sel_0 = entry_sel_30;
-      end
-      default : begin
-        tmp_tmp_src2_valid_0 = entry_wbc_31;
-        tmp_tmp_src2_valid_0_1 = entry_ret_31;
-        tmp_src2_valid_0_2 = entry_arf_31;
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
         tmp_rs2_wbc_sel_0 = entry_sel_31;
       end
     endcase
@@ -12315,7 +11144,6 @@ module Dispatch (
   always @(*) begin
     case(rs1_addr_1)
       5'b00000 : begin
-<<<<<<< HEAD
         tmp_tmp_src1_valid_1 = entry_exe_0;
         tmp_tmp_src1_valid_1_1 = entry_wbc_0;
         tmp_tmp_src1_valid_1_2 = entry_ret_0;
@@ -12569,197 +11397,6 @@ module Dispatch (
         tmp_tmp_src1_valid_1_2 = entry_ret_31;
         tmp_src1_valid_1_3 = entry_arf_31;
         tmp_src1_valid_1_4 = entry_wbc_fire_31;
-=======
-        tmp_tmp_src1_valid_1 = entry_wbc_0;
-        tmp_tmp_src1_valid_1_1 = entry_ret_0;
-        tmp_src1_valid_1_2 = entry_arf_0;
-        tmp_rs1_wbc_sel_1 = entry_sel_0;
-      end
-      5'b00001 : begin
-        tmp_tmp_src1_valid_1 = entry_wbc_1;
-        tmp_tmp_src1_valid_1_1 = entry_ret_1;
-        tmp_src1_valid_1_2 = entry_arf_1;
-        tmp_rs1_wbc_sel_1 = entry_sel_1;
-      end
-      5'b00010 : begin
-        tmp_tmp_src1_valid_1 = entry_wbc_2;
-        tmp_tmp_src1_valid_1_1 = entry_ret_2;
-        tmp_src1_valid_1_2 = entry_arf_2;
-        tmp_rs1_wbc_sel_1 = entry_sel_2;
-      end
-      5'b00011 : begin
-        tmp_tmp_src1_valid_1 = entry_wbc_3;
-        tmp_tmp_src1_valid_1_1 = entry_ret_3;
-        tmp_src1_valid_1_2 = entry_arf_3;
-        tmp_rs1_wbc_sel_1 = entry_sel_3;
-      end
-      5'b00100 : begin
-        tmp_tmp_src1_valid_1 = entry_wbc_4;
-        tmp_tmp_src1_valid_1_1 = entry_ret_4;
-        tmp_src1_valid_1_2 = entry_arf_4;
-        tmp_rs1_wbc_sel_1 = entry_sel_4;
-      end
-      5'b00101 : begin
-        tmp_tmp_src1_valid_1 = entry_wbc_5;
-        tmp_tmp_src1_valid_1_1 = entry_ret_5;
-        tmp_src1_valid_1_2 = entry_arf_5;
-        tmp_rs1_wbc_sel_1 = entry_sel_5;
-      end
-      5'b00110 : begin
-        tmp_tmp_src1_valid_1 = entry_wbc_6;
-        tmp_tmp_src1_valid_1_1 = entry_ret_6;
-        tmp_src1_valid_1_2 = entry_arf_6;
-        tmp_rs1_wbc_sel_1 = entry_sel_6;
-      end
-      5'b00111 : begin
-        tmp_tmp_src1_valid_1 = entry_wbc_7;
-        tmp_tmp_src1_valid_1_1 = entry_ret_7;
-        tmp_src1_valid_1_2 = entry_arf_7;
-        tmp_rs1_wbc_sel_1 = entry_sel_7;
-      end
-      5'b01000 : begin
-        tmp_tmp_src1_valid_1 = entry_wbc_8;
-        tmp_tmp_src1_valid_1_1 = entry_ret_8;
-        tmp_src1_valid_1_2 = entry_arf_8;
-        tmp_rs1_wbc_sel_1 = entry_sel_8;
-      end
-      5'b01001 : begin
-        tmp_tmp_src1_valid_1 = entry_wbc_9;
-        tmp_tmp_src1_valid_1_1 = entry_ret_9;
-        tmp_src1_valid_1_2 = entry_arf_9;
-        tmp_rs1_wbc_sel_1 = entry_sel_9;
-      end
-      5'b01010 : begin
-        tmp_tmp_src1_valid_1 = entry_wbc_10;
-        tmp_tmp_src1_valid_1_1 = entry_ret_10;
-        tmp_src1_valid_1_2 = entry_arf_10;
-        tmp_rs1_wbc_sel_1 = entry_sel_10;
-      end
-      5'b01011 : begin
-        tmp_tmp_src1_valid_1 = entry_wbc_11;
-        tmp_tmp_src1_valid_1_1 = entry_ret_11;
-        tmp_src1_valid_1_2 = entry_arf_11;
-        tmp_rs1_wbc_sel_1 = entry_sel_11;
-      end
-      5'b01100 : begin
-        tmp_tmp_src1_valid_1 = entry_wbc_12;
-        tmp_tmp_src1_valid_1_1 = entry_ret_12;
-        tmp_src1_valid_1_2 = entry_arf_12;
-        tmp_rs1_wbc_sel_1 = entry_sel_12;
-      end
-      5'b01101 : begin
-        tmp_tmp_src1_valid_1 = entry_wbc_13;
-        tmp_tmp_src1_valid_1_1 = entry_ret_13;
-        tmp_src1_valid_1_2 = entry_arf_13;
-        tmp_rs1_wbc_sel_1 = entry_sel_13;
-      end
-      5'b01110 : begin
-        tmp_tmp_src1_valid_1 = entry_wbc_14;
-        tmp_tmp_src1_valid_1_1 = entry_ret_14;
-        tmp_src1_valid_1_2 = entry_arf_14;
-        tmp_rs1_wbc_sel_1 = entry_sel_14;
-      end
-      5'b01111 : begin
-        tmp_tmp_src1_valid_1 = entry_wbc_15;
-        tmp_tmp_src1_valid_1_1 = entry_ret_15;
-        tmp_src1_valid_1_2 = entry_arf_15;
-        tmp_rs1_wbc_sel_1 = entry_sel_15;
-      end
-      5'b10000 : begin
-        tmp_tmp_src1_valid_1 = entry_wbc_16;
-        tmp_tmp_src1_valid_1_1 = entry_ret_16;
-        tmp_src1_valid_1_2 = entry_arf_16;
-        tmp_rs1_wbc_sel_1 = entry_sel_16;
-      end
-      5'b10001 : begin
-        tmp_tmp_src1_valid_1 = entry_wbc_17;
-        tmp_tmp_src1_valid_1_1 = entry_ret_17;
-        tmp_src1_valid_1_2 = entry_arf_17;
-        tmp_rs1_wbc_sel_1 = entry_sel_17;
-      end
-      5'b10010 : begin
-        tmp_tmp_src1_valid_1 = entry_wbc_18;
-        tmp_tmp_src1_valid_1_1 = entry_ret_18;
-        tmp_src1_valid_1_2 = entry_arf_18;
-        tmp_rs1_wbc_sel_1 = entry_sel_18;
-      end
-      5'b10011 : begin
-        tmp_tmp_src1_valid_1 = entry_wbc_19;
-        tmp_tmp_src1_valid_1_1 = entry_ret_19;
-        tmp_src1_valid_1_2 = entry_arf_19;
-        tmp_rs1_wbc_sel_1 = entry_sel_19;
-      end
-      5'b10100 : begin
-        tmp_tmp_src1_valid_1 = entry_wbc_20;
-        tmp_tmp_src1_valid_1_1 = entry_ret_20;
-        tmp_src1_valid_1_2 = entry_arf_20;
-        tmp_rs1_wbc_sel_1 = entry_sel_20;
-      end
-      5'b10101 : begin
-        tmp_tmp_src1_valid_1 = entry_wbc_21;
-        tmp_tmp_src1_valid_1_1 = entry_ret_21;
-        tmp_src1_valid_1_2 = entry_arf_21;
-        tmp_rs1_wbc_sel_1 = entry_sel_21;
-      end
-      5'b10110 : begin
-        tmp_tmp_src1_valid_1 = entry_wbc_22;
-        tmp_tmp_src1_valid_1_1 = entry_ret_22;
-        tmp_src1_valid_1_2 = entry_arf_22;
-        tmp_rs1_wbc_sel_1 = entry_sel_22;
-      end
-      5'b10111 : begin
-        tmp_tmp_src1_valid_1 = entry_wbc_23;
-        tmp_tmp_src1_valid_1_1 = entry_ret_23;
-        tmp_src1_valid_1_2 = entry_arf_23;
-        tmp_rs1_wbc_sel_1 = entry_sel_23;
-      end
-      5'b11000 : begin
-        tmp_tmp_src1_valid_1 = entry_wbc_24;
-        tmp_tmp_src1_valid_1_1 = entry_ret_24;
-        tmp_src1_valid_1_2 = entry_arf_24;
-        tmp_rs1_wbc_sel_1 = entry_sel_24;
-      end
-      5'b11001 : begin
-        tmp_tmp_src1_valid_1 = entry_wbc_25;
-        tmp_tmp_src1_valid_1_1 = entry_ret_25;
-        tmp_src1_valid_1_2 = entry_arf_25;
-        tmp_rs1_wbc_sel_1 = entry_sel_25;
-      end
-      5'b11010 : begin
-        tmp_tmp_src1_valid_1 = entry_wbc_26;
-        tmp_tmp_src1_valid_1_1 = entry_ret_26;
-        tmp_src1_valid_1_2 = entry_arf_26;
-        tmp_rs1_wbc_sel_1 = entry_sel_26;
-      end
-      5'b11011 : begin
-        tmp_tmp_src1_valid_1 = entry_wbc_27;
-        tmp_tmp_src1_valid_1_1 = entry_ret_27;
-        tmp_src1_valid_1_2 = entry_arf_27;
-        tmp_rs1_wbc_sel_1 = entry_sel_27;
-      end
-      5'b11100 : begin
-        tmp_tmp_src1_valid_1 = entry_wbc_28;
-        tmp_tmp_src1_valid_1_1 = entry_ret_28;
-        tmp_src1_valid_1_2 = entry_arf_28;
-        tmp_rs1_wbc_sel_1 = entry_sel_28;
-      end
-      5'b11101 : begin
-        tmp_tmp_src1_valid_1 = entry_wbc_29;
-        tmp_tmp_src1_valid_1_1 = entry_ret_29;
-        tmp_src1_valid_1_2 = entry_arf_29;
-        tmp_rs1_wbc_sel_1 = entry_sel_29;
-      end
-      5'b11110 : begin
-        tmp_tmp_src1_valid_1 = entry_wbc_30;
-        tmp_tmp_src1_valid_1_1 = entry_ret_30;
-        tmp_src1_valid_1_2 = entry_arf_30;
-        tmp_rs1_wbc_sel_1 = entry_sel_30;
-      end
-      default : begin
-        tmp_tmp_src1_valid_1 = entry_wbc_31;
-        tmp_tmp_src1_valid_1_1 = entry_ret_31;
-        tmp_src1_valid_1_2 = entry_arf_31;
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
         tmp_rs1_wbc_sel_1 = entry_sel_31;
       end
     endcase
@@ -12768,7 +11405,6 @@ module Dispatch (
   always @(*) begin
     case(rs2_addr_1)
       5'b00000 : begin
-<<<<<<< HEAD
         tmp_tmp_src2_valid_1 = entry_exe_0;
         tmp_tmp_src2_valid_1_1 = entry_wbc_0;
         tmp_tmp_src2_valid_1_2 = entry_ret_0;
@@ -13022,197 +11658,6 @@ module Dispatch (
         tmp_tmp_src2_valid_1_2 = entry_ret_31;
         tmp_src2_valid_1_3 = entry_arf_31;
         tmp_src2_valid_1_4 = entry_wbc_fire_31;
-=======
-        tmp_tmp_src2_valid_1 = entry_wbc_0;
-        tmp_tmp_src2_valid_1_1 = entry_ret_0;
-        tmp_src2_valid_1_2 = entry_arf_0;
-        tmp_rs2_wbc_sel_1 = entry_sel_0;
-      end
-      5'b00001 : begin
-        tmp_tmp_src2_valid_1 = entry_wbc_1;
-        tmp_tmp_src2_valid_1_1 = entry_ret_1;
-        tmp_src2_valid_1_2 = entry_arf_1;
-        tmp_rs2_wbc_sel_1 = entry_sel_1;
-      end
-      5'b00010 : begin
-        tmp_tmp_src2_valid_1 = entry_wbc_2;
-        tmp_tmp_src2_valid_1_1 = entry_ret_2;
-        tmp_src2_valid_1_2 = entry_arf_2;
-        tmp_rs2_wbc_sel_1 = entry_sel_2;
-      end
-      5'b00011 : begin
-        tmp_tmp_src2_valid_1 = entry_wbc_3;
-        tmp_tmp_src2_valid_1_1 = entry_ret_3;
-        tmp_src2_valid_1_2 = entry_arf_3;
-        tmp_rs2_wbc_sel_1 = entry_sel_3;
-      end
-      5'b00100 : begin
-        tmp_tmp_src2_valid_1 = entry_wbc_4;
-        tmp_tmp_src2_valid_1_1 = entry_ret_4;
-        tmp_src2_valid_1_2 = entry_arf_4;
-        tmp_rs2_wbc_sel_1 = entry_sel_4;
-      end
-      5'b00101 : begin
-        tmp_tmp_src2_valid_1 = entry_wbc_5;
-        tmp_tmp_src2_valid_1_1 = entry_ret_5;
-        tmp_src2_valid_1_2 = entry_arf_5;
-        tmp_rs2_wbc_sel_1 = entry_sel_5;
-      end
-      5'b00110 : begin
-        tmp_tmp_src2_valid_1 = entry_wbc_6;
-        tmp_tmp_src2_valid_1_1 = entry_ret_6;
-        tmp_src2_valid_1_2 = entry_arf_6;
-        tmp_rs2_wbc_sel_1 = entry_sel_6;
-      end
-      5'b00111 : begin
-        tmp_tmp_src2_valid_1 = entry_wbc_7;
-        tmp_tmp_src2_valid_1_1 = entry_ret_7;
-        tmp_src2_valid_1_2 = entry_arf_7;
-        tmp_rs2_wbc_sel_1 = entry_sel_7;
-      end
-      5'b01000 : begin
-        tmp_tmp_src2_valid_1 = entry_wbc_8;
-        tmp_tmp_src2_valid_1_1 = entry_ret_8;
-        tmp_src2_valid_1_2 = entry_arf_8;
-        tmp_rs2_wbc_sel_1 = entry_sel_8;
-      end
-      5'b01001 : begin
-        tmp_tmp_src2_valid_1 = entry_wbc_9;
-        tmp_tmp_src2_valid_1_1 = entry_ret_9;
-        tmp_src2_valid_1_2 = entry_arf_9;
-        tmp_rs2_wbc_sel_1 = entry_sel_9;
-      end
-      5'b01010 : begin
-        tmp_tmp_src2_valid_1 = entry_wbc_10;
-        tmp_tmp_src2_valid_1_1 = entry_ret_10;
-        tmp_src2_valid_1_2 = entry_arf_10;
-        tmp_rs2_wbc_sel_1 = entry_sel_10;
-      end
-      5'b01011 : begin
-        tmp_tmp_src2_valid_1 = entry_wbc_11;
-        tmp_tmp_src2_valid_1_1 = entry_ret_11;
-        tmp_src2_valid_1_2 = entry_arf_11;
-        tmp_rs2_wbc_sel_1 = entry_sel_11;
-      end
-      5'b01100 : begin
-        tmp_tmp_src2_valid_1 = entry_wbc_12;
-        tmp_tmp_src2_valid_1_1 = entry_ret_12;
-        tmp_src2_valid_1_2 = entry_arf_12;
-        tmp_rs2_wbc_sel_1 = entry_sel_12;
-      end
-      5'b01101 : begin
-        tmp_tmp_src2_valid_1 = entry_wbc_13;
-        tmp_tmp_src2_valid_1_1 = entry_ret_13;
-        tmp_src2_valid_1_2 = entry_arf_13;
-        tmp_rs2_wbc_sel_1 = entry_sel_13;
-      end
-      5'b01110 : begin
-        tmp_tmp_src2_valid_1 = entry_wbc_14;
-        tmp_tmp_src2_valid_1_1 = entry_ret_14;
-        tmp_src2_valid_1_2 = entry_arf_14;
-        tmp_rs2_wbc_sel_1 = entry_sel_14;
-      end
-      5'b01111 : begin
-        tmp_tmp_src2_valid_1 = entry_wbc_15;
-        tmp_tmp_src2_valid_1_1 = entry_ret_15;
-        tmp_src2_valid_1_2 = entry_arf_15;
-        tmp_rs2_wbc_sel_1 = entry_sel_15;
-      end
-      5'b10000 : begin
-        tmp_tmp_src2_valid_1 = entry_wbc_16;
-        tmp_tmp_src2_valid_1_1 = entry_ret_16;
-        tmp_src2_valid_1_2 = entry_arf_16;
-        tmp_rs2_wbc_sel_1 = entry_sel_16;
-      end
-      5'b10001 : begin
-        tmp_tmp_src2_valid_1 = entry_wbc_17;
-        tmp_tmp_src2_valid_1_1 = entry_ret_17;
-        tmp_src2_valid_1_2 = entry_arf_17;
-        tmp_rs2_wbc_sel_1 = entry_sel_17;
-      end
-      5'b10010 : begin
-        tmp_tmp_src2_valid_1 = entry_wbc_18;
-        tmp_tmp_src2_valid_1_1 = entry_ret_18;
-        tmp_src2_valid_1_2 = entry_arf_18;
-        tmp_rs2_wbc_sel_1 = entry_sel_18;
-      end
-      5'b10011 : begin
-        tmp_tmp_src2_valid_1 = entry_wbc_19;
-        tmp_tmp_src2_valid_1_1 = entry_ret_19;
-        tmp_src2_valid_1_2 = entry_arf_19;
-        tmp_rs2_wbc_sel_1 = entry_sel_19;
-      end
-      5'b10100 : begin
-        tmp_tmp_src2_valid_1 = entry_wbc_20;
-        tmp_tmp_src2_valid_1_1 = entry_ret_20;
-        tmp_src2_valid_1_2 = entry_arf_20;
-        tmp_rs2_wbc_sel_1 = entry_sel_20;
-      end
-      5'b10101 : begin
-        tmp_tmp_src2_valid_1 = entry_wbc_21;
-        tmp_tmp_src2_valid_1_1 = entry_ret_21;
-        tmp_src2_valid_1_2 = entry_arf_21;
-        tmp_rs2_wbc_sel_1 = entry_sel_21;
-      end
-      5'b10110 : begin
-        tmp_tmp_src2_valid_1 = entry_wbc_22;
-        tmp_tmp_src2_valid_1_1 = entry_ret_22;
-        tmp_src2_valid_1_2 = entry_arf_22;
-        tmp_rs2_wbc_sel_1 = entry_sel_22;
-      end
-      5'b10111 : begin
-        tmp_tmp_src2_valid_1 = entry_wbc_23;
-        tmp_tmp_src2_valid_1_1 = entry_ret_23;
-        tmp_src2_valid_1_2 = entry_arf_23;
-        tmp_rs2_wbc_sel_1 = entry_sel_23;
-      end
-      5'b11000 : begin
-        tmp_tmp_src2_valid_1 = entry_wbc_24;
-        tmp_tmp_src2_valid_1_1 = entry_ret_24;
-        tmp_src2_valid_1_2 = entry_arf_24;
-        tmp_rs2_wbc_sel_1 = entry_sel_24;
-      end
-      5'b11001 : begin
-        tmp_tmp_src2_valid_1 = entry_wbc_25;
-        tmp_tmp_src2_valid_1_1 = entry_ret_25;
-        tmp_src2_valid_1_2 = entry_arf_25;
-        tmp_rs2_wbc_sel_1 = entry_sel_25;
-      end
-      5'b11010 : begin
-        tmp_tmp_src2_valid_1 = entry_wbc_26;
-        tmp_tmp_src2_valid_1_1 = entry_ret_26;
-        tmp_src2_valid_1_2 = entry_arf_26;
-        tmp_rs2_wbc_sel_1 = entry_sel_26;
-      end
-      5'b11011 : begin
-        tmp_tmp_src2_valid_1 = entry_wbc_27;
-        tmp_tmp_src2_valid_1_1 = entry_ret_27;
-        tmp_src2_valid_1_2 = entry_arf_27;
-        tmp_rs2_wbc_sel_1 = entry_sel_27;
-      end
-      5'b11100 : begin
-        tmp_tmp_src2_valid_1 = entry_wbc_28;
-        tmp_tmp_src2_valid_1_1 = entry_ret_28;
-        tmp_src2_valid_1_2 = entry_arf_28;
-        tmp_rs2_wbc_sel_1 = entry_sel_28;
-      end
-      5'b11101 : begin
-        tmp_tmp_src2_valid_1 = entry_wbc_29;
-        tmp_tmp_src2_valid_1_1 = entry_ret_29;
-        tmp_src2_valid_1_2 = entry_arf_29;
-        tmp_rs2_wbc_sel_1 = entry_sel_29;
-      end
-      5'b11110 : begin
-        tmp_tmp_src2_valid_1 = entry_wbc_30;
-        tmp_tmp_src2_valid_1_1 = entry_ret_30;
-        tmp_src2_valid_1_2 = entry_arf_30;
-        tmp_rs2_wbc_sel_1 = entry_sel_30;
-      end
-      default : begin
-        tmp_tmp_src2_valid_1 = entry_wbc_31;
-        tmp_tmp_src2_valid_1_1 = entry_ret_31;
-        tmp_src2_valid_1_2 = entry_arf_31;
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
         tmp_rs2_wbc_sel_1 = entry_sel_31;
       end
     endcase
@@ -14733,7 +13178,6 @@ module Dispatch (
   assign ret_data = {ret_rd_data_1,ret_rd_data_0}; // @ BaseType.scala l299
   assign dis_older_vld = (|exe_sel_valid_0); // @ BaseType.scala l312
   assign dis_newer_vld = (|exe_sel_valid_1); // @ BaseType.scala l312
-<<<<<<< HEAD
   assign rs1_addr_0 = dis_src_0_iss_pkg_rs1_addr; // @ Dispatch.scala l75
   assign rs2_addr_0 = dis_src_0_iss_pkg_rs2_addr; // @ Dispatch.scala l76
   assign rd_addr_0 = dis_src_0_iss_pkg_rd_addr; // @ Dispatch.scala l77
@@ -14770,76 +13214,29 @@ module Dispatch (
   assign rs2_ret_sel_0 = (((rs2_addr_0 == ret_rd_addr_1) && ret_rd_wen_1) ? 2'b10 : 2'b01); // @ Dispatch.scala l125
   assign rs1_ret_sel_1 = (((rs1_addr_1 == ret_rd_addr_1) && ret_rd_wen_1) ? 2'b10 : 2'b01); // @ Dispatch.scala l126
   assign rs2_ret_sel_1 = (((rs2_addr_1 == ret_rd_addr_1) && ret_rd_wen_1) ? 2'b10 : 2'b01); // @ Dispatch.scala l127
-=======
-  assign rs1_addr_0 = dis_src_0_iss_pkg_rs1_addr; // @ Dispatch.scala l74
-  assign rs2_addr_0 = dis_src_0_iss_pkg_rs2_addr; // @ Dispatch.scala l75
-  assign rd_addr_0 = dis_src_0_iss_pkg_rd_addr; // @ Dispatch.scala l76
-  assign rs1_addr_1 = dis_src_1_iss_pkg_rs1_addr; // @ Dispatch.scala l74
-  assign rs2_addr_1 = dis_src_1_iss_pkg_rs2_addr; // @ Dispatch.scala l75
-  assign rd_addr_1 = dis_src_1_iss_pkg_rd_addr; // @ Dispatch.scala l76
-  assign tmp_src1_valid_0 = tmp_tmp_src1_valid_0; // @ Vec.scala l202
-  assign tmp_src1_valid_0_1 = tmp_tmp_src1_valid_0_1; // @ Vec.scala l202
-  assign src1_valid_0 = ((tmp_src1_valid_0_2 || tmp_src1_valid_0) || tmp_src1_valid_0_1); // @ Dispatch.scala l81
-  assign tmp_src2_valid_0 = tmp_tmp_src2_valid_0; // @ Vec.scala l202
-  assign tmp_src2_valid_0_1 = tmp_tmp_src2_valid_0_1; // @ Vec.scala l202
-  assign src2_valid_0 = (((tmp_src2_valid_0_2 || tmp_src2_valid_0) || tmp_src2_valid_0_1) || dis_src_0_iss_pkg_micro_op_uop_com_src2_is_imm); // @ Dispatch.scala l85
-  assign tmp_src1_valid_1 = tmp_tmp_src1_valid_1; // @ Vec.scala l202
-  assign tmp_src1_valid_1_1 = tmp_tmp_src1_valid_1_1; // @ Vec.scala l202
-  assign src1_valid_1 = (((rs1_addr_1 != rd_addr_0) || (! dis_src_0_valid)) && ((tmp_src1_valid_1_2 || tmp_src1_valid_1) || tmp_src1_valid_1_1)); // @ Dispatch.scala l90
-  assign tmp_src2_valid_1 = tmp_tmp_src2_valid_1; // @ Vec.scala l202
-  assign tmp_src2_valid_1_1 = tmp_tmp_src2_valid_1_1; // @ Vec.scala l202
-  assign src2_valid_1 = ((((rs2_addr_1 != rd_addr_0) || (! dis_src_0_valid)) && ((tmp_src2_valid_1_2 || tmp_src2_valid_1) || tmp_src2_valid_1_1)) || dis_src_1_iss_pkg_micro_op_uop_com_src2_is_imm); // @ Dispatch.scala l96
-  assign exe_sel_valid_0 = (((dis_src_0_exe_sel_oh & (src1_valid_0 ? 5'h1f : 5'h0)) & (src2_valid_0 ? 5'h1f : 5'h0)) & (dis_src_0_valid ? 5'h1f : 5'h0)); // @ Dispatch.scala l102
-  assign exe_sel_valid_1 = ((((dis_src_1_exe_sel_oh & (src1_valid_1 ? 5'h1f : 5'h0)) & (src2_valid_1 ? 5'h1f : 5'h0)) & (dis_src_1_valid ? 5'h1f : 5'h0)) & (~ exe_sel_valid_0)); // @ Dispatch.scala l107
-  assign rs1_arf_data_0 = read_regfile_0_rs1_data; // @ Dispatch.scala l113
-  assign rs2_arf_data_0 = read_regfile_0_rs2_data; // @ Dispatch.scala l114
-  assign rs1_arf_data_1 = read_regfile_1_rs1_data; // @ Dispatch.scala l115
-  assign rs2_arf_data_1 = read_regfile_1_rs2_data; // @ Dispatch.scala l116
-  assign rs1_wbc_sel_0 = tmp_rs1_wbc_sel_0; // @ Dispatch.scala l118
-  assign rs2_wbc_sel_0 = tmp_rs2_wbc_sel_0; // @ Dispatch.scala l119
-  assign rs1_wbc_sel_1 = tmp_rs1_wbc_sel_1; // @ Dispatch.scala l120
-  assign rs2_wbc_sel_1 = tmp_rs2_wbc_sel_1; // @ Dispatch.scala l121
-  assign rs1_ret_sel_0 = (((rs1_addr_0 == ret_rd_addr_1) && ret_rd_wen_1) ? 2'b10 : 2'b01); // @ Dispatch.scala l123
-  assign rs2_ret_sel_0 = (((rs2_addr_0 == ret_rd_addr_1) && ret_rd_wen_1) ? 2'b10 : 2'b01); // @ Dispatch.scala l124
-  assign rs1_ret_sel_1 = (((rs1_addr_1 == ret_rd_addr_1) && ret_rd_wen_1) ? 2'b10 : 2'b01); // @ Dispatch.scala l125
-  assign rs2_ret_sel_1 = (((rs2_addr_1 == ret_rd_addr_1) && ret_rd_wen_1) ? 2'b10 : 2'b01); // @ Dispatch.scala l126
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
   assign tmp_rs1_wbc_data_0 = rs1_wbc_sel_0[0]; // @ BaseType.scala l305
   assign tmp_rs1_wbc_data_0_1 = rs1_wbc_sel_0[1]; // @ BaseType.scala l305
   assign tmp_rs1_wbc_data_0_2 = rs1_wbc_sel_0[2]; // @ BaseType.scala l305
   assign tmp_rs1_wbc_data_0_3 = rs1_wbc_sel_0[3]; // @ BaseType.scala l305
   assign tmp_rs1_wbc_data_0_4 = rs1_wbc_sel_0[4]; // @ BaseType.scala l305
-<<<<<<< HEAD
   assign rs1_wbc_data_0 = (((((tmp_rs1_wbc_data_0_5 & tmp_rs1_wbc_data_0_6) | (tmp_rs1_wbc_data_0_37 & tmp_rs1_wbc_data_0_38)) | (wbc_data[191 : 128] & {tmp_rs1_wbc_data_0_69,tmp_rs1_wbc_data_0_70})) | (wbc_data[255 : 192] & {tmp_rs1_wbc_data_0_3,{tmp_rs1_wbc_data_0_101,tmp_rs1_wbc_data_0_102}})) | (wbc_data[319 : 256] & {tmp_rs1_wbc_data_0_4,{tmp_rs1_wbc_data_0_4,{tmp_rs1_wbc_data_0_133,tmp_rs1_wbc_data_0_134}}})); // @ Dispatch.scala l129
-=======
-  assign rs1_wbc_data_0 = (((((tmp_rs1_wbc_data_0_5 & tmp_rs1_wbc_data_0_6) | (tmp_rs1_wbc_data_0_37 & tmp_rs1_wbc_data_0_38)) | (wbc_data[191 : 128] & {tmp_rs1_wbc_data_0_69,tmp_rs1_wbc_data_0_70})) | (wbc_data[255 : 192] & {tmp_rs1_wbc_data_0_3,{tmp_rs1_wbc_data_0_101,tmp_rs1_wbc_data_0_102}})) | (wbc_data[319 : 256] & {tmp_rs1_wbc_data_0_4,{tmp_rs1_wbc_data_0_4,{tmp_rs1_wbc_data_0_133,tmp_rs1_wbc_data_0_134}}})); // @ Dispatch.scala l128
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
   assign tmp_rs2_wbc_data_0 = rs2_wbc_sel_0[0]; // @ BaseType.scala l305
   assign tmp_rs2_wbc_data_0_1 = rs2_wbc_sel_0[1]; // @ BaseType.scala l305
   assign tmp_rs2_wbc_data_0_2 = rs2_wbc_sel_0[2]; // @ BaseType.scala l305
   assign tmp_rs2_wbc_data_0_3 = rs2_wbc_sel_0[3]; // @ BaseType.scala l305
   assign tmp_rs2_wbc_data_0_4 = rs2_wbc_sel_0[4]; // @ BaseType.scala l305
-<<<<<<< HEAD
   assign rs2_wbc_data_0 = (((((tmp_rs2_wbc_data_0_5 & tmp_rs2_wbc_data_0_6) | (tmp_rs2_wbc_data_0_37 & tmp_rs2_wbc_data_0_38)) | (wbc_data[191 : 128] & {tmp_rs2_wbc_data_0_69,tmp_rs2_wbc_data_0_70})) | (wbc_data[255 : 192] & {tmp_rs2_wbc_data_0_3,{tmp_rs2_wbc_data_0_101,tmp_rs2_wbc_data_0_102}})) | (wbc_data[319 : 256] & {tmp_rs2_wbc_data_0_4,{tmp_rs2_wbc_data_0_4,{tmp_rs2_wbc_data_0_133,tmp_rs2_wbc_data_0_134}}})); // @ Dispatch.scala l130
-=======
-  assign rs2_wbc_data_0 = (((((tmp_rs2_wbc_data_0_5 & tmp_rs2_wbc_data_0_6) | (tmp_rs2_wbc_data_0_37 & tmp_rs2_wbc_data_0_38)) | (wbc_data[191 : 128] & {tmp_rs2_wbc_data_0_69,tmp_rs2_wbc_data_0_70})) | (wbc_data[255 : 192] & {tmp_rs2_wbc_data_0_3,{tmp_rs2_wbc_data_0_101,tmp_rs2_wbc_data_0_102}})) | (wbc_data[319 : 256] & {tmp_rs2_wbc_data_0_4,{tmp_rs2_wbc_data_0_4,{tmp_rs2_wbc_data_0_133,tmp_rs2_wbc_data_0_134}}})); // @ Dispatch.scala l129
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
   assign tmp_rs1_wbc_data_1 = rs1_wbc_sel_1[0]; // @ BaseType.scala l305
   assign tmp_rs1_wbc_data_1_1 = rs1_wbc_sel_1[1]; // @ BaseType.scala l305
   assign tmp_rs1_wbc_data_1_2 = rs1_wbc_sel_1[2]; // @ BaseType.scala l305
   assign tmp_rs1_wbc_data_1_3 = rs1_wbc_sel_1[3]; // @ BaseType.scala l305
   assign tmp_rs1_wbc_data_1_4 = rs1_wbc_sel_1[4]; // @ BaseType.scala l305
-<<<<<<< HEAD
   assign rs1_wbc_data_1 = (((((tmp_rs1_wbc_data_1_5 & tmp_rs1_wbc_data_1_6) | (tmp_rs1_wbc_data_1_37 & tmp_rs1_wbc_data_1_38)) | (wbc_data[191 : 128] & {tmp_rs1_wbc_data_1_69,tmp_rs1_wbc_data_1_70})) | (wbc_data[255 : 192] & {tmp_rs1_wbc_data_1_3,{tmp_rs1_wbc_data_1_101,tmp_rs1_wbc_data_1_102}})) | (wbc_data[319 : 256] & {tmp_rs1_wbc_data_1_4,{tmp_rs1_wbc_data_1_4,{tmp_rs1_wbc_data_1_133,tmp_rs1_wbc_data_1_134}}})); // @ Dispatch.scala l131
-=======
-  assign rs1_wbc_data_1 = (((((tmp_rs1_wbc_data_1_5 & tmp_rs1_wbc_data_1_6) | (tmp_rs1_wbc_data_1_37 & tmp_rs1_wbc_data_1_38)) | (wbc_data[191 : 128] & {tmp_rs1_wbc_data_1_69,tmp_rs1_wbc_data_1_70})) | (wbc_data[255 : 192] & {tmp_rs1_wbc_data_1_3,{tmp_rs1_wbc_data_1_101,tmp_rs1_wbc_data_1_102}})) | (wbc_data[319 : 256] & {tmp_rs1_wbc_data_1_4,{tmp_rs1_wbc_data_1_4,{tmp_rs1_wbc_data_1_133,tmp_rs1_wbc_data_1_134}}})); // @ Dispatch.scala l130
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
   assign tmp_rs2_wbc_data_1 = rs2_wbc_sel_1[0]; // @ BaseType.scala l305
   assign tmp_rs2_wbc_data_1_1 = rs2_wbc_sel_1[1]; // @ BaseType.scala l305
   assign tmp_rs2_wbc_data_1_2 = rs2_wbc_sel_1[2]; // @ BaseType.scala l305
   assign tmp_rs2_wbc_data_1_3 = rs2_wbc_sel_1[3]; // @ BaseType.scala l305
   assign tmp_rs2_wbc_data_1_4 = rs2_wbc_sel_1[4]; // @ BaseType.scala l305
-<<<<<<< HEAD
   assign rs2_wbc_data_1 = (((((tmp_rs2_wbc_data_1_5 & tmp_rs2_wbc_data_1_6) | (tmp_rs2_wbc_data_1_37 & tmp_rs2_wbc_data_1_38)) | (wbc_data[191 : 128] & {tmp_rs2_wbc_data_1_69,tmp_rs2_wbc_data_1_70})) | (wbc_data[255 : 192] & {tmp_rs2_wbc_data_1_3,{tmp_rs2_wbc_data_1_101,tmp_rs2_wbc_data_1_102}})) | (wbc_data[319 : 256] & {tmp_rs2_wbc_data_1_4,{tmp_rs2_wbc_data_1_4,{tmp_rs2_wbc_data_1_133,tmp_rs2_wbc_data_1_134}}})); // @ Dispatch.scala l132
   assign tmp_rs1_ret_data_0 = rs1_ret_sel_0[0]; // @ BaseType.scala l305
   assign tmp_rs1_ret_data_0_1 = rs1_ret_sel_0[1]; // @ BaseType.scala l305
@@ -14860,720 +13257,401 @@ module Dispatch (
   assign dis_src_0_fire = (dis_src_0_valid && dis_src_0_ready); // @ BaseType.scala l305
   assign dis_src_1_fire = (dis_src_1_valid && dis_src_1_ready); // @ BaseType.scala l305
   assign entry_dis_fire_1 = (((dis_src_0_fire && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h01)) || ((dis_src_1_fire && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h01))); // @ Dispatch.scala l153
-=======
-  assign rs2_wbc_data_1 = (((((tmp_rs2_wbc_data_1_5 & tmp_rs2_wbc_data_1_6) | (tmp_rs2_wbc_data_1_37 & tmp_rs2_wbc_data_1_38)) | (wbc_data[191 : 128] & {tmp_rs2_wbc_data_1_69,tmp_rs2_wbc_data_1_70})) | (wbc_data[255 : 192] & {tmp_rs2_wbc_data_1_3,{tmp_rs2_wbc_data_1_101,tmp_rs2_wbc_data_1_102}})) | (wbc_data[319 : 256] & {tmp_rs2_wbc_data_1_4,{tmp_rs2_wbc_data_1_4,{tmp_rs2_wbc_data_1_133,tmp_rs2_wbc_data_1_134}}})); // @ Dispatch.scala l131
-  assign tmp_rs1_ret_data_0 = rs1_ret_sel_0[0]; // @ BaseType.scala l305
-  assign tmp_rs1_ret_data_0_1 = rs1_ret_sel_0[1]; // @ BaseType.scala l305
-  assign rs1_ret_data_0 = ((ret_data[63 : 0] & {tmp_rs1_ret_data_0,{tmp_rs1_ret_data_0,{tmp_rs1_ret_data_0,{tmp_rs1_ret_data_0,{tmp_rs1_ret_data_0_2,tmp_rs1_ret_data_0_3}}}}}) | (ret_data[127 : 64] & {tmp_rs1_ret_data_0_1,{tmp_rs1_ret_data_0_1,{tmp_rs1_ret_data_0_1,{tmp_rs1_ret_data_0_1,{tmp_rs1_ret_data_0_18,tmp_rs1_ret_data_0_19}}}}})); // @ Dispatch.scala l133
-  assign tmp_rs2_ret_data_0 = rs2_ret_sel_0[0]; // @ BaseType.scala l305
-  assign tmp_rs2_ret_data_0_1 = rs2_ret_sel_0[1]; // @ BaseType.scala l305
-  assign rs2_ret_data_0 = ((ret_data[63 : 0] & {tmp_rs2_ret_data_0,{tmp_rs2_ret_data_0,{tmp_rs2_ret_data_0,{tmp_rs2_ret_data_0,{tmp_rs2_ret_data_0_2,tmp_rs2_ret_data_0_3}}}}}) | (ret_data[127 : 64] & {tmp_rs2_ret_data_0_1,{tmp_rs2_ret_data_0_1,{tmp_rs2_ret_data_0_1,{tmp_rs2_ret_data_0_1,{tmp_rs2_ret_data_0_18,tmp_rs2_ret_data_0_19}}}}})); // @ Dispatch.scala l134
-  assign tmp_rs1_ret_data_1 = rs1_ret_sel_1[0]; // @ BaseType.scala l305
-  assign tmp_rs1_ret_data_1_1 = rs1_ret_sel_1[1]; // @ BaseType.scala l305
-  assign rs1_ret_data_1 = ((ret_data[63 : 0] & {tmp_rs1_ret_data_1,{tmp_rs1_ret_data_1,{tmp_rs1_ret_data_1,{tmp_rs1_ret_data_1,{tmp_rs1_ret_data_1_2,tmp_rs1_ret_data_1_3}}}}}) | (ret_data[127 : 64] & {tmp_rs1_ret_data_1_1,{tmp_rs1_ret_data_1_1,{tmp_rs1_ret_data_1_1,{tmp_rs1_ret_data_1_1,{tmp_rs1_ret_data_1_18,tmp_rs1_ret_data_1_19}}}}})); // @ Dispatch.scala l135
-  assign tmp_rs2_ret_data_1 = rs2_ret_sel_1[0]; // @ BaseType.scala l305
-  assign tmp_rs2_ret_data_1_1 = rs2_ret_sel_1[1]; // @ BaseType.scala l305
-  assign rs2_ret_data_1 = ((ret_data[63 : 0] & {tmp_rs2_ret_data_1,{tmp_rs2_ret_data_1,{tmp_rs2_ret_data_1,{tmp_rs2_ret_data_1,{tmp_rs2_ret_data_1_2,tmp_rs2_ret_data_1_3}}}}}) | (ret_data[127 : 64] & {tmp_rs2_ret_data_1_1,{tmp_rs2_ret_data_1_1,{tmp_rs2_ret_data_1_1,{tmp_rs2_ret_data_1_1,{tmp_rs2_ret_data_1_18,tmp_rs2_ret_data_1_19}}}}})); // @ Dispatch.scala l136
-  assign dis_src_0_fire = (dis_src_0_valid && dis_src_0_ready); // @ BaseType.scala l305
-  assign dis_src_1_fire = (dis_src_1_valid && dis_src_1_ready); // @ BaseType.scala l305
-  assign entry_dis_fire_1 = (((dis_src_0_fire && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h01)) || ((dis_src_1_fire && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h01))); // @ Dispatch.scala l147
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
   assign dis_to_bju_fire = (dis_to_bju_valid && dis_to_bju_ready); // @ BaseType.scala l305
   assign dis_to_al1_fire = (dis_to_al1_valid && dis_to_al1_ready); // @ BaseType.scala l305
   assign dis_to_al2_fire = (dis_to_al2_valid && dis_to_al2_ready); // @ BaseType.scala l305
   assign dis_to_div_fire = (dis_to_div_valid && dis_to_div_ready); // @ BaseType.scala l305
   assign dis_to_lsu_fire = (dis_to_lsu_valid && dis_to_lsu_ready); // @ BaseType.scala l305
-<<<<<<< HEAD
   assign entry_exe_fire_1 = ((((((dis_to_bju_fire && dis_to_bju_uop_com_rd_wen) && (dis_to_bju_rd_addr == tmp_entry_exe_fire_1)) || ((dis_to_al1_fire && dis_to_al1_uop_com_rd_wen) && (dis_to_al1_rd_addr == tmp_entry_exe_fire_1_1))) || ((dis_to_al2_fire && dis_to_al2_uop_com_rd_wen) && (dis_to_al2_rd_addr == 5'h01))) || ((dis_to_div_fire && dis_to_div_uop_com_rd_wen) && (dis_to_div_rd_addr == 5'h01))) || ((dis_to_lsu_fire && dis_to_lsu_uop_com_rd_wen) && (dis_to_lsu_rd_addr == 5'h01))); // @ Dispatch.scala l156
   assign entry_wbc_fire_1 = (((((wbc_rd_wen_0 && (wbc_rd_addr_0 == 5'h01)) || (wbc_rd_wen_1 && (wbc_rd_addr_1 == 5'h01))) || (wbc_rd_wen_2 && (wbc_rd_addr_2 == 5'h01))) || (wbc_rd_wen_3 && (wbc_rd_addr_3 == 5'h01))) || (wbc_rd_wen_4 && (wbc_rd_addr_4 == 5'h01))); // @ Dispatch.scala l162
   assign entry_ret_fire_1 = ((ret_rd_wen_0 && (ret_rd_addr_0 == 5'h01)) || (ret_rd_wen_1 && (ret_rd_addr_1 == 5'h01))); // @ Dispatch.scala l168
-=======
-  assign entry_exe_fire_1 = ((((((dis_to_bju_fire && dis_to_bju_uop_com_rd_wen) && (dis_to_bju_rd_addr == tmp_entry_exe_fire_1)) || ((dis_to_al1_fire && dis_to_al1_uop_com_rd_wen) && (dis_to_al1_rd_addr == tmp_entry_exe_fire_1_1))) || ((dis_to_al2_fire && dis_to_al2_uop_com_rd_wen) && (dis_to_al2_rd_addr == 5'h01))) || ((dis_to_div_fire && dis_to_div_uop_com_rd_wen) && (dis_to_div_rd_addr == 5'h01))) || ((dis_to_lsu_fire && dis_to_lsu_uop_com_rd_wen) && (dis_to_lsu_rd_addr == 5'h01))); // @ Dispatch.scala l150
-  assign entry_wbc_fire_1 = (((((wbc_rd_wen_0 && (wbc_rd_addr_0 == 5'h01)) || (wbc_rd_wen_1 && (wbc_rd_addr_1 == 5'h01))) || (wbc_rd_wen_2 && (wbc_rd_addr_2 == 5'h01))) || (wbc_rd_wen_3 && (wbc_rd_addr_3 == 5'h01))) || (wbc_rd_wen_4 && (wbc_rd_addr_4 == 5'h01))); // @ Dispatch.scala l156
-  assign entry_ret_fire_1 = ((ret_rd_wen_0 && (ret_rd_addr_0 == 5'h01)) || (ret_rd_wen_1 && (ret_rd_addr_1 == 5'h01))); // @ Dispatch.scala l162
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
   assign dis_src_0_fire_1 = (dis_src_0_valid && dis_src_0_ready); // @ BaseType.scala l305
   assign dis_src_1_fire_1 = (dis_src_1_valid && dis_src_1_ready); // @ BaseType.scala l305
   assign dis_src_0_fire_2 = (dis_src_0_valid && dis_src_0_ready); // @ BaseType.scala l305
   assign dis_src_1_fire_2 = (dis_src_1_valid && dis_src_1_ready); // @ BaseType.scala l305
-<<<<<<< HEAD
   assign entry_dis_fire_2 = (((dis_src_0_fire_2 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h02)) || ((dis_src_1_fire_2 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h02))); // @ Dispatch.scala l153
-=======
-  assign entry_dis_fire_2 = (((dis_src_0_fire_2 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h02)) || ((dis_src_1_fire_2 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h02))); // @ Dispatch.scala l147
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
   assign dis_to_bju_fire_1 = (dis_to_bju_valid && dis_to_bju_ready); // @ BaseType.scala l305
   assign dis_to_al1_fire_1 = (dis_to_al1_valid && dis_to_al1_ready); // @ BaseType.scala l305
   assign dis_to_al2_fire_1 = (dis_to_al2_valid && dis_to_al2_ready); // @ BaseType.scala l305
   assign dis_to_div_fire_1 = (dis_to_div_valid && dis_to_div_ready); // @ BaseType.scala l305
   assign dis_to_lsu_fire_1 = (dis_to_lsu_valid && dis_to_lsu_ready); // @ BaseType.scala l305
-<<<<<<< HEAD
   assign entry_exe_fire_2 = ((((((dis_to_bju_fire_1 && dis_to_bju_uop_com_rd_wen) && (dis_to_bju_rd_addr == tmp_entry_exe_fire_2)) || ((dis_to_al1_fire_1 && dis_to_al1_uop_com_rd_wen) && (dis_to_al1_rd_addr == tmp_entry_exe_fire_2_1))) || ((dis_to_al2_fire_1 && dis_to_al2_uop_com_rd_wen) && (dis_to_al2_rd_addr == 5'h02))) || ((dis_to_div_fire_1 && dis_to_div_uop_com_rd_wen) && (dis_to_div_rd_addr == 5'h02))) || ((dis_to_lsu_fire_1 && dis_to_lsu_uop_com_rd_wen) && (dis_to_lsu_rd_addr == 5'h02))); // @ Dispatch.scala l156
   assign entry_wbc_fire_2 = (((((wbc_rd_wen_0 && (wbc_rd_addr_0 == 5'h02)) || (wbc_rd_wen_1 && (wbc_rd_addr_1 == 5'h02))) || (wbc_rd_wen_2 && (wbc_rd_addr_2 == 5'h02))) || (wbc_rd_wen_3 && (wbc_rd_addr_3 == 5'h02))) || (wbc_rd_wen_4 && (wbc_rd_addr_4 == 5'h02))); // @ Dispatch.scala l162
   assign entry_ret_fire_2 = ((ret_rd_wen_0 && (ret_rd_addr_0 == 5'h02)) || (ret_rd_wen_1 && (ret_rd_addr_1 == 5'h02))); // @ Dispatch.scala l168
-=======
-  assign entry_exe_fire_2 = ((((((dis_to_bju_fire_1 && dis_to_bju_uop_com_rd_wen) && (dis_to_bju_rd_addr == tmp_entry_exe_fire_2)) || ((dis_to_al1_fire_1 && dis_to_al1_uop_com_rd_wen) && (dis_to_al1_rd_addr == tmp_entry_exe_fire_2_1))) || ((dis_to_al2_fire_1 && dis_to_al2_uop_com_rd_wen) && (dis_to_al2_rd_addr == 5'h02))) || ((dis_to_div_fire_1 && dis_to_div_uop_com_rd_wen) && (dis_to_div_rd_addr == 5'h02))) || ((dis_to_lsu_fire_1 && dis_to_lsu_uop_com_rd_wen) && (dis_to_lsu_rd_addr == 5'h02))); // @ Dispatch.scala l150
-  assign entry_wbc_fire_2 = (((((wbc_rd_wen_0 && (wbc_rd_addr_0 == 5'h02)) || (wbc_rd_wen_1 && (wbc_rd_addr_1 == 5'h02))) || (wbc_rd_wen_2 && (wbc_rd_addr_2 == 5'h02))) || (wbc_rd_wen_3 && (wbc_rd_addr_3 == 5'h02))) || (wbc_rd_wen_4 && (wbc_rd_addr_4 == 5'h02))); // @ Dispatch.scala l156
-  assign entry_ret_fire_2 = ((ret_rd_wen_0 && (ret_rd_addr_0 == 5'h02)) || (ret_rd_wen_1 && (ret_rd_addr_1 == 5'h02))); // @ Dispatch.scala l162
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
   assign dis_src_0_fire_3 = (dis_src_0_valid && dis_src_0_ready); // @ BaseType.scala l305
   assign dis_src_1_fire_3 = (dis_src_1_valid && dis_src_1_ready); // @ BaseType.scala l305
   assign dis_src_0_fire_4 = (dis_src_0_valid && dis_src_0_ready); // @ BaseType.scala l305
   assign dis_src_1_fire_4 = (dis_src_1_valid && dis_src_1_ready); // @ BaseType.scala l305
-<<<<<<< HEAD
   assign entry_dis_fire_3 = (((dis_src_0_fire_4 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h03)) || ((dis_src_1_fire_4 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h03))); // @ Dispatch.scala l153
-=======
-  assign entry_dis_fire_3 = (((dis_src_0_fire_4 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h03)) || ((dis_src_1_fire_4 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h03))); // @ Dispatch.scala l147
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
   assign dis_to_bju_fire_2 = (dis_to_bju_valid && dis_to_bju_ready); // @ BaseType.scala l305
   assign dis_to_al1_fire_2 = (dis_to_al1_valid && dis_to_al1_ready); // @ BaseType.scala l305
   assign dis_to_al2_fire_2 = (dis_to_al2_valid && dis_to_al2_ready); // @ BaseType.scala l305
   assign dis_to_div_fire_2 = (dis_to_div_valid && dis_to_div_ready); // @ BaseType.scala l305
   assign dis_to_lsu_fire_2 = (dis_to_lsu_valid && dis_to_lsu_ready); // @ BaseType.scala l305
-<<<<<<< HEAD
   assign entry_exe_fire_3 = ((((((dis_to_bju_fire_2 && dis_to_bju_uop_com_rd_wen) && (dis_to_bju_rd_addr == tmp_entry_exe_fire_3)) || ((dis_to_al1_fire_2 && dis_to_al1_uop_com_rd_wen) && (dis_to_al1_rd_addr == tmp_entry_exe_fire_3_1))) || ((dis_to_al2_fire_2 && dis_to_al2_uop_com_rd_wen) && (dis_to_al2_rd_addr == 5'h03))) || ((dis_to_div_fire_2 && dis_to_div_uop_com_rd_wen) && (dis_to_div_rd_addr == 5'h03))) || ((dis_to_lsu_fire_2 && dis_to_lsu_uop_com_rd_wen) && (dis_to_lsu_rd_addr == 5'h03))); // @ Dispatch.scala l156
   assign entry_wbc_fire_3 = (((((wbc_rd_wen_0 && (wbc_rd_addr_0 == 5'h03)) || (wbc_rd_wen_1 && (wbc_rd_addr_1 == 5'h03))) || (wbc_rd_wen_2 && (wbc_rd_addr_2 == 5'h03))) || (wbc_rd_wen_3 && (wbc_rd_addr_3 == 5'h03))) || (wbc_rd_wen_4 && (wbc_rd_addr_4 == 5'h03))); // @ Dispatch.scala l162
   assign entry_ret_fire_3 = ((ret_rd_wen_0 && (ret_rd_addr_0 == 5'h03)) || (ret_rd_wen_1 && (ret_rd_addr_1 == 5'h03))); // @ Dispatch.scala l168
-=======
-  assign entry_exe_fire_3 = ((((((dis_to_bju_fire_2 && dis_to_bju_uop_com_rd_wen) && (dis_to_bju_rd_addr == tmp_entry_exe_fire_3)) || ((dis_to_al1_fire_2 && dis_to_al1_uop_com_rd_wen) && (dis_to_al1_rd_addr == tmp_entry_exe_fire_3_1))) || ((dis_to_al2_fire_2 && dis_to_al2_uop_com_rd_wen) && (dis_to_al2_rd_addr == 5'h03))) || ((dis_to_div_fire_2 && dis_to_div_uop_com_rd_wen) && (dis_to_div_rd_addr == 5'h03))) || ((dis_to_lsu_fire_2 && dis_to_lsu_uop_com_rd_wen) && (dis_to_lsu_rd_addr == 5'h03))); // @ Dispatch.scala l150
-  assign entry_wbc_fire_3 = (((((wbc_rd_wen_0 && (wbc_rd_addr_0 == 5'h03)) || (wbc_rd_wen_1 && (wbc_rd_addr_1 == 5'h03))) || (wbc_rd_wen_2 && (wbc_rd_addr_2 == 5'h03))) || (wbc_rd_wen_3 && (wbc_rd_addr_3 == 5'h03))) || (wbc_rd_wen_4 && (wbc_rd_addr_4 == 5'h03))); // @ Dispatch.scala l156
-  assign entry_ret_fire_3 = ((ret_rd_wen_0 && (ret_rd_addr_0 == 5'h03)) || (ret_rd_wen_1 && (ret_rd_addr_1 == 5'h03))); // @ Dispatch.scala l162
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
   assign dis_src_0_fire_5 = (dis_src_0_valid && dis_src_0_ready); // @ BaseType.scala l305
   assign dis_src_1_fire_5 = (dis_src_1_valid && dis_src_1_ready); // @ BaseType.scala l305
   assign dis_src_0_fire_6 = (dis_src_0_valid && dis_src_0_ready); // @ BaseType.scala l305
   assign dis_src_1_fire_6 = (dis_src_1_valid && dis_src_1_ready); // @ BaseType.scala l305
-<<<<<<< HEAD
   assign entry_dis_fire_4 = (((dis_src_0_fire_6 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h04)) || ((dis_src_1_fire_6 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h04))); // @ Dispatch.scala l153
-=======
-  assign entry_dis_fire_4 = (((dis_src_0_fire_6 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h04)) || ((dis_src_1_fire_6 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h04))); // @ Dispatch.scala l147
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
   assign dis_to_bju_fire_3 = (dis_to_bju_valid && dis_to_bju_ready); // @ BaseType.scala l305
   assign dis_to_al1_fire_3 = (dis_to_al1_valid && dis_to_al1_ready); // @ BaseType.scala l305
   assign dis_to_al2_fire_3 = (dis_to_al2_valid && dis_to_al2_ready); // @ BaseType.scala l305
   assign dis_to_div_fire_3 = (dis_to_div_valid && dis_to_div_ready); // @ BaseType.scala l305
   assign dis_to_lsu_fire_3 = (dis_to_lsu_valid && dis_to_lsu_ready); // @ BaseType.scala l305
-<<<<<<< HEAD
   assign entry_exe_fire_4 = ((((((dis_to_bju_fire_3 && dis_to_bju_uop_com_rd_wen) && (dis_to_bju_rd_addr == tmp_entry_exe_fire_4)) || ((dis_to_al1_fire_3 && dis_to_al1_uop_com_rd_wen) && (dis_to_al1_rd_addr == tmp_entry_exe_fire_4_1))) || ((dis_to_al2_fire_3 && dis_to_al2_uop_com_rd_wen) && (dis_to_al2_rd_addr == 5'h04))) || ((dis_to_div_fire_3 && dis_to_div_uop_com_rd_wen) && (dis_to_div_rd_addr == 5'h04))) || ((dis_to_lsu_fire_3 && dis_to_lsu_uop_com_rd_wen) && (dis_to_lsu_rd_addr == 5'h04))); // @ Dispatch.scala l156
   assign entry_wbc_fire_4 = (((((wbc_rd_wen_0 && (wbc_rd_addr_0 == 5'h04)) || (wbc_rd_wen_1 && (wbc_rd_addr_1 == 5'h04))) || (wbc_rd_wen_2 && (wbc_rd_addr_2 == 5'h04))) || (wbc_rd_wen_3 && (wbc_rd_addr_3 == 5'h04))) || (wbc_rd_wen_4 && (wbc_rd_addr_4 == 5'h04))); // @ Dispatch.scala l162
   assign entry_ret_fire_4 = ((ret_rd_wen_0 && (ret_rd_addr_0 == 5'h04)) || (ret_rd_wen_1 && (ret_rd_addr_1 == 5'h04))); // @ Dispatch.scala l168
-=======
-  assign entry_exe_fire_4 = ((((((dis_to_bju_fire_3 && dis_to_bju_uop_com_rd_wen) && (dis_to_bju_rd_addr == tmp_entry_exe_fire_4)) || ((dis_to_al1_fire_3 && dis_to_al1_uop_com_rd_wen) && (dis_to_al1_rd_addr == tmp_entry_exe_fire_4_1))) || ((dis_to_al2_fire_3 && dis_to_al2_uop_com_rd_wen) && (dis_to_al2_rd_addr == 5'h04))) || ((dis_to_div_fire_3 && dis_to_div_uop_com_rd_wen) && (dis_to_div_rd_addr == 5'h04))) || ((dis_to_lsu_fire_3 && dis_to_lsu_uop_com_rd_wen) && (dis_to_lsu_rd_addr == 5'h04))); // @ Dispatch.scala l150
-  assign entry_wbc_fire_4 = (((((wbc_rd_wen_0 && (wbc_rd_addr_0 == 5'h04)) || (wbc_rd_wen_1 && (wbc_rd_addr_1 == 5'h04))) || (wbc_rd_wen_2 && (wbc_rd_addr_2 == 5'h04))) || (wbc_rd_wen_3 && (wbc_rd_addr_3 == 5'h04))) || (wbc_rd_wen_4 && (wbc_rd_addr_4 == 5'h04))); // @ Dispatch.scala l156
-  assign entry_ret_fire_4 = ((ret_rd_wen_0 && (ret_rd_addr_0 == 5'h04)) || (ret_rd_wen_1 && (ret_rd_addr_1 == 5'h04))); // @ Dispatch.scala l162
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
   assign dis_src_0_fire_7 = (dis_src_0_valid && dis_src_0_ready); // @ BaseType.scala l305
   assign dis_src_1_fire_7 = (dis_src_1_valid && dis_src_1_ready); // @ BaseType.scala l305
   assign dis_src_0_fire_8 = (dis_src_0_valid && dis_src_0_ready); // @ BaseType.scala l305
   assign dis_src_1_fire_8 = (dis_src_1_valid && dis_src_1_ready); // @ BaseType.scala l305
-<<<<<<< HEAD
   assign entry_dis_fire_5 = (((dis_src_0_fire_8 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h05)) || ((dis_src_1_fire_8 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h05))); // @ Dispatch.scala l153
-=======
-  assign entry_dis_fire_5 = (((dis_src_0_fire_8 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h05)) || ((dis_src_1_fire_8 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h05))); // @ Dispatch.scala l147
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
   assign dis_to_bju_fire_4 = (dis_to_bju_valid && dis_to_bju_ready); // @ BaseType.scala l305
   assign dis_to_al1_fire_4 = (dis_to_al1_valid && dis_to_al1_ready); // @ BaseType.scala l305
   assign dis_to_al2_fire_4 = (dis_to_al2_valid && dis_to_al2_ready); // @ BaseType.scala l305
   assign dis_to_div_fire_4 = (dis_to_div_valid && dis_to_div_ready); // @ BaseType.scala l305
   assign dis_to_lsu_fire_4 = (dis_to_lsu_valid && dis_to_lsu_ready); // @ BaseType.scala l305
-<<<<<<< HEAD
   assign entry_exe_fire_5 = ((((((dis_to_bju_fire_4 && dis_to_bju_uop_com_rd_wen) && (dis_to_bju_rd_addr == tmp_entry_exe_fire_5)) || ((dis_to_al1_fire_4 && dis_to_al1_uop_com_rd_wen) && (dis_to_al1_rd_addr == tmp_entry_exe_fire_5_1))) || ((dis_to_al2_fire_4 && dis_to_al2_uop_com_rd_wen) && (dis_to_al2_rd_addr == 5'h05))) || ((dis_to_div_fire_4 && dis_to_div_uop_com_rd_wen) && (dis_to_div_rd_addr == 5'h05))) || ((dis_to_lsu_fire_4 && dis_to_lsu_uop_com_rd_wen) && (dis_to_lsu_rd_addr == 5'h05))); // @ Dispatch.scala l156
   assign entry_wbc_fire_5 = (((((wbc_rd_wen_0 && (wbc_rd_addr_0 == 5'h05)) || (wbc_rd_wen_1 && (wbc_rd_addr_1 == 5'h05))) || (wbc_rd_wen_2 && (wbc_rd_addr_2 == 5'h05))) || (wbc_rd_wen_3 && (wbc_rd_addr_3 == 5'h05))) || (wbc_rd_wen_4 && (wbc_rd_addr_4 == 5'h05))); // @ Dispatch.scala l162
   assign entry_ret_fire_5 = ((ret_rd_wen_0 && (ret_rd_addr_0 == 5'h05)) || (ret_rd_wen_1 && (ret_rd_addr_1 == 5'h05))); // @ Dispatch.scala l168
-=======
-  assign entry_exe_fire_5 = ((((((dis_to_bju_fire_4 && dis_to_bju_uop_com_rd_wen) && (dis_to_bju_rd_addr == tmp_entry_exe_fire_5)) || ((dis_to_al1_fire_4 && dis_to_al1_uop_com_rd_wen) && (dis_to_al1_rd_addr == tmp_entry_exe_fire_5_1))) || ((dis_to_al2_fire_4 && dis_to_al2_uop_com_rd_wen) && (dis_to_al2_rd_addr == 5'h05))) || ((dis_to_div_fire_4 && dis_to_div_uop_com_rd_wen) && (dis_to_div_rd_addr == 5'h05))) || ((dis_to_lsu_fire_4 && dis_to_lsu_uop_com_rd_wen) && (dis_to_lsu_rd_addr == 5'h05))); // @ Dispatch.scala l150
-  assign entry_wbc_fire_5 = (((((wbc_rd_wen_0 && (wbc_rd_addr_0 == 5'h05)) || (wbc_rd_wen_1 && (wbc_rd_addr_1 == 5'h05))) || (wbc_rd_wen_2 && (wbc_rd_addr_2 == 5'h05))) || (wbc_rd_wen_3 && (wbc_rd_addr_3 == 5'h05))) || (wbc_rd_wen_4 && (wbc_rd_addr_4 == 5'h05))); // @ Dispatch.scala l156
-  assign entry_ret_fire_5 = ((ret_rd_wen_0 && (ret_rd_addr_0 == 5'h05)) || (ret_rd_wen_1 && (ret_rd_addr_1 == 5'h05))); // @ Dispatch.scala l162
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
   assign dis_src_0_fire_9 = (dis_src_0_valid && dis_src_0_ready); // @ BaseType.scala l305
   assign dis_src_1_fire_9 = (dis_src_1_valid && dis_src_1_ready); // @ BaseType.scala l305
   assign dis_src_0_fire_10 = (dis_src_0_valid && dis_src_0_ready); // @ BaseType.scala l305
   assign dis_src_1_fire_10 = (dis_src_1_valid && dis_src_1_ready); // @ BaseType.scala l305
-<<<<<<< HEAD
   assign entry_dis_fire_6 = (((dis_src_0_fire_10 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h06)) || ((dis_src_1_fire_10 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h06))); // @ Dispatch.scala l153
-=======
-  assign entry_dis_fire_6 = (((dis_src_0_fire_10 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h06)) || ((dis_src_1_fire_10 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h06))); // @ Dispatch.scala l147
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
   assign dis_to_bju_fire_5 = (dis_to_bju_valid && dis_to_bju_ready); // @ BaseType.scala l305
   assign dis_to_al1_fire_5 = (dis_to_al1_valid && dis_to_al1_ready); // @ BaseType.scala l305
   assign dis_to_al2_fire_5 = (dis_to_al2_valid && dis_to_al2_ready); // @ BaseType.scala l305
   assign dis_to_div_fire_5 = (dis_to_div_valid && dis_to_div_ready); // @ BaseType.scala l305
   assign dis_to_lsu_fire_5 = (dis_to_lsu_valid && dis_to_lsu_ready); // @ BaseType.scala l305
-<<<<<<< HEAD
   assign entry_exe_fire_6 = ((((((dis_to_bju_fire_5 && dis_to_bju_uop_com_rd_wen) && (dis_to_bju_rd_addr == tmp_entry_exe_fire_6)) || ((dis_to_al1_fire_5 && dis_to_al1_uop_com_rd_wen) && (dis_to_al1_rd_addr == tmp_entry_exe_fire_6_1))) || ((dis_to_al2_fire_5 && dis_to_al2_uop_com_rd_wen) && (dis_to_al2_rd_addr == 5'h06))) || ((dis_to_div_fire_5 && dis_to_div_uop_com_rd_wen) && (dis_to_div_rd_addr == 5'h06))) || ((dis_to_lsu_fire_5 && dis_to_lsu_uop_com_rd_wen) && (dis_to_lsu_rd_addr == 5'h06))); // @ Dispatch.scala l156
   assign entry_wbc_fire_6 = (((((wbc_rd_wen_0 && (wbc_rd_addr_0 == 5'h06)) || (wbc_rd_wen_1 && (wbc_rd_addr_1 == 5'h06))) || (wbc_rd_wen_2 && (wbc_rd_addr_2 == 5'h06))) || (wbc_rd_wen_3 && (wbc_rd_addr_3 == 5'h06))) || (wbc_rd_wen_4 && (wbc_rd_addr_4 == 5'h06))); // @ Dispatch.scala l162
   assign entry_ret_fire_6 = ((ret_rd_wen_0 && (ret_rd_addr_0 == 5'h06)) || (ret_rd_wen_1 && (ret_rd_addr_1 == 5'h06))); // @ Dispatch.scala l168
-=======
-  assign entry_exe_fire_6 = ((((((dis_to_bju_fire_5 && dis_to_bju_uop_com_rd_wen) && (dis_to_bju_rd_addr == tmp_entry_exe_fire_6)) || ((dis_to_al1_fire_5 && dis_to_al1_uop_com_rd_wen) && (dis_to_al1_rd_addr == tmp_entry_exe_fire_6_1))) || ((dis_to_al2_fire_5 && dis_to_al2_uop_com_rd_wen) && (dis_to_al2_rd_addr == 5'h06))) || ((dis_to_div_fire_5 && dis_to_div_uop_com_rd_wen) && (dis_to_div_rd_addr == 5'h06))) || ((dis_to_lsu_fire_5 && dis_to_lsu_uop_com_rd_wen) && (dis_to_lsu_rd_addr == 5'h06))); // @ Dispatch.scala l150
-  assign entry_wbc_fire_6 = (((((wbc_rd_wen_0 && (wbc_rd_addr_0 == 5'h06)) || (wbc_rd_wen_1 && (wbc_rd_addr_1 == 5'h06))) || (wbc_rd_wen_2 && (wbc_rd_addr_2 == 5'h06))) || (wbc_rd_wen_3 && (wbc_rd_addr_3 == 5'h06))) || (wbc_rd_wen_4 && (wbc_rd_addr_4 == 5'h06))); // @ Dispatch.scala l156
-  assign entry_ret_fire_6 = ((ret_rd_wen_0 && (ret_rd_addr_0 == 5'h06)) || (ret_rd_wen_1 && (ret_rd_addr_1 == 5'h06))); // @ Dispatch.scala l162
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
   assign dis_src_0_fire_11 = (dis_src_0_valid && dis_src_0_ready); // @ BaseType.scala l305
   assign dis_src_1_fire_11 = (dis_src_1_valid && dis_src_1_ready); // @ BaseType.scala l305
   assign dis_src_0_fire_12 = (dis_src_0_valid && dis_src_0_ready); // @ BaseType.scala l305
   assign dis_src_1_fire_12 = (dis_src_1_valid && dis_src_1_ready); // @ BaseType.scala l305
-<<<<<<< HEAD
   assign entry_dis_fire_7 = (((dis_src_0_fire_12 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h07)) || ((dis_src_1_fire_12 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h07))); // @ Dispatch.scala l153
-=======
-  assign entry_dis_fire_7 = (((dis_src_0_fire_12 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h07)) || ((dis_src_1_fire_12 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h07))); // @ Dispatch.scala l147
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
   assign dis_to_bju_fire_6 = (dis_to_bju_valid && dis_to_bju_ready); // @ BaseType.scala l305
   assign dis_to_al1_fire_6 = (dis_to_al1_valid && dis_to_al1_ready); // @ BaseType.scala l305
   assign dis_to_al2_fire_6 = (dis_to_al2_valid && dis_to_al2_ready); // @ BaseType.scala l305
   assign dis_to_div_fire_6 = (dis_to_div_valid && dis_to_div_ready); // @ BaseType.scala l305
   assign dis_to_lsu_fire_6 = (dis_to_lsu_valid && dis_to_lsu_ready); // @ BaseType.scala l305
-<<<<<<< HEAD
   assign entry_exe_fire_7 = ((((((dis_to_bju_fire_6 && dis_to_bju_uop_com_rd_wen) && (dis_to_bju_rd_addr == tmp_entry_exe_fire_7)) || ((dis_to_al1_fire_6 && dis_to_al1_uop_com_rd_wen) && (dis_to_al1_rd_addr == tmp_entry_exe_fire_7_1))) || ((dis_to_al2_fire_6 && dis_to_al2_uop_com_rd_wen) && (dis_to_al2_rd_addr == 5'h07))) || ((dis_to_div_fire_6 && dis_to_div_uop_com_rd_wen) && (dis_to_div_rd_addr == 5'h07))) || ((dis_to_lsu_fire_6 && dis_to_lsu_uop_com_rd_wen) && (dis_to_lsu_rd_addr == 5'h07))); // @ Dispatch.scala l156
   assign entry_wbc_fire_7 = (((((wbc_rd_wen_0 && (wbc_rd_addr_0 == 5'h07)) || (wbc_rd_wen_1 && (wbc_rd_addr_1 == 5'h07))) || (wbc_rd_wen_2 && (wbc_rd_addr_2 == 5'h07))) || (wbc_rd_wen_3 && (wbc_rd_addr_3 == 5'h07))) || (wbc_rd_wen_4 && (wbc_rd_addr_4 == 5'h07))); // @ Dispatch.scala l162
   assign entry_ret_fire_7 = ((ret_rd_wen_0 && (ret_rd_addr_0 == 5'h07)) || (ret_rd_wen_1 && (ret_rd_addr_1 == 5'h07))); // @ Dispatch.scala l168
-=======
-  assign entry_exe_fire_7 = ((((((dis_to_bju_fire_6 && dis_to_bju_uop_com_rd_wen) && (dis_to_bju_rd_addr == tmp_entry_exe_fire_7)) || ((dis_to_al1_fire_6 && dis_to_al1_uop_com_rd_wen) && (dis_to_al1_rd_addr == tmp_entry_exe_fire_7_1))) || ((dis_to_al2_fire_6 && dis_to_al2_uop_com_rd_wen) && (dis_to_al2_rd_addr == 5'h07))) || ((dis_to_div_fire_6 && dis_to_div_uop_com_rd_wen) && (dis_to_div_rd_addr == 5'h07))) || ((dis_to_lsu_fire_6 && dis_to_lsu_uop_com_rd_wen) && (dis_to_lsu_rd_addr == 5'h07))); // @ Dispatch.scala l150
-  assign entry_wbc_fire_7 = (((((wbc_rd_wen_0 && (wbc_rd_addr_0 == 5'h07)) || (wbc_rd_wen_1 && (wbc_rd_addr_1 == 5'h07))) || (wbc_rd_wen_2 && (wbc_rd_addr_2 == 5'h07))) || (wbc_rd_wen_3 && (wbc_rd_addr_3 == 5'h07))) || (wbc_rd_wen_4 && (wbc_rd_addr_4 == 5'h07))); // @ Dispatch.scala l156
-  assign entry_ret_fire_7 = ((ret_rd_wen_0 && (ret_rd_addr_0 == 5'h07)) || (ret_rd_wen_1 && (ret_rd_addr_1 == 5'h07))); // @ Dispatch.scala l162
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
   assign dis_src_0_fire_13 = (dis_src_0_valid && dis_src_0_ready); // @ BaseType.scala l305
   assign dis_src_1_fire_13 = (dis_src_1_valid && dis_src_1_ready); // @ BaseType.scala l305
   assign dis_src_0_fire_14 = (dis_src_0_valid && dis_src_0_ready); // @ BaseType.scala l305
   assign dis_src_1_fire_14 = (dis_src_1_valid && dis_src_1_ready); // @ BaseType.scala l305
-<<<<<<< HEAD
   assign entry_dis_fire_8 = (((dis_src_0_fire_14 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h08)) || ((dis_src_1_fire_14 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h08))); // @ Dispatch.scala l153
-=======
-  assign entry_dis_fire_8 = (((dis_src_0_fire_14 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h08)) || ((dis_src_1_fire_14 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h08))); // @ Dispatch.scala l147
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
   assign dis_to_bju_fire_7 = (dis_to_bju_valid && dis_to_bju_ready); // @ BaseType.scala l305
   assign dis_to_al1_fire_7 = (dis_to_al1_valid && dis_to_al1_ready); // @ BaseType.scala l305
   assign dis_to_al2_fire_7 = (dis_to_al2_valid && dis_to_al2_ready); // @ BaseType.scala l305
   assign dis_to_div_fire_7 = (dis_to_div_valid && dis_to_div_ready); // @ BaseType.scala l305
   assign dis_to_lsu_fire_7 = (dis_to_lsu_valid && dis_to_lsu_ready); // @ BaseType.scala l305
-<<<<<<< HEAD
   assign entry_exe_fire_8 = ((((((dis_to_bju_fire_7 && dis_to_bju_uop_com_rd_wen) && (dis_to_bju_rd_addr == tmp_entry_exe_fire_8)) || ((dis_to_al1_fire_7 && dis_to_al1_uop_com_rd_wen) && (dis_to_al1_rd_addr == tmp_entry_exe_fire_8_1))) || ((dis_to_al2_fire_7 && dis_to_al2_uop_com_rd_wen) && (dis_to_al2_rd_addr == 5'h08))) || ((dis_to_div_fire_7 && dis_to_div_uop_com_rd_wen) && (dis_to_div_rd_addr == 5'h08))) || ((dis_to_lsu_fire_7 && dis_to_lsu_uop_com_rd_wen) && (dis_to_lsu_rd_addr == 5'h08))); // @ Dispatch.scala l156
   assign entry_wbc_fire_8 = (((((wbc_rd_wen_0 && (wbc_rd_addr_0 == 5'h08)) || (wbc_rd_wen_1 && (wbc_rd_addr_1 == 5'h08))) || (wbc_rd_wen_2 && (wbc_rd_addr_2 == 5'h08))) || (wbc_rd_wen_3 && (wbc_rd_addr_3 == 5'h08))) || (wbc_rd_wen_4 && (wbc_rd_addr_4 == 5'h08))); // @ Dispatch.scala l162
   assign entry_ret_fire_8 = ((ret_rd_wen_0 && (ret_rd_addr_0 == 5'h08)) || (ret_rd_wen_1 && (ret_rd_addr_1 == 5'h08))); // @ Dispatch.scala l168
-=======
-  assign entry_exe_fire_8 = ((((((dis_to_bju_fire_7 && dis_to_bju_uop_com_rd_wen) && (dis_to_bju_rd_addr == tmp_entry_exe_fire_8)) || ((dis_to_al1_fire_7 && dis_to_al1_uop_com_rd_wen) && (dis_to_al1_rd_addr == tmp_entry_exe_fire_8_1))) || ((dis_to_al2_fire_7 && dis_to_al2_uop_com_rd_wen) && (dis_to_al2_rd_addr == 5'h08))) || ((dis_to_div_fire_7 && dis_to_div_uop_com_rd_wen) && (dis_to_div_rd_addr == 5'h08))) || ((dis_to_lsu_fire_7 && dis_to_lsu_uop_com_rd_wen) && (dis_to_lsu_rd_addr == 5'h08))); // @ Dispatch.scala l150
-  assign entry_wbc_fire_8 = (((((wbc_rd_wen_0 && (wbc_rd_addr_0 == 5'h08)) || (wbc_rd_wen_1 && (wbc_rd_addr_1 == 5'h08))) || (wbc_rd_wen_2 && (wbc_rd_addr_2 == 5'h08))) || (wbc_rd_wen_3 && (wbc_rd_addr_3 == 5'h08))) || (wbc_rd_wen_4 && (wbc_rd_addr_4 == 5'h08))); // @ Dispatch.scala l156
-  assign entry_ret_fire_8 = ((ret_rd_wen_0 && (ret_rd_addr_0 == 5'h08)) || (ret_rd_wen_1 && (ret_rd_addr_1 == 5'h08))); // @ Dispatch.scala l162
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
   assign dis_src_0_fire_15 = (dis_src_0_valid && dis_src_0_ready); // @ BaseType.scala l305
   assign dis_src_1_fire_15 = (dis_src_1_valid && dis_src_1_ready); // @ BaseType.scala l305
   assign dis_src_0_fire_16 = (dis_src_0_valid && dis_src_0_ready); // @ BaseType.scala l305
   assign dis_src_1_fire_16 = (dis_src_1_valid && dis_src_1_ready); // @ BaseType.scala l305
-<<<<<<< HEAD
   assign entry_dis_fire_9 = (((dis_src_0_fire_16 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h09)) || ((dis_src_1_fire_16 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h09))); // @ Dispatch.scala l153
-=======
-  assign entry_dis_fire_9 = (((dis_src_0_fire_16 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h09)) || ((dis_src_1_fire_16 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h09))); // @ Dispatch.scala l147
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
   assign dis_to_bju_fire_8 = (dis_to_bju_valid && dis_to_bju_ready); // @ BaseType.scala l305
   assign dis_to_al1_fire_8 = (dis_to_al1_valid && dis_to_al1_ready); // @ BaseType.scala l305
   assign dis_to_al2_fire_8 = (dis_to_al2_valid && dis_to_al2_ready); // @ BaseType.scala l305
   assign dis_to_div_fire_8 = (dis_to_div_valid && dis_to_div_ready); // @ BaseType.scala l305
   assign dis_to_lsu_fire_8 = (dis_to_lsu_valid && dis_to_lsu_ready); // @ BaseType.scala l305
-<<<<<<< HEAD
   assign entry_exe_fire_9 = ((((((dis_to_bju_fire_8 && dis_to_bju_uop_com_rd_wen) && (dis_to_bju_rd_addr == tmp_entry_exe_fire_9)) || ((dis_to_al1_fire_8 && dis_to_al1_uop_com_rd_wen) && (dis_to_al1_rd_addr == tmp_entry_exe_fire_9_1))) || ((dis_to_al2_fire_8 && dis_to_al2_uop_com_rd_wen) && (dis_to_al2_rd_addr == 5'h09))) || ((dis_to_div_fire_8 && dis_to_div_uop_com_rd_wen) && (dis_to_div_rd_addr == 5'h09))) || ((dis_to_lsu_fire_8 && dis_to_lsu_uop_com_rd_wen) && (dis_to_lsu_rd_addr == 5'h09))); // @ Dispatch.scala l156
   assign entry_wbc_fire_9 = (((((wbc_rd_wen_0 && (wbc_rd_addr_0 == 5'h09)) || (wbc_rd_wen_1 && (wbc_rd_addr_1 == 5'h09))) || (wbc_rd_wen_2 && (wbc_rd_addr_2 == 5'h09))) || (wbc_rd_wen_3 && (wbc_rd_addr_3 == 5'h09))) || (wbc_rd_wen_4 && (wbc_rd_addr_4 == 5'h09))); // @ Dispatch.scala l162
   assign entry_ret_fire_9 = ((ret_rd_wen_0 && (ret_rd_addr_0 == 5'h09)) || (ret_rd_wen_1 && (ret_rd_addr_1 == 5'h09))); // @ Dispatch.scala l168
-=======
-  assign entry_exe_fire_9 = ((((((dis_to_bju_fire_8 && dis_to_bju_uop_com_rd_wen) && (dis_to_bju_rd_addr == tmp_entry_exe_fire_9)) || ((dis_to_al1_fire_8 && dis_to_al1_uop_com_rd_wen) && (dis_to_al1_rd_addr == tmp_entry_exe_fire_9_1))) || ((dis_to_al2_fire_8 && dis_to_al2_uop_com_rd_wen) && (dis_to_al2_rd_addr == 5'h09))) || ((dis_to_div_fire_8 && dis_to_div_uop_com_rd_wen) && (dis_to_div_rd_addr == 5'h09))) || ((dis_to_lsu_fire_8 && dis_to_lsu_uop_com_rd_wen) && (dis_to_lsu_rd_addr == 5'h09))); // @ Dispatch.scala l150
-  assign entry_wbc_fire_9 = (((((wbc_rd_wen_0 && (wbc_rd_addr_0 == 5'h09)) || (wbc_rd_wen_1 && (wbc_rd_addr_1 == 5'h09))) || (wbc_rd_wen_2 && (wbc_rd_addr_2 == 5'h09))) || (wbc_rd_wen_3 && (wbc_rd_addr_3 == 5'h09))) || (wbc_rd_wen_4 && (wbc_rd_addr_4 == 5'h09))); // @ Dispatch.scala l156
-  assign entry_ret_fire_9 = ((ret_rd_wen_0 && (ret_rd_addr_0 == 5'h09)) || (ret_rd_wen_1 && (ret_rd_addr_1 == 5'h09))); // @ Dispatch.scala l162
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
   assign dis_src_0_fire_17 = (dis_src_0_valid && dis_src_0_ready); // @ BaseType.scala l305
   assign dis_src_1_fire_17 = (dis_src_1_valid && dis_src_1_ready); // @ BaseType.scala l305
   assign dis_src_0_fire_18 = (dis_src_0_valid && dis_src_0_ready); // @ BaseType.scala l305
   assign dis_src_1_fire_18 = (dis_src_1_valid && dis_src_1_ready); // @ BaseType.scala l305
-<<<<<<< HEAD
   assign entry_dis_fire_10 = (((dis_src_0_fire_18 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h0a)) || ((dis_src_1_fire_18 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h0a))); // @ Dispatch.scala l153
-=======
-  assign entry_dis_fire_10 = (((dis_src_0_fire_18 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h0a)) || ((dis_src_1_fire_18 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h0a))); // @ Dispatch.scala l147
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
   assign dis_to_bju_fire_9 = (dis_to_bju_valid && dis_to_bju_ready); // @ BaseType.scala l305
   assign dis_to_al1_fire_9 = (dis_to_al1_valid && dis_to_al1_ready); // @ BaseType.scala l305
   assign dis_to_al2_fire_9 = (dis_to_al2_valid && dis_to_al2_ready); // @ BaseType.scala l305
   assign dis_to_div_fire_9 = (dis_to_div_valid && dis_to_div_ready); // @ BaseType.scala l305
   assign dis_to_lsu_fire_9 = (dis_to_lsu_valid && dis_to_lsu_ready); // @ BaseType.scala l305
-<<<<<<< HEAD
   assign entry_exe_fire_10 = ((((((dis_to_bju_fire_9 && dis_to_bju_uop_com_rd_wen) && (dis_to_bju_rd_addr == tmp_entry_exe_fire_10)) || ((dis_to_al1_fire_9 && dis_to_al1_uop_com_rd_wen) && (dis_to_al1_rd_addr == tmp_entry_exe_fire_10_1))) || ((dis_to_al2_fire_9 && dis_to_al2_uop_com_rd_wen) && (dis_to_al2_rd_addr == 5'h0a))) || ((dis_to_div_fire_9 && dis_to_div_uop_com_rd_wen) && (dis_to_div_rd_addr == 5'h0a))) || ((dis_to_lsu_fire_9 && dis_to_lsu_uop_com_rd_wen) && (dis_to_lsu_rd_addr == 5'h0a))); // @ Dispatch.scala l156
   assign entry_wbc_fire_10 = (((((wbc_rd_wen_0 && (wbc_rd_addr_0 == 5'h0a)) || (wbc_rd_wen_1 && (wbc_rd_addr_1 == 5'h0a))) || (wbc_rd_wen_2 && (wbc_rd_addr_2 == 5'h0a))) || (wbc_rd_wen_3 && (wbc_rd_addr_3 == 5'h0a))) || (wbc_rd_wen_4 && (wbc_rd_addr_4 == 5'h0a))); // @ Dispatch.scala l162
   assign entry_ret_fire_10 = ((ret_rd_wen_0 && (ret_rd_addr_0 == 5'h0a)) || (ret_rd_wen_1 && (ret_rd_addr_1 == 5'h0a))); // @ Dispatch.scala l168
-=======
-  assign entry_exe_fire_10 = ((((((dis_to_bju_fire_9 && dis_to_bju_uop_com_rd_wen) && (dis_to_bju_rd_addr == tmp_entry_exe_fire_10)) || ((dis_to_al1_fire_9 && dis_to_al1_uop_com_rd_wen) && (dis_to_al1_rd_addr == tmp_entry_exe_fire_10_1))) || ((dis_to_al2_fire_9 && dis_to_al2_uop_com_rd_wen) && (dis_to_al2_rd_addr == 5'h0a))) || ((dis_to_div_fire_9 && dis_to_div_uop_com_rd_wen) && (dis_to_div_rd_addr == 5'h0a))) || ((dis_to_lsu_fire_9 && dis_to_lsu_uop_com_rd_wen) && (dis_to_lsu_rd_addr == 5'h0a))); // @ Dispatch.scala l150
-  assign entry_wbc_fire_10 = (((((wbc_rd_wen_0 && (wbc_rd_addr_0 == 5'h0a)) || (wbc_rd_wen_1 && (wbc_rd_addr_1 == 5'h0a))) || (wbc_rd_wen_2 && (wbc_rd_addr_2 == 5'h0a))) || (wbc_rd_wen_3 && (wbc_rd_addr_3 == 5'h0a))) || (wbc_rd_wen_4 && (wbc_rd_addr_4 == 5'h0a))); // @ Dispatch.scala l156
-  assign entry_ret_fire_10 = ((ret_rd_wen_0 && (ret_rd_addr_0 == 5'h0a)) || (ret_rd_wen_1 && (ret_rd_addr_1 == 5'h0a))); // @ Dispatch.scala l162
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
   assign dis_src_0_fire_19 = (dis_src_0_valid && dis_src_0_ready); // @ BaseType.scala l305
   assign dis_src_1_fire_19 = (dis_src_1_valid && dis_src_1_ready); // @ BaseType.scala l305
   assign dis_src_0_fire_20 = (dis_src_0_valid && dis_src_0_ready); // @ BaseType.scala l305
   assign dis_src_1_fire_20 = (dis_src_1_valid && dis_src_1_ready); // @ BaseType.scala l305
-<<<<<<< HEAD
   assign entry_dis_fire_11 = (((dis_src_0_fire_20 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h0b)) || ((dis_src_1_fire_20 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h0b))); // @ Dispatch.scala l153
-=======
-  assign entry_dis_fire_11 = (((dis_src_0_fire_20 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h0b)) || ((dis_src_1_fire_20 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h0b))); // @ Dispatch.scala l147
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
   assign dis_to_bju_fire_10 = (dis_to_bju_valid && dis_to_bju_ready); // @ BaseType.scala l305
   assign dis_to_al1_fire_10 = (dis_to_al1_valid && dis_to_al1_ready); // @ BaseType.scala l305
   assign dis_to_al2_fire_10 = (dis_to_al2_valid && dis_to_al2_ready); // @ BaseType.scala l305
   assign dis_to_div_fire_10 = (dis_to_div_valid && dis_to_div_ready); // @ BaseType.scala l305
   assign dis_to_lsu_fire_10 = (dis_to_lsu_valid && dis_to_lsu_ready); // @ BaseType.scala l305
-<<<<<<< HEAD
   assign entry_exe_fire_11 = ((((((dis_to_bju_fire_10 && dis_to_bju_uop_com_rd_wen) && (dis_to_bju_rd_addr == tmp_entry_exe_fire_11)) || ((dis_to_al1_fire_10 && dis_to_al1_uop_com_rd_wen) && (dis_to_al1_rd_addr == tmp_entry_exe_fire_11_1))) || ((dis_to_al2_fire_10 && dis_to_al2_uop_com_rd_wen) && (dis_to_al2_rd_addr == 5'h0b))) || ((dis_to_div_fire_10 && dis_to_div_uop_com_rd_wen) && (dis_to_div_rd_addr == 5'h0b))) || ((dis_to_lsu_fire_10 && dis_to_lsu_uop_com_rd_wen) && (dis_to_lsu_rd_addr == 5'h0b))); // @ Dispatch.scala l156
   assign entry_wbc_fire_11 = (((((wbc_rd_wen_0 && (wbc_rd_addr_0 == 5'h0b)) || (wbc_rd_wen_1 && (wbc_rd_addr_1 == 5'h0b))) || (wbc_rd_wen_2 && (wbc_rd_addr_2 == 5'h0b))) || (wbc_rd_wen_3 && (wbc_rd_addr_3 == 5'h0b))) || (wbc_rd_wen_4 && (wbc_rd_addr_4 == 5'h0b))); // @ Dispatch.scala l162
   assign entry_ret_fire_11 = ((ret_rd_wen_0 && (ret_rd_addr_0 == 5'h0b)) || (ret_rd_wen_1 && (ret_rd_addr_1 == 5'h0b))); // @ Dispatch.scala l168
-=======
-  assign entry_exe_fire_11 = ((((((dis_to_bju_fire_10 && dis_to_bju_uop_com_rd_wen) && (dis_to_bju_rd_addr == tmp_entry_exe_fire_11)) || ((dis_to_al1_fire_10 && dis_to_al1_uop_com_rd_wen) && (dis_to_al1_rd_addr == tmp_entry_exe_fire_11_1))) || ((dis_to_al2_fire_10 && dis_to_al2_uop_com_rd_wen) && (dis_to_al2_rd_addr == 5'h0b))) || ((dis_to_div_fire_10 && dis_to_div_uop_com_rd_wen) && (dis_to_div_rd_addr == 5'h0b))) || ((dis_to_lsu_fire_10 && dis_to_lsu_uop_com_rd_wen) && (dis_to_lsu_rd_addr == 5'h0b))); // @ Dispatch.scala l150
-  assign entry_wbc_fire_11 = (((((wbc_rd_wen_0 && (wbc_rd_addr_0 == 5'h0b)) || (wbc_rd_wen_1 && (wbc_rd_addr_1 == 5'h0b))) || (wbc_rd_wen_2 && (wbc_rd_addr_2 == 5'h0b))) || (wbc_rd_wen_3 && (wbc_rd_addr_3 == 5'h0b))) || (wbc_rd_wen_4 && (wbc_rd_addr_4 == 5'h0b))); // @ Dispatch.scala l156
-  assign entry_ret_fire_11 = ((ret_rd_wen_0 && (ret_rd_addr_0 == 5'h0b)) || (ret_rd_wen_1 && (ret_rd_addr_1 == 5'h0b))); // @ Dispatch.scala l162
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
   assign dis_src_0_fire_21 = (dis_src_0_valid && dis_src_0_ready); // @ BaseType.scala l305
   assign dis_src_1_fire_21 = (dis_src_1_valid && dis_src_1_ready); // @ BaseType.scala l305
   assign dis_src_0_fire_22 = (dis_src_0_valid && dis_src_0_ready); // @ BaseType.scala l305
   assign dis_src_1_fire_22 = (dis_src_1_valid && dis_src_1_ready); // @ BaseType.scala l305
-<<<<<<< HEAD
   assign entry_dis_fire_12 = (((dis_src_0_fire_22 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h0c)) || ((dis_src_1_fire_22 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h0c))); // @ Dispatch.scala l153
-=======
-  assign entry_dis_fire_12 = (((dis_src_0_fire_22 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h0c)) || ((dis_src_1_fire_22 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h0c))); // @ Dispatch.scala l147
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
   assign dis_to_bju_fire_11 = (dis_to_bju_valid && dis_to_bju_ready); // @ BaseType.scala l305
   assign dis_to_al1_fire_11 = (dis_to_al1_valid && dis_to_al1_ready); // @ BaseType.scala l305
   assign dis_to_al2_fire_11 = (dis_to_al2_valid && dis_to_al2_ready); // @ BaseType.scala l305
   assign dis_to_div_fire_11 = (dis_to_div_valid && dis_to_div_ready); // @ BaseType.scala l305
   assign dis_to_lsu_fire_11 = (dis_to_lsu_valid && dis_to_lsu_ready); // @ BaseType.scala l305
-<<<<<<< HEAD
   assign entry_exe_fire_12 = ((((((dis_to_bju_fire_11 && dis_to_bju_uop_com_rd_wen) && (dis_to_bju_rd_addr == tmp_entry_exe_fire_12)) || ((dis_to_al1_fire_11 && dis_to_al1_uop_com_rd_wen) && (dis_to_al1_rd_addr == tmp_entry_exe_fire_12_1))) || ((dis_to_al2_fire_11 && dis_to_al2_uop_com_rd_wen) && (dis_to_al2_rd_addr == 5'h0c))) || ((dis_to_div_fire_11 && dis_to_div_uop_com_rd_wen) && (dis_to_div_rd_addr == 5'h0c))) || ((dis_to_lsu_fire_11 && dis_to_lsu_uop_com_rd_wen) && (dis_to_lsu_rd_addr == 5'h0c))); // @ Dispatch.scala l156
   assign entry_wbc_fire_12 = (((((wbc_rd_wen_0 && (wbc_rd_addr_0 == 5'h0c)) || (wbc_rd_wen_1 && (wbc_rd_addr_1 == 5'h0c))) || (wbc_rd_wen_2 && (wbc_rd_addr_2 == 5'h0c))) || (wbc_rd_wen_3 && (wbc_rd_addr_3 == 5'h0c))) || (wbc_rd_wen_4 && (wbc_rd_addr_4 == 5'h0c))); // @ Dispatch.scala l162
   assign entry_ret_fire_12 = ((ret_rd_wen_0 && (ret_rd_addr_0 == 5'h0c)) || (ret_rd_wen_1 && (ret_rd_addr_1 == 5'h0c))); // @ Dispatch.scala l168
-=======
-  assign entry_exe_fire_12 = ((((((dis_to_bju_fire_11 && dis_to_bju_uop_com_rd_wen) && (dis_to_bju_rd_addr == tmp_entry_exe_fire_12)) || ((dis_to_al1_fire_11 && dis_to_al1_uop_com_rd_wen) && (dis_to_al1_rd_addr == tmp_entry_exe_fire_12_1))) || ((dis_to_al2_fire_11 && dis_to_al2_uop_com_rd_wen) && (dis_to_al2_rd_addr == 5'h0c))) || ((dis_to_div_fire_11 && dis_to_div_uop_com_rd_wen) && (dis_to_div_rd_addr == 5'h0c))) || ((dis_to_lsu_fire_11 && dis_to_lsu_uop_com_rd_wen) && (dis_to_lsu_rd_addr == 5'h0c))); // @ Dispatch.scala l150
-  assign entry_wbc_fire_12 = (((((wbc_rd_wen_0 && (wbc_rd_addr_0 == 5'h0c)) || (wbc_rd_wen_1 && (wbc_rd_addr_1 == 5'h0c))) || (wbc_rd_wen_2 && (wbc_rd_addr_2 == 5'h0c))) || (wbc_rd_wen_3 && (wbc_rd_addr_3 == 5'h0c))) || (wbc_rd_wen_4 && (wbc_rd_addr_4 == 5'h0c))); // @ Dispatch.scala l156
-  assign entry_ret_fire_12 = ((ret_rd_wen_0 && (ret_rd_addr_0 == 5'h0c)) || (ret_rd_wen_1 && (ret_rd_addr_1 == 5'h0c))); // @ Dispatch.scala l162
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
   assign dis_src_0_fire_23 = (dis_src_0_valid && dis_src_0_ready); // @ BaseType.scala l305
   assign dis_src_1_fire_23 = (dis_src_1_valid && dis_src_1_ready); // @ BaseType.scala l305
   assign dis_src_0_fire_24 = (dis_src_0_valid && dis_src_0_ready); // @ BaseType.scala l305
   assign dis_src_1_fire_24 = (dis_src_1_valid && dis_src_1_ready); // @ BaseType.scala l305
-<<<<<<< HEAD
   assign entry_dis_fire_13 = (((dis_src_0_fire_24 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h0d)) || ((dis_src_1_fire_24 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h0d))); // @ Dispatch.scala l153
-=======
-  assign entry_dis_fire_13 = (((dis_src_0_fire_24 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h0d)) || ((dis_src_1_fire_24 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h0d))); // @ Dispatch.scala l147
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
   assign dis_to_bju_fire_12 = (dis_to_bju_valid && dis_to_bju_ready); // @ BaseType.scala l305
   assign dis_to_al1_fire_12 = (dis_to_al1_valid && dis_to_al1_ready); // @ BaseType.scala l305
   assign dis_to_al2_fire_12 = (dis_to_al2_valid && dis_to_al2_ready); // @ BaseType.scala l305
   assign dis_to_div_fire_12 = (dis_to_div_valid && dis_to_div_ready); // @ BaseType.scala l305
   assign dis_to_lsu_fire_12 = (dis_to_lsu_valid && dis_to_lsu_ready); // @ BaseType.scala l305
-<<<<<<< HEAD
   assign entry_exe_fire_13 = ((((((dis_to_bju_fire_12 && dis_to_bju_uop_com_rd_wen) && (dis_to_bju_rd_addr == tmp_entry_exe_fire_13)) || ((dis_to_al1_fire_12 && dis_to_al1_uop_com_rd_wen) && (dis_to_al1_rd_addr == tmp_entry_exe_fire_13_1))) || ((dis_to_al2_fire_12 && dis_to_al2_uop_com_rd_wen) && (dis_to_al2_rd_addr == 5'h0d))) || ((dis_to_div_fire_12 && dis_to_div_uop_com_rd_wen) && (dis_to_div_rd_addr == 5'h0d))) || ((dis_to_lsu_fire_12 && dis_to_lsu_uop_com_rd_wen) && (dis_to_lsu_rd_addr == 5'h0d))); // @ Dispatch.scala l156
   assign entry_wbc_fire_13 = (((((wbc_rd_wen_0 && (wbc_rd_addr_0 == 5'h0d)) || (wbc_rd_wen_1 && (wbc_rd_addr_1 == 5'h0d))) || (wbc_rd_wen_2 && (wbc_rd_addr_2 == 5'h0d))) || (wbc_rd_wen_3 && (wbc_rd_addr_3 == 5'h0d))) || (wbc_rd_wen_4 && (wbc_rd_addr_4 == 5'h0d))); // @ Dispatch.scala l162
   assign entry_ret_fire_13 = ((ret_rd_wen_0 && (ret_rd_addr_0 == 5'h0d)) || (ret_rd_wen_1 && (ret_rd_addr_1 == 5'h0d))); // @ Dispatch.scala l168
-=======
-  assign entry_exe_fire_13 = ((((((dis_to_bju_fire_12 && dis_to_bju_uop_com_rd_wen) && (dis_to_bju_rd_addr == tmp_entry_exe_fire_13)) || ((dis_to_al1_fire_12 && dis_to_al1_uop_com_rd_wen) && (dis_to_al1_rd_addr == tmp_entry_exe_fire_13_1))) || ((dis_to_al2_fire_12 && dis_to_al2_uop_com_rd_wen) && (dis_to_al2_rd_addr == 5'h0d))) || ((dis_to_div_fire_12 && dis_to_div_uop_com_rd_wen) && (dis_to_div_rd_addr == 5'h0d))) || ((dis_to_lsu_fire_12 && dis_to_lsu_uop_com_rd_wen) && (dis_to_lsu_rd_addr == 5'h0d))); // @ Dispatch.scala l150
-  assign entry_wbc_fire_13 = (((((wbc_rd_wen_0 && (wbc_rd_addr_0 == 5'h0d)) || (wbc_rd_wen_1 && (wbc_rd_addr_1 == 5'h0d))) || (wbc_rd_wen_2 && (wbc_rd_addr_2 == 5'h0d))) || (wbc_rd_wen_3 && (wbc_rd_addr_3 == 5'h0d))) || (wbc_rd_wen_4 && (wbc_rd_addr_4 == 5'h0d))); // @ Dispatch.scala l156
-  assign entry_ret_fire_13 = ((ret_rd_wen_0 && (ret_rd_addr_0 == 5'h0d)) || (ret_rd_wen_1 && (ret_rd_addr_1 == 5'h0d))); // @ Dispatch.scala l162
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
   assign dis_src_0_fire_25 = (dis_src_0_valid && dis_src_0_ready); // @ BaseType.scala l305
   assign dis_src_1_fire_25 = (dis_src_1_valid && dis_src_1_ready); // @ BaseType.scala l305
   assign dis_src_0_fire_26 = (dis_src_0_valid && dis_src_0_ready); // @ BaseType.scala l305
   assign dis_src_1_fire_26 = (dis_src_1_valid && dis_src_1_ready); // @ BaseType.scala l305
-<<<<<<< HEAD
   assign entry_dis_fire_14 = (((dis_src_0_fire_26 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h0e)) || ((dis_src_1_fire_26 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h0e))); // @ Dispatch.scala l153
-=======
-  assign entry_dis_fire_14 = (((dis_src_0_fire_26 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h0e)) || ((dis_src_1_fire_26 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h0e))); // @ Dispatch.scala l147
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
   assign dis_to_bju_fire_13 = (dis_to_bju_valid && dis_to_bju_ready); // @ BaseType.scala l305
   assign dis_to_al1_fire_13 = (dis_to_al1_valid && dis_to_al1_ready); // @ BaseType.scala l305
   assign dis_to_al2_fire_13 = (dis_to_al2_valid && dis_to_al2_ready); // @ BaseType.scala l305
   assign dis_to_div_fire_13 = (dis_to_div_valid && dis_to_div_ready); // @ BaseType.scala l305
   assign dis_to_lsu_fire_13 = (dis_to_lsu_valid && dis_to_lsu_ready); // @ BaseType.scala l305
-<<<<<<< HEAD
   assign entry_exe_fire_14 = ((((((dis_to_bju_fire_13 && dis_to_bju_uop_com_rd_wen) && (dis_to_bju_rd_addr == tmp_entry_exe_fire_14)) || ((dis_to_al1_fire_13 && dis_to_al1_uop_com_rd_wen) && (dis_to_al1_rd_addr == tmp_entry_exe_fire_14_1))) || ((dis_to_al2_fire_13 && dis_to_al2_uop_com_rd_wen) && (dis_to_al2_rd_addr == 5'h0e))) || ((dis_to_div_fire_13 && dis_to_div_uop_com_rd_wen) && (dis_to_div_rd_addr == 5'h0e))) || ((dis_to_lsu_fire_13 && dis_to_lsu_uop_com_rd_wen) && (dis_to_lsu_rd_addr == 5'h0e))); // @ Dispatch.scala l156
   assign entry_wbc_fire_14 = (((((wbc_rd_wen_0 && (wbc_rd_addr_0 == 5'h0e)) || (wbc_rd_wen_1 && (wbc_rd_addr_1 == 5'h0e))) || (wbc_rd_wen_2 && (wbc_rd_addr_2 == 5'h0e))) || (wbc_rd_wen_3 && (wbc_rd_addr_3 == 5'h0e))) || (wbc_rd_wen_4 && (wbc_rd_addr_4 == 5'h0e))); // @ Dispatch.scala l162
   assign entry_ret_fire_14 = ((ret_rd_wen_0 && (ret_rd_addr_0 == 5'h0e)) || (ret_rd_wen_1 && (ret_rd_addr_1 == 5'h0e))); // @ Dispatch.scala l168
-=======
-  assign entry_exe_fire_14 = ((((((dis_to_bju_fire_13 && dis_to_bju_uop_com_rd_wen) && (dis_to_bju_rd_addr == tmp_entry_exe_fire_14)) || ((dis_to_al1_fire_13 && dis_to_al1_uop_com_rd_wen) && (dis_to_al1_rd_addr == tmp_entry_exe_fire_14_1))) || ((dis_to_al2_fire_13 && dis_to_al2_uop_com_rd_wen) && (dis_to_al2_rd_addr == 5'h0e))) || ((dis_to_div_fire_13 && dis_to_div_uop_com_rd_wen) && (dis_to_div_rd_addr == 5'h0e))) || ((dis_to_lsu_fire_13 && dis_to_lsu_uop_com_rd_wen) && (dis_to_lsu_rd_addr == 5'h0e))); // @ Dispatch.scala l150
-  assign entry_wbc_fire_14 = (((((wbc_rd_wen_0 && (wbc_rd_addr_0 == 5'h0e)) || (wbc_rd_wen_1 && (wbc_rd_addr_1 == 5'h0e))) || (wbc_rd_wen_2 && (wbc_rd_addr_2 == 5'h0e))) || (wbc_rd_wen_3 && (wbc_rd_addr_3 == 5'h0e))) || (wbc_rd_wen_4 && (wbc_rd_addr_4 == 5'h0e))); // @ Dispatch.scala l156
-  assign entry_ret_fire_14 = ((ret_rd_wen_0 && (ret_rd_addr_0 == 5'h0e)) || (ret_rd_wen_1 && (ret_rd_addr_1 == 5'h0e))); // @ Dispatch.scala l162
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
   assign dis_src_0_fire_27 = (dis_src_0_valid && dis_src_0_ready); // @ BaseType.scala l305
   assign dis_src_1_fire_27 = (dis_src_1_valid && dis_src_1_ready); // @ BaseType.scala l305
   assign dis_src_0_fire_28 = (dis_src_0_valid && dis_src_0_ready); // @ BaseType.scala l305
   assign dis_src_1_fire_28 = (dis_src_1_valid && dis_src_1_ready); // @ BaseType.scala l305
-<<<<<<< HEAD
   assign entry_dis_fire_15 = (((dis_src_0_fire_28 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h0f)) || ((dis_src_1_fire_28 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h0f))); // @ Dispatch.scala l153
-=======
-  assign entry_dis_fire_15 = (((dis_src_0_fire_28 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h0f)) || ((dis_src_1_fire_28 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h0f))); // @ Dispatch.scala l147
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
   assign dis_to_bju_fire_14 = (dis_to_bju_valid && dis_to_bju_ready); // @ BaseType.scala l305
   assign dis_to_al1_fire_14 = (dis_to_al1_valid && dis_to_al1_ready); // @ BaseType.scala l305
   assign dis_to_al2_fire_14 = (dis_to_al2_valid && dis_to_al2_ready); // @ BaseType.scala l305
   assign dis_to_div_fire_14 = (dis_to_div_valid && dis_to_div_ready); // @ BaseType.scala l305
   assign dis_to_lsu_fire_14 = (dis_to_lsu_valid && dis_to_lsu_ready); // @ BaseType.scala l305
-<<<<<<< HEAD
   assign entry_exe_fire_15 = ((((((dis_to_bju_fire_14 && dis_to_bju_uop_com_rd_wen) && (dis_to_bju_rd_addr == tmp_entry_exe_fire_15)) || ((dis_to_al1_fire_14 && dis_to_al1_uop_com_rd_wen) && (dis_to_al1_rd_addr == tmp_entry_exe_fire_15_1))) || ((dis_to_al2_fire_14 && dis_to_al2_uop_com_rd_wen) && (dis_to_al2_rd_addr == 5'h0f))) || ((dis_to_div_fire_14 && dis_to_div_uop_com_rd_wen) && (dis_to_div_rd_addr == 5'h0f))) || ((dis_to_lsu_fire_14 && dis_to_lsu_uop_com_rd_wen) && (dis_to_lsu_rd_addr == 5'h0f))); // @ Dispatch.scala l156
   assign entry_wbc_fire_15 = (((((wbc_rd_wen_0 && (wbc_rd_addr_0 == 5'h0f)) || (wbc_rd_wen_1 && (wbc_rd_addr_1 == 5'h0f))) || (wbc_rd_wen_2 && (wbc_rd_addr_2 == 5'h0f))) || (wbc_rd_wen_3 && (wbc_rd_addr_3 == 5'h0f))) || (wbc_rd_wen_4 && (wbc_rd_addr_4 == 5'h0f))); // @ Dispatch.scala l162
   assign entry_ret_fire_15 = ((ret_rd_wen_0 && (ret_rd_addr_0 == 5'h0f)) || (ret_rd_wen_1 && (ret_rd_addr_1 == 5'h0f))); // @ Dispatch.scala l168
-=======
-  assign entry_exe_fire_15 = ((((((dis_to_bju_fire_14 && dis_to_bju_uop_com_rd_wen) && (dis_to_bju_rd_addr == tmp_entry_exe_fire_15)) || ((dis_to_al1_fire_14 && dis_to_al1_uop_com_rd_wen) && (dis_to_al1_rd_addr == tmp_entry_exe_fire_15_1))) || ((dis_to_al2_fire_14 && dis_to_al2_uop_com_rd_wen) && (dis_to_al2_rd_addr == 5'h0f))) || ((dis_to_div_fire_14 && dis_to_div_uop_com_rd_wen) && (dis_to_div_rd_addr == 5'h0f))) || ((dis_to_lsu_fire_14 && dis_to_lsu_uop_com_rd_wen) && (dis_to_lsu_rd_addr == 5'h0f))); // @ Dispatch.scala l150
-  assign entry_wbc_fire_15 = (((((wbc_rd_wen_0 && (wbc_rd_addr_0 == 5'h0f)) || (wbc_rd_wen_1 && (wbc_rd_addr_1 == 5'h0f))) || (wbc_rd_wen_2 && (wbc_rd_addr_2 == 5'h0f))) || (wbc_rd_wen_3 && (wbc_rd_addr_3 == 5'h0f))) || (wbc_rd_wen_4 && (wbc_rd_addr_4 == 5'h0f))); // @ Dispatch.scala l156
-  assign entry_ret_fire_15 = ((ret_rd_wen_0 && (ret_rd_addr_0 == 5'h0f)) || (ret_rd_wen_1 && (ret_rd_addr_1 == 5'h0f))); // @ Dispatch.scala l162
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
   assign dis_src_0_fire_29 = (dis_src_0_valid && dis_src_0_ready); // @ BaseType.scala l305
   assign dis_src_1_fire_29 = (dis_src_1_valid && dis_src_1_ready); // @ BaseType.scala l305
   assign dis_src_0_fire_30 = (dis_src_0_valid && dis_src_0_ready); // @ BaseType.scala l305
   assign dis_src_1_fire_30 = (dis_src_1_valid && dis_src_1_ready); // @ BaseType.scala l305
-<<<<<<< HEAD
   assign entry_dis_fire_16 = (((dis_src_0_fire_30 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h10)) || ((dis_src_1_fire_30 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h10))); // @ Dispatch.scala l153
-=======
-  assign entry_dis_fire_16 = (((dis_src_0_fire_30 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h10)) || ((dis_src_1_fire_30 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h10))); // @ Dispatch.scala l147
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
   assign dis_to_bju_fire_15 = (dis_to_bju_valid && dis_to_bju_ready); // @ BaseType.scala l305
   assign dis_to_al1_fire_15 = (dis_to_al1_valid && dis_to_al1_ready); // @ BaseType.scala l305
   assign dis_to_al2_fire_15 = (dis_to_al2_valid && dis_to_al2_ready); // @ BaseType.scala l305
   assign dis_to_div_fire_15 = (dis_to_div_valid && dis_to_div_ready); // @ BaseType.scala l305
   assign dis_to_lsu_fire_15 = (dis_to_lsu_valid && dis_to_lsu_ready); // @ BaseType.scala l305
-<<<<<<< HEAD
   assign entry_exe_fire_16 = ((((((dis_to_bju_fire_15 && dis_to_bju_uop_com_rd_wen) && (dis_to_bju_rd_addr == tmp_entry_exe_fire_16)) || ((dis_to_al1_fire_15 && dis_to_al1_uop_com_rd_wen) && (dis_to_al1_rd_addr == tmp_entry_exe_fire_16_1))) || ((dis_to_al2_fire_15 && dis_to_al2_uop_com_rd_wen) && (dis_to_al2_rd_addr == 5'h10))) || ((dis_to_div_fire_15 && dis_to_div_uop_com_rd_wen) && (dis_to_div_rd_addr == 5'h10))) || ((dis_to_lsu_fire_15 && dis_to_lsu_uop_com_rd_wen) && (dis_to_lsu_rd_addr == 5'h10))); // @ Dispatch.scala l156
   assign entry_wbc_fire_16 = (((((wbc_rd_wen_0 && (wbc_rd_addr_0 == 5'h10)) || (wbc_rd_wen_1 && (wbc_rd_addr_1 == 5'h10))) || (wbc_rd_wen_2 && (wbc_rd_addr_2 == 5'h10))) || (wbc_rd_wen_3 && (wbc_rd_addr_3 == 5'h10))) || (wbc_rd_wen_4 && (wbc_rd_addr_4 == 5'h10))); // @ Dispatch.scala l162
   assign entry_ret_fire_16 = ((ret_rd_wen_0 && (ret_rd_addr_0 == 5'h10)) || (ret_rd_wen_1 && (ret_rd_addr_1 == 5'h10))); // @ Dispatch.scala l168
-=======
-  assign entry_exe_fire_16 = ((((((dis_to_bju_fire_15 && dis_to_bju_uop_com_rd_wen) && (dis_to_bju_rd_addr == tmp_entry_exe_fire_16)) || ((dis_to_al1_fire_15 && dis_to_al1_uop_com_rd_wen) && (dis_to_al1_rd_addr == tmp_entry_exe_fire_16_1))) || ((dis_to_al2_fire_15 && dis_to_al2_uop_com_rd_wen) && (dis_to_al2_rd_addr == 5'h10))) || ((dis_to_div_fire_15 && dis_to_div_uop_com_rd_wen) && (dis_to_div_rd_addr == 5'h10))) || ((dis_to_lsu_fire_15 && dis_to_lsu_uop_com_rd_wen) && (dis_to_lsu_rd_addr == 5'h10))); // @ Dispatch.scala l150
-  assign entry_wbc_fire_16 = (((((wbc_rd_wen_0 && (wbc_rd_addr_0 == 5'h10)) || (wbc_rd_wen_1 && (wbc_rd_addr_1 == 5'h10))) || (wbc_rd_wen_2 && (wbc_rd_addr_2 == 5'h10))) || (wbc_rd_wen_3 && (wbc_rd_addr_3 == 5'h10))) || (wbc_rd_wen_4 && (wbc_rd_addr_4 == 5'h10))); // @ Dispatch.scala l156
-  assign entry_ret_fire_16 = ((ret_rd_wen_0 && (ret_rd_addr_0 == 5'h10)) || (ret_rd_wen_1 && (ret_rd_addr_1 == 5'h10))); // @ Dispatch.scala l162
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
   assign dis_src_0_fire_31 = (dis_src_0_valid && dis_src_0_ready); // @ BaseType.scala l305
   assign dis_src_1_fire_31 = (dis_src_1_valid && dis_src_1_ready); // @ BaseType.scala l305
   assign dis_src_0_fire_32 = (dis_src_0_valid && dis_src_0_ready); // @ BaseType.scala l305
   assign dis_src_1_fire_32 = (dis_src_1_valid && dis_src_1_ready); // @ BaseType.scala l305
-<<<<<<< HEAD
   assign entry_dis_fire_17 = (((dis_src_0_fire_32 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h11)) || ((dis_src_1_fire_32 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h11))); // @ Dispatch.scala l153
-=======
-  assign entry_dis_fire_17 = (((dis_src_0_fire_32 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h11)) || ((dis_src_1_fire_32 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h11))); // @ Dispatch.scala l147
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
   assign dis_to_bju_fire_16 = (dis_to_bju_valid && dis_to_bju_ready); // @ BaseType.scala l305
   assign dis_to_al1_fire_16 = (dis_to_al1_valid && dis_to_al1_ready); // @ BaseType.scala l305
   assign dis_to_al2_fire_16 = (dis_to_al2_valid && dis_to_al2_ready); // @ BaseType.scala l305
   assign dis_to_div_fire_16 = (dis_to_div_valid && dis_to_div_ready); // @ BaseType.scala l305
   assign dis_to_lsu_fire_16 = (dis_to_lsu_valid && dis_to_lsu_ready); // @ BaseType.scala l305
-<<<<<<< HEAD
   assign entry_exe_fire_17 = ((((((dis_to_bju_fire_16 && dis_to_bju_uop_com_rd_wen) && (dis_to_bju_rd_addr == tmp_entry_exe_fire_17)) || ((dis_to_al1_fire_16 && dis_to_al1_uop_com_rd_wen) && (dis_to_al1_rd_addr == tmp_entry_exe_fire_17_1))) || ((dis_to_al2_fire_16 && dis_to_al2_uop_com_rd_wen) && (dis_to_al2_rd_addr == 5'h11))) || ((dis_to_div_fire_16 && dis_to_div_uop_com_rd_wen) && (dis_to_div_rd_addr == 5'h11))) || ((dis_to_lsu_fire_16 && dis_to_lsu_uop_com_rd_wen) && (dis_to_lsu_rd_addr == 5'h11))); // @ Dispatch.scala l156
   assign entry_wbc_fire_17 = (((((wbc_rd_wen_0 && (wbc_rd_addr_0 == 5'h11)) || (wbc_rd_wen_1 && (wbc_rd_addr_1 == 5'h11))) || (wbc_rd_wen_2 && (wbc_rd_addr_2 == 5'h11))) || (wbc_rd_wen_3 && (wbc_rd_addr_3 == 5'h11))) || (wbc_rd_wen_4 && (wbc_rd_addr_4 == 5'h11))); // @ Dispatch.scala l162
   assign entry_ret_fire_17 = ((ret_rd_wen_0 && (ret_rd_addr_0 == 5'h11)) || (ret_rd_wen_1 && (ret_rd_addr_1 == 5'h11))); // @ Dispatch.scala l168
-=======
-  assign entry_exe_fire_17 = ((((((dis_to_bju_fire_16 && dis_to_bju_uop_com_rd_wen) && (dis_to_bju_rd_addr == tmp_entry_exe_fire_17)) || ((dis_to_al1_fire_16 && dis_to_al1_uop_com_rd_wen) && (dis_to_al1_rd_addr == tmp_entry_exe_fire_17_1))) || ((dis_to_al2_fire_16 && dis_to_al2_uop_com_rd_wen) && (dis_to_al2_rd_addr == 5'h11))) || ((dis_to_div_fire_16 && dis_to_div_uop_com_rd_wen) && (dis_to_div_rd_addr == 5'h11))) || ((dis_to_lsu_fire_16 && dis_to_lsu_uop_com_rd_wen) && (dis_to_lsu_rd_addr == 5'h11))); // @ Dispatch.scala l150
-  assign entry_wbc_fire_17 = (((((wbc_rd_wen_0 && (wbc_rd_addr_0 == 5'h11)) || (wbc_rd_wen_1 && (wbc_rd_addr_1 == 5'h11))) || (wbc_rd_wen_2 && (wbc_rd_addr_2 == 5'h11))) || (wbc_rd_wen_3 && (wbc_rd_addr_3 == 5'h11))) || (wbc_rd_wen_4 && (wbc_rd_addr_4 == 5'h11))); // @ Dispatch.scala l156
-  assign entry_ret_fire_17 = ((ret_rd_wen_0 && (ret_rd_addr_0 == 5'h11)) || (ret_rd_wen_1 && (ret_rd_addr_1 == 5'h11))); // @ Dispatch.scala l162
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
   assign dis_src_0_fire_33 = (dis_src_0_valid && dis_src_0_ready); // @ BaseType.scala l305
   assign dis_src_1_fire_33 = (dis_src_1_valid && dis_src_1_ready); // @ BaseType.scala l305
   assign dis_src_0_fire_34 = (dis_src_0_valid && dis_src_0_ready); // @ BaseType.scala l305
   assign dis_src_1_fire_34 = (dis_src_1_valid && dis_src_1_ready); // @ BaseType.scala l305
-<<<<<<< HEAD
   assign entry_dis_fire_18 = (((dis_src_0_fire_34 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h12)) || ((dis_src_1_fire_34 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h12))); // @ Dispatch.scala l153
-=======
-  assign entry_dis_fire_18 = (((dis_src_0_fire_34 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h12)) || ((dis_src_1_fire_34 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h12))); // @ Dispatch.scala l147
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
   assign dis_to_bju_fire_17 = (dis_to_bju_valid && dis_to_bju_ready); // @ BaseType.scala l305
   assign dis_to_al1_fire_17 = (dis_to_al1_valid && dis_to_al1_ready); // @ BaseType.scala l305
   assign dis_to_al2_fire_17 = (dis_to_al2_valid && dis_to_al2_ready); // @ BaseType.scala l305
   assign dis_to_div_fire_17 = (dis_to_div_valid && dis_to_div_ready); // @ BaseType.scala l305
   assign dis_to_lsu_fire_17 = (dis_to_lsu_valid && dis_to_lsu_ready); // @ BaseType.scala l305
-<<<<<<< HEAD
   assign entry_exe_fire_18 = ((((((dis_to_bju_fire_17 && dis_to_bju_uop_com_rd_wen) && (dis_to_bju_rd_addr == tmp_entry_exe_fire_18)) || ((dis_to_al1_fire_17 && dis_to_al1_uop_com_rd_wen) && (dis_to_al1_rd_addr == tmp_entry_exe_fire_18_1))) || ((dis_to_al2_fire_17 && dis_to_al2_uop_com_rd_wen) && (dis_to_al2_rd_addr == 5'h12))) || ((dis_to_div_fire_17 && dis_to_div_uop_com_rd_wen) && (dis_to_div_rd_addr == 5'h12))) || ((dis_to_lsu_fire_17 && dis_to_lsu_uop_com_rd_wen) && (dis_to_lsu_rd_addr == 5'h12))); // @ Dispatch.scala l156
   assign entry_wbc_fire_18 = (((((wbc_rd_wen_0 && (wbc_rd_addr_0 == 5'h12)) || (wbc_rd_wen_1 && (wbc_rd_addr_1 == 5'h12))) || (wbc_rd_wen_2 && (wbc_rd_addr_2 == 5'h12))) || (wbc_rd_wen_3 && (wbc_rd_addr_3 == 5'h12))) || (wbc_rd_wen_4 && (wbc_rd_addr_4 == 5'h12))); // @ Dispatch.scala l162
   assign entry_ret_fire_18 = ((ret_rd_wen_0 && (ret_rd_addr_0 == 5'h12)) || (ret_rd_wen_1 && (ret_rd_addr_1 == 5'h12))); // @ Dispatch.scala l168
-=======
-  assign entry_exe_fire_18 = ((((((dis_to_bju_fire_17 && dis_to_bju_uop_com_rd_wen) && (dis_to_bju_rd_addr == tmp_entry_exe_fire_18)) || ((dis_to_al1_fire_17 && dis_to_al1_uop_com_rd_wen) && (dis_to_al1_rd_addr == tmp_entry_exe_fire_18_1))) || ((dis_to_al2_fire_17 && dis_to_al2_uop_com_rd_wen) && (dis_to_al2_rd_addr == 5'h12))) || ((dis_to_div_fire_17 && dis_to_div_uop_com_rd_wen) && (dis_to_div_rd_addr == 5'h12))) || ((dis_to_lsu_fire_17 && dis_to_lsu_uop_com_rd_wen) && (dis_to_lsu_rd_addr == 5'h12))); // @ Dispatch.scala l150
-  assign entry_wbc_fire_18 = (((((wbc_rd_wen_0 && (wbc_rd_addr_0 == 5'h12)) || (wbc_rd_wen_1 && (wbc_rd_addr_1 == 5'h12))) || (wbc_rd_wen_2 && (wbc_rd_addr_2 == 5'h12))) || (wbc_rd_wen_3 && (wbc_rd_addr_3 == 5'h12))) || (wbc_rd_wen_4 && (wbc_rd_addr_4 == 5'h12))); // @ Dispatch.scala l156
-  assign entry_ret_fire_18 = ((ret_rd_wen_0 && (ret_rd_addr_0 == 5'h12)) || (ret_rd_wen_1 && (ret_rd_addr_1 == 5'h12))); // @ Dispatch.scala l162
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
   assign dis_src_0_fire_35 = (dis_src_0_valid && dis_src_0_ready); // @ BaseType.scala l305
   assign dis_src_1_fire_35 = (dis_src_1_valid && dis_src_1_ready); // @ BaseType.scala l305
   assign dis_src_0_fire_36 = (dis_src_0_valid && dis_src_0_ready); // @ BaseType.scala l305
   assign dis_src_1_fire_36 = (dis_src_1_valid && dis_src_1_ready); // @ BaseType.scala l305
-<<<<<<< HEAD
   assign entry_dis_fire_19 = (((dis_src_0_fire_36 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h13)) || ((dis_src_1_fire_36 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h13))); // @ Dispatch.scala l153
-=======
-  assign entry_dis_fire_19 = (((dis_src_0_fire_36 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h13)) || ((dis_src_1_fire_36 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h13))); // @ Dispatch.scala l147
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
   assign dis_to_bju_fire_18 = (dis_to_bju_valid && dis_to_bju_ready); // @ BaseType.scala l305
   assign dis_to_al1_fire_18 = (dis_to_al1_valid && dis_to_al1_ready); // @ BaseType.scala l305
   assign dis_to_al2_fire_18 = (dis_to_al2_valid && dis_to_al2_ready); // @ BaseType.scala l305
   assign dis_to_div_fire_18 = (dis_to_div_valid && dis_to_div_ready); // @ BaseType.scala l305
   assign dis_to_lsu_fire_18 = (dis_to_lsu_valid && dis_to_lsu_ready); // @ BaseType.scala l305
-<<<<<<< HEAD
   assign entry_exe_fire_19 = ((((((dis_to_bju_fire_18 && dis_to_bju_uop_com_rd_wen) && (dis_to_bju_rd_addr == tmp_entry_exe_fire_19)) || ((dis_to_al1_fire_18 && dis_to_al1_uop_com_rd_wen) && (dis_to_al1_rd_addr == tmp_entry_exe_fire_19_1))) || ((dis_to_al2_fire_18 && dis_to_al2_uop_com_rd_wen) && (dis_to_al2_rd_addr == 5'h13))) || ((dis_to_div_fire_18 && dis_to_div_uop_com_rd_wen) && (dis_to_div_rd_addr == 5'h13))) || ((dis_to_lsu_fire_18 && dis_to_lsu_uop_com_rd_wen) && (dis_to_lsu_rd_addr == 5'h13))); // @ Dispatch.scala l156
   assign entry_wbc_fire_19 = (((((wbc_rd_wen_0 && (wbc_rd_addr_0 == 5'h13)) || (wbc_rd_wen_1 && (wbc_rd_addr_1 == 5'h13))) || (wbc_rd_wen_2 && (wbc_rd_addr_2 == 5'h13))) || (wbc_rd_wen_3 && (wbc_rd_addr_3 == 5'h13))) || (wbc_rd_wen_4 && (wbc_rd_addr_4 == 5'h13))); // @ Dispatch.scala l162
   assign entry_ret_fire_19 = ((ret_rd_wen_0 && (ret_rd_addr_0 == 5'h13)) || (ret_rd_wen_1 && (ret_rd_addr_1 == 5'h13))); // @ Dispatch.scala l168
-=======
-  assign entry_exe_fire_19 = ((((((dis_to_bju_fire_18 && dis_to_bju_uop_com_rd_wen) && (dis_to_bju_rd_addr == tmp_entry_exe_fire_19)) || ((dis_to_al1_fire_18 && dis_to_al1_uop_com_rd_wen) && (dis_to_al1_rd_addr == tmp_entry_exe_fire_19_1))) || ((dis_to_al2_fire_18 && dis_to_al2_uop_com_rd_wen) && (dis_to_al2_rd_addr == 5'h13))) || ((dis_to_div_fire_18 && dis_to_div_uop_com_rd_wen) && (dis_to_div_rd_addr == 5'h13))) || ((dis_to_lsu_fire_18 && dis_to_lsu_uop_com_rd_wen) && (dis_to_lsu_rd_addr == 5'h13))); // @ Dispatch.scala l150
-  assign entry_wbc_fire_19 = (((((wbc_rd_wen_0 && (wbc_rd_addr_0 == 5'h13)) || (wbc_rd_wen_1 && (wbc_rd_addr_1 == 5'h13))) || (wbc_rd_wen_2 && (wbc_rd_addr_2 == 5'h13))) || (wbc_rd_wen_3 && (wbc_rd_addr_3 == 5'h13))) || (wbc_rd_wen_4 && (wbc_rd_addr_4 == 5'h13))); // @ Dispatch.scala l156
-  assign entry_ret_fire_19 = ((ret_rd_wen_0 && (ret_rd_addr_0 == 5'h13)) || (ret_rd_wen_1 && (ret_rd_addr_1 == 5'h13))); // @ Dispatch.scala l162
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
   assign dis_src_0_fire_37 = (dis_src_0_valid && dis_src_0_ready); // @ BaseType.scala l305
   assign dis_src_1_fire_37 = (dis_src_1_valid && dis_src_1_ready); // @ BaseType.scala l305
   assign dis_src_0_fire_38 = (dis_src_0_valid && dis_src_0_ready); // @ BaseType.scala l305
   assign dis_src_1_fire_38 = (dis_src_1_valid && dis_src_1_ready); // @ BaseType.scala l305
-<<<<<<< HEAD
   assign entry_dis_fire_20 = (((dis_src_0_fire_38 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h14)) || ((dis_src_1_fire_38 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h14))); // @ Dispatch.scala l153
-=======
-  assign entry_dis_fire_20 = (((dis_src_0_fire_38 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h14)) || ((dis_src_1_fire_38 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h14))); // @ Dispatch.scala l147
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
   assign dis_to_bju_fire_19 = (dis_to_bju_valid && dis_to_bju_ready); // @ BaseType.scala l305
   assign dis_to_al1_fire_19 = (dis_to_al1_valid && dis_to_al1_ready); // @ BaseType.scala l305
   assign dis_to_al2_fire_19 = (dis_to_al2_valid && dis_to_al2_ready); // @ BaseType.scala l305
   assign dis_to_div_fire_19 = (dis_to_div_valid && dis_to_div_ready); // @ BaseType.scala l305
   assign dis_to_lsu_fire_19 = (dis_to_lsu_valid && dis_to_lsu_ready); // @ BaseType.scala l305
-<<<<<<< HEAD
   assign entry_exe_fire_20 = ((((((dis_to_bju_fire_19 && dis_to_bju_uop_com_rd_wen) && (dis_to_bju_rd_addr == tmp_entry_exe_fire_20)) || ((dis_to_al1_fire_19 && dis_to_al1_uop_com_rd_wen) && (dis_to_al1_rd_addr == tmp_entry_exe_fire_20_1))) || ((dis_to_al2_fire_19 && dis_to_al2_uop_com_rd_wen) && (dis_to_al2_rd_addr == 5'h14))) || ((dis_to_div_fire_19 && dis_to_div_uop_com_rd_wen) && (dis_to_div_rd_addr == 5'h14))) || ((dis_to_lsu_fire_19 && dis_to_lsu_uop_com_rd_wen) && (dis_to_lsu_rd_addr == 5'h14))); // @ Dispatch.scala l156
   assign entry_wbc_fire_20 = (((((wbc_rd_wen_0 && (wbc_rd_addr_0 == 5'h14)) || (wbc_rd_wen_1 && (wbc_rd_addr_1 == 5'h14))) || (wbc_rd_wen_2 && (wbc_rd_addr_2 == 5'h14))) || (wbc_rd_wen_3 && (wbc_rd_addr_3 == 5'h14))) || (wbc_rd_wen_4 && (wbc_rd_addr_4 == 5'h14))); // @ Dispatch.scala l162
   assign entry_ret_fire_20 = ((ret_rd_wen_0 && (ret_rd_addr_0 == 5'h14)) || (ret_rd_wen_1 && (ret_rd_addr_1 == 5'h14))); // @ Dispatch.scala l168
-=======
-  assign entry_exe_fire_20 = ((((((dis_to_bju_fire_19 && dis_to_bju_uop_com_rd_wen) && (dis_to_bju_rd_addr == tmp_entry_exe_fire_20)) || ((dis_to_al1_fire_19 && dis_to_al1_uop_com_rd_wen) && (dis_to_al1_rd_addr == tmp_entry_exe_fire_20_1))) || ((dis_to_al2_fire_19 && dis_to_al2_uop_com_rd_wen) && (dis_to_al2_rd_addr == 5'h14))) || ((dis_to_div_fire_19 && dis_to_div_uop_com_rd_wen) && (dis_to_div_rd_addr == 5'h14))) || ((dis_to_lsu_fire_19 && dis_to_lsu_uop_com_rd_wen) && (dis_to_lsu_rd_addr == 5'h14))); // @ Dispatch.scala l150
-  assign entry_wbc_fire_20 = (((((wbc_rd_wen_0 && (wbc_rd_addr_0 == 5'h14)) || (wbc_rd_wen_1 && (wbc_rd_addr_1 == 5'h14))) || (wbc_rd_wen_2 && (wbc_rd_addr_2 == 5'h14))) || (wbc_rd_wen_3 && (wbc_rd_addr_3 == 5'h14))) || (wbc_rd_wen_4 && (wbc_rd_addr_4 == 5'h14))); // @ Dispatch.scala l156
-  assign entry_ret_fire_20 = ((ret_rd_wen_0 && (ret_rd_addr_0 == 5'h14)) || (ret_rd_wen_1 && (ret_rd_addr_1 == 5'h14))); // @ Dispatch.scala l162
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
   assign dis_src_0_fire_39 = (dis_src_0_valid && dis_src_0_ready); // @ BaseType.scala l305
   assign dis_src_1_fire_39 = (dis_src_1_valid && dis_src_1_ready); // @ BaseType.scala l305
   assign dis_src_0_fire_40 = (dis_src_0_valid && dis_src_0_ready); // @ BaseType.scala l305
   assign dis_src_1_fire_40 = (dis_src_1_valid && dis_src_1_ready); // @ BaseType.scala l305
-<<<<<<< HEAD
   assign entry_dis_fire_21 = (((dis_src_0_fire_40 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h15)) || ((dis_src_1_fire_40 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h15))); // @ Dispatch.scala l153
-=======
-  assign entry_dis_fire_21 = (((dis_src_0_fire_40 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h15)) || ((dis_src_1_fire_40 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h15))); // @ Dispatch.scala l147
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
   assign dis_to_bju_fire_20 = (dis_to_bju_valid && dis_to_bju_ready); // @ BaseType.scala l305
   assign dis_to_al1_fire_20 = (dis_to_al1_valid && dis_to_al1_ready); // @ BaseType.scala l305
   assign dis_to_al2_fire_20 = (dis_to_al2_valid && dis_to_al2_ready); // @ BaseType.scala l305
   assign dis_to_div_fire_20 = (dis_to_div_valid && dis_to_div_ready); // @ BaseType.scala l305
   assign dis_to_lsu_fire_20 = (dis_to_lsu_valid && dis_to_lsu_ready); // @ BaseType.scala l305
-<<<<<<< HEAD
   assign entry_exe_fire_21 = ((((((dis_to_bju_fire_20 && dis_to_bju_uop_com_rd_wen) && (dis_to_bju_rd_addr == tmp_entry_exe_fire_21)) || ((dis_to_al1_fire_20 && dis_to_al1_uop_com_rd_wen) && (dis_to_al1_rd_addr == tmp_entry_exe_fire_21_1))) || ((dis_to_al2_fire_20 && dis_to_al2_uop_com_rd_wen) && (dis_to_al2_rd_addr == 5'h15))) || ((dis_to_div_fire_20 && dis_to_div_uop_com_rd_wen) && (dis_to_div_rd_addr == 5'h15))) || ((dis_to_lsu_fire_20 && dis_to_lsu_uop_com_rd_wen) && (dis_to_lsu_rd_addr == 5'h15))); // @ Dispatch.scala l156
   assign entry_wbc_fire_21 = (((((wbc_rd_wen_0 && (wbc_rd_addr_0 == 5'h15)) || (wbc_rd_wen_1 && (wbc_rd_addr_1 == 5'h15))) || (wbc_rd_wen_2 && (wbc_rd_addr_2 == 5'h15))) || (wbc_rd_wen_3 && (wbc_rd_addr_3 == 5'h15))) || (wbc_rd_wen_4 && (wbc_rd_addr_4 == 5'h15))); // @ Dispatch.scala l162
   assign entry_ret_fire_21 = ((ret_rd_wen_0 && (ret_rd_addr_0 == 5'h15)) || (ret_rd_wen_1 && (ret_rd_addr_1 == 5'h15))); // @ Dispatch.scala l168
-=======
-  assign entry_exe_fire_21 = ((((((dis_to_bju_fire_20 && dis_to_bju_uop_com_rd_wen) && (dis_to_bju_rd_addr == tmp_entry_exe_fire_21)) || ((dis_to_al1_fire_20 && dis_to_al1_uop_com_rd_wen) && (dis_to_al1_rd_addr == tmp_entry_exe_fire_21_1))) || ((dis_to_al2_fire_20 && dis_to_al2_uop_com_rd_wen) && (dis_to_al2_rd_addr == 5'h15))) || ((dis_to_div_fire_20 && dis_to_div_uop_com_rd_wen) && (dis_to_div_rd_addr == 5'h15))) || ((dis_to_lsu_fire_20 && dis_to_lsu_uop_com_rd_wen) && (dis_to_lsu_rd_addr == 5'h15))); // @ Dispatch.scala l150
-  assign entry_wbc_fire_21 = (((((wbc_rd_wen_0 && (wbc_rd_addr_0 == 5'h15)) || (wbc_rd_wen_1 && (wbc_rd_addr_1 == 5'h15))) || (wbc_rd_wen_2 && (wbc_rd_addr_2 == 5'h15))) || (wbc_rd_wen_3 && (wbc_rd_addr_3 == 5'h15))) || (wbc_rd_wen_4 && (wbc_rd_addr_4 == 5'h15))); // @ Dispatch.scala l156
-  assign entry_ret_fire_21 = ((ret_rd_wen_0 && (ret_rd_addr_0 == 5'h15)) || (ret_rd_wen_1 && (ret_rd_addr_1 == 5'h15))); // @ Dispatch.scala l162
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
   assign dis_src_0_fire_41 = (dis_src_0_valid && dis_src_0_ready); // @ BaseType.scala l305
   assign dis_src_1_fire_41 = (dis_src_1_valid && dis_src_1_ready); // @ BaseType.scala l305
   assign dis_src_0_fire_42 = (dis_src_0_valid && dis_src_0_ready); // @ BaseType.scala l305
   assign dis_src_1_fire_42 = (dis_src_1_valid && dis_src_1_ready); // @ BaseType.scala l305
-<<<<<<< HEAD
   assign entry_dis_fire_22 = (((dis_src_0_fire_42 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h16)) || ((dis_src_1_fire_42 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h16))); // @ Dispatch.scala l153
-=======
-  assign entry_dis_fire_22 = (((dis_src_0_fire_42 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h16)) || ((dis_src_1_fire_42 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h16))); // @ Dispatch.scala l147
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
   assign dis_to_bju_fire_21 = (dis_to_bju_valid && dis_to_bju_ready); // @ BaseType.scala l305
   assign dis_to_al1_fire_21 = (dis_to_al1_valid && dis_to_al1_ready); // @ BaseType.scala l305
   assign dis_to_al2_fire_21 = (dis_to_al2_valid && dis_to_al2_ready); // @ BaseType.scala l305
   assign dis_to_div_fire_21 = (dis_to_div_valid && dis_to_div_ready); // @ BaseType.scala l305
   assign dis_to_lsu_fire_21 = (dis_to_lsu_valid && dis_to_lsu_ready); // @ BaseType.scala l305
-<<<<<<< HEAD
   assign entry_exe_fire_22 = ((((((dis_to_bju_fire_21 && dis_to_bju_uop_com_rd_wen) && (dis_to_bju_rd_addr == tmp_entry_exe_fire_22)) || ((dis_to_al1_fire_21 && dis_to_al1_uop_com_rd_wen) && (dis_to_al1_rd_addr == tmp_entry_exe_fire_22_1))) || ((dis_to_al2_fire_21 && dis_to_al2_uop_com_rd_wen) && (dis_to_al2_rd_addr == 5'h16))) || ((dis_to_div_fire_21 && dis_to_div_uop_com_rd_wen) && (dis_to_div_rd_addr == 5'h16))) || ((dis_to_lsu_fire_21 && dis_to_lsu_uop_com_rd_wen) && (dis_to_lsu_rd_addr == 5'h16))); // @ Dispatch.scala l156
   assign entry_wbc_fire_22 = (((((wbc_rd_wen_0 && (wbc_rd_addr_0 == 5'h16)) || (wbc_rd_wen_1 && (wbc_rd_addr_1 == 5'h16))) || (wbc_rd_wen_2 && (wbc_rd_addr_2 == 5'h16))) || (wbc_rd_wen_3 && (wbc_rd_addr_3 == 5'h16))) || (wbc_rd_wen_4 && (wbc_rd_addr_4 == 5'h16))); // @ Dispatch.scala l162
   assign entry_ret_fire_22 = ((ret_rd_wen_0 && (ret_rd_addr_0 == 5'h16)) || (ret_rd_wen_1 && (ret_rd_addr_1 == 5'h16))); // @ Dispatch.scala l168
-=======
-  assign entry_exe_fire_22 = ((((((dis_to_bju_fire_21 && dis_to_bju_uop_com_rd_wen) && (dis_to_bju_rd_addr == tmp_entry_exe_fire_22)) || ((dis_to_al1_fire_21 && dis_to_al1_uop_com_rd_wen) && (dis_to_al1_rd_addr == tmp_entry_exe_fire_22_1))) || ((dis_to_al2_fire_21 && dis_to_al2_uop_com_rd_wen) && (dis_to_al2_rd_addr == 5'h16))) || ((dis_to_div_fire_21 && dis_to_div_uop_com_rd_wen) && (dis_to_div_rd_addr == 5'h16))) || ((dis_to_lsu_fire_21 && dis_to_lsu_uop_com_rd_wen) && (dis_to_lsu_rd_addr == 5'h16))); // @ Dispatch.scala l150
-  assign entry_wbc_fire_22 = (((((wbc_rd_wen_0 && (wbc_rd_addr_0 == 5'h16)) || (wbc_rd_wen_1 && (wbc_rd_addr_1 == 5'h16))) || (wbc_rd_wen_2 && (wbc_rd_addr_2 == 5'h16))) || (wbc_rd_wen_3 && (wbc_rd_addr_3 == 5'h16))) || (wbc_rd_wen_4 && (wbc_rd_addr_4 == 5'h16))); // @ Dispatch.scala l156
-  assign entry_ret_fire_22 = ((ret_rd_wen_0 && (ret_rd_addr_0 == 5'h16)) || (ret_rd_wen_1 && (ret_rd_addr_1 == 5'h16))); // @ Dispatch.scala l162
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
   assign dis_src_0_fire_43 = (dis_src_0_valid && dis_src_0_ready); // @ BaseType.scala l305
   assign dis_src_1_fire_43 = (dis_src_1_valid && dis_src_1_ready); // @ BaseType.scala l305
   assign dis_src_0_fire_44 = (dis_src_0_valid && dis_src_0_ready); // @ BaseType.scala l305
   assign dis_src_1_fire_44 = (dis_src_1_valid && dis_src_1_ready); // @ BaseType.scala l305
-<<<<<<< HEAD
   assign entry_dis_fire_23 = (((dis_src_0_fire_44 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h17)) || ((dis_src_1_fire_44 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h17))); // @ Dispatch.scala l153
-=======
-  assign entry_dis_fire_23 = (((dis_src_0_fire_44 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h17)) || ((dis_src_1_fire_44 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h17))); // @ Dispatch.scala l147
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
   assign dis_to_bju_fire_22 = (dis_to_bju_valid && dis_to_bju_ready); // @ BaseType.scala l305
   assign dis_to_al1_fire_22 = (dis_to_al1_valid && dis_to_al1_ready); // @ BaseType.scala l305
   assign dis_to_al2_fire_22 = (dis_to_al2_valid && dis_to_al2_ready); // @ BaseType.scala l305
   assign dis_to_div_fire_22 = (dis_to_div_valid && dis_to_div_ready); // @ BaseType.scala l305
   assign dis_to_lsu_fire_22 = (dis_to_lsu_valid && dis_to_lsu_ready); // @ BaseType.scala l305
-<<<<<<< HEAD
   assign entry_exe_fire_23 = ((((((dis_to_bju_fire_22 && dis_to_bju_uop_com_rd_wen) && (dis_to_bju_rd_addr == tmp_entry_exe_fire_23)) || ((dis_to_al1_fire_22 && dis_to_al1_uop_com_rd_wen) && (dis_to_al1_rd_addr == tmp_entry_exe_fire_23_1))) || ((dis_to_al2_fire_22 && dis_to_al2_uop_com_rd_wen) && (dis_to_al2_rd_addr == 5'h17))) || ((dis_to_div_fire_22 && dis_to_div_uop_com_rd_wen) && (dis_to_div_rd_addr == 5'h17))) || ((dis_to_lsu_fire_22 && dis_to_lsu_uop_com_rd_wen) && (dis_to_lsu_rd_addr == 5'h17))); // @ Dispatch.scala l156
   assign entry_wbc_fire_23 = (((((wbc_rd_wen_0 && (wbc_rd_addr_0 == 5'h17)) || (wbc_rd_wen_1 && (wbc_rd_addr_1 == 5'h17))) || (wbc_rd_wen_2 && (wbc_rd_addr_2 == 5'h17))) || (wbc_rd_wen_3 && (wbc_rd_addr_3 == 5'h17))) || (wbc_rd_wen_4 && (wbc_rd_addr_4 == 5'h17))); // @ Dispatch.scala l162
   assign entry_ret_fire_23 = ((ret_rd_wen_0 && (ret_rd_addr_0 == 5'h17)) || (ret_rd_wen_1 && (ret_rd_addr_1 == 5'h17))); // @ Dispatch.scala l168
-=======
-  assign entry_exe_fire_23 = ((((((dis_to_bju_fire_22 && dis_to_bju_uop_com_rd_wen) && (dis_to_bju_rd_addr == tmp_entry_exe_fire_23)) || ((dis_to_al1_fire_22 && dis_to_al1_uop_com_rd_wen) && (dis_to_al1_rd_addr == tmp_entry_exe_fire_23_1))) || ((dis_to_al2_fire_22 && dis_to_al2_uop_com_rd_wen) && (dis_to_al2_rd_addr == 5'h17))) || ((dis_to_div_fire_22 && dis_to_div_uop_com_rd_wen) && (dis_to_div_rd_addr == 5'h17))) || ((dis_to_lsu_fire_22 && dis_to_lsu_uop_com_rd_wen) && (dis_to_lsu_rd_addr == 5'h17))); // @ Dispatch.scala l150
-  assign entry_wbc_fire_23 = (((((wbc_rd_wen_0 && (wbc_rd_addr_0 == 5'h17)) || (wbc_rd_wen_1 && (wbc_rd_addr_1 == 5'h17))) || (wbc_rd_wen_2 && (wbc_rd_addr_2 == 5'h17))) || (wbc_rd_wen_3 && (wbc_rd_addr_3 == 5'h17))) || (wbc_rd_wen_4 && (wbc_rd_addr_4 == 5'h17))); // @ Dispatch.scala l156
-  assign entry_ret_fire_23 = ((ret_rd_wen_0 && (ret_rd_addr_0 == 5'h17)) || (ret_rd_wen_1 && (ret_rd_addr_1 == 5'h17))); // @ Dispatch.scala l162
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
   assign dis_src_0_fire_45 = (dis_src_0_valid && dis_src_0_ready); // @ BaseType.scala l305
   assign dis_src_1_fire_45 = (dis_src_1_valid && dis_src_1_ready); // @ BaseType.scala l305
   assign dis_src_0_fire_46 = (dis_src_0_valid && dis_src_0_ready); // @ BaseType.scala l305
   assign dis_src_1_fire_46 = (dis_src_1_valid && dis_src_1_ready); // @ BaseType.scala l305
-<<<<<<< HEAD
   assign entry_dis_fire_24 = (((dis_src_0_fire_46 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h18)) || ((dis_src_1_fire_46 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h18))); // @ Dispatch.scala l153
-=======
-  assign entry_dis_fire_24 = (((dis_src_0_fire_46 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h18)) || ((dis_src_1_fire_46 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h18))); // @ Dispatch.scala l147
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
   assign dis_to_bju_fire_23 = (dis_to_bju_valid && dis_to_bju_ready); // @ BaseType.scala l305
   assign dis_to_al1_fire_23 = (dis_to_al1_valid && dis_to_al1_ready); // @ BaseType.scala l305
   assign dis_to_al2_fire_23 = (dis_to_al2_valid && dis_to_al2_ready); // @ BaseType.scala l305
   assign dis_to_div_fire_23 = (dis_to_div_valid && dis_to_div_ready); // @ BaseType.scala l305
   assign dis_to_lsu_fire_23 = (dis_to_lsu_valid && dis_to_lsu_ready); // @ BaseType.scala l305
-<<<<<<< HEAD
   assign entry_exe_fire_24 = ((((((dis_to_bju_fire_23 && dis_to_bju_uop_com_rd_wen) && (dis_to_bju_rd_addr == tmp_entry_exe_fire_24)) || ((dis_to_al1_fire_23 && dis_to_al1_uop_com_rd_wen) && (dis_to_al1_rd_addr == tmp_entry_exe_fire_24_1))) || ((dis_to_al2_fire_23 && dis_to_al2_uop_com_rd_wen) && (dis_to_al2_rd_addr == 5'h18))) || ((dis_to_div_fire_23 && dis_to_div_uop_com_rd_wen) && (dis_to_div_rd_addr == 5'h18))) || ((dis_to_lsu_fire_23 && dis_to_lsu_uop_com_rd_wen) && (dis_to_lsu_rd_addr == 5'h18))); // @ Dispatch.scala l156
   assign entry_wbc_fire_24 = (((((wbc_rd_wen_0 && (wbc_rd_addr_0 == 5'h18)) || (wbc_rd_wen_1 && (wbc_rd_addr_1 == 5'h18))) || (wbc_rd_wen_2 && (wbc_rd_addr_2 == 5'h18))) || (wbc_rd_wen_3 && (wbc_rd_addr_3 == 5'h18))) || (wbc_rd_wen_4 && (wbc_rd_addr_4 == 5'h18))); // @ Dispatch.scala l162
   assign entry_ret_fire_24 = ((ret_rd_wen_0 && (ret_rd_addr_0 == 5'h18)) || (ret_rd_wen_1 && (ret_rd_addr_1 == 5'h18))); // @ Dispatch.scala l168
-=======
-  assign entry_exe_fire_24 = ((((((dis_to_bju_fire_23 && dis_to_bju_uop_com_rd_wen) && (dis_to_bju_rd_addr == tmp_entry_exe_fire_24)) || ((dis_to_al1_fire_23 && dis_to_al1_uop_com_rd_wen) && (dis_to_al1_rd_addr == tmp_entry_exe_fire_24_1))) || ((dis_to_al2_fire_23 && dis_to_al2_uop_com_rd_wen) && (dis_to_al2_rd_addr == 5'h18))) || ((dis_to_div_fire_23 && dis_to_div_uop_com_rd_wen) && (dis_to_div_rd_addr == 5'h18))) || ((dis_to_lsu_fire_23 && dis_to_lsu_uop_com_rd_wen) && (dis_to_lsu_rd_addr == 5'h18))); // @ Dispatch.scala l150
-  assign entry_wbc_fire_24 = (((((wbc_rd_wen_0 && (wbc_rd_addr_0 == 5'h18)) || (wbc_rd_wen_1 && (wbc_rd_addr_1 == 5'h18))) || (wbc_rd_wen_2 && (wbc_rd_addr_2 == 5'h18))) || (wbc_rd_wen_3 && (wbc_rd_addr_3 == 5'h18))) || (wbc_rd_wen_4 && (wbc_rd_addr_4 == 5'h18))); // @ Dispatch.scala l156
-  assign entry_ret_fire_24 = ((ret_rd_wen_0 && (ret_rd_addr_0 == 5'h18)) || (ret_rd_wen_1 && (ret_rd_addr_1 == 5'h18))); // @ Dispatch.scala l162
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
   assign dis_src_0_fire_47 = (dis_src_0_valid && dis_src_0_ready); // @ BaseType.scala l305
   assign dis_src_1_fire_47 = (dis_src_1_valid && dis_src_1_ready); // @ BaseType.scala l305
   assign dis_src_0_fire_48 = (dis_src_0_valid && dis_src_0_ready); // @ BaseType.scala l305
   assign dis_src_1_fire_48 = (dis_src_1_valid && dis_src_1_ready); // @ BaseType.scala l305
-<<<<<<< HEAD
   assign entry_dis_fire_25 = (((dis_src_0_fire_48 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h19)) || ((dis_src_1_fire_48 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h19))); // @ Dispatch.scala l153
-=======
-  assign entry_dis_fire_25 = (((dis_src_0_fire_48 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h19)) || ((dis_src_1_fire_48 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h19))); // @ Dispatch.scala l147
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
   assign dis_to_bju_fire_24 = (dis_to_bju_valid && dis_to_bju_ready); // @ BaseType.scala l305
   assign dis_to_al1_fire_24 = (dis_to_al1_valid && dis_to_al1_ready); // @ BaseType.scala l305
   assign dis_to_al2_fire_24 = (dis_to_al2_valid && dis_to_al2_ready); // @ BaseType.scala l305
   assign dis_to_div_fire_24 = (dis_to_div_valid && dis_to_div_ready); // @ BaseType.scala l305
   assign dis_to_lsu_fire_24 = (dis_to_lsu_valid && dis_to_lsu_ready); // @ BaseType.scala l305
-<<<<<<< HEAD
   assign entry_exe_fire_25 = ((((((dis_to_bju_fire_24 && dis_to_bju_uop_com_rd_wen) && (dis_to_bju_rd_addr == tmp_entry_exe_fire_25)) || ((dis_to_al1_fire_24 && dis_to_al1_uop_com_rd_wen) && (dis_to_al1_rd_addr == tmp_entry_exe_fire_25_1))) || ((dis_to_al2_fire_24 && dis_to_al2_uop_com_rd_wen) && (dis_to_al2_rd_addr == 5'h19))) || ((dis_to_div_fire_24 && dis_to_div_uop_com_rd_wen) && (dis_to_div_rd_addr == 5'h19))) || ((dis_to_lsu_fire_24 && dis_to_lsu_uop_com_rd_wen) && (dis_to_lsu_rd_addr == 5'h19))); // @ Dispatch.scala l156
   assign entry_wbc_fire_25 = (((((wbc_rd_wen_0 && (wbc_rd_addr_0 == 5'h19)) || (wbc_rd_wen_1 && (wbc_rd_addr_1 == 5'h19))) || (wbc_rd_wen_2 && (wbc_rd_addr_2 == 5'h19))) || (wbc_rd_wen_3 && (wbc_rd_addr_3 == 5'h19))) || (wbc_rd_wen_4 && (wbc_rd_addr_4 == 5'h19))); // @ Dispatch.scala l162
   assign entry_ret_fire_25 = ((ret_rd_wen_0 && (ret_rd_addr_0 == 5'h19)) || (ret_rd_wen_1 && (ret_rd_addr_1 == 5'h19))); // @ Dispatch.scala l168
-=======
-  assign entry_exe_fire_25 = ((((((dis_to_bju_fire_24 && dis_to_bju_uop_com_rd_wen) && (dis_to_bju_rd_addr == tmp_entry_exe_fire_25)) || ((dis_to_al1_fire_24 && dis_to_al1_uop_com_rd_wen) && (dis_to_al1_rd_addr == tmp_entry_exe_fire_25_1))) || ((dis_to_al2_fire_24 && dis_to_al2_uop_com_rd_wen) && (dis_to_al2_rd_addr == 5'h19))) || ((dis_to_div_fire_24 && dis_to_div_uop_com_rd_wen) && (dis_to_div_rd_addr == 5'h19))) || ((dis_to_lsu_fire_24 && dis_to_lsu_uop_com_rd_wen) && (dis_to_lsu_rd_addr == 5'h19))); // @ Dispatch.scala l150
-  assign entry_wbc_fire_25 = (((((wbc_rd_wen_0 && (wbc_rd_addr_0 == 5'h19)) || (wbc_rd_wen_1 && (wbc_rd_addr_1 == 5'h19))) || (wbc_rd_wen_2 && (wbc_rd_addr_2 == 5'h19))) || (wbc_rd_wen_3 && (wbc_rd_addr_3 == 5'h19))) || (wbc_rd_wen_4 && (wbc_rd_addr_4 == 5'h19))); // @ Dispatch.scala l156
-  assign entry_ret_fire_25 = ((ret_rd_wen_0 && (ret_rd_addr_0 == 5'h19)) || (ret_rd_wen_1 && (ret_rd_addr_1 == 5'h19))); // @ Dispatch.scala l162
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
   assign dis_src_0_fire_49 = (dis_src_0_valid && dis_src_0_ready); // @ BaseType.scala l305
   assign dis_src_1_fire_49 = (dis_src_1_valid && dis_src_1_ready); // @ BaseType.scala l305
   assign dis_src_0_fire_50 = (dis_src_0_valid && dis_src_0_ready); // @ BaseType.scala l305
   assign dis_src_1_fire_50 = (dis_src_1_valid && dis_src_1_ready); // @ BaseType.scala l305
-<<<<<<< HEAD
   assign entry_dis_fire_26 = (((dis_src_0_fire_50 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h1a)) || ((dis_src_1_fire_50 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h1a))); // @ Dispatch.scala l153
-=======
-  assign entry_dis_fire_26 = (((dis_src_0_fire_50 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h1a)) || ((dis_src_1_fire_50 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h1a))); // @ Dispatch.scala l147
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
   assign dis_to_bju_fire_25 = (dis_to_bju_valid && dis_to_bju_ready); // @ BaseType.scala l305
   assign dis_to_al1_fire_25 = (dis_to_al1_valid && dis_to_al1_ready); // @ BaseType.scala l305
   assign dis_to_al2_fire_25 = (dis_to_al2_valid && dis_to_al2_ready); // @ BaseType.scala l305
   assign dis_to_div_fire_25 = (dis_to_div_valid && dis_to_div_ready); // @ BaseType.scala l305
   assign dis_to_lsu_fire_25 = (dis_to_lsu_valid && dis_to_lsu_ready); // @ BaseType.scala l305
-<<<<<<< HEAD
   assign entry_exe_fire_26 = ((((((dis_to_bju_fire_25 && dis_to_bju_uop_com_rd_wen) && (dis_to_bju_rd_addr == tmp_entry_exe_fire_26)) || ((dis_to_al1_fire_25 && dis_to_al1_uop_com_rd_wen) && (dis_to_al1_rd_addr == tmp_entry_exe_fire_26_1))) || ((dis_to_al2_fire_25 && dis_to_al2_uop_com_rd_wen) && (dis_to_al2_rd_addr == 5'h1a))) || ((dis_to_div_fire_25 && dis_to_div_uop_com_rd_wen) && (dis_to_div_rd_addr == 5'h1a))) || ((dis_to_lsu_fire_25 && dis_to_lsu_uop_com_rd_wen) && (dis_to_lsu_rd_addr == 5'h1a))); // @ Dispatch.scala l156
   assign entry_wbc_fire_26 = (((((wbc_rd_wen_0 && (wbc_rd_addr_0 == 5'h1a)) || (wbc_rd_wen_1 && (wbc_rd_addr_1 == 5'h1a))) || (wbc_rd_wen_2 && (wbc_rd_addr_2 == 5'h1a))) || (wbc_rd_wen_3 && (wbc_rd_addr_3 == 5'h1a))) || (wbc_rd_wen_4 && (wbc_rd_addr_4 == 5'h1a))); // @ Dispatch.scala l162
   assign entry_ret_fire_26 = ((ret_rd_wen_0 && (ret_rd_addr_0 == 5'h1a)) || (ret_rd_wen_1 && (ret_rd_addr_1 == 5'h1a))); // @ Dispatch.scala l168
-=======
-  assign entry_exe_fire_26 = ((((((dis_to_bju_fire_25 && dis_to_bju_uop_com_rd_wen) && (dis_to_bju_rd_addr == tmp_entry_exe_fire_26)) || ((dis_to_al1_fire_25 && dis_to_al1_uop_com_rd_wen) && (dis_to_al1_rd_addr == tmp_entry_exe_fire_26_1))) || ((dis_to_al2_fire_25 && dis_to_al2_uop_com_rd_wen) && (dis_to_al2_rd_addr == 5'h1a))) || ((dis_to_div_fire_25 && dis_to_div_uop_com_rd_wen) && (dis_to_div_rd_addr == 5'h1a))) || ((dis_to_lsu_fire_25 && dis_to_lsu_uop_com_rd_wen) && (dis_to_lsu_rd_addr == 5'h1a))); // @ Dispatch.scala l150
-  assign entry_wbc_fire_26 = (((((wbc_rd_wen_0 && (wbc_rd_addr_0 == 5'h1a)) || (wbc_rd_wen_1 && (wbc_rd_addr_1 == 5'h1a))) || (wbc_rd_wen_2 && (wbc_rd_addr_2 == 5'h1a))) || (wbc_rd_wen_3 && (wbc_rd_addr_3 == 5'h1a))) || (wbc_rd_wen_4 && (wbc_rd_addr_4 == 5'h1a))); // @ Dispatch.scala l156
-  assign entry_ret_fire_26 = ((ret_rd_wen_0 && (ret_rd_addr_0 == 5'h1a)) || (ret_rd_wen_1 && (ret_rd_addr_1 == 5'h1a))); // @ Dispatch.scala l162
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
   assign dis_src_0_fire_51 = (dis_src_0_valid && dis_src_0_ready); // @ BaseType.scala l305
   assign dis_src_1_fire_51 = (dis_src_1_valid && dis_src_1_ready); // @ BaseType.scala l305
   assign dis_src_0_fire_52 = (dis_src_0_valid && dis_src_0_ready); // @ BaseType.scala l305
   assign dis_src_1_fire_52 = (dis_src_1_valid && dis_src_1_ready); // @ BaseType.scala l305
-<<<<<<< HEAD
   assign entry_dis_fire_27 = (((dis_src_0_fire_52 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h1b)) || ((dis_src_1_fire_52 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h1b))); // @ Dispatch.scala l153
-=======
-  assign entry_dis_fire_27 = (((dis_src_0_fire_52 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h1b)) || ((dis_src_1_fire_52 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h1b))); // @ Dispatch.scala l147
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
   assign dis_to_bju_fire_26 = (dis_to_bju_valid && dis_to_bju_ready); // @ BaseType.scala l305
   assign dis_to_al1_fire_26 = (dis_to_al1_valid && dis_to_al1_ready); // @ BaseType.scala l305
   assign dis_to_al2_fire_26 = (dis_to_al2_valid && dis_to_al2_ready); // @ BaseType.scala l305
   assign dis_to_div_fire_26 = (dis_to_div_valid && dis_to_div_ready); // @ BaseType.scala l305
   assign dis_to_lsu_fire_26 = (dis_to_lsu_valid && dis_to_lsu_ready); // @ BaseType.scala l305
-<<<<<<< HEAD
   assign entry_exe_fire_27 = ((((((dis_to_bju_fire_26 && dis_to_bju_uop_com_rd_wen) && (dis_to_bju_rd_addr == tmp_entry_exe_fire_27)) || ((dis_to_al1_fire_26 && dis_to_al1_uop_com_rd_wen) && (dis_to_al1_rd_addr == tmp_entry_exe_fire_27_1))) || ((dis_to_al2_fire_26 && dis_to_al2_uop_com_rd_wen) && (dis_to_al2_rd_addr == 5'h1b))) || ((dis_to_div_fire_26 && dis_to_div_uop_com_rd_wen) && (dis_to_div_rd_addr == 5'h1b))) || ((dis_to_lsu_fire_26 && dis_to_lsu_uop_com_rd_wen) && (dis_to_lsu_rd_addr == 5'h1b))); // @ Dispatch.scala l156
   assign entry_wbc_fire_27 = (((((wbc_rd_wen_0 && (wbc_rd_addr_0 == 5'h1b)) || (wbc_rd_wen_1 && (wbc_rd_addr_1 == 5'h1b))) || (wbc_rd_wen_2 && (wbc_rd_addr_2 == 5'h1b))) || (wbc_rd_wen_3 && (wbc_rd_addr_3 == 5'h1b))) || (wbc_rd_wen_4 && (wbc_rd_addr_4 == 5'h1b))); // @ Dispatch.scala l162
   assign entry_ret_fire_27 = ((ret_rd_wen_0 && (ret_rd_addr_0 == 5'h1b)) || (ret_rd_wen_1 && (ret_rd_addr_1 == 5'h1b))); // @ Dispatch.scala l168
-=======
-  assign entry_exe_fire_27 = ((((((dis_to_bju_fire_26 && dis_to_bju_uop_com_rd_wen) && (dis_to_bju_rd_addr == tmp_entry_exe_fire_27)) || ((dis_to_al1_fire_26 && dis_to_al1_uop_com_rd_wen) && (dis_to_al1_rd_addr == tmp_entry_exe_fire_27_1))) || ((dis_to_al2_fire_26 && dis_to_al2_uop_com_rd_wen) && (dis_to_al2_rd_addr == 5'h1b))) || ((dis_to_div_fire_26 && dis_to_div_uop_com_rd_wen) && (dis_to_div_rd_addr == 5'h1b))) || ((dis_to_lsu_fire_26 && dis_to_lsu_uop_com_rd_wen) && (dis_to_lsu_rd_addr == 5'h1b))); // @ Dispatch.scala l150
-  assign entry_wbc_fire_27 = (((((wbc_rd_wen_0 && (wbc_rd_addr_0 == 5'h1b)) || (wbc_rd_wen_1 && (wbc_rd_addr_1 == 5'h1b))) || (wbc_rd_wen_2 && (wbc_rd_addr_2 == 5'h1b))) || (wbc_rd_wen_3 && (wbc_rd_addr_3 == 5'h1b))) || (wbc_rd_wen_4 && (wbc_rd_addr_4 == 5'h1b))); // @ Dispatch.scala l156
-  assign entry_ret_fire_27 = ((ret_rd_wen_0 && (ret_rd_addr_0 == 5'h1b)) || (ret_rd_wen_1 && (ret_rd_addr_1 == 5'h1b))); // @ Dispatch.scala l162
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
   assign dis_src_0_fire_53 = (dis_src_0_valid && dis_src_0_ready); // @ BaseType.scala l305
   assign dis_src_1_fire_53 = (dis_src_1_valid && dis_src_1_ready); // @ BaseType.scala l305
   assign dis_src_0_fire_54 = (dis_src_0_valid && dis_src_0_ready); // @ BaseType.scala l305
   assign dis_src_1_fire_54 = (dis_src_1_valid && dis_src_1_ready); // @ BaseType.scala l305
-<<<<<<< HEAD
   assign entry_dis_fire_28 = (((dis_src_0_fire_54 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h1c)) || ((dis_src_1_fire_54 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h1c))); // @ Dispatch.scala l153
-=======
-  assign entry_dis_fire_28 = (((dis_src_0_fire_54 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h1c)) || ((dis_src_1_fire_54 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h1c))); // @ Dispatch.scala l147
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
   assign dis_to_bju_fire_27 = (dis_to_bju_valid && dis_to_bju_ready); // @ BaseType.scala l305
   assign dis_to_al1_fire_27 = (dis_to_al1_valid && dis_to_al1_ready); // @ BaseType.scala l305
   assign dis_to_al2_fire_27 = (dis_to_al2_valid && dis_to_al2_ready); // @ BaseType.scala l305
   assign dis_to_div_fire_27 = (dis_to_div_valid && dis_to_div_ready); // @ BaseType.scala l305
   assign dis_to_lsu_fire_27 = (dis_to_lsu_valid && dis_to_lsu_ready); // @ BaseType.scala l305
-<<<<<<< HEAD
   assign entry_exe_fire_28 = ((((((dis_to_bju_fire_27 && dis_to_bju_uop_com_rd_wen) && (dis_to_bju_rd_addr == tmp_entry_exe_fire_28)) || ((dis_to_al1_fire_27 && dis_to_al1_uop_com_rd_wen) && (dis_to_al1_rd_addr == tmp_entry_exe_fire_28_1))) || ((dis_to_al2_fire_27 && dis_to_al2_uop_com_rd_wen) && (dis_to_al2_rd_addr == 5'h1c))) || ((dis_to_div_fire_27 && dis_to_div_uop_com_rd_wen) && (dis_to_div_rd_addr == 5'h1c))) || ((dis_to_lsu_fire_27 && dis_to_lsu_uop_com_rd_wen) && (dis_to_lsu_rd_addr == 5'h1c))); // @ Dispatch.scala l156
   assign entry_wbc_fire_28 = (((((wbc_rd_wen_0 && (wbc_rd_addr_0 == 5'h1c)) || (wbc_rd_wen_1 && (wbc_rd_addr_1 == 5'h1c))) || (wbc_rd_wen_2 && (wbc_rd_addr_2 == 5'h1c))) || (wbc_rd_wen_3 && (wbc_rd_addr_3 == 5'h1c))) || (wbc_rd_wen_4 && (wbc_rd_addr_4 == 5'h1c))); // @ Dispatch.scala l162
   assign entry_ret_fire_28 = ((ret_rd_wen_0 && (ret_rd_addr_0 == 5'h1c)) || (ret_rd_wen_1 && (ret_rd_addr_1 == 5'h1c))); // @ Dispatch.scala l168
-=======
-  assign entry_exe_fire_28 = ((((((dis_to_bju_fire_27 && dis_to_bju_uop_com_rd_wen) && (dis_to_bju_rd_addr == tmp_entry_exe_fire_28)) || ((dis_to_al1_fire_27 && dis_to_al1_uop_com_rd_wen) && (dis_to_al1_rd_addr == tmp_entry_exe_fire_28_1))) || ((dis_to_al2_fire_27 && dis_to_al2_uop_com_rd_wen) && (dis_to_al2_rd_addr == 5'h1c))) || ((dis_to_div_fire_27 && dis_to_div_uop_com_rd_wen) && (dis_to_div_rd_addr == 5'h1c))) || ((dis_to_lsu_fire_27 && dis_to_lsu_uop_com_rd_wen) && (dis_to_lsu_rd_addr == 5'h1c))); // @ Dispatch.scala l150
-  assign entry_wbc_fire_28 = (((((wbc_rd_wen_0 && (wbc_rd_addr_0 == 5'h1c)) || (wbc_rd_wen_1 && (wbc_rd_addr_1 == 5'h1c))) || (wbc_rd_wen_2 && (wbc_rd_addr_2 == 5'h1c))) || (wbc_rd_wen_3 && (wbc_rd_addr_3 == 5'h1c))) || (wbc_rd_wen_4 && (wbc_rd_addr_4 == 5'h1c))); // @ Dispatch.scala l156
-  assign entry_ret_fire_28 = ((ret_rd_wen_0 && (ret_rd_addr_0 == 5'h1c)) || (ret_rd_wen_1 && (ret_rd_addr_1 == 5'h1c))); // @ Dispatch.scala l162
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
   assign dis_src_0_fire_55 = (dis_src_0_valid && dis_src_0_ready); // @ BaseType.scala l305
   assign dis_src_1_fire_55 = (dis_src_1_valid && dis_src_1_ready); // @ BaseType.scala l305
   assign dis_src_0_fire_56 = (dis_src_0_valid && dis_src_0_ready); // @ BaseType.scala l305
   assign dis_src_1_fire_56 = (dis_src_1_valid && dis_src_1_ready); // @ BaseType.scala l305
-<<<<<<< HEAD
   assign entry_dis_fire_29 = (((dis_src_0_fire_56 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h1d)) || ((dis_src_1_fire_56 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h1d))); // @ Dispatch.scala l153
-=======
-  assign entry_dis_fire_29 = (((dis_src_0_fire_56 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h1d)) || ((dis_src_1_fire_56 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h1d))); // @ Dispatch.scala l147
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
   assign dis_to_bju_fire_28 = (dis_to_bju_valid && dis_to_bju_ready); // @ BaseType.scala l305
   assign dis_to_al1_fire_28 = (dis_to_al1_valid && dis_to_al1_ready); // @ BaseType.scala l305
   assign dis_to_al2_fire_28 = (dis_to_al2_valid && dis_to_al2_ready); // @ BaseType.scala l305
   assign dis_to_div_fire_28 = (dis_to_div_valid && dis_to_div_ready); // @ BaseType.scala l305
   assign dis_to_lsu_fire_28 = (dis_to_lsu_valid && dis_to_lsu_ready); // @ BaseType.scala l305
-<<<<<<< HEAD
   assign entry_exe_fire_29 = ((((((dis_to_bju_fire_28 && dis_to_bju_uop_com_rd_wen) && (dis_to_bju_rd_addr == tmp_entry_exe_fire_29)) || ((dis_to_al1_fire_28 && dis_to_al1_uop_com_rd_wen) && (dis_to_al1_rd_addr == tmp_entry_exe_fire_29_1))) || ((dis_to_al2_fire_28 && dis_to_al2_uop_com_rd_wen) && (dis_to_al2_rd_addr == 5'h1d))) || ((dis_to_div_fire_28 && dis_to_div_uop_com_rd_wen) && (dis_to_div_rd_addr == 5'h1d))) || ((dis_to_lsu_fire_28 && dis_to_lsu_uop_com_rd_wen) && (dis_to_lsu_rd_addr == 5'h1d))); // @ Dispatch.scala l156
   assign entry_wbc_fire_29 = (((((wbc_rd_wen_0 && (wbc_rd_addr_0 == 5'h1d)) || (wbc_rd_wen_1 && (wbc_rd_addr_1 == 5'h1d))) || (wbc_rd_wen_2 && (wbc_rd_addr_2 == 5'h1d))) || (wbc_rd_wen_3 && (wbc_rd_addr_3 == 5'h1d))) || (wbc_rd_wen_4 && (wbc_rd_addr_4 == 5'h1d))); // @ Dispatch.scala l162
   assign entry_ret_fire_29 = ((ret_rd_wen_0 && (ret_rd_addr_0 == 5'h1d)) || (ret_rd_wen_1 && (ret_rd_addr_1 == 5'h1d))); // @ Dispatch.scala l168
-=======
-  assign entry_exe_fire_29 = ((((((dis_to_bju_fire_28 && dis_to_bju_uop_com_rd_wen) && (dis_to_bju_rd_addr == tmp_entry_exe_fire_29)) || ((dis_to_al1_fire_28 && dis_to_al1_uop_com_rd_wen) && (dis_to_al1_rd_addr == tmp_entry_exe_fire_29_1))) || ((dis_to_al2_fire_28 && dis_to_al2_uop_com_rd_wen) && (dis_to_al2_rd_addr == 5'h1d))) || ((dis_to_div_fire_28 && dis_to_div_uop_com_rd_wen) && (dis_to_div_rd_addr == 5'h1d))) || ((dis_to_lsu_fire_28 && dis_to_lsu_uop_com_rd_wen) && (dis_to_lsu_rd_addr == 5'h1d))); // @ Dispatch.scala l150
-  assign entry_wbc_fire_29 = (((((wbc_rd_wen_0 && (wbc_rd_addr_0 == 5'h1d)) || (wbc_rd_wen_1 && (wbc_rd_addr_1 == 5'h1d))) || (wbc_rd_wen_2 && (wbc_rd_addr_2 == 5'h1d))) || (wbc_rd_wen_3 && (wbc_rd_addr_3 == 5'h1d))) || (wbc_rd_wen_4 && (wbc_rd_addr_4 == 5'h1d))); // @ Dispatch.scala l156
-  assign entry_ret_fire_29 = ((ret_rd_wen_0 && (ret_rd_addr_0 == 5'h1d)) || (ret_rd_wen_1 && (ret_rd_addr_1 == 5'h1d))); // @ Dispatch.scala l162
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
   assign dis_src_0_fire_57 = (dis_src_0_valid && dis_src_0_ready); // @ BaseType.scala l305
   assign dis_src_1_fire_57 = (dis_src_1_valid && dis_src_1_ready); // @ BaseType.scala l305
   assign dis_src_0_fire_58 = (dis_src_0_valid && dis_src_0_ready); // @ BaseType.scala l305
   assign dis_src_1_fire_58 = (dis_src_1_valid && dis_src_1_ready); // @ BaseType.scala l305
-<<<<<<< HEAD
   assign entry_dis_fire_30 = (((dis_src_0_fire_58 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h1e)) || ((dis_src_1_fire_58 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h1e))); // @ Dispatch.scala l153
-=======
-  assign entry_dis_fire_30 = (((dis_src_0_fire_58 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h1e)) || ((dis_src_1_fire_58 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h1e))); // @ Dispatch.scala l147
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
   assign dis_to_bju_fire_29 = (dis_to_bju_valid && dis_to_bju_ready); // @ BaseType.scala l305
   assign dis_to_al1_fire_29 = (dis_to_al1_valid && dis_to_al1_ready); // @ BaseType.scala l305
   assign dis_to_al2_fire_29 = (dis_to_al2_valid && dis_to_al2_ready); // @ BaseType.scala l305
   assign dis_to_div_fire_29 = (dis_to_div_valid && dis_to_div_ready); // @ BaseType.scala l305
   assign dis_to_lsu_fire_29 = (dis_to_lsu_valid && dis_to_lsu_ready); // @ BaseType.scala l305
-<<<<<<< HEAD
   assign entry_exe_fire_30 = ((((((dis_to_bju_fire_29 && dis_to_bju_uop_com_rd_wen) && (dis_to_bju_rd_addr == tmp_entry_exe_fire_30)) || ((dis_to_al1_fire_29 && dis_to_al1_uop_com_rd_wen) && (dis_to_al1_rd_addr == tmp_entry_exe_fire_30_1))) || ((dis_to_al2_fire_29 && dis_to_al2_uop_com_rd_wen) && (dis_to_al2_rd_addr == 5'h1e))) || ((dis_to_div_fire_29 && dis_to_div_uop_com_rd_wen) && (dis_to_div_rd_addr == 5'h1e))) || ((dis_to_lsu_fire_29 && dis_to_lsu_uop_com_rd_wen) && (dis_to_lsu_rd_addr == 5'h1e))); // @ Dispatch.scala l156
   assign entry_wbc_fire_30 = (((((wbc_rd_wen_0 && (wbc_rd_addr_0 == 5'h1e)) || (wbc_rd_wen_1 && (wbc_rd_addr_1 == 5'h1e))) || (wbc_rd_wen_2 && (wbc_rd_addr_2 == 5'h1e))) || (wbc_rd_wen_3 && (wbc_rd_addr_3 == 5'h1e))) || (wbc_rd_wen_4 && (wbc_rd_addr_4 == 5'h1e))); // @ Dispatch.scala l162
   assign entry_ret_fire_30 = ((ret_rd_wen_0 && (ret_rd_addr_0 == 5'h1e)) || (ret_rd_wen_1 && (ret_rd_addr_1 == 5'h1e))); // @ Dispatch.scala l168
-=======
-  assign entry_exe_fire_30 = ((((((dis_to_bju_fire_29 && dis_to_bju_uop_com_rd_wen) && (dis_to_bju_rd_addr == tmp_entry_exe_fire_30)) || ((dis_to_al1_fire_29 && dis_to_al1_uop_com_rd_wen) && (dis_to_al1_rd_addr == tmp_entry_exe_fire_30_1))) || ((dis_to_al2_fire_29 && dis_to_al2_uop_com_rd_wen) && (dis_to_al2_rd_addr == 5'h1e))) || ((dis_to_div_fire_29 && dis_to_div_uop_com_rd_wen) && (dis_to_div_rd_addr == 5'h1e))) || ((dis_to_lsu_fire_29 && dis_to_lsu_uop_com_rd_wen) && (dis_to_lsu_rd_addr == 5'h1e))); // @ Dispatch.scala l150
-  assign entry_wbc_fire_30 = (((((wbc_rd_wen_0 && (wbc_rd_addr_0 == 5'h1e)) || (wbc_rd_wen_1 && (wbc_rd_addr_1 == 5'h1e))) || (wbc_rd_wen_2 && (wbc_rd_addr_2 == 5'h1e))) || (wbc_rd_wen_3 && (wbc_rd_addr_3 == 5'h1e))) || (wbc_rd_wen_4 && (wbc_rd_addr_4 == 5'h1e))); // @ Dispatch.scala l156
-  assign entry_ret_fire_30 = ((ret_rd_wen_0 && (ret_rd_addr_0 == 5'h1e)) || (ret_rd_wen_1 && (ret_rd_addr_1 == 5'h1e))); // @ Dispatch.scala l162
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
   assign dis_src_0_fire_59 = (dis_src_0_valid && dis_src_0_ready); // @ BaseType.scala l305
   assign dis_src_1_fire_59 = (dis_src_1_valid && dis_src_1_ready); // @ BaseType.scala l305
   assign dis_src_0_fire_60 = (dis_src_0_valid && dis_src_0_ready); // @ BaseType.scala l305
   assign dis_src_1_fire_60 = (dis_src_1_valid && dis_src_1_ready); // @ BaseType.scala l305
-<<<<<<< HEAD
   assign entry_dis_fire_31 = (((dis_src_0_fire_60 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h1f)) || ((dis_src_1_fire_60 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h1f))); // @ Dispatch.scala l153
-=======
-  assign entry_dis_fire_31 = (((dis_src_0_fire_60 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h1f)) || ((dis_src_1_fire_60 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h1f))); // @ Dispatch.scala l147
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
   assign dis_to_bju_fire_30 = (dis_to_bju_valid && dis_to_bju_ready); // @ BaseType.scala l305
   assign dis_to_al1_fire_30 = (dis_to_al1_valid && dis_to_al1_ready); // @ BaseType.scala l305
   assign dis_to_al2_fire_30 = (dis_to_al2_valid && dis_to_al2_ready); // @ BaseType.scala l305
   assign dis_to_div_fire_30 = (dis_to_div_valid && dis_to_div_ready); // @ BaseType.scala l305
   assign dis_to_lsu_fire_30 = (dis_to_lsu_valid && dis_to_lsu_ready); // @ BaseType.scala l305
-<<<<<<< HEAD
   assign entry_exe_fire_31 = ((((((dis_to_bju_fire_30 && dis_to_bju_uop_com_rd_wen) && (dis_to_bju_rd_addr == tmp_entry_exe_fire_31)) || ((dis_to_al1_fire_30 && dis_to_al1_uop_com_rd_wen) && (dis_to_al1_rd_addr == tmp_entry_exe_fire_31_1))) || ((dis_to_al2_fire_30 && dis_to_al2_uop_com_rd_wen) && (dis_to_al2_rd_addr == 5'h1f))) || ((dis_to_div_fire_30 && dis_to_div_uop_com_rd_wen) && (dis_to_div_rd_addr == 5'h1f))) || ((dis_to_lsu_fire_30 && dis_to_lsu_uop_com_rd_wen) && (dis_to_lsu_rd_addr == 5'h1f))); // @ Dispatch.scala l156
   assign entry_wbc_fire_31 = (((((wbc_rd_wen_0 && (wbc_rd_addr_0 == 5'h1f)) || (wbc_rd_wen_1 && (wbc_rd_addr_1 == 5'h1f))) || (wbc_rd_wen_2 && (wbc_rd_addr_2 == 5'h1f))) || (wbc_rd_wen_3 && (wbc_rd_addr_3 == 5'h1f))) || (wbc_rd_wen_4 && (wbc_rd_addr_4 == 5'h1f))); // @ Dispatch.scala l162
   assign entry_ret_fire_31 = ((ret_rd_wen_0 && (ret_rd_addr_0 == 5'h1f)) || (ret_rd_wen_1 && (ret_rd_addr_1 == 5'h1f))); // @ Dispatch.scala l168
@@ -15630,64 +13708,6 @@ module Dispatch (
           exe_stream_0_src1_data = rs1_ret_data_1; // @ Dispatch.scala l272
         end else begin
           exe_stream_0_src1_data = rs1_arf_data_1; // @ Dispatch.scala l275
-=======
-  assign entry_exe_fire_31 = ((((((dis_to_bju_fire_30 && dis_to_bju_uop_com_rd_wen) && (dis_to_bju_rd_addr == tmp_entry_exe_fire_31)) || ((dis_to_al1_fire_30 && dis_to_al1_uop_com_rd_wen) && (dis_to_al1_rd_addr == tmp_entry_exe_fire_31_1))) || ((dis_to_al2_fire_30 && dis_to_al2_uop_com_rd_wen) && (dis_to_al2_rd_addr == 5'h1f))) || ((dis_to_div_fire_30 && dis_to_div_uop_com_rd_wen) && (dis_to_div_rd_addr == 5'h1f))) || ((dis_to_lsu_fire_30 && dis_to_lsu_uop_com_rd_wen) && (dis_to_lsu_rd_addr == 5'h1f))); // @ Dispatch.scala l150
-  assign entry_wbc_fire_31 = (((((wbc_rd_wen_0 && (wbc_rd_addr_0 == 5'h1f)) || (wbc_rd_wen_1 && (wbc_rd_addr_1 == 5'h1f))) || (wbc_rd_wen_2 && (wbc_rd_addr_2 == 5'h1f))) || (wbc_rd_wen_3 && (wbc_rd_addr_3 == 5'h1f))) || (wbc_rd_wen_4 && (wbc_rd_addr_4 == 5'h1f))); // @ Dispatch.scala l156
-  assign entry_ret_fire_31 = ((ret_rd_wen_0 && (ret_rd_addr_0 == 5'h1f)) || (ret_rd_wen_1 && (ret_rd_addr_1 == 5'h1f))); // @ Dispatch.scala l162
-  assign dis_src_0_fire_61 = (dis_src_0_valid && dis_src_0_ready); // @ BaseType.scala l305
-  assign dis_src_1_fire_61 = (dis_src_1_valid && dis_src_1_ready); // @ BaseType.scala l305
-  assign dis_src_0_ready = (((((exe_sel_valid_0[0] && exe_stream_0_ready) || (exe_sel_valid_0[1] && exe_stream_1_ready)) || (exe_sel_valid_0[2] && exe_stream_2_ready)) || (exe_sel_valid_0[3] && exe_stream_3_ready)) || (exe_sel_valid_0[4] && exe_stream_4_ready)); // @ Dispatch.scala l213
-  assign dis_src_1_ready = ((((((exe_sel_valid_1[0] && exe_stream_0_ready) || (exe_sel_valid_1[1] && exe_stream_1_ready)) || (exe_sel_valid_1[2] && exe_stream_2_ready)) || (exe_sel_valid_1[3] && exe_stream_3_ready)) || (exe_sel_valid_1[4] && exe_stream_4_ready)) && dis_src_0_ready); // @ Dispatch.scala l219
-  assign exe_stream_0_valid = ((exe_sel_valid_0[0] || (exe_sel_valid_1[0] && dis_src_0_ready)) && commit_fifo_ready); // @ Dispatch.scala l226
-  assign tmp_exe_stream_0_uop_com_rd_wen = exe_sel_valid_0[0]; // @ BaseType.scala l305
-  assign exe_stream_0_uop_com_rd_wen = (tmp_exe_stream_0_uop_com_rd_wen ? dis_src_0_iss_pkg_micro_op_uop_com_rd_wen : dis_src_1_iss_pkg_micro_op_uop_com_rd_wen); // @ Dispatch.scala l227
-  assign exe_stream_0_uop_com_src2_is_imm = (tmp_exe_stream_0_uop_com_rd_wen ? dis_src_0_iss_pkg_micro_op_uop_com_src2_is_imm : dis_src_1_iss_pkg_micro_op_uop_com_src2_is_imm); // @ Dispatch.scala l227
-  assign exe_stream_0_rd_addr = (exe_sel_valid_0[0] ? dis_src_0_iss_pkg_rd_addr : dis_src_1_iss_pkg_rd_addr); // @ Dispatch.scala l228
-  assign exe_stream_0_pc = (exe_sel_valid_0[0] ? dis_src_0_iss_pkg_pc : dis_src_1_iss_pkg_pc); // @ Dispatch.scala l229
-  assign exe_stream_0_instr = (exe_sel_valid_0[0] ? dis_src_0_iss_pkg_instr : dis_src_1_iss_pkg_instr); // @ Dispatch.scala l230
-  assign exe_stream_0_tail_adr = (((exe_sel_valid_1[0] && dis_older_vld) && dis_newer_vld) ? tail_adr_newer : tail_adr_older); // @ Dispatch.scala l231
-  assign tmp_exe_stream_0_uop_alu_alu_is_word = exe_sel_valid_0[0]; // @ BaseType.scala l305
-  assign tmp_exe_stream_0_uop_alu_alu_ctrl_op = (tmp_exe_stream_0_uop_alu_alu_is_word ? dis_src_0_iss_pkg_micro_op_uop_alu_alu_ctrl_op : dis_src_1_iss_pkg_micro_op_uop_alu_alu_ctrl_op); // @ Expression.scala l1431
-  assign exe_stream_0_uop_alu_alu_ctrl_op = tmp_exe_stream_0_uop_alu_alu_ctrl_op; // @ Dispatch.scala l232
-  assign exe_stream_0_uop_alu_alu_is_word = (tmp_exe_stream_0_uop_alu_alu_is_word ? dis_src_0_iss_pkg_micro_op_uop_alu_alu_is_word : dis_src_1_iss_pkg_micro_op_uop_alu_alu_is_word); // @ Dispatch.scala l232
-  assign exe_stream_0_imm = (exe_sel_valid_0[0] ? dis_src_0_iss_pkg_imm : dis_src_1_iss_pkg_imm); // @ Dispatch.scala l233
-  assign tmp_exe_stream_0_uop_bju_bju_rd_eq_rs1 = exe_sel_valid_0[0]; // @ BaseType.scala l305
-  assign tmp_exe_stream_0_uop_bju_bju_ctrl_op = (tmp_exe_stream_0_uop_bju_bju_rd_eq_rs1 ? dis_src_0_iss_pkg_micro_op_uop_bju_bju_ctrl_op : dis_src_1_iss_pkg_micro_op_uop_bju_bju_ctrl_op); // @ Expression.scala l1431
-  assign tmp_exe_stream_0_uop_bju_exp_ctrl_op = (tmp_exe_stream_0_uop_bju_bju_rd_eq_rs1 ? dis_src_0_iss_pkg_micro_op_uop_bju_exp_ctrl_op : dis_src_1_iss_pkg_micro_op_uop_bju_exp_ctrl_op); // @ Expression.scala l1431
-  assign exe_stream_0_uop_bju_bju_ctrl_op = tmp_exe_stream_0_uop_bju_bju_ctrl_op; // @ Dispatch.scala l234
-  assign exe_stream_0_uop_bju_bju_rd_eq_rs1 = (tmp_exe_stream_0_uop_bju_bju_rd_eq_rs1 ? dis_src_0_iss_pkg_micro_op_uop_bju_bju_rd_eq_rs1 : dis_src_1_iss_pkg_micro_op_uop_bju_bju_rd_eq_rs1); // @ Dispatch.scala l234
-  assign exe_stream_0_uop_bju_bju_rd_is_link = (tmp_exe_stream_0_uop_bju_bju_rd_eq_rs1 ? dis_src_0_iss_pkg_micro_op_uop_bju_bju_rd_is_link : dis_src_1_iss_pkg_micro_op_uop_bju_bju_rd_is_link); // @ Dispatch.scala l234
-  assign exe_stream_0_uop_bju_bju_rs1_is_link = (tmp_exe_stream_0_uop_bju_bju_rd_eq_rs1 ? dis_src_0_iss_pkg_micro_op_uop_bju_bju_rs1_is_link : dis_src_1_iss_pkg_micro_op_uop_bju_bju_rs1_is_link); // @ Dispatch.scala l234
-  assign exe_stream_0_uop_bju_exp_ctrl_op = tmp_exe_stream_0_uop_bju_exp_ctrl_op; // @ Dispatch.scala l234
-  assign exe_stream_0_uop_bju_exp_csr_addr = (tmp_exe_stream_0_uop_bju_bju_rd_eq_rs1 ? dis_src_0_iss_pkg_micro_op_uop_bju_exp_csr_addr : dis_src_1_iss_pkg_micro_op_uop_bju_exp_csr_addr); // @ Dispatch.scala l234
-  assign exe_stream_0_uop_bju_exp_csr_wen = (tmp_exe_stream_0_uop_bju_bju_rd_eq_rs1 ? dis_src_0_iss_pkg_micro_op_uop_bju_exp_csr_wen : dis_src_1_iss_pkg_micro_op_uop_bju_exp_csr_wen); // @ Dispatch.scala l234
-  assign exe_stream_0_branch_pc = (exe_sel_valid_0[0] ? dis_src_0_iss_pkg_branch_pc : dis_src_1_iss_pkg_branch_pc); // @ Dispatch.scala l235
-  assign exe_stream_0_branch_taken = (exe_sel_valid_0[0] ? dis_src_0_iss_pkg_branch_taken : dis_src_1_iss_pkg_branch_taken); // @ Dispatch.scala l236
-  assign tmp_exe_stream_0_uop_lsu_lsu_is_load = exe_sel_valid_0[0]; // @ BaseType.scala l305
-  assign tmp_exe_stream_0_uop_lsu_lsu_ctrl_op = (tmp_exe_stream_0_uop_lsu_lsu_is_load ? dis_src_0_iss_pkg_micro_op_uop_lsu_lsu_ctrl_op : dis_src_1_iss_pkg_micro_op_uop_lsu_lsu_ctrl_op); // @ Expression.scala l1431
-  assign exe_stream_0_uop_lsu_lsu_ctrl_op = tmp_exe_stream_0_uop_lsu_lsu_ctrl_op; // @ Dispatch.scala l237
-  assign exe_stream_0_uop_lsu_lsu_is_load = (tmp_exe_stream_0_uop_lsu_lsu_is_load ? dis_src_0_iss_pkg_micro_op_uop_lsu_lsu_is_load : dis_src_1_iss_pkg_micro_op_uop_lsu_lsu_is_load); // @ Dispatch.scala l237
-  assign exe_stream_0_uop_lsu_lsu_is_store = (tmp_exe_stream_0_uop_lsu_lsu_is_load ? dis_src_0_iss_pkg_micro_op_uop_lsu_lsu_is_store : dis_src_1_iss_pkg_micro_op_uop_lsu_lsu_is_store); // @ Dispatch.scala l237
-  always @(*) begin
-    if(exe_sel_valid_0[0]) begin
-      if(tmp_src1_valid_0) begin
-        exe_stream_0_src1_data = rs1_wbc_data_0; // @ Dispatch.scala l241
-      end else begin
-        if(tmp_src1_valid_0_1) begin
-          exe_stream_0_src1_data = rs1_ret_data_0; // @ Dispatch.scala l244
-        end else begin
-          exe_stream_0_src1_data = rs1_arf_data_0; // @ Dispatch.scala l247
-        end
-      end
-    end else begin
-      if(tmp_src1_valid_1) begin
-        exe_stream_0_src1_data = rs1_wbc_data_1; // @ Dispatch.scala l252
-      end else begin
-        if(tmp_src1_valid_1_1) begin
-          exe_stream_0_src1_data = rs1_ret_data_1; // @ Dispatch.scala l255
-        end else begin
-          exe_stream_0_src1_data = rs1_arf_data_1; // @ Dispatch.scala l258
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
         end
       end
     end
@@ -15695,7 +13715,6 @@ module Dispatch (
 
   always @(*) begin
     if(exe_sel_valid_0[0]) begin
-<<<<<<< HEAD
       if((dis_src_0_iss_pkg_micro_op_uop_com_src2_is_imm && (dis_src_0_iss_pkg_exe_sel != ExeSelEnum_LSU))) begin
         exe_stream_0_src2_data = dis_src_0_iss_pkg_imm; // @ Dispatch.scala l281
       end else begin
@@ -15706,23 +13725,10 @@ module Dispatch (
             exe_stream_0_src2_data = rs2_ret_data_0; // @ Dispatch.scala l287
           end else begin
             exe_stream_0_src2_data = rs2_arf_data_0; // @ Dispatch.scala l290
-=======
-      if(dis_src_0_iss_pkg_micro_op_uop_com_src2_is_imm) begin
-        exe_stream_0_src2_data = dis_src_0_iss_pkg_imm; // @ Dispatch.scala l264
-      end else begin
-        if(tmp_src2_valid_0) begin
-          exe_stream_0_src2_data = rs2_wbc_data_0; // @ Dispatch.scala l267
-        end else begin
-          if(tmp_src2_valid_0_1) begin
-            exe_stream_0_src2_data = rs2_ret_data_0; // @ Dispatch.scala l270
-          end else begin
-            exe_stream_0_src2_data = rs2_arf_data_0; // @ Dispatch.scala l273
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
     end else begin
-<<<<<<< HEAD
       if((dis_src_1_iss_pkg_micro_op_uop_com_src2_is_imm && (dis_src_1_iss_pkg_exe_sel != ExeSelEnum_LSU))) begin
         exe_stream_0_src2_data = dis_src_1_iss_pkg_imm; // @ Dispatch.scala l295
       end else begin
@@ -15733,25 +13739,12 @@ module Dispatch (
             exe_stream_0_src2_data = rs2_ret_data_1; // @ Dispatch.scala l301
           end else begin
             exe_stream_0_src2_data = rs2_arf_data_1; // @ Dispatch.scala l304
-=======
-      if(dis_src_1_iss_pkg_micro_op_uop_com_src2_is_imm) begin
-        exe_stream_0_src2_data = dis_src_1_iss_pkg_imm; // @ Dispatch.scala l278
-      end else begin
-        if(tmp_src2_valid_1) begin
-          exe_stream_0_src2_data = rs2_wbc_data_1; // @ Dispatch.scala l281
-        end else begin
-          if(tmp_src2_valid_1_1) begin
-            exe_stream_0_src2_data = rs2_ret_data_1; // @ Dispatch.scala l284
-          end else begin
-            exe_stream_0_src2_data = rs2_arf_data_1; // @ Dispatch.scala l287
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
     end
   end
 
-<<<<<<< HEAD
   assign exe_stream_1_valid = ((exe_sel_valid_0[1] || (exe_sel_valid_1[1] && (dis_src_0_ready || (! dis_src_0_valid)))) && commit_fifo_ready); // @ Dispatch.scala l243
   assign tmp_exe_stream_1_uop_com_rd_wen = exe_sel_valid_0[1]; // @ BaseType.scala l305
   assign exe_stream_1_uop_com_rd_wen = (tmp_exe_stream_1_uop_com_rd_wen ? dis_src_0_iss_pkg_micro_op_uop_com_rd_wen : dis_src_1_iss_pkg_micro_op_uop_com_rd_wen); // @ Dispatch.scala l244
@@ -15801,57 +13794,6 @@ module Dispatch (
           exe_stream_1_src1_data = rs1_ret_data_1; // @ Dispatch.scala l272
         end else begin
           exe_stream_1_src1_data = rs1_arf_data_1; // @ Dispatch.scala l275
-=======
-  assign exe_stream_1_valid = ((exe_sel_valid_0[1] || (exe_sel_valid_1[1] && dis_src_0_ready)) && commit_fifo_ready); // @ Dispatch.scala l226
-  assign tmp_exe_stream_1_uop_com_rd_wen = exe_sel_valid_0[1]; // @ BaseType.scala l305
-  assign exe_stream_1_uop_com_rd_wen = (tmp_exe_stream_1_uop_com_rd_wen ? dis_src_0_iss_pkg_micro_op_uop_com_rd_wen : dis_src_1_iss_pkg_micro_op_uop_com_rd_wen); // @ Dispatch.scala l227
-  assign exe_stream_1_uop_com_src2_is_imm = (tmp_exe_stream_1_uop_com_rd_wen ? dis_src_0_iss_pkg_micro_op_uop_com_src2_is_imm : dis_src_1_iss_pkg_micro_op_uop_com_src2_is_imm); // @ Dispatch.scala l227
-  assign exe_stream_1_rd_addr = (exe_sel_valid_0[1] ? dis_src_0_iss_pkg_rd_addr : dis_src_1_iss_pkg_rd_addr); // @ Dispatch.scala l228
-  assign exe_stream_1_pc = (exe_sel_valid_0[1] ? dis_src_0_iss_pkg_pc : dis_src_1_iss_pkg_pc); // @ Dispatch.scala l229
-  assign exe_stream_1_instr = (exe_sel_valid_0[1] ? dis_src_0_iss_pkg_instr : dis_src_1_iss_pkg_instr); // @ Dispatch.scala l230
-  assign exe_stream_1_tail_adr = (((exe_sel_valid_1[1] && dis_older_vld) && dis_newer_vld) ? tail_adr_newer : tail_adr_older); // @ Dispatch.scala l231
-  assign tmp_exe_stream_1_uop_alu_alu_is_word = exe_sel_valid_0[1]; // @ BaseType.scala l305
-  assign tmp_exe_stream_1_uop_alu_alu_ctrl_op = (tmp_exe_stream_1_uop_alu_alu_is_word ? dis_src_0_iss_pkg_micro_op_uop_alu_alu_ctrl_op : dis_src_1_iss_pkg_micro_op_uop_alu_alu_ctrl_op); // @ Expression.scala l1431
-  assign exe_stream_1_uop_alu_alu_ctrl_op = tmp_exe_stream_1_uop_alu_alu_ctrl_op; // @ Dispatch.scala l232
-  assign exe_stream_1_uop_alu_alu_is_word = (tmp_exe_stream_1_uop_alu_alu_is_word ? dis_src_0_iss_pkg_micro_op_uop_alu_alu_is_word : dis_src_1_iss_pkg_micro_op_uop_alu_alu_is_word); // @ Dispatch.scala l232
-  assign exe_stream_1_imm = (exe_sel_valid_0[1] ? dis_src_0_iss_pkg_imm : dis_src_1_iss_pkg_imm); // @ Dispatch.scala l233
-  assign tmp_exe_stream_1_uop_bju_bju_rd_eq_rs1 = exe_sel_valid_0[1]; // @ BaseType.scala l305
-  assign tmp_exe_stream_1_uop_bju_bju_ctrl_op = (tmp_exe_stream_1_uop_bju_bju_rd_eq_rs1 ? dis_src_0_iss_pkg_micro_op_uop_bju_bju_ctrl_op : dis_src_1_iss_pkg_micro_op_uop_bju_bju_ctrl_op); // @ Expression.scala l1431
-  assign tmp_exe_stream_1_uop_bju_exp_ctrl_op = (tmp_exe_stream_1_uop_bju_bju_rd_eq_rs1 ? dis_src_0_iss_pkg_micro_op_uop_bju_exp_ctrl_op : dis_src_1_iss_pkg_micro_op_uop_bju_exp_ctrl_op); // @ Expression.scala l1431
-  assign exe_stream_1_uop_bju_bju_ctrl_op = tmp_exe_stream_1_uop_bju_bju_ctrl_op; // @ Dispatch.scala l234
-  assign exe_stream_1_uop_bju_bju_rd_eq_rs1 = (tmp_exe_stream_1_uop_bju_bju_rd_eq_rs1 ? dis_src_0_iss_pkg_micro_op_uop_bju_bju_rd_eq_rs1 : dis_src_1_iss_pkg_micro_op_uop_bju_bju_rd_eq_rs1); // @ Dispatch.scala l234
-  assign exe_stream_1_uop_bju_bju_rd_is_link = (tmp_exe_stream_1_uop_bju_bju_rd_eq_rs1 ? dis_src_0_iss_pkg_micro_op_uop_bju_bju_rd_is_link : dis_src_1_iss_pkg_micro_op_uop_bju_bju_rd_is_link); // @ Dispatch.scala l234
-  assign exe_stream_1_uop_bju_bju_rs1_is_link = (tmp_exe_stream_1_uop_bju_bju_rd_eq_rs1 ? dis_src_0_iss_pkg_micro_op_uop_bju_bju_rs1_is_link : dis_src_1_iss_pkg_micro_op_uop_bju_bju_rs1_is_link); // @ Dispatch.scala l234
-  assign exe_stream_1_uop_bju_exp_ctrl_op = tmp_exe_stream_1_uop_bju_exp_ctrl_op; // @ Dispatch.scala l234
-  assign exe_stream_1_uop_bju_exp_csr_addr = (tmp_exe_stream_1_uop_bju_bju_rd_eq_rs1 ? dis_src_0_iss_pkg_micro_op_uop_bju_exp_csr_addr : dis_src_1_iss_pkg_micro_op_uop_bju_exp_csr_addr); // @ Dispatch.scala l234
-  assign exe_stream_1_uop_bju_exp_csr_wen = (tmp_exe_stream_1_uop_bju_bju_rd_eq_rs1 ? dis_src_0_iss_pkg_micro_op_uop_bju_exp_csr_wen : dis_src_1_iss_pkg_micro_op_uop_bju_exp_csr_wen); // @ Dispatch.scala l234
-  assign exe_stream_1_branch_pc = (exe_sel_valid_0[1] ? dis_src_0_iss_pkg_branch_pc : dis_src_1_iss_pkg_branch_pc); // @ Dispatch.scala l235
-  assign exe_stream_1_branch_taken = (exe_sel_valid_0[1] ? dis_src_0_iss_pkg_branch_taken : dis_src_1_iss_pkg_branch_taken); // @ Dispatch.scala l236
-  assign tmp_exe_stream_1_uop_lsu_lsu_is_load = exe_sel_valid_0[1]; // @ BaseType.scala l305
-  assign tmp_exe_stream_1_uop_lsu_lsu_ctrl_op = (tmp_exe_stream_1_uop_lsu_lsu_is_load ? dis_src_0_iss_pkg_micro_op_uop_lsu_lsu_ctrl_op : dis_src_1_iss_pkg_micro_op_uop_lsu_lsu_ctrl_op); // @ Expression.scala l1431
-  assign exe_stream_1_uop_lsu_lsu_ctrl_op = tmp_exe_stream_1_uop_lsu_lsu_ctrl_op; // @ Dispatch.scala l237
-  assign exe_stream_1_uop_lsu_lsu_is_load = (tmp_exe_stream_1_uop_lsu_lsu_is_load ? dis_src_0_iss_pkg_micro_op_uop_lsu_lsu_is_load : dis_src_1_iss_pkg_micro_op_uop_lsu_lsu_is_load); // @ Dispatch.scala l237
-  assign exe_stream_1_uop_lsu_lsu_is_store = (tmp_exe_stream_1_uop_lsu_lsu_is_load ? dis_src_0_iss_pkg_micro_op_uop_lsu_lsu_is_store : dis_src_1_iss_pkg_micro_op_uop_lsu_lsu_is_store); // @ Dispatch.scala l237
-  always @(*) begin
-    if(exe_sel_valid_0[1]) begin
-      if(tmp_src1_valid_0) begin
-        exe_stream_1_src1_data = rs1_wbc_data_0; // @ Dispatch.scala l241
-      end else begin
-        if(tmp_src1_valid_0_1) begin
-          exe_stream_1_src1_data = rs1_ret_data_0; // @ Dispatch.scala l244
-        end else begin
-          exe_stream_1_src1_data = rs1_arf_data_0; // @ Dispatch.scala l247
-        end
-      end
-    end else begin
-      if(tmp_src1_valid_1) begin
-        exe_stream_1_src1_data = rs1_wbc_data_1; // @ Dispatch.scala l252
-      end else begin
-        if(tmp_src1_valid_1_1) begin
-          exe_stream_1_src1_data = rs1_ret_data_1; // @ Dispatch.scala l255
-        end else begin
-          exe_stream_1_src1_data = rs1_arf_data_1; // @ Dispatch.scala l258
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
         end
       end
     end
@@ -15859,7 +13801,6 @@ module Dispatch (
 
   always @(*) begin
     if(exe_sel_valid_0[1]) begin
-<<<<<<< HEAD
       if((dis_src_0_iss_pkg_micro_op_uop_com_src2_is_imm && (dis_src_0_iss_pkg_exe_sel != ExeSelEnum_LSU))) begin
         exe_stream_1_src2_data = dis_src_0_iss_pkg_imm; // @ Dispatch.scala l281
       end else begin
@@ -15870,23 +13811,10 @@ module Dispatch (
             exe_stream_1_src2_data = rs2_ret_data_0; // @ Dispatch.scala l287
           end else begin
             exe_stream_1_src2_data = rs2_arf_data_0; // @ Dispatch.scala l290
-=======
-      if(dis_src_0_iss_pkg_micro_op_uop_com_src2_is_imm) begin
-        exe_stream_1_src2_data = dis_src_0_iss_pkg_imm; // @ Dispatch.scala l264
-      end else begin
-        if(tmp_src2_valid_0) begin
-          exe_stream_1_src2_data = rs2_wbc_data_0; // @ Dispatch.scala l267
-        end else begin
-          if(tmp_src2_valid_0_1) begin
-            exe_stream_1_src2_data = rs2_ret_data_0; // @ Dispatch.scala l270
-          end else begin
-            exe_stream_1_src2_data = rs2_arf_data_0; // @ Dispatch.scala l273
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
     end else begin
-<<<<<<< HEAD
       if((dis_src_1_iss_pkg_micro_op_uop_com_src2_is_imm && (dis_src_1_iss_pkg_exe_sel != ExeSelEnum_LSU))) begin
         exe_stream_1_src2_data = dis_src_1_iss_pkg_imm; // @ Dispatch.scala l295
       end else begin
@@ -15897,25 +13825,12 @@ module Dispatch (
             exe_stream_1_src2_data = rs2_ret_data_1; // @ Dispatch.scala l301
           end else begin
             exe_stream_1_src2_data = rs2_arf_data_1; // @ Dispatch.scala l304
-=======
-      if(dis_src_1_iss_pkg_micro_op_uop_com_src2_is_imm) begin
-        exe_stream_1_src2_data = dis_src_1_iss_pkg_imm; // @ Dispatch.scala l278
-      end else begin
-        if(tmp_src2_valid_1) begin
-          exe_stream_1_src2_data = rs2_wbc_data_1; // @ Dispatch.scala l281
-        end else begin
-          if(tmp_src2_valid_1_1) begin
-            exe_stream_1_src2_data = rs2_ret_data_1; // @ Dispatch.scala l284
-          end else begin
-            exe_stream_1_src2_data = rs2_arf_data_1; // @ Dispatch.scala l287
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
     end
   end
 
-<<<<<<< HEAD
   assign exe_stream_2_valid = ((exe_sel_valid_0[2] || (exe_sel_valid_1[2] && (dis_src_0_ready || (! dis_src_0_valid)))) && commit_fifo_ready); // @ Dispatch.scala l243
   assign tmp_exe_stream_2_uop_com_rd_wen = exe_sel_valid_0[2]; // @ BaseType.scala l305
   assign exe_stream_2_uop_com_rd_wen = (tmp_exe_stream_2_uop_com_rd_wen ? dis_src_0_iss_pkg_micro_op_uop_com_rd_wen : dis_src_1_iss_pkg_micro_op_uop_com_rd_wen); // @ Dispatch.scala l244
@@ -15965,57 +13880,6 @@ module Dispatch (
           exe_stream_2_src1_data = rs1_ret_data_1; // @ Dispatch.scala l272
         end else begin
           exe_stream_2_src1_data = rs1_arf_data_1; // @ Dispatch.scala l275
-=======
-  assign exe_stream_2_valid = ((exe_sel_valid_0[2] || (exe_sel_valid_1[2] && dis_src_0_ready)) && commit_fifo_ready); // @ Dispatch.scala l226
-  assign tmp_exe_stream_2_uop_com_rd_wen = exe_sel_valid_0[2]; // @ BaseType.scala l305
-  assign exe_stream_2_uop_com_rd_wen = (tmp_exe_stream_2_uop_com_rd_wen ? dis_src_0_iss_pkg_micro_op_uop_com_rd_wen : dis_src_1_iss_pkg_micro_op_uop_com_rd_wen); // @ Dispatch.scala l227
-  assign exe_stream_2_uop_com_src2_is_imm = (tmp_exe_stream_2_uop_com_rd_wen ? dis_src_0_iss_pkg_micro_op_uop_com_src2_is_imm : dis_src_1_iss_pkg_micro_op_uop_com_src2_is_imm); // @ Dispatch.scala l227
-  assign exe_stream_2_rd_addr = (exe_sel_valid_0[2] ? dis_src_0_iss_pkg_rd_addr : dis_src_1_iss_pkg_rd_addr); // @ Dispatch.scala l228
-  assign exe_stream_2_pc = (exe_sel_valid_0[2] ? dis_src_0_iss_pkg_pc : dis_src_1_iss_pkg_pc); // @ Dispatch.scala l229
-  assign exe_stream_2_instr = (exe_sel_valid_0[2] ? dis_src_0_iss_pkg_instr : dis_src_1_iss_pkg_instr); // @ Dispatch.scala l230
-  assign exe_stream_2_tail_adr = (((exe_sel_valid_1[2] && dis_older_vld) && dis_newer_vld) ? tail_adr_newer : tail_adr_older); // @ Dispatch.scala l231
-  assign tmp_exe_stream_2_uop_alu_alu_is_word = exe_sel_valid_0[2]; // @ BaseType.scala l305
-  assign tmp_exe_stream_2_uop_alu_alu_ctrl_op = (tmp_exe_stream_2_uop_alu_alu_is_word ? dis_src_0_iss_pkg_micro_op_uop_alu_alu_ctrl_op : dis_src_1_iss_pkg_micro_op_uop_alu_alu_ctrl_op); // @ Expression.scala l1431
-  assign exe_stream_2_uop_alu_alu_ctrl_op = tmp_exe_stream_2_uop_alu_alu_ctrl_op; // @ Dispatch.scala l232
-  assign exe_stream_2_uop_alu_alu_is_word = (tmp_exe_stream_2_uop_alu_alu_is_word ? dis_src_0_iss_pkg_micro_op_uop_alu_alu_is_word : dis_src_1_iss_pkg_micro_op_uop_alu_alu_is_word); // @ Dispatch.scala l232
-  assign exe_stream_2_imm = (exe_sel_valid_0[2] ? dis_src_0_iss_pkg_imm : dis_src_1_iss_pkg_imm); // @ Dispatch.scala l233
-  assign tmp_exe_stream_2_uop_bju_bju_rd_eq_rs1 = exe_sel_valid_0[2]; // @ BaseType.scala l305
-  assign tmp_exe_stream_2_uop_bju_bju_ctrl_op = (tmp_exe_stream_2_uop_bju_bju_rd_eq_rs1 ? dis_src_0_iss_pkg_micro_op_uop_bju_bju_ctrl_op : dis_src_1_iss_pkg_micro_op_uop_bju_bju_ctrl_op); // @ Expression.scala l1431
-  assign tmp_exe_stream_2_uop_bju_exp_ctrl_op = (tmp_exe_stream_2_uop_bju_bju_rd_eq_rs1 ? dis_src_0_iss_pkg_micro_op_uop_bju_exp_ctrl_op : dis_src_1_iss_pkg_micro_op_uop_bju_exp_ctrl_op); // @ Expression.scala l1431
-  assign exe_stream_2_uop_bju_bju_ctrl_op = tmp_exe_stream_2_uop_bju_bju_ctrl_op; // @ Dispatch.scala l234
-  assign exe_stream_2_uop_bju_bju_rd_eq_rs1 = (tmp_exe_stream_2_uop_bju_bju_rd_eq_rs1 ? dis_src_0_iss_pkg_micro_op_uop_bju_bju_rd_eq_rs1 : dis_src_1_iss_pkg_micro_op_uop_bju_bju_rd_eq_rs1); // @ Dispatch.scala l234
-  assign exe_stream_2_uop_bju_bju_rd_is_link = (tmp_exe_stream_2_uop_bju_bju_rd_eq_rs1 ? dis_src_0_iss_pkg_micro_op_uop_bju_bju_rd_is_link : dis_src_1_iss_pkg_micro_op_uop_bju_bju_rd_is_link); // @ Dispatch.scala l234
-  assign exe_stream_2_uop_bju_bju_rs1_is_link = (tmp_exe_stream_2_uop_bju_bju_rd_eq_rs1 ? dis_src_0_iss_pkg_micro_op_uop_bju_bju_rs1_is_link : dis_src_1_iss_pkg_micro_op_uop_bju_bju_rs1_is_link); // @ Dispatch.scala l234
-  assign exe_stream_2_uop_bju_exp_ctrl_op = tmp_exe_stream_2_uop_bju_exp_ctrl_op; // @ Dispatch.scala l234
-  assign exe_stream_2_uop_bju_exp_csr_addr = (tmp_exe_stream_2_uop_bju_bju_rd_eq_rs1 ? dis_src_0_iss_pkg_micro_op_uop_bju_exp_csr_addr : dis_src_1_iss_pkg_micro_op_uop_bju_exp_csr_addr); // @ Dispatch.scala l234
-  assign exe_stream_2_uop_bju_exp_csr_wen = (tmp_exe_stream_2_uop_bju_bju_rd_eq_rs1 ? dis_src_0_iss_pkg_micro_op_uop_bju_exp_csr_wen : dis_src_1_iss_pkg_micro_op_uop_bju_exp_csr_wen); // @ Dispatch.scala l234
-  assign exe_stream_2_branch_pc = (exe_sel_valid_0[2] ? dis_src_0_iss_pkg_branch_pc : dis_src_1_iss_pkg_branch_pc); // @ Dispatch.scala l235
-  assign exe_stream_2_branch_taken = (exe_sel_valid_0[2] ? dis_src_0_iss_pkg_branch_taken : dis_src_1_iss_pkg_branch_taken); // @ Dispatch.scala l236
-  assign tmp_exe_stream_2_uop_lsu_lsu_is_load = exe_sel_valid_0[2]; // @ BaseType.scala l305
-  assign tmp_exe_stream_2_uop_lsu_lsu_ctrl_op = (tmp_exe_stream_2_uop_lsu_lsu_is_load ? dis_src_0_iss_pkg_micro_op_uop_lsu_lsu_ctrl_op : dis_src_1_iss_pkg_micro_op_uop_lsu_lsu_ctrl_op); // @ Expression.scala l1431
-  assign exe_stream_2_uop_lsu_lsu_ctrl_op = tmp_exe_stream_2_uop_lsu_lsu_ctrl_op; // @ Dispatch.scala l237
-  assign exe_stream_2_uop_lsu_lsu_is_load = (tmp_exe_stream_2_uop_lsu_lsu_is_load ? dis_src_0_iss_pkg_micro_op_uop_lsu_lsu_is_load : dis_src_1_iss_pkg_micro_op_uop_lsu_lsu_is_load); // @ Dispatch.scala l237
-  assign exe_stream_2_uop_lsu_lsu_is_store = (tmp_exe_stream_2_uop_lsu_lsu_is_load ? dis_src_0_iss_pkg_micro_op_uop_lsu_lsu_is_store : dis_src_1_iss_pkg_micro_op_uop_lsu_lsu_is_store); // @ Dispatch.scala l237
-  always @(*) begin
-    if(exe_sel_valid_0[2]) begin
-      if(tmp_src1_valid_0) begin
-        exe_stream_2_src1_data = rs1_wbc_data_0; // @ Dispatch.scala l241
-      end else begin
-        if(tmp_src1_valid_0_1) begin
-          exe_stream_2_src1_data = rs1_ret_data_0; // @ Dispatch.scala l244
-        end else begin
-          exe_stream_2_src1_data = rs1_arf_data_0; // @ Dispatch.scala l247
-        end
-      end
-    end else begin
-      if(tmp_src1_valid_1) begin
-        exe_stream_2_src1_data = rs1_wbc_data_1; // @ Dispatch.scala l252
-      end else begin
-        if(tmp_src1_valid_1_1) begin
-          exe_stream_2_src1_data = rs1_ret_data_1; // @ Dispatch.scala l255
-        end else begin
-          exe_stream_2_src1_data = rs1_arf_data_1; // @ Dispatch.scala l258
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
         end
       end
     end
@@ -16023,7 +13887,6 @@ module Dispatch (
 
   always @(*) begin
     if(exe_sel_valid_0[2]) begin
-<<<<<<< HEAD
       if((dis_src_0_iss_pkg_micro_op_uop_com_src2_is_imm && (dis_src_0_iss_pkg_exe_sel != ExeSelEnum_LSU))) begin
         exe_stream_2_src2_data = dis_src_0_iss_pkg_imm; // @ Dispatch.scala l281
       end else begin
@@ -16034,23 +13897,10 @@ module Dispatch (
             exe_stream_2_src2_data = rs2_ret_data_0; // @ Dispatch.scala l287
           end else begin
             exe_stream_2_src2_data = rs2_arf_data_0; // @ Dispatch.scala l290
-=======
-      if(dis_src_0_iss_pkg_micro_op_uop_com_src2_is_imm) begin
-        exe_stream_2_src2_data = dis_src_0_iss_pkg_imm; // @ Dispatch.scala l264
-      end else begin
-        if(tmp_src2_valid_0) begin
-          exe_stream_2_src2_data = rs2_wbc_data_0; // @ Dispatch.scala l267
-        end else begin
-          if(tmp_src2_valid_0_1) begin
-            exe_stream_2_src2_data = rs2_ret_data_0; // @ Dispatch.scala l270
-          end else begin
-            exe_stream_2_src2_data = rs2_arf_data_0; // @ Dispatch.scala l273
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
     end else begin
-<<<<<<< HEAD
       if((dis_src_1_iss_pkg_micro_op_uop_com_src2_is_imm && (dis_src_1_iss_pkg_exe_sel != ExeSelEnum_LSU))) begin
         exe_stream_2_src2_data = dis_src_1_iss_pkg_imm; // @ Dispatch.scala l295
       end else begin
@@ -16061,25 +13911,12 @@ module Dispatch (
             exe_stream_2_src2_data = rs2_ret_data_1; // @ Dispatch.scala l301
           end else begin
             exe_stream_2_src2_data = rs2_arf_data_1; // @ Dispatch.scala l304
-=======
-      if(dis_src_1_iss_pkg_micro_op_uop_com_src2_is_imm) begin
-        exe_stream_2_src2_data = dis_src_1_iss_pkg_imm; // @ Dispatch.scala l278
-      end else begin
-        if(tmp_src2_valid_1) begin
-          exe_stream_2_src2_data = rs2_wbc_data_1; // @ Dispatch.scala l281
-        end else begin
-          if(tmp_src2_valid_1_1) begin
-            exe_stream_2_src2_data = rs2_ret_data_1; // @ Dispatch.scala l284
-          end else begin
-            exe_stream_2_src2_data = rs2_arf_data_1; // @ Dispatch.scala l287
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
     end
   end
 
-<<<<<<< HEAD
   assign exe_stream_3_valid = ((exe_sel_valid_0[3] || (exe_sel_valid_1[3] && (dis_src_0_ready || (! dis_src_0_valid)))) && commit_fifo_ready); // @ Dispatch.scala l243
   assign tmp_exe_stream_3_uop_com_rd_wen = exe_sel_valid_0[3]; // @ BaseType.scala l305
   assign exe_stream_3_uop_com_rd_wen = (tmp_exe_stream_3_uop_com_rd_wen ? dis_src_0_iss_pkg_micro_op_uop_com_rd_wen : dis_src_1_iss_pkg_micro_op_uop_com_rd_wen); // @ Dispatch.scala l244
@@ -16129,57 +13966,6 @@ module Dispatch (
           exe_stream_3_src1_data = rs1_ret_data_1; // @ Dispatch.scala l272
         end else begin
           exe_stream_3_src1_data = rs1_arf_data_1; // @ Dispatch.scala l275
-=======
-  assign exe_stream_3_valid = ((exe_sel_valid_0[3] || (exe_sel_valid_1[3] && dis_src_0_ready)) && commit_fifo_ready); // @ Dispatch.scala l226
-  assign tmp_exe_stream_3_uop_com_rd_wen = exe_sel_valid_0[3]; // @ BaseType.scala l305
-  assign exe_stream_3_uop_com_rd_wen = (tmp_exe_stream_3_uop_com_rd_wen ? dis_src_0_iss_pkg_micro_op_uop_com_rd_wen : dis_src_1_iss_pkg_micro_op_uop_com_rd_wen); // @ Dispatch.scala l227
-  assign exe_stream_3_uop_com_src2_is_imm = (tmp_exe_stream_3_uop_com_rd_wen ? dis_src_0_iss_pkg_micro_op_uop_com_src2_is_imm : dis_src_1_iss_pkg_micro_op_uop_com_src2_is_imm); // @ Dispatch.scala l227
-  assign exe_stream_3_rd_addr = (exe_sel_valid_0[3] ? dis_src_0_iss_pkg_rd_addr : dis_src_1_iss_pkg_rd_addr); // @ Dispatch.scala l228
-  assign exe_stream_3_pc = (exe_sel_valid_0[3] ? dis_src_0_iss_pkg_pc : dis_src_1_iss_pkg_pc); // @ Dispatch.scala l229
-  assign exe_stream_3_instr = (exe_sel_valid_0[3] ? dis_src_0_iss_pkg_instr : dis_src_1_iss_pkg_instr); // @ Dispatch.scala l230
-  assign exe_stream_3_tail_adr = (((exe_sel_valid_1[3] && dis_older_vld) && dis_newer_vld) ? tail_adr_newer : tail_adr_older); // @ Dispatch.scala l231
-  assign tmp_exe_stream_3_uop_alu_alu_is_word = exe_sel_valid_0[3]; // @ BaseType.scala l305
-  assign tmp_exe_stream_3_uop_alu_alu_ctrl_op = (tmp_exe_stream_3_uop_alu_alu_is_word ? dis_src_0_iss_pkg_micro_op_uop_alu_alu_ctrl_op : dis_src_1_iss_pkg_micro_op_uop_alu_alu_ctrl_op); // @ Expression.scala l1431
-  assign exe_stream_3_uop_alu_alu_ctrl_op = tmp_exe_stream_3_uop_alu_alu_ctrl_op; // @ Dispatch.scala l232
-  assign exe_stream_3_uop_alu_alu_is_word = (tmp_exe_stream_3_uop_alu_alu_is_word ? dis_src_0_iss_pkg_micro_op_uop_alu_alu_is_word : dis_src_1_iss_pkg_micro_op_uop_alu_alu_is_word); // @ Dispatch.scala l232
-  assign exe_stream_3_imm = (exe_sel_valid_0[3] ? dis_src_0_iss_pkg_imm : dis_src_1_iss_pkg_imm); // @ Dispatch.scala l233
-  assign tmp_exe_stream_3_uop_bju_bju_rd_eq_rs1 = exe_sel_valid_0[3]; // @ BaseType.scala l305
-  assign tmp_exe_stream_3_uop_bju_bju_ctrl_op = (tmp_exe_stream_3_uop_bju_bju_rd_eq_rs1 ? dis_src_0_iss_pkg_micro_op_uop_bju_bju_ctrl_op : dis_src_1_iss_pkg_micro_op_uop_bju_bju_ctrl_op); // @ Expression.scala l1431
-  assign tmp_exe_stream_3_uop_bju_exp_ctrl_op = (tmp_exe_stream_3_uop_bju_bju_rd_eq_rs1 ? dis_src_0_iss_pkg_micro_op_uop_bju_exp_ctrl_op : dis_src_1_iss_pkg_micro_op_uop_bju_exp_ctrl_op); // @ Expression.scala l1431
-  assign exe_stream_3_uop_bju_bju_ctrl_op = tmp_exe_stream_3_uop_bju_bju_ctrl_op; // @ Dispatch.scala l234
-  assign exe_stream_3_uop_bju_bju_rd_eq_rs1 = (tmp_exe_stream_3_uop_bju_bju_rd_eq_rs1 ? dis_src_0_iss_pkg_micro_op_uop_bju_bju_rd_eq_rs1 : dis_src_1_iss_pkg_micro_op_uop_bju_bju_rd_eq_rs1); // @ Dispatch.scala l234
-  assign exe_stream_3_uop_bju_bju_rd_is_link = (tmp_exe_stream_3_uop_bju_bju_rd_eq_rs1 ? dis_src_0_iss_pkg_micro_op_uop_bju_bju_rd_is_link : dis_src_1_iss_pkg_micro_op_uop_bju_bju_rd_is_link); // @ Dispatch.scala l234
-  assign exe_stream_3_uop_bju_bju_rs1_is_link = (tmp_exe_stream_3_uop_bju_bju_rd_eq_rs1 ? dis_src_0_iss_pkg_micro_op_uop_bju_bju_rs1_is_link : dis_src_1_iss_pkg_micro_op_uop_bju_bju_rs1_is_link); // @ Dispatch.scala l234
-  assign exe_stream_3_uop_bju_exp_ctrl_op = tmp_exe_stream_3_uop_bju_exp_ctrl_op; // @ Dispatch.scala l234
-  assign exe_stream_3_uop_bju_exp_csr_addr = (tmp_exe_stream_3_uop_bju_bju_rd_eq_rs1 ? dis_src_0_iss_pkg_micro_op_uop_bju_exp_csr_addr : dis_src_1_iss_pkg_micro_op_uop_bju_exp_csr_addr); // @ Dispatch.scala l234
-  assign exe_stream_3_uop_bju_exp_csr_wen = (tmp_exe_stream_3_uop_bju_bju_rd_eq_rs1 ? dis_src_0_iss_pkg_micro_op_uop_bju_exp_csr_wen : dis_src_1_iss_pkg_micro_op_uop_bju_exp_csr_wen); // @ Dispatch.scala l234
-  assign exe_stream_3_branch_pc = (exe_sel_valid_0[3] ? dis_src_0_iss_pkg_branch_pc : dis_src_1_iss_pkg_branch_pc); // @ Dispatch.scala l235
-  assign exe_stream_3_branch_taken = (exe_sel_valid_0[3] ? dis_src_0_iss_pkg_branch_taken : dis_src_1_iss_pkg_branch_taken); // @ Dispatch.scala l236
-  assign tmp_exe_stream_3_uop_lsu_lsu_is_load = exe_sel_valid_0[3]; // @ BaseType.scala l305
-  assign tmp_exe_stream_3_uop_lsu_lsu_ctrl_op = (tmp_exe_stream_3_uop_lsu_lsu_is_load ? dis_src_0_iss_pkg_micro_op_uop_lsu_lsu_ctrl_op : dis_src_1_iss_pkg_micro_op_uop_lsu_lsu_ctrl_op); // @ Expression.scala l1431
-  assign exe_stream_3_uop_lsu_lsu_ctrl_op = tmp_exe_stream_3_uop_lsu_lsu_ctrl_op; // @ Dispatch.scala l237
-  assign exe_stream_3_uop_lsu_lsu_is_load = (tmp_exe_stream_3_uop_lsu_lsu_is_load ? dis_src_0_iss_pkg_micro_op_uop_lsu_lsu_is_load : dis_src_1_iss_pkg_micro_op_uop_lsu_lsu_is_load); // @ Dispatch.scala l237
-  assign exe_stream_3_uop_lsu_lsu_is_store = (tmp_exe_stream_3_uop_lsu_lsu_is_load ? dis_src_0_iss_pkg_micro_op_uop_lsu_lsu_is_store : dis_src_1_iss_pkg_micro_op_uop_lsu_lsu_is_store); // @ Dispatch.scala l237
-  always @(*) begin
-    if(exe_sel_valid_0[3]) begin
-      if(tmp_src1_valid_0) begin
-        exe_stream_3_src1_data = rs1_wbc_data_0; // @ Dispatch.scala l241
-      end else begin
-        if(tmp_src1_valid_0_1) begin
-          exe_stream_3_src1_data = rs1_ret_data_0; // @ Dispatch.scala l244
-        end else begin
-          exe_stream_3_src1_data = rs1_arf_data_0; // @ Dispatch.scala l247
-        end
-      end
-    end else begin
-      if(tmp_src1_valid_1) begin
-        exe_stream_3_src1_data = rs1_wbc_data_1; // @ Dispatch.scala l252
-      end else begin
-        if(tmp_src1_valid_1_1) begin
-          exe_stream_3_src1_data = rs1_ret_data_1; // @ Dispatch.scala l255
-        end else begin
-          exe_stream_3_src1_data = rs1_arf_data_1; // @ Dispatch.scala l258
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
         end
       end
     end
@@ -16187,7 +13973,6 @@ module Dispatch (
 
   always @(*) begin
     if(exe_sel_valid_0[3]) begin
-<<<<<<< HEAD
       if((dis_src_0_iss_pkg_micro_op_uop_com_src2_is_imm && (dis_src_0_iss_pkg_exe_sel != ExeSelEnum_LSU))) begin
         exe_stream_3_src2_data = dis_src_0_iss_pkg_imm; // @ Dispatch.scala l281
       end else begin
@@ -16198,23 +13983,10 @@ module Dispatch (
             exe_stream_3_src2_data = rs2_ret_data_0; // @ Dispatch.scala l287
           end else begin
             exe_stream_3_src2_data = rs2_arf_data_0; // @ Dispatch.scala l290
-=======
-      if(dis_src_0_iss_pkg_micro_op_uop_com_src2_is_imm) begin
-        exe_stream_3_src2_data = dis_src_0_iss_pkg_imm; // @ Dispatch.scala l264
-      end else begin
-        if(tmp_src2_valid_0) begin
-          exe_stream_3_src2_data = rs2_wbc_data_0; // @ Dispatch.scala l267
-        end else begin
-          if(tmp_src2_valid_0_1) begin
-            exe_stream_3_src2_data = rs2_ret_data_0; // @ Dispatch.scala l270
-          end else begin
-            exe_stream_3_src2_data = rs2_arf_data_0; // @ Dispatch.scala l273
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
     end else begin
-<<<<<<< HEAD
       if((dis_src_1_iss_pkg_micro_op_uop_com_src2_is_imm && (dis_src_1_iss_pkg_exe_sel != ExeSelEnum_LSU))) begin
         exe_stream_3_src2_data = dis_src_1_iss_pkg_imm; // @ Dispatch.scala l295
       end else begin
@@ -16225,25 +13997,12 @@ module Dispatch (
             exe_stream_3_src2_data = rs2_ret_data_1; // @ Dispatch.scala l301
           end else begin
             exe_stream_3_src2_data = rs2_arf_data_1; // @ Dispatch.scala l304
-=======
-      if(dis_src_1_iss_pkg_micro_op_uop_com_src2_is_imm) begin
-        exe_stream_3_src2_data = dis_src_1_iss_pkg_imm; // @ Dispatch.scala l278
-      end else begin
-        if(tmp_src2_valid_1) begin
-          exe_stream_3_src2_data = rs2_wbc_data_1; // @ Dispatch.scala l281
-        end else begin
-          if(tmp_src2_valid_1_1) begin
-            exe_stream_3_src2_data = rs2_ret_data_1; // @ Dispatch.scala l284
-          end else begin
-            exe_stream_3_src2_data = rs2_arf_data_1; // @ Dispatch.scala l287
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
     end
   end
 
-<<<<<<< HEAD
   assign exe_stream_4_valid = ((exe_sel_valid_0[4] || (exe_sel_valid_1[4] && (dis_src_0_ready || (! dis_src_0_valid)))) && commit_fifo_ready); // @ Dispatch.scala l243
   assign tmp_exe_stream_4_uop_com_rd_wen = exe_sel_valid_0[4]; // @ BaseType.scala l305
   assign exe_stream_4_uop_com_rd_wen = (tmp_exe_stream_4_uop_com_rd_wen ? dis_src_0_iss_pkg_micro_op_uop_com_rd_wen : dis_src_1_iss_pkg_micro_op_uop_com_rd_wen); // @ Dispatch.scala l244
@@ -16293,57 +14052,6 @@ module Dispatch (
           exe_stream_4_src1_data = rs1_ret_data_1; // @ Dispatch.scala l272
         end else begin
           exe_stream_4_src1_data = rs1_arf_data_1; // @ Dispatch.scala l275
-=======
-  assign exe_stream_4_valid = ((exe_sel_valid_0[4] || (exe_sel_valid_1[4] && dis_src_0_ready)) && commit_fifo_ready); // @ Dispatch.scala l226
-  assign tmp_exe_stream_4_uop_com_rd_wen = exe_sel_valid_0[4]; // @ BaseType.scala l305
-  assign exe_stream_4_uop_com_rd_wen = (tmp_exe_stream_4_uop_com_rd_wen ? dis_src_0_iss_pkg_micro_op_uop_com_rd_wen : dis_src_1_iss_pkg_micro_op_uop_com_rd_wen); // @ Dispatch.scala l227
-  assign exe_stream_4_uop_com_src2_is_imm = (tmp_exe_stream_4_uop_com_rd_wen ? dis_src_0_iss_pkg_micro_op_uop_com_src2_is_imm : dis_src_1_iss_pkg_micro_op_uop_com_src2_is_imm); // @ Dispatch.scala l227
-  assign exe_stream_4_rd_addr = (exe_sel_valid_0[4] ? dis_src_0_iss_pkg_rd_addr : dis_src_1_iss_pkg_rd_addr); // @ Dispatch.scala l228
-  assign exe_stream_4_pc = (exe_sel_valid_0[4] ? dis_src_0_iss_pkg_pc : dis_src_1_iss_pkg_pc); // @ Dispatch.scala l229
-  assign exe_stream_4_instr = (exe_sel_valid_0[4] ? dis_src_0_iss_pkg_instr : dis_src_1_iss_pkg_instr); // @ Dispatch.scala l230
-  assign exe_stream_4_tail_adr = (((exe_sel_valid_1[4] && dis_older_vld) && dis_newer_vld) ? tail_adr_newer : tail_adr_older); // @ Dispatch.scala l231
-  assign tmp_exe_stream_4_uop_alu_alu_is_word = exe_sel_valid_0[4]; // @ BaseType.scala l305
-  assign tmp_exe_stream_4_uop_alu_alu_ctrl_op = (tmp_exe_stream_4_uop_alu_alu_is_word ? dis_src_0_iss_pkg_micro_op_uop_alu_alu_ctrl_op : dis_src_1_iss_pkg_micro_op_uop_alu_alu_ctrl_op); // @ Expression.scala l1431
-  assign exe_stream_4_uop_alu_alu_ctrl_op = tmp_exe_stream_4_uop_alu_alu_ctrl_op; // @ Dispatch.scala l232
-  assign exe_stream_4_uop_alu_alu_is_word = (tmp_exe_stream_4_uop_alu_alu_is_word ? dis_src_0_iss_pkg_micro_op_uop_alu_alu_is_word : dis_src_1_iss_pkg_micro_op_uop_alu_alu_is_word); // @ Dispatch.scala l232
-  assign exe_stream_4_imm = (exe_sel_valid_0[4] ? dis_src_0_iss_pkg_imm : dis_src_1_iss_pkg_imm); // @ Dispatch.scala l233
-  assign tmp_exe_stream_4_uop_bju_bju_rd_eq_rs1 = exe_sel_valid_0[4]; // @ BaseType.scala l305
-  assign tmp_exe_stream_4_uop_bju_bju_ctrl_op = (tmp_exe_stream_4_uop_bju_bju_rd_eq_rs1 ? dis_src_0_iss_pkg_micro_op_uop_bju_bju_ctrl_op : dis_src_1_iss_pkg_micro_op_uop_bju_bju_ctrl_op); // @ Expression.scala l1431
-  assign tmp_exe_stream_4_uop_bju_exp_ctrl_op = (tmp_exe_stream_4_uop_bju_bju_rd_eq_rs1 ? dis_src_0_iss_pkg_micro_op_uop_bju_exp_ctrl_op : dis_src_1_iss_pkg_micro_op_uop_bju_exp_ctrl_op); // @ Expression.scala l1431
-  assign exe_stream_4_uop_bju_bju_ctrl_op = tmp_exe_stream_4_uop_bju_bju_ctrl_op; // @ Dispatch.scala l234
-  assign exe_stream_4_uop_bju_bju_rd_eq_rs1 = (tmp_exe_stream_4_uop_bju_bju_rd_eq_rs1 ? dis_src_0_iss_pkg_micro_op_uop_bju_bju_rd_eq_rs1 : dis_src_1_iss_pkg_micro_op_uop_bju_bju_rd_eq_rs1); // @ Dispatch.scala l234
-  assign exe_stream_4_uop_bju_bju_rd_is_link = (tmp_exe_stream_4_uop_bju_bju_rd_eq_rs1 ? dis_src_0_iss_pkg_micro_op_uop_bju_bju_rd_is_link : dis_src_1_iss_pkg_micro_op_uop_bju_bju_rd_is_link); // @ Dispatch.scala l234
-  assign exe_stream_4_uop_bju_bju_rs1_is_link = (tmp_exe_stream_4_uop_bju_bju_rd_eq_rs1 ? dis_src_0_iss_pkg_micro_op_uop_bju_bju_rs1_is_link : dis_src_1_iss_pkg_micro_op_uop_bju_bju_rs1_is_link); // @ Dispatch.scala l234
-  assign exe_stream_4_uop_bju_exp_ctrl_op = tmp_exe_stream_4_uop_bju_exp_ctrl_op; // @ Dispatch.scala l234
-  assign exe_stream_4_uop_bju_exp_csr_addr = (tmp_exe_stream_4_uop_bju_bju_rd_eq_rs1 ? dis_src_0_iss_pkg_micro_op_uop_bju_exp_csr_addr : dis_src_1_iss_pkg_micro_op_uop_bju_exp_csr_addr); // @ Dispatch.scala l234
-  assign exe_stream_4_uop_bju_exp_csr_wen = (tmp_exe_stream_4_uop_bju_bju_rd_eq_rs1 ? dis_src_0_iss_pkg_micro_op_uop_bju_exp_csr_wen : dis_src_1_iss_pkg_micro_op_uop_bju_exp_csr_wen); // @ Dispatch.scala l234
-  assign exe_stream_4_branch_pc = (exe_sel_valid_0[4] ? dis_src_0_iss_pkg_branch_pc : dis_src_1_iss_pkg_branch_pc); // @ Dispatch.scala l235
-  assign exe_stream_4_branch_taken = (exe_sel_valid_0[4] ? dis_src_0_iss_pkg_branch_taken : dis_src_1_iss_pkg_branch_taken); // @ Dispatch.scala l236
-  assign tmp_exe_stream_4_uop_lsu_lsu_is_load = exe_sel_valid_0[4]; // @ BaseType.scala l305
-  assign tmp_exe_stream_4_uop_lsu_lsu_ctrl_op = (tmp_exe_stream_4_uop_lsu_lsu_is_load ? dis_src_0_iss_pkg_micro_op_uop_lsu_lsu_ctrl_op : dis_src_1_iss_pkg_micro_op_uop_lsu_lsu_ctrl_op); // @ Expression.scala l1431
-  assign exe_stream_4_uop_lsu_lsu_ctrl_op = tmp_exe_stream_4_uop_lsu_lsu_ctrl_op; // @ Dispatch.scala l237
-  assign exe_stream_4_uop_lsu_lsu_is_load = (tmp_exe_stream_4_uop_lsu_lsu_is_load ? dis_src_0_iss_pkg_micro_op_uop_lsu_lsu_is_load : dis_src_1_iss_pkg_micro_op_uop_lsu_lsu_is_load); // @ Dispatch.scala l237
-  assign exe_stream_4_uop_lsu_lsu_is_store = (tmp_exe_stream_4_uop_lsu_lsu_is_load ? dis_src_0_iss_pkg_micro_op_uop_lsu_lsu_is_store : dis_src_1_iss_pkg_micro_op_uop_lsu_lsu_is_store); // @ Dispatch.scala l237
-  always @(*) begin
-    if(exe_sel_valid_0[4]) begin
-      if(tmp_src1_valid_0) begin
-        exe_stream_4_src1_data = rs1_wbc_data_0; // @ Dispatch.scala l241
-      end else begin
-        if(tmp_src1_valid_0_1) begin
-          exe_stream_4_src1_data = rs1_ret_data_0; // @ Dispatch.scala l244
-        end else begin
-          exe_stream_4_src1_data = rs1_arf_data_0; // @ Dispatch.scala l247
-        end
-      end
-    end else begin
-      if(tmp_src1_valid_1) begin
-        exe_stream_4_src1_data = rs1_wbc_data_1; // @ Dispatch.scala l252
-      end else begin
-        if(tmp_src1_valid_1_1) begin
-          exe_stream_4_src1_data = rs1_ret_data_1; // @ Dispatch.scala l255
-        end else begin
-          exe_stream_4_src1_data = rs1_arf_data_1; // @ Dispatch.scala l258
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
         end
       end
     end
@@ -16351,7 +14059,6 @@ module Dispatch (
 
   always @(*) begin
     if(exe_sel_valid_0[4]) begin
-<<<<<<< HEAD
       if((dis_src_0_iss_pkg_micro_op_uop_com_src2_is_imm && (dis_src_0_iss_pkg_exe_sel != ExeSelEnum_LSU))) begin
         exe_stream_4_src2_data = dis_src_0_iss_pkg_imm; // @ Dispatch.scala l281
       end else begin
@@ -16362,23 +14069,10 @@ module Dispatch (
             exe_stream_4_src2_data = rs2_ret_data_0; // @ Dispatch.scala l287
           end else begin
             exe_stream_4_src2_data = rs2_arf_data_0; // @ Dispatch.scala l290
-=======
-      if(dis_src_0_iss_pkg_micro_op_uop_com_src2_is_imm) begin
-        exe_stream_4_src2_data = dis_src_0_iss_pkg_imm; // @ Dispatch.scala l264
-      end else begin
-        if(tmp_src2_valid_0) begin
-          exe_stream_4_src2_data = rs2_wbc_data_0; // @ Dispatch.scala l267
-        end else begin
-          if(tmp_src2_valid_0_1) begin
-            exe_stream_4_src2_data = rs2_ret_data_0; // @ Dispatch.scala l270
-          end else begin
-            exe_stream_4_src2_data = rs2_arf_data_0; // @ Dispatch.scala l273
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
     end else begin
-<<<<<<< HEAD
       if((dis_src_1_iss_pkg_micro_op_uop_com_src2_is_imm && (dis_src_1_iss_pkg_exe_sel != ExeSelEnum_LSU))) begin
         exe_stream_4_src2_data = dis_src_1_iss_pkg_imm; // @ Dispatch.scala l295
       end else begin
@@ -16389,25 +14083,12 @@ module Dispatch (
             exe_stream_4_src2_data = rs2_ret_data_1; // @ Dispatch.scala l301
           end else begin
             exe_stream_4_src2_data = rs2_arf_data_1; // @ Dispatch.scala l304
-=======
-      if(dis_src_1_iss_pkg_micro_op_uop_com_src2_is_imm) begin
-        exe_stream_4_src2_data = dis_src_1_iss_pkg_imm; // @ Dispatch.scala l278
-      end else begin
-        if(tmp_src2_valid_1) begin
-          exe_stream_4_src2_data = rs2_wbc_data_1; // @ Dispatch.scala l281
-        end else begin
-          if(tmp_src2_valid_1_1) begin
-            exe_stream_4_src2_data = rs2_ret_data_1; // @ Dispatch.scala l284
-          end else begin
-            exe_stream_4_src2_data = rs2_arf_data_1; // @ Dispatch.scala l287
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
     end
   end
 
-<<<<<<< HEAD
   assign bju_stream_uop_com_rd_wen = exe_stream_0_uop_com_rd_wen; // @ Dispatch.scala l309
   assign bju_stream_uop_com_src2_is_imm = exe_stream_0_uop_com_src2_is_imm; // @ Dispatch.scala l309
   assign bju_stream_src1_data = exe_stream_0_src1_data; // @ Dispatch.scala l309
@@ -16478,78 +14159,6 @@ module Dispatch (
   assign exe_stream_2_ready = al2_stream_ready; // @ Dispatch.scala l323
   assign exe_stream_3_ready = div_stream_ready; // @ Dispatch.scala l324
   assign exe_stream_4_ready = lsu_stream_ready; // @ Dispatch.scala l325
-=======
-  assign bju_stream_uop_com_rd_wen = exe_stream_0_uop_com_rd_wen; // @ Dispatch.scala l292
-  assign bju_stream_uop_com_src2_is_imm = exe_stream_0_uop_com_src2_is_imm; // @ Dispatch.scala l292
-  assign bju_stream_src1_data = exe_stream_0_src1_data; // @ Dispatch.scala l292
-  assign bju_stream_src2_data = exe_stream_0_src2_data; // @ Dispatch.scala l292
-  assign bju_stream_rd_addr = exe_stream_0_rd_addr; // @ Dispatch.scala l292
-  assign bju_stream_pc = exe_stream_0_pc; // @ Dispatch.scala l292
-  assign bju_stream_instr = exe_stream_0_instr; // @ Dispatch.scala l292
-  assign bju_stream_tail_adr = exe_stream_0_tail_adr; // @ Dispatch.scala l292
-  assign bju_stream_imm = exe_stream_0_imm; // @ Dispatch.scala l292
-  assign bju_stream_uop_bju_bju_ctrl_op = exe_stream_0_uop_bju_bju_ctrl_op; // @ Dispatch.scala l292
-  assign bju_stream_uop_bju_bju_rd_eq_rs1 = exe_stream_0_uop_bju_bju_rd_eq_rs1; // @ Dispatch.scala l292
-  assign bju_stream_uop_bju_bju_rd_is_link = exe_stream_0_uop_bju_bju_rd_is_link; // @ Dispatch.scala l292
-  assign bju_stream_uop_bju_bju_rs1_is_link = exe_stream_0_uop_bju_bju_rs1_is_link; // @ Dispatch.scala l292
-  assign bju_stream_uop_bju_exp_ctrl_op = exe_stream_0_uop_bju_exp_ctrl_op; // @ Dispatch.scala l292
-  assign bju_stream_uop_bju_exp_csr_addr = exe_stream_0_uop_bju_exp_csr_addr; // @ Dispatch.scala l292
-  assign bju_stream_uop_bju_exp_csr_wen = exe_stream_0_uop_bju_exp_csr_wen; // @ Dispatch.scala l292
-  assign bju_stream_branch_pc = exe_stream_0_branch_pc; // @ Dispatch.scala l292
-  assign bju_stream_branch_taken = exe_stream_0_branch_taken; // @ Dispatch.scala l292
-  assign al1_stream_uop_com_rd_wen = exe_stream_1_uop_com_rd_wen; // @ Dispatch.scala l293
-  assign al1_stream_uop_com_src2_is_imm = exe_stream_1_uop_com_src2_is_imm; // @ Dispatch.scala l293
-  assign al1_stream_src1_data = exe_stream_1_src1_data; // @ Dispatch.scala l293
-  assign al1_stream_src2_data = exe_stream_1_src2_data; // @ Dispatch.scala l293
-  assign al1_stream_rd_addr = exe_stream_1_rd_addr; // @ Dispatch.scala l293
-  assign al1_stream_pc = exe_stream_1_pc; // @ Dispatch.scala l293
-  assign al1_stream_instr = exe_stream_1_instr; // @ Dispatch.scala l293
-  assign al1_stream_tail_adr = exe_stream_1_tail_adr; // @ Dispatch.scala l293
-  assign al1_stream_uop_alu_alu_ctrl_op = exe_stream_1_uop_alu_alu_ctrl_op; // @ Dispatch.scala l293
-  assign al1_stream_uop_alu_alu_is_word = exe_stream_1_uop_alu_alu_is_word; // @ Dispatch.scala l293
-  assign al2_stream_uop_com_rd_wen = exe_stream_2_uop_com_rd_wen; // @ Dispatch.scala l294
-  assign al2_stream_uop_com_src2_is_imm = exe_stream_2_uop_com_src2_is_imm; // @ Dispatch.scala l294
-  assign al2_stream_src1_data = exe_stream_2_src1_data; // @ Dispatch.scala l294
-  assign al2_stream_src2_data = exe_stream_2_src2_data; // @ Dispatch.scala l294
-  assign al2_stream_rd_addr = exe_stream_2_rd_addr; // @ Dispatch.scala l294
-  assign al2_stream_pc = exe_stream_2_pc; // @ Dispatch.scala l294
-  assign al2_stream_instr = exe_stream_2_instr; // @ Dispatch.scala l294
-  assign al2_stream_tail_adr = exe_stream_2_tail_adr; // @ Dispatch.scala l294
-  assign al2_stream_uop_alu_alu_ctrl_op = exe_stream_2_uop_alu_alu_ctrl_op; // @ Dispatch.scala l294
-  assign al2_stream_uop_alu_alu_is_word = exe_stream_2_uop_alu_alu_is_word; // @ Dispatch.scala l294
-  assign div_stream_uop_com_rd_wen = exe_stream_3_uop_com_rd_wen; // @ Dispatch.scala l295
-  assign div_stream_uop_com_src2_is_imm = exe_stream_3_uop_com_src2_is_imm; // @ Dispatch.scala l295
-  assign div_stream_src1_data = exe_stream_3_src1_data; // @ Dispatch.scala l295
-  assign div_stream_src2_data = exe_stream_3_src2_data; // @ Dispatch.scala l295
-  assign div_stream_rd_addr = exe_stream_3_rd_addr; // @ Dispatch.scala l295
-  assign div_stream_pc = exe_stream_3_pc; // @ Dispatch.scala l295
-  assign div_stream_instr = exe_stream_3_instr; // @ Dispatch.scala l295
-  assign div_stream_tail_adr = exe_stream_3_tail_adr; // @ Dispatch.scala l295
-  assign div_stream_uop_alu_alu_ctrl_op = exe_stream_3_uop_alu_alu_ctrl_op; // @ Dispatch.scala l295
-  assign div_stream_uop_alu_alu_is_word = exe_stream_3_uop_alu_alu_is_word; // @ Dispatch.scala l295
-  assign lsu_stream_uop_com_rd_wen = exe_stream_4_uop_com_rd_wen; // @ Dispatch.scala l296
-  assign lsu_stream_uop_com_src2_is_imm = exe_stream_4_uop_com_src2_is_imm; // @ Dispatch.scala l296
-  assign lsu_stream_src1_data = exe_stream_4_src1_data; // @ Dispatch.scala l296
-  assign lsu_stream_src2_data = exe_stream_4_src2_data; // @ Dispatch.scala l296
-  assign lsu_stream_rd_addr = exe_stream_4_rd_addr; // @ Dispatch.scala l296
-  assign lsu_stream_pc = exe_stream_4_pc; // @ Dispatch.scala l296
-  assign lsu_stream_instr = exe_stream_4_instr; // @ Dispatch.scala l296
-  assign lsu_stream_tail_adr = exe_stream_4_tail_adr; // @ Dispatch.scala l296
-  assign lsu_stream_imm = exe_stream_4_imm; // @ Dispatch.scala l296
-  assign lsu_stream_uop_lsu_lsu_ctrl_op = exe_stream_4_uop_lsu_lsu_ctrl_op; // @ Dispatch.scala l296
-  assign lsu_stream_uop_lsu_lsu_is_load = exe_stream_4_uop_lsu_lsu_is_load; // @ Dispatch.scala l296
-  assign lsu_stream_uop_lsu_lsu_is_store = exe_stream_4_uop_lsu_lsu_is_store; // @ Dispatch.scala l296
-  assign bju_stream_valid = exe_stream_0_valid; // @ Dispatch.scala l298
-  assign al1_stream_valid = exe_stream_1_valid; // @ Dispatch.scala l299
-  assign al2_stream_valid = exe_stream_2_valid; // @ Dispatch.scala l300
-  assign div_stream_valid = exe_stream_3_valid; // @ Dispatch.scala l301
-  assign lsu_stream_valid = exe_stream_4_valid; // @ Dispatch.scala l302
-  assign exe_stream_0_ready = bju_stream_ready; // @ Dispatch.scala l304
-  assign exe_stream_1_ready = al1_stream_ready; // @ Dispatch.scala l305
-  assign exe_stream_2_ready = al2_stream_ready; // @ Dispatch.scala l306
-  assign exe_stream_3_ready = div_stream_ready; // @ Dispatch.scala l307
-  assign exe_stream_4_ready = lsu_stream_ready; // @ Dispatch.scala l308
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
   always @(*) begin
     bju_stream_ready = bju_stream_m2sPipe_ready; // @ Stream.scala l367
     if((! bju_stream_m2sPipe_valid)) begin
@@ -16720,17 +14329,10 @@ module Dispatch (
   assign dis_to_lsu_uop_lsu_lsu_ctrl_op = lsu_stream_m2sPipe_uop_lsu_lsu_ctrl_op; // @ Stream.scala l296
   assign dis_to_lsu_uop_lsu_lsu_is_load = lsu_stream_m2sPipe_uop_lsu_lsu_is_load; // @ Stream.scala l296
   assign dis_to_lsu_uop_lsu_lsu_is_store = lsu_stream_m2sPipe_uop_lsu_lsu_is_store; // @ Stream.scala l296
-<<<<<<< HEAD
   assign read_regfile_0_rs1_addr = rs1_addr_0; // @ Dispatch.scala l334
   assign read_regfile_0_rs2_addr = rs2_addr_0; // @ Dispatch.scala l335
   assign read_regfile_1_rs1_addr = rs1_addr_1; // @ Dispatch.scala l336
   assign read_regfile_1_rs2_addr = rs2_addr_1; // @ Dispatch.scala l337
-=======
-  assign read_regfile_0_rs1_addr = rs1_addr_0; // @ Dispatch.scala l317
-  assign read_regfile_0_rs2_addr = rs2_addr_0; // @ Dispatch.scala l318
-  assign read_regfile_1_rs1_addr = rs1_addr_0; // @ Dispatch.scala l319
-  assign read_regfile_1_rs2_addr = rs2_addr_0; // @ Dispatch.scala l320
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
   always @(posedge clk or posedge reset) begin
     if(reset) begin
       entry_sel_0 <= 5'h0; // @ Data.scala l400
@@ -16899,7 +14501,6 @@ module Dispatch (
       div_stream_rValid <= 1'b0; // @ Data.scala l400
       lsu_stream_rValid <= 1'b0; // @ Data.scala l400
     end else begin
-<<<<<<< HEAD
       entry_sel_0 <= 5'h0; // @ Dispatch.scala l141
       entry_arf_0 <= 1'b1; // @ Dispatch.scala l142
       entry_exe_0 <= 1'b0; // @ Dispatch.scala l143
@@ -16913,25 +14514,10 @@ module Dispatch (
         end else begin
           if(((dis_src_1_fire_1 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h01))) begin
             entry_sel_1 <= exe_sel_valid_1; // @ Dispatch.scala l180
-=======
-      entry_sel_0 <= 5'h0; // @ Dispatch.scala l140
-      entry_arf_0 <= 1'b1; // @ Dispatch.scala l141
-      entry_wbc_0 <= 1'b0; // @ Dispatch.scala l142
-      entry_ret_0 <= 1'b0; // @ Dispatch.scala l143
-      if(flush) begin
-        entry_sel_1 <= 5'h0; // @ Dispatch.scala l168
-      end else begin
-        if(((dis_src_0_fire_1 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h01))) begin
-          entry_sel_1 <= exe_sel_valid_0; // @ Dispatch.scala l171
-        end else begin
-          if(((dis_src_1_fire_1 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h01))) begin
-            entry_sel_1 <= exe_sel_valid_1; // @ Dispatch.scala l174
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_arf_1 <= 1'b1; // @ Dispatch.scala l185
       end else begin
         if(entry_dis_fire_1) begin
@@ -16950,20 +14536,10 @@ module Dispatch (
         end else begin
           if(entry_exe_fire_1) begin
             entry_exe_1 <= 1'b0; // @ Dispatch.scala l202
-=======
-        entry_arf_1 <= 1'b1; // @ Dispatch.scala l179
-      end else begin
-        if(entry_dis_fire_1) begin
-          entry_arf_1 <= 1'b0; // @ Dispatch.scala l182
-        end else begin
-          if(entry_ret_fire_1) begin
-            entry_arf_1 <= 1'b1; // @ Dispatch.scala l185
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_wbc_1 <= 1'b0; // @ Dispatch.scala l207
       end else begin
         if(entry_exe_fire_1) begin
@@ -16971,20 +14547,10 @@ module Dispatch (
         end else begin
           if(entry_wbc_fire_1) begin
             entry_wbc_1 <= 1'b0; // @ Dispatch.scala l213
-=======
-        entry_wbc_1 <= 1'b0; // @ Dispatch.scala l190
-      end else begin
-        if(entry_exe_fire_1) begin
-          entry_wbc_1 <= 1'b1; // @ Dispatch.scala l193
-        end else begin
-          if(entry_wbc_fire_1) begin
-            entry_wbc_1 <= 1'b0; // @ Dispatch.scala l196
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_ret_1 <= 1'b0; // @ Dispatch.scala l218
       end else begin
         if(entry_wbc_fire_1) begin
@@ -16992,20 +14558,10 @@ module Dispatch (
         end else begin
           if(entry_ret_fire_1) begin
             entry_ret_1 <= 1'b0; // @ Dispatch.scala l224
-=======
-        entry_ret_1 <= 1'b0; // @ Dispatch.scala l201
-      end else begin
-        if(entry_wbc_fire_1) begin
-          entry_ret_1 <= 1'b1; // @ Dispatch.scala l204
-        end else begin
-          if(entry_ret_fire_1) begin
-            entry_ret_1 <= 1'b0; // @ Dispatch.scala l207
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_sel_2 <= 5'h0; // @ Dispatch.scala l174
       end else begin
         if(((dis_src_0_fire_3 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h02))) begin
@@ -17013,20 +14569,10 @@ module Dispatch (
         end else begin
           if(((dis_src_1_fire_3 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h02))) begin
             entry_sel_2 <= exe_sel_valid_1; // @ Dispatch.scala l180
-=======
-        entry_sel_2 <= 5'h0; // @ Dispatch.scala l168
-      end else begin
-        if(((dis_src_0_fire_3 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h02))) begin
-          entry_sel_2 <= exe_sel_valid_0; // @ Dispatch.scala l171
-        end else begin
-          if(((dis_src_1_fire_3 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h02))) begin
-            entry_sel_2 <= exe_sel_valid_1; // @ Dispatch.scala l174
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_arf_2 <= 1'b1; // @ Dispatch.scala l185
       end else begin
         if(entry_dis_fire_2) begin
@@ -17045,20 +14591,10 @@ module Dispatch (
         end else begin
           if(entry_exe_fire_2) begin
             entry_exe_2 <= 1'b0; // @ Dispatch.scala l202
-=======
-        entry_arf_2 <= 1'b1; // @ Dispatch.scala l179
-      end else begin
-        if(entry_dis_fire_2) begin
-          entry_arf_2 <= 1'b0; // @ Dispatch.scala l182
-        end else begin
-          if(entry_ret_fire_2) begin
-            entry_arf_2 <= 1'b1; // @ Dispatch.scala l185
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_wbc_2 <= 1'b0; // @ Dispatch.scala l207
       end else begin
         if(entry_exe_fire_2) begin
@@ -17066,20 +14602,10 @@ module Dispatch (
         end else begin
           if(entry_wbc_fire_2) begin
             entry_wbc_2 <= 1'b0; // @ Dispatch.scala l213
-=======
-        entry_wbc_2 <= 1'b0; // @ Dispatch.scala l190
-      end else begin
-        if(entry_exe_fire_2) begin
-          entry_wbc_2 <= 1'b1; // @ Dispatch.scala l193
-        end else begin
-          if(entry_wbc_fire_2) begin
-            entry_wbc_2 <= 1'b0; // @ Dispatch.scala l196
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_ret_2 <= 1'b0; // @ Dispatch.scala l218
       end else begin
         if(entry_wbc_fire_2) begin
@@ -17087,20 +14613,10 @@ module Dispatch (
         end else begin
           if(entry_ret_fire_2) begin
             entry_ret_2 <= 1'b0; // @ Dispatch.scala l224
-=======
-        entry_ret_2 <= 1'b0; // @ Dispatch.scala l201
-      end else begin
-        if(entry_wbc_fire_2) begin
-          entry_ret_2 <= 1'b1; // @ Dispatch.scala l204
-        end else begin
-          if(entry_ret_fire_2) begin
-            entry_ret_2 <= 1'b0; // @ Dispatch.scala l207
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_sel_3 <= 5'h0; // @ Dispatch.scala l174
       end else begin
         if(((dis_src_0_fire_5 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h03))) begin
@@ -17108,20 +14624,10 @@ module Dispatch (
         end else begin
           if(((dis_src_1_fire_5 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h03))) begin
             entry_sel_3 <= exe_sel_valid_1; // @ Dispatch.scala l180
-=======
-        entry_sel_3 <= 5'h0; // @ Dispatch.scala l168
-      end else begin
-        if(((dis_src_0_fire_5 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h03))) begin
-          entry_sel_3 <= exe_sel_valid_0; // @ Dispatch.scala l171
-        end else begin
-          if(((dis_src_1_fire_5 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h03))) begin
-            entry_sel_3 <= exe_sel_valid_1; // @ Dispatch.scala l174
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_arf_3 <= 1'b1; // @ Dispatch.scala l185
       end else begin
         if(entry_dis_fire_3) begin
@@ -17140,20 +14646,10 @@ module Dispatch (
         end else begin
           if(entry_exe_fire_3) begin
             entry_exe_3 <= 1'b0; // @ Dispatch.scala l202
-=======
-        entry_arf_3 <= 1'b1; // @ Dispatch.scala l179
-      end else begin
-        if(entry_dis_fire_3) begin
-          entry_arf_3 <= 1'b0; // @ Dispatch.scala l182
-        end else begin
-          if(entry_ret_fire_3) begin
-            entry_arf_3 <= 1'b1; // @ Dispatch.scala l185
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_wbc_3 <= 1'b0; // @ Dispatch.scala l207
       end else begin
         if(entry_exe_fire_3) begin
@@ -17161,20 +14657,10 @@ module Dispatch (
         end else begin
           if(entry_wbc_fire_3) begin
             entry_wbc_3 <= 1'b0; // @ Dispatch.scala l213
-=======
-        entry_wbc_3 <= 1'b0; // @ Dispatch.scala l190
-      end else begin
-        if(entry_exe_fire_3) begin
-          entry_wbc_3 <= 1'b1; // @ Dispatch.scala l193
-        end else begin
-          if(entry_wbc_fire_3) begin
-            entry_wbc_3 <= 1'b0; // @ Dispatch.scala l196
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_ret_3 <= 1'b0; // @ Dispatch.scala l218
       end else begin
         if(entry_wbc_fire_3) begin
@@ -17182,20 +14668,10 @@ module Dispatch (
         end else begin
           if(entry_ret_fire_3) begin
             entry_ret_3 <= 1'b0; // @ Dispatch.scala l224
-=======
-        entry_ret_3 <= 1'b0; // @ Dispatch.scala l201
-      end else begin
-        if(entry_wbc_fire_3) begin
-          entry_ret_3 <= 1'b1; // @ Dispatch.scala l204
-        end else begin
-          if(entry_ret_fire_3) begin
-            entry_ret_3 <= 1'b0; // @ Dispatch.scala l207
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_sel_4 <= 5'h0; // @ Dispatch.scala l174
       end else begin
         if(((dis_src_0_fire_7 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h04))) begin
@@ -17203,20 +14679,10 @@ module Dispatch (
         end else begin
           if(((dis_src_1_fire_7 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h04))) begin
             entry_sel_4 <= exe_sel_valid_1; // @ Dispatch.scala l180
-=======
-        entry_sel_4 <= 5'h0; // @ Dispatch.scala l168
-      end else begin
-        if(((dis_src_0_fire_7 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h04))) begin
-          entry_sel_4 <= exe_sel_valid_0; // @ Dispatch.scala l171
-        end else begin
-          if(((dis_src_1_fire_7 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h04))) begin
-            entry_sel_4 <= exe_sel_valid_1; // @ Dispatch.scala l174
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_arf_4 <= 1'b1; // @ Dispatch.scala l185
       end else begin
         if(entry_dis_fire_4) begin
@@ -17235,20 +14701,10 @@ module Dispatch (
         end else begin
           if(entry_exe_fire_4) begin
             entry_exe_4 <= 1'b0; // @ Dispatch.scala l202
-=======
-        entry_arf_4 <= 1'b1; // @ Dispatch.scala l179
-      end else begin
-        if(entry_dis_fire_4) begin
-          entry_arf_4 <= 1'b0; // @ Dispatch.scala l182
-        end else begin
-          if(entry_ret_fire_4) begin
-            entry_arf_4 <= 1'b1; // @ Dispatch.scala l185
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_wbc_4 <= 1'b0; // @ Dispatch.scala l207
       end else begin
         if(entry_exe_fire_4) begin
@@ -17256,20 +14712,10 @@ module Dispatch (
         end else begin
           if(entry_wbc_fire_4) begin
             entry_wbc_4 <= 1'b0; // @ Dispatch.scala l213
-=======
-        entry_wbc_4 <= 1'b0; // @ Dispatch.scala l190
-      end else begin
-        if(entry_exe_fire_4) begin
-          entry_wbc_4 <= 1'b1; // @ Dispatch.scala l193
-        end else begin
-          if(entry_wbc_fire_4) begin
-            entry_wbc_4 <= 1'b0; // @ Dispatch.scala l196
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_ret_4 <= 1'b0; // @ Dispatch.scala l218
       end else begin
         if(entry_wbc_fire_4) begin
@@ -17277,20 +14723,10 @@ module Dispatch (
         end else begin
           if(entry_ret_fire_4) begin
             entry_ret_4 <= 1'b0; // @ Dispatch.scala l224
-=======
-        entry_ret_4 <= 1'b0; // @ Dispatch.scala l201
-      end else begin
-        if(entry_wbc_fire_4) begin
-          entry_ret_4 <= 1'b1; // @ Dispatch.scala l204
-        end else begin
-          if(entry_ret_fire_4) begin
-            entry_ret_4 <= 1'b0; // @ Dispatch.scala l207
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_sel_5 <= 5'h0; // @ Dispatch.scala l174
       end else begin
         if(((dis_src_0_fire_9 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h05))) begin
@@ -17298,20 +14734,10 @@ module Dispatch (
         end else begin
           if(((dis_src_1_fire_9 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h05))) begin
             entry_sel_5 <= exe_sel_valid_1; // @ Dispatch.scala l180
-=======
-        entry_sel_5 <= 5'h0; // @ Dispatch.scala l168
-      end else begin
-        if(((dis_src_0_fire_9 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h05))) begin
-          entry_sel_5 <= exe_sel_valid_0; // @ Dispatch.scala l171
-        end else begin
-          if(((dis_src_1_fire_9 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h05))) begin
-            entry_sel_5 <= exe_sel_valid_1; // @ Dispatch.scala l174
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_arf_5 <= 1'b1; // @ Dispatch.scala l185
       end else begin
         if(entry_dis_fire_5) begin
@@ -17330,20 +14756,10 @@ module Dispatch (
         end else begin
           if(entry_exe_fire_5) begin
             entry_exe_5 <= 1'b0; // @ Dispatch.scala l202
-=======
-        entry_arf_5 <= 1'b1; // @ Dispatch.scala l179
-      end else begin
-        if(entry_dis_fire_5) begin
-          entry_arf_5 <= 1'b0; // @ Dispatch.scala l182
-        end else begin
-          if(entry_ret_fire_5) begin
-            entry_arf_5 <= 1'b1; // @ Dispatch.scala l185
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_wbc_5 <= 1'b0; // @ Dispatch.scala l207
       end else begin
         if(entry_exe_fire_5) begin
@@ -17351,20 +14767,10 @@ module Dispatch (
         end else begin
           if(entry_wbc_fire_5) begin
             entry_wbc_5 <= 1'b0; // @ Dispatch.scala l213
-=======
-        entry_wbc_5 <= 1'b0; // @ Dispatch.scala l190
-      end else begin
-        if(entry_exe_fire_5) begin
-          entry_wbc_5 <= 1'b1; // @ Dispatch.scala l193
-        end else begin
-          if(entry_wbc_fire_5) begin
-            entry_wbc_5 <= 1'b0; // @ Dispatch.scala l196
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_ret_5 <= 1'b0; // @ Dispatch.scala l218
       end else begin
         if(entry_wbc_fire_5) begin
@@ -17372,20 +14778,10 @@ module Dispatch (
         end else begin
           if(entry_ret_fire_5) begin
             entry_ret_5 <= 1'b0; // @ Dispatch.scala l224
-=======
-        entry_ret_5 <= 1'b0; // @ Dispatch.scala l201
-      end else begin
-        if(entry_wbc_fire_5) begin
-          entry_ret_5 <= 1'b1; // @ Dispatch.scala l204
-        end else begin
-          if(entry_ret_fire_5) begin
-            entry_ret_5 <= 1'b0; // @ Dispatch.scala l207
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_sel_6 <= 5'h0; // @ Dispatch.scala l174
       end else begin
         if(((dis_src_0_fire_11 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h06))) begin
@@ -17393,20 +14789,10 @@ module Dispatch (
         end else begin
           if(((dis_src_1_fire_11 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h06))) begin
             entry_sel_6 <= exe_sel_valid_1; // @ Dispatch.scala l180
-=======
-        entry_sel_6 <= 5'h0; // @ Dispatch.scala l168
-      end else begin
-        if(((dis_src_0_fire_11 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h06))) begin
-          entry_sel_6 <= exe_sel_valid_0; // @ Dispatch.scala l171
-        end else begin
-          if(((dis_src_1_fire_11 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h06))) begin
-            entry_sel_6 <= exe_sel_valid_1; // @ Dispatch.scala l174
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_arf_6 <= 1'b1; // @ Dispatch.scala l185
       end else begin
         if(entry_dis_fire_6) begin
@@ -17425,20 +14811,10 @@ module Dispatch (
         end else begin
           if(entry_exe_fire_6) begin
             entry_exe_6 <= 1'b0; // @ Dispatch.scala l202
-=======
-        entry_arf_6 <= 1'b1; // @ Dispatch.scala l179
-      end else begin
-        if(entry_dis_fire_6) begin
-          entry_arf_6 <= 1'b0; // @ Dispatch.scala l182
-        end else begin
-          if(entry_ret_fire_6) begin
-            entry_arf_6 <= 1'b1; // @ Dispatch.scala l185
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_wbc_6 <= 1'b0; // @ Dispatch.scala l207
       end else begin
         if(entry_exe_fire_6) begin
@@ -17446,20 +14822,10 @@ module Dispatch (
         end else begin
           if(entry_wbc_fire_6) begin
             entry_wbc_6 <= 1'b0; // @ Dispatch.scala l213
-=======
-        entry_wbc_6 <= 1'b0; // @ Dispatch.scala l190
-      end else begin
-        if(entry_exe_fire_6) begin
-          entry_wbc_6 <= 1'b1; // @ Dispatch.scala l193
-        end else begin
-          if(entry_wbc_fire_6) begin
-            entry_wbc_6 <= 1'b0; // @ Dispatch.scala l196
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_ret_6 <= 1'b0; // @ Dispatch.scala l218
       end else begin
         if(entry_wbc_fire_6) begin
@@ -17467,20 +14833,10 @@ module Dispatch (
         end else begin
           if(entry_ret_fire_6) begin
             entry_ret_6 <= 1'b0; // @ Dispatch.scala l224
-=======
-        entry_ret_6 <= 1'b0; // @ Dispatch.scala l201
-      end else begin
-        if(entry_wbc_fire_6) begin
-          entry_ret_6 <= 1'b1; // @ Dispatch.scala l204
-        end else begin
-          if(entry_ret_fire_6) begin
-            entry_ret_6 <= 1'b0; // @ Dispatch.scala l207
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_sel_7 <= 5'h0; // @ Dispatch.scala l174
       end else begin
         if(((dis_src_0_fire_13 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h07))) begin
@@ -17488,20 +14844,10 @@ module Dispatch (
         end else begin
           if(((dis_src_1_fire_13 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h07))) begin
             entry_sel_7 <= exe_sel_valid_1; // @ Dispatch.scala l180
-=======
-        entry_sel_7 <= 5'h0; // @ Dispatch.scala l168
-      end else begin
-        if(((dis_src_0_fire_13 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h07))) begin
-          entry_sel_7 <= exe_sel_valid_0; // @ Dispatch.scala l171
-        end else begin
-          if(((dis_src_1_fire_13 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h07))) begin
-            entry_sel_7 <= exe_sel_valid_1; // @ Dispatch.scala l174
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_arf_7 <= 1'b1; // @ Dispatch.scala l185
       end else begin
         if(entry_dis_fire_7) begin
@@ -17509,20 +14855,10 @@ module Dispatch (
         end else begin
           if(entry_ret_fire_7) begin
             entry_arf_7 <= 1'b1; // @ Dispatch.scala l191
-=======
-        entry_arf_7 <= 1'b1; // @ Dispatch.scala l179
-      end else begin
-        if(entry_dis_fire_7) begin
-          entry_arf_7 <= 1'b0; // @ Dispatch.scala l182
-        end else begin
-          if(entry_ret_fire_7) begin
-            entry_arf_7 <= 1'b1; // @ Dispatch.scala l185
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_exe_7 <= 1'b0; // @ Dispatch.scala l196
       end else begin
         if(entry_dis_fire_7) begin
@@ -17541,20 +14877,10 @@ module Dispatch (
         end else begin
           if(entry_wbc_fire_7) begin
             entry_wbc_7 <= 1'b0; // @ Dispatch.scala l213
-=======
-        entry_wbc_7 <= 1'b0; // @ Dispatch.scala l190
-      end else begin
-        if(entry_exe_fire_7) begin
-          entry_wbc_7 <= 1'b1; // @ Dispatch.scala l193
-        end else begin
-          if(entry_wbc_fire_7) begin
-            entry_wbc_7 <= 1'b0; // @ Dispatch.scala l196
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_ret_7 <= 1'b0; // @ Dispatch.scala l218
       end else begin
         if(entry_wbc_fire_7) begin
@@ -17562,20 +14888,10 @@ module Dispatch (
         end else begin
           if(entry_ret_fire_7) begin
             entry_ret_7 <= 1'b0; // @ Dispatch.scala l224
-=======
-        entry_ret_7 <= 1'b0; // @ Dispatch.scala l201
-      end else begin
-        if(entry_wbc_fire_7) begin
-          entry_ret_7 <= 1'b1; // @ Dispatch.scala l204
-        end else begin
-          if(entry_ret_fire_7) begin
-            entry_ret_7 <= 1'b0; // @ Dispatch.scala l207
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_sel_8 <= 5'h0; // @ Dispatch.scala l174
       end else begin
         if(((dis_src_0_fire_15 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h08))) begin
@@ -17583,20 +14899,10 @@ module Dispatch (
         end else begin
           if(((dis_src_1_fire_15 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h08))) begin
             entry_sel_8 <= exe_sel_valid_1; // @ Dispatch.scala l180
-=======
-        entry_sel_8 <= 5'h0; // @ Dispatch.scala l168
-      end else begin
-        if(((dis_src_0_fire_15 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h08))) begin
-          entry_sel_8 <= exe_sel_valid_0; // @ Dispatch.scala l171
-        end else begin
-          if(((dis_src_1_fire_15 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h08))) begin
-            entry_sel_8 <= exe_sel_valid_1; // @ Dispatch.scala l174
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_arf_8 <= 1'b1; // @ Dispatch.scala l185
       end else begin
         if(entry_dis_fire_8) begin
@@ -17615,20 +14921,10 @@ module Dispatch (
         end else begin
           if(entry_exe_fire_8) begin
             entry_exe_8 <= 1'b0; // @ Dispatch.scala l202
-=======
-        entry_arf_8 <= 1'b1; // @ Dispatch.scala l179
-      end else begin
-        if(entry_dis_fire_8) begin
-          entry_arf_8 <= 1'b0; // @ Dispatch.scala l182
-        end else begin
-          if(entry_ret_fire_8) begin
-            entry_arf_8 <= 1'b1; // @ Dispatch.scala l185
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_wbc_8 <= 1'b0; // @ Dispatch.scala l207
       end else begin
         if(entry_exe_fire_8) begin
@@ -17636,20 +14932,10 @@ module Dispatch (
         end else begin
           if(entry_wbc_fire_8) begin
             entry_wbc_8 <= 1'b0; // @ Dispatch.scala l213
-=======
-        entry_wbc_8 <= 1'b0; // @ Dispatch.scala l190
-      end else begin
-        if(entry_exe_fire_8) begin
-          entry_wbc_8 <= 1'b1; // @ Dispatch.scala l193
-        end else begin
-          if(entry_wbc_fire_8) begin
-            entry_wbc_8 <= 1'b0; // @ Dispatch.scala l196
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_ret_8 <= 1'b0; // @ Dispatch.scala l218
       end else begin
         if(entry_wbc_fire_8) begin
@@ -17657,20 +14943,10 @@ module Dispatch (
         end else begin
           if(entry_ret_fire_8) begin
             entry_ret_8 <= 1'b0; // @ Dispatch.scala l224
-=======
-        entry_ret_8 <= 1'b0; // @ Dispatch.scala l201
-      end else begin
-        if(entry_wbc_fire_8) begin
-          entry_ret_8 <= 1'b1; // @ Dispatch.scala l204
-        end else begin
-          if(entry_ret_fire_8) begin
-            entry_ret_8 <= 1'b0; // @ Dispatch.scala l207
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_sel_9 <= 5'h0; // @ Dispatch.scala l174
       end else begin
         if(((dis_src_0_fire_17 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h09))) begin
@@ -17678,20 +14954,10 @@ module Dispatch (
         end else begin
           if(((dis_src_1_fire_17 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h09))) begin
             entry_sel_9 <= exe_sel_valid_1; // @ Dispatch.scala l180
-=======
-        entry_sel_9 <= 5'h0; // @ Dispatch.scala l168
-      end else begin
-        if(((dis_src_0_fire_17 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h09))) begin
-          entry_sel_9 <= exe_sel_valid_0; // @ Dispatch.scala l171
-        end else begin
-          if(((dis_src_1_fire_17 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h09))) begin
-            entry_sel_9 <= exe_sel_valid_1; // @ Dispatch.scala l174
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_arf_9 <= 1'b1; // @ Dispatch.scala l185
       end else begin
         if(entry_dis_fire_9) begin
@@ -17710,20 +14976,10 @@ module Dispatch (
         end else begin
           if(entry_exe_fire_9) begin
             entry_exe_9 <= 1'b0; // @ Dispatch.scala l202
-=======
-        entry_arf_9 <= 1'b1; // @ Dispatch.scala l179
-      end else begin
-        if(entry_dis_fire_9) begin
-          entry_arf_9 <= 1'b0; // @ Dispatch.scala l182
-        end else begin
-          if(entry_ret_fire_9) begin
-            entry_arf_9 <= 1'b1; // @ Dispatch.scala l185
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_wbc_9 <= 1'b0; // @ Dispatch.scala l207
       end else begin
         if(entry_exe_fire_9) begin
@@ -17731,20 +14987,10 @@ module Dispatch (
         end else begin
           if(entry_wbc_fire_9) begin
             entry_wbc_9 <= 1'b0; // @ Dispatch.scala l213
-=======
-        entry_wbc_9 <= 1'b0; // @ Dispatch.scala l190
-      end else begin
-        if(entry_exe_fire_9) begin
-          entry_wbc_9 <= 1'b1; // @ Dispatch.scala l193
-        end else begin
-          if(entry_wbc_fire_9) begin
-            entry_wbc_9 <= 1'b0; // @ Dispatch.scala l196
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_ret_9 <= 1'b0; // @ Dispatch.scala l218
       end else begin
         if(entry_wbc_fire_9) begin
@@ -17752,20 +14998,10 @@ module Dispatch (
         end else begin
           if(entry_ret_fire_9) begin
             entry_ret_9 <= 1'b0; // @ Dispatch.scala l224
-=======
-        entry_ret_9 <= 1'b0; // @ Dispatch.scala l201
-      end else begin
-        if(entry_wbc_fire_9) begin
-          entry_ret_9 <= 1'b1; // @ Dispatch.scala l204
-        end else begin
-          if(entry_ret_fire_9) begin
-            entry_ret_9 <= 1'b0; // @ Dispatch.scala l207
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_sel_10 <= 5'h0; // @ Dispatch.scala l174
       end else begin
         if(((dis_src_0_fire_19 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h0a))) begin
@@ -17773,20 +15009,10 @@ module Dispatch (
         end else begin
           if(((dis_src_1_fire_19 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h0a))) begin
             entry_sel_10 <= exe_sel_valid_1; // @ Dispatch.scala l180
-=======
-        entry_sel_10 <= 5'h0; // @ Dispatch.scala l168
-      end else begin
-        if(((dis_src_0_fire_19 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h0a))) begin
-          entry_sel_10 <= exe_sel_valid_0; // @ Dispatch.scala l171
-        end else begin
-          if(((dis_src_1_fire_19 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h0a))) begin
-            entry_sel_10 <= exe_sel_valid_1; // @ Dispatch.scala l174
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_arf_10 <= 1'b1; // @ Dispatch.scala l185
       end else begin
         if(entry_dis_fire_10) begin
@@ -17805,20 +15031,10 @@ module Dispatch (
         end else begin
           if(entry_exe_fire_10) begin
             entry_exe_10 <= 1'b0; // @ Dispatch.scala l202
-=======
-        entry_arf_10 <= 1'b1; // @ Dispatch.scala l179
-      end else begin
-        if(entry_dis_fire_10) begin
-          entry_arf_10 <= 1'b0; // @ Dispatch.scala l182
-        end else begin
-          if(entry_ret_fire_10) begin
-            entry_arf_10 <= 1'b1; // @ Dispatch.scala l185
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_wbc_10 <= 1'b0; // @ Dispatch.scala l207
       end else begin
         if(entry_exe_fire_10) begin
@@ -17826,20 +15042,10 @@ module Dispatch (
         end else begin
           if(entry_wbc_fire_10) begin
             entry_wbc_10 <= 1'b0; // @ Dispatch.scala l213
-=======
-        entry_wbc_10 <= 1'b0; // @ Dispatch.scala l190
-      end else begin
-        if(entry_exe_fire_10) begin
-          entry_wbc_10 <= 1'b1; // @ Dispatch.scala l193
-        end else begin
-          if(entry_wbc_fire_10) begin
-            entry_wbc_10 <= 1'b0; // @ Dispatch.scala l196
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_ret_10 <= 1'b0; // @ Dispatch.scala l218
       end else begin
         if(entry_wbc_fire_10) begin
@@ -17847,20 +15053,10 @@ module Dispatch (
         end else begin
           if(entry_ret_fire_10) begin
             entry_ret_10 <= 1'b0; // @ Dispatch.scala l224
-=======
-        entry_ret_10 <= 1'b0; // @ Dispatch.scala l201
-      end else begin
-        if(entry_wbc_fire_10) begin
-          entry_ret_10 <= 1'b1; // @ Dispatch.scala l204
-        end else begin
-          if(entry_ret_fire_10) begin
-            entry_ret_10 <= 1'b0; // @ Dispatch.scala l207
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_sel_11 <= 5'h0; // @ Dispatch.scala l174
       end else begin
         if(((dis_src_0_fire_21 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h0b))) begin
@@ -17868,20 +15064,10 @@ module Dispatch (
         end else begin
           if(((dis_src_1_fire_21 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h0b))) begin
             entry_sel_11 <= exe_sel_valid_1; // @ Dispatch.scala l180
-=======
-        entry_sel_11 <= 5'h0; // @ Dispatch.scala l168
-      end else begin
-        if(((dis_src_0_fire_21 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h0b))) begin
-          entry_sel_11 <= exe_sel_valid_0; // @ Dispatch.scala l171
-        end else begin
-          if(((dis_src_1_fire_21 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h0b))) begin
-            entry_sel_11 <= exe_sel_valid_1; // @ Dispatch.scala l174
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_arf_11 <= 1'b1; // @ Dispatch.scala l185
       end else begin
         if(entry_dis_fire_11) begin
@@ -17900,20 +15086,10 @@ module Dispatch (
         end else begin
           if(entry_exe_fire_11) begin
             entry_exe_11 <= 1'b0; // @ Dispatch.scala l202
-=======
-        entry_arf_11 <= 1'b1; // @ Dispatch.scala l179
-      end else begin
-        if(entry_dis_fire_11) begin
-          entry_arf_11 <= 1'b0; // @ Dispatch.scala l182
-        end else begin
-          if(entry_ret_fire_11) begin
-            entry_arf_11 <= 1'b1; // @ Dispatch.scala l185
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_wbc_11 <= 1'b0; // @ Dispatch.scala l207
       end else begin
         if(entry_exe_fire_11) begin
@@ -17921,20 +15097,10 @@ module Dispatch (
         end else begin
           if(entry_wbc_fire_11) begin
             entry_wbc_11 <= 1'b0; // @ Dispatch.scala l213
-=======
-        entry_wbc_11 <= 1'b0; // @ Dispatch.scala l190
-      end else begin
-        if(entry_exe_fire_11) begin
-          entry_wbc_11 <= 1'b1; // @ Dispatch.scala l193
-        end else begin
-          if(entry_wbc_fire_11) begin
-            entry_wbc_11 <= 1'b0; // @ Dispatch.scala l196
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_ret_11 <= 1'b0; // @ Dispatch.scala l218
       end else begin
         if(entry_wbc_fire_11) begin
@@ -17942,20 +15108,10 @@ module Dispatch (
         end else begin
           if(entry_ret_fire_11) begin
             entry_ret_11 <= 1'b0; // @ Dispatch.scala l224
-=======
-        entry_ret_11 <= 1'b0; // @ Dispatch.scala l201
-      end else begin
-        if(entry_wbc_fire_11) begin
-          entry_ret_11 <= 1'b1; // @ Dispatch.scala l204
-        end else begin
-          if(entry_ret_fire_11) begin
-            entry_ret_11 <= 1'b0; // @ Dispatch.scala l207
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_sel_12 <= 5'h0; // @ Dispatch.scala l174
       end else begin
         if(((dis_src_0_fire_23 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h0c))) begin
@@ -17963,20 +15119,10 @@ module Dispatch (
         end else begin
           if(((dis_src_1_fire_23 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h0c))) begin
             entry_sel_12 <= exe_sel_valid_1; // @ Dispatch.scala l180
-=======
-        entry_sel_12 <= 5'h0; // @ Dispatch.scala l168
-      end else begin
-        if(((dis_src_0_fire_23 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h0c))) begin
-          entry_sel_12 <= exe_sel_valid_0; // @ Dispatch.scala l171
-        end else begin
-          if(((dis_src_1_fire_23 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h0c))) begin
-            entry_sel_12 <= exe_sel_valid_1; // @ Dispatch.scala l174
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_arf_12 <= 1'b1; // @ Dispatch.scala l185
       end else begin
         if(entry_dis_fire_12) begin
@@ -17995,20 +15141,10 @@ module Dispatch (
         end else begin
           if(entry_exe_fire_12) begin
             entry_exe_12 <= 1'b0; // @ Dispatch.scala l202
-=======
-        entry_arf_12 <= 1'b1; // @ Dispatch.scala l179
-      end else begin
-        if(entry_dis_fire_12) begin
-          entry_arf_12 <= 1'b0; // @ Dispatch.scala l182
-        end else begin
-          if(entry_ret_fire_12) begin
-            entry_arf_12 <= 1'b1; // @ Dispatch.scala l185
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_wbc_12 <= 1'b0; // @ Dispatch.scala l207
       end else begin
         if(entry_exe_fire_12) begin
@@ -18016,20 +15152,10 @@ module Dispatch (
         end else begin
           if(entry_wbc_fire_12) begin
             entry_wbc_12 <= 1'b0; // @ Dispatch.scala l213
-=======
-        entry_wbc_12 <= 1'b0; // @ Dispatch.scala l190
-      end else begin
-        if(entry_exe_fire_12) begin
-          entry_wbc_12 <= 1'b1; // @ Dispatch.scala l193
-        end else begin
-          if(entry_wbc_fire_12) begin
-            entry_wbc_12 <= 1'b0; // @ Dispatch.scala l196
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_ret_12 <= 1'b0; // @ Dispatch.scala l218
       end else begin
         if(entry_wbc_fire_12) begin
@@ -18037,20 +15163,10 @@ module Dispatch (
         end else begin
           if(entry_ret_fire_12) begin
             entry_ret_12 <= 1'b0; // @ Dispatch.scala l224
-=======
-        entry_ret_12 <= 1'b0; // @ Dispatch.scala l201
-      end else begin
-        if(entry_wbc_fire_12) begin
-          entry_ret_12 <= 1'b1; // @ Dispatch.scala l204
-        end else begin
-          if(entry_ret_fire_12) begin
-            entry_ret_12 <= 1'b0; // @ Dispatch.scala l207
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_sel_13 <= 5'h0; // @ Dispatch.scala l174
       end else begin
         if(((dis_src_0_fire_25 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h0d))) begin
@@ -18058,20 +15174,10 @@ module Dispatch (
         end else begin
           if(((dis_src_1_fire_25 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h0d))) begin
             entry_sel_13 <= exe_sel_valid_1; // @ Dispatch.scala l180
-=======
-        entry_sel_13 <= 5'h0; // @ Dispatch.scala l168
-      end else begin
-        if(((dis_src_0_fire_25 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h0d))) begin
-          entry_sel_13 <= exe_sel_valid_0; // @ Dispatch.scala l171
-        end else begin
-          if(((dis_src_1_fire_25 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h0d))) begin
-            entry_sel_13 <= exe_sel_valid_1; // @ Dispatch.scala l174
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_arf_13 <= 1'b1; // @ Dispatch.scala l185
       end else begin
         if(entry_dis_fire_13) begin
@@ -18090,20 +15196,10 @@ module Dispatch (
         end else begin
           if(entry_exe_fire_13) begin
             entry_exe_13 <= 1'b0; // @ Dispatch.scala l202
-=======
-        entry_arf_13 <= 1'b1; // @ Dispatch.scala l179
-      end else begin
-        if(entry_dis_fire_13) begin
-          entry_arf_13 <= 1'b0; // @ Dispatch.scala l182
-        end else begin
-          if(entry_ret_fire_13) begin
-            entry_arf_13 <= 1'b1; // @ Dispatch.scala l185
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_wbc_13 <= 1'b0; // @ Dispatch.scala l207
       end else begin
         if(entry_exe_fire_13) begin
@@ -18111,20 +15207,10 @@ module Dispatch (
         end else begin
           if(entry_wbc_fire_13) begin
             entry_wbc_13 <= 1'b0; // @ Dispatch.scala l213
-=======
-        entry_wbc_13 <= 1'b0; // @ Dispatch.scala l190
-      end else begin
-        if(entry_exe_fire_13) begin
-          entry_wbc_13 <= 1'b1; // @ Dispatch.scala l193
-        end else begin
-          if(entry_wbc_fire_13) begin
-            entry_wbc_13 <= 1'b0; // @ Dispatch.scala l196
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_ret_13 <= 1'b0; // @ Dispatch.scala l218
       end else begin
         if(entry_wbc_fire_13) begin
@@ -18132,20 +15218,10 @@ module Dispatch (
         end else begin
           if(entry_ret_fire_13) begin
             entry_ret_13 <= 1'b0; // @ Dispatch.scala l224
-=======
-        entry_ret_13 <= 1'b0; // @ Dispatch.scala l201
-      end else begin
-        if(entry_wbc_fire_13) begin
-          entry_ret_13 <= 1'b1; // @ Dispatch.scala l204
-        end else begin
-          if(entry_ret_fire_13) begin
-            entry_ret_13 <= 1'b0; // @ Dispatch.scala l207
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_sel_14 <= 5'h0; // @ Dispatch.scala l174
       end else begin
         if(((dis_src_0_fire_27 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h0e))) begin
@@ -18153,20 +15229,10 @@ module Dispatch (
         end else begin
           if(((dis_src_1_fire_27 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h0e))) begin
             entry_sel_14 <= exe_sel_valid_1; // @ Dispatch.scala l180
-=======
-        entry_sel_14 <= 5'h0; // @ Dispatch.scala l168
-      end else begin
-        if(((dis_src_0_fire_27 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h0e))) begin
-          entry_sel_14 <= exe_sel_valid_0; // @ Dispatch.scala l171
-        end else begin
-          if(((dis_src_1_fire_27 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h0e))) begin
-            entry_sel_14 <= exe_sel_valid_1; // @ Dispatch.scala l174
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_arf_14 <= 1'b1; // @ Dispatch.scala l185
       end else begin
         if(entry_dis_fire_14) begin
@@ -18185,20 +15251,10 @@ module Dispatch (
         end else begin
           if(entry_exe_fire_14) begin
             entry_exe_14 <= 1'b0; // @ Dispatch.scala l202
-=======
-        entry_arf_14 <= 1'b1; // @ Dispatch.scala l179
-      end else begin
-        if(entry_dis_fire_14) begin
-          entry_arf_14 <= 1'b0; // @ Dispatch.scala l182
-        end else begin
-          if(entry_ret_fire_14) begin
-            entry_arf_14 <= 1'b1; // @ Dispatch.scala l185
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_wbc_14 <= 1'b0; // @ Dispatch.scala l207
       end else begin
         if(entry_exe_fire_14) begin
@@ -18206,20 +15262,10 @@ module Dispatch (
         end else begin
           if(entry_wbc_fire_14) begin
             entry_wbc_14 <= 1'b0; // @ Dispatch.scala l213
-=======
-        entry_wbc_14 <= 1'b0; // @ Dispatch.scala l190
-      end else begin
-        if(entry_exe_fire_14) begin
-          entry_wbc_14 <= 1'b1; // @ Dispatch.scala l193
-        end else begin
-          if(entry_wbc_fire_14) begin
-            entry_wbc_14 <= 1'b0; // @ Dispatch.scala l196
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_ret_14 <= 1'b0; // @ Dispatch.scala l218
       end else begin
         if(entry_wbc_fire_14) begin
@@ -18227,20 +15273,10 @@ module Dispatch (
         end else begin
           if(entry_ret_fire_14) begin
             entry_ret_14 <= 1'b0; // @ Dispatch.scala l224
-=======
-        entry_ret_14 <= 1'b0; // @ Dispatch.scala l201
-      end else begin
-        if(entry_wbc_fire_14) begin
-          entry_ret_14 <= 1'b1; // @ Dispatch.scala l204
-        end else begin
-          if(entry_ret_fire_14) begin
-            entry_ret_14 <= 1'b0; // @ Dispatch.scala l207
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_sel_15 <= 5'h0; // @ Dispatch.scala l174
       end else begin
         if(((dis_src_0_fire_29 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h0f))) begin
@@ -18248,20 +15284,10 @@ module Dispatch (
         end else begin
           if(((dis_src_1_fire_29 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h0f))) begin
             entry_sel_15 <= exe_sel_valid_1; // @ Dispatch.scala l180
-=======
-        entry_sel_15 <= 5'h0; // @ Dispatch.scala l168
-      end else begin
-        if(((dis_src_0_fire_29 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h0f))) begin
-          entry_sel_15 <= exe_sel_valid_0; // @ Dispatch.scala l171
-        end else begin
-          if(((dis_src_1_fire_29 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h0f))) begin
-            entry_sel_15 <= exe_sel_valid_1; // @ Dispatch.scala l174
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_arf_15 <= 1'b1; // @ Dispatch.scala l185
       end else begin
         if(entry_dis_fire_15) begin
@@ -18269,20 +15295,10 @@ module Dispatch (
         end else begin
           if(entry_ret_fire_15) begin
             entry_arf_15 <= 1'b1; // @ Dispatch.scala l191
-=======
-        entry_arf_15 <= 1'b1; // @ Dispatch.scala l179
-      end else begin
-        if(entry_dis_fire_15) begin
-          entry_arf_15 <= 1'b0; // @ Dispatch.scala l182
-        end else begin
-          if(entry_ret_fire_15) begin
-            entry_arf_15 <= 1'b1; // @ Dispatch.scala l185
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_exe_15 <= 1'b0; // @ Dispatch.scala l196
       end else begin
         if(entry_dis_fire_15) begin
@@ -18301,20 +15317,10 @@ module Dispatch (
         end else begin
           if(entry_wbc_fire_15) begin
             entry_wbc_15 <= 1'b0; // @ Dispatch.scala l213
-=======
-        entry_wbc_15 <= 1'b0; // @ Dispatch.scala l190
-      end else begin
-        if(entry_exe_fire_15) begin
-          entry_wbc_15 <= 1'b1; // @ Dispatch.scala l193
-        end else begin
-          if(entry_wbc_fire_15) begin
-            entry_wbc_15 <= 1'b0; // @ Dispatch.scala l196
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_ret_15 <= 1'b0; // @ Dispatch.scala l218
       end else begin
         if(entry_wbc_fire_15) begin
@@ -18322,20 +15328,10 @@ module Dispatch (
         end else begin
           if(entry_ret_fire_15) begin
             entry_ret_15 <= 1'b0; // @ Dispatch.scala l224
-=======
-        entry_ret_15 <= 1'b0; // @ Dispatch.scala l201
-      end else begin
-        if(entry_wbc_fire_15) begin
-          entry_ret_15 <= 1'b1; // @ Dispatch.scala l204
-        end else begin
-          if(entry_ret_fire_15) begin
-            entry_ret_15 <= 1'b0; // @ Dispatch.scala l207
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_sel_16 <= 5'h0; // @ Dispatch.scala l174
       end else begin
         if(((dis_src_0_fire_31 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h10))) begin
@@ -18343,20 +15339,10 @@ module Dispatch (
         end else begin
           if(((dis_src_1_fire_31 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h10))) begin
             entry_sel_16 <= exe_sel_valid_1; // @ Dispatch.scala l180
-=======
-        entry_sel_16 <= 5'h0; // @ Dispatch.scala l168
-      end else begin
-        if(((dis_src_0_fire_31 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h10))) begin
-          entry_sel_16 <= exe_sel_valid_0; // @ Dispatch.scala l171
-        end else begin
-          if(((dis_src_1_fire_31 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h10))) begin
-            entry_sel_16 <= exe_sel_valid_1; // @ Dispatch.scala l174
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_arf_16 <= 1'b1; // @ Dispatch.scala l185
       end else begin
         if(entry_dis_fire_16) begin
@@ -18375,20 +15361,10 @@ module Dispatch (
         end else begin
           if(entry_exe_fire_16) begin
             entry_exe_16 <= 1'b0; // @ Dispatch.scala l202
-=======
-        entry_arf_16 <= 1'b1; // @ Dispatch.scala l179
-      end else begin
-        if(entry_dis_fire_16) begin
-          entry_arf_16 <= 1'b0; // @ Dispatch.scala l182
-        end else begin
-          if(entry_ret_fire_16) begin
-            entry_arf_16 <= 1'b1; // @ Dispatch.scala l185
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_wbc_16 <= 1'b0; // @ Dispatch.scala l207
       end else begin
         if(entry_exe_fire_16) begin
@@ -18396,20 +15372,10 @@ module Dispatch (
         end else begin
           if(entry_wbc_fire_16) begin
             entry_wbc_16 <= 1'b0; // @ Dispatch.scala l213
-=======
-        entry_wbc_16 <= 1'b0; // @ Dispatch.scala l190
-      end else begin
-        if(entry_exe_fire_16) begin
-          entry_wbc_16 <= 1'b1; // @ Dispatch.scala l193
-        end else begin
-          if(entry_wbc_fire_16) begin
-            entry_wbc_16 <= 1'b0; // @ Dispatch.scala l196
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_ret_16 <= 1'b0; // @ Dispatch.scala l218
       end else begin
         if(entry_wbc_fire_16) begin
@@ -18417,20 +15383,10 @@ module Dispatch (
         end else begin
           if(entry_ret_fire_16) begin
             entry_ret_16 <= 1'b0; // @ Dispatch.scala l224
-=======
-        entry_ret_16 <= 1'b0; // @ Dispatch.scala l201
-      end else begin
-        if(entry_wbc_fire_16) begin
-          entry_ret_16 <= 1'b1; // @ Dispatch.scala l204
-        end else begin
-          if(entry_ret_fire_16) begin
-            entry_ret_16 <= 1'b0; // @ Dispatch.scala l207
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_sel_17 <= 5'h0; // @ Dispatch.scala l174
       end else begin
         if(((dis_src_0_fire_33 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h11))) begin
@@ -18438,20 +15394,10 @@ module Dispatch (
         end else begin
           if(((dis_src_1_fire_33 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h11))) begin
             entry_sel_17 <= exe_sel_valid_1; // @ Dispatch.scala l180
-=======
-        entry_sel_17 <= 5'h0; // @ Dispatch.scala l168
-      end else begin
-        if(((dis_src_0_fire_33 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h11))) begin
-          entry_sel_17 <= exe_sel_valid_0; // @ Dispatch.scala l171
-        end else begin
-          if(((dis_src_1_fire_33 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h11))) begin
-            entry_sel_17 <= exe_sel_valid_1; // @ Dispatch.scala l174
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_arf_17 <= 1'b1; // @ Dispatch.scala l185
       end else begin
         if(entry_dis_fire_17) begin
@@ -18470,20 +15416,10 @@ module Dispatch (
         end else begin
           if(entry_exe_fire_17) begin
             entry_exe_17 <= 1'b0; // @ Dispatch.scala l202
-=======
-        entry_arf_17 <= 1'b1; // @ Dispatch.scala l179
-      end else begin
-        if(entry_dis_fire_17) begin
-          entry_arf_17 <= 1'b0; // @ Dispatch.scala l182
-        end else begin
-          if(entry_ret_fire_17) begin
-            entry_arf_17 <= 1'b1; // @ Dispatch.scala l185
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_wbc_17 <= 1'b0; // @ Dispatch.scala l207
       end else begin
         if(entry_exe_fire_17) begin
@@ -18491,20 +15427,10 @@ module Dispatch (
         end else begin
           if(entry_wbc_fire_17) begin
             entry_wbc_17 <= 1'b0; // @ Dispatch.scala l213
-=======
-        entry_wbc_17 <= 1'b0; // @ Dispatch.scala l190
-      end else begin
-        if(entry_exe_fire_17) begin
-          entry_wbc_17 <= 1'b1; // @ Dispatch.scala l193
-        end else begin
-          if(entry_wbc_fire_17) begin
-            entry_wbc_17 <= 1'b0; // @ Dispatch.scala l196
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_ret_17 <= 1'b0; // @ Dispatch.scala l218
       end else begin
         if(entry_wbc_fire_17) begin
@@ -18512,20 +15438,10 @@ module Dispatch (
         end else begin
           if(entry_ret_fire_17) begin
             entry_ret_17 <= 1'b0; // @ Dispatch.scala l224
-=======
-        entry_ret_17 <= 1'b0; // @ Dispatch.scala l201
-      end else begin
-        if(entry_wbc_fire_17) begin
-          entry_ret_17 <= 1'b1; // @ Dispatch.scala l204
-        end else begin
-          if(entry_ret_fire_17) begin
-            entry_ret_17 <= 1'b0; // @ Dispatch.scala l207
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_sel_18 <= 5'h0; // @ Dispatch.scala l174
       end else begin
         if(((dis_src_0_fire_35 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h12))) begin
@@ -18533,20 +15449,10 @@ module Dispatch (
         end else begin
           if(((dis_src_1_fire_35 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h12))) begin
             entry_sel_18 <= exe_sel_valid_1; // @ Dispatch.scala l180
-=======
-        entry_sel_18 <= 5'h0; // @ Dispatch.scala l168
-      end else begin
-        if(((dis_src_0_fire_35 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h12))) begin
-          entry_sel_18 <= exe_sel_valid_0; // @ Dispatch.scala l171
-        end else begin
-          if(((dis_src_1_fire_35 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h12))) begin
-            entry_sel_18 <= exe_sel_valid_1; // @ Dispatch.scala l174
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_arf_18 <= 1'b1; // @ Dispatch.scala l185
       end else begin
         if(entry_dis_fire_18) begin
@@ -18565,20 +15471,10 @@ module Dispatch (
         end else begin
           if(entry_exe_fire_18) begin
             entry_exe_18 <= 1'b0; // @ Dispatch.scala l202
-=======
-        entry_arf_18 <= 1'b1; // @ Dispatch.scala l179
-      end else begin
-        if(entry_dis_fire_18) begin
-          entry_arf_18 <= 1'b0; // @ Dispatch.scala l182
-        end else begin
-          if(entry_ret_fire_18) begin
-            entry_arf_18 <= 1'b1; // @ Dispatch.scala l185
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_wbc_18 <= 1'b0; // @ Dispatch.scala l207
       end else begin
         if(entry_exe_fire_18) begin
@@ -18586,20 +15482,10 @@ module Dispatch (
         end else begin
           if(entry_wbc_fire_18) begin
             entry_wbc_18 <= 1'b0; // @ Dispatch.scala l213
-=======
-        entry_wbc_18 <= 1'b0; // @ Dispatch.scala l190
-      end else begin
-        if(entry_exe_fire_18) begin
-          entry_wbc_18 <= 1'b1; // @ Dispatch.scala l193
-        end else begin
-          if(entry_wbc_fire_18) begin
-            entry_wbc_18 <= 1'b0; // @ Dispatch.scala l196
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_ret_18 <= 1'b0; // @ Dispatch.scala l218
       end else begin
         if(entry_wbc_fire_18) begin
@@ -18607,20 +15493,10 @@ module Dispatch (
         end else begin
           if(entry_ret_fire_18) begin
             entry_ret_18 <= 1'b0; // @ Dispatch.scala l224
-=======
-        entry_ret_18 <= 1'b0; // @ Dispatch.scala l201
-      end else begin
-        if(entry_wbc_fire_18) begin
-          entry_ret_18 <= 1'b1; // @ Dispatch.scala l204
-        end else begin
-          if(entry_ret_fire_18) begin
-            entry_ret_18 <= 1'b0; // @ Dispatch.scala l207
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_sel_19 <= 5'h0; // @ Dispatch.scala l174
       end else begin
         if(((dis_src_0_fire_37 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h13))) begin
@@ -18628,20 +15504,10 @@ module Dispatch (
         end else begin
           if(((dis_src_1_fire_37 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h13))) begin
             entry_sel_19 <= exe_sel_valid_1; // @ Dispatch.scala l180
-=======
-        entry_sel_19 <= 5'h0; // @ Dispatch.scala l168
-      end else begin
-        if(((dis_src_0_fire_37 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h13))) begin
-          entry_sel_19 <= exe_sel_valid_0; // @ Dispatch.scala l171
-        end else begin
-          if(((dis_src_1_fire_37 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h13))) begin
-            entry_sel_19 <= exe_sel_valid_1; // @ Dispatch.scala l174
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_arf_19 <= 1'b1; // @ Dispatch.scala l185
       end else begin
         if(entry_dis_fire_19) begin
@@ -18660,20 +15526,10 @@ module Dispatch (
         end else begin
           if(entry_exe_fire_19) begin
             entry_exe_19 <= 1'b0; // @ Dispatch.scala l202
-=======
-        entry_arf_19 <= 1'b1; // @ Dispatch.scala l179
-      end else begin
-        if(entry_dis_fire_19) begin
-          entry_arf_19 <= 1'b0; // @ Dispatch.scala l182
-        end else begin
-          if(entry_ret_fire_19) begin
-            entry_arf_19 <= 1'b1; // @ Dispatch.scala l185
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_wbc_19 <= 1'b0; // @ Dispatch.scala l207
       end else begin
         if(entry_exe_fire_19) begin
@@ -18681,20 +15537,10 @@ module Dispatch (
         end else begin
           if(entry_wbc_fire_19) begin
             entry_wbc_19 <= 1'b0; // @ Dispatch.scala l213
-=======
-        entry_wbc_19 <= 1'b0; // @ Dispatch.scala l190
-      end else begin
-        if(entry_exe_fire_19) begin
-          entry_wbc_19 <= 1'b1; // @ Dispatch.scala l193
-        end else begin
-          if(entry_wbc_fire_19) begin
-            entry_wbc_19 <= 1'b0; // @ Dispatch.scala l196
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_ret_19 <= 1'b0; // @ Dispatch.scala l218
       end else begin
         if(entry_wbc_fire_19) begin
@@ -18702,20 +15548,10 @@ module Dispatch (
         end else begin
           if(entry_ret_fire_19) begin
             entry_ret_19 <= 1'b0; // @ Dispatch.scala l224
-=======
-        entry_ret_19 <= 1'b0; // @ Dispatch.scala l201
-      end else begin
-        if(entry_wbc_fire_19) begin
-          entry_ret_19 <= 1'b1; // @ Dispatch.scala l204
-        end else begin
-          if(entry_ret_fire_19) begin
-            entry_ret_19 <= 1'b0; // @ Dispatch.scala l207
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_sel_20 <= 5'h0; // @ Dispatch.scala l174
       end else begin
         if(((dis_src_0_fire_39 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h14))) begin
@@ -18723,20 +15559,10 @@ module Dispatch (
         end else begin
           if(((dis_src_1_fire_39 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h14))) begin
             entry_sel_20 <= exe_sel_valid_1; // @ Dispatch.scala l180
-=======
-        entry_sel_20 <= 5'h0; // @ Dispatch.scala l168
-      end else begin
-        if(((dis_src_0_fire_39 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h14))) begin
-          entry_sel_20 <= exe_sel_valid_0; // @ Dispatch.scala l171
-        end else begin
-          if(((dis_src_1_fire_39 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h14))) begin
-            entry_sel_20 <= exe_sel_valid_1; // @ Dispatch.scala l174
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_arf_20 <= 1'b1; // @ Dispatch.scala l185
       end else begin
         if(entry_dis_fire_20) begin
@@ -18755,20 +15581,10 @@ module Dispatch (
         end else begin
           if(entry_exe_fire_20) begin
             entry_exe_20 <= 1'b0; // @ Dispatch.scala l202
-=======
-        entry_arf_20 <= 1'b1; // @ Dispatch.scala l179
-      end else begin
-        if(entry_dis_fire_20) begin
-          entry_arf_20 <= 1'b0; // @ Dispatch.scala l182
-        end else begin
-          if(entry_ret_fire_20) begin
-            entry_arf_20 <= 1'b1; // @ Dispatch.scala l185
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_wbc_20 <= 1'b0; // @ Dispatch.scala l207
       end else begin
         if(entry_exe_fire_20) begin
@@ -18776,20 +15592,10 @@ module Dispatch (
         end else begin
           if(entry_wbc_fire_20) begin
             entry_wbc_20 <= 1'b0; // @ Dispatch.scala l213
-=======
-        entry_wbc_20 <= 1'b0; // @ Dispatch.scala l190
-      end else begin
-        if(entry_exe_fire_20) begin
-          entry_wbc_20 <= 1'b1; // @ Dispatch.scala l193
-        end else begin
-          if(entry_wbc_fire_20) begin
-            entry_wbc_20 <= 1'b0; // @ Dispatch.scala l196
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_ret_20 <= 1'b0; // @ Dispatch.scala l218
       end else begin
         if(entry_wbc_fire_20) begin
@@ -18797,20 +15603,10 @@ module Dispatch (
         end else begin
           if(entry_ret_fire_20) begin
             entry_ret_20 <= 1'b0; // @ Dispatch.scala l224
-=======
-        entry_ret_20 <= 1'b0; // @ Dispatch.scala l201
-      end else begin
-        if(entry_wbc_fire_20) begin
-          entry_ret_20 <= 1'b1; // @ Dispatch.scala l204
-        end else begin
-          if(entry_ret_fire_20) begin
-            entry_ret_20 <= 1'b0; // @ Dispatch.scala l207
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_sel_21 <= 5'h0; // @ Dispatch.scala l174
       end else begin
         if(((dis_src_0_fire_41 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h15))) begin
@@ -18818,20 +15614,10 @@ module Dispatch (
         end else begin
           if(((dis_src_1_fire_41 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h15))) begin
             entry_sel_21 <= exe_sel_valid_1; // @ Dispatch.scala l180
-=======
-        entry_sel_21 <= 5'h0; // @ Dispatch.scala l168
-      end else begin
-        if(((dis_src_0_fire_41 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h15))) begin
-          entry_sel_21 <= exe_sel_valid_0; // @ Dispatch.scala l171
-        end else begin
-          if(((dis_src_1_fire_41 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h15))) begin
-            entry_sel_21 <= exe_sel_valid_1; // @ Dispatch.scala l174
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_arf_21 <= 1'b1; // @ Dispatch.scala l185
       end else begin
         if(entry_dis_fire_21) begin
@@ -18850,20 +15636,10 @@ module Dispatch (
         end else begin
           if(entry_exe_fire_21) begin
             entry_exe_21 <= 1'b0; // @ Dispatch.scala l202
-=======
-        entry_arf_21 <= 1'b1; // @ Dispatch.scala l179
-      end else begin
-        if(entry_dis_fire_21) begin
-          entry_arf_21 <= 1'b0; // @ Dispatch.scala l182
-        end else begin
-          if(entry_ret_fire_21) begin
-            entry_arf_21 <= 1'b1; // @ Dispatch.scala l185
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_wbc_21 <= 1'b0; // @ Dispatch.scala l207
       end else begin
         if(entry_exe_fire_21) begin
@@ -18871,20 +15647,10 @@ module Dispatch (
         end else begin
           if(entry_wbc_fire_21) begin
             entry_wbc_21 <= 1'b0; // @ Dispatch.scala l213
-=======
-        entry_wbc_21 <= 1'b0; // @ Dispatch.scala l190
-      end else begin
-        if(entry_exe_fire_21) begin
-          entry_wbc_21 <= 1'b1; // @ Dispatch.scala l193
-        end else begin
-          if(entry_wbc_fire_21) begin
-            entry_wbc_21 <= 1'b0; // @ Dispatch.scala l196
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_ret_21 <= 1'b0; // @ Dispatch.scala l218
       end else begin
         if(entry_wbc_fire_21) begin
@@ -18892,20 +15658,10 @@ module Dispatch (
         end else begin
           if(entry_ret_fire_21) begin
             entry_ret_21 <= 1'b0; // @ Dispatch.scala l224
-=======
-        entry_ret_21 <= 1'b0; // @ Dispatch.scala l201
-      end else begin
-        if(entry_wbc_fire_21) begin
-          entry_ret_21 <= 1'b1; // @ Dispatch.scala l204
-        end else begin
-          if(entry_ret_fire_21) begin
-            entry_ret_21 <= 1'b0; // @ Dispatch.scala l207
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_sel_22 <= 5'h0; // @ Dispatch.scala l174
       end else begin
         if(((dis_src_0_fire_43 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h16))) begin
@@ -18913,20 +15669,10 @@ module Dispatch (
         end else begin
           if(((dis_src_1_fire_43 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h16))) begin
             entry_sel_22 <= exe_sel_valid_1; // @ Dispatch.scala l180
-=======
-        entry_sel_22 <= 5'h0; // @ Dispatch.scala l168
-      end else begin
-        if(((dis_src_0_fire_43 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h16))) begin
-          entry_sel_22 <= exe_sel_valid_0; // @ Dispatch.scala l171
-        end else begin
-          if(((dis_src_1_fire_43 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h16))) begin
-            entry_sel_22 <= exe_sel_valid_1; // @ Dispatch.scala l174
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_arf_22 <= 1'b1; // @ Dispatch.scala l185
       end else begin
         if(entry_dis_fire_22) begin
@@ -18945,20 +15691,10 @@ module Dispatch (
         end else begin
           if(entry_exe_fire_22) begin
             entry_exe_22 <= 1'b0; // @ Dispatch.scala l202
-=======
-        entry_arf_22 <= 1'b1; // @ Dispatch.scala l179
-      end else begin
-        if(entry_dis_fire_22) begin
-          entry_arf_22 <= 1'b0; // @ Dispatch.scala l182
-        end else begin
-          if(entry_ret_fire_22) begin
-            entry_arf_22 <= 1'b1; // @ Dispatch.scala l185
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_wbc_22 <= 1'b0; // @ Dispatch.scala l207
       end else begin
         if(entry_exe_fire_22) begin
@@ -18966,20 +15702,10 @@ module Dispatch (
         end else begin
           if(entry_wbc_fire_22) begin
             entry_wbc_22 <= 1'b0; // @ Dispatch.scala l213
-=======
-        entry_wbc_22 <= 1'b0; // @ Dispatch.scala l190
-      end else begin
-        if(entry_exe_fire_22) begin
-          entry_wbc_22 <= 1'b1; // @ Dispatch.scala l193
-        end else begin
-          if(entry_wbc_fire_22) begin
-            entry_wbc_22 <= 1'b0; // @ Dispatch.scala l196
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_ret_22 <= 1'b0; // @ Dispatch.scala l218
       end else begin
         if(entry_wbc_fire_22) begin
@@ -18987,20 +15713,10 @@ module Dispatch (
         end else begin
           if(entry_ret_fire_22) begin
             entry_ret_22 <= 1'b0; // @ Dispatch.scala l224
-=======
-        entry_ret_22 <= 1'b0; // @ Dispatch.scala l201
-      end else begin
-        if(entry_wbc_fire_22) begin
-          entry_ret_22 <= 1'b1; // @ Dispatch.scala l204
-        end else begin
-          if(entry_ret_fire_22) begin
-            entry_ret_22 <= 1'b0; // @ Dispatch.scala l207
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_sel_23 <= 5'h0; // @ Dispatch.scala l174
       end else begin
         if(((dis_src_0_fire_45 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h17))) begin
@@ -19008,20 +15724,10 @@ module Dispatch (
         end else begin
           if(((dis_src_1_fire_45 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h17))) begin
             entry_sel_23 <= exe_sel_valid_1; // @ Dispatch.scala l180
-=======
-        entry_sel_23 <= 5'h0; // @ Dispatch.scala l168
-      end else begin
-        if(((dis_src_0_fire_45 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h17))) begin
-          entry_sel_23 <= exe_sel_valid_0; // @ Dispatch.scala l171
-        end else begin
-          if(((dis_src_1_fire_45 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h17))) begin
-            entry_sel_23 <= exe_sel_valid_1; // @ Dispatch.scala l174
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_arf_23 <= 1'b1; // @ Dispatch.scala l185
       end else begin
         if(entry_dis_fire_23) begin
@@ -19029,20 +15735,10 @@ module Dispatch (
         end else begin
           if(entry_ret_fire_23) begin
             entry_arf_23 <= 1'b1; // @ Dispatch.scala l191
-=======
-        entry_arf_23 <= 1'b1; // @ Dispatch.scala l179
-      end else begin
-        if(entry_dis_fire_23) begin
-          entry_arf_23 <= 1'b0; // @ Dispatch.scala l182
-        end else begin
-          if(entry_ret_fire_23) begin
-            entry_arf_23 <= 1'b1; // @ Dispatch.scala l185
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_exe_23 <= 1'b0; // @ Dispatch.scala l196
       end else begin
         if(entry_dis_fire_23) begin
@@ -19061,20 +15757,10 @@ module Dispatch (
         end else begin
           if(entry_wbc_fire_23) begin
             entry_wbc_23 <= 1'b0; // @ Dispatch.scala l213
-=======
-        entry_wbc_23 <= 1'b0; // @ Dispatch.scala l190
-      end else begin
-        if(entry_exe_fire_23) begin
-          entry_wbc_23 <= 1'b1; // @ Dispatch.scala l193
-        end else begin
-          if(entry_wbc_fire_23) begin
-            entry_wbc_23 <= 1'b0; // @ Dispatch.scala l196
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_ret_23 <= 1'b0; // @ Dispatch.scala l218
       end else begin
         if(entry_wbc_fire_23) begin
@@ -19082,20 +15768,10 @@ module Dispatch (
         end else begin
           if(entry_ret_fire_23) begin
             entry_ret_23 <= 1'b0; // @ Dispatch.scala l224
-=======
-        entry_ret_23 <= 1'b0; // @ Dispatch.scala l201
-      end else begin
-        if(entry_wbc_fire_23) begin
-          entry_ret_23 <= 1'b1; // @ Dispatch.scala l204
-        end else begin
-          if(entry_ret_fire_23) begin
-            entry_ret_23 <= 1'b0; // @ Dispatch.scala l207
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_sel_24 <= 5'h0; // @ Dispatch.scala l174
       end else begin
         if(((dis_src_0_fire_47 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h18))) begin
@@ -19103,20 +15779,10 @@ module Dispatch (
         end else begin
           if(((dis_src_1_fire_47 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h18))) begin
             entry_sel_24 <= exe_sel_valid_1; // @ Dispatch.scala l180
-=======
-        entry_sel_24 <= 5'h0; // @ Dispatch.scala l168
-      end else begin
-        if(((dis_src_0_fire_47 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h18))) begin
-          entry_sel_24 <= exe_sel_valid_0; // @ Dispatch.scala l171
-        end else begin
-          if(((dis_src_1_fire_47 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h18))) begin
-            entry_sel_24 <= exe_sel_valid_1; // @ Dispatch.scala l174
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_arf_24 <= 1'b1; // @ Dispatch.scala l185
       end else begin
         if(entry_dis_fire_24) begin
@@ -19124,20 +15790,10 @@ module Dispatch (
         end else begin
           if(entry_ret_fire_24) begin
             entry_arf_24 <= 1'b1; // @ Dispatch.scala l191
-=======
-        entry_arf_24 <= 1'b1; // @ Dispatch.scala l179
-      end else begin
-        if(entry_dis_fire_24) begin
-          entry_arf_24 <= 1'b0; // @ Dispatch.scala l182
-        end else begin
-          if(entry_ret_fire_24) begin
-            entry_arf_24 <= 1'b1; // @ Dispatch.scala l185
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_exe_24 <= 1'b0; // @ Dispatch.scala l196
       end else begin
         if(entry_dis_fire_24) begin
@@ -19156,20 +15812,10 @@ module Dispatch (
         end else begin
           if(entry_wbc_fire_24) begin
             entry_wbc_24 <= 1'b0; // @ Dispatch.scala l213
-=======
-        entry_wbc_24 <= 1'b0; // @ Dispatch.scala l190
-      end else begin
-        if(entry_exe_fire_24) begin
-          entry_wbc_24 <= 1'b1; // @ Dispatch.scala l193
-        end else begin
-          if(entry_wbc_fire_24) begin
-            entry_wbc_24 <= 1'b0; // @ Dispatch.scala l196
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_ret_24 <= 1'b0; // @ Dispatch.scala l218
       end else begin
         if(entry_wbc_fire_24) begin
@@ -19177,20 +15823,10 @@ module Dispatch (
         end else begin
           if(entry_ret_fire_24) begin
             entry_ret_24 <= 1'b0; // @ Dispatch.scala l224
-=======
-        entry_ret_24 <= 1'b0; // @ Dispatch.scala l201
-      end else begin
-        if(entry_wbc_fire_24) begin
-          entry_ret_24 <= 1'b1; // @ Dispatch.scala l204
-        end else begin
-          if(entry_ret_fire_24) begin
-            entry_ret_24 <= 1'b0; // @ Dispatch.scala l207
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_sel_25 <= 5'h0; // @ Dispatch.scala l174
       end else begin
         if(((dis_src_0_fire_49 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h19))) begin
@@ -19198,20 +15834,10 @@ module Dispatch (
         end else begin
           if(((dis_src_1_fire_49 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h19))) begin
             entry_sel_25 <= exe_sel_valid_1; // @ Dispatch.scala l180
-=======
-        entry_sel_25 <= 5'h0; // @ Dispatch.scala l168
-      end else begin
-        if(((dis_src_0_fire_49 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h19))) begin
-          entry_sel_25 <= exe_sel_valid_0; // @ Dispatch.scala l171
-        end else begin
-          if(((dis_src_1_fire_49 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h19))) begin
-            entry_sel_25 <= exe_sel_valid_1; // @ Dispatch.scala l174
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_arf_25 <= 1'b1; // @ Dispatch.scala l185
       end else begin
         if(entry_dis_fire_25) begin
@@ -19219,20 +15845,10 @@ module Dispatch (
         end else begin
           if(entry_ret_fire_25) begin
             entry_arf_25 <= 1'b1; // @ Dispatch.scala l191
-=======
-        entry_arf_25 <= 1'b1; // @ Dispatch.scala l179
-      end else begin
-        if(entry_dis_fire_25) begin
-          entry_arf_25 <= 1'b0; // @ Dispatch.scala l182
-        end else begin
-          if(entry_ret_fire_25) begin
-            entry_arf_25 <= 1'b1; // @ Dispatch.scala l185
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_exe_25 <= 1'b0; // @ Dispatch.scala l196
       end else begin
         if(entry_dis_fire_25) begin
@@ -19251,20 +15867,10 @@ module Dispatch (
         end else begin
           if(entry_wbc_fire_25) begin
             entry_wbc_25 <= 1'b0; // @ Dispatch.scala l213
-=======
-        entry_wbc_25 <= 1'b0; // @ Dispatch.scala l190
-      end else begin
-        if(entry_exe_fire_25) begin
-          entry_wbc_25 <= 1'b1; // @ Dispatch.scala l193
-        end else begin
-          if(entry_wbc_fire_25) begin
-            entry_wbc_25 <= 1'b0; // @ Dispatch.scala l196
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_ret_25 <= 1'b0; // @ Dispatch.scala l218
       end else begin
         if(entry_wbc_fire_25) begin
@@ -19272,20 +15878,10 @@ module Dispatch (
         end else begin
           if(entry_ret_fire_25) begin
             entry_ret_25 <= 1'b0; // @ Dispatch.scala l224
-=======
-        entry_ret_25 <= 1'b0; // @ Dispatch.scala l201
-      end else begin
-        if(entry_wbc_fire_25) begin
-          entry_ret_25 <= 1'b1; // @ Dispatch.scala l204
-        end else begin
-          if(entry_ret_fire_25) begin
-            entry_ret_25 <= 1'b0; // @ Dispatch.scala l207
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_sel_26 <= 5'h0; // @ Dispatch.scala l174
       end else begin
         if(((dis_src_0_fire_51 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h1a))) begin
@@ -19293,20 +15889,10 @@ module Dispatch (
         end else begin
           if(((dis_src_1_fire_51 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h1a))) begin
             entry_sel_26 <= exe_sel_valid_1; // @ Dispatch.scala l180
-=======
-        entry_sel_26 <= 5'h0; // @ Dispatch.scala l168
-      end else begin
-        if(((dis_src_0_fire_51 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h1a))) begin
-          entry_sel_26 <= exe_sel_valid_0; // @ Dispatch.scala l171
-        end else begin
-          if(((dis_src_1_fire_51 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h1a))) begin
-            entry_sel_26 <= exe_sel_valid_1; // @ Dispatch.scala l174
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_arf_26 <= 1'b1; // @ Dispatch.scala l185
       end else begin
         if(entry_dis_fire_26) begin
@@ -19325,20 +15911,10 @@ module Dispatch (
         end else begin
           if(entry_exe_fire_26) begin
             entry_exe_26 <= 1'b0; // @ Dispatch.scala l202
-=======
-        entry_arf_26 <= 1'b1; // @ Dispatch.scala l179
-      end else begin
-        if(entry_dis_fire_26) begin
-          entry_arf_26 <= 1'b0; // @ Dispatch.scala l182
-        end else begin
-          if(entry_ret_fire_26) begin
-            entry_arf_26 <= 1'b1; // @ Dispatch.scala l185
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_wbc_26 <= 1'b0; // @ Dispatch.scala l207
       end else begin
         if(entry_exe_fire_26) begin
@@ -19346,20 +15922,10 @@ module Dispatch (
         end else begin
           if(entry_wbc_fire_26) begin
             entry_wbc_26 <= 1'b0; // @ Dispatch.scala l213
-=======
-        entry_wbc_26 <= 1'b0; // @ Dispatch.scala l190
-      end else begin
-        if(entry_exe_fire_26) begin
-          entry_wbc_26 <= 1'b1; // @ Dispatch.scala l193
-        end else begin
-          if(entry_wbc_fire_26) begin
-            entry_wbc_26 <= 1'b0; // @ Dispatch.scala l196
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_ret_26 <= 1'b0; // @ Dispatch.scala l218
       end else begin
         if(entry_wbc_fire_26) begin
@@ -19367,20 +15933,10 @@ module Dispatch (
         end else begin
           if(entry_ret_fire_26) begin
             entry_ret_26 <= 1'b0; // @ Dispatch.scala l224
-=======
-        entry_ret_26 <= 1'b0; // @ Dispatch.scala l201
-      end else begin
-        if(entry_wbc_fire_26) begin
-          entry_ret_26 <= 1'b1; // @ Dispatch.scala l204
-        end else begin
-          if(entry_ret_fire_26) begin
-            entry_ret_26 <= 1'b0; // @ Dispatch.scala l207
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_sel_27 <= 5'h0; // @ Dispatch.scala l174
       end else begin
         if(((dis_src_0_fire_53 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h1b))) begin
@@ -19388,20 +15944,10 @@ module Dispatch (
         end else begin
           if(((dis_src_1_fire_53 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h1b))) begin
             entry_sel_27 <= exe_sel_valid_1; // @ Dispatch.scala l180
-=======
-        entry_sel_27 <= 5'h0; // @ Dispatch.scala l168
-      end else begin
-        if(((dis_src_0_fire_53 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h1b))) begin
-          entry_sel_27 <= exe_sel_valid_0; // @ Dispatch.scala l171
-        end else begin
-          if(((dis_src_1_fire_53 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h1b))) begin
-            entry_sel_27 <= exe_sel_valid_1; // @ Dispatch.scala l174
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_arf_27 <= 1'b1; // @ Dispatch.scala l185
       end else begin
         if(entry_dis_fire_27) begin
@@ -19420,20 +15966,10 @@ module Dispatch (
         end else begin
           if(entry_exe_fire_27) begin
             entry_exe_27 <= 1'b0; // @ Dispatch.scala l202
-=======
-        entry_arf_27 <= 1'b1; // @ Dispatch.scala l179
-      end else begin
-        if(entry_dis_fire_27) begin
-          entry_arf_27 <= 1'b0; // @ Dispatch.scala l182
-        end else begin
-          if(entry_ret_fire_27) begin
-            entry_arf_27 <= 1'b1; // @ Dispatch.scala l185
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_wbc_27 <= 1'b0; // @ Dispatch.scala l207
       end else begin
         if(entry_exe_fire_27) begin
@@ -19441,20 +15977,10 @@ module Dispatch (
         end else begin
           if(entry_wbc_fire_27) begin
             entry_wbc_27 <= 1'b0; // @ Dispatch.scala l213
-=======
-        entry_wbc_27 <= 1'b0; // @ Dispatch.scala l190
-      end else begin
-        if(entry_exe_fire_27) begin
-          entry_wbc_27 <= 1'b1; // @ Dispatch.scala l193
-        end else begin
-          if(entry_wbc_fire_27) begin
-            entry_wbc_27 <= 1'b0; // @ Dispatch.scala l196
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_ret_27 <= 1'b0; // @ Dispatch.scala l218
       end else begin
         if(entry_wbc_fire_27) begin
@@ -19462,20 +15988,10 @@ module Dispatch (
         end else begin
           if(entry_ret_fire_27) begin
             entry_ret_27 <= 1'b0; // @ Dispatch.scala l224
-=======
-        entry_ret_27 <= 1'b0; // @ Dispatch.scala l201
-      end else begin
-        if(entry_wbc_fire_27) begin
-          entry_ret_27 <= 1'b1; // @ Dispatch.scala l204
-        end else begin
-          if(entry_ret_fire_27) begin
-            entry_ret_27 <= 1'b0; // @ Dispatch.scala l207
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_sel_28 <= 5'h0; // @ Dispatch.scala l174
       end else begin
         if(((dis_src_0_fire_55 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h1c))) begin
@@ -19483,20 +15999,10 @@ module Dispatch (
         end else begin
           if(((dis_src_1_fire_55 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h1c))) begin
             entry_sel_28 <= exe_sel_valid_1; // @ Dispatch.scala l180
-=======
-        entry_sel_28 <= 5'h0; // @ Dispatch.scala l168
-      end else begin
-        if(((dis_src_0_fire_55 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h1c))) begin
-          entry_sel_28 <= exe_sel_valid_0; // @ Dispatch.scala l171
-        end else begin
-          if(((dis_src_1_fire_55 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h1c))) begin
-            entry_sel_28 <= exe_sel_valid_1; // @ Dispatch.scala l174
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_arf_28 <= 1'b1; // @ Dispatch.scala l185
       end else begin
         if(entry_dis_fire_28) begin
@@ -19515,20 +16021,10 @@ module Dispatch (
         end else begin
           if(entry_exe_fire_28) begin
             entry_exe_28 <= 1'b0; // @ Dispatch.scala l202
-=======
-        entry_arf_28 <= 1'b1; // @ Dispatch.scala l179
-      end else begin
-        if(entry_dis_fire_28) begin
-          entry_arf_28 <= 1'b0; // @ Dispatch.scala l182
-        end else begin
-          if(entry_ret_fire_28) begin
-            entry_arf_28 <= 1'b1; // @ Dispatch.scala l185
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_wbc_28 <= 1'b0; // @ Dispatch.scala l207
       end else begin
         if(entry_exe_fire_28) begin
@@ -19536,20 +16032,10 @@ module Dispatch (
         end else begin
           if(entry_wbc_fire_28) begin
             entry_wbc_28 <= 1'b0; // @ Dispatch.scala l213
-=======
-        entry_wbc_28 <= 1'b0; // @ Dispatch.scala l190
-      end else begin
-        if(entry_exe_fire_28) begin
-          entry_wbc_28 <= 1'b1; // @ Dispatch.scala l193
-        end else begin
-          if(entry_wbc_fire_28) begin
-            entry_wbc_28 <= 1'b0; // @ Dispatch.scala l196
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_ret_28 <= 1'b0; // @ Dispatch.scala l218
       end else begin
         if(entry_wbc_fire_28) begin
@@ -19557,20 +16043,10 @@ module Dispatch (
         end else begin
           if(entry_ret_fire_28) begin
             entry_ret_28 <= 1'b0; // @ Dispatch.scala l224
-=======
-        entry_ret_28 <= 1'b0; // @ Dispatch.scala l201
-      end else begin
-        if(entry_wbc_fire_28) begin
-          entry_ret_28 <= 1'b1; // @ Dispatch.scala l204
-        end else begin
-          if(entry_ret_fire_28) begin
-            entry_ret_28 <= 1'b0; // @ Dispatch.scala l207
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_sel_29 <= 5'h0; // @ Dispatch.scala l174
       end else begin
         if(((dis_src_0_fire_57 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h1d))) begin
@@ -19578,20 +16054,10 @@ module Dispatch (
         end else begin
           if(((dis_src_1_fire_57 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h1d))) begin
             entry_sel_29 <= exe_sel_valid_1; // @ Dispatch.scala l180
-=======
-        entry_sel_29 <= 5'h0; // @ Dispatch.scala l168
-      end else begin
-        if(((dis_src_0_fire_57 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h1d))) begin
-          entry_sel_29 <= exe_sel_valid_0; // @ Dispatch.scala l171
-        end else begin
-          if(((dis_src_1_fire_57 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h1d))) begin
-            entry_sel_29 <= exe_sel_valid_1; // @ Dispatch.scala l174
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_arf_29 <= 1'b1; // @ Dispatch.scala l185
       end else begin
         if(entry_dis_fire_29) begin
@@ -19610,20 +16076,10 @@ module Dispatch (
         end else begin
           if(entry_exe_fire_29) begin
             entry_exe_29 <= 1'b0; // @ Dispatch.scala l202
-=======
-        entry_arf_29 <= 1'b1; // @ Dispatch.scala l179
-      end else begin
-        if(entry_dis_fire_29) begin
-          entry_arf_29 <= 1'b0; // @ Dispatch.scala l182
-        end else begin
-          if(entry_ret_fire_29) begin
-            entry_arf_29 <= 1'b1; // @ Dispatch.scala l185
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_wbc_29 <= 1'b0; // @ Dispatch.scala l207
       end else begin
         if(entry_exe_fire_29) begin
@@ -19631,20 +16087,10 @@ module Dispatch (
         end else begin
           if(entry_wbc_fire_29) begin
             entry_wbc_29 <= 1'b0; // @ Dispatch.scala l213
-=======
-        entry_wbc_29 <= 1'b0; // @ Dispatch.scala l190
-      end else begin
-        if(entry_exe_fire_29) begin
-          entry_wbc_29 <= 1'b1; // @ Dispatch.scala l193
-        end else begin
-          if(entry_wbc_fire_29) begin
-            entry_wbc_29 <= 1'b0; // @ Dispatch.scala l196
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_ret_29 <= 1'b0; // @ Dispatch.scala l218
       end else begin
         if(entry_wbc_fire_29) begin
@@ -19652,20 +16098,10 @@ module Dispatch (
         end else begin
           if(entry_ret_fire_29) begin
             entry_ret_29 <= 1'b0; // @ Dispatch.scala l224
-=======
-        entry_ret_29 <= 1'b0; // @ Dispatch.scala l201
-      end else begin
-        if(entry_wbc_fire_29) begin
-          entry_ret_29 <= 1'b1; // @ Dispatch.scala l204
-        end else begin
-          if(entry_ret_fire_29) begin
-            entry_ret_29 <= 1'b0; // @ Dispatch.scala l207
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_sel_30 <= 5'h0; // @ Dispatch.scala l174
       end else begin
         if(((dis_src_0_fire_59 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h1e))) begin
@@ -19673,20 +16109,10 @@ module Dispatch (
         end else begin
           if(((dis_src_1_fire_59 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h1e))) begin
             entry_sel_30 <= exe_sel_valid_1; // @ Dispatch.scala l180
-=======
-        entry_sel_30 <= 5'h0; // @ Dispatch.scala l168
-      end else begin
-        if(((dis_src_0_fire_59 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h1e))) begin
-          entry_sel_30 <= exe_sel_valid_0; // @ Dispatch.scala l171
-        end else begin
-          if(((dis_src_1_fire_59 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h1e))) begin
-            entry_sel_30 <= exe_sel_valid_1; // @ Dispatch.scala l174
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_arf_30 <= 1'b1; // @ Dispatch.scala l185
       end else begin
         if(entry_dis_fire_30) begin
@@ -19705,20 +16131,10 @@ module Dispatch (
         end else begin
           if(entry_exe_fire_30) begin
             entry_exe_30 <= 1'b0; // @ Dispatch.scala l202
-=======
-        entry_arf_30 <= 1'b1; // @ Dispatch.scala l179
-      end else begin
-        if(entry_dis_fire_30) begin
-          entry_arf_30 <= 1'b0; // @ Dispatch.scala l182
-        end else begin
-          if(entry_ret_fire_30) begin
-            entry_arf_30 <= 1'b1; // @ Dispatch.scala l185
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_wbc_30 <= 1'b0; // @ Dispatch.scala l207
       end else begin
         if(entry_exe_fire_30) begin
@@ -19726,20 +16142,10 @@ module Dispatch (
         end else begin
           if(entry_wbc_fire_30) begin
             entry_wbc_30 <= 1'b0; // @ Dispatch.scala l213
-=======
-        entry_wbc_30 <= 1'b0; // @ Dispatch.scala l190
-      end else begin
-        if(entry_exe_fire_30) begin
-          entry_wbc_30 <= 1'b1; // @ Dispatch.scala l193
-        end else begin
-          if(entry_wbc_fire_30) begin
-            entry_wbc_30 <= 1'b0; // @ Dispatch.scala l196
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_ret_30 <= 1'b0; // @ Dispatch.scala l218
       end else begin
         if(entry_wbc_fire_30) begin
@@ -19747,20 +16153,10 @@ module Dispatch (
         end else begin
           if(entry_ret_fire_30) begin
             entry_ret_30 <= 1'b0; // @ Dispatch.scala l224
-=======
-        entry_ret_30 <= 1'b0; // @ Dispatch.scala l201
-      end else begin
-        if(entry_wbc_fire_30) begin
-          entry_ret_30 <= 1'b1; // @ Dispatch.scala l204
-        end else begin
-          if(entry_ret_fire_30) begin
-            entry_ret_30 <= 1'b0; // @ Dispatch.scala l207
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_sel_31 <= 5'h0; // @ Dispatch.scala l174
       end else begin
         if(((dis_src_0_fire_61 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h1f))) begin
@@ -19768,20 +16164,10 @@ module Dispatch (
         end else begin
           if(((dis_src_1_fire_61 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h1f))) begin
             entry_sel_31 <= exe_sel_valid_1; // @ Dispatch.scala l180
-=======
-        entry_sel_31 <= 5'h0; // @ Dispatch.scala l168
-      end else begin
-        if(((dis_src_0_fire_61 && dis_src_0_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_0_iss_pkg_rd_addr == 5'h1f))) begin
-          entry_sel_31 <= exe_sel_valid_0; // @ Dispatch.scala l171
-        end else begin
-          if(((dis_src_1_fire_61 && dis_src_1_iss_pkg_micro_op_uop_com_rd_wen) && (dis_src_1_iss_pkg_rd_addr == 5'h1f))) begin
-            entry_sel_31 <= exe_sel_valid_1; // @ Dispatch.scala l174
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_arf_31 <= 1'b1; // @ Dispatch.scala l185
       end else begin
         if(entry_dis_fire_31) begin
@@ -19800,20 +16186,10 @@ module Dispatch (
         end else begin
           if(entry_exe_fire_31) begin
             entry_exe_31 <= 1'b0; // @ Dispatch.scala l202
-=======
-        entry_arf_31 <= 1'b1; // @ Dispatch.scala l179
-      end else begin
-        if(entry_dis_fire_31) begin
-          entry_arf_31 <= 1'b0; // @ Dispatch.scala l182
-        end else begin
-          if(entry_ret_fire_31) begin
-            entry_arf_31 <= 1'b1; // @ Dispatch.scala l185
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_wbc_31 <= 1'b0; // @ Dispatch.scala l207
       end else begin
         if(entry_exe_fire_31) begin
@@ -19821,20 +16197,10 @@ module Dispatch (
         end else begin
           if(entry_wbc_fire_31) begin
             entry_wbc_31 <= 1'b0; // @ Dispatch.scala l213
-=======
-        entry_wbc_31 <= 1'b0; // @ Dispatch.scala l190
-      end else begin
-        if(entry_exe_fire_31) begin
-          entry_wbc_31 <= 1'b1; // @ Dispatch.scala l193
-        end else begin
-          if(entry_wbc_fire_31) begin
-            entry_wbc_31 <= 1'b0; // @ Dispatch.scala l196
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
       if(flush) begin
-<<<<<<< HEAD
         entry_ret_31 <= 1'b0; // @ Dispatch.scala l218
       end else begin
         if(entry_wbc_fire_31) begin
@@ -19842,15 +16208,6 @@ module Dispatch (
         end else begin
           if(entry_ret_fire_31) begin
             entry_ret_31 <= 1'b0; // @ Dispatch.scala l224
-=======
-        entry_ret_31 <= 1'b0; // @ Dispatch.scala l201
-      end else begin
-        if(entry_wbc_fire_31) begin
-          entry_ret_31 <= 1'b1; // @ Dispatch.scala l204
-        end else begin
-          if(entry_ret_fire_31) begin
-            entry_ret_31 <= 1'b0; // @ Dispatch.scala l207
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
           end
         end
       end
@@ -23643,17 +20000,10 @@ module ICacheTop (
   wire       [31:0]   itcm_1_next_level_cmd_addr;
   wire       [3:0]    itcm_1_next_level_cmd_len;
   wire       [2:0]    itcm_1_next_level_cmd_size;
-<<<<<<< HEAD
   wire                sram_4_ports_0_rsp_valid;
   wire       [31:0]   sram_4_ports_0_rsp_data;
   wire                sram_4_ports_1_rsp_valid;
   wire       [31:0]   sram_4_ports_1_rsp_data;
-=======
-  wire                sram_6_ports_0_rsp_valid;
-  wire       [31:0]   sram_6_ports_0_rsp_data;
-  wire                sram_6_ports_1_rsp_valid;
-  wire       [31:0]   sram_6_ports_1_rsp_data;
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
   wire                sram_area_0_sram_ports_rsp_valid;
   wire       [31:0]   sram_area_0_sram_ports_rsp_data;
   wire                sram_area_1_sram_ports_rsp_valid;
@@ -23675,25 +20025,15 @@ module ICacheTop (
     .sram_0_ports_cmd_wen   (itcm_1_sram_0_ports_cmd_wen        ), //o
     .sram_0_ports_cmd_wdata (itcm_1_sram_0_ports_cmd_wdata[31:0]), //o
     .sram_0_ports_cmd_wstrb (itcm_1_sram_0_ports_cmd_wstrb[3:0] ), //o
-<<<<<<< HEAD
     .sram_0_ports_rsp_valid (sram_4_ports_0_rsp_valid           ), //i
     .sram_0_ports_rsp_data  (sram_4_ports_0_rsp_data[31:0]      ), //i
-=======
-    .sram_0_ports_rsp_valid (sram_6_ports_0_rsp_valid           ), //i
-    .sram_0_ports_rsp_data  (sram_6_ports_0_rsp_data[31:0]      ), //i
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
     .sram_1_ports_cmd_valid (itcm_1_sram_1_ports_cmd_valid      ), //o
     .sram_1_ports_cmd_addr  (itcm_1_sram_1_ports_cmd_addr[11:0] ), //o
     .sram_1_ports_cmd_wen   (itcm_1_sram_1_ports_cmd_wen        ), //o
     .sram_1_ports_cmd_wdata (itcm_1_sram_1_ports_cmd_wdata[31:0]), //o
     .sram_1_ports_cmd_wstrb (itcm_1_sram_1_ports_cmd_wstrb[3:0] ), //o
-<<<<<<< HEAD
     .sram_1_ports_rsp_valid (sram_4_ports_1_rsp_valid           ), //i
     .sram_1_ports_rsp_data  (sram_4_ports_1_rsp_data[31:0]      ), //i
-=======
-    .sram_1_ports_rsp_valid (sram_6_ports_1_rsp_valid           ), //i
-    .sram_1_ports_rsp_data  (sram_6_ports_1_rsp_data[31:0]      ), //i
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
     .next_level_cmd_valid   (itcm_1_next_level_cmd_valid        ), //o
     .next_level_cmd_ready   (icache_ar_ready                    ), //i
     .next_level_cmd_addr    (itcm_1_next_level_cmd_addr[31:0]   ), //o
@@ -23704,43 +20044,25 @@ module ICacheTop (
     .clk                    (clk                                ), //i
     .reset                  (reset                              )  //i
   );
-<<<<<<< HEAD
   Sram_2ports sram_4 (
-=======
-  Sram_2ports sram_6 (
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
     .ports_0_cmd_valid (itcm_1_sram_0_ports_cmd_valid      ), //i
     .ports_0_cmd_addr  (itcm_1_sram_0_ports_cmd_addr[11:0] ), //i
     .ports_0_cmd_wen   (itcm_1_sram_0_ports_cmd_wen        ), //i
     .ports_0_cmd_wdata (itcm_1_sram_0_ports_cmd_wdata[31:0]), //i
     .ports_0_cmd_wstrb (itcm_1_sram_0_ports_cmd_wstrb[3:0] ), //i
-<<<<<<< HEAD
     .ports_0_rsp_valid (sram_4_ports_0_rsp_valid           ), //o
     .ports_0_rsp_data  (sram_4_ports_0_rsp_data[31:0]      ), //o
-=======
-    .ports_0_rsp_valid (sram_6_ports_0_rsp_valid           ), //o
-    .ports_0_rsp_data  (sram_6_ports_0_rsp_data[31:0]      ), //o
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
     .ports_1_cmd_valid (itcm_1_sram_1_ports_cmd_valid      ), //i
     .ports_1_cmd_addr  (itcm_1_sram_1_ports_cmd_addr[11:0] ), //i
     .ports_1_cmd_wen   (itcm_1_sram_1_ports_cmd_wen        ), //i
     .ports_1_cmd_wdata (itcm_1_sram_1_ports_cmd_wdata[31:0]), //i
     .ports_1_cmd_wstrb (itcm_1_sram_1_ports_cmd_wstrb[3:0] ), //i
-<<<<<<< HEAD
     .ports_1_rsp_valid (sram_4_ports_1_rsp_valid           ), //o
     .ports_1_rsp_data  (sram_4_ports_1_rsp_data[31:0]      ), //o
     .clk               (clk                                ), //i
     .reset             (reset                              )  //i
   );
   Sram sram_area_0_sram (
-=======
-    .ports_1_rsp_valid (sram_6_ports_1_rsp_valid           ), //o
-    .ports_1_rsp_data  (sram_6_ports_1_rsp_data[31:0]      ), //o
-    .clk               (clk                                ), //i
-    .reset             (reset                              )  //i
-  );
-  Sram_2 sram_area_0_sram (
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
     .ports_cmd_valid (sram_area_0_sram_ports_cmd_valid      ), //i
     .ports_cmd_addr  (sram_area_0_sram_ports_cmd_addr[9:0]  ), //i
     .ports_cmd_wen   (sram_area_0_sram_ports_cmd_wen        ), //i
@@ -23751,11 +20073,7 @@ module ICacheTop (
     .clk             (clk                                   ), //i
     .reset           (reset                                 )  //i
   );
-<<<<<<< HEAD
   Sram sram_area_1_sram (
-=======
-  Sram_2 sram_area_1_sram (
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
     .ports_cmd_valid (sram_area_1_sram_ports_cmd_valid      ), //i
     .ports_cmd_addr  (sram_area_1_sram_ports_cmd_addr[9:0]  ), //i
     .ports_cmd_wen   (sram_area_1_sram_ports_cmd_wen        ), //i
@@ -23766,11 +20084,7 @@ module ICacheTop (
     .clk             (clk                                   ), //i
     .reset           (reset                                 )  //i
   );
-<<<<<<< HEAD
   Sram sram_area_2_sram (
-=======
-  Sram_2 sram_area_2_sram (
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
     .ports_cmd_valid (sram_area_2_sram_ports_cmd_valid      ), //i
     .ports_cmd_addr  (sram_area_2_sram_ports_cmd_addr[9:0]  ), //i
     .ports_cmd_wen   (sram_area_2_sram_ports_cmd_wen        ), //i
@@ -23781,11 +20095,7 @@ module ICacheTop (
     .clk             (clk                                   ), //i
     .reset           (reset                                 )  //i
   );
-<<<<<<< HEAD
   Sram sram_area_3_sram (
-=======
-  Sram_2 sram_area_3_sram (
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
     .ports_cmd_valid (sram_area_3_sram_ports_cmd_valid      ), //i
     .ports_cmd_addr  (sram_area_3_sram_ports_cmd_addr[9:0]  ), //i
     .ports_cmd_wen   (sram_area_3_sram_ports_cmd_wen        ), //i
@@ -24212,9330 +20522,6 @@ module Divider (
   input               reset
 );
 
-<<<<<<< HEAD
-  wire       [63:0]   u_div_s_axis_divisor_tdata;
-  wire       [63:0]   u_div_s_axis_dividend_tdata;
-  wire                u_div_m_axis_dout_tvalid;
-  wire       [127:0]  u_div_m_axis_dout_tdata;
-  wire       [63:0]   tmp_dividend_abs_3;
-  wire       [63:0]   tmp_dividend_abs_4;
-  wire       [63:0]   tmp_dividend_abs_5;
-  wire       [0:0]    tmp_dividend_abs_6;
-  wire       [63:0]   tmp_divisor_abs_3;
-  wire       [63:0]   tmp_divisor_abs_4;
-  wire       [63:0]   tmp_divisor_abs_5;
-  wire       [0:0]    tmp_divisor_abs_6;
-  wire       [63:0]   tmp_dividend_abs_7;
-  wire       [63:0]   tmp_dividend_abs_8;
-  wire       [63:0]   tmp_dividend_abs_9;
-  wire       [0:0]    tmp_dividend_abs_10;
-  wire       [63:0]   tmp_divisor_abs_7;
-  wire       [63:0]   tmp_divisor_abs_8;
-  wire       [63:0]   tmp_divisor_abs_9;
-  wire       [0:0]    tmp_divisor_abs_10;
-  wire       [63:0]   tmp_quotient_wrapper;
-  wire       [63:0]   tmp_remainder_wrapper;
-  wire       [63:0]   tmp_quotient_wrapper_1;
-  wire       [63:0]   tmp_remainder_wrapper_1;
-  reg                 busy_reg;
-  wire       [63:0]   dividend_word_extd;
-  wire       [63:0]   divisor_word_extd;
-  reg        [63:0]   dividend_abs;
-  reg        [63:0]   divisor_abs;
-  wire                dividend_positive;
-  wire                divisor_positive;
-  wire                tmp_dividend_word_extd;
-  reg        [31:0]   tmp_dividend_word_extd_1;
-  wire                tmp_divisor_word_extd;
-  reg        [31:0]   tmp_divisor_word_extd_1;
-  wire       [63:0]   tmp_dividend_abs;
-  wire       [63:0]   tmp_divisor_abs;
-  reg        [31:0]   tmp_dividend_abs_1;
-  reg        [31:0]   tmp_divisor_abs_1;
-  wire       [63:0]   tmp_dividend_abs_2;
-  wire       [63:0]   tmp_divisor_abs_2;
-  wire       [63:0]   quotient_origin;
-  wire       [63:0]   remainder_origin;
-  wire       [63:0]   quotient_word_extd;
-  wire       [63:0]   remainder_word_extd;
-  reg        [63:0]   quotient_wrapper;
-  reg        [63:0]   remainder_wrapper;
-  wire                tmp_quotient_word_extd;
-  reg        [31:0]   tmp_quotient_word_extd_1;
-  wire                tmp_remainder_word_extd;
-  reg        [31:0]   tmp_remainder_word_extd_1;
-  function [31:0] zz_tmp_dividend_abs_1(input dummy);
-    begin
-      zz_tmp_dividend_abs_1[31] = 1'b0; // @ Literal.scala l87
-      zz_tmp_dividend_abs_1[30] = 1'b0; // @ Literal.scala l87
-      zz_tmp_dividend_abs_1[29] = 1'b0; // @ Literal.scala l87
-      zz_tmp_dividend_abs_1[28] = 1'b0; // @ Literal.scala l87
-      zz_tmp_dividend_abs_1[27] = 1'b0; // @ Literal.scala l87
-      zz_tmp_dividend_abs_1[26] = 1'b0; // @ Literal.scala l87
-      zz_tmp_dividend_abs_1[25] = 1'b0; // @ Literal.scala l87
-      zz_tmp_dividend_abs_1[24] = 1'b0; // @ Literal.scala l87
-      zz_tmp_dividend_abs_1[23] = 1'b0; // @ Literal.scala l87
-      zz_tmp_dividend_abs_1[22] = 1'b0; // @ Literal.scala l87
-      zz_tmp_dividend_abs_1[21] = 1'b0; // @ Literal.scala l87
-      zz_tmp_dividend_abs_1[20] = 1'b0; // @ Literal.scala l87
-      zz_tmp_dividend_abs_1[19] = 1'b0; // @ Literal.scala l87
-      zz_tmp_dividend_abs_1[18] = 1'b0; // @ Literal.scala l87
-      zz_tmp_dividend_abs_1[17] = 1'b0; // @ Literal.scala l87
-      zz_tmp_dividend_abs_1[16] = 1'b0; // @ Literal.scala l87
-      zz_tmp_dividend_abs_1[15] = 1'b0; // @ Literal.scala l87
-      zz_tmp_dividend_abs_1[14] = 1'b0; // @ Literal.scala l87
-      zz_tmp_dividend_abs_1[13] = 1'b0; // @ Literal.scala l87
-      zz_tmp_dividend_abs_1[12] = 1'b0; // @ Literal.scala l87
-      zz_tmp_dividend_abs_1[11] = 1'b0; // @ Literal.scala l87
-      zz_tmp_dividend_abs_1[10] = 1'b0; // @ Literal.scala l87
-      zz_tmp_dividend_abs_1[9] = 1'b0; // @ Literal.scala l87
-      zz_tmp_dividend_abs_1[8] = 1'b0; // @ Literal.scala l87
-      zz_tmp_dividend_abs_1[7] = 1'b0; // @ Literal.scala l87
-      zz_tmp_dividend_abs_1[6] = 1'b0; // @ Literal.scala l87
-      zz_tmp_dividend_abs_1[5] = 1'b0; // @ Literal.scala l87
-      zz_tmp_dividend_abs_1[4] = 1'b0; // @ Literal.scala l87
-      zz_tmp_dividend_abs_1[3] = 1'b0; // @ Literal.scala l87
-      zz_tmp_dividend_abs_1[2] = 1'b0; // @ Literal.scala l87
-      zz_tmp_dividend_abs_1[1] = 1'b0; // @ Literal.scala l87
-      zz_tmp_dividend_abs_1[0] = 1'b0; // @ Literal.scala l87
-=======
-  wire       [6:0]    tmp_flush_cnt_valueNext;
-  wire       [0:0]    tmp_flush_cnt_valueNext_1;
-  wire       [2:0]    tmp_next_level_data_cnt_valueNext;
-  wire       [0:0]    tmp_next_level_data_cnt_valueNext_1;
-  wire                tmp_when;
-  wire                tmp_when_1;
-  wire       [3:0]    tmp_tmp_cache_hit_gnt_0_3;
-  wire       [3:0]    tmp_tmp_cache_hit_gnt_0_3_1;
-  wire       [1:0]    tmp_tmp_cache_hit_gnt_0_3_2;
-  wire       [3:0]    tmp_tmp_cache_invld_gnt_0_3;
-  wire       [3:0]    tmp_tmp_cache_invld_gnt_0_3_1;
-  wire       [1:0]    tmp_tmp_cache_invld_gnt_0_3_2;
-  wire       [3:0]    tmp_tmp_cache_victim_gnt_0_3;
-  wire       [3:0]    tmp_tmp_cache_victim_gnt_0_3_1;
-  wire       [1:0]    tmp_tmp_cache_victim_gnt_0_3_2;
-  reg        [18:0]   tmp_cache_tag_0;
-  reg                 tmp_cache_hit_0;
-  reg                 tmp_cache_mru_0;
-  reg                 tmp_cache_invld_d1_0;
-  reg                 tmp_cache_lru_d1_0;
-  wire                tmp_when_2;
-  wire                tmp_when_3;
-  wire                tmp_when_4;
-  reg        [18:0]   tmp_cache_tag_1;
-  reg                 tmp_cache_hit_1;
-  reg                 tmp_cache_mru_1;
-  reg                 tmp_cache_invld_d1_1;
-  reg                 tmp_cache_lru_d1_1;
-  wire                tmp_when_5;
-  wire                tmp_when_6;
-  wire                tmp_when_7;
-  reg        [63:0]   tmp_hit_data;
-  reg                 tmp_hit_valid;
-  reg        [63:0]   tmp_refill_data;
-  reg                 tmp_refill_valid;
-  wire                cpu_stall;
-  wire                cpu_bypass_stall;
-  reg                 ways_0_metas_0_vld;
-  reg        [18:0]   ways_0_metas_0_tag;
-  reg                 ways_0_metas_0_mru;
-  reg                 ways_0_metas_1_vld;
-  reg        [18:0]   ways_0_metas_1_tag;
-  reg                 ways_0_metas_1_mru;
-  reg                 ways_0_metas_2_vld;
-  reg        [18:0]   ways_0_metas_2_tag;
-  reg                 ways_0_metas_2_mru;
-  reg                 ways_0_metas_3_vld;
-  reg        [18:0]   ways_0_metas_3_tag;
-  reg                 ways_0_metas_3_mru;
-  reg                 ways_0_metas_4_vld;
-  reg        [18:0]   ways_0_metas_4_tag;
-  reg                 ways_0_metas_4_mru;
-  reg                 ways_0_metas_5_vld;
-  reg        [18:0]   ways_0_metas_5_tag;
-  reg                 ways_0_metas_5_mru;
-  reg                 ways_0_metas_6_vld;
-  reg        [18:0]   ways_0_metas_6_tag;
-  reg                 ways_0_metas_6_mru;
-  reg                 ways_0_metas_7_vld;
-  reg        [18:0]   ways_0_metas_7_tag;
-  reg                 ways_0_metas_7_mru;
-  reg                 ways_0_metas_8_vld;
-  reg        [18:0]   ways_0_metas_8_tag;
-  reg                 ways_0_metas_8_mru;
-  reg                 ways_0_metas_9_vld;
-  reg        [18:0]   ways_0_metas_9_tag;
-  reg                 ways_0_metas_9_mru;
-  reg                 ways_0_metas_10_vld;
-  reg        [18:0]   ways_0_metas_10_tag;
-  reg                 ways_0_metas_10_mru;
-  reg                 ways_0_metas_11_vld;
-  reg        [18:0]   ways_0_metas_11_tag;
-  reg                 ways_0_metas_11_mru;
-  reg                 ways_0_metas_12_vld;
-  reg        [18:0]   ways_0_metas_12_tag;
-  reg                 ways_0_metas_12_mru;
-  reg                 ways_0_metas_13_vld;
-  reg        [18:0]   ways_0_metas_13_tag;
-  reg                 ways_0_metas_13_mru;
-  reg                 ways_0_metas_14_vld;
-  reg        [18:0]   ways_0_metas_14_tag;
-  reg                 ways_0_metas_14_mru;
-  reg                 ways_0_metas_15_vld;
-  reg        [18:0]   ways_0_metas_15_tag;
-  reg                 ways_0_metas_15_mru;
-  reg                 ways_0_metas_16_vld;
-  reg        [18:0]   ways_0_metas_16_tag;
-  reg                 ways_0_metas_16_mru;
-  reg                 ways_0_metas_17_vld;
-  reg        [18:0]   ways_0_metas_17_tag;
-  reg                 ways_0_metas_17_mru;
-  reg                 ways_0_metas_18_vld;
-  reg        [18:0]   ways_0_metas_18_tag;
-  reg                 ways_0_metas_18_mru;
-  reg                 ways_0_metas_19_vld;
-  reg        [18:0]   ways_0_metas_19_tag;
-  reg                 ways_0_metas_19_mru;
-  reg                 ways_0_metas_20_vld;
-  reg        [18:0]   ways_0_metas_20_tag;
-  reg                 ways_0_metas_20_mru;
-  reg                 ways_0_metas_21_vld;
-  reg        [18:0]   ways_0_metas_21_tag;
-  reg                 ways_0_metas_21_mru;
-  reg                 ways_0_metas_22_vld;
-  reg        [18:0]   ways_0_metas_22_tag;
-  reg                 ways_0_metas_22_mru;
-  reg                 ways_0_metas_23_vld;
-  reg        [18:0]   ways_0_metas_23_tag;
-  reg                 ways_0_metas_23_mru;
-  reg                 ways_0_metas_24_vld;
-  reg        [18:0]   ways_0_metas_24_tag;
-  reg                 ways_0_metas_24_mru;
-  reg                 ways_0_metas_25_vld;
-  reg        [18:0]   ways_0_metas_25_tag;
-  reg                 ways_0_metas_25_mru;
-  reg                 ways_0_metas_26_vld;
-  reg        [18:0]   ways_0_metas_26_tag;
-  reg                 ways_0_metas_26_mru;
-  reg                 ways_0_metas_27_vld;
-  reg        [18:0]   ways_0_metas_27_tag;
-  reg                 ways_0_metas_27_mru;
-  reg                 ways_0_metas_28_vld;
-  reg        [18:0]   ways_0_metas_28_tag;
-  reg                 ways_0_metas_28_mru;
-  reg                 ways_0_metas_29_vld;
-  reg        [18:0]   ways_0_metas_29_tag;
-  reg                 ways_0_metas_29_mru;
-  reg                 ways_0_metas_30_vld;
-  reg        [18:0]   ways_0_metas_30_tag;
-  reg                 ways_0_metas_30_mru;
-  reg                 ways_0_metas_31_vld;
-  reg        [18:0]   ways_0_metas_31_tag;
-  reg                 ways_0_metas_31_mru;
-  reg                 ways_0_metas_32_vld;
-  reg        [18:0]   ways_0_metas_32_tag;
-  reg                 ways_0_metas_32_mru;
-  reg                 ways_0_metas_33_vld;
-  reg        [18:0]   ways_0_metas_33_tag;
-  reg                 ways_0_metas_33_mru;
-  reg                 ways_0_metas_34_vld;
-  reg        [18:0]   ways_0_metas_34_tag;
-  reg                 ways_0_metas_34_mru;
-  reg                 ways_0_metas_35_vld;
-  reg        [18:0]   ways_0_metas_35_tag;
-  reg                 ways_0_metas_35_mru;
-  reg                 ways_0_metas_36_vld;
-  reg        [18:0]   ways_0_metas_36_tag;
-  reg                 ways_0_metas_36_mru;
-  reg                 ways_0_metas_37_vld;
-  reg        [18:0]   ways_0_metas_37_tag;
-  reg                 ways_0_metas_37_mru;
-  reg                 ways_0_metas_38_vld;
-  reg        [18:0]   ways_0_metas_38_tag;
-  reg                 ways_0_metas_38_mru;
-  reg                 ways_0_metas_39_vld;
-  reg        [18:0]   ways_0_metas_39_tag;
-  reg                 ways_0_metas_39_mru;
-  reg                 ways_0_metas_40_vld;
-  reg        [18:0]   ways_0_metas_40_tag;
-  reg                 ways_0_metas_40_mru;
-  reg                 ways_0_metas_41_vld;
-  reg        [18:0]   ways_0_metas_41_tag;
-  reg                 ways_0_metas_41_mru;
-  reg                 ways_0_metas_42_vld;
-  reg        [18:0]   ways_0_metas_42_tag;
-  reg                 ways_0_metas_42_mru;
-  reg                 ways_0_metas_43_vld;
-  reg        [18:0]   ways_0_metas_43_tag;
-  reg                 ways_0_metas_43_mru;
-  reg                 ways_0_metas_44_vld;
-  reg        [18:0]   ways_0_metas_44_tag;
-  reg                 ways_0_metas_44_mru;
-  reg                 ways_0_metas_45_vld;
-  reg        [18:0]   ways_0_metas_45_tag;
-  reg                 ways_0_metas_45_mru;
-  reg                 ways_0_metas_46_vld;
-  reg        [18:0]   ways_0_metas_46_tag;
-  reg                 ways_0_metas_46_mru;
-  reg                 ways_0_metas_47_vld;
-  reg        [18:0]   ways_0_metas_47_tag;
-  reg                 ways_0_metas_47_mru;
-  reg                 ways_0_metas_48_vld;
-  reg        [18:0]   ways_0_metas_48_tag;
-  reg                 ways_0_metas_48_mru;
-  reg                 ways_0_metas_49_vld;
-  reg        [18:0]   ways_0_metas_49_tag;
-  reg                 ways_0_metas_49_mru;
-  reg                 ways_0_metas_50_vld;
-  reg        [18:0]   ways_0_metas_50_tag;
-  reg                 ways_0_metas_50_mru;
-  reg                 ways_0_metas_51_vld;
-  reg        [18:0]   ways_0_metas_51_tag;
-  reg                 ways_0_metas_51_mru;
-  reg                 ways_0_metas_52_vld;
-  reg        [18:0]   ways_0_metas_52_tag;
-  reg                 ways_0_metas_52_mru;
-  reg                 ways_0_metas_53_vld;
-  reg        [18:0]   ways_0_metas_53_tag;
-  reg                 ways_0_metas_53_mru;
-  reg                 ways_0_metas_54_vld;
-  reg        [18:0]   ways_0_metas_54_tag;
-  reg                 ways_0_metas_54_mru;
-  reg                 ways_0_metas_55_vld;
-  reg        [18:0]   ways_0_metas_55_tag;
-  reg                 ways_0_metas_55_mru;
-  reg                 ways_0_metas_56_vld;
-  reg        [18:0]   ways_0_metas_56_tag;
-  reg                 ways_0_metas_56_mru;
-  reg                 ways_0_metas_57_vld;
-  reg        [18:0]   ways_0_metas_57_tag;
-  reg                 ways_0_metas_57_mru;
-  reg                 ways_0_metas_58_vld;
-  reg        [18:0]   ways_0_metas_58_tag;
-  reg                 ways_0_metas_58_mru;
-  reg                 ways_0_metas_59_vld;
-  reg        [18:0]   ways_0_metas_59_tag;
-  reg                 ways_0_metas_59_mru;
-  reg                 ways_0_metas_60_vld;
-  reg        [18:0]   ways_0_metas_60_tag;
-  reg                 ways_0_metas_60_mru;
-  reg                 ways_0_metas_61_vld;
-  reg        [18:0]   ways_0_metas_61_tag;
-  reg                 ways_0_metas_61_mru;
-  reg                 ways_0_metas_62_vld;
-  reg        [18:0]   ways_0_metas_62_tag;
-  reg                 ways_0_metas_62_mru;
-  reg                 ways_0_metas_63_vld;
-  reg        [18:0]   ways_0_metas_63_tag;
-  reg                 ways_0_metas_63_mru;
-  reg                 ways_0_metas_64_vld;
-  reg        [18:0]   ways_0_metas_64_tag;
-  reg                 ways_0_metas_64_mru;
-  reg                 ways_0_metas_65_vld;
-  reg        [18:0]   ways_0_metas_65_tag;
-  reg                 ways_0_metas_65_mru;
-  reg                 ways_0_metas_66_vld;
-  reg        [18:0]   ways_0_metas_66_tag;
-  reg                 ways_0_metas_66_mru;
-  reg                 ways_0_metas_67_vld;
-  reg        [18:0]   ways_0_metas_67_tag;
-  reg                 ways_0_metas_67_mru;
-  reg                 ways_0_metas_68_vld;
-  reg        [18:0]   ways_0_metas_68_tag;
-  reg                 ways_0_metas_68_mru;
-  reg                 ways_0_metas_69_vld;
-  reg        [18:0]   ways_0_metas_69_tag;
-  reg                 ways_0_metas_69_mru;
-  reg                 ways_0_metas_70_vld;
-  reg        [18:0]   ways_0_metas_70_tag;
-  reg                 ways_0_metas_70_mru;
-  reg                 ways_0_metas_71_vld;
-  reg        [18:0]   ways_0_metas_71_tag;
-  reg                 ways_0_metas_71_mru;
-  reg                 ways_0_metas_72_vld;
-  reg        [18:0]   ways_0_metas_72_tag;
-  reg                 ways_0_metas_72_mru;
-  reg                 ways_0_metas_73_vld;
-  reg        [18:0]   ways_0_metas_73_tag;
-  reg                 ways_0_metas_73_mru;
-  reg                 ways_0_metas_74_vld;
-  reg        [18:0]   ways_0_metas_74_tag;
-  reg                 ways_0_metas_74_mru;
-  reg                 ways_0_metas_75_vld;
-  reg        [18:0]   ways_0_metas_75_tag;
-  reg                 ways_0_metas_75_mru;
-  reg                 ways_0_metas_76_vld;
-  reg        [18:0]   ways_0_metas_76_tag;
-  reg                 ways_0_metas_76_mru;
-  reg                 ways_0_metas_77_vld;
-  reg        [18:0]   ways_0_metas_77_tag;
-  reg                 ways_0_metas_77_mru;
-  reg                 ways_0_metas_78_vld;
-  reg        [18:0]   ways_0_metas_78_tag;
-  reg                 ways_0_metas_78_mru;
-  reg                 ways_0_metas_79_vld;
-  reg        [18:0]   ways_0_metas_79_tag;
-  reg                 ways_0_metas_79_mru;
-  reg                 ways_0_metas_80_vld;
-  reg        [18:0]   ways_0_metas_80_tag;
-  reg                 ways_0_metas_80_mru;
-  reg                 ways_0_metas_81_vld;
-  reg        [18:0]   ways_0_metas_81_tag;
-  reg                 ways_0_metas_81_mru;
-  reg                 ways_0_metas_82_vld;
-  reg        [18:0]   ways_0_metas_82_tag;
-  reg                 ways_0_metas_82_mru;
-  reg                 ways_0_metas_83_vld;
-  reg        [18:0]   ways_0_metas_83_tag;
-  reg                 ways_0_metas_83_mru;
-  reg                 ways_0_metas_84_vld;
-  reg        [18:0]   ways_0_metas_84_tag;
-  reg                 ways_0_metas_84_mru;
-  reg                 ways_0_metas_85_vld;
-  reg        [18:0]   ways_0_metas_85_tag;
-  reg                 ways_0_metas_85_mru;
-  reg                 ways_0_metas_86_vld;
-  reg        [18:0]   ways_0_metas_86_tag;
-  reg                 ways_0_metas_86_mru;
-  reg                 ways_0_metas_87_vld;
-  reg        [18:0]   ways_0_metas_87_tag;
-  reg                 ways_0_metas_87_mru;
-  reg                 ways_0_metas_88_vld;
-  reg        [18:0]   ways_0_metas_88_tag;
-  reg                 ways_0_metas_88_mru;
-  reg                 ways_0_metas_89_vld;
-  reg        [18:0]   ways_0_metas_89_tag;
-  reg                 ways_0_metas_89_mru;
-  reg                 ways_0_metas_90_vld;
-  reg        [18:0]   ways_0_metas_90_tag;
-  reg                 ways_0_metas_90_mru;
-  reg                 ways_0_metas_91_vld;
-  reg        [18:0]   ways_0_metas_91_tag;
-  reg                 ways_0_metas_91_mru;
-  reg                 ways_0_metas_92_vld;
-  reg        [18:0]   ways_0_metas_92_tag;
-  reg                 ways_0_metas_92_mru;
-  reg                 ways_0_metas_93_vld;
-  reg        [18:0]   ways_0_metas_93_tag;
-  reg                 ways_0_metas_93_mru;
-  reg                 ways_0_metas_94_vld;
-  reg        [18:0]   ways_0_metas_94_tag;
-  reg                 ways_0_metas_94_mru;
-  reg                 ways_0_metas_95_vld;
-  reg        [18:0]   ways_0_metas_95_tag;
-  reg                 ways_0_metas_95_mru;
-  reg                 ways_0_metas_96_vld;
-  reg        [18:0]   ways_0_metas_96_tag;
-  reg                 ways_0_metas_96_mru;
-  reg                 ways_0_metas_97_vld;
-  reg        [18:0]   ways_0_metas_97_tag;
-  reg                 ways_0_metas_97_mru;
-  reg                 ways_0_metas_98_vld;
-  reg        [18:0]   ways_0_metas_98_tag;
-  reg                 ways_0_metas_98_mru;
-  reg                 ways_0_metas_99_vld;
-  reg        [18:0]   ways_0_metas_99_tag;
-  reg                 ways_0_metas_99_mru;
-  reg                 ways_0_metas_100_vld;
-  reg        [18:0]   ways_0_metas_100_tag;
-  reg                 ways_0_metas_100_mru;
-  reg                 ways_0_metas_101_vld;
-  reg        [18:0]   ways_0_metas_101_tag;
-  reg                 ways_0_metas_101_mru;
-  reg                 ways_0_metas_102_vld;
-  reg        [18:0]   ways_0_metas_102_tag;
-  reg                 ways_0_metas_102_mru;
-  reg                 ways_0_metas_103_vld;
-  reg        [18:0]   ways_0_metas_103_tag;
-  reg                 ways_0_metas_103_mru;
-  reg                 ways_0_metas_104_vld;
-  reg        [18:0]   ways_0_metas_104_tag;
-  reg                 ways_0_metas_104_mru;
-  reg                 ways_0_metas_105_vld;
-  reg        [18:0]   ways_0_metas_105_tag;
-  reg                 ways_0_metas_105_mru;
-  reg                 ways_0_metas_106_vld;
-  reg        [18:0]   ways_0_metas_106_tag;
-  reg                 ways_0_metas_106_mru;
-  reg                 ways_0_metas_107_vld;
-  reg        [18:0]   ways_0_metas_107_tag;
-  reg                 ways_0_metas_107_mru;
-  reg                 ways_0_metas_108_vld;
-  reg        [18:0]   ways_0_metas_108_tag;
-  reg                 ways_0_metas_108_mru;
-  reg                 ways_0_metas_109_vld;
-  reg        [18:0]   ways_0_metas_109_tag;
-  reg                 ways_0_metas_109_mru;
-  reg                 ways_0_metas_110_vld;
-  reg        [18:0]   ways_0_metas_110_tag;
-  reg                 ways_0_metas_110_mru;
-  reg                 ways_0_metas_111_vld;
-  reg        [18:0]   ways_0_metas_111_tag;
-  reg                 ways_0_metas_111_mru;
-  reg                 ways_0_metas_112_vld;
-  reg        [18:0]   ways_0_metas_112_tag;
-  reg                 ways_0_metas_112_mru;
-  reg                 ways_0_metas_113_vld;
-  reg        [18:0]   ways_0_metas_113_tag;
-  reg                 ways_0_metas_113_mru;
-  reg                 ways_0_metas_114_vld;
-  reg        [18:0]   ways_0_metas_114_tag;
-  reg                 ways_0_metas_114_mru;
-  reg                 ways_0_metas_115_vld;
-  reg        [18:0]   ways_0_metas_115_tag;
-  reg                 ways_0_metas_115_mru;
-  reg                 ways_0_metas_116_vld;
-  reg        [18:0]   ways_0_metas_116_tag;
-  reg                 ways_0_metas_116_mru;
-  reg                 ways_0_metas_117_vld;
-  reg        [18:0]   ways_0_metas_117_tag;
-  reg                 ways_0_metas_117_mru;
-  reg                 ways_0_metas_118_vld;
-  reg        [18:0]   ways_0_metas_118_tag;
-  reg                 ways_0_metas_118_mru;
-  reg                 ways_0_metas_119_vld;
-  reg        [18:0]   ways_0_metas_119_tag;
-  reg                 ways_0_metas_119_mru;
-  reg                 ways_0_metas_120_vld;
-  reg        [18:0]   ways_0_metas_120_tag;
-  reg                 ways_0_metas_120_mru;
-  reg                 ways_0_metas_121_vld;
-  reg        [18:0]   ways_0_metas_121_tag;
-  reg                 ways_0_metas_121_mru;
-  reg                 ways_0_metas_122_vld;
-  reg        [18:0]   ways_0_metas_122_tag;
-  reg                 ways_0_metas_122_mru;
-  reg                 ways_0_metas_123_vld;
-  reg        [18:0]   ways_0_metas_123_tag;
-  reg                 ways_0_metas_123_mru;
-  reg                 ways_0_metas_124_vld;
-  reg        [18:0]   ways_0_metas_124_tag;
-  reg                 ways_0_metas_124_mru;
-  reg                 ways_0_metas_125_vld;
-  reg        [18:0]   ways_0_metas_125_tag;
-  reg                 ways_0_metas_125_mru;
-  reg                 ways_0_metas_126_vld;
-  reg        [18:0]   ways_0_metas_126_tag;
-  reg                 ways_0_metas_126_mru;
-  reg                 ways_0_metas_127_vld;
-  reg        [18:0]   ways_0_metas_127_tag;
-  reg                 ways_0_metas_127_mru;
-  reg                 ways_1_metas_0_vld;
-  reg        [18:0]   ways_1_metas_0_tag;
-  reg                 ways_1_metas_0_mru;
-  reg                 ways_1_metas_1_vld;
-  reg        [18:0]   ways_1_metas_1_tag;
-  reg                 ways_1_metas_1_mru;
-  reg                 ways_1_metas_2_vld;
-  reg        [18:0]   ways_1_metas_2_tag;
-  reg                 ways_1_metas_2_mru;
-  reg                 ways_1_metas_3_vld;
-  reg        [18:0]   ways_1_metas_3_tag;
-  reg                 ways_1_metas_3_mru;
-  reg                 ways_1_metas_4_vld;
-  reg        [18:0]   ways_1_metas_4_tag;
-  reg                 ways_1_metas_4_mru;
-  reg                 ways_1_metas_5_vld;
-  reg        [18:0]   ways_1_metas_5_tag;
-  reg                 ways_1_metas_5_mru;
-  reg                 ways_1_metas_6_vld;
-  reg        [18:0]   ways_1_metas_6_tag;
-  reg                 ways_1_metas_6_mru;
-  reg                 ways_1_metas_7_vld;
-  reg        [18:0]   ways_1_metas_7_tag;
-  reg                 ways_1_metas_7_mru;
-  reg                 ways_1_metas_8_vld;
-  reg        [18:0]   ways_1_metas_8_tag;
-  reg                 ways_1_metas_8_mru;
-  reg                 ways_1_metas_9_vld;
-  reg        [18:0]   ways_1_metas_9_tag;
-  reg                 ways_1_metas_9_mru;
-  reg                 ways_1_metas_10_vld;
-  reg        [18:0]   ways_1_metas_10_tag;
-  reg                 ways_1_metas_10_mru;
-  reg                 ways_1_metas_11_vld;
-  reg        [18:0]   ways_1_metas_11_tag;
-  reg                 ways_1_metas_11_mru;
-  reg                 ways_1_metas_12_vld;
-  reg        [18:0]   ways_1_metas_12_tag;
-  reg                 ways_1_metas_12_mru;
-  reg                 ways_1_metas_13_vld;
-  reg        [18:0]   ways_1_metas_13_tag;
-  reg                 ways_1_metas_13_mru;
-  reg                 ways_1_metas_14_vld;
-  reg        [18:0]   ways_1_metas_14_tag;
-  reg                 ways_1_metas_14_mru;
-  reg                 ways_1_metas_15_vld;
-  reg        [18:0]   ways_1_metas_15_tag;
-  reg                 ways_1_metas_15_mru;
-  reg                 ways_1_metas_16_vld;
-  reg        [18:0]   ways_1_metas_16_tag;
-  reg                 ways_1_metas_16_mru;
-  reg                 ways_1_metas_17_vld;
-  reg        [18:0]   ways_1_metas_17_tag;
-  reg                 ways_1_metas_17_mru;
-  reg                 ways_1_metas_18_vld;
-  reg        [18:0]   ways_1_metas_18_tag;
-  reg                 ways_1_metas_18_mru;
-  reg                 ways_1_metas_19_vld;
-  reg        [18:0]   ways_1_metas_19_tag;
-  reg                 ways_1_metas_19_mru;
-  reg                 ways_1_metas_20_vld;
-  reg        [18:0]   ways_1_metas_20_tag;
-  reg                 ways_1_metas_20_mru;
-  reg                 ways_1_metas_21_vld;
-  reg        [18:0]   ways_1_metas_21_tag;
-  reg                 ways_1_metas_21_mru;
-  reg                 ways_1_metas_22_vld;
-  reg        [18:0]   ways_1_metas_22_tag;
-  reg                 ways_1_metas_22_mru;
-  reg                 ways_1_metas_23_vld;
-  reg        [18:0]   ways_1_metas_23_tag;
-  reg                 ways_1_metas_23_mru;
-  reg                 ways_1_metas_24_vld;
-  reg        [18:0]   ways_1_metas_24_tag;
-  reg                 ways_1_metas_24_mru;
-  reg                 ways_1_metas_25_vld;
-  reg        [18:0]   ways_1_metas_25_tag;
-  reg                 ways_1_metas_25_mru;
-  reg                 ways_1_metas_26_vld;
-  reg        [18:0]   ways_1_metas_26_tag;
-  reg                 ways_1_metas_26_mru;
-  reg                 ways_1_metas_27_vld;
-  reg        [18:0]   ways_1_metas_27_tag;
-  reg                 ways_1_metas_27_mru;
-  reg                 ways_1_metas_28_vld;
-  reg        [18:0]   ways_1_metas_28_tag;
-  reg                 ways_1_metas_28_mru;
-  reg                 ways_1_metas_29_vld;
-  reg        [18:0]   ways_1_metas_29_tag;
-  reg                 ways_1_metas_29_mru;
-  reg                 ways_1_metas_30_vld;
-  reg        [18:0]   ways_1_metas_30_tag;
-  reg                 ways_1_metas_30_mru;
-  reg                 ways_1_metas_31_vld;
-  reg        [18:0]   ways_1_metas_31_tag;
-  reg                 ways_1_metas_31_mru;
-  reg                 ways_1_metas_32_vld;
-  reg        [18:0]   ways_1_metas_32_tag;
-  reg                 ways_1_metas_32_mru;
-  reg                 ways_1_metas_33_vld;
-  reg        [18:0]   ways_1_metas_33_tag;
-  reg                 ways_1_metas_33_mru;
-  reg                 ways_1_metas_34_vld;
-  reg        [18:0]   ways_1_metas_34_tag;
-  reg                 ways_1_metas_34_mru;
-  reg                 ways_1_metas_35_vld;
-  reg        [18:0]   ways_1_metas_35_tag;
-  reg                 ways_1_metas_35_mru;
-  reg                 ways_1_metas_36_vld;
-  reg        [18:0]   ways_1_metas_36_tag;
-  reg                 ways_1_metas_36_mru;
-  reg                 ways_1_metas_37_vld;
-  reg        [18:0]   ways_1_metas_37_tag;
-  reg                 ways_1_metas_37_mru;
-  reg                 ways_1_metas_38_vld;
-  reg        [18:0]   ways_1_metas_38_tag;
-  reg                 ways_1_metas_38_mru;
-  reg                 ways_1_metas_39_vld;
-  reg        [18:0]   ways_1_metas_39_tag;
-  reg                 ways_1_metas_39_mru;
-  reg                 ways_1_metas_40_vld;
-  reg        [18:0]   ways_1_metas_40_tag;
-  reg                 ways_1_metas_40_mru;
-  reg                 ways_1_metas_41_vld;
-  reg        [18:0]   ways_1_metas_41_tag;
-  reg                 ways_1_metas_41_mru;
-  reg                 ways_1_metas_42_vld;
-  reg        [18:0]   ways_1_metas_42_tag;
-  reg                 ways_1_metas_42_mru;
-  reg                 ways_1_metas_43_vld;
-  reg        [18:0]   ways_1_metas_43_tag;
-  reg                 ways_1_metas_43_mru;
-  reg                 ways_1_metas_44_vld;
-  reg        [18:0]   ways_1_metas_44_tag;
-  reg                 ways_1_metas_44_mru;
-  reg                 ways_1_metas_45_vld;
-  reg        [18:0]   ways_1_metas_45_tag;
-  reg                 ways_1_metas_45_mru;
-  reg                 ways_1_metas_46_vld;
-  reg        [18:0]   ways_1_metas_46_tag;
-  reg                 ways_1_metas_46_mru;
-  reg                 ways_1_metas_47_vld;
-  reg        [18:0]   ways_1_metas_47_tag;
-  reg                 ways_1_metas_47_mru;
-  reg                 ways_1_metas_48_vld;
-  reg        [18:0]   ways_1_metas_48_tag;
-  reg                 ways_1_metas_48_mru;
-  reg                 ways_1_metas_49_vld;
-  reg        [18:0]   ways_1_metas_49_tag;
-  reg                 ways_1_metas_49_mru;
-  reg                 ways_1_metas_50_vld;
-  reg        [18:0]   ways_1_metas_50_tag;
-  reg                 ways_1_metas_50_mru;
-  reg                 ways_1_metas_51_vld;
-  reg        [18:0]   ways_1_metas_51_tag;
-  reg                 ways_1_metas_51_mru;
-  reg                 ways_1_metas_52_vld;
-  reg        [18:0]   ways_1_metas_52_tag;
-  reg                 ways_1_metas_52_mru;
-  reg                 ways_1_metas_53_vld;
-  reg        [18:0]   ways_1_metas_53_tag;
-  reg                 ways_1_metas_53_mru;
-  reg                 ways_1_metas_54_vld;
-  reg        [18:0]   ways_1_metas_54_tag;
-  reg                 ways_1_metas_54_mru;
-  reg                 ways_1_metas_55_vld;
-  reg        [18:0]   ways_1_metas_55_tag;
-  reg                 ways_1_metas_55_mru;
-  reg                 ways_1_metas_56_vld;
-  reg        [18:0]   ways_1_metas_56_tag;
-  reg                 ways_1_metas_56_mru;
-  reg                 ways_1_metas_57_vld;
-  reg        [18:0]   ways_1_metas_57_tag;
-  reg                 ways_1_metas_57_mru;
-  reg                 ways_1_metas_58_vld;
-  reg        [18:0]   ways_1_metas_58_tag;
-  reg                 ways_1_metas_58_mru;
-  reg                 ways_1_metas_59_vld;
-  reg        [18:0]   ways_1_metas_59_tag;
-  reg                 ways_1_metas_59_mru;
-  reg                 ways_1_metas_60_vld;
-  reg        [18:0]   ways_1_metas_60_tag;
-  reg                 ways_1_metas_60_mru;
-  reg                 ways_1_metas_61_vld;
-  reg        [18:0]   ways_1_metas_61_tag;
-  reg                 ways_1_metas_61_mru;
-  reg                 ways_1_metas_62_vld;
-  reg        [18:0]   ways_1_metas_62_tag;
-  reg                 ways_1_metas_62_mru;
-  reg                 ways_1_metas_63_vld;
-  reg        [18:0]   ways_1_metas_63_tag;
-  reg                 ways_1_metas_63_mru;
-  reg                 ways_1_metas_64_vld;
-  reg        [18:0]   ways_1_metas_64_tag;
-  reg                 ways_1_metas_64_mru;
-  reg                 ways_1_metas_65_vld;
-  reg        [18:0]   ways_1_metas_65_tag;
-  reg                 ways_1_metas_65_mru;
-  reg                 ways_1_metas_66_vld;
-  reg        [18:0]   ways_1_metas_66_tag;
-  reg                 ways_1_metas_66_mru;
-  reg                 ways_1_metas_67_vld;
-  reg        [18:0]   ways_1_metas_67_tag;
-  reg                 ways_1_metas_67_mru;
-  reg                 ways_1_metas_68_vld;
-  reg        [18:0]   ways_1_metas_68_tag;
-  reg                 ways_1_metas_68_mru;
-  reg                 ways_1_metas_69_vld;
-  reg        [18:0]   ways_1_metas_69_tag;
-  reg                 ways_1_metas_69_mru;
-  reg                 ways_1_metas_70_vld;
-  reg        [18:0]   ways_1_metas_70_tag;
-  reg                 ways_1_metas_70_mru;
-  reg                 ways_1_metas_71_vld;
-  reg        [18:0]   ways_1_metas_71_tag;
-  reg                 ways_1_metas_71_mru;
-  reg                 ways_1_metas_72_vld;
-  reg        [18:0]   ways_1_metas_72_tag;
-  reg                 ways_1_metas_72_mru;
-  reg                 ways_1_metas_73_vld;
-  reg        [18:0]   ways_1_metas_73_tag;
-  reg                 ways_1_metas_73_mru;
-  reg                 ways_1_metas_74_vld;
-  reg        [18:0]   ways_1_metas_74_tag;
-  reg                 ways_1_metas_74_mru;
-  reg                 ways_1_metas_75_vld;
-  reg        [18:0]   ways_1_metas_75_tag;
-  reg                 ways_1_metas_75_mru;
-  reg                 ways_1_metas_76_vld;
-  reg        [18:0]   ways_1_metas_76_tag;
-  reg                 ways_1_metas_76_mru;
-  reg                 ways_1_metas_77_vld;
-  reg        [18:0]   ways_1_metas_77_tag;
-  reg                 ways_1_metas_77_mru;
-  reg                 ways_1_metas_78_vld;
-  reg        [18:0]   ways_1_metas_78_tag;
-  reg                 ways_1_metas_78_mru;
-  reg                 ways_1_metas_79_vld;
-  reg        [18:0]   ways_1_metas_79_tag;
-  reg                 ways_1_metas_79_mru;
-  reg                 ways_1_metas_80_vld;
-  reg        [18:0]   ways_1_metas_80_tag;
-  reg                 ways_1_metas_80_mru;
-  reg                 ways_1_metas_81_vld;
-  reg        [18:0]   ways_1_metas_81_tag;
-  reg                 ways_1_metas_81_mru;
-  reg                 ways_1_metas_82_vld;
-  reg        [18:0]   ways_1_metas_82_tag;
-  reg                 ways_1_metas_82_mru;
-  reg                 ways_1_metas_83_vld;
-  reg        [18:0]   ways_1_metas_83_tag;
-  reg                 ways_1_metas_83_mru;
-  reg                 ways_1_metas_84_vld;
-  reg        [18:0]   ways_1_metas_84_tag;
-  reg                 ways_1_metas_84_mru;
-  reg                 ways_1_metas_85_vld;
-  reg        [18:0]   ways_1_metas_85_tag;
-  reg                 ways_1_metas_85_mru;
-  reg                 ways_1_metas_86_vld;
-  reg        [18:0]   ways_1_metas_86_tag;
-  reg                 ways_1_metas_86_mru;
-  reg                 ways_1_metas_87_vld;
-  reg        [18:0]   ways_1_metas_87_tag;
-  reg                 ways_1_metas_87_mru;
-  reg                 ways_1_metas_88_vld;
-  reg        [18:0]   ways_1_metas_88_tag;
-  reg                 ways_1_metas_88_mru;
-  reg                 ways_1_metas_89_vld;
-  reg        [18:0]   ways_1_metas_89_tag;
-  reg                 ways_1_metas_89_mru;
-  reg                 ways_1_metas_90_vld;
-  reg        [18:0]   ways_1_metas_90_tag;
-  reg                 ways_1_metas_90_mru;
-  reg                 ways_1_metas_91_vld;
-  reg        [18:0]   ways_1_metas_91_tag;
-  reg                 ways_1_metas_91_mru;
-  reg                 ways_1_metas_92_vld;
-  reg        [18:0]   ways_1_metas_92_tag;
-  reg                 ways_1_metas_92_mru;
-  reg                 ways_1_metas_93_vld;
-  reg        [18:0]   ways_1_metas_93_tag;
-  reg                 ways_1_metas_93_mru;
-  reg                 ways_1_metas_94_vld;
-  reg        [18:0]   ways_1_metas_94_tag;
-  reg                 ways_1_metas_94_mru;
-  reg                 ways_1_metas_95_vld;
-  reg        [18:0]   ways_1_metas_95_tag;
-  reg                 ways_1_metas_95_mru;
-  reg                 ways_1_metas_96_vld;
-  reg        [18:0]   ways_1_metas_96_tag;
-  reg                 ways_1_metas_96_mru;
-  reg                 ways_1_metas_97_vld;
-  reg        [18:0]   ways_1_metas_97_tag;
-  reg                 ways_1_metas_97_mru;
-  reg                 ways_1_metas_98_vld;
-  reg        [18:0]   ways_1_metas_98_tag;
-  reg                 ways_1_metas_98_mru;
-  reg                 ways_1_metas_99_vld;
-  reg        [18:0]   ways_1_metas_99_tag;
-  reg                 ways_1_metas_99_mru;
-  reg                 ways_1_metas_100_vld;
-  reg        [18:0]   ways_1_metas_100_tag;
-  reg                 ways_1_metas_100_mru;
-  reg                 ways_1_metas_101_vld;
-  reg        [18:0]   ways_1_metas_101_tag;
-  reg                 ways_1_metas_101_mru;
-  reg                 ways_1_metas_102_vld;
-  reg        [18:0]   ways_1_metas_102_tag;
-  reg                 ways_1_metas_102_mru;
-  reg                 ways_1_metas_103_vld;
-  reg        [18:0]   ways_1_metas_103_tag;
-  reg                 ways_1_metas_103_mru;
-  reg                 ways_1_metas_104_vld;
-  reg        [18:0]   ways_1_metas_104_tag;
-  reg                 ways_1_metas_104_mru;
-  reg                 ways_1_metas_105_vld;
-  reg        [18:0]   ways_1_metas_105_tag;
-  reg                 ways_1_metas_105_mru;
-  reg                 ways_1_metas_106_vld;
-  reg        [18:0]   ways_1_metas_106_tag;
-  reg                 ways_1_metas_106_mru;
-  reg                 ways_1_metas_107_vld;
-  reg        [18:0]   ways_1_metas_107_tag;
-  reg                 ways_1_metas_107_mru;
-  reg                 ways_1_metas_108_vld;
-  reg        [18:0]   ways_1_metas_108_tag;
-  reg                 ways_1_metas_108_mru;
-  reg                 ways_1_metas_109_vld;
-  reg        [18:0]   ways_1_metas_109_tag;
-  reg                 ways_1_metas_109_mru;
-  reg                 ways_1_metas_110_vld;
-  reg        [18:0]   ways_1_metas_110_tag;
-  reg                 ways_1_metas_110_mru;
-  reg                 ways_1_metas_111_vld;
-  reg        [18:0]   ways_1_metas_111_tag;
-  reg                 ways_1_metas_111_mru;
-  reg                 ways_1_metas_112_vld;
-  reg        [18:0]   ways_1_metas_112_tag;
-  reg                 ways_1_metas_112_mru;
-  reg                 ways_1_metas_113_vld;
-  reg        [18:0]   ways_1_metas_113_tag;
-  reg                 ways_1_metas_113_mru;
-  reg                 ways_1_metas_114_vld;
-  reg        [18:0]   ways_1_metas_114_tag;
-  reg                 ways_1_metas_114_mru;
-  reg                 ways_1_metas_115_vld;
-  reg        [18:0]   ways_1_metas_115_tag;
-  reg                 ways_1_metas_115_mru;
-  reg                 ways_1_metas_116_vld;
-  reg        [18:0]   ways_1_metas_116_tag;
-  reg                 ways_1_metas_116_mru;
-  reg                 ways_1_metas_117_vld;
-  reg        [18:0]   ways_1_metas_117_tag;
-  reg                 ways_1_metas_117_mru;
-  reg                 ways_1_metas_118_vld;
-  reg        [18:0]   ways_1_metas_118_tag;
-  reg                 ways_1_metas_118_mru;
-  reg                 ways_1_metas_119_vld;
-  reg        [18:0]   ways_1_metas_119_tag;
-  reg                 ways_1_metas_119_mru;
-  reg                 ways_1_metas_120_vld;
-  reg        [18:0]   ways_1_metas_120_tag;
-  reg                 ways_1_metas_120_mru;
-  reg                 ways_1_metas_121_vld;
-  reg        [18:0]   ways_1_metas_121_tag;
-  reg                 ways_1_metas_121_mru;
-  reg                 ways_1_metas_122_vld;
-  reg        [18:0]   ways_1_metas_122_tag;
-  reg                 ways_1_metas_122_mru;
-  reg                 ways_1_metas_123_vld;
-  reg        [18:0]   ways_1_metas_123_tag;
-  reg                 ways_1_metas_123_mru;
-  reg                 ways_1_metas_124_vld;
-  reg        [18:0]   ways_1_metas_124_tag;
-  reg                 ways_1_metas_124_mru;
-  reg                 ways_1_metas_125_vld;
-  reg        [18:0]   ways_1_metas_125_tag;
-  reg                 ways_1_metas_125_mru;
-  reg                 ways_1_metas_126_vld;
-  reg        [18:0]   ways_1_metas_126_tag;
-  reg                 ways_1_metas_126_mru;
-  reg                 ways_1_metas_127_vld;
-  reg        [18:0]   ways_1_metas_127_tag;
-  reg                 ways_1_metas_127_mru;
-  reg                 cpu_cmd_ready_1;
-  wire       [18:0]   cpu_tag;
-  wire       [6:0]    cpu_set;
-  wire       [9:0]    cpu_bank_addr;
-  wire                bypass_cond_0;
-  wire                bypass_cond_1;
-  wire                bypass_cond_2;
-  wire                cpu_cmd_fire;
-  wire                bypass;
-  reg                 bypass_reg;
-  reg                 bypass_rsp_valid_d1;
-  reg        [63:0]   bypass_rsp_data_d1;
-  wire       [18:0]   cache_tag_0;
-  wire       [18:0]   cache_tag_1;
-  wire                cache_hit_0;
-  wire                cache_hit_1;
-  wire                cache_invld_0;
-  wire                cache_invld_1;
-  wire                cache_invld_d1_0;
-  wire                cache_invld_d1_1;
-  wire                cache_victim_0;
-  wire                cache_victim_1;
-  wire                cache_mru_0;
-  wire                cache_mru_1;
-  wire                cache_lru_0;
-  wire                cache_lru_1;
-  wire                cache_lru_d1_0;
-  wire                cache_lru_d1_1;
-  wire       [0:0]    hit_id;
-  reg        [0:0]    hit_id_d1;
-  wire       [0:0]    evict_id;
-  reg        [0:0]    evict_id_d1;
-  wire       [0:0]    invld_id;
-  wire       [0:0]    victim_id;
-  wire                mru_full;
-  wire                cpu_cmd_fire_1;
-  wire                is_hit;
-  reg                 is_hit_d1;
-  wire                cpu_cmd_fire_2;
-  wire                is_miss;
-  wire                is_diff;
-  wire                cpu_cmd_fire_3;
-  wire                is_write;
-  reg                 is_write_reg;
-  reg                 flush_busy;
-  reg                 flush_cnt_willIncrement;
-  reg                 flush_cnt_willClear;
-  reg        [6:0]    flush_cnt_valueNext;
-  reg        [6:0]    flush_cnt_value;
-  wire                flush_cnt_willOverflowIfInc;
-  wire                flush_cnt_willOverflow;
-  wire                flush_done;
-  wire                cache_hit_gnt_0;
-  wire                cache_hit_gnt_1;
-  wire                cache_victim_gnt_0;
-  wire                cache_victim_gnt_1;
-  wire                cache_invld_gnt_0;
-  wire                cache_invld_gnt_1;
-  reg        [0:0]    evict_id_miss;
-  wire                cpu_cmd_fire_4;
-  reg                 cpu_wen_d1;
-  wire                cpu_cmd_fire_5;
-  reg        [7:0]    cpu_wstrb_d1;
-  wire                cpu_cmd_fire_6;
-  reg        [63:0]   cpu_wdata_d1;
-  wire                cpu_cmd_fire_7;
-  reg        [31:0]   cpu_addr_d1;
-  wire       [6:0]    cpu_set_d1;
-  wire       [18:0]   cpu_tag_d1;
-  wire       [9:0]    cpu_bank_addr_d1;
-  wire       [63:0]   sram_banks_data_0;
-  wire       [63:0]   sram_banks_data_1;
-  wire                sram_banks_valid_0;
-  wire                sram_banks_valid_1;
-  reg                 next_level_cmd_valid_1;
-  reg                 next_level_data_cnt_willIncrement;
-  reg                 next_level_data_cnt_willClear;
-  reg        [2:0]    next_level_data_cnt_valueNext;
-  reg        [2:0]    next_level_data_cnt_value;
-  wire                next_level_data_cnt_willOverflowIfInc;
-  wire                next_level_data_cnt_willOverflow;
-  wire       [9:0]    next_level_bank_addr;
-  wire                next_level_rvalid;
-  reg                 next_level_rdone;
-  reg                 next_level_wdone;
-  wire       [1:0]    tmp_cache_hit_gnt_0;
-  wire       [1:0]    tmp_cache_hit_gnt_0_1;
-  wire       [3:0]    tmp_cache_hit_gnt_0_2;
-  wire       [3:0]    tmp_cache_hit_gnt_0_3;
-  wire       [1:0]    tmp_cache_hit_gnt_0_4;
-  wire       [1:0]    tmp_cache_invld_gnt_0;
-  wire       [1:0]    tmp_cache_invld_gnt_0_1;
-  wire       [3:0]    tmp_cache_invld_gnt_0_2;
-  wire       [3:0]    tmp_cache_invld_gnt_0_3;
-  wire       [1:0]    tmp_cache_invld_gnt_0_4;
-  wire       [1:0]    tmp_cache_victim_gnt_0;
-  wire       [1:0]    tmp_cache_victim_gnt_0_1;
-  wire       [3:0]    tmp_cache_victim_gnt_0_2;
-  wire       [3:0]    tmp_cache_victim_gnt_0_3;
-  wire       [1:0]    tmp_cache_victim_gnt_0_4;
-  wire       [127:0]  tmp_1;
-  wire                tmp_2;
-  wire                tmp_3;
-  wire                tmp_4;
-  wire                tmp_5;
-  wire                tmp_6;
-  wire                tmp_7;
-  wire                tmp_8;
-  wire                tmp_9;
-  wire                tmp_10;
-  wire                tmp_11;
-  wire                tmp_12;
-  wire                tmp_13;
-  wire                tmp_14;
-  wire                tmp_15;
-  wire                tmp_16;
-  wire                tmp_17;
-  wire                tmp_18;
-  wire                tmp_19;
-  wire                tmp_20;
-  wire                tmp_21;
-  wire                tmp_22;
-  wire                tmp_23;
-  wire                tmp_24;
-  wire                tmp_25;
-  wire                tmp_26;
-  wire                tmp_27;
-  wire                tmp_28;
-  wire                tmp_29;
-  wire                tmp_30;
-  wire                tmp_31;
-  wire                tmp_32;
-  wire                tmp_33;
-  wire                tmp_34;
-  wire                tmp_35;
-  wire                tmp_36;
-  wire                tmp_37;
-  wire                tmp_38;
-  wire                tmp_39;
-  wire                tmp_40;
-  wire                tmp_41;
-  wire                tmp_42;
-  wire                tmp_43;
-  wire                tmp_44;
-  wire                tmp_45;
-  wire                tmp_46;
-  wire                tmp_47;
-  wire                tmp_48;
-  wire                tmp_49;
-  wire                tmp_50;
-  wire                tmp_51;
-  wire                tmp_52;
-  wire                tmp_53;
-  wire                tmp_54;
-  wire                tmp_55;
-  wire                tmp_56;
-  wire                tmp_57;
-  wire                tmp_58;
-  wire                tmp_59;
-  wire                tmp_60;
-  wire                tmp_61;
-  wire                tmp_62;
-  wire                tmp_63;
-  wire                tmp_64;
-  wire                tmp_65;
-  wire                tmp_66;
-  wire                tmp_67;
-  wire                tmp_68;
-  wire                tmp_69;
-  wire                tmp_70;
-  wire                tmp_71;
-  wire                tmp_72;
-  wire                tmp_73;
-  wire                tmp_74;
-  wire                tmp_75;
-  wire                tmp_76;
-  wire                tmp_77;
-  wire                tmp_78;
-  wire                tmp_79;
-  wire                tmp_80;
-  wire                tmp_81;
-  wire                tmp_82;
-  wire                tmp_83;
-  wire                tmp_84;
-  wire                tmp_85;
-  wire                tmp_86;
-  wire                tmp_87;
-  wire                tmp_88;
-  wire                tmp_89;
-  wire                tmp_90;
-  wire                tmp_91;
-  wire                tmp_92;
-  wire                tmp_93;
-  wire                tmp_94;
-  wire                tmp_95;
-  wire                tmp_96;
-  wire                tmp_97;
-  wire                tmp_98;
-  wire                tmp_99;
-  wire                tmp_100;
-  wire                tmp_101;
-  wire                tmp_102;
-  wire                tmp_103;
-  wire                tmp_104;
-  wire                tmp_105;
-  wire                tmp_106;
-  wire                tmp_107;
-  wire                tmp_108;
-  wire                tmp_109;
-  wire                tmp_110;
-  wire                tmp_111;
-  wire                tmp_112;
-  wire                tmp_113;
-  wire                tmp_114;
-  wire                tmp_115;
-  wire                tmp_116;
-  wire                tmp_117;
-  wire                tmp_118;
-  wire                tmp_119;
-  wire                tmp_120;
-  wire                tmp_121;
-  wire                tmp_122;
-  wire                tmp_123;
-  wire                tmp_124;
-  wire                tmp_125;
-  wire                tmp_126;
-  wire                tmp_127;
-  wire                tmp_128;
-  wire                tmp_129;
-  wire       [127:0]  tmp_130;
-  wire                tmp_131;
-  wire                tmp_132;
-  wire                tmp_133;
-  wire                tmp_134;
-  wire                tmp_135;
-  wire                tmp_136;
-  wire                tmp_137;
-  wire                tmp_138;
-  wire                tmp_139;
-  wire                tmp_140;
-  wire                tmp_141;
-  wire                tmp_142;
-  wire                tmp_143;
-  wire                tmp_144;
-  wire                tmp_145;
-  wire                tmp_146;
-  wire                tmp_147;
-  wire                tmp_148;
-  wire                tmp_149;
-  wire                tmp_150;
-  wire                tmp_151;
-  wire                tmp_152;
-  wire                tmp_153;
-  wire                tmp_154;
-  wire                tmp_155;
-  wire                tmp_156;
-  wire                tmp_157;
-  wire                tmp_158;
-  wire                tmp_159;
-  wire                tmp_160;
-  wire                tmp_161;
-  wire                tmp_162;
-  wire                tmp_163;
-  wire                tmp_164;
-  wire                tmp_165;
-  wire                tmp_166;
-  wire                tmp_167;
-  wire                tmp_168;
-  wire                tmp_169;
-  wire                tmp_170;
-  wire                tmp_171;
-  wire                tmp_172;
-  wire                tmp_173;
-  wire                tmp_174;
-  wire                tmp_175;
-  wire                tmp_176;
-  wire                tmp_177;
-  wire                tmp_178;
-  wire                tmp_179;
-  wire                tmp_180;
-  wire                tmp_181;
-  wire                tmp_182;
-  wire                tmp_183;
-  wire                tmp_184;
-  wire                tmp_185;
-  wire                tmp_186;
-  wire                tmp_187;
-  wire                tmp_188;
-  wire                tmp_189;
-  wire                tmp_190;
-  wire                tmp_191;
-  wire                tmp_192;
-  wire                tmp_193;
-  wire                tmp_194;
-  wire                tmp_195;
-  wire                tmp_196;
-  wire                tmp_197;
-  wire                tmp_198;
-  wire                tmp_199;
-  wire                tmp_200;
-  wire                tmp_201;
-  wire                tmp_202;
-  wire                tmp_203;
-  wire                tmp_204;
-  wire                tmp_205;
-  wire                tmp_206;
-  wire                tmp_207;
-  wire                tmp_208;
-  wire                tmp_209;
-  wire                tmp_210;
-  wire                tmp_211;
-  wire                tmp_212;
-  wire                tmp_213;
-  wire                tmp_214;
-  wire                tmp_215;
-  wire                tmp_216;
-  wire                tmp_217;
-  wire                tmp_218;
-  wire                tmp_219;
-  wire                tmp_220;
-  wire                tmp_221;
-  wire                tmp_222;
-  wire                tmp_223;
-  wire                tmp_224;
-  wire                tmp_225;
-  wire                tmp_226;
-  wire                tmp_227;
-  wire                tmp_228;
-  wire                tmp_229;
-  wire                tmp_230;
-  wire                tmp_231;
-  wire                tmp_232;
-  wire                tmp_233;
-  wire                tmp_234;
-  wire                tmp_235;
-  wire                tmp_236;
-  wire                tmp_237;
-  wire                tmp_238;
-  wire                tmp_239;
-  wire                tmp_240;
-  wire                tmp_241;
-  wire                tmp_242;
-  wire                tmp_243;
-  wire                tmp_244;
-  wire                tmp_245;
-  wire                tmp_246;
-  wire                tmp_247;
-  wire                tmp_248;
-  wire                tmp_249;
-  wire                tmp_250;
-  wire                tmp_251;
-  wire                tmp_252;
-  wire                tmp_253;
-  wire                tmp_254;
-  wire                tmp_255;
-  wire                tmp_256;
-  wire                tmp_257;
-  wire                tmp_258;
-  wire       [127:0]  tmp_259;
-  wire                tmp_260;
-  wire                tmp_261;
-  wire                tmp_262;
-  wire                tmp_263;
-  wire                tmp_264;
-  wire                tmp_265;
-  wire                tmp_266;
-  wire                tmp_267;
-  wire                tmp_268;
-  wire                tmp_269;
-  wire                tmp_270;
-  wire                tmp_271;
-  wire                tmp_272;
-  wire                tmp_273;
-  wire                tmp_274;
-  wire                tmp_275;
-  wire                tmp_276;
-  wire                tmp_277;
-  wire                tmp_278;
-  wire                tmp_279;
-  wire                tmp_280;
-  wire                tmp_281;
-  wire                tmp_282;
-  wire                tmp_283;
-  wire                tmp_284;
-  wire                tmp_285;
-  wire                tmp_286;
-  wire                tmp_287;
-  wire                tmp_288;
-  wire                tmp_289;
-  wire                tmp_290;
-  wire                tmp_291;
-  wire                tmp_292;
-  wire                tmp_293;
-  wire                tmp_294;
-  wire                tmp_295;
-  wire                tmp_296;
-  wire                tmp_297;
-  wire                tmp_298;
-  wire                tmp_299;
-  wire                tmp_300;
-  wire                tmp_301;
-  wire                tmp_302;
-  wire                tmp_303;
-  wire                tmp_304;
-  wire                tmp_305;
-  wire                tmp_306;
-  wire                tmp_307;
-  wire                tmp_308;
-  wire                tmp_309;
-  wire                tmp_310;
-  wire                tmp_311;
-  wire                tmp_312;
-  wire                tmp_313;
-  wire                tmp_314;
-  wire                tmp_315;
-  wire                tmp_316;
-  wire                tmp_317;
-  wire                tmp_318;
-  wire                tmp_319;
-  wire                tmp_320;
-  wire                tmp_321;
-  wire                tmp_322;
-  wire                tmp_323;
-  wire                tmp_324;
-  wire                tmp_325;
-  wire                tmp_326;
-  wire                tmp_327;
-  wire                tmp_328;
-  wire                tmp_329;
-  wire                tmp_330;
-  wire                tmp_331;
-  wire                tmp_332;
-  wire                tmp_333;
-  wire                tmp_334;
-  wire                tmp_335;
-  wire                tmp_336;
-  wire                tmp_337;
-  wire                tmp_338;
-  wire                tmp_339;
-  wire                tmp_340;
-  wire                tmp_341;
-  wire                tmp_342;
-  wire                tmp_343;
-  wire                tmp_344;
-  wire                tmp_345;
-  wire                tmp_346;
-  wire                tmp_347;
-  wire                tmp_348;
-  wire                tmp_349;
-  wire                tmp_350;
-  wire                tmp_351;
-  wire                tmp_352;
-  wire                tmp_353;
-  wire                tmp_354;
-  wire                tmp_355;
-  wire                tmp_356;
-  wire                tmp_357;
-  wire                tmp_358;
-  wire                tmp_359;
-  wire                tmp_360;
-  wire                tmp_361;
-  wire                tmp_362;
-  wire                tmp_363;
-  wire                tmp_364;
-  wire                tmp_365;
-  wire                tmp_366;
-  wire                tmp_367;
-  wire                tmp_368;
-  wire                tmp_369;
-  wire                tmp_370;
-  wire                tmp_371;
-  wire                tmp_372;
-  wire                tmp_373;
-  wire                tmp_374;
-  wire                tmp_375;
-  wire                tmp_376;
-  wire                tmp_377;
-  wire                tmp_378;
-  wire                tmp_379;
-  wire                tmp_380;
-  wire                tmp_381;
-  wire                tmp_382;
-  wire                tmp_383;
-  wire                tmp_384;
-  wire                tmp_385;
-  wire                tmp_386;
-  wire                tmp_387;
-  wire       [127:0]  tmp_388;
-  wire                tmp_389;
-  wire                tmp_390;
-  wire                tmp_391;
-  wire                tmp_392;
-  wire                tmp_393;
-  wire                tmp_394;
-  wire                tmp_395;
-  wire                tmp_396;
-  wire                tmp_397;
-  wire                tmp_398;
-  wire                tmp_399;
-  wire                tmp_400;
-  wire                tmp_401;
-  wire                tmp_402;
-  wire                tmp_403;
-  wire                tmp_404;
-  wire                tmp_405;
-  wire                tmp_406;
-  wire                tmp_407;
-  wire                tmp_408;
-  wire                tmp_409;
-  wire                tmp_410;
-  wire                tmp_411;
-  wire                tmp_412;
-  wire                tmp_413;
-  wire                tmp_414;
-  wire                tmp_415;
-  wire                tmp_416;
-  wire                tmp_417;
-  wire                tmp_418;
-  wire                tmp_419;
-  wire                tmp_420;
-  wire                tmp_421;
-  wire                tmp_422;
-  wire                tmp_423;
-  wire                tmp_424;
-  wire                tmp_425;
-  wire                tmp_426;
-  wire                tmp_427;
-  wire                tmp_428;
-  wire                tmp_429;
-  wire                tmp_430;
-  wire                tmp_431;
-  wire                tmp_432;
-  wire                tmp_433;
-  wire                tmp_434;
-  wire                tmp_435;
-  wire                tmp_436;
-  wire                tmp_437;
-  wire                tmp_438;
-  wire                tmp_439;
-  wire                tmp_440;
-  wire                tmp_441;
-  wire                tmp_442;
-  wire                tmp_443;
-  wire                tmp_444;
-  wire                tmp_445;
-  wire                tmp_446;
-  wire                tmp_447;
-  wire                tmp_448;
-  wire                tmp_449;
-  wire                tmp_450;
-  wire                tmp_451;
-  wire                tmp_452;
-  wire                tmp_453;
-  wire                tmp_454;
-  wire                tmp_455;
-  wire                tmp_456;
-  wire                tmp_457;
-  wire                tmp_458;
-  wire                tmp_459;
-  wire                tmp_460;
-  wire                tmp_461;
-  wire                tmp_462;
-  wire                tmp_463;
-  wire                tmp_464;
-  wire                tmp_465;
-  wire                tmp_466;
-  wire                tmp_467;
-  wire                tmp_468;
-  wire                tmp_469;
-  wire                tmp_470;
-  wire                tmp_471;
-  wire                tmp_472;
-  wire                tmp_473;
-  wire                tmp_474;
-  wire                tmp_475;
-  wire                tmp_476;
-  wire                tmp_477;
-  wire                tmp_478;
-  wire                tmp_479;
-  wire                tmp_480;
-  wire                tmp_481;
-  wire                tmp_482;
-  wire                tmp_483;
-  wire                tmp_484;
-  wire                tmp_485;
-  wire                tmp_486;
-  wire                tmp_487;
-  wire                tmp_488;
-  wire                tmp_489;
-  wire                tmp_490;
-  wire                tmp_491;
-  wire                tmp_492;
-  wire                tmp_493;
-  wire                tmp_494;
-  wire                tmp_495;
-  wire                tmp_496;
-  wire                tmp_497;
-  wire                tmp_498;
-  wire                tmp_499;
-  wire                tmp_500;
-  wire                tmp_501;
-  wire                tmp_502;
-  wire                tmp_503;
-  wire                tmp_504;
-  wire                tmp_505;
-  wire                tmp_506;
-  wire                tmp_507;
-  wire                tmp_508;
-  wire                tmp_509;
-  wire                tmp_510;
-  wire                tmp_511;
-  wire                tmp_512;
-  wire                tmp_513;
-  wire                tmp_514;
-  wire                tmp_515;
-  wire                tmp_516;
-  wire       [127:0]  tmp_517;
-  wire                tmp_518;
-  wire                tmp_519;
-  wire                tmp_520;
-  wire                tmp_521;
-  wire                tmp_522;
-  wire                tmp_523;
-  wire                tmp_524;
-  wire                tmp_525;
-  wire                tmp_526;
-  wire                tmp_527;
-  wire                tmp_528;
-  wire                tmp_529;
-  wire                tmp_530;
-  wire                tmp_531;
-  wire                tmp_532;
-  wire                tmp_533;
-  wire                tmp_534;
-  wire                tmp_535;
-  wire                tmp_536;
-  wire                tmp_537;
-  wire                tmp_538;
-  wire                tmp_539;
-  wire                tmp_540;
-  wire                tmp_541;
-  wire                tmp_542;
-  wire                tmp_543;
-  wire                tmp_544;
-  wire                tmp_545;
-  wire                tmp_546;
-  wire                tmp_547;
-  wire                tmp_548;
-  wire                tmp_549;
-  wire                tmp_550;
-  wire                tmp_551;
-  wire                tmp_552;
-  wire                tmp_553;
-  wire                tmp_554;
-  wire                tmp_555;
-  wire                tmp_556;
-  wire                tmp_557;
-  wire                tmp_558;
-  wire                tmp_559;
-  wire                tmp_560;
-  wire                tmp_561;
-  wire                tmp_562;
-  wire                tmp_563;
-  wire                tmp_564;
-  wire                tmp_565;
-  wire                tmp_566;
-  wire                tmp_567;
-  wire                tmp_568;
-  wire                tmp_569;
-  wire                tmp_570;
-  wire                tmp_571;
-  wire                tmp_572;
-  wire                tmp_573;
-  wire                tmp_574;
-  wire                tmp_575;
-  wire                tmp_576;
-  wire                tmp_577;
-  wire                tmp_578;
-  wire                tmp_579;
-  wire                tmp_580;
-  wire                tmp_581;
-  wire                tmp_582;
-  wire                tmp_583;
-  wire                tmp_584;
-  wire                tmp_585;
-  wire                tmp_586;
-  wire                tmp_587;
-  wire                tmp_588;
-  wire                tmp_589;
-  wire                tmp_590;
-  wire                tmp_591;
-  wire                tmp_592;
-  wire                tmp_593;
-  wire                tmp_594;
-  wire                tmp_595;
-  wire                tmp_596;
-  wire                tmp_597;
-  wire                tmp_598;
-  wire                tmp_599;
-  wire                tmp_600;
-  wire                tmp_601;
-  wire                tmp_602;
-  wire                tmp_603;
-  wire                tmp_604;
-  wire                tmp_605;
-  wire                tmp_606;
-  wire                tmp_607;
-  wire                tmp_608;
-  wire                tmp_609;
-  wire                tmp_610;
-  wire                tmp_611;
-  wire                tmp_612;
-  wire                tmp_613;
-  wire                tmp_614;
-  wire                tmp_615;
-  wire                tmp_616;
-  wire                tmp_617;
-  wire                tmp_618;
-  wire                tmp_619;
-  wire                tmp_620;
-  wire                tmp_621;
-  wire                tmp_622;
-  wire                tmp_623;
-  wire                tmp_624;
-  wire                tmp_625;
-  wire                tmp_626;
-  wire                tmp_627;
-  wire                tmp_628;
-  wire                tmp_629;
-  wire                tmp_630;
-  wire                tmp_631;
-  wire                tmp_632;
-  wire                tmp_633;
-  wire                tmp_634;
-  wire                tmp_635;
-  wire                tmp_636;
-  wire                tmp_637;
-  wire                tmp_638;
-  wire                tmp_639;
-  wire                tmp_640;
-  wire                tmp_641;
-  wire                tmp_642;
-  wire                tmp_643;
-  wire                tmp_644;
-  wire                tmp_645;
-  wire       [127:0]  tmp_646;
-  wire                tmp_647;
-  wire                tmp_648;
-  wire                tmp_649;
-  wire                tmp_650;
-  wire                tmp_651;
-  wire                tmp_652;
-  wire                tmp_653;
-  wire                tmp_654;
-  wire                tmp_655;
-  wire                tmp_656;
-  wire                tmp_657;
-  wire                tmp_658;
-  wire                tmp_659;
-  wire                tmp_660;
-  wire                tmp_661;
-  wire                tmp_662;
-  wire                tmp_663;
-  wire                tmp_664;
-  wire                tmp_665;
-  wire                tmp_666;
-  wire                tmp_667;
-  wire                tmp_668;
-  wire                tmp_669;
-  wire                tmp_670;
-  wire                tmp_671;
-  wire                tmp_672;
-  wire                tmp_673;
-  wire                tmp_674;
-  wire                tmp_675;
-  wire                tmp_676;
-  wire                tmp_677;
-  wire                tmp_678;
-  wire                tmp_679;
-  wire                tmp_680;
-  wire                tmp_681;
-  wire                tmp_682;
-  wire                tmp_683;
-  wire                tmp_684;
-  wire                tmp_685;
-  wire                tmp_686;
-  wire                tmp_687;
-  wire                tmp_688;
-  wire                tmp_689;
-  wire                tmp_690;
-  wire                tmp_691;
-  wire                tmp_692;
-  wire                tmp_693;
-  wire                tmp_694;
-  wire                tmp_695;
-  wire                tmp_696;
-  wire                tmp_697;
-  wire                tmp_698;
-  wire                tmp_699;
-  wire                tmp_700;
-  wire                tmp_701;
-  wire                tmp_702;
-  wire                tmp_703;
-  wire                tmp_704;
-  wire                tmp_705;
-  wire                tmp_706;
-  wire                tmp_707;
-  wire                tmp_708;
-  wire                tmp_709;
-  wire                tmp_710;
-  wire                tmp_711;
-  wire                tmp_712;
-  wire                tmp_713;
-  wire                tmp_714;
-  wire                tmp_715;
-  wire                tmp_716;
-  wire                tmp_717;
-  wire                tmp_718;
-  wire                tmp_719;
-  wire                tmp_720;
-  wire                tmp_721;
-  wire                tmp_722;
-  wire                tmp_723;
-  wire                tmp_724;
-  wire                tmp_725;
-  wire                tmp_726;
-  wire                tmp_727;
-  wire                tmp_728;
-  wire                tmp_729;
-  wire                tmp_730;
-  wire                tmp_731;
-  wire                tmp_732;
-  wire                tmp_733;
-  wire                tmp_734;
-  wire                tmp_735;
-  wire                tmp_736;
-  wire                tmp_737;
-  wire                tmp_738;
-  wire                tmp_739;
-  wire                tmp_740;
-  wire                tmp_741;
-  wire                tmp_742;
-  wire                tmp_743;
-  wire                tmp_744;
-  wire                tmp_745;
-  wire                tmp_746;
-  wire                tmp_747;
-  wire                tmp_748;
-  wire                tmp_749;
-  wire                tmp_750;
-  wire                tmp_751;
-  wire                tmp_752;
-  wire                tmp_753;
-  wire                tmp_754;
-  wire                tmp_755;
-  wire                tmp_756;
-  wire                tmp_757;
-  wire                tmp_758;
-  wire                tmp_759;
-  wire                tmp_760;
-  wire                tmp_761;
-  wire                tmp_762;
-  wire                tmp_763;
-  wire                tmp_764;
-  wire                tmp_765;
-  wire                tmp_766;
-  wire                tmp_767;
-  wire                tmp_768;
-  wire                tmp_769;
-  wire                tmp_770;
-  wire                tmp_771;
-  wire                tmp_772;
-  wire                tmp_773;
-  wire                tmp_774;
-  wire       [63:0]   hit_data;
-  wire                hit_valid;
-  wire       [63:0]   refill_data;
-  wire                refill_valid;
-
-  assign tmp_when_1 = (flush_busy && (flush_cnt_value == 7'h7f));
-  assign tmp_when = (is_miss && (! is_write));
-  assign tmp_when_2 = (is_hit && (1'b0 == hit_id));
-  assign tmp_when_3 = ((next_level_rdone && (! is_write)) && (1'b0 == evict_id_miss));
-  assign tmp_when_4 = (next_level_rvalid && (1'b0 == evict_id_miss));
-  assign tmp_when_5 = (is_hit && (1'b1 == hit_id));
-  assign tmp_when_6 = ((next_level_rdone && (! is_write)) && (1'b1 == evict_id_miss));
-  assign tmp_when_7 = (next_level_rvalid && (1'b1 == evict_id_miss));
-  assign tmp_flush_cnt_valueNext_1 = flush_cnt_willIncrement;
-  assign tmp_flush_cnt_valueNext = {6'd0, tmp_flush_cnt_valueNext_1};
-  assign tmp_next_level_data_cnt_valueNext_1 = next_level_data_cnt_willIncrement;
-  assign tmp_next_level_data_cnt_valueNext = {2'd0, tmp_next_level_data_cnt_valueNext_1};
-  assign tmp_tmp_cache_hit_gnt_0_3 = (tmp_cache_hit_gnt_0_2 - tmp_tmp_cache_hit_gnt_0_3_1);
-  assign tmp_tmp_cache_hit_gnt_0_3_2 = {tmp_cache_hit_gnt_0[1],tmp_cache_hit_gnt_0[0]};
-  assign tmp_tmp_cache_hit_gnt_0_3_1 = {2'd0, tmp_tmp_cache_hit_gnt_0_3_2};
-  assign tmp_tmp_cache_invld_gnt_0_3 = (tmp_cache_invld_gnt_0_2 - tmp_tmp_cache_invld_gnt_0_3_1);
-  assign tmp_tmp_cache_invld_gnt_0_3_2 = {tmp_cache_invld_gnt_0[1],tmp_cache_invld_gnt_0[0]};
-  assign tmp_tmp_cache_invld_gnt_0_3_1 = {2'd0, tmp_tmp_cache_invld_gnt_0_3_2};
-  assign tmp_tmp_cache_victim_gnt_0_3 = (tmp_cache_victim_gnt_0_2 - tmp_tmp_cache_victim_gnt_0_3_1);
-  assign tmp_tmp_cache_victim_gnt_0_3_2 = {tmp_cache_victim_gnt_0[1],tmp_cache_victim_gnt_0[0]};
-  assign tmp_tmp_cache_victim_gnt_0_3_1 = {2'd0, tmp_tmp_cache_victim_gnt_0_3_2};
-  always @(*) begin
-    case(cpu_set)
-      7'b0000000 : begin
-        tmp_cache_tag_0 = ways_0_metas_0_tag;
-        tmp_cache_hit_0 = ways_0_metas_0_vld;
-        tmp_cache_mru_0 = ways_0_metas_0_mru;
-        tmp_cache_tag_1 = ways_1_metas_0_tag;
-        tmp_cache_hit_1 = ways_1_metas_0_vld;
-        tmp_cache_mru_1 = ways_1_metas_0_mru;
-      end
-      7'b0000001 : begin
-        tmp_cache_tag_0 = ways_0_metas_1_tag;
-        tmp_cache_hit_0 = ways_0_metas_1_vld;
-        tmp_cache_mru_0 = ways_0_metas_1_mru;
-        tmp_cache_tag_1 = ways_1_metas_1_tag;
-        tmp_cache_hit_1 = ways_1_metas_1_vld;
-        tmp_cache_mru_1 = ways_1_metas_1_mru;
-      end
-      7'b0000010 : begin
-        tmp_cache_tag_0 = ways_0_metas_2_tag;
-        tmp_cache_hit_0 = ways_0_metas_2_vld;
-        tmp_cache_mru_0 = ways_0_metas_2_mru;
-        tmp_cache_tag_1 = ways_1_metas_2_tag;
-        tmp_cache_hit_1 = ways_1_metas_2_vld;
-        tmp_cache_mru_1 = ways_1_metas_2_mru;
-      end
-      7'b0000011 : begin
-        tmp_cache_tag_0 = ways_0_metas_3_tag;
-        tmp_cache_hit_0 = ways_0_metas_3_vld;
-        tmp_cache_mru_0 = ways_0_metas_3_mru;
-        tmp_cache_tag_1 = ways_1_metas_3_tag;
-        tmp_cache_hit_1 = ways_1_metas_3_vld;
-        tmp_cache_mru_1 = ways_1_metas_3_mru;
-      end
-      7'b0000100 : begin
-        tmp_cache_tag_0 = ways_0_metas_4_tag;
-        tmp_cache_hit_0 = ways_0_metas_4_vld;
-        tmp_cache_mru_0 = ways_0_metas_4_mru;
-        tmp_cache_tag_1 = ways_1_metas_4_tag;
-        tmp_cache_hit_1 = ways_1_metas_4_vld;
-        tmp_cache_mru_1 = ways_1_metas_4_mru;
-      end
-      7'b0000101 : begin
-        tmp_cache_tag_0 = ways_0_metas_5_tag;
-        tmp_cache_hit_0 = ways_0_metas_5_vld;
-        tmp_cache_mru_0 = ways_0_metas_5_mru;
-        tmp_cache_tag_1 = ways_1_metas_5_tag;
-        tmp_cache_hit_1 = ways_1_metas_5_vld;
-        tmp_cache_mru_1 = ways_1_metas_5_mru;
-      end
-      7'b0000110 : begin
-        tmp_cache_tag_0 = ways_0_metas_6_tag;
-        tmp_cache_hit_0 = ways_0_metas_6_vld;
-        tmp_cache_mru_0 = ways_0_metas_6_mru;
-        tmp_cache_tag_1 = ways_1_metas_6_tag;
-        tmp_cache_hit_1 = ways_1_metas_6_vld;
-        tmp_cache_mru_1 = ways_1_metas_6_mru;
-      end
-      7'b0000111 : begin
-        tmp_cache_tag_0 = ways_0_metas_7_tag;
-        tmp_cache_hit_0 = ways_0_metas_7_vld;
-        tmp_cache_mru_0 = ways_0_metas_7_mru;
-        tmp_cache_tag_1 = ways_1_metas_7_tag;
-        tmp_cache_hit_1 = ways_1_metas_7_vld;
-        tmp_cache_mru_1 = ways_1_metas_7_mru;
-      end
-      7'b0001000 : begin
-        tmp_cache_tag_0 = ways_0_metas_8_tag;
-        tmp_cache_hit_0 = ways_0_metas_8_vld;
-        tmp_cache_mru_0 = ways_0_metas_8_mru;
-        tmp_cache_tag_1 = ways_1_metas_8_tag;
-        tmp_cache_hit_1 = ways_1_metas_8_vld;
-        tmp_cache_mru_1 = ways_1_metas_8_mru;
-      end
-      7'b0001001 : begin
-        tmp_cache_tag_0 = ways_0_metas_9_tag;
-        tmp_cache_hit_0 = ways_0_metas_9_vld;
-        tmp_cache_mru_0 = ways_0_metas_9_mru;
-        tmp_cache_tag_1 = ways_1_metas_9_tag;
-        tmp_cache_hit_1 = ways_1_metas_9_vld;
-        tmp_cache_mru_1 = ways_1_metas_9_mru;
-      end
-      7'b0001010 : begin
-        tmp_cache_tag_0 = ways_0_metas_10_tag;
-        tmp_cache_hit_0 = ways_0_metas_10_vld;
-        tmp_cache_mru_0 = ways_0_metas_10_mru;
-        tmp_cache_tag_1 = ways_1_metas_10_tag;
-        tmp_cache_hit_1 = ways_1_metas_10_vld;
-        tmp_cache_mru_1 = ways_1_metas_10_mru;
-      end
-      7'b0001011 : begin
-        tmp_cache_tag_0 = ways_0_metas_11_tag;
-        tmp_cache_hit_0 = ways_0_metas_11_vld;
-        tmp_cache_mru_0 = ways_0_metas_11_mru;
-        tmp_cache_tag_1 = ways_1_metas_11_tag;
-        tmp_cache_hit_1 = ways_1_metas_11_vld;
-        tmp_cache_mru_1 = ways_1_metas_11_mru;
-      end
-      7'b0001100 : begin
-        tmp_cache_tag_0 = ways_0_metas_12_tag;
-        tmp_cache_hit_0 = ways_0_metas_12_vld;
-        tmp_cache_mru_0 = ways_0_metas_12_mru;
-        tmp_cache_tag_1 = ways_1_metas_12_tag;
-        tmp_cache_hit_1 = ways_1_metas_12_vld;
-        tmp_cache_mru_1 = ways_1_metas_12_mru;
-      end
-      7'b0001101 : begin
-        tmp_cache_tag_0 = ways_0_metas_13_tag;
-        tmp_cache_hit_0 = ways_0_metas_13_vld;
-        tmp_cache_mru_0 = ways_0_metas_13_mru;
-        tmp_cache_tag_1 = ways_1_metas_13_tag;
-        tmp_cache_hit_1 = ways_1_metas_13_vld;
-        tmp_cache_mru_1 = ways_1_metas_13_mru;
-      end
-      7'b0001110 : begin
-        tmp_cache_tag_0 = ways_0_metas_14_tag;
-        tmp_cache_hit_0 = ways_0_metas_14_vld;
-        tmp_cache_mru_0 = ways_0_metas_14_mru;
-        tmp_cache_tag_1 = ways_1_metas_14_tag;
-        tmp_cache_hit_1 = ways_1_metas_14_vld;
-        tmp_cache_mru_1 = ways_1_metas_14_mru;
-      end
-      7'b0001111 : begin
-        tmp_cache_tag_0 = ways_0_metas_15_tag;
-        tmp_cache_hit_0 = ways_0_metas_15_vld;
-        tmp_cache_mru_0 = ways_0_metas_15_mru;
-        tmp_cache_tag_1 = ways_1_metas_15_tag;
-        tmp_cache_hit_1 = ways_1_metas_15_vld;
-        tmp_cache_mru_1 = ways_1_metas_15_mru;
-      end
-      7'b0010000 : begin
-        tmp_cache_tag_0 = ways_0_metas_16_tag;
-        tmp_cache_hit_0 = ways_0_metas_16_vld;
-        tmp_cache_mru_0 = ways_0_metas_16_mru;
-        tmp_cache_tag_1 = ways_1_metas_16_tag;
-        tmp_cache_hit_1 = ways_1_metas_16_vld;
-        tmp_cache_mru_1 = ways_1_metas_16_mru;
-      end
-      7'b0010001 : begin
-        tmp_cache_tag_0 = ways_0_metas_17_tag;
-        tmp_cache_hit_0 = ways_0_metas_17_vld;
-        tmp_cache_mru_0 = ways_0_metas_17_mru;
-        tmp_cache_tag_1 = ways_1_metas_17_tag;
-        tmp_cache_hit_1 = ways_1_metas_17_vld;
-        tmp_cache_mru_1 = ways_1_metas_17_mru;
-      end
-      7'b0010010 : begin
-        tmp_cache_tag_0 = ways_0_metas_18_tag;
-        tmp_cache_hit_0 = ways_0_metas_18_vld;
-        tmp_cache_mru_0 = ways_0_metas_18_mru;
-        tmp_cache_tag_1 = ways_1_metas_18_tag;
-        tmp_cache_hit_1 = ways_1_metas_18_vld;
-        tmp_cache_mru_1 = ways_1_metas_18_mru;
-      end
-      7'b0010011 : begin
-        tmp_cache_tag_0 = ways_0_metas_19_tag;
-        tmp_cache_hit_0 = ways_0_metas_19_vld;
-        tmp_cache_mru_0 = ways_0_metas_19_mru;
-        tmp_cache_tag_1 = ways_1_metas_19_tag;
-        tmp_cache_hit_1 = ways_1_metas_19_vld;
-        tmp_cache_mru_1 = ways_1_metas_19_mru;
-      end
-      7'b0010100 : begin
-        tmp_cache_tag_0 = ways_0_metas_20_tag;
-        tmp_cache_hit_0 = ways_0_metas_20_vld;
-        tmp_cache_mru_0 = ways_0_metas_20_mru;
-        tmp_cache_tag_1 = ways_1_metas_20_tag;
-        tmp_cache_hit_1 = ways_1_metas_20_vld;
-        tmp_cache_mru_1 = ways_1_metas_20_mru;
-      end
-      7'b0010101 : begin
-        tmp_cache_tag_0 = ways_0_metas_21_tag;
-        tmp_cache_hit_0 = ways_0_metas_21_vld;
-        tmp_cache_mru_0 = ways_0_metas_21_mru;
-        tmp_cache_tag_1 = ways_1_metas_21_tag;
-        tmp_cache_hit_1 = ways_1_metas_21_vld;
-        tmp_cache_mru_1 = ways_1_metas_21_mru;
-      end
-      7'b0010110 : begin
-        tmp_cache_tag_0 = ways_0_metas_22_tag;
-        tmp_cache_hit_0 = ways_0_metas_22_vld;
-        tmp_cache_mru_0 = ways_0_metas_22_mru;
-        tmp_cache_tag_1 = ways_1_metas_22_tag;
-        tmp_cache_hit_1 = ways_1_metas_22_vld;
-        tmp_cache_mru_1 = ways_1_metas_22_mru;
-      end
-      7'b0010111 : begin
-        tmp_cache_tag_0 = ways_0_metas_23_tag;
-        tmp_cache_hit_0 = ways_0_metas_23_vld;
-        tmp_cache_mru_0 = ways_0_metas_23_mru;
-        tmp_cache_tag_1 = ways_1_metas_23_tag;
-        tmp_cache_hit_1 = ways_1_metas_23_vld;
-        tmp_cache_mru_1 = ways_1_metas_23_mru;
-      end
-      7'b0011000 : begin
-        tmp_cache_tag_0 = ways_0_metas_24_tag;
-        tmp_cache_hit_0 = ways_0_metas_24_vld;
-        tmp_cache_mru_0 = ways_0_metas_24_mru;
-        tmp_cache_tag_1 = ways_1_metas_24_tag;
-        tmp_cache_hit_1 = ways_1_metas_24_vld;
-        tmp_cache_mru_1 = ways_1_metas_24_mru;
-      end
-      7'b0011001 : begin
-        tmp_cache_tag_0 = ways_0_metas_25_tag;
-        tmp_cache_hit_0 = ways_0_metas_25_vld;
-        tmp_cache_mru_0 = ways_0_metas_25_mru;
-        tmp_cache_tag_1 = ways_1_metas_25_tag;
-        tmp_cache_hit_1 = ways_1_metas_25_vld;
-        tmp_cache_mru_1 = ways_1_metas_25_mru;
-      end
-      7'b0011010 : begin
-        tmp_cache_tag_0 = ways_0_metas_26_tag;
-        tmp_cache_hit_0 = ways_0_metas_26_vld;
-        tmp_cache_mru_0 = ways_0_metas_26_mru;
-        tmp_cache_tag_1 = ways_1_metas_26_tag;
-        tmp_cache_hit_1 = ways_1_metas_26_vld;
-        tmp_cache_mru_1 = ways_1_metas_26_mru;
-      end
-      7'b0011011 : begin
-        tmp_cache_tag_0 = ways_0_metas_27_tag;
-        tmp_cache_hit_0 = ways_0_metas_27_vld;
-        tmp_cache_mru_0 = ways_0_metas_27_mru;
-        tmp_cache_tag_1 = ways_1_metas_27_tag;
-        tmp_cache_hit_1 = ways_1_metas_27_vld;
-        tmp_cache_mru_1 = ways_1_metas_27_mru;
-      end
-      7'b0011100 : begin
-        tmp_cache_tag_0 = ways_0_metas_28_tag;
-        tmp_cache_hit_0 = ways_0_metas_28_vld;
-        tmp_cache_mru_0 = ways_0_metas_28_mru;
-        tmp_cache_tag_1 = ways_1_metas_28_tag;
-        tmp_cache_hit_1 = ways_1_metas_28_vld;
-        tmp_cache_mru_1 = ways_1_metas_28_mru;
-      end
-      7'b0011101 : begin
-        tmp_cache_tag_0 = ways_0_metas_29_tag;
-        tmp_cache_hit_0 = ways_0_metas_29_vld;
-        tmp_cache_mru_0 = ways_0_metas_29_mru;
-        tmp_cache_tag_1 = ways_1_metas_29_tag;
-        tmp_cache_hit_1 = ways_1_metas_29_vld;
-        tmp_cache_mru_1 = ways_1_metas_29_mru;
-      end
-      7'b0011110 : begin
-        tmp_cache_tag_0 = ways_0_metas_30_tag;
-        tmp_cache_hit_0 = ways_0_metas_30_vld;
-        tmp_cache_mru_0 = ways_0_metas_30_mru;
-        tmp_cache_tag_1 = ways_1_metas_30_tag;
-        tmp_cache_hit_1 = ways_1_metas_30_vld;
-        tmp_cache_mru_1 = ways_1_metas_30_mru;
-      end
-      7'b0011111 : begin
-        tmp_cache_tag_0 = ways_0_metas_31_tag;
-        tmp_cache_hit_0 = ways_0_metas_31_vld;
-        tmp_cache_mru_0 = ways_0_metas_31_mru;
-        tmp_cache_tag_1 = ways_1_metas_31_tag;
-        tmp_cache_hit_1 = ways_1_metas_31_vld;
-        tmp_cache_mru_1 = ways_1_metas_31_mru;
-      end
-      7'b0100000 : begin
-        tmp_cache_tag_0 = ways_0_metas_32_tag;
-        tmp_cache_hit_0 = ways_0_metas_32_vld;
-        tmp_cache_mru_0 = ways_0_metas_32_mru;
-        tmp_cache_tag_1 = ways_1_metas_32_tag;
-        tmp_cache_hit_1 = ways_1_metas_32_vld;
-        tmp_cache_mru_1 = ways_1_metas_32_mru;
-      end
-      7'b0100001 : begin
-        tmp_cache_tag_0 = ways_0_metas_33_tag;
-        tmp_cache_hit_0 = ways_0_metas_33_vld;
-        tmp_cache_mru_0 = ways_0_metas_33_mru;
-        tmp_cache_tag_1 = ways_1_metas_33_tag;
-        tmp_cache_hit_1 = ways_1_metas_33_vld;
-        tmp_cache_mru_1 = ways_1_metas_33_mru;
-      end
-      7'b0100010 : begin
-        tmp_cache_tag_0 = ways_0_metas_34_tag;
-        tmp_cache_hit_0 = ways_0_metas_34_vld;
-        tmp_cache_mru_0 = ways_0_metas_34_mru;
-        tmp_cache_tag_1 = ways_1_metas_34_tag;
-        tmp_cache_hit_1 = ways_1_metas_34_vld;
-        tmp_cache_mru_1 = ways_1_metas_34_mru;
-      end
-      7'b0100011 : begin
-        tmp_cache_tag_0 = ways_0_metas_35_tag;
-        tmp_cache_hit_0 = ways_0_metas_35_vld;
-        tmp_cache_mru_0 = ways_0_metas_35_mru;
-        tmp_cache_tag_1 = ways_1_metas_35_tag;
-        tmp_cache_hit_1 = ways_1_metas_35_vld;
-        tmp_cache_mru_1 = ways_1_metas_35_mru;
-      end
-      7'b0100100 : begin
-        tmp_cache_tag_0 = ways_0_metas_36_tag;
-        tmp_cache_hit_0 = ways_0_metas_36_vld;
-        tmp_cache_mru_0 = ways_0_metas_36_mru;
-        tmp_cache_tag_1 = ways_1_metas_36_tag;
-        tmp_cache_hit_1 = ways_1_metas_36_vld;
-        tmp_cache_mru_1 = ways_1_metas_36_mru;
-      end
-      7'b0100101 : begin
-        tmp_cache_tag_0 = ways_0_metas_37_tag;
-        tmp_cache_hit_0 = ways_0_metas_37_vld;
-        tmp_cache_mru_0 = ways_0_metas_37_mru;
-        tmp_cache_tag_1 = ways_1_metas_37_tag;
-        tmp_cache_hit_1 = ways_1_metas_37_vld;
-        tmp_cache_mru_1 = ways_1_metas_37_mru;
-      end
-      7'b0100110 : begin
-        tmp_cache_tag_0 = ways_0_metas_38_tag;
-        tmp_cache_hit_0 = ways_0_metas_38_vld;
-        tmp_cache_mru_0 = ways_0_metas_38_mru;
-        tmp_cache_tag_1 = ways_1_metas_38_tag;
-        tmp_cache_hit_1 = ways_1_metas_38_vld;
-        tmp_cache_mru_1 = ways_1_metas_38_mru;
-      end
-      7'b0100111 : begin
-        tmp_cache_tag_0 = ways_0_metas_39_tag;
-        tmp_cache_hit_0 = ways_0_metas_39_vld;
-        tmp_cache_mru_0 = ways_0_metas_39_mru;
-        tmp_cache_tag_1 = ways_1_metas_39_tag;
-        tmp_cache_hit_1 = ways_1_metas_39_vld;
-        tmp_cache_mru_1 = ways_1_metas_39_mru;
-      end
-      7'b0101000 : begin
-        tmp_cache_tag_0 = ways_0_metas_40_tag;
-        tmp_cache_hit_0 = ways_0_metas_40_vld;
-        tmp_cache_mru_0 = ways_0_metas_40_mru;
-        tmp_cache_tag_1 = ways_1_metas_40_tag;
-        tmp_cache_hit_1 = ways_1_metas_40_vld;
-        tmp_cache_mru_1 = ways_1_metas_40_mru;
-      end
-      7'b0101001 : begin
-        tmp_cache_tag_0 = ways_0_metas_41_tag;
-        tmp_cache_hit_0 = ways_0_metas_41_vld;
-        tmp_cache_mru_0 = ways_0_metas_41_mru;
-        tmp_cache_tag_1 = ways_1_metas_41_tag;
-        tmp_cache_hit_1 = ways_1_metas_41_vld;
-        tmp_cache_mru_1 = ways_1_metas_41_mru;
-      end
-      7'b0101010 : begin
-        tmp_cache_tag_0 = ways_0_metas_42_tag;
-        tmp_cache_hit_0 = ways_0_metas_42_vld;
-        tmp_cache_mru_0 = ways_0_metas_42_mru;
-        tmp_cache_tag_1 = ways_1_metas_42_tag;
-        tmp_cache_hit_1 = ways_1_metas_42_vld;
-        tmp_cache_mru_1 = ways_1_metas_42_mru;
-      end
-      7'b0101011 : begin
-        tmp_cache_tag_0 = ways_0_metas_43_tag;
-        tmp_cache_hit_0 = ways_0_metas_43_vld;
-        tmp_cache_mru_0 = ways_0_metas_43_mru;
-        tmp_cache_tag_1 = ways_1_metas_43_tag;
-        tmp_cache_hit_1 = ways_1_metas_43_vld;
-        tmp_cache_mru_1 = ways_1_metas_43_mru;
-      end
-      7'b0101100 : begin
-        tmp_cache_tag_0 = ways_0_metas_44_tag;
-        tmp_cache_hit_0 = ways_0_metas_44_vld;
-        tmp_cache_mru_0 = ways_0_metas_44_mru;
-        tmp_cache_tag_1 = ways_1_metas_44_tag;
-        tmp_cache_hit_1 = ways_1_metas_44_vld;
-        tmp_cache_mru_1 = ways_1_metas_44_mru;
-      end
-      7'b0101101 : begin
-        tmp_cache_tag_0 = ways_0_metas_45_tag;
-        tmp_cache_hit_0 = ways_0_metas_45_vld;
-        tmp_cache_mru_0 = ways_0_metas_45_mru;
-        tmp_cache_tag_1 = ways_1_metas_45_tag;
-        tmp_cache_hit_1 = ways_1_metas_45_vld;
-        tmp_cache_mru_1 = ways_1_metas_45_mru;
-      end
-      7'b0101110 : begin
-        tmp_cache_tag_0 = ways_0_metas_46_tag;
-        tmp_cache_hit_0 = ways_0_metas_46_vld;
-        tmp_cache_mru_0 = ways_0_metas_46_mru;
-        tmp_cache_tag_1 = ways_1_metas_46_tag;
-        tmp_cache_hit_1 = ways_1_metas_46_vld;
-        tmp_cache_mru_1 = ways_1_metas_46_mru;
-      end
-      7'b0101111 : begin
-        tmp_cache_tag_0 = ways_0_metas_47_tag;
-        tmp_cache_hit_0 = ways_0_metas_47_vld;
-        tmp_cache_mru_0 = ways_0_metas_47_mru;
-        tmp_cache_tag_1 = ways_1_metas_47_tag;
-        tmp_cache_hit_1 = ways_1_metas_47_vld;
-        tmp_cache_mru_1 = ways_1_metas_47_mru;
-      end
-      7'b0110000 : begin
-        tmp_cache_tag_0 = ways_0_metas_48_tag;
-        tmp_cache_hit_0 = ways_0_metas_48_vld;
-        tmp_cache_mru_0 = ways_0_metas_48_mru;
-        tmp_cache_tag_1 = ways_1_metas_48_tag;
-        tmp_cache_hit_1 = ways_1_metas_48_vld;
-        tmp_cache_mru_1 = ways_1_metas_48_mru;
-      end
-      7'b0110001 : begin
-        tmp_cache_tag_0 = ways_0_metas_49_tag;
-        tmp_cache_hit_0 = ways_0_metas_49_vld;
-        tmp_cache_mru_0 = ways_0_metas_49_mru;
-        tmp_cache_tag_1 = ways_1_metas_49_tag;
-        tmp_cache_hit_1 = ways_1_metas_49_vld;
-        tmp_cache_mru_1 = ways_1_metas_49_mru;
-      end
-      7'b0110010 : begin
-        tmp_cache_tag_0 = ways_0_metas_50_tag;
-        tmp_cache_hit_0 = ways_0_metas_50_vld;
-        tmp_cache_mru_0 = ways_0_metas_50_mru;
-        tmp_cache_tag_1 = ways_1_metas_50_tag;
-        tmp_cache_hit_1 = ways_1_metas_50_vld;
-        tmp_cache_mru_1 = ways_1_metas_50_mru;
-      end
-      7'b0110011 : begin
-        tmp_cache_tag_0 = ways_0_metas_51_tag;
-        tmp_cache_hit_0 = ways_0_metas_51_vld;
-        tmp_cache_mru_0 = ways_0_metas_51_mru;
-        tmp_cache_tag_1 = ways_1_metas_51_tag;
-        tmp_cache_hit_1 = ways_1_metas_51_vld;
-        tmp_cache_mru_1 = ways_1_metas_51_mru;
-      end
-      7'b0110100 : begin
-        tmp_cache_tag_0 = ways_0_metas_52_tag;
-        tmp_cache_hit_0 = ways_0_metas_52_vld;
-        tmp_cache_mru_0 = ways_0_metas_52_mru;
-        tmp_cache_tag_1 = ways_1_metas_52_tag;
-        tmp_cache_hit_1 = ways_1_metas_52_vld;
-        tmp_cache_mru_1 = ways_1_metas_52_mru;
-      end
-      7'b0110101 : begin
-        tmp_cache_tag_0 = ways_0_metas_53_tag;
-        tmp_cache_hit_0 = ways_0_metas_53_vld;
-        tmp_cache_mru_0 = ways_0_metas_53_mru;
-        tmp_cache_tag_1 = ways_1_metas_53_tag;
-        tmp_cache_hit_1 = ways_1_metas_53_vld;
-        tmp_cache_mru_1 = ways_1_metas_53_mru;
-      end
-      7'b0110110 : begin
-        tmp_cache_tag_0 = ways_0_metas_54_tag;
-        tmp_cache_hit_0 = ways_0_metas_54_vld;
-        tmp_cache_mru_0 = ways_0_metas_54_mru;
-        tmp_cache_tag_1 = ways_1_metas_54_tag;
-        tmp_cache_hit_1 = ways_1_metas_54_vld;
-        tmp_cache_mru_1 = ways_1_metas_54_mru;
-      end
-      7'b0110111 : begin
-        tmp_cache_tag_0 = ways_0_metas_55_tag;
-        tmp_cache_hit_0 = ways_0_metas_55_vld;
-        tmp_cache_mru_0 = ways_0_metas_55_mru;
-        tmp_cache_tag_1 = ways_1_metas_55_tag;
-        tmp_cache_hit_1 = ways_1_metas_55_vld;
-        tmp_cache_mru_1 = ways_1_metas_55_mru;
-      end
-      7'b0111000 : begin
-        tmp_cache_tag_0 = ways_0_metas_56_tag;
-        tmp_cache_hit_0 = ways_0_metas_56_vld;
-        tmp_cache_mru_0 = ways_0_metas_56_mru;
-        tmp_cache_tag_1 = ways_1_metas_56_tag;
-        tmp_cache_hit_1 = ways_1_metas_56_vld;
-        tmp_cache_mru_1 = ways_1_metas_56_mru;
-      end
-      7'b0111001 : begin
-        tmp_cache_tag_0 = ways_0_metas_57_tag;
-        tmp_cache_hit_0 = ways_0_metas_57_vld;
-        tmp_cache_mru_0 = ways_0_metas_57_mru;
-        tmp_cache_tag_1 = ways_1_metas_57_tag;
-        tmp_cache_hit_1 = ways_1_metas_57_vld;
-        tmp_cache_mru_1 = ways_1_metas_57_mru;
-      end
-      7'b0111010 : begin
-        tmp_cache_tag_0 = ways_0_metas_58_tag;
-        tmp_cache_hit_0 = ways_0_metas_58_vld;
-        tmp_cache_mru_0 = ways_0_metas_58_mru;
-        tmp_cache_tag_1 = ways_1_metas_58_tag;
-        tmp_cache_hit_1 = ways_1_metas_58_vld;
-        tmp_cache_mru_1 = ways_1_metas_58_mru;
-      end
-      7'b0111011 : begin
-        tmp_cache_tag_0 = ways_0_metas_59_tag;
-        tmp_cache_hit_0 = ways_0_metas_59_vld;
-        tmp_cache_mru_0 = ways_0_metas_59_mru;
-        tmp_cache_tag_1 = ways_1_metas_59_tag;
-        tmp_cache_hit_1 = ways_1_metas_59_vld;
-        tmp_cache_mru_1 = ways_1_metas_59_mru;
-      end
-      7'b0111100 : begin
-        tmp_cache_tag_0 = ways_0_metas_60_tag;
-        tmp_cache_hit_0 = ways_0_metas_60_vld;
-        tmp_cache_mru_0 = ways_0_metas_60_mru;
-        tmp_cache_tag_1 = ways_1_metas_60_tag;
-        tmp_cache_hit_1 = ways_1_metas_60_vld;
-        tmp_cache_mru_1 = ways_1_metas_60_mru;
-      end
-      7'b0111101 : begin
-        tmp_cache_tag_0 = ways_0_metas_61_tag;
-        tmp_cache_hit_0 = ways_0_metas_61_vld;
-        tmp_cache_mru_0 = ways_0_metas_61_mru;
-        tmp_cache_tag_1 = ways_1_metas_61_tag;
-        tmp_cache_hit_1 = ways_1_metas_61_vld;
-        tmp_cache_mru_1 = ways_1_metas_61_mru;
-      end
-      7'b0111110 : begin
-        tmp_cache_tag_0 = ways_0_metas_62_tag;
-        tmp_cache_hit_0 = ways_0_metas_62_vld;
-        tmp_cache_mru_0 = ways_0_metas_62_mru;
-        tmp_cache_tag_1 = ways_1_metas_62_tag;
-        tmp_cache_hit_1 = ways_1_metas_62_vld;
-        tmp_cache_mru_1 = ways_1_metas_62_mru;
-      end
-      7'b0111111 : begin
-        tmp_cache_tag_0 = ways_0_metas_63_tag;
-        tmp_cache_hit_0 = ways_0_metas_63_vld;
-        tmp_cache_mru_0 = ways_0_metas_63_mru;
-        tmp_cache_tag_1 = ways_1_metas_63_tag;
-        tmp_cache_hit_1 = ways_1_metas_63_vld;
-        tmp_cache_mru_1 = ways_1_metas_63_mru;
-      end
-      7'b1000000 : begin
-        tmp_cache_tag_0 = ways_0_metas_64_tag;
-        tmp_cache_hit_0 = ways_0_metas_64_vld;
-        tmp_cache_mru_0 = ways_0_metas_64_mru;
-        tmp_cache_tag_1 = ways_1_metas_64_tag;
-        tmp_cache_hit_1 = ways_1_metas_64_vld;
-        tmp_cache_mru_1 = ways_1_metas_64_mru;
-      end
-      7'b1000001 : begin
-        tmp_cache_tag_0 = ways_0_metas_65_tag;
-        tmp_cache_hit_0 = ways_0_metas_65_vld;
-        tmp_cache_mru_0 = ways_0_metas_65_mru;
-        tmp_cache_tag_1 = ways_1_metas_65_tag;
-        tmp_cache_hit_1 = ways_1_metas_65_vld;
-        tmp_cache_mru_1 = ways_1_metas_65_mru;
-      end
-      7'b1000010 : begin
-        tmp_cache_tag_0 = ways_0_metas_66_tag;
-        tmp_cache_hit_0 = ways_0_metas_66_vld;
-        tmp_cache_mru_0 = ways_0_metas_66_mru;
-        tmp_cache_tag_1 = ways_1_metas_66_tag;
-        tmp_cache_hit_1 = ways_1_metas_66_vld;
-        tmp_cache_mru_1 = ways_1_metas_66_mru;
-      end
-      7'b1000011 : begin
-        tmp_cache_tag_0 = ways_0_metas_67_tag;
-        tmp_cache_hit_0 = ways_0_metas_67_vld;
-        tmp_cache_mru_0 = ways_0_metas_67_mru;
-        tmp_cache_tag_1 = ways_1_metas_67_tag;
-        tmp_cache_hit_1 = ways_1_metas_67_vld;
-        tmp_cache_mru_1 = ways_1_metas_67_mru;
-      end
-      7'b1000100 : begin
-        tmp_cache_tag_0 = ways_0_metas_68_tag;
-        tmp_cache_hit_0 = ways_0_metas_68_vld;
-        tmp_cache_mru_0 = ways_0_metas_68_mru;
-        tmp_cache_tag_1 = ways_1_metas_68_tag;
-        tmp_cache_hit_1 = ways_1_metas_68_vld;
-        tmp_cache_mru_1 = ways_1_metas_68_mru;
-      end
-      7'b1000101 : begin
-        tmp_cache_tag_0 = ways_0_metas_69_tag;
-        tmp_cache_hit_0 = ways_0_metas_69_vld;
-        tmp_cache_mru_0 = ways_0_metas_69_mru;
-        tmp_cache_tag_1 = ways_1_metas_69_tag;
-        tmp_cache_hit_1 = ways_1_metas_69_vld;
-        tmp_cache_mru_1 = ways_1_metas_69_mru;
-      end
-      7'b1000110 : begin
-        tmp_cache_tag_0 = ways_0_metas_70_tag;
-        tmp_cache_hit_0 = ways_0_metas_70_vld;
-        tmp_cache_mru_0 = ways_0_metas_70_mru;
-        tmp_cache_tag_1 = ways_1_metas_70_tag;
-        tmp_cache_hit_1 = ways_1_metas_70_vld;
-        tmp_cache_mru_1 = ways_1_metas_70_mru;
-      end
-      7'b1000111 : begin
-        tmp_cache_tag_0 = ways_0_metas_71_tag;
-        tmp_cache_hit_0 = ways_0_metas_71_vld;
-        tmp_cache_mru_0 = ways_0_metas_71_mru;
-        tmp_cache_tag_1 = ways_1_metas_71_tag;
-        tmp_cache_hit_1 = ways_1_metas_71_vld;
-        tmp_cache_mru_1 = ways_1_metas_71_mru;
-      end
-      7'b1001000 : begin
-        tmp_cache_tag_0 = ways_0_metas_72_tag;
-        tmp_cache_hit_0 = ways_0_metas_72_vld;
-        tmp_cache_mru_0 = ways_0_metas_72_mru;
-        tmp_cache_tag_1 = ways_1_metas_72_tag;
-        tmp_cache_hit_1 = ways_1_metas_72_vld;
-        tmp_cache_mru_1 = ways_1_metas_72_mru;
-      end
-      7'b1001001 : begin
-        tmp_cache_tag_0 = ways_0_metas_73_tag;
-        tmp_cache_hit_0 = ways_0_metas_73_vld;
-        tmp_cache_mru_0 = ways_0_metas_73_mru;
-        tmp_cache_tag_1 = ways_1_metas_73_tag;
-        tmp_cache_hit_1 = ways_1_metas_73_vld;
-        tmp_cache_mru_1 = ways_1_metas_73_mru;
-      end
-      7'b1001010 : begin
-        tmp_cache_tag_0 = ways_0_metas_74_tag;
-        tmp_cache_hit_0 = ways_0_metas_74_vld;
-        tmp_cache_mru_0 = ways_0_metas_74_mru;
-        tmp_cache_tag_1 = ways_1_metas_74_tag;
-        tmp_cache_hit_1 = ways_1_metas_74_vld;
-        tmp_cache_mru_1 = ways_1_metas_74_mru;
-      end
-      7'b1001011 : begin
-        tmp_cache_tag_0 = ways_0_metas_75_tag;
-        tmp_cache_hit_0 = ways_0_metas_75_vld;
-        tmp_cache_mru_0 = ways_0_metas_75_mru;
-        tmp_cache_tag_1 = ways_1_metas_75_tag;
-        tmp_cache_hit_1 = ways_1_metas_75_vld;
-        tmp_cache_mru_1 = ways_1_metas_75_mru;
-      end
-      7'b1001100 : begin
-        tmp_cache_tag_0 = ways_0_metas_76_tag;
-        tmp_cache_hit_0 = ways_0_metas_76_vld;
-        tmp_cache_mru_0 = ways_0_metas_76_mru;
-        tmp_cache_tag_1 = ways_1_metas_76_tag;
-        tmp_cache_hit_1 = ways_1_metas_76_vld;
-        tmp_cache_mru_1 = ways_1_metas_76_mru;
-      end
-      7'b1001101 : begin
-        tmp_cache_tag_0 = ways_0_metas_77_tag;
-        tmp_cache_hit_0 = ways_0_metas_77_vld;
-        tmp_cache_mru_0 = ways_0_metas_77_mru;
-        tmp_cache_tag_1 = ways_1_metas_77_tag;
-        tmp_cache_hit_1 = ways_1_metas_77_vld;
-        tmp_cache_mru_1 = ways_1_metas_77_mru;
-      end
-      7'b1001110 : begin
-        tmp_cache_tag_0 = ways_0_metas_78_tag;
-        tmp_cache_hit_0 = ways_0_metas_78_vld;
-        tmp_cache_mru_0 = ways_0_metas_78_mru;
-        tmp_cache_tag_1 = ways_1_metas_78_tag;
-        tmp_cache_hit_1 = ways_1_metas_78_vld;
-        tmp_cache_mru_1 = ways_1_metas_78_mru;
-      end
-      7'b1001111 : begin
-        tmp_cache_tag_0 = ways_0_metas_79_tag;
-        tmp_cache_hit_0 = ways_0_metas_79_vld;
-        tmp_cache_mru_0 = ways_0_metas_79_mru;
-        tmp_cache_tag_1 = ways_1_metas_79_tag;
-        tmp_cache_hit_1 = ways_1_metas_79_vld;
-        tmp_cache_mru_1 = ways_1_metas_79_mru;
-      end
-      7'b1010000 : begin
-        tmp_cache_tag_0 = ways_0_metas_80_tag;
-        tmp_cache_hit_0 = ways_0_metas_80_vld;
-        tmp_cache_mru_0 = ways_0_metas_80_mru;
-        tmp_cache_tag_1 = ways_1_metas_80_tag;
-        tmp_cache_hit_1 = ways_1_metas_80_vld;
-        tmp_cache_mru_1 = ways_1_metas_80_mru;
-      end
-      7'b1010001 : begin
-        tmp_cache_tag_0 = ways_0_metas_81_tag;
-        tmp_cache_hit_0 = ways_0_metas_81_vld;
-        tmp_cache_mru_0 = ways_0_metas_81_mru;
-        tmp_cache_tag_1 = ways_1_metas_81_tag;
-        tmp_cache_hit_1 = ways_1_metas_81_vld;
-        tmp_cache_mru_1 = ways_1_metas_81_mru;
-      end
-      7'b1010010 : begin
-        tmp_cache_tag_0 = ways_0_metas_82_tag;
-        tmp_cache_hit_0 = ways_0_metas_82_vld;
-        tmp_cache_mru_0 = ways_0_metas_82_mru;
-        tmp_cache_tag_1 = ways_1_metas_82_tag;
-        tmp_cache_hit_1 = ways_1_metas_82_vld;
-        tmp_cache_mru_1 = ways_1_metas_82_mru;
-      end
-      7'b1010011 : begin
-        tmp_cache_tag_0 = ways_0_metas_83_tag;
-        tmp_cache_hit_0 = ways_0_metas_83_vld;
-        tmp_cache_mru_0 = ways_0_metas_83_mru;
-        tmp_cache_tag_1 = ways_1_metas_83_tag;
-        tmp_cache_hit_1 = ways_1_metas_83_vld;
-        tmp_cache_mru_1 = ways_1_metas_83_mru;
-      end
-      7'b1010100 : begin
-        tmp_cache_tag_0 = ways_0_metas_84_tag;
-        tmp_cache_hit_0 = ways_0_metas_84_vld;
-        tmp_cache_mru_0 = ways_0_metas_84_mru;
-        tmp_cache_tag_1 = ways_1_metas_84_tag;
-        tmp_cache_hit_1 = ways_1_metas_84_vld;
-        tmp_cache_mru_1 = ways_1_metas_84_mru;
-      end
-      7'b1010101 : begin
-        tmp_cache_tag_0 = ways_0_metas_85_tag;
-        tmp_cache_hit_0 = ways_0_metas_85_vld;
-        tmp_cache_mru_0 = ways_0_metas_85_mru;
-        tmp_cache_tag_1 = ways_1_metas_85_tag;
-        tmp_cache_hit_1 = ways_1_metas_85_vld;
-        tmp_cache_mru_1 = ways_1_metas_85_mru;
-      end
-      7'b1010110 : begin
-        tmp_cache_tag_0 = ways_0_metas_86_tag;
-        tmp_cache_hit_0 = ways_0_metas_86_vld;
-        tmp_cache_mru_0 = ways_0_metas_86_mru;
-        tmp_cache_tag_1 = ways_1_metas_86_tag;
-        tmp_cache_hit_1 = ways_1_metas_86_vld;
-        tmp_cache_mru_1 = ways_1_metas_86_mru;
-      end
-      7'b1010111 : begin
-        tmp_cache_tag_0 = ways_0_metas_87_tag;
-        tmp_cache_hit_0 = ways_0_metas_87_vld;
-        tmp_cache_mru_0 = ways_0_metas_87_mru;
-        tmp_cache_tag_1 = ways_1_metas_87_tag;
-        tmp_cache_hit_1 = ways_1_metas_87_vld;
-        tmp_cache_mru_1 = ways_1_metas_87_mru;
-      end
-      7'b1011000 : begin
-        tmp_cache_tag_0 = ways_0_metas_88_tag;
-        tmp_cache_hit_0 = ways_0_metas_88_vld;
-        tmp_cache_mru_0 = ways_0_metas_88_mru;
-        tmp_cache_tag_1 = ways_1_metas_88_tag;
-        tmp_cache_hit_1 = ways_1_metas_88_vld;
-        tmp_cache_mru_1 = ways_1_metas_88_mru;
-      end
-      7'b1011001 : begin
-        tmp_cache_tag_0 = ways_0_metas_89_tag;
-        tmp_cache_hit_0 = ways_0_metas_89_vld;
-        tmp_cache_mru_0 = ways_0_metas_89_mru;
-        tmp_cache_tag_1 = ways_1_metas_89_tag;
-        tmp_cache_hit_1 = ways_1_metas_89_vld;
-        tmp_cache_mru_1 = ways_1_metas_89_mru;
-      end
-      7'b1011010 : begin
-        tmp_cache_tag_0 = ways_0_metas_90_tag;
-        tmp_cache_hit_0 = ways_0_metas_90_vld;
-        tmp_cache_mru_0 = ways_0_metas_90_mru;
-        tmp_cache_tag_1 = ways_1_metas_90_tag;
-        tmp_cache_hit_1 = ways_1_metas_90_vld;
-        tmp_cache_mru_1 = ways_1_metas_90_mru;
-      end
-      7'b1011011 : begin
-        tmp_cache_tag_0 = ways_0_metas_91_tag;
-        tmp_cache_hit_0 = ways_0_metas_91_vld;
-        tmp_cache_mru_0 = ways_0_metas_91_mru;
-        tmp_cache_tag_1 = ways_1_metas_91_tag;
-        tmp_cache_hit_1 = ways_1_metas_91_vld;
-        tmp_cache_mru_1 = ways_1_metas_91_mru;
-      end
-      7'b1011100 : begin
-        tmp_cache_tag_0 = ways_0_metas_92_tag;
-        tmp_cache_hit_0 = ways_0_metas_92_vld;
-        tmp_cache_mru_0 = ways_0_metas_92_mru;
-        tmp_cache_tag_1 = ways_1_metas_92_tag;
-        tmp_cache_hit_1 = ways_1_metas_92_vld;
-        tmp_cache_mru_1 = ways_1_metas_92_mru;
-      end
-      7'b1011101 : begin
-        tmp_cache_tag_0 = ways_0_metas_93_tag;
-        tmp_cache_hit_0 = ways_0_metas_93_vld;
-        tmp_cache_mru_0 = ways_0_metas_93_mru;
-        tmp_cache_tag_1 = ways_1_metas_93_tag;
-        tmp_cache_hit_1 = ways_1_metas_93_vld;
-        tmp_cache_mru_1 = ways_1_metas_93_mru;
-      end
-      7'b1011110 : begin
-        tmp_cache_tag_0 = ways_0_metas_94_tag;
-        tmp_cache_hit_0 = ways_0_metas_94_vld;
-        tmp_cache_mru_0 = ways_0_metas_94_mru;
-        tmp_cache_tag_1 = ways_1_metas_94_tag;
-        tmp_cache_hit_1 = ways_1_metas_94_vld;
-        tmp_cache_mru_1 = ways_1_metas_94_mru;
-      end
-      7'b1011111 : begin
-        tmp_cache_tag_0 = ways_0_metas_95_tag;
-        tmp_cache_hit_0 = ways_0_metas_95_vld;
-        tmp_cache_mru_0 = ways_0_metas_95_mru;
-        tmp_cache_tag_1 = ways_1_metas_95_tag;
-        tmp_cache_hit_1 = ways_1_metas_95_vld;
-        tmp_cache_mru_1 = ways_1_metas_95_mru;
-      end
-      7'b1100000 : begin
-        tmp_cache_tag_0 = ways_0_metas_96_tag;
-        tmp_cache_hit_0 = ways_0_metas_96_vld;
-        tmp_cache_mru_0 = ways_0_metas_96_mru;
-        tmp_cache_tag_1 = ways_1_metas_96_tag;
-        tmp_cache_hit_1 = ways_1_metas_96_vld;
-        tmp_cache_mru_1 = ways_1_metas_96_mru;
-      end
-      7'b1100001 : begin
-        tmp_cache_tag_0 = ways_0_metas_97_tag;
-        tmp_cache_hit_0 = ways_0_metas_97_vld;
-        tmp_cache_mru_0 = ways_0_metas_97_mru;
-        tmp_cache_tag_1 = ways_1_metas_97_tag;
-        tmp_cache_hit_1 = ways_1_metas_97_vld;
-        tmp_cache_mru_1 = ways_1_metas_97_mru;
-      end
-      7'b1100010 : begin
-        tmp_cache_tag_0 = ways_0_metas_98_tag;
-        tmp_cache_hit_0 = ways_0_metas_98_vld;
-        tmp_cache_mru_0 = ways_0_metas_98_mru;
-        tmp_cache_tag_1 = ways_1_metas_98_tag;
-        tmp_cache_hit_1 = ways_1_metas_98_vld;
-        tmp_cache_mru_1 = ways_1_metas_98_mru;
-      end
-      7'b1100011 : begin
-        tmp_cache_tag_0 = ways_0_metas_99_tag;
-        tmp_cache_hit_0 = ways_0_metas_99_vld;
-        tmp_cache_mru_0 = ways_0_metas_99_mru;
-        tmp_cache_tag_1 = ways_1_metas_99_tag;
-        tmp_cache_hit_1 = ways_1_metas_99_vld;
-        tmp_cache_mru_1 = ways_1_metas_99_mru;
-      end
-      7'b1100100 : begin
-        tmp_cache_tag_0 = ways_0_metas_100_tag;
-        tmp_cache_hit_0 = ways_0_metas_100_vld;
-        tmp_cache_mru_0 = ways_0_metas_100_mru;
-        tmp_cache_tag_1 = ways_1_metas_100_tag;
-        tmp_cache_hit_1 = ways_1_metas_100_vld;
-        tmp_cache_mru_1 = ways_1_metas_100_mru;
-      end
-      7'b1100101 : begin
-        tmp_cache_tag_0 = ways_0_metas_101_tag;
-        tmp_cache_hit_0 = ways_0_metas_101_vld;
-        tmp_cache_mru_0 = ways_0_metas_101_mru;
-        tmp_cache_tag_1 = ways_1_metas_101_tag;
-        tmp_cache_hit_1 = ways_1_metas_101_vld;
-        tmp_cache_mru_1 = ways_1_metas_101_mru;
-      end
-      7'b1100110 : begin
-        tmp_cache_tag_0 = ways_0_metas_102_tag;
-        tmp_cache_hit_0 = ways_0_metas_102_vld;
-        tmp_cache_mru_0 = ways_0_metas_102_mru;
-        tmp_cache_tag_1 = ways_1_metas_102_tag;
-        tmp_cache_hit_1 = ways_1_metas_102_vld;
-        tmp_cache_mru_1 = ways_1_metas_102_mru;
-      end
-      7'b1100111 : begin
-        tmp_cache_tag_0 = ways_0_metas_103_tag;
-        tmp_cache_hit_0 = ways_0_metas_103_vld;
-        tmp_cache_mru_0 = ways_0_metas_103_mru;
-        tmp_cache_tag_1 = ways_1_metas_103_tag;
-        tmp_cache_hit_1 = ways_1_metas_103_vld;
-        tmp_cache_mru_1 = ways_1_metas_103_mru;
-      end
-      7'b1101000 : begin
-        tmp_cache_tag_0 = ways_0_metas_104_tag;
-        tmp_cache_hit_0 = ways_0_metas_104_vld;
-        tmp_cache_mru_0 = ways_0_metas_104_mru;
-        tmp_cache_tag_1 = ways_1_metas_104_tag;
-        tmp_cache_hit_1 = ways_1_metas_104_vld;
-        tmp_cache_mru_1 = ways_1_metas_104_mru;
-      end
-      7'b1101001 : begin
-        tmp_cache_tag_0 = ways_0_metas_105_tag;
-        tmp_cache_hit_0 = ways_0_metas_105_vld;
-        tmp_cache_mru_0 = ways_0_metas_105_mru;
-        tmp_cache_tag_1 = ways_1_metas_105_tag;
-        tmp_cache_hit_1 = ways_1_metas_105_vld;
-        tmp_cache_mru_1 = ways_1_metas_105_mru;
-      end
-      7'b1101010 : begin
-        tmp_cache_tag_0 = ways_0_metas_106_tag;
-        tmp_cache_hit_0 = ways_0_metas_106_vld;
-        tmp_cache_mru_0 = ways_0_metas_106_mru;
-        tmp_cache_tag_1 = ways_1_metas_106_tag;
-        tmp_cache_hit_1 = ways_1_metas_106_vld;
-        tmp_cache_mru_1 = ways_1_metas_106_mru;
-      end
-      7'b1101011 : begin
-        tmp_cache_tag_0 = ways_0_metas_107_tag;
-        tmp_cache_hit_0 = ways_0_metas_107_vld;
-        tmp_cache_mru_0 = ways_0_metas_107_mru;
-        tmp_cache_tag_1 = ways_1_metas_107_tag;
-        tmp_cache_hit_1 = ways_1_metas_107_vld;
-        tmp_cache_mru_1 = ways_1_metas_107_mru;
-      end
-      7'b1101100 : begin
-        tmp_cache_tag_0 = ways_0_metas_108_tag;
-        tmp_cache_hit_0 = ways_0_metas_108_vld;
-        tmp_cache_mru_0 = ways_0_metas_108_mru;
-        tmp_cache_tag_1 = ways_1_metas_108_tag;
-        tmp_cache_hit_1 = ways_1_metas_108_vld;
-        tmp_cache_mru_1 = ways_1_metas_108_mru;
-      end
-      7'b1101101 : begin
-        tmp_cache_tag_0 = ways_0_metas_109_tag;
-        tmp_cache_hit_0 = ways_0_metas_109_vld;
-        tmp_cache_mru_0 = ways_0_metas_109_mru;
-        tmp_cache_tag_1 = ways_1_metas_109_tag;
-        tmp_cache_hit_1 = ways_1_metas_109_vld;
-        tmp_cache_mru_1 = ways_1_metas_109_mru;
-      end
-      7'b1101110 : begin
-        tmp_cache_tag_0 = ways_0_metas_110_tag;
-        tmp_cache_hit_0 = ways_0_metas_110_vld;
-        tmp_cache_mru_0 = ways_0_metas_110_mru;
-        tmp_cache_tag_1 = ways_1_metas_110_tag;
-        tmp_cache_hit_1 = ways_1_metas_110_vld;
-        tmp_cache_mru_1 = ways_1_metas_110_mru;
-      end
-      7'b1101111 : begin
-        tmp_cache_tag_0 = ways_0_metas_111_tag;
-        tmp_cache_hit_0 = ways_0_metas_111_vld;
-        tmp_cache_mru_0 = ways_0_metas_111_mru;
-        tmp_cache_tag_1 = ways_1_metas_111_tag;
-        tmp_cache_hit_1 = ways_1_metas_111_vld;
-        tmp_cache_mru_1 = ways_1_metas_111_mru;
-      end
-      7'b1110000 : begin
-        tmp_cache_tag_0 = ways_0_metas_112_tag;
-        tmp_cache_hit_0 = ways_0_metas_112_vld;
-        tmp_cache_mru_0 = ways_0_metas_112_mru;
-        tmp_cache_tag_1 = ways_1_metas_112_tag;
-        tmp_cache_hit_1 = ways_1_metas_112_vld;
-        tmp_cache_mru_1 = ways_1_metas_112_mru;
-      end
-      7'b1110001 : begin
-        tmp_cache_tag_0 = ways_0_metas_113_tag;
-        tmp_cache_hit_0 = ways_0_metas_113_vld;
-        tmp_cache_mru_0 = ways_0_metas_113_mru;
-        tmp_cache_tag_1 = ways_1_metas_113_tag;
-        tmp_cache_hit_1 = ways_1_metas_113_vld;
-        tmp_cache_mru_1 = ways_1_metas_113_mru;
-      end
-      7'b1110010 : begin
-        tmp_cache_tag_0 = ways_0_metas_114_tag;
-        tmp_cache_hit_0 = ways_0_metas_114_vld;
-        tmp_cache_mru_0 = ways_0_metas_114_mru;
-        tmp_cache_tag_1 = ways_1_metas_114_tag;
-        tmp_cache_hit_1 = ways_1_metas_114_vld;
-        tmp_cache_mru_1 = ways_1_metas_114_mru;
-      end
-      7'b1110011 : begin
-        tmp_cache_tag_0 = ways_0_metas_115_tag;
-        tmp_cache_hit_0 = ways_0_metas_115_vld;
-        tmp_cache_mru_0 = ways_0_metas_115_mru;
-        tmp_cache_tag_1 = ways_1_metas_115_tag;
-        tmp_cache_hit_1 = ways_1_metas_115_vld;
-        tmp_cache_mru_1 = ways_1_metas_115_mru;
-      end
-      7'b1110100 : begin
-        tmp_cache_tag_0 = ways_0_metas_116_tag;
-        tmp_cache_hit_0 = ways_0_metas_116_vld;
-        tmp_cache_mru_0 = ways_0_metas_116_mru;
-        tmp_cache_tag_1 = ways_1_metas_116_tag;
-        tmp_cache_hit_1 = ways_1_metas_116_vld;
-        tmp_cache_mru_1 = ways_1_metas_116_mru;
-      end
-      7'b1110101 : begin
-        tmp_cache_tag_0 = ways_0_metas_117_tag;
-        tmp_cache_hit_0 = ways_0_metas_117_vld;
-        tmp_cache_mru_0 = ways_0_metas_117_mru;
-        tmp_cache_tag_1 = ways_1_metas_117_tag;
-        tmp_cache_hit_1 = ways_1_metas_117_vld;
-        tmp_cache_mru_1 = ways_1_metas_117_mru;
-      end
-      7'b1110110 : begin
-        tmp_cache_tag_0 = ways_0_metas_118_tag;
-        tmp_cache_hit_0 = ways_0_metas_118_vld;
-        tmp_cache_mru_0 = ways_0_metas_118_mru;
-        tmp_cache_tag_1 = ways_1_metas_118_tag;
-        tmp_cache_hit_1 = ways_1_metas_118_vld;
-        tmp_cache_mru_1 = ways_1_metas_118_mru;
-      end
-      7'b1110111 : begin
-        tmp_cache_tag_0 = ways_0_metas_119_tag;
-        tmp_cache_hit_0 = ways_0_metas_119_vld;
-        tmp_cache_mru_0 = ways_0_metas_119_mru;
-        tmp_cache_tag_1 = ways_1_metas_119_tag;
-        tmp_cache_hit_1 = ways_1_metas_119_vld;
-        tmp_cache_mru_1 = ways_1_metas_119_mru;
-      end
-      7'b1111000 : begin
-        tmp_cache_tag_0 = ways_0_metas_120_tag;
-        tmp_cache_hit_0 = ways_0_metas_120_vld;
-        tmp_cache_mru_0 = ways_0_metas_120_mru;
-        tmp_cache_tag_1 = ways_1_metas_120_tag;
-        tmp_cache_hit_1 = ways_1_metas_120_vld;
-        tmp_cache_mru_1 = ways_1_metas_120_mru;
-      end
-      7'b1111001 : begin
-        tmp_cache_tag_0 = ways_0_metas_121_tag;
-        tmp_cache_hit_0 = ways_0_metas_121_vld;
-        tmp_cache_mru_0 = ways_0_metas_121_mru;
-        tmp_cache_tag_1 = ways_1_metas_121_tag;
-        tmp_cache_hit_1 = ways_1_metas_121_vld;
-        tmp_cache_mru_1 = ways_1_metas_121_mru;
-      end
-      7'b1111010 : begin
-        tmp_cache_tag_0 = ways_0_metas_122_tag;
-        tmp_cache_hit_0 = ways_0_metas_122_vld;
-        tmp_cache_mru_0 = ways_0_metas_122_mru;
-        tmp_cache_tag_1 = ways_1_metas_122_tag;
-        tmp_cache_hit_1 = ways_1_metas_122_vld;
-        tmp_cache_mru_1 = ways_1_metas_122_mru;
-      end
-      7'b1111011 : begin
-        tmp_cache_tag_0 = ways_0_metas_123_tag;
-        tmp_cache_hit_0 = ways_0_metas_123_vld;
-        tmp_cache_mru_0 = ways_0_metas_123_mru;
-        tmp_cache_tag_1 = ways_1_metas_123_tag;
-        tmp_cache_hit_1 = ways_1_metas_123_vld;
-        tmp_cache_mru_1 = ways_1_metas_123_mru;
-      end
-      7'b1111100 : begin
-        tmp_cache_tag_0 = ways_0_metas_124_tag;
-        tmp_cache_hit_0 = ways_0_metas_124_vld;
-        tmp_cache_mru_0 = ways_0_metas_124_mru;
-        tmp_cache_tag_1 = ways_1_metas_124_tag;
-        tmp_cache_hit_1 = ways_1_metas_124_vld;
-        tmp_cache_mru_1 = ways_1_metas_124_mru;
-      end
-      7'b1111101 : begin
-        tmp_cache_tag_0 = ways_0_metas_125_tag;
-        tmp_cache_hit_0 = ways_0_metas_125_vld;
-        tmp_cache_mru_0 = ways_0_metas_125_mru;
-        tmp_cache_tag_1 = ways_1_metas_125_tag;
-        tmp_cache_hit_1 = ways_1_metas_125_vld;
-        tmp_cache_mru_1 = ways_1_metas_125_mru;
-      end
-      7'b1111110 : begin
-        tmp_cache_tag_0 = ways_0_metas_126_tag;
-        tmp_cache_hit_0 = ways_0_metas_126_vld;
-        tmp_cache_mru_0 = ways_0_metas_126_mru;
-        tmp_cache_tag_1 = ways_1_metas_126_tag;
-        tmp_cache_hit_1 = ways_1_metas_126_vld;
-        tmp_cache_mru_1 = ways_1_metas_126_mru;
-      end
-      default : begin
-        tmp_cache_tag_0 = ways_0_metas_127_tag;
-        tmp_cache_hit_0 = ways_0_metas_127_vld;
-        tmp_cache_mru_0 = ways_0_metas_127_mru;
-        tmp_cache_tag_1 = ways_1_metas_127_tag;
-        tmp_cache_hit_1 = ways_1_metas_127_vld;
-        tmp_cache_mru_1 = ways_1_metas_127_mru;
-      end
-    endcase
-  end
-
-  always @(*) begin
-    case(cpu_set_d1)
-      7'b0000000 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_0_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_0_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_0_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_0_mru;
-      end
-      7'b0000001 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_1_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_1_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_1_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_1_mru;
-      end
-      7'b0000010 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_2_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_2_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_2_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_2_mru;
-      end
-      7'b0000011 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_3_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_3_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_3_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_3_mru;
-      end
-      7'b0000100 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_4_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_4_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_4_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_4_mru;
-      end
-      7'b0000101 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_5_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_5_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_5_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_5_mru;
-      end
-      7'b0000110 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_6_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_6_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_6_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_6_mru;
-      end
-      7'b0000111 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_7_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_7_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_7_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_7_mru;
-      end
-      7'b0001000 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_8_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_8_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_8_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_8_mru;
-      end
-      7'b0001001 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_9_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_9_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_9_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_9_mru;
-      end
-      7'b0001010 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_10_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_10_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_10_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_10_mru;
-      end
-      7'b0001011 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_11_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_11_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_11_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_11_mru;
-      end
-      7'b0001100 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_12_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_12_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_12_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_12_mru;
-      end
-      7'b0001101 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_13_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_13_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_13_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_13_mru;
-      end
-      7'b0001110 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_14_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_14_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_14_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_14_mru;
-      end
-      7'b0001111 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_15_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_15_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_15_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_15_mru;
-      end
-      7'b0010000 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_16_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_16_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_16_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_16_mru;
-      end
-      7'b0010001 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_17_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_17_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_17_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_17_mru;
-      end
-      7'b0010010 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_18_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_18_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_18_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_18_mru;
-      end
-      7'b0010011 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_19_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_19_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_19_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_19_mru;
-      end
-      7'b0010100 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_20_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_20_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_20_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_20_mru;
-      end
-      7'b0010101 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_21_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_21_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_21_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_21_mru;
-      end
-      7'b0010110 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_22_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_22_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_22_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_22_mru;
-      end
-      7'b0010111 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_23_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_23_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_23_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_23_mru;
-      end
-      7'b0011000 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_24_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_24_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_24_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_24_mru;
-      end
-      7'b0011001 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_25_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_25_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_25_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_25_mru;
-      end
-      7'b0011010 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_26_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_26_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_26_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_26_mru;
-      end
-      7'b0011011 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_27_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_27_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_27_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_27_mru;
-      end
-      7'b0011100 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_28_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_28_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_28_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_28_mru;
-      end
-      7'b0011101 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_29_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_29_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_29_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_29_mru;
-      end
-      7'b0011110 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_30_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_30_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_30_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_30_mru;
-      end
-      7'b0011111 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_31_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_31_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_31_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_31_mru;
-      end
-      7'b0100000 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_32_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_32_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_32_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_32_mru;
-      end
-      7'b0100001 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_33_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_33_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_33_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_33_mru;
-      end
-      7'b0100010 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_34_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_34_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_34_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_34_mru;
-      end
-      7'b0100011 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_35_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_35_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_35_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_35_mru;
-      end
-      7'b0100100 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_36_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_36_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_36_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_36_mru;
-      end
-      7'b0100101 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_37_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_37_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_37_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_37_mru;
-      end
-      7'b0100110 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_38_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_38_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_38_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_38_mru;
-      end
-      7'b0100111 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_39_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_39_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_39_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_39_mru;
-      end
-      7'b0101000 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_40_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_40_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_40_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_40_mru;
-      end
-      7'b0101001 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_41_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_41_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_41_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_41_mru;
-      end
-      7'b0101010 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_42_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_42_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_42_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_42_mru;
-      end
-      7'b0101011 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_43_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_43_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_43_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_43_mru;
-      end
-      7'b0101100 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_44_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_44_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_44_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_44_mru;
-      end
-      7'b0101101 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_45_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_45_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_45_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_45_mru;
-      end
-      7'b0101110 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_46_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_46_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_46_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_46_mru;
-      end
-      7'b0101111 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_47_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_47_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_47_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_47_mru;
-      end
-      7'b0110000 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_48_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_48_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_48_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_48_mru;
-      end
-      7'b0110001 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_49_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_49_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_49_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_49_mru;
-      end
-      7'b0110010 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_50_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_50_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_50_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_50_mru;
-      end
-      7'b0110011 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_51_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_51_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_51_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_51_mru;
-      end
-      7'b0110100 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_52_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_52_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_52_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_52_mru;
-      end
-      7'b0110101 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_53_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_53_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_53_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_53_mru;
-      end
-      7'b0110110 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_54_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_54_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_54_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_54_mru;
-      end
-      7'b0110111 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_55_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_55_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_55_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_55_mru;
-      end
-      7'b0111000 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_56_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_56_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_56_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_56_mru;
-      end
-      7'b0111001 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_57_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_57_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_57_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_57_mru;
-      end
-      7'b0111010 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_58_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_58_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_58_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_58_mru;
-      end
-      7'b0111011 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_59_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_59_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_59_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_59_mru;
-      end
-      7'b0111100 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_60_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_60_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_60_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_60_mru;
-      end
-      7'b0111101 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_61_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_61_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_61_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_61_mru;
-      end
-      7'b0111110 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_62_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_62_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_62_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_62_mru;
-      end
-      7'b0111111 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_63_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_63_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_63_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_63_mru;
-      end
-      7'b1000000 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_64_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_64_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_64_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_64_mru;
-      end
-      7'b1000001 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_65_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_65_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_65_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_65_mru;
-      end
-      7'b1000010 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_66_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_66_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_66_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_66_mru;
-      end
-      7'b1000011 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_67_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_67_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_67_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_67_mru;
-      end
-      7'b1000100 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_68_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_68_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_68_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_68_mru;
-      end
-      7'b1000101 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_69_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_69_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_69_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_69_mru;
-      end
-      7'b1000110 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_70_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_70_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_70_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_70_mru;
-      end
-      7'b1000111 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_71_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_71_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_71_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_71_mru;
-      end
-      7'b1001000 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_72_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_72_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_72_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_72_mru;
-      end
-      7'b1001001 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_73_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_73_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_73_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_73_mru;
-      end
-      7'b1001010 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_74_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_74_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_74_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_74_mru;
-      end
-      7'b1001011 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_75_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_75_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_75_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_75_mru;
-      end
-      7'b1001100 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_76_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_76_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_76_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_76_mru;
-      end
-      7'b1001101 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_77_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_77_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_77_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_77_mru;
-      end
-      7'b1001110 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_78_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_78_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_78_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_78_mru;
-      end
-      7'b1001111 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_79_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_79_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_79_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_79_mru;
-      end
-      7'b1010000 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_80_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_80_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_80_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_80_mru;
-      end
-      7'b1010001 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_81_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_81_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_81_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_81_mru;
-      end
-      7'b1010010 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_82_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_82_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_82_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_82_mru;
-      end
-      7'b1010011 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_83_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_83_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_83_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_83_mru;
-      end
-      7'b1010100 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_84_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_84_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_84_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_84_mru;
-      end
-      7'b1010101 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_85_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_85_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_85_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_85_mru;
-      end
-      7'b1010110 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_86_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_86_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_86_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_86_mru;
-      end
-      7'b1010111 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_87_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_87_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_87_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_87_mru;
-      end
-      7'b1011000 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_88_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_88_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_88_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_88_mru;
-      end
-      7'b1011001 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_89_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_89_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_89_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_89_mru;
-      end
-      7'b1011010 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_90_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_90_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_90_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_90_mru;
-      end
-      7'b1011011 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_91_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_91_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_91_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_91_mru;
-      end
-      7'b1011100 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_92_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_92_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_92_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_92_mru;
-      end
-      7'b1011101 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_93_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_93_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_93_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_93_mru;
-      end
-      7'b1011110 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_94_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_94_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_94_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_94_mru;
-      end
-      7'b1011111 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_95_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_95_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_95_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_95_mru;
-      end
-      7'b1100000 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_96_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_96_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_96_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_96_mru;
-      end
-      7'b1100001 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_97_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_97_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_97_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_97_mru;
-      end
-      7'b1100010 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_98_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_98_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_98_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_98_mru;
-      end
-      7'b1100011 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_99_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_99_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_99_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_99_mru;
-      end
-      7'b1100100 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_100_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_100_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_100_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_100_mru;
-      end
-      7'b1100101 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_101_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_101_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_101_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_101_mru;
-      end
-      7'b1100110 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_102_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_102_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_102_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_102_mru;
-      end
-      7'b1100111 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_103_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_103_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_103_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_103_mru;
-      end
-      7'b1101000 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_104_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_104_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_104_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_104_mru;
-      end
-      7'b1101001 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_105_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_105_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_105_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_105_mru;
-      end
-      7'b1101010 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_106_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_106_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_106_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_106_mru;
-      end
-      7'b1101011 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_107_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_107_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_107_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_107_mru;
-      end
-      7'b1101100 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_108_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_108_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_108_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_108_mru;
-      end
-      7'b1101101 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_109_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_109_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_109_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_109_mru;
-      end
-      7'b1101110 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_110_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_110_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_110_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_110_mru;
-      end
-      7'b1101111 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_111_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_111_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_111_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_111_mru;
-      end
-      7'b1110000 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_112_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_112_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_112_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_112_mru;
-      end
-      7'b1110001 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_113_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_113_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_113_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_113_mru;
-      end
-      7'b1110010 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_114_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_114_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_114_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_114_mru;
-      end
-      7'b1110011 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_115_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_115_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_115_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_115_mru;
-      end
-      7'b1110100 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_116_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_116_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_116_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_116_mru;
-      end
-      7'b1110101 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_117_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_117_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_117_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_117_mru;
-      end
-      7'b1110110 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_118_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_118_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_118_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_118_mru;
-      end
-      7'b1110111 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_119_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_119_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_119_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_119_mru;
-      end
-      7'b1111000 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_120_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_120_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_120_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_120_mru;
-      end
-      7'b1111001 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_121_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_121_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_121_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_121_mru;
-      end
-      7'b1111010 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_122_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_122_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_122_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_122_mru;
-      end
-      7'b1111011 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_123_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_123_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_123_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_123_mru;
-      end
-      7'b1111100 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_124_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_124_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_124_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_124_mru;
-      end
-      7'b1111101 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_125_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_125_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_125_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_125_mru;
-      end
-      7'b1111110 : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_126_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_126_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_126_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_126_mru;
-      end
-      default : begin
-        tmp_cache_invld_d1_0 = ways_0_metas_127_vld;
-        tmp_cache_lru_d1_0 = ways_0_metas_127_mru;
-        tmp_cache_invld_d1_1 = ways_1_metas_127_vld;
-        tmp_cache_lru_d1_1 = ways_1_metas_127_mru;
-      end
-    endcase
-  end
-
-  always @(*) begin
-    case(hit_id_d1)
-      1'b0 : begin
-        tmp_hit_data = sram_banks_data_0;
-        tmp_hit_valid = sram_banks_valid_0;
-      end
-      default : begin
-        tmp_hit_data = sram_banks_data_1;
-        tmp_hit_valid = sram_banks_valid_1;
-      end
-    endcase
-  end
-
-  always @(*) begin
-    case(evict_id_miss)
-      1'b0 : begin
-        tmp_refill_data = sram_banks_data_0;
-        tmp_refill_valid = sram_banks_valid_0;
-      end
-      default : begin
-        tmp_refill_data = sram_banks_data_1;
-        tmp_refill_valid = sram_banks_valid_1;
-      end
-    endcase
-  end
-
-  assign cpu_tag = cpu_cmd_addr[31 : 13]; // @ BaseType.scala l299
-  assign cpu_set = cpu_cmd_addr[12 : 6]; // @ BaseType.scala l299
-  assign cpu_bank_addr = cpu_cmd_addr[12 : 3]; // @ BaseType.scala l299
-  assign bypass_cond_0 = ((32'h10000000 <= cpu_cmd_addr) && (cpu_cmd_addr <= 32'h3fffffff)); // @ BaseType.scala l305
-  assign bypass_cond_1 = ((32'h10001000 <= cpu_cmd_addr) && (cpu_cmd_addr <= 32'h10001fff)); // @ BaseType.scala l305
-  assign bypass_cond_2 = ((32'h10001000 <= cpu_cmd_addr) && (cpu_cmd_addr <= 32'h10001fff)); // @ BaseType.scala l305
-  assign cpu_cmd_fire = (cpu_cmd_valid && cpu_cmd_ready); // @ BaseType.scala l305
-  assign bypass = (((bypass_cond_0 || bypass_cond_1) || bypass_cond_2) && cpu_cmd_fire); // @ BaseType.scala l305
-  assign cpu_bypass_cmd_valid = bypass; // @ DCache.scala l47
-  assign cpu_bypass_cmd_addr = cpu_cmd_addr; // @ DCache.scala l48
-  assign cpu_bypass_cmd_wen = cpu_cmd_wen; // @ DCache.scala l49
-  assign cpu_bypass_cmd_wdata = cpu_cmd_wdata; // @ DCache.scala l50
-  assign cpu_bypass_cmd_wstrb = cpu_cmd_wstrb; // @ DCache.scala l51
-  assign cpu_bypass_cmd_size = cpu_cmd_size; // @ DCache.scala l52
-  assign mru_full = (&{cache_mru_1,cache_mru_0}); // @ BaseType.scala l312
-  assign cpu_cmd_fire_1 = (cpu_cmd_valid && cpu_cmd_ready); // @ BaseType.scala l305
-  assign is_hit = (((|{cache_hit_1,cache_hit_0}) && cpu_cmd_fire_1) && (! bypass)); // @ BaseType.scala l305
-  assign cpu_cmd_fire_2 = (cpu_cmd_valid && cpu_cmd_ready); // @ BaseType.scala l305
-  assign is_miss = (((! (|{cache_hit_1,cache_hit_0})) && cpu_cmd_fire_2) && (! bypass)); // @ BaseType.scala l305
-  assign is_diff = (! (|{cache_victim_1,cache_victim_0})); // @ BaseType.scala l299
-  assign cpu_cmd_fire_3 = (cpu_cmd_valid && cpu_cmd_ready); // @ BaseType.scala l305
-  assign is_write = ((cpu_cmd_fire_3 && cpu_cmd_wen) && (! bypass)); // @ BaseType.scala l305
-  always @(*) begin
-    flush_cnt_willIncrement = 1'b0; // @ Utils.scala l536
-    if(!tmp_when_1) begin
-      if(flush_busy) begin
-        flush_cnt_willIncrement = 1'b1; // @ Utils.scala l540
-      end
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
-    end
-  endfunction
-  wire [31:0] tmp_1;
-  function [31:0] zz_tmp_divisor_abs_1(input dummy);
-    begin
-      zz_tmp_divisor_abs_1[31] = 1'b0; // @ Literal.scala l87
-      zz_tmp_divisor_abs_1[30] = 1'b0; // @ Literal.scala l87
-      zz_tmp_divisor_abs_1[29] = 1'b0; // @ Literal.scala l87
-      zz_tmp_divisor_abs_1[28] = 1'b0; // @ Literal.scala l87
-      zz_tmp_divisor_abs_1[27] = 1'b0; // @ Literal.scala l87
-      zz_tmp_divisor_abs_1[26] = 1'b0; // @ Literal.scala l87
-      zz_tmp_divisor_abs_1[25] = 1'b0; // @ Literal.scala l87
-      zz_tmp_divisor_abs_1[24] = 1'b0; // @ Literal.scala l87
-      zz_tmp_divisor_abs_1[23] = 1'b0; // @ Literal.scala l87
-      zz_tmp_divisor_abs_1[22] = 1'b0; // @ Literal.scala l87
-      zz_tmp_divisor_abs_1[21] = 1'b0; // @ Literal.scala l87
-      zz_tmp_divisor_abs_1[20] = 1'b0; // @ Literal.scala l87
-      zz_tmp_divisor_abs_1[19] = 1'b0; // @ Literal.scala l87
-      zz_tmp_divisor_abs_1[18] = 1'b0; // @ Literal.scala l87
-      zz_tmp_divisor_abs_1[17] = 1'b0; // @ Literal.scala l87
-      zz_tmp_divisor_abs_1[16] = 1'b0; // @ Literal.scala l87
-      zz_tmp_divisor_abs_1[15] = 1'b0; // @ Literal.scala l87
-      zz_tmp_divisor_abs_1[14] = 1'b0; // @ Literal.scala l87
-      zz_tmp_divisor_abs_1[13] = 1'b0; // @ Literal.scala l87
-      zz_tmp_divisor_abs_1[12] = 1'b0; // @ Literal.scala l87
-      zz_tmp_divisor_abs_1[11] = 1'b0; // @ Literal.scala l87
-      zz_tmp_divisor_abs_1[10] = 1'b0; // @ Literal.scala l87
-      zz_tmp_divisor_abs_1[9] = 1'b0; // @ Literal.scala l87
-      zz_tmp_divisor_abs_1[8] = 1'b0; // @ Literal.scala l87
-      zz_tmp_divisor_abs_1[7] = 1'b0; // @ Literal.scala l87
-      zz_tmp_divisor_abs_1[6] = 1'b0; // @ Literal.scala l87
-      zz_tmp_divisor_abs_1[5] = 1'b0; // @ Literal.scala l87
-      zz_tmp_divisor_abs_1[4] = 1'b0; // @ Literal.scala l87
-      zz_tmp_divisor_abs_1[3] = 1'b0; // @ Literal.scala l87
-      zz_tmp_divisor_abs_1[2] = 1'b0; // @ Literal.scala l87
-      zz_tmp_divisor_abs_1[1] = 1'b0; // @ Literal.scala l87
-      zz_tmp_divisor_abs_1[0] = 1'b0; // @ Literal.scala l87
-    end
-  endfunction
-  wire [31:0] tmp_2;
-
-  assign tmp_dividend_abs_3 = (tmp_dividend_abs[63] ? tmp_dividend_abs_4 : tmp_dividend_abs);
-  assign tmp_dividend_abs_4 = (~ tmp_dividend_abs);
-  assign tmp_dividend_abs_6 = tmp_dividend_abs[63];
-  assign tmp_dividend_abs_5 = {63'd0, tmp_dividend_abs_6};
-  assign tmp_divisor_abs_3 = (tmp_divisor_abs[63] ? tmp_divisor_abs_4 : tmp_divisor_abs);
-  assign tmp_divisor_abs_4 = (~ tmp_divisor_abs);
-  assign tmp_divisor_abs_6 = tmp_divisor_abs[63];
-  assign tmp_divisor_abs_5 = {63'd0, tmp_divisor_abs_6};
-  assign tmp_dividend_abs_7 = (tmp_dividend_abs_2[63] ? tmp_dividend_abs_8 : tmp_dividend_abs_2);
-  assign tmp_dividend_abs_8 = (~ tmp_dividend_abs_2);
-  assign tmp_dividend_abs_10 = tmp_dividend_abs_2[63];
-  assign tmp_dividend_abs_9 = {63'd0, tmp_dividend_abs_10};
-  assign tmp_divisor_abs_7 = (tmp_divisor_abs_2[63] ? tmp_divisor_abs_8 : tmp_divisor_abs_2);
-  assign tmp_divisor_abs_8 = (~ tmp_divisor_abs_2);
-  assign tmp_divisor_abs_10 = tmp_divisor_abs_2[63];
-  assign tmp_divisor_abs_9 = {63'd0, tmp_divisor_abs_10};
-  assign tmp_quotient_wrapper = ((~ quotient_origin) + 64'h0000000000000001);
-  assign tmp_remainder_wrapper = ((~ remainder_origin) + 64'h0000000000000001);
-  assign tmp_quotient_wrapper_1 = ((~ quotient_origin) + 64'h0000000000000001);
-  assign tmp_remainder_wrapper_1 = ((~ remainder_origin) + 64'h0000000000000001);
-  div_gen_0 u_div (
-    .aclk                   (clk                              ), //i
-    .s_axis_divisor_tvalid  (io_start                         ), //i
-    .s_axis_divisor_tdata   (u_div_s_axis_divisor_tdata[63:0] ), //i
-    .s_axis_dividend_tvalid (io_start                         ), //i
-    .s_axis_dividend_tdata  (u_div_s_axis_dividend_tdata[63:0]), //i
-    .m_axis_dout_tvalid     (u_div_m_axis_dout_tvalid         ), //o
-    .m_axis_dout_tdata      (u_div_m_axis_dout_tdata[127:0]   )  //o
-  );
-  assign tmp_dividend_word_extd = io_dividend[31]; // @ BaseType.scala l305
-  always @(*) begin
-    tmp_dividend_word_extd_1[31] = tmp_dividend_word_extd; // @ Literal.scala l87
-    tmp_dividend_word_extd_1[30] = tmp_dividend_word_extd; // @ Literal.scala l87
-    tmp_dividend_word_extd_1[29] = tmp_dividend_word_extd; // @ Literal.scala l87
-    tmp_dividend_word_extd_1[28] = tmp_dividend_word_extd; // @ Literal.scala l87
-    tmp_dividend_word_extd_1[27] = tmp_dividend_word_extd; // @ Literal.scala l87
-    tmp_dividend_word_extd_1[26] = tmp_dividend_word_extd; // @ Literal.scala l87
-    tmp_dividend_word_extd_1[25] = tmp_dividend_word_extd; // @ Literal.scala l87
-    tmp_dividend_word_extd_1[24] = tmp_dividend_word_extd; // @ Literal.scala l87
-    tmp_dividend_word_extd_1[23] = tmp_dividend_word_extd; // @ Literal.scala l87
-    tmp_dividend_word_extd_1[22] = tmp_dividend_word_extd; // @ Literal.scala l87
-    tmp_dividend_word_extd_1[21] = tmp_dividend_word_extd; // @ Literal.scala l87
-    tmp_dividend_word_extd_1[20] = tmp_dividend_word_extd; // @ Literal.scala l87
-    tmp_dividend_word_extd_1[19] = tmp_dividend_word_extd; // @ Literal.scala l87
-    tmp_dividend_word_extd_1[18] = tmp_dividend_word_extd; // @ Literal.scala l87
-    tmp_dividend_word_extd_1[17] = tmp_dividend_word_extd; // @ Literal.scala l87
-    tmp_dividend_word_extd_1[16] = tmp_dividend_word_extd; // @ Literal.scala l87
-    tmp_dividend_word_extd_1[15] = tmp_dividend_word_extd; // @ Literal.scala l87
-    tmp_dividend_word_extd_1[14] = tmp_dividend_word_extd; // @ Literal.scala l87
-    tmp_dividend_word_extd_1[13] = tmp_dividend_word_extd; // @ Literal.scala l87
-    tmp_dividend_word_extd_1[12] = tmp_dividend_word_extd; // @ Literal.scala l87
-    tmp_dividend_word_extd_1[11] = tmp_dividend_word_extd; // @ Literal.scala l87
-    tmp_dividend_word_extd_1[10] = tmp_dividend_word_extd; // @ Literal.scala l87
-    tmp_dividend_word_extd_1[9] = tmp_dividend_word_extd; // @ Literal.scala l87
-    tmp_dividend_word_extd_1[8] = tmp_dividend_word_extd; // @ Literal.scala l87
-    tmp_dividend_word_extd_1[7] = tmp_dividend_word_extd; // @ Literal.scala l87
-    tmp_dividend_word_extd_1[6] = tmp_dividend_word_extd; // @ Literal.scala l87
-    tmp_dividend_word_extd_1[5] = tmp_dividend_word_extd; // @ Literal.scala l87
-    tmp_dividend_word_extd_1[4] = tmp_dividend_word_extd; // @ Literal.scala l87
-    tmp_dividend_word_extd_1[3] = tmp_dividend_word_extd; // @ Literal.scala l87
-    tmp_dividend_word_extd_1[2] = tmp_dividend_word_extd; // @ Literal.scala l87
-    tmp_dividend_word_extd_1[1] = tmp_dividend_word_extd; // @ Literal.scala l87
-    tmp_dividend_word_extd_1[0] = tmp_dividend_word_extd; // @ Literal.scala l87
-  end
-
-  assign dividend_word_extd = {tmp_dividend_word_extd_1,io_dividend[31 : 0]}; // @ Divider.scala l53
-  assign tmp_divisor_word_extd = io_divisor[31]; // @ BaseType.scala l305
-  always @(*) begin
-    tmp_divisor_word_extd_1[31] = tmp_divisor_word_extd; // @ Literal.scala l87
-    tmp_divisor_word_extd_1[30] = tmp_divisor_word_extd; // @ Literal.scala l87
-    tmp_divisor_word_extd_1[29] = tmp_divisor_word_extd; // @ Literal.scala l87
-    tmp_divisor_word_extd_1[28] = tmp_divisor_word_extd; // @ Literal.scala l87
-    tmp_divisor_word_extd_1[27] = tmp_divisor_word_extd; // @ Literal.scala l87
-    tmp_divisor_word_extd_1[26] = tmp_divisor_word_extd; // @ Literal.scala l87
-    tmp_divisor_word_extd_1[25] = tmp_divisor_word_extd; // @ Literal.scala l87
-    tmp_divisor_word_extd_1[24] = tmp_divisor_word_extd; // @ Literal.scala l87
-    tmp_divisor_word_extd_1[23] = tmp_divisor_word_extd; // @ Literal.scala l87
-    tmp_divisor_word_extd_1[22] = tmp_divisor_word_extd; // @ Literal.scala l87
-    tmp_divisor_word_extd_1[21] = tmp_divisor_word_extd; // @ Literal.scala l87
-    tmp_divisor_word_extd_1[20] = tmp_divisor_word_extd; // @ Literal.scala l87
-    tmp_divisor_word_extd_1[19] = tmp_divisor_word_extd; // @ Literal.scala l87
-    tmp_divisor_word_extd_1[18] = tmp_divisor_word_extd; // @ Literal.scala l87
-    tmp_divisor_word_extd_1[17] = tmp_divisor_word_extd; // @ Literal.scala l87
-    tmp_divisor_word_extd_1[16] = tmp_divisor_word_extd; // @ Literal.scala l87
-    tmp_divisor_word_extd_1[15] = tmp_divisor_word_extd; // @ Literal.scala l87
-    tmp_divisor_word_extd_1[14] = tmp_divisor_word_extd; // @ Literal.scala l87
-    tmp_divisor_word_extd_1[13] = tmp_divisor_word_extd; // @ Literal.scala l87
-    tmp_divisor_word_extd_1[12] = tmp_divisor_word_extd; // @ Literal.scala l87
-    tmp_divisor_word_extd_1[11] = tmp_divisor_word_extd; // @ Literal.scala l87
-    tmp_divisor_word_extd_1[10] = tmp_divisor_word_extd; // @ Literal.scala l87
-    tmp_divisor_word_extd_1[9] = tmp_divisor_word_extd; // @ Literal.scala l87
-    tmp_divisor_word_extd_1[8] = tmp_divisor_word_extd; // @ Literal.scala l87
-    tmp_divisor_word_extd_1[7] = tmp_divisor_word_extd; // @ Literal.scala l87
-    tmp_divisor_word_extd_1[6] = tmp_divisor_word_extd; // @ Literal.scala l87
-    tmp_divisor_word_extd_1[5] = tmp_divisor_word_extd; // @ Literal.scala l87
-    tmp_divisor_word_extd_1[4] = tmp_divisor_word_extd; // @ Literal.scala l87
-    tmp_divisor_word_extd_1[3] = tmp_divisor_word_extd; // @ Literal.scala l87
-    tmp_divisor_word_extd_1[2] = tmp_divisor_word_extd; // @ Literal.scala l87
-    tmp_divisor_word_extd_1[1] = tmp_divisor_word_extd; // @ Literal.scala l87
-    tmp_divisor_word_extd_1[0] = tmp_divisor_word_extd; // @ Literal.scala l87
-  end
-
-  assign divisor_word_extd = {tmp_divisor_word_extd_1,io_divisor[31 : 0]}; // @ Divider.scala l54
-  assign dividend_positive = (io_op_is_signed ? (! dividend_word_extd[63]) : 1'b1); // @ Divider.scala l55
-  assign divisor_positive = (io_op_is_signed ? (! divisor_word_extd[63]) : 1'b1); // @ Divider.scala l56
-  assign tmp_dividend_abs = dividend_word_extd; // @ BaseType.scala l318
-  always @(*) begin
-    if(io_op_is_word) begin
-      if(io_op_is_signed) begin
-        dividend_abs = (tmp_dividend_abs_3 + tmp_dividend_abs_5); // @ Divider.scala l60
-      end else begin
-        dividend_abs = {tmp_dividend_abs_1,io_dividend[31 : 0]}; // @ Divider.scala l64
-      end
-    end else begin
-      if(io_op_is_signed) begin
-        dividend_abs = (tmp_dividend_abs_7 + tmp_dividend_abs_9); // @ Divider.scala l70
-      end else begin
-        dividend_abs = io_dividend; // @ Divider.scala l74
-      end
-    end
-  end
-
-  assign tmp_divisor_abs = divisor_word_extd; // @ BaseType.scala l318
-  always @(*) begin
-    if(io_op_is_word) begin
-      if(io_op_is_signed) begin
-        divisor_abs = (tmp_divisor_abs_3 + tmp_divisor_abs_5); // @ Divider.scala l61
-      end else begin
-        divisor_abs = {tmp_divisor_abs_1,io_divisor[31 : 0]}; // @ Divider.scala l65
-      end
-    end else begin
-      if(io_op_is_signed) begin
-        divisor_abs = (tmp_divisor_abs_7 + tmp_divisor_abs_9); // @ Divider.scala l71
-      end else begin
-        divisor_abs = io_divisor; // @ Divider.scala l75
-      end
-    end
-  end
-
-  assign tmp_1 = zz_tmp_dividend_abs_1(1'b0);
-  always @(*) tmp_dividend_abs_1 = tmp_1;
-  assign tmp_2 = zz_tmp_divisor_abs_1(1'b0);
-  always @(*) tmp_divisor_abs_1 = tmp_2;
-  assign tmp_dividend_abs_2 = io_dividend; // @ BaseType.scala l318
-  assign tmp_divisor_abs_2 = io_divisor; // @ BaseType.scala l318
-  assign quotient_origin = u_div_m_axis_dout_tdata[127 : 64]; // @ Divider.scala l86
-  assign remainder_origin = u_div_m_axis_dout_tdata[63 : 0]; // @ Divider.scala l87
-  assign tmp_quotient_word_extd = quotient_origin[31]; // @ BaseType.scala l305
-  always @(*) begin
-    tmp_quotient_word_extd_1[31] = tmp_quotient_word_extd; // @ Literal.scala l87
-    tmp_quotient_word_extd_1[30] = tmp_quotient_word_extd; // @ Literal.scala l87
-    tmp_quotient_word_extd_1[29] = tmp_quotient_word_extd; // @ Literal.scala l87
-    tmp_quotient_word_extd_1[28] = tmp_quotient_word_extd; // @ Literal.scala l87
-    tmp_quotient_word_extd_1[27] = tmp_quotient_word_extd; // @ Literal.scala l87
-    tmp_quotient_word_extd_1[26] = tmp_quotient_word_extd; // @ Literal.scala l87
-    tmp_quotient_word_extd_1[25] = tmp_quotient_word_extd; // @ Literal.scala l87
-    tmp_quotient_word_extd_1[24] = tmp_quotient_word_extd; // @ Literal.scala l87
-    tmp_quotient_word_extd_1[23] = tmp_quotient_word_extd; // @ Literal.scala l87
-    tmp_quotient_word_extd_1[22] = tmp_quotient_word_extd; // @ Literal.scala l87
-    tmp_quotient_word_extd_1[21] = tmp_quotient_word_extd; // @ Literal.scala l87
-    tmp_quotient_word_extd_1[20] = tmp_quotient_word_extd; // @ Literal.scala l87
-    tmp_quotient_word_extd_1[19] = tmp_quotient_word_extd; // @ Literal.scala l87
-    tmp_quotient_word_extd_1[18] = tmp_quotient_word_extd; // @ Literal.scala l87
-    tmp_quotient_word_extd_1[17] = tmp_quotient_word_extd; // @ Literal.scala l87
-    tmp_quotient_word_extd_1[16] = tmp_quotient_word_extd; // @ Literal.scala l87
-    tmp_quotient_word_extd_1[15] = tmp_quotient_word_extd; // @ Literal.scala l87
-    tmp_quotient_word_extd_1[14] = tmp_quotient_word_extd; // @ Literal.scala l87
-    tmp_quotient_word_extd_1[13] = tmp_quotient_word_extd; // @ Literal.scala l87
-    tmp_quotient_word_extd_1[12] = tmp_quotient_word_extd; // @ Literal.scala l87
-    tmp_quotient_word_extd_1[11] = tmp_quotient_word_extd; // @ Literal.scala l87
-    tmp_quotient_word_extd_1[10] = tmp_quotient_word_extd; // @ Literal.scala l87
-    tmp_quotient_word_extd_1[9] = tmp_quotient_word_extd; // @ Literal.scala l87
-    tmp_quotient_word_extd_1[8] = tmp_quotient_word_extd; // @ Literal.scala l87
-    tmp_quotient_word_extd_1[7] = tmp_quotient_word_extd; // @ Literal.scala l87
-    tmp_quotient_word_extd_1[6] = tmp_quotient_word_extd; // @ Literal.scala l87
-    tmp_quotient_word_extd_1[5] = tmp_quotient_word_extd; // @ Literal.scala l87
-    tmp_quotient_word_extd_1[4] = tmp_quotient_word_extd; // @ Literal.scala l87
-    tmp_quotient_word_extd_1[3] = tmp_quotient_word_extd; // @ Literal.scala l87
-    tmp_quotient_word_extd_1[2] = tmp_quotient_word_extd; // @ Literal.scala l87
-    tmp_quotient_word_extd_1[1] = tmp_quotient_word_extd; // @ Literal.scala l87
-    tmp_quotient_word_extd_1[0] = tmp_quotient_word_extd; // @ Literal.scala l87
-  end
-
-  assign quotient_word_extd = {tmp_quotient_word_extd_1,quotient_origin[31 : 0]}; // @ Divider.scala l88
-  assign tmp_remainder_word_extd = remainder_origin[31]; // @ BaseType.scala l305
-  always @(*) begin
-    tmp_remainder_word_extd_1[31] = tmp_remainder_word_extd; // @ Literal.scala l87
-    tmp_remainder_word_extd_1[30] = tmp_remainder_word_extd; // @ Literal.scala l87
-    tmp_remainder_word_extd_1[29] = tmp_remainder_word_extd; // @ Literal.scala l87
-    tmp_remainder_word_extd_1[28] = tmp_remainder_word_extd; // @ Literal.scala l87
-    tmp_remainder_word_extd_1[27] = tmp_remainder_word_extd; // @ Literal.scala l87
-    tmp_remainder_word_extd_1[26] = tmp_remainder_word_extd; // @ Literal.scala l87
-    tmp_remainder_word_extd_1[25] = tmp_remainder_word_extd; // @ Literal.scala l87
-    tmp_remainder_word_extd_1[24] = tmp_remainder_word_extd; // @ Literal.scala l87
-    tmp_remainder_word_extd_1[23] = tmp_remainder_word_extd; // @ Literal.scala l87
-    tmp_remainder_word_extd_1[22] = tmp_remainder_word_extd; // @ Literal.scala l87
-    tmp_remainder_word_extd_1[21] = tmp_remainder_word_extd; // @ Literal.scala l87
-    tmp_remainder_word_extd_1[20] = tmp_remainder_word_extd; // @ Literal.scala l87
-    tmp_remainder_word_extd_1[19] = tmp_remainder_word_extd; // @ Literal.scala l87
-    tmp_remainder_word_extd_1[18] = tmp_remainder_word_extd; // @ Literal.scala l87
-    tmp_remainder_word_extd_1[17] = tmp_remainder_word_extd; // @ Literal.scala l87
-    tmp_remainder_word_extd_1[16] = tmp_remainder_word_extd; // @ Literal.scala l87
-    tmp_remainder_word_extd_1[15] = tmp_remainder_word_extd; // @ Literal.scala l87
-    tmp_remainder_word_extd_1[14] = tmp_remainder_word_extd; // @ Literal.scala l87
-    tmp_remainder_word_extd_1[13] = tmp_remainder_word_extd; // @ Literal.scala l87
-    tmp_remainder_word_extd_1[12] = tmp_remainder_word_extd; // @ Literal.scala l87
-    tmp_remainder_word_extd_1[11] = tmp_remainder_word_extd; // @ Literal.scala l87
-    tmp_remainder_word_extd_1[10] = tmp_remainder_word_extd; // @ Literal.scala l87
-    tmp_remainder_word_extd_1[9] = tmp_remainder_word_extd; // @ Literal.scala l87
-    tmp_remainder_word_extd_1[8] = tmp_remainder_word_extd; // @ Literal.scala l87
-    tmp_remainder_word_extd_1[7] = tmp_remainder_word_extd; // @ Literal.scala l87
-    tmp_remainder_word_extd_1[6] = tmp_remainder_word_extd; // @ Literal.scala l87
-    tmp_remainder_word_extd_1[5] = tmp_remainder_word_extd; // @ Literal.scala l87
-    tmp_remainder_word_extd_1[4] = tmp_remainder_word_extd; // @ Literal.scala l87
-    tmp_remainder_word_extd_1[3] = tmp_remainder_word_extd; // @ Literal.scala l87
-    tmp_remainder_word_extd_1[2] = tmp_remainder_word_extd; // @ Literal.scala l87
-    tmp_remainder_word_extd_1[1] = tmp_remainder_word_extd; // @ Literal.scala l87
-    tmp_remainder_word_extd_1[0] = tmp_remainder_word_extd; // @ Literal.scala l87
-  end
-
-  assign remainder_word_extd = {tmp_remainder_word_extd_1,remainder_origin[31 : 0]}; // @ Divider.scala l89
-  always @(*) begin
-    if(io_op_is_word) begin
-      quotient_wrapper = ((dividend_positive == divisor_positive) ? quotient_word_extd : tmp_quotient_wrapper); // @ Divider.scala l92
-    end else begin
-      quotient_wrapper = ((dividend_positive == divisor_positive) ? quotient_origin : tmp_quotient_wrapper_1); // @ Divider.scala l96
-    end
-  end
-
-  always @(*) begin
-    if(io_op_is_word) begin
-      remainder_wrapper = (dividend_positive ? remainder_word_extd : tmp_remainder_wrapper); // @ Divider.scala l93
-    end else begin
-      remainder_wrapper = (dividend_positive ? remainder_origin : tmp_remainder_wrapper_1); // @ Divider.scala l97
-    end
-  end
-
-  assign u_div_s_axis_divisor_tdata = divisor_abs; // @ Divider.scala l101
-  assign u_div_s_axis_dividend_tdata = dividend_abs; // @ Divider.scala l103
-  assign io_quotient = quotient_wrapper; // @ Divider.scala l104
-  assign io_remainder = remainder_wrapper; // @ Divider.scala l105
-  assign io_done_valid = (u_div_m_axis_dout_tvalid && busy_reg); // @ Divider.scala l106
-  assign io_busy = busy_reg; // @ Divider.scala l107
-  always @(posedge clk or posedge reset) begin
-    if(reset) begin
-      busy_reg <= 1'b0; // @ Data.scala l400
-    end else begin
-      if(io_flush) begin
-        busy_reg <= 1'b0; // @ Divider.scala l38
-      end else begin
-        if(io_start) begin
-          busy_reg <= 1'b1; // @ Divider.scala l41
-        end else begin
-          if(io_done_valid) begin
-            busy_reg <= 1'b0; // @ Divider.scala l44
-          end
-        end
-      end
-    end
-  end
-
-
-endmodule
-
-module BJU_kernel (
-  input               in_valid,
-  input      [3:0]    uop_bju_bju_ctrl_op,
-  input               uop_bju_bju_rd_eq_rs1,
-  input               uop_bju_bju_rd_is_link,
-  input               uop_bju_bju_rs1_is_link,
-  input      [3:0]    uop_bju_exp_ctrl_op,
-  input      [11:0]   uop_bju_exp_csr_addr,
-  input               uop_bju_exp_csr_wen,
-  input               uop_com_rd_wen,
-  input               uop_com_src2_is_imm,
-  input      [31:0]   pc,
-  input      [63:0]   imm,
-  input      [63:0]   rs1_data,
-  input      [63:0]   rs2_data,
-  output     [63:0]   rd_data,
-  input               branch_taken,
-  input      [31:0]   branch_pc,
-  output reg          redirect_valid,
-  output reg [31:0]   redirect_pc,
-  output              train_valid,
-  output     [31:0]   train_pc,
-  output              train_taken,
-  output              train_mispred,
-  output     [4:0]    train_history,
-  output     [31:0]   train_pc_next,
-  output              train_is_call,
-  output              train_is_ret,
-  output              train_is_jmp,
-  output              interrupt_valid,
-  output     [31:0]   interrupt_pc,
-  input               timer_int,
-  input               clk,
-  input               reset
-);
-  localparam BjuCtrlEnum_IDLE = 4'd0;
-  localparam BjuCtrlEnum_AUIPC = 4'd1;
-  localparam BjuCtrlEnum_JAL = 4'd2;
-  localparam BjuCtrlEnum_JALR = 4'd3;
-  localparam BjuCtrlEnum_BEQ = 4'd4;
-  localparam BjuCtrlEnum_BNE = 4'd5;
-  localparam BjuCtrlEnum_BLT = 4'd6;
-  localparam BjuCtrlEnum_BGE = 4'd7;
-  localparam BjuCtrlEnum_BLTU = 4'd8;
-  localparam BjuCtrlEnum_BGEU = 4'd9;
-  localparam BjuCtrlEnum_CSR = 4'd10;
-  localparam ExpCtrlEnum_IDLE = 4'd0;
-  localparam ExpCtrlEnum_ECALL = 4'd1;
-  localparam ExpCtrlEnum_EBREAK = 4'd2;
-  localparam ExpCtrlEnum_MRET = 4'd3;
-  localparam ExpCtrlEnum_CSRRW = 4'd4;
-  localparam ExpCtrlEnum_CSRRS = 4'd5;
-  localparam ExpCtrlEnum_CSRRC = 4'd6;
-  localparam ExpCtrlEnum_CSRRWI = 4'd7;
-  localparam ExpCtrlEnum_CSRRSI = 4'd8;
-  localparam ExpCtrlEnum_CSRRCI = 4'd9;
-
-  wire                clint_1_ecall;
-  wire                clint_1_ebreak;
-  wire                clint_1_mret;
-  wire       [63:0]   csr_regfile_cpu_ports_rdata;
-  wire       [63:0]   csr_regfile_clint_ports_mtvec;
-  wire       [63:0]   csr_regfile_clint_ports_mepc;
-  wire       [63:0]   csr_regfile_clint_ports_mstatus;
-  wire                csr_regfile_clint_ports_global_int_en;
-  wire                csr_regfile_clint_ports_mtime_int_en;
-  wire                csr_regfile_clint_ports_mtime_int_pend;
-  wire                clint_1_csr_ports_mepc_wen;
-  wire       [63:0]   clint_1_csr_ports_mepc_wdata;
-  wire                clint_1_csr_ports_mcause_wen;
-  wire       [63:0]   clint_1_csr_ports_mcause_wdata;
-  wire                clint_1_csr_ports_mstatus_wen;
-  wire       [63:0]   clint_1_csr_ports_mstatus_wdata;
-  wire                clint_1_int_en;
-  wire       [31:0]   clint_1_int_pc;
-  wire       [63:0]   tmp_blt_result;
-  wire       [63:0]   tmp_blt_result_1;
-  wire       [63:0]   tmp_bge_result;
-  wire       [63:0]   tmp_bge_result_1;
-  wire       [63:0]   tmp_pc_next;
-  wire       [63:0]   tmp_pc_next_1;
-  wire       [63:0]   tmp_pc_next_2;
-  wire       [63:0]   tmp_pc_next_3;
-  wire       [63:0]   tmp_pc_next_4;
-  wire       [63:0]   tmp_pc_next_5;
-  wire       [63:0]   tmp_pc_next_6;
-  wire       [63:0]   tmp_pc_next_7;
-  wire       [63:0]   tmp_pc_next_8;
-  wire       [63:0]   tmp_pc_next_9;
-  wire       [31:0]   tmp_pc_next_10;
-  wire       [63:0]   tmp_pc_next_11;
-  wire                tmp_when;
-  wire       [63:0]   tmp_rd_data;
-  wire       [63:0]   tmp_rd_data_1;
-  wire       [63:0]   csr_rdata;
-  reg        [31:0]   pc_next;
-  wire                auipc;
-  wire                jal;
-  wire                jalr;
-  wire                beq;
-  wire                bne;
-  wire                blt;
-  wire                bge;
-  wire                bltu;
-  wire                bgeu;
-  wire                csr;
-  wire                branch_or_jalr;
-  wire                branch_or_jump;
-  reg                 is_call;
-  reg                 is_ret;
-  reg                 is_jmp;
-  wire                beq_result;
-  wire                bne_result;
-  wire                blt_result;
-  wire                bge_result;
-  wire                bltu_result;
-  wire                bgeu_result;
-  wire                real_taken;
-  reg        [4:0]    branch_history;
-  wire       [63:0]   src2;
-  reg        [63:0]   csr_wdata;
-  wire       [63:0]   csrrs_wdata;
-  wire       [63:0]   csrrc_wdata;
-  wire       [63:0]   csrrsi_wdata;
-  wire       [63:0]   csrrci_wdata;
-  wire                csr_wen;
-  reg        [63:0]   csr_wdata_regNext;
-  reg                 csr_wen_regNext;
-  reg        [11:0]   uop_bju_exp_csr_addr_regNext;
-  `ifndef SYNTHESIS
-  reg [39:0] uop_bju_bju_ctrl_op_string;
-  reg [47:0] uop_bju_exp_ctrl_op_string;
-  `endif
-
-
-  assign tmp_when = ((! branch_taken) || (branch_pc != pc_next));
-  assign tmp_blt_result = rs1_data;
-  assign tmp_blt_result_1 = rs2_data;
-  assign tmp_bge_result = rs2_data;
-  assign tmp_bge_result_1 = rs1_data;
-  assign tmp_pc_next = tmp_pc_next_1;
-  assign tmp_pc_next_1 = (tmp_pc_next_2 & tmp_pc_next_5);
-  assign tmp_pc_next_2 = ($signed(tmp_pc_next_3) + $signed(tmp_pc_next_4));
-  assign tmp_pc_next_3 = rs1_data;
-  assign tmp_pc_next_4 = imm;
-  assign tmp_pc_next_5 = (~ tmp_pc_next_6);
-  assign tmp_pc_next_6 = 64'h0000000000000001;
-  assign tmp_pc_next_7 = tmp_pc_next_8;
-  assign tmp_pc_next_8 = ($signed(tmp_pc_next_9) + $signed(tmp_pc_next_11));
-  assign tmp_pc_next_10 = pc;
-  assign tmp_pc_next_9 = {{32{tmp_pc_next_10[31]}}, tmp_pc_next_10};
-  assign tmp_pc_next_11 = imm;
-  assign tmp_rd_data = (tmp_rd_data_1 + src2);
-  assign tmp_rd_data_1 = {32'd0, pc};
-  CsrRegfile csr_regfile (
-    .cpu_ports_waddr            (uop_bju_exp_csr_addr_regNext[11:0]    ), //i
-    .cpu_ports_wen              (csr_wen_regNext                       ), //i
-    .cpu_ports_wdata            (csr_wdata_regNext[63:0]               ), //i
-    .cpu_ports_raddr            (uop_bju_exp_csr_addr[11:0]            ), //i
-    .cpu_ports_rdata            (csr_regfile_cpu_ports_rdata[63:0]     ), //o
-    .clint_ports_mepc_wen       (clint_1_csr_ports_mepc_wen            ), //i
-    .clint_ports_mepc_wdata     (clint_1_csr_ports_mepc_wdata[63:0]    ), //i
-    .clint_ports_mcause_wen     (clint_1_csr_ports_mcause_wen          ), //i
-    .clint_ports_mcause_wdata   (clint_1_csr_ports_mcause_wdata[63:0]  ), //i
-    .clint_ports_mstatus_wen    (clint_1_csr_ports_mstatus_wen         ), //i
-    .clint_ports_mstatus_wdata  (clint_1_csr_ports_mstatus_wdata[63:0] ), //i
-    .clint_ports_mtvec          (csr_regfile_clint_ports_mtvec[63:0]   ), //o
-    .clint_ports_mepc           (csr_regfile_clint_ports_mepc[63:0]    ), //o
-    .clint_ports_mstatus        (csr_regfile_clint_ports_mstatus[63:0] ), //o
-    .clint_ports_global_int_en  (csr_regfile_clint_ports_global_int_en ), //o
-    .clint_ports_mtime_int_en   (csr_regfile_clint_ports_mtime_int_en  ), //o
-    .clint_ports_mtime_int_pend (csr_regfile_clint_ports_mtime_int_pend), //o
-    .timer_int                  (timer_int                             ), //i
-    .clk                        (clk                                   ), //i
-    .reset                      (reset                                 )  //i
-  );
-  Clint clint_1 (
-    .pc                       (pc[31:0]                              ), //i
-    .pc_next                  (redirect_pc[31:0]                     ), //i
-    .csr_ports_mepc_wen       (clint_1_csr_ports_mepc_wen            ), //o
-    .csr_ports_mepc_wdata     (clint_1_csr_ports_mepc_wdata[63:0]    ), //o
-    .csr_ports_mcause_wen     (clint_1_csr_ports_mcause_wen          ), //o
-    .csr_ports_mcause_wdata   (clint_1_csr_ports_mcause_wdata[63:0]  ), //o
-    .csr_ports_mstatus_wen    (clint_1_csr_ports_mstatus_wen         ), //o
-    .csr_ports_mstatus_wdata  (clint_1_csr_ports_mstatus_wdata[63:0] ), //o
-    .csr_ports_mtvec          (csr_regfile_clint_ports_mtvec[63:0]   ), //i
-    .csr_ports_mepc           (csr_regfile_clint_ports_mepc[63:0]    ), //i
-    .csr_ports_mstatus        (csr_regfile_clint_ports_mstatus[63:0] ), //i
-    .csr_ports_global_int_en  (csr_regfile_clint_ports_global_int_en ), //i
-    .csr_ports_mtime_int_en   (csr_regfile_clint_ports_mtime_int_en  ), //i
-    .csr_ports_mtime_int_pend (csr_regfile_clint_ports_mtime_int_pend), //i
-    .timer_int                (timer_int                             ), //i
-    .int_en                   (clint_1_int_en                        ), //o
-    .int_pc                   (clint_1_int_pc[31:0]                  ), //o
-    .ecall                    (clint_1_ecall                         ), //i
-    .ebreak                   (clint_1_ebreak                        ), //i
-    .mret                     (clint_1_mret                          )  //i
-  );
-  `ifndef SYNTHESIS
-  always @(*) begin
-    case(uop_bju_bju_ctrl_op)
-      BjuCtrlEnum_IDLE : uop_bju_bju_ctrl_op_string = "IDLE ";
-      BjuCtrlEnum_AUIPC : uop_bju_bju_ctrl_op_string = "AUIPC";
-      BjuCtrlEnum_JAL : uop_bju_bju_ctrl_op_string = "JAL  ";
-      BjuCtrlEnum_JALR : uop_bju_bju_ctrl_op_string = "JALR ";
-      BjuCtrlEnum_BEQ : uop_bju_bju_ctrl_op_string = "BEQ  ";
-      BjuCtrlEnum_BNE : uop_bju_bju_ctrl_op_string = "BNE  ";
-      BjuCtrlEnum_BLT : uop_bju_bju_ctrl_op_string = "BLT  ";
-      BjuCtrlEnum_BGE : uop_bju_bju_ctrl_op_string = "BGE  ";
-      BjuCtrlEnum_BLTU : uop_bju_bju_ctrl_op_string = "BLTU ";
-      BjuCtrlEnum_BGEU : uop_bju_bju_ctrl_op_string = "BGEU ";
-      BjuCtrlEnum_CSR : uop_bju_bju_ctrl_op_string = "CSR  ";
-      default : uop_bju_bju_ctrl_op_string = "?????";
-    endcase
-  end
-  always @(*) begin
-    case(uop_bju_exp_ctrl_op)
-      ExpCtrlEnum_IDLE : uop_bju_exp_ctrl_op_string = "IDLE  ";
-      ExpCtrlEnum_ECALL : uop_bju_exp_ctrl_op_string = "ECALL ";
-      ExpCtrlEnum_EBREAK : uop_bju_exp_ctrl_op_string = "EBREAK";
-      ExpCtrlEnum_MRET : uop_bju_exp_ctrl_op_string = "MRET  ";
-      ExpCtrlEnum_CSRRW : uop_bju_exp_ctrl_op_string = "CSRRW ";
-      ExpCtrlEnum_CSRRS : uop_bju_exp_ctrl_op_string = "CSRRS ";
-      ExpCtrlEnum_CSRRC : uop_bju_exp_ctrl_op_string = "CSRRC ";
-      ExpCtrlEnum_CSRRWI : uop_bju_exp_ctrl_op_string = "CSRRWI";
-      ExpCtrlEnum_CSRRSI : uop_bju_exp_ctrl_op_string = "CSRRSI";
-      ExpCtrlEnum_CSRRCI : uop_bju_exp_ctrl_op_string = "CSRRCI";
-      default : uop_bju_exp_ctrl_op_string = "??????";
-    endcase
-  end
-  `endif
-
-  assign auipc = (uop_bju_bju_ctrl_op == BjuCtrlEnum_AUIPC); // @ BaseType.scala l305
-  assign jal = (uop_bju_bju_ctrl_op == BjuCtrlEnum_JAL); // @ BaseType.scala l305
-  assign jalr = (uop_bju_bju_ctrl_op == BjuCtrlEnum_JALR); // @ BaseType.scala l305
-  assign beq = (uop_bju_bju_ctrl_op == BjuCtrlEnum_BEQ); // @ BaseType.scala l305
-  assign bne = (uop_bju_bju_ctrl_op == BjuCtrlEnum_BNE); // @ BaseType.scala l305
-  assign blt = (uop_bju_bju_ctrl_op == BjuCtrlEnum_BLT); // @ BaseType.scala l305
-  assign bge = (uop_bju_bju_ctrl_op == BjuCtrlEnum_BGE); // @ BaseType.scala l305
-  assign bltu = (uop_bju_bju_ctrl_op == BjuCtrlEnum_BLTU); // @ BaseType.scala l305
-  assign bgeu = (uop_bju_bju_ctrl_op == BjuCtrlEnum_BGEU); // @ BaseType.scala l305
-  assign csr = (uop_bju_bju_ctrl_op == BjuCtrlEnum_CSR); // @ BaseType.scala l305
-  assign branch_or_jalr = ((((((jalr || beq) || bne) || blt) || bge) || bltu) || bgeu); // @ BaseType.scala l305
-  assign branch_or_jump = (branch_or_jalr || jal); // @ BaseType.scala l305
-  always @(*) begin
-    is_call = 1'b0; // @ BJU.scala l65
-    if(jal) begin
-      if(uop_bju_bju_rd_is_link) begin
-        is_call = 1'b1; // @ BJU.scala l109
-      end else begin
-        is_call = 1'b0; // @ BJU.scala l113
-      end
-    end else begin
-      if(jalr) begin
-        if(uop_bju_bju_rd_is_link) begin
-          if(uop_bju_bju_rs1_is_link) begin
-            if(uop_bju_bju_rd_eq_rs1) begin
-              is_call = 1'b1; // @ BJU.scala l131
-            end else begin
-              is_call = 1'b1; // @ BJU.scala l133
-            end
-          end else begin
-            is_call = 1'b1; // @ BJU.scala l137
-          end
-        end
-      end
-    end
-  end
-
-  always @(*) begin
-    is_ret = 1'b0; // @ BJU.scala l66
-    if(jal) begin
-      if(uop_bju_bju_rd_is_link) begin
-        is_ret = 1'b0; // @ BJU.scala l110
-      end else begin
-        is_ret = 1'b0; // @ BJU.scala l114
-      end
-    end else begin
-      if(jalr) begin
-        if(uop_bju_bju_rd_is_link) begin
-          if(uop_bju_bju_rs1_is_link) begin
-            if(!uop_bju_bju_rd_eq_rs1) begin
-              is_ret = 1'b1; // @ BJU.scala l134
-            end
-          end
-        end else begin
-          if(uop_bju_bju_rs1_is_link) begin
-            is_ret = 1'b1; // @ BJU.scala l141
-          end
-        end
-      end
-    end
-  end
-
-  always @(*) begin
-    is_jmp = 1'b0; // @ BJU.scala l67
-    if(jal) begin
-      if(uop_bju_bju_rd_is_link) begin
-        is_jmp = 1'b0; // @ BJU.scala l111
-      end else begin
-        is_jmp = 1'b1; // @ BJU.scala l115
-      end
-    end else begin
-      if(jalr) begin
-        if(!uop_bju_bju_rd_is_link) begin
-          if(!uop_bju_bju_rs1_is_link) begin
-            is_jmp = 1'b1; // @ BJU.scala l143
-          end
-        end
-      end
-    end
-  end
-
-  assign beq_result = (beq && (rs1_data == rs2_data)); // @ BaseType.scala l305
-  assign bne_result = (bne && (rs1_data != rs2_data)); // @ BaseType.scala l305
-  assign blt_result = (blt && ($signed(tmp_blt_result) < $signed(tmp_blt_result_1))); // @ BaseType.scala l305
-  assign bge_result = (bge && ($signed(tmp_bge_result) <= $signed(tmp_bge_result_1))); // @ BaseType.scala l305
-  assign bltu_result = (bltu && (rs1_data < rs2_data)); // @ BaseType.scala l305
-  assign bgeu_result = (bgeu && (rs2_data <= rs1_data)); // @ BaseType.scala l305
-  assign real_taken = (((((((beq_result || bne_result) || blt_result) || bge_result) || bltu_result) || bgeu_result) || jal) || jalr); // @ BaseType.scala l305
-  always @(*) begin
-    if(jalr) begin
-      pc_next = tmp_pc_next[31:0]; // @ BJU.scala l85
-    end else begin
-      pc_next = tmp_pc_next_7[31:0]; // @ BJU.scala l87
-    end
-  end
-
-  always @(*) begin
-    redirect_valid = 1'b0; // @ BJU.scala l90
-    if(branch_or_jump) begin
-      if(real_taken) begin
-        if(tmp_when) begin
-          redirect_valid = in_valid; // @ BJU.scala l95
-        end
-      end else begin
-        if(branch_taken) begin
-          redirect_valid = in_valid; // @ BJU.scala l101
-        end
-      end
-    end
-  end
-
-  always @(*) begin
-    redirect_pc = 32'h0; // @ BJU.scala l91
-    if(branch_or_jump) begin
-      if(real_taken) begin
-        if(tmp_when) begin
-          redirect_pc = pc_next; // @ BJU.scala l96
-        end
-<<<<<<< HEAD
-=======
-        if(tmp_296) begin
-          ways_0_metas_36_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_297) begin
-          ways_0_metas_37_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_298) begin
-          ways_0_metas_38_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_299) begin
-          ways_0_metas_39_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_300) begin
-          ways_0_metas_40_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_301) begin
-          ways_0_metas_41_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_302) begin
-          ways_0_metas_42_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_303) begin
-          ways_0_metas_43_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_304) begin
-          ways_0_metas_44_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_305) begin
-          ways_0_metas_45_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_306) begin
-          ways_0_metas_46_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_307) begin
-          ways_0_metas_47_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_308) begin
-          ways_0_metas_48_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_309) begin
-          ways_0_metas_49_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_310) begin
-          ways_0_metas_50_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_311) begin
-          ways_0_metas_51_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_312) begin
-          ways_0_metas_52_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_313) begin
-          ways_0_metas_53_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_314) begin
-          ways_0_metas_54_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_315) begin
-          ways_0_metas_55_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_316) begin
-          ways_0_metas_56_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_317) begin
-          ways_0_metas_57_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_318) begin
-          ways_0_metas_58_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_319) begin
-          ways_0_metas_59_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_320) begin
-          ways_0_metas_60_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_321) begin
-          ways_0_metas_61_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_322) begin
-          ways_0_metas_62_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_323) begin
-          ways_0_metas_63_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_324) begin
-          ways_0_metas_64_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_325) begin
-          ways_0_metas_65_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_326) begin
-          ways_0_metas_66_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_327) begin
-          ways_0_metas_67_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_328) begin
-          ways_0_metas_68_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_329) begin
-          ways_0_metas_69_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_330) begin
-          ways_0_metas_70_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_331) begin
-          ways_0_metas_71_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_332) begin
-          ways_0_metas_72_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_333) begin
-          ways_0_metas_73_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_334) begin
-          ways_0_metas_74_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_335) begin
-          ways_0_metas_75_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_336) begin
-          ways_0_metas_76_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_337) begin
-          ways_0_metas_77_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_338) begin
-          ways_0_metas_78_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_339) begin
-          ways_0_metas_79_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_340) begin
-          ways_0_metas_80_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_341) begin
-          ways_0_metas_81_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_342) begin
-          ways_0_metas_82_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_343) begin
-          ways_0_metas_83_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_344) begin
-          ways_0_metas_84_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_345) begin
-          ways_0_metas_85_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_346) begin
-          ways_0_metas_86_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_347) begin
-          ways_0_metas_87_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_348) begin
-          ways_0_metas_88_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_349) begin
-          ways_0_metas_89_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_350) begin
-          ways_0_metas_90_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_351) begin
-          ways_0_metas_91_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_352) begin
-          ways_0_metas_92_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_353) begin
-          ways_0_metas_93_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_354) begin
-          ways_0_metas_94_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_355) begin
-          ways_0_metas_95_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_356) begin
-          ways_0_metas_96_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_357) begin
-          ways_0_metas_97_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_358) begin
-          ways_0_metas_98_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_359) begin
-          ways_0_metas_99_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_360) begin
-          ways_0_metas_100_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_361) begin
-          ways_0_metas_101_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_362) begin
-          ways_0_metas_102_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_363) begin
-          ways_0_metas_103_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_364) begin
-          ways_0_metas_104_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_365) begin
-          ways_0_metas_105_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_366) begin
-          ways_0_metas_106_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_367) begin
-          ways_0_metas_107_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_368) begin
-          ways_0_metas_108_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_369) begin
-          ways_0_metas_109_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_370) begin
-          ways_0_metas_110_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_371) begin
-          ways_0_metas_111_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_372) begin
-          ways_0_metas_112_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_373) begin
-          ways_0_metas_113_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_374) begin
-          ways_0_metas_114_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_375) begin
-          ways_0_metas_115_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_376) begin
-          ways_0_metas_116_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_377) begin
-          ways_0_metas_117_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_378) begin
-          ways_0_metas_118_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_379) begin
-          ways_0_metas_119_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_380) begin
-          ways_0_metas_120_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_381) begin
-          ways_0_metas_121_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_382) begin
-          ways_0_metas_122_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_383) begin
-          ways_0_metas_123_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_384) begin
-          ways_0_metas_124_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_385) begin
-          ways_0_metas_125_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_386) begin
-          ways_0_metas_126_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_387) begin
-          ways_0_metas_127_vld <= 1'b0; // @ DCache.scala l201
-        end
-      end else begin
-        if((is_hit && mru_full)) begin
-          if(cache_hit_0) begin
-            if(tmp_2) begin
-              ways_0_metas_0_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_3) begin
-              ways_0_metas_1_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_4) begin
-              ways_0_metas_2_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_5) begin
-              ways_0_metas_3_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_6) begin
-              ways_0_metas_4_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_7) begin
-              ways_0_metas_5_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_8) begin
-              ways_0_metas_6_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_9) begin
-              ways_0_metas_7_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_10) begin
-              ways_0_metas_8_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_11) begin
-              ways_0_metas_9_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_12) begin
-              ways_0_metas_10_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_13) begin
-              ways_0_metas_11_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_14) begin
-              ways_0_metas_12_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_15) begin
-              ways_0_metas_13_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_16) begin
-              ways_0_metas_14_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_17) begin
-              ways_0_metas_15_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_18) begin
-              ways_0_metas_16_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_19) begin
-              ways_0_metas_17_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_20) begin
-              ways_0_metas_18_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_21) begin
-              ways_0_metas_19_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_22) begin
-              ways_0_metas_20_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_23) begin
-              ways_0_metas_21_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_24) begin
-              ways_0_metas_22_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_25) begin
-              ways_0_metas_23_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_26) begin
-              ways_0_metas_24_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_27) begin
-              ways_0_metas_25_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_28) begin
-              ways_0_metas_26_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_29) begin
-              ways_0_metas_27_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_30) begin
-              ways_0_metas_28_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_31) begin
-              ways_0_metas_29_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_32) begin
-              ways_0_metas_30_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_33) begin
-              ways_0_metas_31_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_34) begin
-              ways_0_metas_32_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_35) begin
-              ways_0_metas_33_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_36) begin
-              ways_0_metas_34_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_37) begin
-              ways_0_metas_35_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_38) begin
-              ways_0_metas_36_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_39) begin
-              ways_0_metas_37_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_40) begin
-              ways_0_metas_38_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_41) begin
-              ways_0_metas_39_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_42) begin
-              ways_0_metas_40_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_43) begin
-              ways_0_metas_41_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_44) begin
-              ways_0_metas_42_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_45) begin
-              ways_0_metas_43_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_46) begin
-              ways_0_metas_44_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_47) begin
-              ways_0_metas_45_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_48) begin
-              ways_0_metas_46_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_49) begin
-              ways_0_metas_47_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_50) begin
-              ways_0_metas_48_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_51) begin
-              ways_0_metas_49_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_52) begin
-              ways_0_metas_50_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_53) begin
-              ways_0_metas_51_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_54) begin
-              ways_0_metas_52_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_55) begin
-              ways_0_metas_53_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_56) begin
-              ways_0_metas_54_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_57) begin
-              ways_0_metas_55_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_58) begin
-              ways_0_metas_56_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_59) begin
-              ways_0_metas_57_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_60) begin
-              ways_0_metas_58_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_61) begin
-              ways_0_metas_59_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_62) begin
-              ways_0_metas_60_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_63) begin
-              ways_0_metas_61_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_64) begin
-              ways_0_metas_62_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_65) begin
-              ways_0_metas_63_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_66) begin
-              ways_0_metas_64_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_67) begin
-              ways_0_metas_65_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_68) begin
-              ways_0_metas_66_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_69) begin
-              ways_0_metas_67_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_70) begin
-              ways_0_metas_68_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_71) begin
-              ways_0_metas_69_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_72) begin
-              ways_0_metas_70_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_73) begin
-              ways_0_metas_71_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_74) begin
-              ways_0_metas_72_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_75) begin
-              ways_0_metas_73_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_76) begin
-              ways_0_metas_74_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_77) begin
-              ways_0_metas_75_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_78) begin
-              ways_0_metas_76_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_79) begin
-              ways_0_metas_77_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_80) begin
-              ways_0_metas_78_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_81) begin
-              ways_0_metas_79_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_82) begin
-              ways_0_metas_80_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_83) begin
-              ways_0_metas_81_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_84) begin
-              ways_0_metas_82_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_85) begin
-              ways_0_metas_83_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_86) begin
-              ways_0_metas_84_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_87) begin
-              ways_0_metas_85_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_88) begin
-              ways_0_metas_86_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_89) begin
-              ways_0_metas_87_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_90) begin
-              ways_0_metas_88_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_91) begin
-              ways_0_metas_89_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_92) begin
-              ways_0_metas_90_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_93) begin
-              ways_0_metas_91_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_94) begin
-              ways_0_metas_92_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_95) begin
-              ways_0_metas_93_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_96) begin
-              ways_0_metas_94_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_97) begin
-              ways_0_metas_95_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_98) begin
-              ways_0_metas_96_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_99) begin
-              ways_0_metas_97_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_100) begin
-              ways_0_metas_98_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_101) begin
-              ways_0_metas_99_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_102) begin
-              ways_0_metas_100_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_103) begin
-              ways_0_metas_101_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_104) begin
-              ways_0_metas_102_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_105) begin
-              ways_0_metas_103_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_106) begin
-              ways_0_metas_104_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_107) begin
-              ways_0_metas_105_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_108) begin
-              ways_0_metas_106_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_109) begin
-              ways_0_metas_107_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_110) begin
-              ways_0_metas_108_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_111) begin
-              ways_0_metas_109_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_112) begin
-              ways_0_metas_110_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_113) begin
-              ways_0_metas_111_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_114) begin
-              ways_0_metas_112_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_115) begin
-              ways_0_metas_113_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_116) begin
-              ways_0_metas_114_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_117) begin
-              ways_0_metas_115_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_118) begin
-              ways_0_metas_116_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_119) begin
-              ways_0_metas_117_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_120) begin
-              ways_0_metas_118_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_121) begin
-              ways_0_metas_119_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_122) begin
-              ways_0_metas_120_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_123) begin
-              ways_0_metas_121_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_124) begin
-              ways_0_metas_122_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_125) begin
-              ways_0_metas_123_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_126) begin
-              ways_0_metas_124_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_127) begin
-              ways_0_metas_125_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_128) begin
-              ways_0_metas_126_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_129) begin
-              ways_0_metas_127_mru <= 1'b1; // @ DCache.scala l207
-            end
-          end else begin
-            if(tmp_2) begin
-              ways_0_metas_0_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_3) begin
-              ways_0_metas_1_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_4) begin
-              ways_0_metas_2_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_5) begin
-              ways_0_metas_3_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_6) begin
-              ways_0_metas_4_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_7) begin
-              ways_0_metas_5_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_8) begin
-              ways_0_metas_6_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_9) begin
-              ways_0_metas_7_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_10) begin
-              ways_0_metas_8_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_11) begin
-              ways_0_metas_9_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_12) begin
-              ways_0_metas_10_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_13) begin
-              ways_0_metas_11_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_14) begin
-              ways_0_metas_12_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_15) begin
-              ways_0_metas_13_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_16) begin
-              ways_0_metas_14_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_17) begin
-              ways_0_metas_15_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_18) begin
-              ways_0_metas_16_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_19) begin
-              ways_0_metas_17_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_20) begin
-              ways_0_metas_18_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_21) begin
-              ways_0_metas_19_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_22) begin
-              ways_0_metas_20_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_23) begin
-              ways_0_metas_21_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_24) begin
-              ways_0_metas_22_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_25) begin
-              ways_0_metas_23_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_26) begin
-              ways_0_metas_24_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_27) begin
-              ways_0_metas_25_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_28) begin
-              ways_0_metas_26_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_29) begin
-              ways_0_metas_27_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_30) begin
-              ways_0_metas_28_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_31) begin
-              ways_0_metas_29_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_32) begin
-              ways_0_metas_30_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_33) begin
-              ways_0_metas_31_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_34) begin
-              ways_0_metas_32_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_35) begin
-              ways_0_metas_33_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_36) begin
-              ways_0_metas_34_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_37) begin
-              ways_0_metas_35_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_38) begin
-              ways_0_metas_36_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_39) begin
-              ways_0_metas_37_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_40) begin
-              ways_0_metas_38_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_41) begin
-              ways_0_metas_39_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_42) begin
-              ways_0_metas_40_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_43) begin
-              ways_0_metas_41_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_44) begin
-              ways_0_metas_42_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_45) begin
-              ways_0_metas_43_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_46) begin
-              ways_0_metas_44_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_47) begin
-              ways_0_metas_45_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_48) begin
-              ways_0_metas_46_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_49) begin
-              ways_0_metas_47_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_50) begin
-              ways_0_metas_48_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_51) begin
-              ways_0_metas_49_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_52) begin
-              ways_0_metas_50_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_53) begin
-              ways_0_metas_51_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_54) begin
-              ways_0_metas_52_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_55) begin
-              ways_0_metas_53_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_56) begin
-              ways_0_metas_54_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_57) begin
-              ways_0_metas_55_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_58) begin
-              ways_0_metas_56_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_59) begin
-              ways_0_metas_57_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_60) begin
-              ways_0_metas_58_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_61) begin
-              ways_0_metas_59_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_62) begin
-              ways_0_metas_60_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_63) begin
-              ways_0_metas_61_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_64) begin
-              ways_0_metas_62_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_65) begin
-              ways_0_metas_63_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_66) begin
-              ways_0_metas_64_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_67) begin
-              ways_0_metas_65_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_68) begin
-              ways_0_metas_66_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_69) begin
-              ways_0_metas_67_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_70) begin
-              ways_0_metas_68_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_71) begin
-              ways_0_metas_69_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_72) begin
-              ways_0_metas_70_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_73) begin
-              ways_0_metas_71_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_74) begin
-              ways_0_metas_72_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_75) begin
-              ways_0_metas_73_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_76) begin
-              ways_0_metas_74_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_77) begin
-              ways_0_metas_75_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_78) begin
-              ways_0_metas_76_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_79) begin
-              ways_0_metas_77_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_80) begin
-              ways_0_metas_78_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_81) begin
-              ways_0_metas_79_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_82) begin
-              ways_0_metas_80_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_83) begin
-              ways_0_metas_81_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_84) begin
-              ways_0_metas_82_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_85) begin
-              ways_0_metas_83_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_86) begin
-              ways_0_metas_84_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_87) begin
-              ways_0_metas_85_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_88) begin
-              ways_0_metas_86_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_89) begin
-              ways_0_metas_87_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_90) begin
-              ways_0_metas_88_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_91) begin
-              ways_0_metas_89_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_92) begin
-              ways_0_metas_90_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_93) begin
-              ways_0_metas_91_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_94) begin
-              ways_0_metas_92_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_95) begin
-              ways_0_metas_93_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_96) begin
-              ways_0_metas_94_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_97) begin
-              ways_0_metas_95_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_98) begin
-              ways_0_metas_96_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_99) begin
-              ways_0_metas_97_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_100) begin
-              ways_0_metas_98_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_101) begin
-              ways_0_metas_99_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_102) begin
-              ways_0_metas_100_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_103) begin
-              ways_0_metas_101_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_104) begin
-              ways_0_metas_102_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_105) begin
-              ways_0_metas_103_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_106) begin
-              ways_0_metas_104_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_107) begin
-              ways_0_metas_105_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_108) begin
-              ways_0_metas_106_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_109) begin
-              ways_0_metas_107_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_110) begin
-              ways_0_metas_108_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_111) begin
-              ways_0_metas_109_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_112) begin
-              ways_0_metas_110_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_113) begin
-              ways_0_metas_111_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_114) begin
-              ways_0_metas_112_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_115) begin
-              ways_0_metas_113_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_116) begin
-              ways_0_metas_114_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_117) begin
-              ways_0_metas_115_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_118) begin
-              ways_0_metas_116_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_119) begin
-              ways_0_metas_117_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_120) begin
-              ways_0_metas_118_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_121) begin
-              ways_0_metas_119_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_122) begin
-              ways_0_metas_120_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_123) begin
-              ways_0_metas_121_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_124) begin
-              ways_0_metas_122_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_125) begin
-              ways_0_metas_123_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_126) begin
-              ways_0_metas_124_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_127) begin
-              ways_0_metas_125_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_128) begin
-              ways_0_metas_126_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_129) begin
-              ways_0_metas_127_mru <= 1'b0; // @ DCache.scala l209
-            end
-          end
-        end else begin
-          if((is_hit && cache_hit_0)) begin
-            if(tmp_2) begin
-              ways_0_metas_0_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_3) begin
-              ways_0_metas_1_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_4) begin
-              ways_0_metas_2_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_5) begin
-              ways_0_metas_3_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_6) begin
-              ways_0_metas_4_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_7) begin
-              ways_0_metas_5_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_8) begin
-              ways_0_metas_6_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_9) begin
-              ways_0_metas_7_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_10) begin
-              ways_0_metas_8_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_11) begin
-              ways_0_metas_9_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_12) begin
-              ways_0_metas_10_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_13) begin
-              ways_0_metas_11_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_14) begin
-              ways_0_metas_12_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_15) begin
-              ways_0_metas_13_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_16) begin
-              ways_0_metas_14_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_17) begin
-              ways_0_metas_15_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_18) begin
-              ways_0_metas_16_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_19) begin
-              ways_0_metas_17_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_20) begin
-              ways_0_metas_18_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_21) begin
-              ways_0_metas_19_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_22) begin
-              ways_0_metas_20_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_23) begin
-              ways_0_metas_21_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_24) begin
-              ways_0_metas_22_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_25) begin
-              ways_0_metas_23_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_26) begin
-              ways_0_metas_24_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_27) begin
-              ways_0_metas_25_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_28) begin
-              ways_0_metas_26_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_29) begin
-              ways_0_metas_27_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_30) begin
-              ways_0_metas_28_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_31) begin
-              ways_0_metas_29_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_32) begin
-              ways_0_metas_30_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_33) begin
-              ways_0_metas_31_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_34) begin
-              ways_0_metas_32_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_35) begin
-              ways_0_metas_33_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_36) begin
-              ways_0_metas_34_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_37) begin
-              ways_0_metas_35_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_38) begin
-              ways_0_metas_36_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_39) begin
-              ways_0_metas_37_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_40) begin
-              ways_0_metas_38_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_41) begin
-              ways_0_metas_39_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_42) begin
-              ways_0_metas_40_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_43) begin
-              ways_0_metas_41_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_44) begin
-              ways_0_metas_42_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_45) begin
-              ways_0_metas_43_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_46) begin
-              ways_0_metas_44_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_47) begin
-              ways_0_metas_45_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_48) begin
-              ways_0_metas_46_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_49) begin
-              ways_0_metas_47_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_50) begin
-              ways_0_metas_48_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_51) begin
-              ways_0_metas_49_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_52) begin
-              ways_0_metas_50_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_53) begin
-              ways_0_metas_51_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_54) begin
-              ways_0_metas_52_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_55) begin
-              ways_0_metas_53_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_56) begin
-              ways_0_metas_54_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_57) begin
-              ways_0_metas_55_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_58) begin
-              ways_0_metas_56_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_59) begin
-              ways_0_metas_57_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_60) begin
-              ways_0_metas_58_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_61) begin
-              ways_0_metas_59_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_62) begin
-              ways_0_metas_60_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_63) begin
-              ways_0_metas_61_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_64) begin
-              ways_0_metas_62_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_65) begin
-              ways_0_metas_63_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_66) begin
-              ways_0_metas_64_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_67) begin
-              ways_0_metas_65_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_68) begin
-              ways_0_metas_66_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_69) begin
-              ways_0_metas_67_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_70) begin
-              ways_0_metas_68_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_71) begin
-              ways_0_metas_69_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_72) begin
-              ways_0_metas_70_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_73) begin
-              ways_0_metas_71_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_74) begin
-              ways_0_metas_72_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_75) begin
-              ways_0_metas_73_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_76) begin
-              ways_0_metas_74_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_77) begin
-              ways_0_metas_75_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_78) begin
-              ways_0_metas_76_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_79) begin
-              ways_0_metas_77_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_80) begin
-              ways_0_metas_78_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_81) begin
-              ways_0_metas_79_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_82) begin
-              ways_0_metas_80_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_83) begin
-              ways_0_metas_81_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_84) begin
-              ways_0_metas_82_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_85) begin
-              ways_0_metas_83_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_86) begin
-              ways_0_metas_84_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_87) begin
-              ways_0_metas_85_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_88) begin
-              ways_0_metas_86_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_89) begin
-              ways_0_metas_87_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_90) begin
-              ways_0_metas_88_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_91) begin
-              ways_0_metas_89_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_92) begin
-              ways_0_metas_90_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_93) begin
-              ways_0_metas_91_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_94) begin
-              ways_0_metas_92_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_95) begin
-              ways_0_metas_93_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_96) begin
-              ways_0_metas_94_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_97) begin
-              ways_0_metas_95_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_98) begin
-              ways_0_metas_96_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_99) begin
-              ways_0_metas_97_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_100) begin
-              ways_0_metas_98_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_101) begin
-              ways_0_metas_99_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_102) begin
-              ways_0_metas_100_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_103) begin
-              ways_0_metas_101_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_104) begin
-              ways_0_metas_102_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_105) begin
-              ways_0_metas_103_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_106) begin
-              ways_0_metas_104_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_107) begin
-              ways_0_metas_105_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_108) begin
-              ways_0_metas_106_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_109) begin
-              ways_0_metas_107_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_110) begin
-              ways_0_metas_108_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_111) begin
-              ways_0_metas_109_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_112) begin
-              ways_0_metas_110_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_113) begin
-              ways_0_metas_111_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_114) begin
-              ways_0_metas_112_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_115) begin
-              ways_0_metas_113_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_116) begin
-              ways_0_metas_114_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_117) begin
-              ways_0_metas_115_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_118) begin
-              ways_0_metas_116_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_119) begin
-              ways_0_metas_117_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_120) begin
-              ways_0_metas_118_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_121) begin
-              ways_0_metas_119_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_122) begin
-              ways_0_metas_120_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_123) begin
-              ways_0_metas_121_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_124) begin
-              ways_0_metas_122_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_125) begin
-              ways_0_metas_123_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_126) begin
-              ways_0_metas_124_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_127) begin
-              ways_0_metas_125_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_128) begin
-              ways_0_metas_126_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_129) begin
-              ways_0_metas_127_mru <= 1'b1; // @ DCache.scala l213
-            end
-          end else begin
-            if((next_level_rdone && (1'b0 == evict_id_miss))) begin
-              if(tmp_131) begin
-                ways_0_metas_0_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_132) begin
-                ways_0_metas_1_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_133) begin
-                ways_0_metas_2_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_134) begin
-                ways_0_metas_3_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_135) begin
-                ways_0_metas_4_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_136) begin
-                ways_0_metas_5_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_137) begin
-                ways_0_metas_6_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_138) begin
-                ways_0_metas_7_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_139) begin
-                ways_0_metas_8_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_140) begin
-                ways_0_metas_9_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_141) begin
-                ways_0_metas_10_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_142) begin
-                ways_0_metas_11_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_143) begin
-                ways_0_metas_12_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_144) begin
-                ways_0_metas_13_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_145) begin
-                ways_0_metas_14_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_146) begin
-                ways_0_metas_15_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_147) begin
-                ways_0_metas_16_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_148) begin
-                ways_0_metas_17_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_149) begin
-                ways_0_metas_18_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_150) begin
-                ways_0_metas_19_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_151) begin
-                ways_0_metas_20_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_152) begin
-                ways_0_metas_21_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_153) begin
-                ways_0_metas_22_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_154) begin
-                ways_0_metas_23_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_155) begin
-                ways_0_metas_24_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_156) begin
-                ways_0_metas_25_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_157) begin
-                ways_0_metas_26_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_158) begin
-                ways_0_metas_27_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_159) begin
-                ways_0_metas_28_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_160) begin
-                ways_0_metas_29_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_161) begin
-                ways_0_metas_30_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_162) begin
-                ways_0_metas_31_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_163) begin
-                ways_0_metas_32_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_164) begin
-                ways_0_metas_33_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_165) begin
-                ways_0_metas_34_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_166) begin
-                ways_0_metas_35_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_167) begin
-                ways_0_metas_36_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_168) begin
-                ways_0_metas_37_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_169) begin
-                ways_0_metas_38_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_170) begin
-                ways_0_metas_39_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_171) begin
-                ways_0_metas_40_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_172) begin
-                ways_0_metas_41_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_173) begin
-                ways_0_metas_42_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_174) begin
-                ways_0_metas_43_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_175) begin
-                ways_0_metas_44_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_176) begin
-                ways_0_metas_45_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_177) begin
-                ways_0_metas_46_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_178) begin
-                ways_0_metas_47_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_179) begin
-                ways_0_metas_48_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_180) begin
-                ways_0_metas_49_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_181) begin
-                ways_0_metas_50_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_182) begin
-                ways_0_metas_51_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_183) begin
-                ways_0_metas_52_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_184) begin
-                ways_0_metas_53_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_185) begin
-                ways_0_metas_54_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_186) begin
-                ways_0_metas_55_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_187) begin
-                ways_0_metas_56_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_188) begin
-                ways_0_metas_57_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_189) begin
-                ways_0_metas_58_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_190) begin
-                ways_0_metas_59_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_191) begin
-                ways_0_metas_60_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_192) begin
-                ways_0_metas_61_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_193) begin
-                ways_0_metas_62_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_194) begin
-                ways_0_metas_63_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_195) begin
-                ways_0_metas_64_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_196) begin
-                ways_0_metas_65_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_197) begin
-                ways_0_metas_66_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_198) begin
-                ways_0_metas_67_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_199) begin
-                ways_0_metas_68_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_200) begin
-                ways_0_metas_69_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_201) begin
-                ways_0_metas_70_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_202) begin
-                ways_0_metas_71_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_203) begin
-                ways_0_metas_72_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_204) begin
-                ways_0_metas_73_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_205) begin
-                ways_0_metas_74_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_206) begin
-                ways_0_metas_75_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_207) begin
-                ways_0_metas_76_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_208) begin
-                ways_0_metas_77_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_209) begin
-                ways_0_metas_78_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_210) begin
-                ways_0_metas_79_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_211) begin
-                ways_0_metas_80_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_212) begin
-                ways_0_metas_81_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_213) begin
-                ways_0_metas_82_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_214) begin
-                ways_0_metas_83_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_215) begin
-                ways_0_metas_84_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_216) begin
-                ways_0_metas_85_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_217) begin
-                ways_0_metas_86_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_218) begin
-                ways_0_metas_87_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_219) begin
-                ways_0_metas_88_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_220) begin
-                ways_0_metas_89_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_221) begin
-                ways_0_metas_90_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_222) begin
-                ways_0_metas_91_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_223) begin
-                ways_0_metas_92_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_224) begin
-                ways_0_metas_93_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_225) begin
-                ways_0_metas_94_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_226) begin
-                ways_0_metas_95_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_227) begin
-                ways_0_metas_96_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_228) begin
-                ways_0_metas_97_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_229) begin
-                ways_0_metas_98_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_230) begin
-                ways_0_metas_99_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_231) begin
-                ways_0_metas_100_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_232) begin
-                ways_0_metas_101_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_233) begin
-                ways_0_metas_102_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_234) begin
-                ways_0_metas_103_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_235) begin
-                ways_0_metas_104_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_236) begin
-                ways_0_metas_105_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_237) begin
-                ways_0_metas_106_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_238) begin
-                ways_0_metas_107_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_239) begin
-                ways_0_metas_108_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_240) begin
-                ways_0_metas_109_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_241) begin
-                ways_0_metas_110_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_242) begin
-                ways_0_metas_111_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_243) begin
-                ways_0_metas_112_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_244) begin
-                ways_0_metas_113_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_245) begin
-                ways_0_metas_114_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_246) begin
-                ways_0_metas_115_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_247) begin
-                ways_0_metas_116_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_248) begin
-                ways_0_metas_117_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_249) begin
-                ways_0_metas_118_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_250) begin
-                ways_0_metas_119_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_251) begin
-                ways_0_metas_120_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_252) begin
-                ways_0_metas_121_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_253) begin
-                ways_0_metas_122_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_254) begin
-                ways_0_metas_123_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_255) begin
-                ways_0_metas_124_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_256) begin
-                ways_0_metas_125_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_257) begin
-                ways_0_metas_126_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_258) begin
-                ways_0_metas_127_vld <= 1'b1; // @ DCache.scala l216
-              end
-            end
-          end
-        end
-      end
-      if((next_level_rdone && (1'b0 == evict_id_miss))) begin
-        if(tmp_131) begin
-          ways_0_metas_0_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_132) begin
-          ways_0_metas_1_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_133) begin
-          ways_0_metas_2_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_134) begin
-          ways_0_metas_3_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_135) begin
-          ways_0_metas_4_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_136) begin
-          ways_0_metas_5_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_137) begin
-          ways_0_metas_6_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_138) begin
-          ways_0_metas_7_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_139) begin
-          ways_0_metas_8_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_140) begin
-          ways_0_metas_9_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_141) begin
-          ways_0_metas_10_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_142) begin
-          ways_0_metas_11_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_143) begin
-          ways_0_metas_12_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_144) begin
-          ways_0_metas_13_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_145) begin
-          ways_0_metas_14_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_146) begin
-          ways_0_metas_15_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_147) begin
-          ways_0_metas_16_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_148) begin
-          ways_0_metas_17_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_149) begin
-          ways_0_metas_18_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_150) begin
-          ways_0_metas_19_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_151) begin
-          ways_0_metas_20_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_152) begin
-          ways_0_metas_21_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_153) begin
-          ways_0_metas_22_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_154) begin
-          ways_0_metas_23_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_155) begin
-          ways_0_metas_24_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_156) begin
-          ways_0_metas_25_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_157) begin
-          ways_0_metas_26_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_158) begin
-          ways_0_metas_27_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_159) begin
-          ways_0_metas_28_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_160) begin
-          ways_0_metas_29_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_161) begin
-          ways_0_metas_30_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_162) begin
-          ways_0_metas_31_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_163) begin
-          ways_0_metas_32_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_164) begin
-          ways_0_metas_33_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_165) begin
-          ways_0_metas_34_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_166) begin
-          ways_0_metas_35_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_167) begin
-          ways_0_metas_36_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_168) begin
-          ways_0_metas_37_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_169) begin
-          ways_0_metas_38_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_170) begin
-          ways_0_metas_39_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_171) begin
-          ways_0_metas_40_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_172) begin
-          ways_0_metas_41_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_173) begin
-          ways_0_metas_42_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_174) begin
-          ways_0_metas_43_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_175) begin
-          ways_0_metas_44_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_176) begin
-          ways_0_metas_45_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_177) begin
-          ways_0_metas_46_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_178) begin
-          ways_0_metas_47_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_179) begin
-          ways_0_metas_48_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_180) begin
-          ways_0_metas_49_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_181) begin
-          ways_0_metas_50_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_182) begin
-          ways_0_metas_51_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_183) begin
-          ways_0_metas_52_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_184) begin
-          ways_0_metas_53_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_185) begin
-          ways_0_metas_54_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_186) begin
-          ways_0_metas_55_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_187) begin
-          ways_0_metas_56_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_188) begin
-          ways_0_metas_57_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_189) begin
-          ways_0_metas_58_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_190) begin
-          ways_0_metas_59_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_191) begin
-          ways_0_metas_60_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_192) begin
-          ways_0_metas_61_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_193) begin
-          ways_0_metas_62_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_194) begin
-          ways_0_metas_63_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_195) begin
-          ways_0_metas_64_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_196) begin
-          ways_0_metas_65_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_197) begin
-          ways_0_metas_66_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_198) begin
-          ways_0_metas_67_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_199) begin
-          ways_0_metas_68_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_200) begin
-          ways_0_metas_69_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_201) begin
-          ways_0_metas_70_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_202) begin
-          ways_0_metas_71_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_203) begin
-          ways_0_metas_72_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_204) begin
-          ways_0_metas_73_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_205) begin
-          ways_0_metas_74_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_206) begin
-          ways_0_metas_75_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_207) begin
-          ways_0_metas_76_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_208) begin
-          ways_0_metas_77_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_209) begin
-          ways_0_metas_78_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_210) begin
-          ways_0_metas_79_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_211) begin
-          ways_0_metas_80_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_212) begin
-          ways_0_metas_81_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_213) begin
-          ways_0_metas_82_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_214) begin
-          ways_0_metas_83_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_215) begin
-          ways_0_metas_84_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_216) begin
-          ways_0_metas_85_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_217) begin
-          ways_0_metas_86_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_218) begin
-          ways_0_metas_87_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_219) begin
-          ways_0_metas_88_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_220) begin
-          ways_0_metas_89_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_221) begin
-          ways_0_metas_90_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_222) begin
-          ways_0_metas_91_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_223) begin
-          ways_0_metas_92_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_224) begin
-          ways_0_metas_93_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_225) begin
-          ways_0_metas_94_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_226) begin
-          ways_0_metas_95_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_227) begin
-          ways_0_metas_96_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_228) begin
-          ways_0_metas_97_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_229) begin
-          ways_0_metas_98_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_230) begin
-          ways_0_metas_99_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_231) begin
-          ways_0_metas_100_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_232) begin
-          ways_0_metas_101_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_233) begin
-          ways_0_metas_102_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_234) begin
-          ways_0_metas_103_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_235) begin
-          ways_0_metas_104_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_236) begin
-          ways_0_metas_105_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_237) begin
-          ways_0_metas_106_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_238) begin
-          ways_0_metas_107_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_239) begin
-          ways_0_metas_108_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_240) begin
-          ways_0_metas_109_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_241) begin
-          ways_0_metas_110_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_242) begin
-          ways_0_metas_111_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_243) begin
-          ways_0_metas_112_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_244) begin
-          ways_0_metas_113_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_245) begin
-          ways_0_metas_114_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_246) begin
-          ways_0_metas_115_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_247) begin
-          ways_0_metas_116_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_248) begin
-          ways_0_metas_117_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_249) begin
-          ways_0_metas_118_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_250) begin
-          ways_0_metas_119_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_251) begin
-          ways_0_metas_120_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_252) begin
-          ways_0_metas_121_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_253) begin
-          ways_0_metas_122_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_254) begin
-          ways_0_metas_123_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_255) begin
-          ways_0_metas_124_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_256) begin
-          ways_0_metas_125_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_257) begin
-          ways_0_metas_126_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_258) begin
-          ways_0_metas_127_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-      end
-      if(flush_busy) begin
-        if(tmp_647) begin
-          ways_1_metas_0_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_648) begin
-          ways_1_metas_1_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_649) begin
-          ways_1_metas_2_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_650) begin
-          ways_1_metas_3_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_651) begin
-          ways_1_metas_4_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_652) begin
-          ways_1_metas_5_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_653) begin
-          ways_1_metas_6_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_654) begin
-          ways_1_metas_7_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_655) begin
-          ways_1_metas_8_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_656) begin
-          ways_1_metas_9_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_657) begin
-          ways_1_metas_10_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_658) begin
-          ways_1_metas_11_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_659) begin
-          ways_1_metas_12_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_660) begin
-          ways_1_metas_13_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_661) begin
-          ways_1_metas_14_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_662) begin
-          ways_1_metas_15_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_663) begin
-          ways_1_metas_16_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_664) begin
-          ways_1_metas_17_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_665) begin
-          ways_1_metas_18_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_666) begin
-          ways_1_metas_19_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_667) begin
-          ways_1_metas_20_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_668) begin
-          ways_1_metas_21_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_669) begin
-          ways_1_metas_22_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_670) begin
-          ways_1_metas_23_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_671) begin
-          ways_1_metas_24_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_672) begin
-          ways_1_metas_25_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_673) begin
-          ways_1_metas_26_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_674) begin
-          ways_1_metas_27_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_675) begin
-          ways_1_metas_28_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_676) begin
-          ways_1_metas_29_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_677) begin
-          ways_1_metas_30_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_678) begin
-          ways_1_metas_31_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_679) begin
-          ways_1_metas_32_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_680) begin
-          ways_1_metas_33_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_681) begin
-          ways_1_metas_34_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_682) begin
-          ways_1_metas_35_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_683) begin
-          ways_1_metas_36_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_684) begin
-          ways_1_metas_37_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_685) begin
-          ways_1_metas_38_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_686) begin
-          ways_1_metas_39_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_687) begin
-          ways_1_metas_40_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_688) begin
-          ways_1_metas_41_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_689) begin
-          ways_1_metas_42_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_690) begin
-          ways_1_metas_43_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_691) begin
-          ways_1_metas_44_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_692) begin
-          ways_1_metas_45_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_693) begin
-          ways_1_metas_46_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_694) begin
-          ways_1_metas_47_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_695) begin
-          ways_1_metas_48_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_696) begin
-          ways_1_metas_49_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_697) begin
-          ways_1_metas_50_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_698) begin
-          ways_1_metas_51_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_699) begin
-          ways_1_metas_52_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_700) begin
-          ways_1_metas_53_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_701) begin
-          ways_1_metas_54_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_702) begin
-          ways_1_metas_55_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_703) begin
-          ways_1_metas_56_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_704) begin
-          ways_1_metas_57_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_705) begin
-          ways_1_metas_58_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_706) begin
-          ways_1_metas_59_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_707) begin
-          ways_1_metas_60_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_708) begin
-          ways_1_metas_61_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_709) begin
-          ways_1_metas_62_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_710) begin
-          ways_1_metas_63_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_711) begin
-          ways_1_metas_64_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_712) begin
-          ways_1_metas_65_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_713) begin
-          ways_1_metas_66_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_714) begin
-          ways_1_metas_67_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_715) begin
-          ways_1_metas_68_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_716) begin
-          ways_1_metas_69_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_717) begin
-          ways_1_metas_70_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_718) begin
-          ways_1_metas_71_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_719) begin
-          ways_1_metas_72_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_720) begin
-          ways_1_metas_73_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_721) begin
-          ways_1_metas_74_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_722) begin
-          ways_1_metas_75_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_723) begin
-          ways_1_metas_76_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_724) begin
-          ways_1_metas_77_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_725) begin
-          ways_1_metas_78_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_726) begin
-          ways_1_metas_79_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_727) begin
-          ways_1_metas_80_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_728) begin
-          ways_1_metas_81_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_729) begin
-          ways_1_metas_82_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_730) begin
-          ways_1_metas_83_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_731) begin
-          ways_1_metas_84_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_732) begin
-          ways_1_metas_85_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_733) begin
-          ways_1_metas_86_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_734) begin
-          ways_1_metas_87_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_735) begin
-          ways_1_metas_88_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_736) begin
-          ways_1_metas_89_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_737) begin
-          ways_1_metas_90_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_738) begin
-          ways_1_metas_91_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_739) begin
-          ways_1_metas_92_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_740) begin
-          ways_1_metas_93_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_741) begin
-          ways_1_metas_94_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_742) begin
-          ways_1_metas_95_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_743) begin
-          ways_1_metas_96_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_744) begin
-          ways_1_metas_97_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_745) begin
-          ways_1_metas_98_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_746) begin
-          ways_1_metas_99_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_747) begin
-          ways_1_metas_100_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_748) begin
-          ways_1_metas_101_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_749) begin
-          ways_1_metas_102_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_750) begin
-          ways_1_metas_103_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_751) begin
-          ways_1_metas_104_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_752) begin
-          ways_1_metas_105_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_753) begin
-          ways_1_metas_106_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_754) begin
-          ways_1_metas_107_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_755) begin
-          ways_1_metas_108_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_756) begin
-          ways_1_metas_109_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_757) begin
-          ways_1_metas_110_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_758) begin
-          ways_1_metas_111_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_759) begin
-          ways_1_metas_112_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_760) begin
-          ways_1_metas_113_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_761) begin
-          ways_1_metas_114_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_762) begin
-          ways_1_metas_115_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_763) begin
-          ways_1_metas_116_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_764) begin
-          ways_1_metas_117_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_765) begin
-          ways_1_metas_118_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_766) begin
-          ways_1_metas_119_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_767) begin
-          ways_1_metas_120_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_768) begin
-          ways_1_metas_121_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_769) begin
-          ways_1_metas_122_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_770) begin
-          ways_1_metas_123_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_771) begin
-          ways_1_metas_124_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_772) begin
-          ways_1_metas_125_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_773) begin
-          ways_1_metas_126_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_774) begin
-          ways_1_metas_127_mru <= 1'b0; // @ DCache.scala l200
-        end
-        if(tmp_647) begin
-          ways_1_metas_0_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_648) begin
-          ways_1_metas_1_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_649) begin
-          ways_1_metas_2_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_650) begin
-          ways_1_metas_3_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_651) begin
-          ways_1_metas_4_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_652) begin
-          ways_1_metas_5_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_653) begin
-          ways_1_metas_6_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_654) begin
-          ways_1_metas_7_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_655) begin
-          ways_1_metas_8_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_656) begin
-          ways_1_metas_9_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_657) begin
-          ways_1_metas_10_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_658) begin
-          ways_1_metas_11_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_659) begin
-          ways_1_metas_12_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_660) begin
-          ways_1_metas_13_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_661) begin
-          ways_1_metas_14_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_662) begin
-          ways_1_metas_15_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_663) begin
-          ways_1_metas_16_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_664) begin
-          ways_1_metas_17_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_665) begin
-          ways_1_metas_18_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_666) begin
-          ways_1_metas_19_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_667) begin
-          ways_1_metas_20_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_668) begin
-          ways_1_metas_21_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_669) begin
-          ways_1_metas_22_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_670) begin
-          ways_1_metas_23_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_671) begin
-          ways_1_metas_24_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_672) begin
-          ways_1_metas_25_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_673) begin
-          ways_1_metas_26_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_674) begin
-          ways_1_metas_27_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_675) begin
-          ways_1_metas_28_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_676) begin
-          ways_1_metas_29_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_677) begin
-          ways_1_metas_30_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_678) begin
-          ways_1_metas_31_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_679) begin
-          ways_1_metas_32_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_680) begin
-          ways_1_metas_33_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_681) begin
-          ways_1_metas_34_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_682) begin
-          ways_1_metas_35_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_683) begin
-          ways_1_metas_36_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_684) begin
-          ways_1_metas_37_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_685) begin
-          ways_1_metas_38_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_686) begin
-          ways_1_metas_39_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_687) begin
-          ways_1_metas_40_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_688) begin
-          ways_1_metas_41_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_689) begin
-          ways_1_metas_42_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_690) begin
-          ways_1_metas_43_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_691) begin
-          ways_1_metas_44_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_692) begin
-          ways_1_metas_45_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_693) begin
-          ways_1_metas_46_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_694) begin
-          ways_1_metas_47_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_695) begin
-          ways_1_metas_48_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_696) begin
-          ways_1_metas_49_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_697) begin
-          ways_1_metas_50_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_698) begin
-          ways_1_metas_51_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_699) begin
-          ways_1_metas_52_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_700) begin
-          ways_1_metas_53_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_701) begin
-          ways_1_metas_54_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_702) begin
-          ways_1_metas_55_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_703) begin
-          ways_1_metas_56_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_704) begin
-          ways_1_metas_57_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_705) begin
-          ways_1_metas_58_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_706) begin
-          ways_1_metas_59_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_707) begin
-          ways_1_metas_60_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_708) begin
-          ways_1_metas_61_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_709) begin
-          ways_1_metas_62_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_710) begin
-          ways_1_metas_63_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_711) begin
-          ways_1_metas_64_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_712) begin
-          ways_1_metas_65_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_713) begin
-          ways_1_metas_66_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_714) begin
-          ways_1_metas_67_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_715) begin
-          ways_1_metas_68_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_716) begin
-          ways_1_metas_69_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_717) begin
-          ways_1_metas_70_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_718) begin
-          ways_1_metas_71_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_719) begin
-          ways_1_metas_72_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_720) begin
-          ways_1_metas_73_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_721) begin
-          ways_1_metas_74_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_722) begin
-          ways_1_metas_75_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_723) begin
-          ways_1_metas_76_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_724) begin
-          ways_1_metas_77_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_725) begin
-          ways_1_metas_78_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_726) begin
-          ways_1_metas_79_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_727) begin
-          ways_1_metas_80_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_728) begin
-          ways_1_metas_81_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_729) begin
-          ways_1_metas_82_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_730) begin
-          ways_1_metas_83_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_731) begin
-          ways_1_metas_84_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_732) begin
-          ways_1_metas_85_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_733) begin
-          ways_1_metas_86_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_734) begin
-          ways_1_metas_87_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_735) begin
-          ways_1_metas_88_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_736) begin
-          ways_1_metas_89_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_737) begin
-          ways_1_metas_90_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_738) begin
-          ways_1_metas_91_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_739) begin
-          ways_1_metas_92_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_740) begin
-          ways_1_metas_93_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_741) begin
-          ways_1_metas_94_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_742) begin
-          ways_1_metas_95_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_743) begin
-          ways_1_metas_96_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_744) begin
-          ways_1_metas_97_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_745) begin
-          ways_1_metas_98_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_746) begin
-          ways_1_metas_99_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_747) begin
-          ways_1_metas_100_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_748) begin
-          ways_1_metas_101_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_749) begin
-          ways_1_metas_102_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_750) begin
-          ways_1_metas_103_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_751) begin
-          ways_1_metas_104_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_752) begin
-          ways_1_metas_105_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_753) begin
-          ways_1_metas_106_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_754) begin
-          ways_1_metas_107_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_755) begin
-          ways_1_metas_108_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_756) begin
-          ways_1_metas_109_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_757) begin
-          ways_1_metas_110_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_758) begin
-          ways_1_metas_111_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_759) begin
-          ways_1_metas_112_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_760) begin
-          ways_1_metas_113_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_761) begin
-          ways_1_metas_114_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_762) begin
-          ways_1_metas_115_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_763) begin
-          ways_1_metas_116_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_764) begin
-          ways_1_metas_117_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_765) begin
-          ways_1_metas_118_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_766) begin
-          ways_1_metas_119_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_767) begin
-          ways_1_metas_120_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_768) begin
-          ways_1_metas_121_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_769) begin
-          ways_1_metas_122_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_770) begin
-          ways_1_metas_123_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_771) begin
-          ways_1_metas_124_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_772) begin
-          ways_1_metas_125_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_773) begin
-          ways_1_metas_126_vld <= 1'b0; // @ DCache.scala l201
-        end
-        if(tmp_774) begin
-          ways_1_metas_127_vld <= 1'b0; // @ DCache.scala l201
-        end
-      end else begin
-        if((is_hit && mru_full)) begin
-          if(cache_hit_1) begin
-            if(tmp_389) begin
-              ways_1_metas_0_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_390) begin
-              ways_1_metas_1_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_391) begin
-              ways_1_metas_2_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_392) begin
-              ways_1_metas_3_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_393) begin
-              ways_1_metas_4_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_394) begin
-              ways_1_metas_5_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_395) begin
-              ways_1_metas_6_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_396) begin
-              ways_1_metas_7_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_397) begin
-              ways_1_metas_8_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_398) begin
-              ways_1_metas_9_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_399) begin
-              ways_1_metas_10_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_400) begin
-              ways_1_metas_11_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_401) begin
-              ways_1_metas_12_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_402) begin
-              ways_1_metas_13_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_403) begin
-              ways_1_metas_14_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_404) begin
-              ways_1_metas_15_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_405) begin
-              ways_1_metas_16_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_406) begin
-              ways_1_metas_17_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_407) begin
-              ways_1_metas_18_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_408) begin
-              ways_1_metas_19_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_409) begin
-              ways_1_metas_20_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_410) begin
-              ways_1_metas_21_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_411) begin
-              ways_1_metas_22_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_412) begin
-              ways_1_metas_23_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_413) begin
-              ways_1_metas_24_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_414) begin
-              ways_1_metas_25_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_415) begin
-              ways_1_metas_26_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_416) begin
-              ways_1_metas_27_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_417) begin
-              ways_1_metas_28_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_418) begin
-              ways_1_metas_29_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_419) begin
-              ways_1_metas_30_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_420) begin
-              ways_1_metas_31_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_421) begin
-              ways_1_metas_32_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_422) begin
-              ways_1_metas_33_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_423) begin
-              ways_1_metas_34_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_424) begin
-              ways_1_metas_35_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_425) begin
-              ways_1_metas_36_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_426) begin
-              ways_1_metas_37_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_427) begin
-              ways_1_metas_38_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_428) begin
-              ways_1_metas_39_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_429) begin
-              ways_1_metas_40_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_430) begin
-              ways_1_metas_41_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_431) begin
-              ways_1_metas_42_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_432) begin
-              ways_1_metas_43_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_433) begin
-              ways_1_metas_44_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_434) begin
-              ways_1_metas_45_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_435) begin
-              ways_1_metas_46_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_436) begin
-              ways_1_metas_47_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_437) begin
-              ways_1_metas_48_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_438) begin
-              ways_1_metas_49_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_439) begin
-              ways_1_metas_50_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_440) begin
-              ways_1_metas_51_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_441) begin
-              ways_1_metas_52_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_442) begin
-              ways_1_metas_53_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_443) begin
-              ways_1_metas_54_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_444) begin
-              ways_1_metas_55_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_445) begin
-              ways_1_metas_56_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_446) begin
-              ways_1_metas_57_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_447) begin
-              ways_1_metas_58_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_448) begin
-              ways_1_metas_59_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_449) begin
-              ways_1_metas_60_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_450) begin
-              ways_1_metas_61_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_451) begin
-              ways_1_metas_62_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_452) begin
-              ways_1_metas_63_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_453) begin
-              ways_1_metas_64_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_454) begin
-              ways_1_metas_65_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_455) begin
-              ways_1_metas_66_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_456) begin
-              ways_1_metas_67_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_457) begin
-              ways_1_metas_68_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_458) begin
-              ways_1_metas_69_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_459) begin
-              ways_1_metas_70_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_460) begin
-              ways_1_metas_71_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_461) begin
-              ways_1_metas_72_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_462) begin
-              ways_1_metas_73_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_463) begin
-              ways_1_metas_74_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_464) begin
-              ways_1_metas_75_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_465) begin
-              ways_1_metas_76_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_466) begin
-              ways_1_metas_77_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_467) begin
-              ways_1_metas_78_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_468) begin
-              ways_1_metas_79_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_469) begin
-              ways_1_metas_80_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_470) begin
-              ways_1_metas_81_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_471) begin
-              ways_1_metas_82_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_472) begin
-              ways_1_metas_83_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_473) begin
-              ways_1_metas_84_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_474) begin
-              ways_1_metas_85_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_475) begin
-              ways_1_metas_86_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_476) begin
-              ways_1_metas_87_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_477) begin
-              ways_1_metas_88_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_478) begin
-              ways_1_metas_89_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_479) begin
-              ways_1_metas_90_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_480) begin
-              ways_1_metas_91_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_481) begin
-              ways_1_metas_92_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_482) begin
-              ways_1_metas_93_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_483) begin
-              ways_1_metas_94_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_484) begin
-              ways_1_metas_95_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_485) begin
-              ways_1_metas_96_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_486) begin
-              ways_1_metas_97_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_487) begin
-              ways_1_metas_98_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_488) begin
-              ways_1_metas_99_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_489) begin
-              ways_1_metas_100_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_490) begin
-              ways_1_metas_101_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_491) begin
-              ways_1_metas_102_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_492) begin
-              ways_1_metas_103_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_493) begin
-              ways_1_metas_104_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_494) begin
-              ways_1_metas_105_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_495) begin
-              ways_1_metas_106_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_496) begin
-              ways_1_metas_107_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_497) begin
-              ways_1_metas_108_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_498) begin
-              ways_1_metas_109_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_499) begin
-              ways_1_metas_110_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_500) begin
-              ways_1_metas_111_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_501) begin
-              ways_1_metas_112_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_502) begin
-              ways_1_metas_113_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_503) begin
-              ways_1_metas_114_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_504) begin
-              ways_1_metas_115_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_505) begin
-              ways_1_metas_116_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_506) begin
-              ways_1_metas_117_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_507) begin
-              ways_1_metas_118_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_508) begin
-              ways_1_metas_119_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_509) begin
-              ways_1_metas_120_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_510) begin
-              ways_1_metas_121_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_511) begin
-              ways_1_metas_122_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_512) begin
-              ways_1_metas_123_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_513) begin
-              ways_1_metas_124_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_514) begin
-              ways_1_metas_125_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_515) begin
-              ways_1_metas_126_mru <= 1'b1; // @ DCache.scala l207
-            end
-            if(tmp_516) begin
-              ways_1_metas_127_mru <= 1'b1; // @ DCache.scala l207
-            end
-          end else begin
-            if(tmp_389) begin
-              ways_1_metas_0_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_390) begin
-              ways_1_metas_1_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_391) begin
-              ways_1_metas_2_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_392) begin
-              ways_1_metas_3_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_393) begin
-              ways_1_metas_4_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_394) begin
-              ways_1_metas_5_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_395) begin
-              ways_1_metas_6_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_396) begin
-              ways_1_metas_7_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_397) begin
-              ways_1_metas_8_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_398) begin
-              ways_1_metas_9_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_399) begin
-              ways_1_metas_10_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_400) begin
-              ways_1_metas_11_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_401) begin
-              ways_1_metas_12_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_402) begin
-              ways_1_metas_13_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_403) begin
-              ways_1_metas_14_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_404) begin
-              ways_1_metas_15_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_405) begin
-              ways_1_metas_16_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_406) begin
-              ways_1_metas_17_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_407) begin
-              ways_1_metas_18_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_408) begin
-              ways_1_metas_19_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_409) begin
-              ways_1_metas_20_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_410) begin
-              ways_1_metas_21_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_411) begin
-              ways_1_metas_22_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_412) begin
-              ways_1_metas_23_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_413) begin
-              ways_1_metas_24_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_414) begin
-              ways_1_metas_25_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_415) begin
-              ways_1_metas_26_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_416) begin
-              ways_1_metas_27_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_417) begin
-              ways_1_metas_28_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_418) begin
-              ways_1_metas_29_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_419) begin
-              ways_1_metas_30_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_420) begin
-              ways_1_metas_31_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_421) begin
-              ways_1_metas_32_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_422) begin
-              ways_1_metas_33_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_423) begin
-              ways_1_metas_34_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_424) begin
-              ways_1_metas_35_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_425) begin
-              ways_1_metas_36_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_426) begin
-              ways_1_metas_37_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_427) begin
-              ways_1_metas_38_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_428) begin
-              ways_1_metas_39_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_429) begin
-              ways_1_metas_40_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_430) begin
-              ways_1_metas_41_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_431) begin
-              ways_1_metas_42_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_432) begin
-              ways_1_metas_43_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_433) begin
-              ways_1_metas_44_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_434) begin
-              ways_1_metas_45_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_435) begin
-              ways_1_metas_46_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_436) begin
-              ways_1_metas_47_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_437) begin
-              ways_1_metas_48_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_438) begin
-              ways_1_metas_49_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_439) begin
-              ways_1_metas_50_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_440) begin
-              ways_1_metas_51_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_441) begin
-              ways_1_metas_52_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_442) begin
-              ways_1_metas_53_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_443) begin
-              ways_1_metas_54_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_444) begin
-              ways_1_metas_55_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_445) begin
-              ways_1_metas_56_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_446) begin
-              ways_1_metas_57_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_447) begin
-              ways_1_metas_58_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_448) begin
-              ways_1_metas_59_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_449) begin
-              ways_1_metas_60_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_450) begin
-              ways_1_metas_61_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_451) begin
-              ways_1_metas_62_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_452) begin
-              ways_1_metas_63_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_453) begin
-              ways_1_metas_64_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_454) begin
-              ways_1_metas_65_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_455) begin
-              ways_1_metas_66_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_456) begin
-              ways_1_metas_67_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_457) begin
-              ways_1_metas_68_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_458) begin
-              ways_1_metas_69_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_459) begin
-              ways_1_metas_70_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_460) begin
-              ways_1_metas_71_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_461) begin
-              ways_1_metas_72_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_462) begin
-              ways_1_metas_73_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_463) begin
-              ways_1_metas_74_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_464) begin
-              ways_1_metas_75_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_465) begin
-              ways_1_metas_76_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_466) begin
-              ways_1_metas_77_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_467) begin
-              ways_1_metas_78_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_468) begin
-              ways_1_metas_79_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_469) begin
-              ways_1_metas_80_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_470) begin
-              ways_1_metas_81_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_471) begin
-              ways_1_metas_82_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_472) begin
-              ways_1_metas_83_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_473) begin
-              ways_1_metas_84_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_474) begin
-              ways_1_metas_85_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_475) begin
-              ways_1_metas_86_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_476) begin
-              ways_1_metas_87_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_477) begin
-              ways_1_metas_88_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_478) begin
-              ways_1_metas_89_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_479) begin
-              ways_1_metas_90_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_480) begin
-              ways_1_metas_91_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_481) begin
-              ways_1_metas_92_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_482) begin
-              ways_1_metas_93_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_483) begin
-              ways_1_metas_94_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_484) begin
-              ways_1_metas_95_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_485) begin
-              ways_1_metas_96_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_486) begin
-              ways_1_metas_97_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_487) begin
-              ways_1_metas_98_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_488) begin
-              ways_1_metas_99_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_489) begin
-              ways_1_metas_100_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_490) begin
-              ways_1_metas_101_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_491) begin
-              ways_1_metas_102_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_492) begin
-              ways_1_metas_103_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_493) begin
-              ways_1_metas_104_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_494) begin
-              ways_1_metas_105_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_495) begin
-              ways_1_metas_106_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_496) begin
-              ways_1_metas_107_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_497) begin
-              ways_1_metas_108_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_498) begin
-              ways_1_metas_109_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_499) begin
-              ways_1_metas_110_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_500) begin
-              ways_1_metas_111_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_501) begin
-              ways_1_metas_112_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_502) begin
-              ways_1_metas_113_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_503) begin
-              ways_1_metas_114_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_504) begin
-              ways_1_metas_115_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_505) begin
-              ways_1_metas_116_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_506) begin
-              ways_1_metas_117_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_507) begin
-              ways_1_metas_118_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_508) begin
-              ways_1_metas_119_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_509) begin
-              ways_1_metas_120_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_510) begin
-              ways_1_metas_121_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_511) begin
-              ways_1_metas_122_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_512) begin
-              ways_1_metas_123_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_513) begin
-              ways_1_metas_124_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_514) begin
-              ways_1_metas_125_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_515) begin
-              ways_1_metas_126_mru <= 1'b0; // @ DCache.scala l209
-            end
-            if(tmp_516) begin
-              ways_1_metas_127_mru <= 1'b0; // @ DCache.scala l209
-            end
-          end
-        end else begin
-          if((is_hit && cache_hit_1)) begin
-            if(tmp_389) begin
-              ways_1_metas_0_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_390) begin
-              ways_1_metas_1_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_391) begin
-              ways_1_metas_2_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_392) begin
-              ways_1_metas_3_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_393) begin
-              ways_1_metas_4_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_394) begin
-              ways_1_metas_5_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_395) begin
-              ways_1_metas_6_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_396) begin
-              ways_1_metas_7_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_397) begin
-              ways_1_metas_8_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_398) begin
-              ways_1_metas_9_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_399) begin
-              ways_1_metas_10_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_400) begin
-              ways_1_metas_11_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_401) begin
-              ways_1_metas_12_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_402) begin
-              ways_1_metas_13_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_403) begin
-              ways_1_metas_14_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_404) begin
-              ways_1_metas_15_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_405) begin
-              ways_1_metas_16_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_406) begin
-              ways_1_metas_17_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_407) begin
-              ways_1_metas_18_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_408) begin
-              ways_1_metas_19_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_409) begin
-              ways_1_metas_20_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_410) begin
-              ways_1_metas_21_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_411) begin
-              ways_1_metas_22_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_412) begin
-              ways_1_metas_23_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_413) begin
-              ways_1_metas_24_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_414) begin
-              ways_1_metas_25_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_415) begin
-              ways_1_metas_26_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_416) begin
-              ways_1_metas_27_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_417) begin
-              ways_1_metas_28_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_418) begin
-              ways_1_metas_29_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_419) begin
-              ways_1_metas_30_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_420) begin
-              ways_1_metas_31_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_421) begin
-              ways_1_metas_32_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_422) begin
-              ways_1_metas_33_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_423) begin
-              ways_1_metas_34_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_424) begin
-              ways_1_metas_35_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_425) begin
-              ways_1_metas_36_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_426) begin
-              ways_1_metas_37_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_427) begin
-              ways_1_metas_38_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_428) begin
-              ways_1_metas_39_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_429) begin
-              ways_1_metas_40_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_430) begin
-              ways_1_metas_41_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_431) begin
-              ways_1_metas_42_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_432) begin
-              ways_1_metas_43_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_433) begin
-              ways_1_metas_44_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_434) begin
-              ways_1_metas_45_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_435) begin
-              ways_1_metas_46_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_436) begin
-              ways_1_metas_47_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_437) begin
-              ways_1_metas_48_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_438) begin
-              ways_1_metas_49_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_439) begin
-              ways_1_metas_50_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_440) begin
-              ways_1_metas_51_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_441) begin
-              ways_1_metas_52_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_442) begin
-              ways_1_metas_53_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_443) begin
-              ways_1_metas_54_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_444) begin
-              ways_1_metas_55_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_445) begin
-              ways_1_metas_56_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_446) begin
-              ways_1_metas_57_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_447) begin
-              ways_1_metas_58_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_448) begin
-              ways_1_metas_59_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_449) begin
-              ways_1_metas_60_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_450) begin
-              ways_1_metas_61_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_451) begin
-              ways_1_metas_62_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_452) begin
-              ways_1_metas_63_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_453) begin
-              ways_1_metas_64_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_454) begin
-              ways_1_metas_65_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_455) begin
-              ways_1_metas_66_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_456) begin
-              ways_1_metas_67_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_457) begin
-              ways_1_metas_68_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_458) begin
-              ways_1_metas_69_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_459) begin
-              ways_1_metas_70_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_460) begin
-              ways_1_metas_71_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_461) begin
-              ways_1_metas_72_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_462) begin
-              ways_1_metas_73_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_463) begin
-              ways_1_metas_74_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_464) begin
-              ways_1_metas_75_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_465) begin
-              ways_1_metas_76_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_466) begin
-              ways_1_metas_77_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_467) begin
-              ways_1_metas_78_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_468) begin
-              ways_1_metas_79_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_469) begin
-              ways_1_metas_80_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_470) begin
-              ways_1_metas_81_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_471) begin
-              ways_1_metas_82_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_472) begin
-              ways_1_metas_83_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_473) begin
-              ways_1_metas_84_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_474) begin
-              ways_1_metas_85_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_475) begin
-              ways_1_metas_86_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_476) begin
-              ways_1_metas_87_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_477) begin
-              ways_1_metas_88_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_478) begin
-              ways_1_metas_89_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_479) begin
-              ways_1_metas_90_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_480) begin
-              ways_1_metas_91_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_481) begin
-              ways_1_metas_92_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_482) begin
-              ways_1_metas_93_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_483) begin
-              ways_1_metas_94_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_484) begin
-              ways_1_metas_95_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_485) begin
-              ways_1_metas_96_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_486) begin
-              ways_1_metas_97_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_487) begin
-              ways_1_metas_98_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_488) begin
-              ways_1_metas_99_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_489) begin
-              ways_1_metas_100_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_490) begin
-              ways_1_metas_101_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_491) begin
-              ways_1_metas_102_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_492) begin
-              ways_1_metas_103_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_493) begin
-              ways_1_metas_104_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_494) begin
-              ways_1_metas_105_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_495) begin
-              ways_1_metas_106_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_496) begin
-              ways_1_metas_107_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_497) begin
-              ways_1_metas_108_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_498) begin
-              ways_1_metas_109_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_499) begin
-              ways_1_metas_110_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_500) begin
-              ways_1_metas_111_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_501) begin
-              ways_1_metas_112_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_502) begin
-              ways_1_metas_113_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_503) begin
-              ways_1_metas_114_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_504) begin
-              ways_1_metas_115_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_505) begin
-              ways_1_metas_116_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_506) begin
-              ways_1_metas_117_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_507) begin
-              ways_1_metas_118_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_508) begin
-              ways_1_metas_119_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_509) begin
-              ways_1_metas_120_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_510) begin
-              ways_1_metas_121_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_511) begin
-              ways_1_metas_122_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_512) begin
-              ways_1_metas_123_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_513) begin
-              ways_1_metas_124_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_514) begin
-              ways_1_metas_125_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_515) begin
-              ways_1_metas_126_mru <= 1'b1; // @ DCache.scala l213
-            end
-            if(tmp_516) begin
-              ways_1_metas_127_mru <= 1'b1; // @ DCache.scala l213
-            end
-          end else begin
-            if((next_level_rdone && (1'b1 == evict_id_miss))) begin
-              if(tmp_518) begin
-                ways_1_metas_0_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_519) begin
-                ways_1_metas_1_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_520) begin
-                ways_1_metas_2_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_521) begin
-                ways_1_metas_3_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_522) begin
-                ways_1_metas_4_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_523) begin
-                ways_1_metas_5_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_524) begin
-                ways_1_metas_6_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_525) begin
-                ways_1_metas_7_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_526) begin
-                ways_1_metas_8_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_527) begin
-                ways_1_metas_9_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_528) begin
-                ways_1_metas_10_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_529) begin
-                ways_1_metas_11_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_530) begin
-                ways_1_metas_12_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_531) begin
-                ways_1_metas_13_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_532) begin
-                ways_1_metas_14_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_533) begin
-                ways_1_metas_15_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_534) begin
-                ways_1_metas_16_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_535) begin
-                ways_1_metas_17_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_536) begin
-                ways_1_metas_18_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_537) begin
-                ways_1_metas_19_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_538) begin
-                ways_1_metas_20_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_539) begin
-                ways_1_metas_21_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_540) begin
-                ways_1_metas_22_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_541) begin
-                ways_1_metas_23_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_542) begin
-                ways_1_metas_24_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_543) begin
-                ways_1_metas_25_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_544) begin
-                ways_1_metas_26_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_545) begin
-                ways_1_metas_27_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_546) begin
-                ways_1_metas_28_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_547) begin
-                ways_1_metas_29_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_548) begin
-                ways_1_metas_30_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_549) begin
-                ways_1_metas_31_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_550) begin
-                ways_1_metas_32_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_551) begin
-                ways_1_metas_33_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_552) begin
-                ways_1_metas_34_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_553) begin
-                ways_1_metas_35_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_554) begin
-                ways_1_metas_36_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_555) begin
-                ways_1_metas_37_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_556) begin
-                ways_1_metas_38_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_557) begin
-                ways_1_metas_39_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_558) begin
-                ways_1_metas_40_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_559) begin
-                ways_1_metas_41_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_560) begin
-                ways_1_metas_42_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_561) begin
-                ways_1_metas_43_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_562) begin
-                ways_1_metas_44_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_563) begin
-                ways_1_metas_45_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_564) begin
-                ways_1_metas_46_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_565) begin
-                ways_1_metas_47_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_566) begin
-                ways_1_metas_48_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_567) begin
-                ways_1_metas_49_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_568) begin
-                ways_1_metas_50_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_569) begin
-                ways_1_metas_51_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_570) begin
-                ways_1_metas_52_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_571) begin
-                ways_1_metas_53_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_572) begin
-                ways_1_metas_54_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_573) begin
-                ways_1_metas_55_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_574) begin
-                ways_1_metas_56_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_575) begin
-                ways_1_metas_57_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_576) begin
-                ways_1_metas_58_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_577) begin
-                ways_1_metas_59_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_578) begin
-                ways_1_metas_60_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_579) begin
-                ways_1_metas_61_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_580) begin
-                ways_1_metas_62_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_581) begin
-                ways_1_metas_63_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_582) begin
-                ways_1_metas_64_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_583) begin
-                ways_1_metas_65_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_584) begin
-                ways_1_metas_66_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_585) begin
-                ways_1_metas_67_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_586) begin
-                ways_1_metas_68_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_587) begin
-                ways_1_metas_69_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_588) begin
-                ways_1_metas_70_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_589) begin
-                ways_1_metas_71_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_590) begin
-                ways_1_metas_72_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_591) begin
-                ways_1_metas_73_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_592) begin
-                ways_1_metas_74_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_593) begin
-                ways_1_metas_75_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_594) begin
-                ways_1_metas_76_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_595) begin
-                ways_1_metas_77_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_596) begin
-                ways_1_metas_78_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_597) begin
-                ways_1_metas_79_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_598) begin
-                ways_1_metas_80_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_599) begin
-                ways_1_metas_81_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_600) begin
-                ways_1_metas_82_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_601) begin
-                ways_1_metas_83_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_602) begin
-                ways_1_metas_84_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_603) begin
-                ways_1_metas_85_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_604) begin
-                ways_1_metas_86_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_605) begin
-                ways_1_metas_87_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_606) begin
-                ways_1_metas_88_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_607) begin
-                ways_1_metas_89_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_608) begin
-                ways_1_metas_90_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_609) begin
-                ways_1_metas_91_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_610) begin
-                ways_1_metas_92_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_611) begin
-                ways_1_metas_93_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_612) begin
-                ways_1_metas_94_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_613) begin
-                ways_1_metas_95_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_614) begin
-                ways_1_metas_96_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_615) begin
-                ways_1_metas_97_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_616) begin
-                ways_1_metas_98_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_617) begin
-                ways_1_metas_99_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_618) begin
-                ways_1_metas_100_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_619) begin
-                ways_1_metas_101_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_620) begin
-                ways_1_metas_102_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_621) begin
-                ways_1_metas_103_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_622) begin
-                ways_1_metas_104_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_623) begin
-                ways_1_metas_105_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_624) begin
-                ways_1_metas_106_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_625) begin
-                ways_1_metas_107_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_626) begin
-                ways_1_metas_108_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_627) begin
-                ways_1_metas_109_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_628) begin
-                ways_1_metas_110_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_629) begin
-                ways_1_metas_111_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_630) begin
-                ways_1_metas_112_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_631) begin
-                ways_1_metas_113_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_632) begin
-                ways_1_metas_114_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_633) begin
-                ways_1_metas_115_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_634) begin
-                ways_1_metas_116_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_635) begin
-                ways_1_metas_117_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_636) begin
-                ways_1_metas_118_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_637) begin
-                ways_1_metas_119_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_638) begin
-                ways_1_metas_120_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_639) begin
-                ways_1_metas_121_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_640) begin
-                ways_1_metas_122_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_641) begin
-                ways_1_metas_123_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_642) begin
-                ways_1_metas_124_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_643) begin
-                ways_1_metas_125_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_644) begin
-                ways_1_metas_126_vld <= 1'b1; // @ DCache.scala l216
-              end
-              if(tmp_645) begin
-                ways_1_metas_127_vld <= 1'b1; // @ DCache.scala l216
-              end
-            end
-          end
-        end
-      end
-      if((next_level_rdone && (1'b1 == evict_id_miss))) begin
-        if(tmp_518) begin
-          ways_1_metas_0_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_519) begin
-          ways_1_metas_1_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_520) begin
-          ways_1_metas_2_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_521) begin
-          ways_1_metas_3_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_522) begin
-          ways_1_metas_4_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_523) begin
-          ways_1_metas_5_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_524) begin
-          ways_1_metas_6_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_525) begin
-          ways_1_metas_7_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_526) begin
-          ways_1_metas_8_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_527) begin
-          ways_1_metas_9_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_528) begin
-          ways_1_metas_10_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_529) begin
-          ways_1_metas_11_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_530) begin
-          ways_1_metas_12_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_531) begin
-          ways_1_metas_13_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_532) begin
-          ways_1_metas_14_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_533) begin
-          ways_1_metas_15_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_534) begin
-          ways_1_metas_16_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_535) begin
-          ways_1_metas_17_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_536) begin
-          ways_1_metas_18_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_537) begin
-          ways_1_metas_19_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_538) begin
-          ways_1_metas_20_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_539) begin
-          ways_1_metas_21_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_540) begin
-          ways_1_metas_22_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_541) begin
-          ways_1_metas_23_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_542) begin
-          ways_1_metas_24_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_543) begin
-          ways_1_metas_25_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_544) begin
-          ways_1_metas_26_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_545) begin
-          ways_1_metas_27_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_546) begin
-          ways_1_metas_28_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_547) begin
-          ways_1_metas_29_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_548) begin
-          ways_1_metas_30_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_549) begin
-          ways_1_metas_31_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_550) begin
-          ways_1_metas_32_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_551) begin
-          ways_1_metas_33_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_552) begin
-          ways_1_metas_34_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_553) begin
-          ways_1_metas_35_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_554) begin
-          ways_1_metas_36_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_555) begin
-          ways_1_metas_37_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_556) begin
-          ways_1_metas_38_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_557) begin
-          ways_1_metas_39_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_558) begin
-          ways_1_metas_40_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_559) begin
-          ways_1_metas_41_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_560) begin
-          ways_1_metas_42_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_561) begin
-          ways_1_metas_43_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_562) begin
-          ways_1_metas_44_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_563) begin
-          ways_1_metas_45_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_564) begin
-          ways_1_metas_46_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_565) begin
-          ways_1_metas_47_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_566) begin
-          ways_1_metas_48_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_567) begin
-          ways_1_metas_49_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_568) begin
-          ways_1_metas_50_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_569) begin
-          ways_1_metas_51_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_570) begin
-          ways_1_metas_52_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_571) begin
-          ways_1_metas_53_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_572) begin
-          ways_1_metas_54_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_573) begin
-          ways_1_metas_55_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_574) begin
-          ways_1_metas_56_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_575) begin
-          ways_1_metas_57_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_576) begin
-          ways_1_metas_58_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_577) begin
-          ways_1_metas_59_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_578) begin
-          ways_1_metas_60_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_579) begin
-          ways_1_metas_61_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_580) begin
-          ways_1_metas_62_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_581) begin
-          ways_1_metas_63_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_582) begin
-          ways_1_metas_64_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_583) begin
-          ways_1_metas_65_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_584) begin
-          ways_1_metas_66_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_585) begin
-          ways_1_metas_67_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_586) begin
-          ways_1_metas_68_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_587) begin
-          ways_1_metas_69_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_588) begin
-          ways_1_metas_70_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_589) begin
-          ways_1_metas_71_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_590) begin
-          ways_1_metas_72_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_591) begin
-          ways_1_metas_73_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_592) begin
-          ways_1_metas_74_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_593) begin
-          ways_1_metas_75_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_594) begin
-          ways_1_metas_76_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_595) begin
-          ways_1_metas_77_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_596) begin
-          ways_1_metas_78_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_597) begin
-          ways_1_metas_79_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_598) begin
-          ways_1_metas_80_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_599) begin
-          ways_1_metas_81_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_600) begin
-          ways_1_metas_82_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_601) begin
-          ways_1_metas_83_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_602) begin
-          ways_1_metas_84_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_603) begin
-          ways_1_metas_85_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_604) begin
-          ways_1_metas_86_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_605) begin
-          ways_1_metas_87_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_606) begin
-          ways_1_metas_88_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_607) begin
-          ways_1_metas_89_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_608) begin
-          ways_1_metas_90_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_609) begin
-          ways_1_metas_91_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_610) begin
-          ways_1_metas_92_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_611) begin
-          ways_1_metas_93_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_612) begin
-          ways_1_metas_94_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_613) begin
-          ways_1_metas_95_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_614) begin
-          ways_1_metas_96_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_615) begin
-          ways_1_metas_97_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_616) begin
-          ways_1_metas_98_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_617) begin
-          ways_1_metas_99_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_618) begin
-          ways_1_metas_100_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_619) begin
-          ways_1_metas_101_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_620) begin
-          ways_1_metas_102_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_621) begin
-          ways_1_metas_103_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_622) begin
-          ways_1_metas_104_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_623) begin
-          ways_1_metas_105_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_624) begin
-          ways_1_metas_106_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_625) begin
-          ways_1_metas_107_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_626) begin
-          ways_1_metas_108_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_627) begin
-          ways_1_metas_109_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_628) begin
-          ways_1_metas_110_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_629) begin
-          ways_1_metas_111_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_630) begin
-          ways_1_metas_112_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_631) begin
-          ways_1_metas_113_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_632) begin
-          ways_1_metas_114_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_633) begin
-          ways_1_metas_115_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_634) begin
-          ways_1_metas_116_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_635) begin
-          ways_1_metas_117_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_636) begin
-          ways_1_metas_118_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_637) begin
-          ways_1_metas_119_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_638) begin
-          ways_1_metas_120_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_639) begin
-          ways_1_metas_121_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_640) begin
-          ways_1_metas_122_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_641) begin
-          ways_1_metas_123_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_642) begin
-          ways_1_metas_124_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_643) begin
-          ways_1_metas_125_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_644) begin
-          ways_1_metas_126_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-        if(tmp_645) begin
-          ways_1_metas_127_tag <= cpu_tag_d1; // @ DCache.scala l221
-        end
-      end
-      if(is_write) begin
-        is_write_reg <= 1'b1; // @ DCache.scala l227
-      end else begin
-        if(next_level_wdone) begin
-          is_write_reg <= 1'b0; // @ DCache.scala l230
-        end
-      end
-      if((((flush || is_miss) || is_write) || bypass)) begin
-        cpu_cmd_ready_1 <= 1'b0; // @ DCache.scala l234
-      end else begin
-        if((((flush_done || next_level_rdone) || next_level_wdone) || bypass_rsp_valid_d1)) begin
-          cpu_cmd_ready_1 <= 1'b1; // @ DCache.scala l237
-        end
-      end
-    end
-  end
-
-  always @(posedge clk) begin
-    bypass_rsp_valid_d1 <= cpu_bypass_rsp_valid; // @ Reg.scala l39
-    bypass_rsp_data_d1 <= cpu_bypass_rsp_data; // @ Reg.scala l39
-    hit_id_d1 <= hit_id; // @ Reg.scala l39
-    evict_id_d1 <= evict_id; // @ Reg.scala l39
-    is_hit_d1 <= is_hit; // @ Reg.scala l39
-    if(is_miss) begin
-      evict_id_miss <= evict_id; // @ DCache.scala l88
-    end
-    next_level_rdone <= (next_level_rvalid && (next_level_data_cnt_value == 3'b111)); // @ Reg.scala l39
-    next_level_wdone <= ((next_level_rsp_valid && (! next_level_rsp_rvalid)) && (next_level_rsp_bresp == 2'b00)); // @ Reg.scala l39
-  end
-
-
-endmodule
-
-module Timer (
-  input               cen,
-  input               wen,
-  input      [63:0]   addr,
-  input      [63:0]   wdata,
-  output reg [63:0]   rdata,
-  output              timer_int,
-  input               clk,
-  input               reset
-);
-
-  wire       [63:0]   tmp_mtime;
-  reg        [63:0]   mtime;
-  reg        [63:0]   mtimecmp;
-
-  assign tmp_mtime = (mtime + 64'h0000000000000001);
-  always @(*) begin
-    if((addr == 64'h000000000200bff8)) begin
-      rdata = mtime; // @ LSU.scala l34
-    end else begin
-      if((addr == 64'h0000000002004000)) begin
-        rdata = mtimecmp; // @ LSU.scala l36
-      end else begin
-        rdata = 64'h0; // @ LSU.scala l38
-      end
-    end
-  end
-
-  assign timer_int = (mtimecmp <= mtime); // @ LSU.scala l41
-  always @(posedge clk or posedge reset) begin
-    if(reset) begin
-      mtime <= 64'h0; // @ Data.scala l400
-      mtimecmp <= 64'hffffffffffffffff; // @ Data.scala l400
-    end else begin
-      if((wen && cen)) begin
-        case(addr)
-          64'h000000000200bff8 : begin
-            mtime <= wdata; // @ LSU.scala l23
-          end
-          64'h0000000002004000 : begin
-            mtimecmp <= wdata; // @ LSU.scala l26
-          end
-          default : begin
-          end
-        endcase
-      end else begin
-        mtime <= tmp_mtime; // @ LSU.scala l30
-      end
-    end
-  end
-
-
-endmodule
-
-module Divider (
-  input               io_flush,
-  input               io_start,
-  output              io_busy,
-  output              io_done_valid,
-  input               io_done_ready,
-  input               io_op_is_word,
-  input               io_op_is_signed,
-  input      [63:0]   io_dividend,
-  input      [63:0]   io_divisor,
-  output     [63:0]   io_quotient,
-  output     [63:0]   io_remainder,
-  input               clk,
-  input               reset
-);
-
   wire       [63:0]   u_div_s_axis_divisor_tdata;
   wire       [63:0]   u_div_s_axis_dividend_tdata;
   wire                u_div_m_axis_dout_tvalid;
@@ -34276,7 +21262,6 @@ module BJU_kernel (
         if(tmp_when) begin
           redirect_pc = pc_next; // @ BJU.scala l96
         end
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
       end else begin
         if(branch_taken) begin
           redirect_pc = (pc + 32'h00000004); // @ BJU.scala l102
@@ -37576,7 +24561,6 @@ module DecodeComb (
 
 endmodule
 
-<<<<<<< HEAD
 //Sram_3 replaced by Sram
 
 //Sram_2 replaced by Sram
@@ -37584,15 +24568,6 @@ endmodule
 //Sram_1 replaced by Sram
 
 module Sram (
-=======
-//Sram_5 replaced by Sram_2
-
-//Sram_4 replaced by Sram_2
-
-//Sram_3 replaced by Sram_2
-
-module Sram_2 (
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
   input               ports_cmd_valid,
   input      [9:0]    ports_cmd_addr,
   input               ports_cmd_wen,
@@ -37729,7 +24704,6 @@ module Sram_2ports (
     end
   end
 
-<<<<<<< HEAD
   always @(posedge clk) begin
     if(ports_1_cmd_valid) begin
       tmp_memsymbol_read_4 <= mem_symbol0[ports_1_cmd_addr];
@@ -37816,94 +24790,6 @@ module ITCM (
   assign next_level_cmd_size = 3'b000; // @ ICache.scala l243
   assign next_level_cmd_valid = 1'b0; // @ ICache.scala l244
   always @(posedge clk) begin
-=======
-  always @(posedge clk) begin
-    if(ports_1_cmd_valid) begin
-      tmp_memsymbol_read_4 <= mem_symbol0[ports_1_cmd_addr];
-      tmp_memsymbol_read_5 <= mem_symbol1[ports_1_cmd_addr];
-      tmp_memsymbol_read_6 <= mem_symbol2[ports_1_cmd_addr];
-      tmp_memsymbol_read_7 <= mem_symbol3[ports_1_cmd_addr];
-    end
-  end
-
-  assign ports_0_rsp_data = tmp_mem_port1; // @ Sram.scala l51
-  assign ports_1_rsp_data = tmp_mem_port2; // @ Sram.scala l56
-  assign ports_0_rsp_valid = rsp_valid_0; // @ Sram.scala l69
-  assign ports_1_rsp_valid = rsp_valid_1; // @ Sram.scala l76
-  always @(posedge clk or posedge reset) begin
-    if(reset) begin
-      rsp_valid_0 <= 1'b0; // @ Data.scala l400
-      rsp_valid_1 <= 1'b0; // @ Data.scala l400
-    end else begin
-      if((ports_0_cmd_valid && (! ports_0_cmd_wen))) begin
-        rsp_valid_0 <= 1'b1; // @ Sram.scala l65
-      end else begin
-        rsp_valid_0 <= 1'b0; // @ Sram.scala l67
-      end
-      if((ports_1_cmd_valid && (! ports_1_cmd_wen))) begin
-        rsp_valid_1 <= 1'b1; // @ Sram.scala l72
-      end else begin
-        rsp_valid_1 <= 1'b0; // @ Sram.scala l74
-      end
-    end
-  end
-
-
-endmodule
-
-module ITCM (
-  input               flush,
-  input               cpu_cmd_valid,
-  output              cpu_cmd_ready,
-  input      [31:0]   cpu_cmd_addr,
-  output              cpu_rsp_valid,
-  output     [63:0]   cpu_rsp_data,
-  output              sram_0_ports_cmd_valid,
-  output     [11:0]   sram_0_ports_cmd_addr,
-  output              sram_0_ports_cmd_wen,
-  output     [31:0]   sram_0_ports_cmd_wdata,
-  output     [3:0]    sram_0_ports_cmd_wstrb,
-  input               sram_0_ports_rsp_valid,
-  input      [31:0]   sram_0_ports_rsp_data,
-  output              sram_1_ports_cmd_valid,
-  output     [11:0]   sram_1_ports_cmd_addr,
-  output              sram_1_ports_cmd_wen,
-  output     [31:0]   sram_1_ports_cmd_wdata,
-  output     [3:0]    sram_1_ports_cmd_wstrb,
-  input               sram_1_ports_rsp_valid,
-  input      [31:0]   sram_1_ports_rsp_data,
-  output              next_level_cmd_valid,
-  input               next_level_cmd_ready,
-  output     [31:0]   next_level_cmd_addr,
-  output     [3:0]    next_level_cmd_len,
-  output     [2:0]    next_level_cmd_size,
-  input               next_level_rsp_valid,
-  input      [63:0]   next_level_rsp_data,
-  input               clk,
-  input               reset
-);
-
-  reg                 cpu_cmd_valid_delay_1;
-
-  assign sram_0_ports_cmd_valid = cpu_cmd_valid; // @ ICache.scala l223
-  assign sram_0_ports_cmd_addr = cpu_cmd_addr[13 : 2]; // @ ICache.scala l224
-  assign sram_0_ports_cmd_wen = 1'b0; // @ ICache.scala l225
-  assign sram_0_ports_cmd_wdata = 32'h0; // @ ICache.scala l226
-  assign sram_0_ports_cmd_wstrb = 4'b0000; // @ ICache.scala l227
-  assign sram_1_ports_cmd_valid = cpu_cmd_valid; // @ ICache.scala l229
-  assign sram_1_ports_cmd_addr = (cpu_cmd_addr[13 : 2] + 12'h001); // @ ICache.scala l230
-  assign sram_1_ports_cmd_wen = 1'b0; // @ ICache.scala l231
-  assign sram_1_ports_cmd_wdata = 32'h0; // @ ICache.scala l232
-  assign sram_1_ports_cmd_wstrb = 4'b0000; // @ ICache.scala l233
-  assign cpu_rsp_data = {sram_1_ports_rsp_data,sram_0_ports_rsp_data}; // @ ICache.scala l236
-  assign cpu_rsp_valid = cpu_cmd_valid_delay_1; // @ ICache.scala l237
-  assign cpu_cmd_ready = 1'b1; // @ ICache.scala l238
-  assign next_level_cmd_addr = 32'h0; // @ ICache.scala l241
-  assign next_level_cmd_len = 4'b0000; // @ ICache.scala l242
-  assign next_level_cmd_size = 3'b000; // @ ICache.scala l243
-  assign next_level_cmd_valid = 1'b0; // @ ICache.scala l244
-  always @(posedge clk) begin
->>>>>>> b9fddb5cbcd2479d8e1a752f668d0ab0a0efaf8f
     cpu_cmd_valid_delay_1 <= cpu_cmd_valid; // @ Reg.scala l39
   end
 
