@@ -163,6 +163,10 @@ allt: clean comt simt
 ret: comt simt
 
 comt:
+	ln -s hw/gen/Tulip.v_toplevel_icache_sram_4_mem_symbol0.bin; \
+	ln -s hw/gen/Tulip.v_toplevel_icache_sram_4_mem_symbol1.bin; \
+	ln -s hw/gen/Tulip.v_toplevel_icache_sram_4_mem_symbol2.bin; \
+	ln -s hw/gen/Tulip.v_toplevel_icache_sram_4_mem_symbol3.bin; \
 	vcs -sverilog +v2k -timescale=1ns/1ns  -full64 -cpp g++ -cc gcc -LDFLAGS -Wl,--no-as-needed \
 	-f ./hw/verilog/tb/tb_Tulip.f                       \
 	-debug_all                                 \

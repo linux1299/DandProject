@@ -206,24 +206,26 @@ case class LSU() extends Component {
   
 
   // =========== output ================
-  val rd_wen_reg = Reg(Bool()) init(false)
-  val rd_addr_reg= Reg(UInt(5 bits)) init(0)
-  val older_reg  = Reg(Bool()) init(false)
-  val pc_reg     = Reg(UInt(32 bits)) init(0)
-  val instr_reg  = Reg(Bits(32 bits)) init(0)
+  val rd_wen_reg   = Reg(Bool()) init(false)
+  val rd_addr_reg  = Reg(UInt(5 bits)) init(0)
+  val older_reg    = Reg(Bool()) init(false)
+  val pc_reg       = Reg(UInt(32 bits)) init(0)
+  val instr_reg    = Reg(Bits(32 bits)) init(0)
   val tail_adr_reg = Reg(UInt(3 bits)) init(0)
 
   when(flush){
-    rd_wen_reg := False
-    rd_addr_reg:= 0
-    pc_reg     := 0
-    instr_reg  := 0
+    rd_wen_reg   := False
+    rd_addr_reg  := 0
+    pc_reg       := 0
+    instr_reg    := 0
+    tail_adr_reg := 0
   }
   .elsewhen(lsu_src.fire){
-    rd_wen_reg := lsu_src.uop_com.rd_wen
-    rd_addr_reg:= lsu_src.rd_addr
-    pc_reg     := lsu_src.pc
-    instr_reg  := lsu_src.instr
+    rd_wen_reg   := lsu_src.uop_com.rd_wen
+    rd_addr_reg  := lsu_src.rd_addr
+    pc_reg       := lsu_src.pc
+    instr_reg    := lsu_src.instr
+    tail_adr_reg := lsu_src.tail_adr
   }
 
   lsu_src.ready      := dcache_stream.ready

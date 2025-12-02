@@ -1,7 +1,3 @@
-[  sub-longlong] [1;31mFAIL![0m
-[       unalign] [1;31mFAIL![0m
-[           sum] [1;31mFAIL![0m
-[           max] [1;31mFAIL![0m
-[     leap-year] [1;31mFAIL![0m
-[    matrix-mul] [1;31mFAIL![0m
-[     recursion] [1;31mFAIL![0m
+[  sub-longlong] [1;32mPASS![0m
+[       unalign] [1;32mPASS![0m
+[           sum] [1;32mPASS![0m

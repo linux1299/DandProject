@@ -379,7 +379,196 @@ case class DCacheTop(val config : DCacheConfig, val axiConfig : Axi4Config) exte
   StreamRenameUtil(this)
 }
 
- object GenDCacheTop extends App {
+// ==================== BIU =============================
+case class BIU(p : DCacheConfig) extends Component{
+  import p._
+
+  val stall = out Bool()
+  val flush = in Bool()
+  val cpu = slave(DCachePorts(32, 64))
+  val cpu_bypass = master(DCachePorts(32, 64))
+
+  // cpu related
+  val cpu_cmd_ready   = RegInit(True)
+  val cpu_addr = cpu.cmd.addr
+  val cpu_wstrb = cpu.cmd.wstrb
+  val cpu_wdata = cpu.cmd.wdata
+  val cpu_wen = cpu.cmd.wen
+  val bypass = cpu.cmd.fire
+  val bypass_reg = RegInit(False)
+  val bypass_rsp_valid_d1 = Delay(cpu_bypass.rsp.valid, 1)
+  val bypass_rsp_data_d1 = Delay(cpu_bypass.rsp.data, 1)
+  cpu_bypass.cmd.valid := bypass
+  cpu_bypass.cmd.addr  := cpu.cmd.addr
+  cpu_bypass.cmd.wen   := cpu.cmd.wen
+  cpu_bypass.cmd.wdata := cpu.cmd.wdata
+  cpu_bypass.cmd.wstrb := cpu.cmd.wstrb
+  cpu_bypass.cmd.size  := cpu.cmd.size
+  when(bypass){
+    bypass_reg := True
+  }
+  .elsewhen(bypass_rsp_valid_d1){
+    bypass_reg := False
+  }
+
+  // resp to cpu ports
+  when(bypass){
+    cpu_cmd_ready := False
+  }
+  .elsewhen(bypass_rsp_valid_d1){
+    cpu_cmd_ready := True 
+  }
+
+  cpu.rsp.data     := bypass_rsp_data_d1
+  cpu.rsp.valid    := bypass_rsp_valid_d1
+  cpu.cmd.ready    := cpu_cmd_ready
+  stall            := (!cpu.cmd.ready && !bypass_rsp_valid_d1) || bypass
+}
+// ===============================================
+// BIU Top Module
+// ===============================================
+case class BIUTop(val config : DCacheConfig, val axiConfig : Axi4Config) extends Component {
+
+  import config._
+  // ============================= IO =============================
+  val stall = out Bool()
+  val flush = in Bool()
+  val dcache_src = slave(DCachePorts(32, 64))
+  // next level AXI ports/ or direct ports
+  val dcacheReader = master(Axi4ReadOnly(axiConfig)).setName("dcache")
+  val dcacheWriter = master(Axi4WriteOnly(axiConfig)).setName("dcache")
+
+  // connect biu and cpu ports
+  val biu = new BIU(config)
+  dcache_src.cmd <> biu.cpu.cmd
+  dcache_src.rsp <> biu.cpu.rsp
+  biu.flush := flush
+  dcache_src.stall <> biu.stall
+
+  // axi output
+  val handshake_cnt = RegInit(False)
+  val ar_len_cnt = Reg(UInt(4 bits)) init(0)
+  val bypass_read = biu.cpu_bypass.cmd.valid && !biu.cpu_bypass.cmd.wen
+  val bypass_write = biu.cpu_bypass.cmd.valid && biu.cpu_bypass.cmd.wen
+  val bypass_write_reg = RegInit(False)
+  val bypass_reg = RegInit(False)
+  when(bypass_write){
+    bypass_write_reg := True
+  }
+  .elsewhen(biu.cpu_bypass.rsp.valid){
+    bypass_write_reg := False
+  }
+  when(bypass_read || bypass_write){
+    bypass_reg := True
+  }
+  .elsewhen(biu.cpu_bypass.rsp.valid){
+    bypass_reg := False
+  }
+  
+  // ar channel
+  dcacheReader.ar.valid.setAsReg() init(False)
+  dcacheReader.ar.id.setAsReg() init(0)
+  dcacheReader.ar.len.setAsReg() init(0)
+  dcacheReader.ar.size.setAsReg() init(0)
+  dcacheReader.ar.burst.setAsReg() init(0)
+  dcacheReader.ar.addr.setAsReg() init(0)
+  
+  when(bypass_read){
+    dcacheReader.ar.valid      := True
+  }
+  .elsewhen(dcacheReader.ar.fire){
+    when(ar_len_cnt>U(0)){
+      dcacheReader.ar.valid    := True
+    }.otherwise{
+      dcacheReader.ar.valid    := False
+    }
+  }
+  when(bypass_read){
+    ar_len_cnt               := U(0)
+  }.elsewhen(dcacheReader.ar.fire && ar_len_cnt>U(0)){
+    ar_len_cnt               := ar_len_cnt - U(1)
+  }
+  dcacheReader.ar.id   := U(1)
+  dcacheReader.ar.len  := U(0)
+  when(bypass_read){
+    dcacheReader.ar.size := biu.cpu_bypass.cmd.size
+  }
+  
+  dcacheReader.ar.burst := B(1) // INCR
+  // ar addr unburst
+  when(bypass_read){
+    dcacheReader.ar.addr := biu.cpu_bypass.cmd.addr.resize(32)
+  }.elsewhen(dcacheReader.ar.fire){
+    dcacheReader.ar.addr := dcacheReader.ar.addr + U(64/8)
+  }
+  // r channel
+  dcacheReader.r.ready := True
+  // aw channel      
+  dcacheWriter.aw.valid.setAsReg() init(False)
+  dcacheWriter.aw.id.setAsReg() init(0)
+  dcacheWriter.aw.len.setAsReg() init(0)
+  dcacheWriter.aw.size.setAsReg() init(0)
+  dcacheWriter.aw.burst.setAsReg() init(0)
+  dcacheWriter.aw.addr.setAsReg() init(0)
+  when(bypass_write){
+    dcacheWriter.aw.valid := True
+  }
+  .elsewhen(dcacheWriter.aw.fire){
+    dcacheWriter.aw.valid := False
+  }
+  dcacheWriter.aw.id := U(2)
+  
+  when(bypass_write){
+    dcacheWriter.aw.len := U(0, 8 bits)
+  }
+  
+  when(bypass_write){
+    dcacheWriter.aw.size := biu.cpu_bypass.cmd.size
+  }
+  dcacheWriter.aw.burst := B(1) // INCR
+  
+  when(bypass_write){
+    dcacheWriter.aw.addr := biu.cpu_bypass.cmd.addr.resize(32)
+  }
+  // w channel
+  dcacheWriter.w.valid.setAsReg() init(False)
+  dcacheWriter.w.data.setAsReg() init(0)
+  dcacheWriter.w.strb.setAsReg() init(0)
+  dcacheWriter.w.last.setAsReg() init(False)
+  when(bypass_write){
+    dcacheWriter.w.valid := True
+    dcacheWriter.w.data := biu.cpu_bypass.cmd.wdata
+    dcacheWriter.w.strb := biu.cpu_bypass.cmd.wstrb
+    dcacheWriter.w.last := True
+  }
+  .elsewhen(dcacheWriter.w.fire){
+    dcacheWriter.w.valid := False
+  }
+  
+  // b channel
+  dcacheWriter.b.ready := True
+  // to biu signal
+  when(handshake_cnt===False){
+    when(dcacheWriter.aw.fire && dcacheWriter.w.fire){
+      handshake_cnt := False
+    }.elsewhen(dcacheWriter.aw.fire || dcacheWriter.w.fire){
+      handshake_cnt := True
+    }
+  }
+  .elsewhen(handshake_cnt===True){
+    when(dcacheWriter.aw.fire || dcacheWriter.w.fire){
+      handshake_cnt := False
+    }
+  }
+  val aw_and_w_fire = ((dcacheWriter.aw.fire && dcacheWriter.w.fire) || (handshake_cnt && (dcacheWriter.aw.fire || dcacheWriter.w.fire)))
+  
+  biu.cpu_bypass.cmd.ready := True
+  biu.cpu_bypass.rsp.valid := bypass_reg ? (bypass_write_reg ? dcacheWriter.b.valid | (dcacheReader.r.valid && (dcacheReader.r.id===U(1)))) | False
+  biu.cpu_bypass.rsp.data  := dcacheReader.r.data
+}
+
+
+object GenDCacheTop extends App {
   val dcache_config = DCacheConfig(
     cacheSize = 32 * 1024, // 32 KB
     wayCount = 2,

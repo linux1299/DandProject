@@ -12,7 +12,12 @@ case class Commit() extends Component{
 
   // =================== IO ===================
   val flush     = out Bool()
+  val flush_al1 = out Bool()
+  val flush_al2 = out Bool()
+  val flush_div = out Bool()
+  val dis_stall = out Bool()
   val change_flow = in Bool()
+  val change_flow_adr = in UInt(3 bits)
   val wbc_src   = Vec(slave(Stream(ExeDst())), 5) // wbc stage
   val dis_valid = Vec(in Bool(), 2)
   val dis_fire  = Vec(in Bool(), 2)
@@ -43,8 +48,12 @@ case class Commit() extends Component{
   val entry_cnt        = Reg(UInt(4 bits)) init(0)
   val dis_fire_num     = UInt(2 bits)
   val wbc_fire_num     = UInt(2 bits)
-  val head_entry_older = Bits(5 bits)
-  val head_entry_newer = Bits(5 bits)
+  val head_oh_older    = Bits(5 bits)
+  val head_oh_newer    = Bits(5 bits)
+  val head_pc_older    = UInt(32 bits)
+  val head_pc_newer    = UInt(32 bits)
+  val head_older_valid = Bits(5 bits)
+  val head_newer_valid = Bits(5 bits)
   val wbc_src_valid    = Bits(5 bits)
   val wbc_src_rd_data = wbc_src(4).rd_data ##
                         wbc_src(3).rd_data ##
@@ -132,8 +141,10 @@ case class Commit() extends Component{
     }
   }
 
-  head_entry_older := entry.onehot(head_adr)
-  head_entry_newer := entry.onehot(head_adr_last)
+  head_oh_older := entry.onehot(head_adr)
+  head_oh_newer := entry.onehot(head_adr_last)
+  head_pc_older := entry.pc(head_adr)
+  head_pc_newer := entry.pc(head_adr_last)
 
   when(flush){
     entry_cnt := U(0)
@@ -145,35 +156,55 @@ case class Commit() extends Component{
 
   // =================== Output ===================
   val flush_reg = RegInit(False)
-  when(change_flow && head_entry_older(0)){ // when BJU's instruction is at head, flush next cycle
+  val flush_adr = Reg(UInt(3 bits)) init(0)
+
+  // when redirect, start flush next cycle
+  when(change_flow){ 
     flush_reg := True
+    flush_adr := change_flow_adr
   }
   .elsewhen(flush){
     flush_reg := False
   }
-  flush := flush_reg && wbc_src(0).fire
+  flush := Delay(flush_reg && wbc_src(0).fire, 1)
 
+  // return ready to wbc_src
   for(i <- 0 until 5){
+    head_older_valid(i) := head_oh_older(i) && head_pc_older===wbc_src(i).pc && head_adr     ===wbc_src(i).tail_adr
+    head_newer_valid(i) := head_oh_newer(i) && head_pc_newer===wbc_src(i).pc && head_adr_last===wbc_src(i).tail_adr
     wbc_src_valid(i) := wbc_src(i).valid
-    wbc_src(i).ready := (head_entry_older(i) && wbc_stream(0).fire) || (head_entry_newer(i) && wbc_stream(1).fire)
-  }
+    wbc_src(i).ready := (wbc_stream(0).fire && head_older_valid(i)) || 
+                        (wbc_stream(1).fire && head_newer_valid(i))
 
-  wbc_stream(0).valid   := (head_entry_older & wbc_src_valid).orR
-  wbc_stream(1).valid   := (head_entry_newer & wbc_src_valid).orR && wbc_stream(0).fire
-  wbc_stream(0).rd_data := dataMux(head_entry_older, wbc_src_rd_data)
-  wbc_stream(1).rd_data := dataMux(head_entry_newer, wbc_src_rd_data)
-  wbc_stream(0).rd_addr := dataMux(head_entry_older, wbc_src_rd_addr).asUInt
-  wbc_stream(1).rd_addr := dataMux(head_entry_newer, wbc_src_rd_addr).asUInt
-  wbc_stream(0).rd_wen  := dataMux(head_entry_older, wbc_src_rd_wen).asBool
-  wbc_stream(1).rd_wen  := dataMux(head_entry_newer, wbc_src_rd_wen).asBool
-  wbc_stream(0).pc      := dataMux(head_entry_older, wbc_src_pc).asUInt
-  wbc_stream(1).pc      := dataMux(head_entry_newer, wbc_src_pc).asUInt
-  wbc_stream(0).instr   := dataMux(head_entry_older, wbc_src_instr)
-  wbc_stream(1).instr   := dataMux(head_entry_newer, wbc_src_instr)
+    
+  } 
+
+  // prepare data to retire stage
+  wbc_stream(0).valid   := (head_older_valid & wbc_src_valid).orR
+  wbc_stream(1).valid   := (head_newer_valid & wbc_src_valid).orR && wbc_stream(0).fire
+  wbc_stream(0).rd_data := dataMux(head_older_valid, wbc_src_rd_data)
+  wbc_stream(1).rd_data := dataMux(head_newer_valid, wbc_src_rd_data)
+  wbc_stream(0).rd_addr := dataMux(head_older_valid, wbc_src_rd_addr).asUInt
+  wbc_stream(1).rd_addr := dataMux(head_newer_valid, wbc_src_rd_addr).asUInt
+  wbc_stream(0).rd_wen  := dataMux(head_older_valid, wbc_src_rd_wen).asBool
+  wbc_stream(1).rd_wen  := dataMux(head_newer_valid, wbc_src_rd_wen).asBool
+  wbc_stream(0).pc      := dataMux(head_older_valid, wbc_src_pc).asUInt
+  wbc_stream(1).pc      := dataMux(head_newer_valid, wbc_src_pc).asUInt
+  wbc_stream(0).instr   := dataMux(head_older_valid, wbc_src_instr)
+  wbc_stream(1).instr   := dataMux(head_newer_valid, wbc_src_instr)
 
   wbc_stream(0) >-> wbc_dst(0)
   wbc_stream(1) >-> wbc_dst(1)
 
+  // control info
+  val bju_to_head_distance = flush_adr - head_adr
+  val al1_to_head_distance = wbc_src(1).tail_adr - head_adr
+  val al2_to_head_distance = wbc_src(2).tail_adr - head_adr
+  val div_to_head_distance = wbc_src(3).tail_adr - head_adr
+  flush_al1 := flush_reg && (al1_to_head_distance > bju_to_head_distance)
+  flush_al2 := flush_reg && (al2_to_head_distance > bju_to_head_distance)
+  flush_div := flush_reg && (div_to_head_distance > bju_to_head_distance)
+  dis_stall      := flush_reg || flush
   tail_adr_older := tail_adr
   tail_adr_newer := tail_adr_last
   head_adr_out   := head_adr

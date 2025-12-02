@@ -34,6 +34,7 @@ case class Dispatch() extends Component{
   val entry = new Area{
     val sel      = Vec(Reg(Bits(5 bits)) init(0), 32) // FU onehot
     val arf      = Vec(RegInit(True), 32)
+    val exe      = Vec(RegInit(False), 32)
     val wbc      = Vec(RegInit(False), 32)
     val ret      = Vec(RegInit(False), 32)
     val dis_fire = Vec(Bool(), 32)
@@ -78,26 +79,26 @@ case class Dispatch() extends Component{
   }
   
 
-  src1_valid(0) := entry.arf(rs1_addr(0)) ||
-                   entry.wbc(rs1_addr(0)) ||
-                   entry.ret(rs1_addr(0))
+  src1_valid(0) := (entry.arf(rs1_addr(0)) && !entry.exe(rs1_addr(0)) && !entry.wbc(rs1_addr(0)) && !entry.ret(rs1_addr(0))) ||
+                   (entry.wbc(rs1_addr(0)) && entry.wbc_fire(rs1_addr(0)) && !entry.exe(rs1_addr(0))) ||
+                   (entry.ret(rs1_addr(0)) && !entry.exe(rs1_addr(0)) && !entry.wbc(rs1_addr(0)))
 
-  src2_valid(0) := entry.arf(rs2_addr(0)) ||
-                   entry.wbc(rs2_addr(0)) ||
-                   entry.ret(rs2_addr(0)) ||
-                   dis_src(0).iss_pkg.micro_op.uop_com.src2_is_imm
+  src2_valid(0) := (entry.arf(rs2_addr(0)) && !entry.exe(rs2_addr(0)) && !entry.wbc(rs2_addr(0)) && !entry.ret(rs2_addr(0))) ||
+                   (entry.wbc(rs2_addr(0)) && entry.wbc_fire(rs2_addr(0)) && !entry.exe(rs2_addr(0))) ||
+                   (entry.ret(rs2_addr(0)) && !entry.exe(rs2_addr(0)) && !entry.wbc(rs2_addr(0))) ||
+                    dis_src(0).iss_pkg.micro_op.uop_com.src2_is_imm
 
   src1_valid(1) := (rs1_addr(1) =/= rd_addr(0) || !dis_src(0).valid) &&
-                    (entry.arf(rs1_addr(1)) ||
-                     entry.wbc(rs1_addr(1)) ||
-                     entry.ret(rs1_addr(1)))
+                    ((entry.arf(rs1_addr(1)) && !entry.exe(rs1_addr(1)) && !entry.wbc(rs1_addr(1)) && !entry.ret(rs1_addr(1))) ||
+                     (entry.wbc(rs1_addr(1)) && entry.wbc_fire(rs1_addr(1)) && !entry.exe(rs1_addr(1))) ||
+                     (entry.ret(rs1_addr(1)) && !entry.exe(rs1_addr(1)) && !entry.wbc(rs1_addr(1))))
                   
 
   src2_valid(1) := ((rs2_addr(1) =/= rd_addr(0) || !dis_src(0).valid) &&
-                    (entry.arf(rs2_addr(1))  ||
-                     entry.wbc(rs2_addr(1))  ||
-                     entry.ret(rs2_addr(1)))) ||
-                   dis_src(1).iss_pkg.micro_op.uop_com.src2_is_imm
+                    ( (entry.arf(rs2_addr(1)) && !entry.exe(rs2_addr(1)) && !entry.wbc(rs2_addr(1)) && !entry.ret(rs2_addr(1)))  ||
+                      (entry.wbc(rs2_addr(1)) && entry.wbc_fire(rs2_addr(1)) && !entry.exe(rs2_addr(1)))  ||
+                      (entry.ret(rs2_addr(1)) && !entry.exe(rs2_addr(1)) && !entry.wbc(rs2_addr(1))))) ||
+                      dis_src(1).iss_pkg.micro_op.uop_com.src2_is_imm
 
   exe_sel_valid(0) := dis_src(0).exe_sel_oh & 
                       B(5 bits, default -> src1_valid(0)) & 
@@ -139,8 +140,13 @@ case class Dispatch() extends Component{
   // =============== Update entry =================
   entry.sel(0) := B(0, 5 bits)
   entry.arf(0) := True
+  entry.exe(0) := False
   entry.wbc(0) := False
   entry.ret(0) := False
+  entry.dis_fire(0) := False
+  entry.exe_fire(0) := False
+  entry.wbc_fire(0) := False
+  entry.ret_fire(0) := False
 
   for(i <- 1 until 32){
     // fire
@@ -187,6 +193,17 @@ case class Dispatch() extends Component{
 
     // wbc
     when(flush){
+      entry.exe(i) := False
+    }
+    .elsewhen(entry.dis_fire(i)){
+      entry.exe(i) := True
+    }
+    .elsewhen(entry.exe_fire(i)){
+      entry.exe(i) := False
+    }
+
+    // wbc
+    when(flush){
       entry.wbc(i) := False
     }
     .elsewhen(entry.exe_fire(i)){
@@ -210,25 +227,25 @@ case class Dispatch() extends Component{
   }
 
   // =================== Output ===================
-  dis_src(0).ready :=    (exe_sel_valid(0)(0) && exe_stream(0).ready) ||
+  dis_src(0).ready :=    ((exe_sel_valid(0)(0) && exe_stream(0).ready) ||
                          (exe_sel_valid(0)(1) && exe_stream(1).ready) ||
                          (exe_sel_valid(0)(2) && exe_stream(2).ready) ||
                          (exe_sel_valid(0)(3) && exe_stream(3).ready) ||
-                         (exe_sel_valid(0)(4) && exe_stream(4).ready)
+                         (exe_sel_valid(0)(4) && exe_stream(4).ready)) && commit_fifo_ready
 
   dis_src(1).ready :=   ((exe_sel_valid(1)(0) && exe_stream(0).ready) ||
                          (exe_sel_valid(1)(1) && exe_stream(1).ready) ||
                          (exe_sel_valid(1)(2) && exe_stream(2).ready) ||
                          (exe_sel_valid(1)(3) && exe_stream(3).ready) ||
-                         (exe_sel_valid(1)(4) && exe_stream(4).ready)) && dis_src(0).ready
+                         (exe_sel_valid(1)(4) && exe_stream(4).ready)) && (dis_src(0).ready || !dis_src(0).valid) && commit_fifo_ready
 
   for(i <- 0 until 5){
-    exe_stream(i).valid        := (exe_sel_valid(0)(i) || (exe_sel_valid(1)(i) && dis_src(0).ready)) && commit_fifo_ready // older instr has priority
+    exe_stream(i).valid        := (exe_sel_valid(0)(i) || (exe_sel_valid(1)(i) && (dis_src(0).ready || !dis_src(0).valid))) && commit_fifo_ready // older instr has priority
     exe_stream(i).uop_com      := exe_sel_valid(0)(i) ? dis_src(0).iss_pkg.micro_op.uop_com | dis_src(1).iss_pkg.micro_op.uop_com
     exe_stream(i).rd_addr      := exe_sel_valid(0)(i) ? dis_src(0).iss_pkg.rd_addr          | dis_src(1).iss_pkg.rd_addr
     exe_stream(i).pc           := exe_sel_valid(0)(i) ? dis_src(0).iss_pkg.pc               | dis_src(1).iss_pkg.pc
     exe_stream(i).instr        := exe_sel_valid(0)(i) ? dis_src(0).iss_pkg.instr            | dis_src(1).iss_pkg.instr
-    exe_stream(i).tail_adr     := (exe_sel_valid(1)(i) && dis_older_vld && dis_newer_vld) ? tail_adr_newer | tail_adr_older
+    exe_stream(i).tail_adr     := (exe_sel_valid(1)(i) && dis_older_vld && dis_newer_vld) ? tail_adr_newer | tail_adr_older // if dispatch 2 instr, use newer tail_adr
     exe_stream(i).uop_alu      := exe_sel_valid(0)(i) ? dis_src(0).iss_pkg.micro_op.uop_alu | dis_src(1).iss_pkg.micro_op.uop_alu
     exe_stream(i).imm          := exe_sel_valid(0)(i) ? dis_src(0).iss_pkg.imm              | dis_src(1).iss_pkg.imm
     exe_stream(i).uop_bju      := exe_sel_valid(0)(i) ? dis_src(0).iss_pkg.micro_op.uop_bju | dis_src(1).iss_pkg.micro_op.uop_bju
@@ -260,7 +277,7 @@ case class Dispatch() extends Component{
     }
 
     when(exe_sel_valid(0)(i)){
-      when(dis_src(0).iss_pkg.micro_op.uop_com.src2_is_imm){
+      when(dis_src(0).iss_pkg.micro_op.uop_com.src2_is_imm && dis_src(0).iss_pkg.exe_sel=/=ExeSelEnum.LSU){
         exe_stream(i).src2_data := dis_src(0).iss_pkg.imm
       }
       .elsewhen(entry.wbc(rs2_addr(0))){
@@ -274,7 +291,7 @@ case class Dispatch() extends Component{
       }
     }
     .otherwise{
-      when(dis_src(1).iss_pkg.micro_op.uop_com.src2_is_imm){
+      when(dis_src(1).iss_pkg.micro_op.uop_com.src2_is_imm && dis_src(1).iss_pkg.exe_sel=/=ExeSelEnum.LSU){
         exe_stream(i).src2_data := dis_src(1).iss_pkg.imm
       }
       .elsewhen(entry.wbc(rs2_addr(1))){
@@ -316,8 +333,8 @@ case class Dispatch() extends Component{
   
   read_regfile(0).rs1_addr := rs1_addr(0)
   read_regfile(0).rs2_addr := rs2_addr(0)
-  read_regfile(1).rs1_addr := rs1_addr(0)
-  read_regfile(1).rs2_addr := rs2_addr(0)
+  read_regfile(1).rs1_addr := rs1_addr(1)
+  read_regfile(1).rs2_addr := rs2_addr(1)
 
 
   StreamRenameUtil(this)

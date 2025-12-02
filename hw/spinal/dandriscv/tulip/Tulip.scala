@@ -91,7 +91,8 @@ case class Tulip() extends Component {
   val alu_2  = new ALU()
   val div_3  = new DIV()
   val lsu_4  = new LSU()
-  val dcache = new DCacheTop(dcache_config, dcache_axi_config)
+  // val dcache = new DCacheTop(dcache_config, dcache_axi_config)
+  val dcache = new BIUTop(dcache_config, dcache_axi_config)
 
   val change_flow = bju_0.interrupt_valid || bju_0.redirect_valid
 
@@ -137,13 +138,13 @@ case class Tulip() extends Component {
   dispat.commit_fifo_ready   := commit.commit_fifo_ready
   dispat.tail_adr_older      := commit.tail_adr_older
   dispat.tail_adr_newer      := commit.tail_adr_newer
-  dispat.dis_src(0) << issue.iss_dst(0).throwWhen(change_flow)
-  dispat.dis_src(1) << issue.iss_dst(1).throwWhen(change_flow)
+  dispat.dis_src(0) << issue.iss_dst(0).throwWhen(change_flow).haltWhen(commit.dis_stall)
+  dispat.dis_src(1) << issue.iss_dst(1).throwWhen(change_flow).haltWhen(commit.dis_stall)
 
   dispat.wbc_rd_wen(0) := bju_0.bju_dst.fire && bju_0.bju_dst.rd_wen
-  dispat.wbc_rd_wen(1) := alu_1.alu_dst.fire && alu_1.alu_dst.rd_wen
-  dispat.wbc_rd_wen(2) := alu_2.alu_dst.fire && alu_2.alu_dst.rd_wen
-  dispat.wbc_rd_wen(3) := div_3.div_dst.fire && div_3.div_dst.rd_wen
+  dispat.wbc_rd_wen(1) := alu_1.alu_dst.fire && alu_1.alu_dst.rd_wen && !commit.flush_al1
+  dispat.wbc_rd_wen(2) := alu_2.alu_dst.fire && alu_2.alu_dst.rd_wen && !commit.flush_al2
+  dispat.wbc_rd_wen(3) := div_3.div_dst.fire && div_3.div_dst.rd_wen && !commit.flush_div
   dispat.wbc_rd_wen(4) := lsu_4.lsu_dst.fire && lsu_4.lsu_dst.rd_wen
 
   dispat.wbc_rd_addr(0) := bju_0.bju_dst.rd_addr
@@ -201,11 +202,12 @@ case class Tulip() extends Component {
 
   // ================= Commit ===============
   commit.change_flow := change_flow
+  commit.change_flow_adr := bju_0.bju_src.tail_adr
   commit.wbc_src(0) << bju_0.bju_dst
-  commit.wbc_src(1) << alu_1.alu_dst
-  commit.wbc_src(2) << alu_2.alu_dst
-  commit.wbc_src(3) << div_3.div_dst
-  commit.wbc_src(4) << lsu_4.lsu_dst
+  commit.wbc_src(1) << alu_1.alu_dst.throwWhen(commit.flush_al1)
+  commit.wbc_src(2) << alu_2.alu_dst.throwWhen(commit.flush_al2)
+  commit.wbc_src(3) << div_3.div_dst.throwWhen(commit.flush_div)
+  commit.wbc_src(4) << lsu_4.lsu_dst.throwWhen(commit.flush)
 
   commit.dis_valid(0) := dispat.dis_src(0).valid
   commit.dis_valid(1) := dispat.dis_src(1).valid
