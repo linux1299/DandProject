@@ -206,7 +206,7 @@ case class DCacheRsp(DW: Int) extends Bundle {
 }
 case class DCachePorts(AW: Int, DW: Int) extends Bundle with IMasterSlave{
   val cmd = Stream(DCacheCmd(AW, DW))
-  val rsp = Flow(DCacheRsp(DW))
+  val rsp = Stream(DCacheRsp(DW))
   val stall = Bool()
   override def asMaster(): Unit = {
     master(cmd)
@@ -233,7 +233,7 @@ case class DCacheNextLevelRsp(DW: Int) extends Bundle{
 }
 case class DCacheNextLevelPorts(AW: Int, DW: Int) extends Bundle with IMasterSlave{
   val cmd = Stream(DCacheNextLevelCmd(AW, DW))
-  val rsp = Flow(DCacheNextLevelRsp(DW))
+  val rsp = Stream(DCacheNextLevelRsp(DW))
 
   override def asMaster(): Unit = {
     master(cmd)

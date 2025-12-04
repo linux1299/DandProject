@@ -376,4 +376,14 @@ always@(posedge clk_axi_in) begin
   end
 end
 
+
+reg[31:0] instrCnt = 0;
+always@(posedge clk_axi_in) begin
+  if (wb_valid[0] && wb_valid[1]) begin
+    instrCnt <= instrCnt + 2;
+  end
+  else if(wb_valid[0] || wb_valid[1]) begin
+    instrCnt <= instrCnt + 1;
+  end
+end
 endmodule

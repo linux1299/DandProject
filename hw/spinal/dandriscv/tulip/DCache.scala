@@ -395,30 +395,34 @@ case class BIU(p : DCacheConfig) extends Component{
   val cpu_wdata = cpu.cmd.wdata
   val cpu_wen = cpu.cmd.wen
   val bypass = cpu.cmd.fire
-  val bypass_reg = RegInit(False)
-  val bypass_rsp_valid_d1 = Delay(cpu_bypass.rsp.valid, 1)
-  val bypass_rsp_data_d1 = Delay(cpu_bypass.rsp.data, 1)
+  // val bypass_rsp_valid_d1 = Delay(cpu_bypass.rsp.valid, 1)
+  // val bypass_rsp_data_d1 = Delay(cpu_bypass.rsp.data, 1)
+  val bypass_rsp_valid_d1 = RegInit(False)
+  val bypass_rsp_data_d1 = Reg(Bits(64 bits)) init(0)
   cpu_bypass.cmd.valid := bypass
   cpu_bypass.cmd.addr  := cpu.cmd.addr
   cpu_bypass.cmd.wen   := cpu.cmd.wen
   cpu_bypass.cmd.wdata := cpu.cmd.wdata
   cpu_bypass.cmd.wstrb := cpu.cmd.wstrb
   cpu_bypass.cmd.size  := cpu.cmd.size
-  when(bypass){
-    bypass_reg := True
-  }
-  .elsewhen(bypass_rsp_valid_d1){
-    bypass_reg := False
-  }
 
   // resp to cpu ports
   when(bypass){
     cpu_cmd_ready := False
   }
-  .elsewhen(bypass_rsp_valid_d1){
+  .elsewhen(cpu.rsp.fire){
     cpu_cmd_ready := True 
   }
 
+  when(cpu.rsp.fire){
+    bypass_rsp_valid_d1 := False
+  }
+  .elsewhen(cpu_bypass.rsp.valid){
+    bypass_rsp_valid_d1 := True
+    bypass_rsp_data_d1  := cpu_bypass.rsp.data
+  }
+
+  cpu_bypass.rsp.ready := cpu.rsp.ready
   cpu.rsp.data     := bypass_rsp_data_d1
   cpu.rsp.valid    := bypass_rsp_valid_d1
   cpu.cmd.ready    := cpu_cmd_ready
@@ -502,7 +506,7 @@ case class BIUTop(val config : DCacheConfig, val axiConfig : Axi4Config) extends
     dcacheReader.ar.addr := dcacheReader.ar.addr + U(64/8)
   }
   // r channel
-  dcacheReader.r.ready := True
+  dcacheReader.r.ready := dcache_src.rsp.ready
   // aw channel      
   dcacheWriter.aw.valid.setAsReg() init(False)
   dcacheWriter.aw.id.setAsReg() init(0)

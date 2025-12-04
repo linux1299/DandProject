@@ -1,6 +1,6 @@
 // Generator : SpinalHDL v1.8.1    git head : 2a7592004363e5b40ec43e1f122ed8641cd8965b
 // Component : Tulip
-// Git hash  : dffd0c96bd10526b77ae35af4c5be59e5a916495
+// Git hash  : f9066ea62ca953117cb698d60f105e004736e129
 
 `timescale 1ns/1ps
 
@@ -432,6 +432,7 @@ module Tulip (
   wire       [63:0]   lsu_4_dcache_ports_cmd_wdata;
   wire       [7:0]    lsu_4_dcache_ports_cmd_wstrb;
   wire       [2:0]    lsu_4_dcache_ports_cmd_size;
+  wire                lsu_4_dcache_ports_rsp_ready;
   wire                dcache_stall;
   wire                dcache_dcache_src_cmd_ready;
   wire                dcache_dcache_src_rsp_valid;
@@ -1304,6 +1305,7 @@ module Tulip (
     .dcache_ports_cmd_wstrb       (lsu_4_dcache_ports_cmd_wstrb[7:0]                                 ), //o
     .dcache_ports_cmd_size        (lsu_4_dcache_ports_cmd_size[2:0]                                  ), //o
     .dcache_ports_rsp_valid       (dcache_dcache_src_rsp_valid                                       ), //i
+    .dcache_ports_rsp_ready       (lsu_4_dcache_ports_rsp_ready                                      ), //o
     .dcache_ports_rsp_data        (dcache_dcache_src_rsp_payload_data[63:0]                          ), //i
     .clk                          (clk                                                               ), //i
     .reset                        (reset                                                             )  //i
@@ -1319,6 +1321,7 @@ module Tulip (
     .dcache_src_cmd_payload_wstrb (lsu_4_dcache_ports_cmd_wstrb[7:0]       ), //i
     .dcache_src_cmd_payload_size  (lsu_4_dcache_ports_cmd_size[2:0]        ), //i
     .dcache_src_rsp_valid         (dcache_dcache_src_rsp_valid             ), //o
+    .dcache_src_rsp_ready         (lsu_4_dcache_ports_rsp_ready            ), //i
     .dcache_src_rsp_payload_data  (dcache_dcache_src_rsp_payload_data[63:0]), //o
     .dcache_ar_valid              (dcache_dcache_ar_valid                  ), //o
     .dcache_ar_ready              (dcache_ar_ready                         ), //i
@@ -2193,6 +2196,7 @@ module BIUTop (
   input      [7:0]    dcache_src_cmd_payload_wstrb,
   input      [2:0]    dcache_src_cmd_payload_size,
   output              dcache_src_rsp_valid,
+  input               dcache_src_rsp_ready,
   output     [63:0]   dcache_src_rsp_payload_data,
   output reg          dcache_ar_valid,
   input               dcache_ar_ready,
@@ -2238,6 +2242,7 @@ module BIUTop (
   wire       [63:0]   biu_1_cpu_bypass_cmd_payload_wdata;
   wire       [7:0]    biu_1_cpu_bypass_cmd_payload_wstrb;
   wire       [2:0]    biu_1_cpu_bypass_cmd_payload_size;
+  wire                biu_1_cpu_bypass_rsp_ready;
   wire                dcache_src_stall;
   reg                 handshake_cnt;
   reg        [3:0]    ar_len_cnt;
@@ -2273,6 +2278,7 @@ module BIUTop (
     .cpu_cmd_payload_wstrb        (dcache_src_cmd_payload_wstrb[7:0]       ), //i
     .cpu_cmd_payload_size         (dcache_src_cmd_payload_size[2:0]        ), //i
     .cpu_rsp_valid                (biu_1_cpu_rsp_valid                     ), //o
+    .cpu_rsp_ready                (dcache_src_rsp_ready                    ), //i
     .cpu_rsp_payload_data         (biu_1_cpu_rsp_payload_data[63:0]        ), //o
     .cpu_bypass_cmd_valid         (biu_1_cpu_bypass_cmd_valid              ), //o
     .cpu_bypass_cmd_ready         (1'b1                                    ), //i
@@ -2282,23 +2288,24 @@ module BIUTop (
     .cpu_bypass_cmd_payload_wstrb (biu_1_cpu_bypass_cmd_payload_wstrb[7:0] ), //o
     .cpu_bypass_cmd_payload_size  (biu_1_cpu_bypass_cmd_payload_size[2:0]  ), //o
     .cpu_bypass_rsp_valid         (biu_1_cpu_bypass_rsp_valid              ), //i
+    .cpu_bypass_rsp_ready         (biu_1_cpu_bypass_rsp_ready              ), //o
     .cpu_bypass_rsp_payload_data  (dcache_r_payload_data[63:0]             ), //i
     .clk                          (clk                                     ), //i
     .reset                        (reset                                   )  //i
   );
-  assign dcache_src_cmd_ready = biu_1_cpu_cmd_ready; // @ DCache.scala l443
-  assign dcache_src_rsp_valid = biu_1_cpu_rsp_valid; // @ DCache.scala l444
-  assign dcache_src_rsp_payload_data = biu_1_cpu_rsp_payload_data; // @ DCache.scala l444
-  assign dcache_src_stall = biu_1_stall; // @ DCache.scala l446
+  assign dcache_src_cmd_ready = biu_1_cpu_cmd_ready; // @ DCache.scala l447
+  assign dcache_src_rsp_valid = biu_1_cpu_rsp_valid; // @ DCache.scala l448
+  assign dcache_src_rsp_payload_data = biu_1_cpu_rsp_payload_data; // @ DCache.scala l448
+  assign dcache_src_stall = biu_1_stall; // @ DCache.scala l450
   assign bypass_read = (biu_1_cpu_bypass_cmd_valid && (! biu_1_cpu_bypass_cmd_payload_wen)); // @ BaseType.scala l305
   assign bypass_write = (biu_1_cpu_bypass_cmd_valid && biu_1_cpu_bypass_cmd_payload_wen); // @ BaseType.scala l305
   assign dcache_ar_fire = (dcache_ar_valid && dcache_ar_ready); // @ BaseType.scala l305
   assign dcache_ar_fire_1 = (dcache_ar_valid && dcache_ar_ready); // @ BaseType.scala l305
   assign dcache_ar_fire_2 = (dcache_ar_valid && dcache_ar_ready); // @ BaseType.scala l305
-  assign dcache_r_ready = 1'b1; // @ DCache.scala l505
+  assign dcache_r_ready = dcache_src_rsp_ready; // @ DCache.scala l509
   assign dcache_aw_fire = (dcache_aw_valid && dcache_aw_ready); // @ BaseType.scala l305
   assign dcache_w_fire = (dcache_w_valid && dcache_w_ready); // @ BaseType.scala l305
-  assign dcache_b_ready = 1'b1; // @ DCache.scala l549
+  assign dcache_b_ready = 1'b1; // @ DCache.scala l553
   assign dcache_aw_fire_1 = (dcache_aw_valid && dcache_aw_ready); // @ BaseType.scala l305
   assign dcache_w_fire_1 = (dcache_w_valid && dcache_w_ready); // @ BaseType.scala l305
   assign dcache_aw_fire_2 = (dcache_aw_valid && dcache_aw_ready); // @ BaseType.scala l305
@@ -2310,7 +2317,7 @@ module BIUTop (
   assign dcache_aw_fire_5 = (dcache_aw_valid && dcache_aw_ready); // @ BaseType.scala l305
   assign dcache_w_fire_5 = (dcache_w_valid && dcache_w_ready); // @ BaseType.scala l305
   assign aw_and_w_fire = ((dcache_aw_fire_4 && dcache_w_fire_4) || (handshake_cnt && (dcache_aw_fire_5 || dcache_w_fire_5))); // @ BaseType.scala l305
-  assign biu_1_cpu_bypass_rsp_valid = (bypass_reg ? (bypass_write_reg ? dcache_b_valid : (dcache_r_valid && (dcache_r_payload_id == 2'b01))) : 1'b0); // @ DCache.scala l566
+  assign biu_1_cpu_bypass_rsp_valid = (bypass_reg ? (bypass_write_reg ? dcache_b_valid : (dcache_r_valid && (dcache_r_payload_id == 2'b01))) : 1'b0); // @ DCache.scala l570
   always @(posedge clk or posedge reset) begin
     if(reset) begin
       handshake_cnt <= 1'b0; // @ Data.scala l400
@@ -2335,90 +2342,90 @@ module BIUTop (
       dcache_w_payload_last <= 1'b0; // @ Data.scala l400
     end else begin
       if(bypass_write) begin
-        bypass_write_reg <= 1'b1; // @ DCache.scala l456
+        bypass_write_reg <= 1'b1; // @ DCache.scala l460
       end else begin
         if(biu_1_cpu_bypass_rsp_valid) begin
-          bypass_write_reg <= 1'b0; // @ DCache.scala l459
+          bypass_write_reg <= 1'b0; // @ DCache.scala l463
         end
       end
       if((bypass_read || bypass_write)) begin
-        bypass_reg <= 1'b1; // @ DCache.scala l462
+        bypass_reg <= 1'b1; // @ DCache.scala l466
       end else begin
         if(biu_1_cpu_bypass_rsp_valid) begin
-          bypass_reg <= 1'b0; // @ DCache.scala l465
+          bypass_reg <= 1'b0; // @ DCache.scala l469
         end
       end
       if(bypass_read) begin
-        dcache_ar_valid <= 1'b1; // @ DCache.scala l477
+        dcache_ar_valid <= 1'b1; // @ DCache.scala l481
       end else begin
         if(dcache_ar_fire) begin
           if((4'b0000 < ar_len_cnt)) begin
-            dcache_ar_valid <= 1'b1; // @ DCache.scala l481
+            dcache_ar_valid <= 1'b1; // @ DCache.scala l485
           end else begin
-            dcache_ar_valid <= 1'b0; // @ DCache.scala l483
+            dcache_ar_valid <= 1'b0; // @ DCache.scala l487
           end
         end
       end
       if(bypass_read) begin
-        ar_len_cnt <= 4'b0000; // @ DCache.scala l487
+        ar_len_cnt <= 4'b0000; // @ DCache.scala l491
       end else begin
         if((dcache_ar_fire_1 && (4'b0000 < ar_len_cnt))) begin
-          ar_len_cnt <= (ar_len_cnt - 4'b0001); // @ DCache.scala l489
+          ar_len_cnt <= (ar_len_cnt - 4'b0001); // @ DCache.scala l493
         end
       end
-      dcache_ar_payload_id <= 2'b01; // @ DCache.scala l491
-      dcache_ar_payload_len <= 8'h0; // @ DCache.scala l492
+      dcache_ar_payload_id <= 2'b01; // @ DCache.scala l495
+      dcache_ar_payload_len <= 8'h0; // @ DCache.scala l496
       if(bypass_read) begin
-        dcache_ar_payload_size <= biu_1_cpu_bypass_cmd_payload_size; // @ DCache.scala l494
+        dcache_ar_payload_size <= biu_1_cpu_bypass_cmd_payload_size; // @ DCache.scala l498
       end
-      dcache_ar_payload_burst <= 2'b01; // @ DCache.scala l497
+      dcache_ar_payload_burst <= 2'b01; // @ DCache.scala l501
       if(bypass_read) begin
-        dcache_ar_payload_addr <= biu_1_cpu_bypass_cmd_payload_addr; // @ DCache.scala l500
+        dcache_ar_payload_addr <= biu_1_cpu_bypass_cmd_payload_addr; // @ DCache.scala l504
       end else begin
         if(dcache_ar_fire_2) begin
-          dcache_ar_payload_addr <= (dcache_ar_payload_addr + 32'h00000008); // @ DCache.scala l502
+          dcache_ar_payload_addr <= (dcache_ar_payload_addr + 32'h00000008); // @ DCache.scala l506
         end
       end
       if(bypass_write) begin
-        dcache_aw_valid <= 1'b1; // @ DCache.scala l514
+        dcache_aw_valid <= 1'b1; // @ DCache.scala l518
       end else begin
         if(dcache_aw_fire) begin
-          dcache_aw_valid <= 1'b0; // @ DCache.scala l517
+          dcache_aw_valid <= 1'b0; // @ DCache.scala l521
         end
       end
-      dcache_aw_payload_id <= 2'b10; // @ DCache.scala l519
+      dcache_aw_payload_id <= 2'b10; // @ DCache.scala l523
       if(bypass_write) begin
-        dcache_aw_payload_len <= 8'h0; // @ DCache.scala l522
+        dcache_aw_payload_len <= 8'h0; // @ DCache.scala l526
       end
       if(bypass_write) begin
-        dcache_aw_payload_size <= biu_1_cpu_bypass_cmd_payload_size; // @ DCache.scala l526
+        dcache_aw_payload_size <= biu_1_cpu_bypass_cmd_payload_size; // @ DCache.scala l530
       end
-      dcache_aw_payload_burst <= 2'b01; // @ DCache.scala l528
+      dcache_aw_payload_burst <= 2'b01; // @ DCache.scala l532
       if(bypass_write) begin
-        dcache_aw_payload_addr <= biu_1_cpu_bypass_cmd_payload_addr; // @ DCache.scala l531
+        dcache_aw_payload_addr <= biu_1_cpu_bypass_cmd_payload_addr; // @ DCache.scala l535
       end
       if(bypass_write) begin
-        dcache_w_valid <= 1'b1; // @ DCache.scala l539
-        dcache_w_payload_data <= biu_1_cpu_bypass_cmd_payload_wdata; // @ DCache.scala l540
-        dcache_w_payload_strb <= biu_1_cpu_bypass_cmd_payload_wstrb; // @ DCache.scala l541
-        dcache_w_payload_last <= 1'b1; // @ DCache.scala l542
+        dcache_w_valid <= 1'b1; // @ DCache.scala l543
+        dcache_w_payload_data <= biu_1_cpu_bypass_cmd_payload_wdata; // @ DCache.scala l544
+        dcache_w_payload_strb <= biu_1_cpu_bypass_cmd_payload_wstrb; // @ DCache.scala l545
+        dcache_w_payload_last <= 1'b1; // @ DCache.scala l546
       end else begin
         if(dcache_w_fire) begin
-          dcache_w_valid <= 1'b0; // @ DCache.scala l545
+          dcache_w_valid <= 1'b0; // @ DCache.scala l549
         end
       end
       if((handshake_cnt == 1'b0)) begin
         if((dcache_aw_fire_1 && dcache_w_fire_1)) begin
-          handshake_cnt <= 1'b0; // @ DCache.scala l553
+          handshake_cnt <= 1'b0; // @ DCache.scala l557
         end else begin
           if((dcache_aw_fire_2 || dcache_w_fire_2)) begin
-            handshake_cnt <= 1'b1; // @ DCache.scala l555
+            handshake_cnt <= 1'b1; // @ DCache.scala l559
           end
         end
       end else begin
         if((handshake_cnt == 1'b1)) begin
           if((dcache_aw_fire_3 || dcache_w_fire_3)) begin
-            handshake_cnt <= 1'b0; // @ DCache.scala l560
+            handshake_cnt <= 1'b0; // @ DCache.scala l564
           end
         end
       end
@@ -2461,6 +2468,7 @@ module LSU (
   output     [7:0]    dcache_ports_cmd_wstrb,
   output     [2:0]    dcache_ports_cmd_size,
   input               dcache_ports_rsp_valid,
+  output              dcache_ports_rsp_ready,
   input      [63:0]   dcache_ports_rsp_data,
   input               clk,
   input               reset
@@ -3252,13 +3260,14 @@ module LSU (
   assign older_reg = 1'b0;
   assign lsu_src_fire_2 = (lsu_src_valid && lsu_src_ready); // @ BaseType.scala l305
   assign lsu_src_ready = dcache_stream_ready; // @ LSU.scala l231
-  assign dst_stream_valid = dcache_ports_rsp_valid; // @ LSU.scala l232
-  assign dst_stream_rd_data = (lsu_addr_is_timer ? timer_1_rdata : lsu_rdata); // @ LSU.scala l233
-  assign dst_stream_rd_wen = rd_wen_reg; // @ LSU.scala l234
-  assign dst_stream_rd_addr = rd_addr_reg; // @ LSU.scala l235
-  assign dst_stream_pc = pc_reg; // @ LSU.scala l236
-  assign dst_stream_instr = instr_reg; // @ LSU.scala l237
-  assign dst_stream_tail_adr = tail_adr_reg; // @ LSU.scala l238
+  assign dcache_ports_rsp_ready = dst_stream_ready; // @ LSU.scala l232
+  assign dst_stream_valid = dcache_ports_rsp_valid; // @ LSU.scala l233
+  assign dst_stream_rd_data = (lsu_addr_is_timer ? timer_1_rdata : lsu_rdata); // @ LSU.scala l234
+  assign dst_stream_rd_wen = rd_wen_reg; // @ LSU.scala l235
+  assign dst_stream_rd_addr = rd_addr_reg; // @ LSU.scala l236
+  assign dst_stream_pc = pc_reg; // @ LSU.scala l237
+  assign dst_stream_instr = instr_reg; // @ LSU.scala l238
+  assign dst_stream_tail_adr = tail_adr_reg; // @ LSU.scala l239
   always @(*) begin
     dst_stream_ready = dst_stream_m2sPipe_ready; // @ Stream.scala l367
     if((! dst_stream_m2sPipe_valid)) begin
@@ -20389,6 +20398,7 @@ module BIU (
   input      [7:0]    cpu_cmd_payload_wstrb,
   input      [2:0]    cpu_cmd_payload_size,
   output              cpu_rsp_valid,
+  input               cpu_rsp_ready,
   output     [63:0]   cpu_rsp_payload_data,
   output              cpu_bypass_cmd_valid,
   input               cpu_bypass_cmd_ready,
@@ -20398,6 +20408,7 @@ module BIU (
   output     [7:0]    cpu_bypass_cmd_payload_wstrb,
   output     [2:0]    cpu_bypass_cmd_payload_size,
   input               cpu_bypass_rsp_valid,
+  output              cpu_bypass_rsp_ready,
   input      [63:0]   cpu_bypass_rsp_payload_data,
   input               clk,
   input               reset
@@ -20407,46 +20418,47 @@ module BIU (
   wire                cpu_bypass_stall;
   reg                 cpu_cmd_ready_1;
   wire                bypass;
-  reg                 bypass_reg;
   reg                 bypass_rsp_valid_d1;
   reg        [63:0]   bypass_rsp_data_d1;
+  wire                cpu_rsp_fire;
+  wire                cpu_rsp_fire_1;
 
   assign bypass = (cpu_cmd_valid && cpu_cmd_ready); // @ BaseType.scala l305
-  assign cpu_bypass_cmd_valid = bypass; // @ DCache.scala l401
-  assign cpu_bypass_cmd_payload_addr = cpu_cmd_payload_addr; // @ DCache.scala l402
-  assign cpu_bypass_cmd_payload_wen = cpu_cmd_payload_wen; // @ DCache.scala l403
-  assign cpu_bypass_cmd_payload_wdata = cpu_cmd_payload_wdata; // @ DCache.scala l404
-  assign cpu_bypass_cmd_payload_wstrb = cpu_cmd_payload_wstrb; // @ DCache.scala l405
-  assign cpu_bypass_cmd_payload_size = cpu_cmd_payload_size; // @ DCache.scala l406
-  assign cpu_rsp_payload_data = bypass_rsp_data_d1; // @ DCache.scala l422
-  assign cpu_rsp_valid = bypass_rsp_valid_d1; // @ DCache.scala l423
-  assign cpu_cmd_ready = cpu_cmd_ready_1; // @ DCache.scala l424
-  assign stall = (((! cpu_cmd_ready) && (! bypass_rsp_valid_d1)) || bypass); // @ DCache.scala l425
+  assign cpu_bypass_cmd_valid = bypass; // @ DCache.scala l402
+  assign cpu_bypass_cmd_payload_addr = cpu_cmd_payload_addr; // @ DCache.scala l403
+  assign cpu_bypass_cmd_payload_wen = cpu_cmd_payload_wen; // @ DCache.scala l404
+  assign cpu_bypass_cmd_payload_wdata = cpu_cmd_payload_wdata; // @ DCache.scala l405
+  assign cpu_bypass_cmd_payload_wstrb = cpu_cmd_payload_wstrb; // @ DCache.scala l406
+  assign cpu_bypass_cmd_payload_size = cpu_cmd_payload_size; // @ DCache.scala l407
+  assign cpu_rsp_fire = (cpu_rsp_valid && cpu_rsp_ready); // @ BaseType.scala l305
+  assign cpu_rsp_fire_1 = (cpu_rsp_valid && cpu_rsp_ready); // @ BaseType.scala l305
+  assign cpu_bypass_rsp_ready = cpu_rsp_ready; // @ DCache.scala l425
+  assign cpu_rsp_payload_data = bypass_rsp_data_d1; // @ DCache.scala l426
+  assign cpu_rsp_valid = bypass_rsp_valid_d1; // @ DCache.scala l427
+  assign cpu_cmd_ready = cpu_cmd_ready_1; // @ DCache.scala l428
+  assign stall = (((! cpu_cmd_ready) && (! bypass_rsp_valid_d1)) || bypass); // @ DCache.scala l429
   always @(posedge clk or posedge reset) begin
     if(reset) begin
       cpu_cmd_ready_1 <= 1'b1; // @ Data.scala l400
-      bypass_reg <= 1'b0; // @ Data.scala l400
+      bypass_rsp_valid_d1 <= 1'b0; // @ Data.scala l400
+      bypass_rsp_data_d1 <= 64'h0; // @ Data.scala l400
     end else begin
       if(bypass) begin
-        bypass_reg <= 1'b1; // @ DCache.scala l408
+        cpu_cmd_ready_1 <= 1'b0; // @ DCache.scala l411
       end else begin
-        if(bypass_rsp_valid_d1) begin
-          bypass_reg <= 1'b0; // @ DCache.scala l411
+        if(cpu_rsp_fire) begin
+          cpu_cmd_ready_1 <= 1'b1; // @ DCache.scala l414
         end
       end
-      if(bypass) begin
-        cpu_cmd_ready_1 <= 1'b0; // @ DCache.scala l416
+      if(cpu_rsp_fire_1) begin
+        bypass_rsp_valid_d1 <= 1'b0; // @ DCache.scala l418
       end else begin
-        if(bypass_rsp_valid_d1) begin
-          cpu_cmd_ready_1 <= 1'b1; // @ DCache.scala l419
+        if(cpu_bypass_rsp_valid) begin
+          bypass_rsp_valid_d1 <= 1'b1; // @ DCache.scala l421
+          bypass_rsp_data_d1 <= cpu_bypass_rsp_payload_data; // @ DCache.scala l422
         end
       end
     end
-  end
-
-  always @(posedge clk) begin
-    bypass_rsp_valid_d1 <= cpu_bypass_rsp_valid; // @ Reg.scala l39
-    bypass_rsp_data_d1 <= cpu_bypass_rsp_payload_data; // @ Reg.scala l39
   end
 
 
@@ -24674,6 +24686,12 @@ module Sram_2ports (
   reg [7:0] tmp_memsymbol_read_7;
 
   assign tmp_mem_port = (ports_0_cmd_valid && ports_0_cmd_wen);
+  initial begin
+    $readmemb("Tulip.v_toplevel_icache_sram_4_mem_symbol0.bin",mem_symbol0);
+    $readmemb("Tulip.v_toplevel_icache_sram_4_mem_symbol1.bin",mem_symbol1);
+    $readmemb("Tulip.v_toplevel_icache_sram_4_mem_symbol2.bin",mem_symbol2);
+    $readmemb("Tulip.v_toplevel_icache_sram_4_mem_symbol3.bin",mem_symbol3);
+  end
   always @(*) begin
     tmp_mem_port1 = {tmp_memsymbol_read_3, tmp_memsymbol_read_2, tmp_memsymbol_read_1, tmp_memsymbol_read};
   end

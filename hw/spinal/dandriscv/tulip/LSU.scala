@@ -229,6 +229,7 @@ case class LSU() extends Component {
   }
 
   lsu_src.ready      := dcache_stream.ready
+  dcache_ports.rsp.ready := dst_stream.ready
   dst_stream.valid   := dcache_ports.rsp.valid
   dst_stream.rd_data := lsu_addr_is_timer ? timer_rdata | lsu_rdata
   dst_stream.rd_wen  := rd_wen_reg
