@@ -212,26 +212,21 @@ case class LSU() extends Component {
   val pc_reg       = Reg(UInt(32 bits)) init(0)
   val instr_reg    = Reg(Bits(32 bits)) init(0)
   val tail_adr_reg = Reg(UInt(3 bits)) init(0)
+  val is_timer_reg = Reg(Bool()) init(false)
 
-  when(flush){
-    rd_wen_reg   := False
-    rd_addr_reg  := 0
-    pc_reg       := 0
-    instr_reg    := 0
-    tail_adr_reg := 0
-  }
-  .elsewhen(lsu_src.fire){
+  when(lsu_src.fire){
     rd_wen_reg   := lsu_src.uop_com.rd_wen
     rd_addr_reg  := lsu_src.rd_addr
     pc_reg       := lsu_src.pc
     instr_reg    := lsu_src.instr
     tail_adr_reg := lsu_src.tail_adr
+    is_timer_reg := lsu_addr_is_timer
   }
 
   lsu_src.ready      := dcache_stream.ready
   dcache_ports.rsp.ready := dst_stream.ready
   dst_stream.valid   := dcache_ports.rsp.valid
-  dst_stream.rd_data := lsu_addr_is_timer ? timer_rdata | lsu_rdata
+  dst_stream.rd_data := is_timer_reg ? timer_rdata | lsu_rdata
   dst_stream.rd_wen  := rd_wen_reg
   dst_stream.rd_addr := rd_addr_reg
   dst_stream.pc      := pc_reg

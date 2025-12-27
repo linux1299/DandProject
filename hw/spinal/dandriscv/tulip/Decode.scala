@@ -112,7 +112,7 @@ case class DecodeComb() extends Component {
   val alu_sltu= sltu || slti
   val alu_xor = xor  || xori
   val alu_sll = sll  || slli || sllw || slliw
-  val alu_srl = srl  || srli || srlw || slliw
+  val alu_srl = srl  || srli || srlw || srliw
   val alu_sra = sra  || srai || sraw || sraiw
   val alu_and = and  || andi
   val alu_or  = or   || ori

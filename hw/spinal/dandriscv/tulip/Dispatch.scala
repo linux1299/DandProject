@@ -28,6 +28,10 @@ case class Dispatch() extends Component{
   val commit_fifo_ready = in Bool()
   val tail_adr_older= in UInt(3 bits)
   val tail_adr_newer= in UInt(3 bits)
+  val al1_flush = in Bool()
+  val al2_flush = in Bool()
+  val div_flush = in Bool()
+  val lsu_flush = in Bool()
   
 
   // =============== Entries of Dispatch =================
@@ -86,7 +90,7 @@ case class Dispatch() extends Component{
   src2_valid(0) := (entry.arf(rs2_addr(0)) && !entry.exe(rs2_addr(0)) && !entry.wbc(rs2_addr(0)) && !entry.ret(rs2_addr(0))) ||
                    (entry.wbc(rs2_addr(0)) && entry.wbc_fire(rs2_addr(0)) && !entry.exe(rs2_addr(0))) ||
                    (entry.ret(rs2_addr(0)) && !entry.exe(rs2_addr(0)) && !entry.wbc(rs2_addr(0))) ||
-                    dis_src(0).iss_pkg.micro_op.uop_com.src2_is_imm
+                   (dis_src(0).iss_pkg.micro_op.uop_lsu.lsu_is_store ? False | dis_src(0).iss_pkg.micro_op.uop_com.src2_is_imm)
 
   src1_valid(1) := (rs1_addr(1) =/= rd_addr(0) || !dis_src(0).valid) &&
                     ((entry.arf(rs1_addr(1)) && !entry.exe(rs1_addr(1)) && !entry.wbc(rs1_addr(1)) && !entry.ret(rs1_addr(1))) ||
@@ -98,7 +102,7 @@ case class Dispatch() extends Component{
                     ( (entry.arf(rs2_addr(1)) && !entry.exe(rs2_addr(1)) && !entry.wbc(rs2_addr(1)) && !entry.ret(rs2_addr(1)))  ||
                       (entry.wbc(rs2_addr(1)) && entry.wbc_fire(rs2_addr(1)) && !entry.exe(rs2_addr(1)))  ||
                       (entry.ret(rs2_addr(1)) && !entry.exe(rs2_addr(1)) && !entry.wbc(rs2_addr(1))))) ||
-                      dis_src(1).iss_pkg.micro_op.uop_com.src2_is_imm
+                      (dis_src(1).iss_pkg.micro_op.uop_lsu.lsu_is_store ? False | dis_src(1).iss_pkg.micro_op.uop_com.src2_is_imm)
 
   exe_sel_valid(0) := dis_src(0).exe_sel_oh & 
                       B(5 bits, default -> src1_valid(0)) & 
@@ -153,11 +157,11 @@ case class Dispatch() extends Component{
     entry.dis_fire(i) := dis_src(0).fire && dis_src(0).iss_pkg.micro_op.uop_com.rd_wen && dis_src(0).iss_pkg.rd_addr===U(i) ||
                          dis_src(1).fire && dis_src(1).iss_pkg.micro_op.uop_com.rd_wen && dis_src(1).iss_pkg.rd_addr===U(i)
 
-    entry.exe_fire(i) := dis_to_bju.fire && dis_to_bju.uop_com.rd_wen && dis_to_bju.rd_addr===U(i) ||
-                         dis_to_al1.fire && dis_to_al1.uop_com.rd_wen && dis_to_al1.rd_addr===U(i) ||
-                         dis_to_al2.fire && dis_to_al2.uop_com.rd_wen && dis_to_al2.rd_addr===U(i) ||
-                         dis_to_div.fire && dis_to_div.uop_com.rd_wen && dis_to_div.rd_addr===U(i) ||
-                         dis_to_lsu.fire && dis_to_lsu.uop_com.rd_wen && dis_to_lsu.rd_addr===U(i)
+    entry.exe_fire(i) := dis_to_bju.fire && dis_to_bju.uop_com.rd_wen && dis_to_bju.rd_addr===U(i)               ||
+                         dis_to_al1.fire && dis_to_al1.uop_com.rd_wen && dis_to_al1.rd_addr===U(i) && !al1_flush ||
+                         dis_to_al2.fire && dis_to_al2.uop_com.rd_wen && dis_to_al2.rd_addr===U(i) && !al2_flush ||
+                         dis_to_div.fire && dis_to_div.uop_com.rd_wen && dis_to_div.rd_addr===U(i) && !div_flush ||
+                         dis_to_lsu.fire && dis_to_lsu.uop_com.rd_wen && dis_to_lsu.rd_addr===U(i) && !lsu_flush
     
     entry.wbc_fire(i) := wbc_rd_wen(0) && wbc_rd_addr(0)===U(i) ||
                          wbc_rd_wen(1) && wbc_rd_addr(1)===U(i) ||

@@ -22,6 +22,7 @@ case class BJU_kernel() extends Component {
   val branch_pc      = in UInt(32 bits)
   val redirect_valid = out Bool()
   val redirect_pc    = out UInt(32 bits)
+  val branch_valid   = out Bool()
   // for BPU train
   val train_valid   = out Bool()
   val train_pc      = out UInt(32 bits)
@@ -86,6 +87,7 @@ case class BJU_kernel() extends Component {
   }.otherwise{
     pc_next := ((pc.asSInt + imm.asSInt).asUInt).resized // jal or branch
   }
+
   // redirect if predict wrong
   redirect_valid := False
   redirect_pc := 0
@@ -103,6 +105,10 @@ case class BJU_kernel() extends Component {
       }
     }
   }
+
+  // predict correct, branch taken
+  branch_valid := in_valid && real_taken && branch_taken && (branch_pc===pc_next)
+
   // call or return
   when(jal){
     when(rd_is_link){
@@ -223,6 +229,7 @@ case class BJU() extends Component {
   val bju_dst        = master(Stream(ExeDst()))
   val redirect_valid = out Bool()
   val redirect_pc    = out UInt(32 bits)
+  val branch_valid   = out Bool()
   // for BPU train
   val train_valid    = out Bool()
   val train_pc       = out UInt(32 bits)
@@ -265,6 +272,7 @@ case class BJU() extends Component {
   interrupt_valid         := bju_kernel.interrupt_valid
   interrupt_pc            := bju_kernel.interrupt_pc
   bju_kernel.timer_int    := timer_int
+  branch_valid            := bju_kernel.branch_valid
 
   // =================== output ===================
   bju_src.ready      := dst_stream.ready

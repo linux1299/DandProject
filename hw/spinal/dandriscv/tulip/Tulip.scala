@@ -94,7 +94,9 @@ case class Tulip() extends Component {
   // val dcache = new DCacheTop(dcache_config, dcache_axi_config)
   val dcache = new BIUTop(dcache_config, dcache_axi_config)
 
-  val change_flow = bju_0.interrupt_valid || bju_0.redirect_valid
+  // ================= Top Signals ===============
+  val change_flow  = bju_0.interrupt_valid || bju_0.redirect_valid
+  val branch_valid = bju_0.branch_valid
 
   // ================= Fetch ===============
   fetch.flush             := change_flow
@@ -139,7 +141,7 @@ case class Tulip() extends Component {
   dispat.tail_adr_older      := commit.tail_adr_older
   dispat.tail_adr_newer      := commit.tail_adr_newer
   dispat.dis_src(0) << issue.iss_dst(0).throwWhen(change_flow).haltWhen(commit.dis_stall)
-  dispat.dis_src(1) << issue.iss_dst(1).throwWhen(change_flow).haltWhen(commit.dis_stall)
+  dispat.dis_src(1) << issue.iss_dst(1).throwWhen(change_flow || branch_valid).haltWhen(commit.dis_stall || (issue.iss_dst(0).valid && issue.iss_dst(0).iss_pkg.exe_sel===ExeSelEnum.BJU))
 
   dispat.wbc_rd_wen(0) := bju_0.bju_dst.fire && bju_0.bju_dst.rd_wen
   dispat.wbc_rd_wen(1) := alu_1.alu_dst.fire && alu_1.alu_dst.rd_wen && !commit.flush_al1
@@ -168,6 +170,8 @@ case class Tulip() extends Component {
   dispat.ret_rd_data(0) := commit.wbc_dst(0).rd_data
   dispat.ret_rd_data(1) := commit.wbc_dst(1).rd_data
 
+
+
   // =============== regfile ===============
   regfile.read_0 <> dispat.read_regfile(0)
   regfile.read_1 <> dispat.read_regfile(1)
@@ -180,28 +184,41 @@ case class Tulip() extends Component {
 
 
   // ================= BJU ===============
+  val bju_to_head_distance = bju_0.bju_src.tail_adr - commit.head_adr_out
   bju_0.bju_src        << dispat.dis_to_bju
   bju_0.timer_int      := lsu_4.timer_int
 
   // ================= ALU 1 ===============
-  alu_1.alu_src   << dispat.dis_to_al1.throwWhen(commit.flush)
+  val al1_to_head_distance = alu_1.alu_src.tail_adr - commit.head_adr_out
+  val al1_branch_flush     = branch_valid && (al1_to_head_distance > bju_to_head_distance)
+  val al1_flush            = commit.flush || al1_branch_flush
+  alu_1.alu_src   << dispat.dis_to_al1.throwWhen(al1_flush)
 
-  // ================= ALU 1 ===============
-  alu_2.alu_src   << dispat.dis_to_al2.throwWhen(commit.flush)
+  // ================= ALU 2 ===============
+  val al2_to_head_distance = alu_2.alu_src.tail_adr - commit.head_adr_out
+  val al2_branch_flush     = branch_valid && (al2_to_head_distance > bju_to_head_distance)
+  val al2_flush            = commit.flush || al2_branch_flush
+  alu_2.alu_src   << dispat.dis_to_al2.throwWhen(al2_flush)
 
   // ================= DIV ===============
-  div_3.flush     := commit.flush
-  div_3.div_src   << dispat.dis_to_div.throwWhen(commit.flush)
+  val div_to_head_distance = div_3.div_src.tail_adr - commit.head_adr_out
+  val div_branch_flush     = branch_valid && (div_to_head_distance > bju_to_head_distance)
+  div_3.flush     := commit.flush || div_branch_flush
+  div_3.div_src   << dispat.dis_to_div.throwWhen(div_3.flush)
 
   // ================= LSU ===============
   val lsu_to_head_distance = lsu_4.lsu_src.tail_adr - commit.head_adr_out
-  val bju_to_head_distance = bju_0.bju_src.tail_adr - commit.head_adr_out
-  lsu_4.flush            := change_flow && (lsu_to_head_distance > bju_to_head_distance)
+  lsu_4.flush            := (change_flow || branch_valid) && (lsu_to_head_distance > bju_to_head_distance)
   lsu_4.lsu_src          << dispat.dis_to_lsu.throwWhen(lsu_4.flush)
   lsu_4.dcache_ports.rsp << dcache.dcache_src.rsp
 
+  dispat.al1_flush := al1_flush
+  dispat.al2_flush := al2_flush
+  dispat.div_flush := div_3.flush
+  dispat.lsu_flush := lsu_4.flush
+
   // ================= Commit ===============
-  commit.change_flow := change_flow
+  commit.change_flow     := (change_flow || branch_valid)
   commit.change_flow_adr := bju_0.bju_src.tail_adr
   commit.wbc_src(0) << bju_0.bju_dst
   commit.wbc_src(1) << alu_1.alu_dst.throwWhen(commit.flush_al1)
