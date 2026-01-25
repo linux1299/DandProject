@@ -194,6 +194,10 @@ case class Fetch_kernel(resetVector : BigInt) extends Component {
   // send cmd to icache_ports
   icache_ports.cmd.addr  := pc
 
+  // ==================== perf cnt =============================
+  val fetch_stall_cnt = Reg(UInt(32 bits)) init(0)
+  when(icache_ports.cmd.isStall || !fifo_all_ready) {fetch_stall_cnt := fetch_stall_cnt + 1}
+
 }
 
 case class Fetch(resetVector : BigInt) extends Component {
@@ -260,6 +264,8 @@ case class Fetch(resetVector : BigInt) extends Component {
     predict_jal    := fetch.predict_jal
     predict_branch := fetch.predict_branch
   }
+
+  
   
   StreamRenameUtil(this)
 }

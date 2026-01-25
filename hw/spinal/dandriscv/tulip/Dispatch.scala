@@ -31,7 +31,6 @@ case class Dispatch() extends Component{
   val al1_flush = in Bool()
   val al2_flush = in Bool()
   val div_flush = in Bool()
-  val lsu_flush = in Bool()
   
 
   // =============== Entries of Dispatch =================
@@ -161,7 +160,7 @@ case class Dispatch() extends Component{
                          dis_to_al1.fire && dis_to_al1.uop_com.rd_wen && dis_to_al1.rd_addr===U(i) && !al1_flush ||
                          dis_to_al2.fire && dis_to_al2.uop_com.rd_wen && dis_to_al2.rd_addr===U(i) && !al2_flush ||
                          dis_to_div.fire && dis_to_div.uop_com.rd_wen && dis_to_div.rd_addr===U(i) && !div_flush ||
-                         dis_to_lsu.fire && dis_to_lsu.uop_com.rd_wen && dis_to_lsu.rd_addr===U(i) && !lsu_flush
+                         dis_to_lsu.fire && dis_to_lsu.uop_com.rd_wen && dis_to_lsu.rd_addr===U(i)
     
     entry.wbc_fire(i) := wbc_rd_wen(0) && wbc_rd_addr(0)===U(i) ||
                          wbc_rd_wen(1) && wbc_rd_addr(1)===U(i) ||
@@ -231,7 +230,7 @@ case class Dispatch() extends Component{
   }
 
   // =================== Output ===================
-  dis_src(0).ready :=    ((exe_sel_valid(0)(0) && exe_stream(0).ready) ||
+  dis_src(0).ready :=   ((exe_sel_valid(0)(0) && exe_stream(0).ready) ||
                          (exe_sel_valid(0)(1) && exe_stream(1).ready) ||
                          (exe_sel_valid(0)(2) && exe_stream(2).ready) ||
                          (exe_sel_valid(0)(3) && exe_stream(3).ready) ||

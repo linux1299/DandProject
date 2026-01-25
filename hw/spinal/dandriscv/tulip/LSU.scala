@@ -47,7 +47,6 @@ case class LSU() extends Component {
   import CSR._
 
   // =================== IO ===================
-  val flush        = in Bool()
   val timer_int    = out Bool()
   val lsu_src      = slave(Stream(ExeSrc("LSU")))
   val lsu_dst      = master(Stream(ExeDst()))

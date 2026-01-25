@@ -208,14 +208,12 @@ case class Tulip() extends Component {
 
   // ================= LSU ===============
   val lsu_to_head_distance = lsu_4.lsu_src.tail_adr - commit.head_adr_out
-  lsu_4.flush            := (change_flow || branch_valid) && (lsu_to_head_distance > bju_to_head_distance)
-  lsu_4.lsu_src          << dispat.dis_to_lsu.throwWhen(lsu_4.flush)
+  lsu_4.lsu_src          << dispat.dis_to_lsu.throwWhen((change_flow || branch_valid) && (lsu_to_head_distance > bju_to_head_distance)).haltWhen(dispat.dis_to_bju.valid && ((lsu_to_head_distance > bju_to_head_distance)))
   lsu_4.dcache_ports.rsp << dcache.dcache_src.rsp
 
   dispat.al1_flush := al1_flush
   dispat.al2_flush := al2_flush
   dispat.div_flush := div_3.flush
-  dispat.lsu_flush := lsu_4.flush
 
   // ================= Commit ===============
   commit.change_flow     := (change_flow || branch_valid)
