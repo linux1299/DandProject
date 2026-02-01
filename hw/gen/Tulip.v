@@ -1,6 +1,6 @@
 // Generator : SpinalHDL v1.8.1    git head : 2a7592004363e5b40ec43e1f122ed8641cd8965b
 // Component : Tulip
-// Git hash  : a45be909617996ea52fa788b77a27d40eeca6ea0
+// Git hash  : ae6b7b256d603373434da4775fed92433ab666d1
 
 `timescale 1ns/1ps
 
@@ -52,6 +52,11 @@ module Tulip (
   input               clk,
   input               reset
 );
+  localparam ExeSelEnum_IDLE = 3'd0;
+  localparam ExeSelEnum_ALU = 3'd1;
+  localparam ExeSelEnum_BJU = 3'd2;
+  localparam ExeSelEnum_LSU = 3'd3;
+  localparam ExeSelEnum_DIV = 3'd4;
   localparam AluCtrlEnum_IDLE = 5'd0;
   localparam AluCtrlEnum_ADD = 5'd1;
   localparam AluCtrlEnum_SUB = 5'd2;
@@ -110,11 +115,6 @@ module Tulip (
   localparam LsuCtrlEnum_SH = 4'd9;
   localparam LsuCtrlEnum_SW = 4'd10;
   localparam LsuCtrlEnum_SD = 4'd11;
-  localparam ExeSelEnum_IDLE = 3'd0;
-  localparam ExeSelEnum_ALU = 3'd1;
-  localparam ExeSelEnum_BJU = 3'd2;
-  localparam ExeSelEnum_LSU = 3'd3;
-  localparam ExeSelEnum_DIV = 3'd4;
 
   reg                 fetch_1_fch_dst_0_ready;
   reg                 fetch_1_fch_dst_1_ready;
@@ -122,8 +122,6 @@ module Tulip (
   reg                 issue_1_iss_dst_1_ready;
   wire                dispat_dis_src_0_valid;
   wire                dispat_dis_src_1_valid;
-  reg                 dispat_dis_to_al1_ready;
-  reg                 dispat_dis_to_al2_ready;
   reg                 dispat_dis_to_div_ready;
   reg                 dispat_dis_to_lsu_ready;
   wire                dispat_wbc_rd_wen_0;
@@ -135,10 +133,8 @@ module Tulip (
   wire                dispat_ret_rd_wen_1;
   wire                regfile_1_write_0_rd_wen;
   wire                regfile_1_write_1_rd_wen;
-  wire                commit_1_change_flow;
   reg                 alu_1_1_alu_dst_ready;
   reg                 alu_2_alu_dst_ready;
-  wire                div_3_flush;
   reg                 div_3_div_dst_ready;
   wire                lsu_4_lsu_src_valid;
   reg                 lsu_4_lsu_dst_ready;
@@ -156,9 +152,6 @@ module Tulip (
   wire       [31:0]   fetch_1_fch_dst_1_branch_pc;
   wire                fetch_1_fch_dst_1_branch_taken;
   wire       [31:0]   fetch_1_fch_dst_1_instr;
-  wire       [63:0]   fetch_1_predict_imm;
-  wire                fetch_1_predict_jal;
-  wire                fetch_1_predict_branch;
   wire                icache_icache_src_cmd_ready;
   wire                icache_icache_src_rsp_valid;
   wire       [63:0]   icache_icache_src_rsp_data;
@@ -462,7 +455,11 @@ module Tulip (
   wire                dcache_dcache_w_payload_last;
   wire                dcache_dcache_b_ready;
   wire                tmp_when;
-  wire                tmp_when_1;
+  wire       [31:0]   tmp_instr_cnt;
+  wire       [31:0]   tmp_instr_cnt_1;
+  wire       [0:0]    tmp_instr_cnt_2;
+  wire       [31:0]   tmp_instr_cnt_3;
+  wire       [0:0]    tmp_instr_cnt_4;
   wire                change_flow;
   reg                 toplevel_fetch_1_fch_dst_0_thrown_valid;
   wire                toplevel_fetch_1_fch_dst_0_thrown_ready;
@@ -476,6 +473,7 @@ module Tulip (
   wire       [31:0]   toplevel_fetch_1_fch_dst_1_thrown_payload_branch_pc;
   wire                toplevel_fetch_1_fch_dst_1_thrown_payload_branch_taken;
   wire       [31:0]   toplevel_fetch_1_fch_dst_1_thrown_payload_instr;
+  wire                issue_bju_stall;
   reg                 toplevel_issue_1_iss_dst_0_thrown_valid;
   wire                toplevel_issue_1_iss_dst_0_thrown_ready;
   wire                toplevel_issue_1_iss_dst_0_thrown_payload_iss_pkg_micro_op_uop_com_rd_wen;
@@ -550,36 +548,8 @@ module Tulip (
   wire                toplevel_commit_1_wbc_dst_0_fire_1;
   wire                toplevel_commit_1_wbc_dst_1_fire_1;
   wire       [2:0]    bju_to_head_distance;
-  wire       [2:0]    al1_to_head_distance;
-  wire                al1_branch_flush;
   wire                al1_flush;
-  reg                 toplevel_dispat_dis_to_al1_thrown_valid;
-  wire                toplevel_dispat_dis_to_al1_thrown_ready;
-  wire                toplevel_dispat_dis_to_al1_thrown_payload_uop_com_rd_wen;
-  wire                toplevel_dispat_dis_to_al1_thrown_payload_uop_com_src2_is_imm;
-  wire       [63:0]   toplevel_dispat_dis_to_al1_thrown_payload_src1_data;
-  wire       [63:0]   toplevel_dispat_dis_to_al1_thrown_payload_src2_data;
-  wire       [4:0]    toplevel_dispat_dis_to_al1_thrown_payload_rd_addr;
-  wire       [31:0]   toplevel_dispat_dis_to_al1_thrown_payload_pc;
-  wire       [31:0]   toplevel_dispat_dis_to_al1_thrown_payload_instr;
-  wire       [2:0]    toplevel_dispat_dis_to_al1_thrown_payload_tail_adr;
-  wire       [4:0]    toplevel_dispat_dis_to_al1_thrown_payload_uop_alu_alu_ctrl_op;
-  wire                toplevel_dispat_dis_to_al1_thrown_payload_uop_alu_alu_is_word;
-  wire       [2:0]    al2_to_head_distance;
-  wire                al2_branch_flush;
   wire                al2_flush;
-  reg                 toplevel_dispat_dis_to_al2_thrown_valid;
-  wire                toplevel_dispat_dis_to_al2_thrown_ready;
-  wire                toplevel_dispat_dis_to_al2_thrown_payload_uop_com_rd_wen;
-  wire                toplevel_dispat_dis_to_al2_thrown_payload_uop_com_src2_is_imm;
-  wire       [63:0]   toplevel_dispat_dis_to_al2_thrown_payload_src1_data;
-  wire       [63:0]   toplevel_dispat_dis_to_al2_thrown_payload_src2_data;
-  wire       [4:0]    toplevel_dispat_dis_to_al2_thrown_payload_rd_addr;
-  wire       [31:0]   toplevel_dispat_dis_to_al2_thrown_payload_pc;
-  wire       [31:0]   toplevel_dispat_dis_to_al2_thrown_payload_instr;
-  wire       [2:0]    toplevel_dispat_dis_to_al2_thrown_payload_tail_adr;
-  wire       [4:0]    toplevel_dispat_dis_to_al2_thrown_payload_uop_alu_alu_ctrl_op;
-  wire                toplevel_dispat_dis_to_al2_thrown_payload_uop_alu_alu_is_word;
   wire       [2:0]    div_to_head_distance;
   wire                div_branch_flush;
   reg                 toplevel_dispat_dis_to_div_thrown_valid;
@@ -595,6 +565,8 @@ module Tulip (
   wire       [4:0]    toplevel_dispat_dis_to_div_thrown_payload_uop_alu_alu_ctrl_op;
   wire                toplevel_dispat_dis_to_div_thrown_payload_uop_alu_alu_is_word;
   wire       [2:0]    lsu_to_head_distance;
+  wire                lsu_stall;
+  wire                lsu_flush;
   reg                 toplevel_dispat_dis_to_lsu_thrown_valid;
   wire                toplevel_dispat_dis_to_lsu_thrown_ready;
   wire                toplevel_dispat_dis_to_lsu_thrown_payload_uop_com_rd_wen;
@@ -645,6 +617,39 @@ module Tulip (
   wire       [2:0]    toplevel_lsu_4_lsu_dst_thrown_payload_tail_adr;
   wire                toplevel_dispat_dis_src_0_fire;
   wire                toplevel_dispat_dis_src_1_fire;
+  reg        [31:0]   cycle_cnt;
+  reg        [31:0]   instr_cnt;
+  reg        [31:0]   dispatch_stall_cnt;
+  reg        [31:0]   change_flow_cnt;
+  reg        [31:0]   issue_bju_stall_cnt;
+  reg        [31:0]   bju_instr_cnt;
+  reg        [31:0]   fetch_dst0_valid_duty_cycle;
+  reg        [31:0]   fetch_dst1_valid_duty_cycle;
+  reg        [31:0]   fetch_dst0_ready_duty_cycle;
+  reg        [31:0]   fetch_dst1_ready_duty_cycle;
+  reg        [31:0]   fetch_dst0_fire_duty_cycle;
+  reg        [31:0]   fetch_dst1_fire_duty_cycle;
+  reg        [31:0]   issue_dst0_valid_duty_cycle;
+  reg        [31:0]   issue_dst1_valid_duty_cycle;
+  reg        [31:0]   issue_dst0_ready_duty_cycle;
+  reg        [31:0]   issue_dst1_ready_duty_cycle;
+  reg        [31:0]   issue_dst0_fire_duty_cycle;
+  reg        [31:0]   issue_dst1_fire_duty_cycle;
+  reg        [31:0]   dispatch_src0_valid_duty_cycle;
+  reg        [31:0]   dispatch_src1_valid_duty_cycle;
+  reg        [31:0]   dispatch_src0_ready_duty_cycle;
+  reg        [31:0]   dispatch_src1_ready_duty_cycle;
+  reg        [31:0]   dispatch_src0_fire_duty_cycle;
+  reg        [31:0]   dispatch_src1_fire_duty_cycle;
+  wire                toplevel_commit_1_wbc_dst_0_fire_2;
+  wire                toplevel_commit_1_wbc_dst_1_fire_2;
+  wire                toplevel_bju_0_bju_dst_fire_1;
+  wire                toplevel_fetch_1_fch_dst_0_fire;
+  wire                toplevel_fetch_1_fch_dst_1_fire;
+  wire                toplevel_issue_1_iss_dst_0_fire;
+  wire                toplevel_issue_1_iss_dst_1_fire;
+  wire                toplevel_dispat_dis_src_0_fire_1;
+  wire                toplevel_dispat_dis_src_1_fire_1;
   `ifndef SYNTHESIS
   reg [47:0] toplevel_issue_1_iss_dst_0_thrown_payload_iss_pkg_micro_op_uop_alu_alu_ctrl_op_string;
   reg [39:0] toplevel_issue_1_iss_dst_0_thrown_payload_iss_pkg_micro_op_uop_bju_bju_ctrl_op_string;
@@ -666,8 +671,6 @@ module Tulip (
   reg [47:0] tmp_dis_src_1_iss_pkg_micro_op_uop_bju_exp_ctrl_op_string;
   reg [31:0] tmp_dis_src_1_iss_pkg_micro_op_uop_lsu_lsu_ctrl_op_string;
   reg [31:0] tmp_dis_src_1_iss_pkg_exe_sel_string;
-  reg [47:0] toplevel_dispat_dis_to_al1_thrown_payload_uop_alu_alu_ctrl_op_string;
-  reg [47:0] toplevel_dispat_dis_to_al2_thrown_payload_uop_alu_alu_ctrl_op_string;
   reg [47:0] toplevel_dispat_dis_to_div_thrown_payload_uop_alu_alu_ctrl_op_string;
   reg [31:0] toplevel_dispat_dis_to_lsu_thrown_payload_uop_lsu_lsu_ctrl_op_string;
   reg [31:0] tmp_lsu_src_uop_lsu_lsu_ctrl_op_string;
@@ -675,7 +678,11 @@ module Tulip (
 
 
   assign tmp_when = (change_flow || bju_0_branch_valid);
-  assign tmp_when_1 = ((change_flow || bju_0_branch_valid) && (bju_to_head_distance < lsu_to_head_distance));
+  assign tmp_instr_cnt = (instr_cnt + tmp_instr_cnt_1);
+  assign tmp_instr_cnt_2 = toplevel_commit_1_wbc_dst_0_fire_2;
+  assign tmp_instr_cnt_1 = {31'd0, tmp_instr_cnt_2};
+  assign tmp_instr_cnt_4 = toplevel_commit_1_wbc_dst_1_fire_2;
+  assign tmp_instr_cnt_3 = {31'd0, tmp_instr_cnt_4};
   Fetch fetch_1 (
     .flush                  (change_flow                        ), //i
     .interrupt_vld          (bju_0_interrupt_valid              ), //i
@@ -703,9 +710,6 @@ module Tulip (
     .fch_dst_1_branch_pc    (fetch_1_fch_dst_1_branch_pc[31:0]  ), //o
     .fch_dst_1_branch_taken (fetch_1_fch_dst_1_branch_taken     ), //o
     .fch_dst_1_instr        (fetch_1_fch_dst_1_instr[31:0]      ), //o
-    .predict_imm            (fetch_1_predict_imm[63:0]          ), //o
-    .predict_jal            (fetch_1_predict_jal                ), //o
-    .predict_branch         (fetch_1_predict_branch             ), //o
     .clk                    (clk                                ), //i
     .reset                  (reset                              )  //i
   );
@@ -996,7 +1000,7 @@ module Tulip (
     .dis_to_bju_branch_pc                               (dispat_dis_to_bju_branch_pc[31:0]                                                    ), //o
     .dis_to_bju_branch_taken                            (dispat_dis_to_bju_branch_taken                                                       ), //o
     .dis_to_al1_valid                                   (dispat_dis_to_al1_valid                                                              ), //o
-    .dis_to_al1_ready                                   (dispat_dis_to_al1_ready                                                              ), //i
+    .dis_to_al1_ready                                   (alu_1_1_alu_src_ready                                                                ), //i
     .dis_to_al1_uop_com_rd_wen                          (dispat_dis_to_al1_uop_com_rd_wen                                                     ), //o
     .dis_to_al1_uop_com_src2_is_imm                     (dispat_dis_to_al1_uop_com_src2_is_imm                                                ), //o
     .dis_to_al1_src1_data                               (dispat_dis_to_al1_src1_data[63:0]                                                    ), //o
@@ -1008,7 +1012,7 @@ module Tulip (
     .dis_to_al1_uop_alu_alu_ctrl_op                     (dispat_dis_to_al1_uop_alu_alu_ctrl_op[4:0]                                           ), //o
     .dis_to_al1_uop_alu_alu_is_word                     (dispat_dis_to_al1_uop_alu_alu_is_word                                                ), //o
     .dis_to_al2_valid                                   (dispat_dis_to_al2_valid                                                              ), //o
-    .dis_to_al2_ready                                   (dispat_dis_to_al2_ready                                                              ), //i
+    .dis_to_al2_ready                                   (alu_2_alu_src_ready                                                                  ), //i
     .dis_to_al2_uop_com_rd_wen                          (dispat_dis_to_al2_uop_com_rd_wen                                                     ), //o
     .dis_to_al2_uop_com_src2_is_imm                     (dispat_dis_to_al2_uop_com_src2_is_imm                                                ), //o
     .dis_to_al2_src1_data                               (dispat_dis_to_al2_src1_data[63:0]                                                    ), //o
@@ -1079,7 +1083,7 @@ module Tulip (
     .tail_adr_newer                                     (commit_1_tail_adr_newer[2:0]                                                         ), //i
     .al1_flush                                          (al1_flush                                                                            ), //i
     .al2_flush                                          (al2_flush                                                                            ), //i
-    .div_flush                                          (div_3_flush                                                                          ), //i
+    .div_flush                                          (1'b0                                                                                 ), //i
     .clk                                                (clk                                                                                  ), //i
     .reset                                              (reset                                                                                )  //i
   );
@@ -1107,7 +1111,7 @@ module Tulip (
     .flush_al2          (commit_1_flush_al2                                        ), //o
     .flush_div          (commit_1_flush_div                                        ), //o
     .dis_stall          (commit_1_dis_stall                                        ), //o
-    .change_flow        (commit_1_change_flow                                      ), //i
+    .change_flow        (change_flow                                               ), //i
     .change_flow_adr    (dispat_dis_to_bju_tail_adr[2:0]                           ), //i
     .wbc_src_0_valid    (bju_0_bju_dst_valid                                       ), //i
     .wbc_src_0_ready    (commit_1_wbc_src_0_ready                                  ), //o
@@ -1228,55 +1232,55 @@ module Tulip (
     .reset                           (reset                                       )  //i
   );
   ALU alu_1_1 (
-    .alu_src_valid               (toplevel_dispat_dis_to_al1_thrown_valid                           ), //i
-    .alu_src_ready               (alu_1_1_alu_src_ready                                             ), //o
-    .alu_src_uop_com_rd_wen      (toplevel_dispat_dis_to_al1_thrown_payload_uop_com_rd_wen          ), //i
-    .alu_src_uop_com_src2_is_imm (toplevel_dispat_dis_to_al1_thrown_payload_uop_com_src2_is_imm     ), //i
-    .alu_src_src1_data           (toplevel_dispat_dis_to_al1_thrown_payload_src1_data[63:0]         ), //i
-    .alu_src_src2_data           (toplevel_dispat_dis_to_al1_thrown_payload_src2_data[63:0]         ), //i
-    .alu_src_rd_addr             (toplevel_dispat_dis_to_al1_thrown_payload_rd_addr[4:0]            ), //i
-    .alu_src_pc                  (toplevel_dispat_dis_to_al1_thrown_payload_pc[31:0]                ), //i
-    .alu_src_instr               (toplevel_dispat_dis_to_al1_thrown_payload_instr[31:0]             ), //i
-    .alu_src_tail_adr            (toplevel_dispat_dis_to_al1_thrown_payload_tail_adr[2:0]           ), //i
-    .alu_src_uop_alu_alu_ctrl_op (toplevel_dispat_dis_to_al1_thrown_payload_uop_alu_alu_ctrl_op[4:0]), //i
-    .alu_src_uop_alu_alu_is_word (toplevel_dispat_dis_to_al1_thrown_payload_uop_alu_alu_is_word     ), //i
-    .alu_dst_valid               (alu_1_1_alu_dst_valid                                             ), //o
-    .alu_dst_ready               (alu_1_1_alu_dst_ready                                             ), //i
-    .alu_dst_rd_data             (alu_1_1_alu_dst_rd_data[63:0]                                     ), //o
-    .alu_dst_rd_addr             (alu_1_1_alu_dst_rd_addr[4:0]                                      ), //o
-    .alu_dst_rd_wen              (alu_1_1_alu_dst_rd_wen                                            ), //o
-    .alu_dst_pc                  (alu_1_1_alu_dst_pc[31:0]                                          ), //o
-    .alu_dst_instr               (alu_1_1_alu_dst_instr[31:0]                                       ), //o
-    .alu_dst_tail_adr            (alu_1_1_alu_dst_tail_adr[2:0]                                     ), //o
-    .clk                         (clk                                                               ), //i
-    .reset                       (reset                                                             )  //i
+    .alu_src_valid               (dispat_dis_to_al1_valid                   ), //i
+    .alu_src_ready               (alu_1_1_alu_src_ready                     ), //o
+    .alu_src_uop_com_rd_wen      (dispat_dis_to_al1_uop_com_rd_wen          ), //i
+    .alu_src_uop_com_src2_is_imm (dispat_dis_to_al1_uop_com_src2_is_imm     ), //i
+    .alu_src_src1_data           (dispat_dis_to_al1_src1_data[63:0]         ), //i
+    .alu_src_src2_data           (dispat_dis_to_al1_src2_data[63:0]         ), //i
+    .alu_src_rd_addr             (dispat_dis_to_al1_rd_addr[4:0]            ), //i
+    .alu_src_pc                  (dispat_dis_to_al1_pc[31:0]                ), //i
+    .alu_src_instr               (dispat_dis_to_al1_instr[31:0]             ), //i
+    .alu_src_tail_adr            (dispat_dis_to_al1_tail_adr[2:0]           ), //i
+    .alu_src_uop_alu_alu_ctrl_op (dispat_dis_to_al1_uop_alu_alu_ctrl_op[4:0]), //i
+    .alu_src_uop_alu_alu_is_word (dispat_dis_to_al1_uop_alu_alu_is_word     ), //i
+    .alu_dst_valid               (alu_1_1_alu_dst_valid                     ), //o
+    .alu_dst_ready               (alu_1_1_alu_dst_ready                     ), //i
+    .alu_dst_rd_data             (alu_1_1_alu_dst_rd_data[63:0]             ), //o
+    .alu_dst_rd_addr             (alu_1_1_alu_dst_rd_addr[4:0]              ), //o
+    .alu_dst_rd_wen              (alu_1_1_alu_dst_rd_wen                    ), //o
+    .alu_dst_pc                  (alu_1_1_alu_dst_pc[31:0]                  ), //o
+    .alu_dst_instr               (alu_1_1_alu_dst_instr[31:0]               ), //o
+    .alu_dst_tail_adr            (alu_1_1_alu_dst_tail_adr[2:0]             ), //o
+    .clk                         (clk                                       ), //i
+    .reset                       (reset                                     )  //i
   );
   ALU alu_2 (
-    .alu_src_valid               (toplevel_dispat_dis_to_al2_thrown_valid                           ), //i
-    .alu_src_ready               (alu_2_alu_src_ready                                               ), //o
-    .alu_src_uop_com_rd_wen      (toplevel_dispat_dis_to_al2_thrown_payload_uop_com_rd_wen          ), //i
-    .alu_src_uop_com_src2_is_imm (toplevel_dispat_dis_to_al2_thrown_payload_uop_com_src2_is_imm     ), //i
-    .alu_src_src1_data           (toplevel_dispat_dis_to_al2_thrown_payload_src1_data[63:0]         ), //i
-    .alu_src_src2_data           (toplevel_dispat_dis_to_al2_thrown_payload_src2_data[63:0]         ), //i
-    .alu_src_rd_addr             (toplevel_dispat_dis_to_al2_thrown_payload_rd_addr[4:0]            ), //i
-    .alu_src_pc                  (toplevel_dispat_dis_to_al2_thrown_payload_pc[31:0]                ), //i
-    .alu_src_instr               (toplevel_dispat_dis_to_al2_thrown_payload_instr[31:0]             ), //i
-    .alu_src_tail_adr            (toplevel_dispat_dis_to_al2_thrown_payload_tail_adr[2:0]           ), //i
-    .alu_src_uop_alu_alu_ctrl_op (toplevel_dispat_dis_to_al2_thrown_payload_uop_alu_alu_ctrl_op[4:0]), //i
-    .alu_src_uop_alu_alu_is_word (toplevel_dispat_dis_to_al2_thrown_payload_uop_alu_alu_is_word     ), //i
-    .alu_dst_valid               (alu_2_alu_dst_valid                                               ), //o
-    .alu_dst_ready               (alu_2_alu_dst_ready                                               ), //i
-    .alu_dst_rd_data             (alu_2_alu_dst_rd_data[63:0]                                       ), //o
-    .alu_dst_rd_addr             (alu_2_alu_dst_rd_addr[4:0]                                        ), //o
-    .alu_dst_rd_wen              (alu_2_alu_dst_rd_wen                                              ), //o
-    .alu_dst_pc                  (alu_2_alu_dst_pc[31:0]                                            ), //o
-    .alu_dst_instr               (alu_2_alu_dst_instr[31:0]                                         ), //o
-    .alu_dst_tail_adr            (alu_2_alu_dst_tail_adr[2:0]                                       ), //o
-    .clk                         (clk                                                               ), //i
-    .reset                       (reset                                                             )  //i
+    .alu_src_valid               (dispat_dis_to_al2_valid                   ), //i
+    .alu_src_ready               (alu_2_alu_src_ready                       ), //o
+    .alu_src_uop_com_rd_wen      (dispat_dis_to_al2_uop_com_rd_wen          ), //i
+    .alu_src_uop_com_src2_is_imm (dispat_dis_to_al2_uop_com_src2_is_imm     ), //i
+    .alu_src_src1_data           (dispat_dis_to_al2_src1_data[63:0]         ), //i
+    .alu_src_src2_data           (dispat_dis_to_al2_src2_data[63:0]         ), //i
+    .alu_src_rd_addr             (dispat_dis_to_al2_rd_addr[4:0]            ), //i
+    .alu_src_pc                  (dispat_dis_to_al2_pc[31:0]                ), //i
+    .alu_src_instr               (dispat_dis_to_al2_instr[31:0]             ), //i
+    .alu_src_tail_adr            (dispat_dis_to_al2_tail_adr[2:0]           ), //i
+    .alu_src_uop_alu_alu_ctrl_op (dispat_dis_to_al2_uop_alu_alu_ctrl_op[4:0]), //i
+    .alu_src_uop_alu_alu_is_word (dispat_dis_to_al2_uop_alu_alu_is_word     ), //i
+    .alu_dst_valid               (alu_2_alu_dst_valid                       ), //o
+    .alu_dst_ready               (alu_2_alu_dst_ready                       ), //i
+    .alu_dst_rd_data             (alu_2_alu_dst_rd_data[63:0]               ), //o
+    .alu_dst_rd_addr             (alu_2_alu_dst_rd_addr[4:0]                ), //o
+    .alu_dst_rd_wen              (alu_2_alu_dst_rd_wen                      ), //o
+    .alu_dst_pc                  (alu_2_alu_dst_pc[31:0]                    ), //o
+    .alu_dst_instr               (alu_2_alu_dst_instr[31:0]                 ), //o
+    .alu_dst_tail_adr            (alu_2_alu_dst_tail_adr[2:0]               ), //o
+    .clk                         (clk                                       ), //i
+    .reset                       (reset                                     )  //i
   );
   DIV div_3 (
-    .flush                       (div_3_flush                                                       ), //i
+    .flush                       (1'b0                                                              ), //i
     .div_src_valid               (toplevel_dispat_dis_to_div_thrown_valid                           ), //i
     .div_src_ready               (div_3_div_src_ready                                               ), //o
     .div_src_uop_com_rd_wen      (toplevel_dispat_dis_to_div_thrown_payload_uop_com_rd_wen          ), //i
@@ -1736,66 +1740,6 @@ module Tulip (
     endcase
   end
   always @(*) begin
-    case(toplevel_dispat_dis_to_al1_thrown_payload_uop_alu_alu_ctrl_op)
-      AluCtrlEnum_IDLE : toplevel_dispat_dis_to_al1_thrown_payload_uop_alu_alu_ctrl_op_string = "IDLE  ";
-      AluCtrlEnum_ADD : toplevel_dispat_dis_to_al1_thrown_payload_uop_alu_alu_ctrl_op_string = "ADD   ";
-      AluCtrlEnum_SUB : toplevel_dispat_dis_to_al1_thrown_payload_uop_alu_alu_ctrl_op_string = "SUB   ";
-      AluCtrlEnum_SLT : toplevel_dispat_dis_to_al1_thrown_payload_uop_alu_alu_ctrl_op_string = "SLT   ";
-      AluCtrlEnum_SLTU : toplevel_dispat_dis_to_al1_thrown_payload_uop_alu_alu_ctrl_op_string = "SLTU  ";
-      AluCtrlEnum_XOR_1 : toplevel_dispat_dis_to_al1_thrown_payload_uop_alu_alu_ctrl_op_string = "XOR_1 ";
-      AluCtrlEnum_SLL_1 : toplevel_dispat_dis_to_al1_thrown_payload_uop_alu_alu_ctrl_op_string = "SLL_1 ";
-      AluCtrlEnum_SRL_1 : toplevel_dispat_dis_to_al1_thrown_payload_uop_alu_alu_ctrl_op_string = "SRL_1 ";
-      AluCtrlEnum_SRA_1 : toplevel_dispat_dis_to_al1_thrown_payload_uop_alu_alu_ctrl_op_string = "SRA_1 ";
-      AluCtrlEnum_AND_1 : toplevel_dispat_dis_to_al1_thrown_payload_uop_alu_alu_ctrl_op_string = "AND_1 ";
-      AluCtrlEnum_OR_1 : toplevel_dispat_dis_to_al1_thrown_payload_uop_alu_alu_ctrl_op_string = "OR_1  ";
-      AluCtrlEnum_LUI : toplevel_dispat_dis_to_al1_thrown_payload_uop_alu_alu_ctrl_op_string = "LUI   ";
-      AluCtrlEnum_MUL : toplevel_dispat_dis_to_al1_thrown_payload_uop_alu_alu_ctrl_op_string = "MUL   ";
-      AluCtrlEnum_MULH : toplevel_dispat_dis_to_al1_thrown_payload_uop_alu_alu_ctrl_op_string = "MULH  ";
-      AluCtrlEnum_MULHSU : toplevel_dispat_dis_to_al1_thrown_payload_uop_alu_alu_ctrl_op_string = "MULHSU";
-      AluCtrlEnum_MULHU : toplevel_dispat_dis_to_al1_thrown_payload_uop_alu_alu_ctrl_op_string = "MULHU ";
-      AluCtrlEnum_DIV : toplevel_dispat_dis_to_al1_thrown_payload_uop_alu_alu_ctrl_op_string = "DIV   ";
-      AluCtrlEnum_DIVU : toplevel_dispat_dis_to_al1_thrown_payload_uop_alu_alu_ctrl_op_string = "DIVU  ";
-      AluCtrlEnum_REM_1 : toplevel_dispat_dis_to_al1_thrown_payload_uop_alu_alu_ctrl_op_string = "REM_1 ";
-      AluCtrlEnum_REMU : toplevel_dispat_dis_to_al1_thrown_payload_uop_alu_alu_ctrl_op_string = "REMU  ";
-      AluCtrlEnum_MULW : toplevel_dispat_dis_to_al1_thrown_payload_uop_alu_alu_ctrl_op_string = "MULW  ";
-      AluCtrlEnum_DIVW : toplevel_dispat_dis_to_al1_thrown_payload_uop_alu_alu_ctrl_op_string = "DIVW  ";
-      AluCtrlEnum_DIVUW : toplevel_dispat_dis_to_al1_thrown_payload_uop_alu_alu_ctrl_op_string = "DIVUW ";
-      AluCtrlEnum_REMW : toplevel_dispat_dis_to_al1_thrown_payload_uop_alu_alu_ctrl_op_string = "REMW  ";
-      AluCtrlEnum_REMUW : toplevel_dispat_dis_to_al1_thrown_payload_uop_alu_alu_ctrl_op_string = "REMUW ";
-      default : toplevel_dispat_dis_to_al1_thrown_payload_uop_alu_alu_ctrl_op_string = "??????";
-    endcase
-  end
-  always @(*) begin
-    case(toplevel_dispat_dis_to_al2_thrown_payload_uop_alu_alu_ctrl_op)
-      AluCtrlEnum_IDLE : toplevel_dispat_dis_to_al2_thrown_payload_uop_alu_alu_ctrl_op_string = "IDLE  ";
-      AluCtrlEnum_ADD : toplevel_dispat_dis_to_al2_thrown_payload_uop_alu_alu_ctrl_op_string = "ADD   ";
-      AluCtrlEnum_SUB : toplevel_dispat_dis_to_al2_thrown_payload_uop_alu_alu_ctrl_op_string = "SUB   ";
-      AluCtrlEnum_SLT : toplevel_dispat_dis_to_al2_thrown_payload_uop_alu_alu_ctrl_op_string = "SLT   ";
-      AluCtrlEnum_SLTU : toplevel_dispat_dis_to_al2_thrown_payload_uop_alu_alu_ctrl_op_string = "SLTU  ";
-      AluCtrlEnum_XOR_1 : toplevel_dispat_dis_to_al2_thrown_payload_uop_alu_alu_ctrl_op_string = "XOR_1 ";
-      AluCtrlEnum_SLL_1 : toplevel_dispat_dis_to_al2_thrown_payload_uop_alu_alu_ctrl_op_string = "SLL_1 ";
-      AluCtrlEnum_SRL_1 : toplevel_dispat_dis_to_al2_thrown_payload_uop_alu_alu_ctrl_op_string = "SRL_1 ";
-      AluCtrlEnum_SRA_1 : toplevel_dispat_dis_to_al2_thrown_payload_uop_alu_alu_ctrl_op_string = "SRA_1 ";
-      AluCtrlEnum_AND_1 : toplevel_dispat_dis_to_al2_thrown_payload_uop_alu_alu_ctrl_op_string = "AND_1 ";
-      AluCtrlEnum_OR_1 : toplevel_dispat_dis_to_al2_thrown_payload_uop_alu_alu_ctrl_op_string = "OR_1  ";
-      AluCtrlEnum_LUI : toplevel_dispat_dis_to_al2_thrown_payload_uop_alu_alu_ctrl_op_string = "LUI   ";
-      AluCtrlEnum_MUL : toplevel_dispat_dis_to_al2_thrown_payload_uop_alu_alu_ctrl_op_string = "MUL   ";
-      AluCtrlEnum_MULH : toplevel_dispat_dis_to_al2_thrown_payload_uop_alu_alu_ctrl_op_string = "MULH  ";
-      AluCtrlEnum_MULHSU : toplevel_dispat_dis_to_al2_thrown_payload_uop_alu_alu_ctrl_op_string = "MULHSU";
-      AluCtrlEnum_MULHU : toplevel_dispat_dis_to_al2_thrown_payload_uop_alu_alu_ctrl_op_string = "MULHU ";
-      AluCtrlEnum_DIV : toplevel_dispat_dis_to_al2_thrown_payload_uop_alu_alu_ctrl_op_string = "DIV   ";
-      AluCtrlEnum_DIVU : toplevel_dispat_dis_to_al2_thrown_payload_uop_alu_alu_ctrl_op_string = "DIVU  ";
-      AluCtrlEnum_REM_1 : toplevel_dispat_dis_to_al2_thrown_payload_uop_alu_alu_ctrl_op_string = "REM_1 ";
-      AluCtrlEnum_REMU : toplevel_dispat_dis_to_al2_thrown_payload_uop_alu_alu_ctrl_op_string = "REMU  ";
-      AluCtrlEnum_MULW : toplevel_dispat_dis_to_al2_thrown_payload_uop_alu_alu_ctrl_op_string = "MULW  ";
-      AluCtrlEnum_DIVW : toplevel_dispat_dis_to_al2_thrown_payload_uop_alu_alu_ctrl_op_string = "DIVW  ";
-      AluCtrlEnum_DIVUW : toplevel_dispat_dis_to_al2_thrown_payload_uop_alu_alu_ctrl_op_string = "DIVUW ";
-      AluCtrlEnum_REMW : toplevel_dispat_dis_to_al2_thrown_payload_uop_alu_alu_ctrl_op_string = "REMW  ";
-      AluCtrlEnum_REMUW : toplevel_dispat_dis_to_al2_thrown_payload_uop_alu_alu_ctrl_op_string = "REMUW ";
-      default : toplevel_dispat_dis_to_al2_thrown_payload_uop_alu_alu_ctrl_op_string = "??????";
-    endcase
-  end
-  always @(*) begin
     case(toplevel_dispat_dis_to_div_thrown_payload_uop_alu_alu_ctrl_op)
       AluCtrlEnum_IDLE : toplevel_dispat_dis_to_div_thrown_payload_uop_alu_alu_ctrl_op_string = "IDLE  ";
       AluCtrlEnum_ADD : toplevel_dispat_dis_to_div_thrown_payload_uop_alu_alu_ctrl_op_string = "ADD   ";
@@ -1900,6 +1844,7 @@ module Tulip (
   assign toplevel_fetch_1_fch_dst_1_thrown_payload_branch_taken = fetch_1_fch_dst_1_branch_taken; // @ Stream.scala l296
   assign toplevel_fetch_1_fch_dst_1_thrown_payload_instr = fetch_1_fch_dst_1_instr; // @ Stream.scala l296
   assign toplevel_fetch_1_fch_dst_1_thrown_ready = decode_1_dec_src_1_ready; // @ Stream.scala l295
+  assign issue_bju_stall = (issue_1_iss_dst_0_valid && (issue_1_iss_dst_0_iss_pkg_exe_sel == ExeSelEnum_BJU)); // @ BaseType.scala l305
   always @(*) begin
     toplevel_issue_1_iss_dst_0_thrown_valid = issue_1_iss_dst_0_valid; // @ Stream.scala l294
     if(change_flow) begin
@@ -1984,7 +1929,7 @@ module Tulip (
   assign toplevel_issue_1_iss_dst_1_thrown_payload_iss_pkg_branch_taken = issue_1_iss_dst_1_iss_pkg_branch_taken; // @ Stream.scala l296
   assign toplevel_issue_1_iss_dst_1_thrown_payload_iss_pkg_instr = issue_1_iss_dst_1_iss_pkg_instr; // @ Stream.scala l296
   assign toplevel_issue_1_iss_dst_1_thrown_payload_exe_sel_oh = issue_1_iss_dst_1_exe_sel_oh; // @ Stream.scala l296
-  assign tmp_toplevel_issue_iss_dst_1_thrown_ready = (! (commit_1_dis_stall || (issue_1_iss_dst_0_valid && (issue_1_iss_dst_0_iss_pkg_exe_sel == ExeSelEnum_BJU)))); // @ BaseType.scala l299
+  assign tmp_toplevel_issue_iss_dst_1_thrown_ready = (! (commit_1_dis_stall || issue_bju_stall)); // @ BaseType.scala l299
   assign toplevel_issue_1_iss_dst_1_thrown_ready = (dispat_dis_src_1_ready && tmp_toplevel_issue_iss_dst_1_thrown_ready); // @ Stream.scala l427
   assign tmp_dis_src_1_iss_pkg_micro_op_uop_alu_alu_ctrl_op = toplevel_issue_1_iss_dst_1_thrown_payload_iss_pkg_micro_op_uop_alu_alu_ctrl_op; // @ Stream.scala l428
   assign tmp_dis_src_1_iss_pkg_micro_op_uop_bju_bju_ctrl_op = toplevel_issue_1_iss_dst_1_thrown_payload_iss_pkg_micro_op_uop_bju_bju_ctrl_op; // @ Stream.scala l428
@@ -1993,93 +1938,38 @@ module Tulip (
   assign tmp_dis_src_1_iss_pkg_exe_sel = toplevel_issue_1_iss_dst_1_thrown_payload_iss_pkg_exe_sel; // @ Stream.scala l428
   assign dispat_dis_src_1_valid = (toplevel_issue_1_iss_dst_1_thrown_valid && tmp_toplevel_issue_iss_dst_1_thrown_ready); // @ Stream.scala l294
   assign toplevel_bju_0_bju_dst_fire = (bju_0_bju_dst_valid && commit_1_wbc_src_0_ready); // @ BaseType.scala l305
-  assign dispat_wbc_rd_wen_0 = (toplevel_bju_0_bju_dst_fire && bju_0_bju_dst_rd_wen); // @ Tulip.scala l146
+  assign dispat_wbc_rd_wen_0 = (toplevel_bju_0_bju_dst_fire && bju_0_bju_dst_rd_wen); // @ Tulip.scala l148
   assign toplevel_alu_1_1_alu_dst_fire = (alu_1_1_alu_dst_valid && alu_1_1_alu_dst_ready); // @ BaseType.scala l305
-  assign dispat_wbc_rd_wen_1 = ((toplevel_alu_1_1_alu_dst_fire && alu_1_1_alu_dst_rd_wen) && (! commit_1_flush_al1)); // @ Tulip.scala l147
+  assign dispat_wbc_rd_wen_1 = ((toplevel_alu_1_1_alu_dst_fire && alu_1_1_alu_dst_rd_wen) && (! commit_1_flush_al1)); // @ Tulip.scala l149
   assign toplevel_alu_2_alu_dst_fire = (alu_2_alu_dst_valid && alu_2_alu_dst_ready); // @ BaseType.scala l305
-  assign dispat_wbc_rd_wen_2 = ((toplevel_alu_2_alu_dst_fire && alu_2_alu_dst_rd_wen) && (! commit_1_flush_al2)); // @ Tulip.scala l148
+  assign dispat_wbc_rd_wen_2 = ((toplevel_alu_2_alu_dst_fire && alu_2_alu_dst_rd_wen) && (! commit_1_flush_al2)); // @ Tulip.scala l150
   assign toplevel_div_3_div_dst_fire = (div_3_div_dst_valid && div_3_div_dst_ready); // @ BaseType.scala l305
-  assign dispat_wbc_rd_wen_3 = ((toplevel_div_3_div_dst_fire && div_3_div_dst_rd_wen) && (! commit_1_flush_div)); // @ Tulip.scala l149
+  assign dispat_wbc_rd_wen_3 = ((toplevel_div_3_div_dst_fire && div_3_div_dst_rd_wen) && (! commit_1_flush_div)); // @ Tulip.scala l151
   assign toplevel_lsu_4_lsu_dst_fire = (lsu_4_lsu_dst_valid && lsu_4_lsu_dst_ready); // @ BaseType.scala l305
-  assign dispat_wbc_rd_wen_4 = (toplevel_lsu_4_lsu_dst_fire && lsu_4_lsu_dst_rd_wen); // @ Tulip.scala l150
+  assign dispat_wbc_rd_wen_4 = (toplevel_lsu_4_lsu_dst_fire && lsu_4_lsu_dst_rd_wen); // @ Tulip.scala l152
   assign toplevel_commit_1_wbc_dst_0_fire = (commit_1_wbc_dst_0_valid && retire_ready_0); // @ BaseType.scala l305
-  assign dispat_ret_rd_wen_0 = (toplevel_commit_1_wbc_dst_0_fire && commit_1_wbc_dst_0_rd_wen); // @ Tulip.scala l164
+  assign dispat_ret_rd_wen_0 = (toplevel_commit_1_wbc_dst_0_fire && commit_1_wbc_dst_0_rd_wen); // @ Tulip.scala l166
   assign toplevel_commit_1_wbc_dst_1_fire = (commit_1_wbc_dst_1_valid && retire_ready_1); // @ BaseType.scala l305
-  assign dispat_ret_rd_wen_1 = (toplevel_commit_1_wbc_dst_1_fire && commit_1_wbc_dst_1_rd_wen); // @ Tulip.scala l165
+  assign dispat_ret_rd_wen_1 = (toplevel_commit_1_wbc_dst_1_fire && commit_1_wbc_dst_1_rd_wen); // @ Tulip.scala l167
   assign toplevel_commit_1_wbc_dst_0_fire_1 = (commit_1_wbc_dst_0_valid && retire_ready_0); // @ BaseType.scala l305
-  assign regfile_1_write_0_rd_wen = (toplevel_commit_1_wbc_dst_0_fire_1 && commit_1_wbc_dst_0_rd_wen); // @ Tulip.scala l178
+  assign regfile_1_write_0_rd_wen = (toplevel_commit_1_wbc_dst_0_fire_1 && commit_1_wbc_dst_0_rd_wen); // @ Tulip.scala l180
   assign toplevel_commit_1_wbc_dst_1_fire_1 = (commit_1_wbc_dst_1_valid && retire_ready_1); // @ BaseType.scala l305
-  assign regfile_1_write_1_rd_wen = (toplevel_commit_1_wbc_dst_1_fire_1 && commit_1_wbc_dst_1_rd_wen); // @ Tulip.scala l179
+  assign regfile_1_write_1_rd_wen = (toplevel_commit_1_wbc_dst_1_fire_1 && commit_1_wbc_dst_1_rd_wen); // @ Tulip.scala l181
   assign bju_to_head_distance = (dispat_dis_to_bju_tail_adr - commit_1_head_adr_out); // @ BaseType.scala l299
-  assign al1_to_head_distance = (toplevel_dispat_dis_to_al1_thrown_payload_tail_adr - commit_1_head_adr_out); // @ BaseType.scala l299
-  assign al1_branch_flush = (bju_0_branch_valid && (bju_to_head_distance < al1_to_head_distance)); // @ BaseType.scala l305
-  assign al1_flush = (commit_1_flush || al1_branch_flush); // @ BaseType.scala l305
-  always @(*) begin
-    toplevel_dispat_dis_to_al1_thrown_valid = dispat_dis_to_al1_valid; // @ Stream.scala l294
-    if(al1_flush) begin
-      toplevel_dispat_dis_to_al1_thrown_valid = 1'b0; // @ Stream.scala l439
-    end
-  end
-
-  always @(*) begin
-    dispat_dis_to_al1_ready = toplevel_dispat_dis_to_al1_thrown_ready; // @ Stream.scala l295
-    if(al1_flush) begin
-      dispat_dis_to_al1_ready = 1'b1; // @ Stream.scala l440
-    end
-  end
-
-  assign toplevel_dispat_dis_to_al1_thrown_payload_uop_com_rd_wen = dispat_dis_to_al1_uop_com_rd_wen; // @ Stream.scala l296
-  assign toplevel_dispat_dis_to_al1_thrown_payload_uop_com_src2_is_imm = dispat_dis_to_al1_uop_com_src2_is_imm; // @ Stream.scala l296
-  assign toplevel_dispat_dis_to_al1_thrown_payload_src1_data = dispat_dis_to_al1_src1_data; // @ Stream.scala l296
-  assign toplevel_dispat_dis_to_al1_thrown_payload_src2_data = dispat_dis_to_al1_src2_data; // @ Stream.scala l296
-  assign toplevel_dispat_dis_to_al1_thrown_payload_rd_addr = dispat_dis_to_al1_rd_addr; // @ Stream.scala l296
-  assign toplevel_dispat_dis_to_al1_thrown_payload_pc = dispat_dis_to_al1_pc; // @ Stream.scala l296
-  assign toplevel_dispat_dis_to_al1_thrown_payload_instr = dispat_dis_to_al1_instr; // @ Stream.scala l296
-  assign toplevel_dispat_dis_to_al1_thrown_payload_tail_adr = dispat_dis_to_al1_tail_adr; // @ Stream.scala l296
-  assign toplevel_dispat_dis_to_al1_thrown_payload_uop_alu_alu_ctrl_op = dispat_dis_to_al1_uop_alu_alu_ctrl_op; // @ Stream.scala l296
-  assign toplevel_dispat_dis_to_al1_thrown_payload_uop_alu_alu_is_word = dispat_dis_to_al1_uop_alu_alu_is_word; // @ Stream.scala l296
-  assign toplevel_dispat_dis_to_al1_thrown_ready = alu_1_1_alu_src_ready; // @ Stream.scala l295
-  assign al2_to_head_distance = (toplevel_dispat_dis_to_al2_thrown_payload_tail_adr - commit_1_head_adr_out); // @ BaseType.scala l299
-  assign al2_branch_flush = (bju_0_branch_valid && (bju_to_head_distance < al2_to_head_distance)); // @ BaseType.scala l305
-  assign al2_flush = (commit_1_flush || al2_branch_flush); // @ BaseType.scala l305
-  always @(*) begin
-    toplevel_dispat_dis_to_al2_thrown_valid = dispat_dis_to_al2_valid; // @ Stream.scala l294
-    if(al2_flush) begin
-      toplevel_dispat_dis_to_al2_thrown_valid = 1'b0; // @ Stream.scala l439
-    end
-  end
-
-  always @(*) begin
-    dispat_dis_to_al2_ready = toplevel_dispat_dis_to_al2_thrown_ready; // @ Stream.scala l295
-    if(al2_flush) begin
-      dispat_dis_to_al2_ready = 1'b1; // @ Stream.scala l440
-    end
-  end
-
-  assign toplevel_dispat_dis_to_al2_thrown_payload_uop_com_rd_wen = dispat_dis_to_al2_uop_com_rd_wen; // @ Stream.scala l296
-  assign toplevel_dispat_dis_to_al2_thrown_payload_uop_com_src2_is_imm = dispat_dis_to_al2_uop_com_src2_is_imm; // @ Stream.scala l296
-  assign toplevel_dispat_dis_to_al2_thrown_payload_src1_data = dispat_dis_to_al2_src1_data; // @ Stream.scala l296
-  assign toplevel_dispat_dis_to_al2_thrown_payload_src2_data = dispat_dis_to_al2_src2_data; // @ Stream.scala l296
-  assign toplevel_dispat_dis_to_al2_thrown_payload_rd_addr = dispat_dis_to_al2_rd_addr; // @ Stream.scala l296
-  assign toplevel_dispat_dis_to_al2_thrown_payload_pc = dispat_dis_to_al2_pc; // @ Stream.scala l296
-  assign toplevel_dispat_dis_to_al2_thrown_payload_instr = dispat_dis_to_al2_instr; // @ Stream.scala l296
-  assign toplevel_dispat_dis_to_al2_thrown_payload_tail_adr = dispat_dis_to_al2_tail_adr; // @ Stream.scala l296
-  assign toplevel_dispat_dis_to_al2_thrown_payload_uop_alu_alu_ctrl_op = dispat_dis_to_al2_uop_alu_alu_ctrl_op; // @ Stream.scala l296
-  assign toplevel_dispat_dis_to_al2_thrown_payload_uop_alu_alu_is_word = dispat_dis_to_al2_uop_alu_alu_is_word; // @ Stream.scala l296
-  assign toplevel_dispat_dis_to_al2_thrown_ready = alu_2_alu_src_ready; // @ Stream.scala l295
+  assign al1_flush = 1'b0; // @ Tulip.scala l195
+  assign al2_flush = 1'b0; // @ Tulip.scala l196
   assign div_to_head_distance = (toplevel_dispat_dis_to_div_thrown_payload_tail_adr - commit_1_head_adr_out); // @ BaseType.scala l299
   assign div_branch_flush = (bju_0_branch_valid && (bju_to_head_distance < div_to_head_distance)); // @ BaseType.scala l305
-  assign div_3_flush = (commit_1_flush || div_branch_flush); // @ Tulip.scala l206
   always @(*) begin
     toplevel_dispat_dis_to_div_thrown_valid = dispat_dis_to_div_valid; // @ Stream.scala l294
-    if(div_3_flush) begin
+    if(1'b0) begin
       toplevel_dispat_dis_to_div_thrown_valid = 1'b0; // @ Stream.scala l439
     end
   end
 
   always @(*) begin
     dispat_dis_to_div_ready = toplevel_dispat_dis_to_div_thrown_ready; // @ Stream.scala l295
-    if(div_3_flush) begin
+    if(1'b0) begin
       dispat_dis_to_div_ready = 1'b1; // @ Stream.scala l440
     end
   end
@@ -2096,16 +1986,18 @@ module Tulip (
   assign toplevel_dispat_dis_to_div_thrown_payload_uop_alu_alu_is_word = dispat_dis_to_div_uop_alu_alu_is_word; // @ Stream.scala l296
   assign toplevel_dispat_dis_to_div_thrown_ready = div_3_div_src_ready; // @ Stream.scala l295
   assign lsu_to_head_distance = (toplevel_dispat_dis_to_lsu_thrown_payload_tail_adr - commit_1_head_adr_out); // @ BaseType.scala l299
+  assign lsu_stall = (dispat_dis_to_bju_valid && (bju_to_head_distance < lsu_to_head_distance)); // @ BaseType.scala l305
+  assign lsu_flush = ((change_flow || bju_0_branch_valid) && (bju_to_head_distance < lsu_to_head_distance)); // @ BaseType.scala l305
   always @(*) begin
     toplevel_dispat_dis_to_lsu_thrown_valid = dispat_dis_to_lsu_valid; // @ Stream.scala l294
-    if(tmp_when_1) begin
+    if(lsu_flush) begin
       toplevel_dispat_dis_to_lsu_thrown_valid = 1'b0; // @ Stream.scala l439
     end
   end
 
   always @(*) begin
     dispat_dis_to_lsu_ready = toplevel_dispat_dis_to_lsu_thrown_ready; // @ Stream.scala l295
-    if(tmp_when_1) begin
+    if(lsu_flush) begin
       dispat_dis_to_lsu_ready = 1'b1; // @ Stream.scala l440
     end
   end
@@ -2122,11 +2014,10 @@ module Tulip (
   assign toplevel_dispat_dis_to_lsu_thrown_payload_uop_lsu_lsu_ctrl_op = dispat_dis_to_lsu_uop_lsu_lsu_ctrl_op; // @ Stream.scala l296
   assign toplevel_dispat_dis_to_lsu_thrown_payload_uop_lsu_lsu_is_load = dispat_dis_to_lsu_uop_lsu_lsu_is_load; // @ Stream.scala l296
   assign toplevel_dispat_dis_to_lsu_thrown_payload_uop_lsu_lsu_is_store = dispat_dis_to_lsu_uop_lsu_lsu_is_store; // @ Stream.scala l296
-  assign tmp_toplevel_dispat_dis_to_lsu_thrown_ready = (! (dispat_dis_to_bju_valid && (bju_to_head_distance < lsu_to_head_distance))); // @ BaseType.scala l299
+  assign tmp_toplevel_dispat_dis_to_lsu_thrown_ready = (! lsu_stall); // @ BaseType.scala l299
   assign toplevel_dispat_dis_to_lsu_thrown_ready = (lsu_4_lsu_src_ready && tmp_toplevel_dispat_dis_to_lsu_thrown_ready); // @ Stream.scala l427
   assign tmp_lsu_src_uop_lsu_lsu_ctrl_op = toplevel_dispat_dis_to_lsu_thrown_payload_uop_lsu_lsu_ctrl_op; // @ Stream.scala l428
   assign lsu_4_lsu_src_valid = (toplevel_dispat_dis_to_lsu_thrown_valid && tmp_toplevel_dispat_dis_to_lsu_thrown_ready); // @ Stream.scala l294
-  assign commit_1_change_flow = (change_flow || bju_0_branch_valid); // @ Tulip.scala l219
   always @(*) begin
     toplevel_alu_1_1_alu_dst_thrown_valid = alu_1_1_alu_dst_valid; // @ Stream.scala l294
     if(commit_1_flush_al1) begin
@@ -2238,6 +2129,113 @@ module Tulip (
   assign dcache_w_payload_strb = dcache_dcache_w_payload_strb; // @ Stream.scala l296
   assign dcache_w_payload_last = dcache_dcache_w_payload_last; // @ Stream.scala l296
   assign dcache_b_ready = dcache_dcache_b_ready; // @ Stream.scala l295
+  assign toplevel_commit_1_wbc_dst_0_fire_2 = (commit_1_wbc_dst_0_valid && retire_ready_0); // @ BaseType.scala l305
+  assign toplevel_commit_1_wbc_dst_1_fire_2 = (commit_1_wbc_dst_1_valid && retire_ready_1); // @ BaseType.scala l305
+  assign toplevel_bju_0_bju_dst_fire_1 = (bju_0_bju_dst_valid && commit_1_wbc_src_0_ready); // @ BaseType.scala l305
+  assign toplevel_fetch_1_fch_dst_0_fire = (fetch_1_fch_dst_0_valid && fetch_1_fch_dst_0_ready); // @ BaseType.scala l305
+  assign toplevel_fetch_1_fch_dst_1_fire = (fetch_1_fch_dst_1_valid && fetch_1_fch_dst_1_ready); // @ BaseType.scala l305
+  assign toplevel_issue_1_iss_dst_0_fire = (issue_1_iss_dst_0_valid && issue_1_iss_dst_0_ready); // @ BaseType.scala l305
+  assign toplevel_issue_1_iss_dst_1_fire = (issue_1_iss_dst_1_valid && issue_1_iss_dst_1_ready); // @ BaseType.scala l305
+  assign toplevel_dispat_dis_src_0_fire_1 = (dispat_dis_src_0_valid && dispat_dis_src_0_ready); // @ BaseType.scala l305
+  assign toplevel_dispat_dis_src_1_fire_1 = (dispat_dis_src_1_valid && dispat_dis_src_1_ready); // @ BaseType.scala l305
+  always @(posedge clk or posedge reset) begin
+    if(reset) begin
+      cycle_cnt <= 32'h0; // @ Data.scala l400
+      instr_cnt <= 32'h0; // @ Data.scala l400
+      dispatch_stall_cnt <= 32'h0; // @ Data.scala l400
+      change_flow_cnt <= 32'h0; // @ Data.scala l400
+      issue_bju_stall_cnt <= 32'h0; // @ Data.scala l400
+      bju_instr_cnt <= 32'h0; // @ Data.scala l400
+      fetch_dst0_valid_duty_cycle <= 32'h0; // @ Data.scala l400
+      fetch_dst1_valid_duty_cycle <= 32'h0; // @ Data.scala l400
+      fetch_dst0_ready_duty_cycle <= 32'h0; // @ Data.scala l400
+      fetch_dst1_ready_duty_cycle <= 32'h0; // @ Data.scala l400
+      fetch_dst0_fire_duty_cycle <= 32'h0; // @ Data.scala l400
+      fetch_dst1_fire_duty_cycle <= 32'h0; // @ Data.scala l400
+      issue_dst0_valid_duty_cycle <= 32'h0; // @ Data.scala l400
+      issue_dst1_valid_duty_cycle <= 32'h0; // @ Data.scala l400
+      issue_dst0_ready_duty_cycle <= 32'h0; // @ Data.scala l400
+      issue_dst1_ready_duty_cycle <= 32'h0; // @ Data.scala l400
+      issue_dst0_fire_duty_cycle <= 32'h0; // @ Data.scala l400
+      issue_dst1_fire_duty_cycle <= 32'h0; // @ Data.scala l400
+      dispatch_src0_valid_duty_cycle <= 32'h0; // @ Data.scala l400
+      dispatch_src1_valid_duty_cycle <= 32'h0; // @ Data.scala l400
+      dispatch_src0_ready_duty_cycle <= 32'h0; // @ Data.scala l400
+      dispatch_src1_ready_duty_cycle <= 32'h0; // @ Data.scala l400
+      dispatch_src0_fire_duty_cycle <= 32'h0; // @ Data.scala l400
+      dispatch_src1_fire_duty_cycle <= 32'h0; // @ Data.scala l400
+    end else begin
+      cycle_cnt <= (cycle_cnt + 32'h00000001); // @ Tulip.scala l287
+      instr_cnt <= (tmp_instr_cnt + tmp_instr_cnt_3); // @ Tulip.scala l288
+      if(commit_1_dis_stall) begin
+        dispatch_stall_cnt <= (dispatch_stall_cnt + 32'h00000001); // @ Tulip.scala l290
+      end
+      if(change_flow) begin
+        change_flow_cnt <= (change_flow_cnt + 32'h00000001); // @ Tulip.scala l291
+      end
+      if(issue_bju_stall) begin
+        issue_bju_stall_cnt <= (issue_bju_stall_cnt + 32'h00000001); // @ Tulip.scala l292
+      end
+      if(toplevel_bju_0_bju_dst_fire_1) begin
+        bju_instr_cnt <= (bju_instr_cnt + 32'h00000001); // @ Tulip.scala l293
+      end
+      if(fetch_1_fch_dst_0_valid) begin
+        fetch_dst0_valid_duty_cycle <= (fetch_dst0_valid_duty_cycle + 32'h00000001); // @ Tulip.scala l295
+      end
+      if(fetch_1_fch_dst_1_valid) begin
+        fetch_dst1_valid_duty_cycle <= (fetch_dst1_valid_duty_cycle + 32'h00000001); // @ Tulip.scala l296
+      end
+      if(fetch_1_fch_dst_0_ready) begin
+        fetch_dst0_ready_duty_cycle <= (fetch_dst0_ready_duty_cycle + 32'h00000001); // @ Tulip.scala l297
+      end
+      if(fetch_1_fch_dst_1_ready) begin
+        fetch_dst1_ready_duty_cycle <= (fetch_dst1_ready_duty_cycle + 32'h00000001); // @ Tulip.scala l298
+      end
+      if(toplevel_fetch_1_fch_dst_0_fire) begin
+        fetch_dst0_fire_duty_cycle <= (fetch_dst0_fire_duty_cycle + 32'h00000001); // @ Tulip.scala l299
+      end
+      if(toplevel_fetch_1_fch_dst_1_fire) begin
+        fetch_dst1_fire_duty_cycle <= (fetch_dst1_fire_duty_cycle + 32'h00000001); // @ Tulip.scala l300
+      end
+      if(issue_1_iss_dst_0_valid) begin
+        issue_dst0_valid_duty_cycle <= (issue_dst0_valid_duty_cycle + 32'h00000001); // @ Tulip.scala l302
+      end
+      if(issue_1_iss_dst_1_valid) begin
+        issue_dst1_valid_duty_cycle <= (issue_dst1_valid_duty_cycle + 32'h00000001); // @ Tulip.scala l303
+      end
+      if(issue_1_iss_dst_0_ready) begin
+        issue_dst0_ready_duty_cycle <= (issue_dst0_ready_duty_cycle + 32'h00000001); // @ Tulip.scala l304
+      end
+      if(issue_1_iss_dst_1_ready) begin
+        issue_dst1_ready_duty_cycle <= (issue_dst1_ready_duty_cycle + 32'h00000001); // @ Tulip.scala l305
+      end
+      if(toplevel_issue_1_iss_dst_0_fire) begin
+        issue_dst0_fire_duty_cycle <= (issue_dst0_fire_duty_cycle + 32'h00000001); // @ Tulip.scala l306
+      end
+      if(toplevel_issue_1_iss_dst_1_fire) begin
+        issue_dst1_fire_duty_cycle <= (issue_dst1_fire_duty_cycle + 32'h00000001); // @ Tulip.scala l307
+      end
+      if(dispat_dis_src_0_valid) begin
+        dispatch_src0_valid_duty_cycle <= (dispatch_src0_valid_duty_cycle + 32'h00000001); // @ Tulip.scala l309
+      end
+      if(dispat_dis_src_1_valid) begin
+        dispatch_src1_valid_duty_cycle <= (dispatch_src1_valid_duty_cycle + 32'h00000001); // @ Tulip.scala l310
+      end
+      if(dispat_dis_src_0_ready) begin
+        dispatch_src0_ready_duty_cycle <= (dispatch_src0_ready_duty_cycle + 32'h00000001); // @ Tulip.scala l311
+      end
+      if(dispat_dis_src_1_ready) begin
+        dispatch_src1_ready_duty_cycle <= (dispatch_src1_ready_duty_cycle + 32'h00000001); // @ Tulip.scala l312
+      end
+      if(toplevel_dispat_dis_src_0_fire_1) begin
+        dispatch_src0_fire_duty_cycle <= (dispatch_src0_fire_duty_cycle + 32'h00000001); // @ Tulip.scala l313
+      end
+      if(toplevel_dispat_dis_src_1_fire_1) begin
+        dispatch_src1_fire_duty_cycle <= (dispatch_src1_fire_duty_cycle + 32'h00000001); // @ Tulip.scala l314
+      end
+    end
+  end
+
 
 endmodule
 
@@ -20345,9 +20343,6 @@ module Fetch (
   output     [31:0]   fch_dst_1_branch_pc,
   output              fch_dst_1_branch_taken,
   output     [31:0]   fch_dst_1_instr,
-  output     [63:0]   predict_imm,
-  output              predict_jal,
-  output              predict_branch,
   input               clk,
   input               reset
 );
@@ -20362,9 +20357,6 @@ module Fetch (
   wire       [31:0]   fetch_1_fch_dst_branch_pc;
   wire                fetch_1_fch_dst_branch_taken;
   wire       [63:0]   fetch_1_fch_dst_instr;
-  wire       [63:0]   fetch_1_predict_imm;
-  wire                fetch_1_predict_jal;
-  wire                fetch_1_predict_branch;
   reg                 src_stream_valid;
   reg                 src_stream_ready;
   wire       [31:0]   src_stream_pc;
@@ -20443,9 +20435,6 @@ module Fetch (
     .fch_dst_branch_pc      (fetch_1_fch_dst_branch_pc[31:0]    ), //o
     .fch_dst_branch_taken   (fetch_1_fch_dst_branch_taken       ), //o
     .fch_dst_instr          (fetch_1_fch_dst_instr[63:0]        ), //o
-    .predict_imm            (fetch_1_predict_imm[63:0]          ), //o
-    .predict_jal            (fetch_1_predict_jal                ), //o
-    .predict_branch         (fetch_1_predict_branch             ), //o
     .clk                    (clk                                ), //i
     .reset                  (reset                              )  //i
   );
@@ -20541,9 +20530,6 @@ module Fetch (
   assign fch_dst_1_instr = dec_stream_1_m2sPipe_instr; // @ Stream.scala l296
   assign predict_pc = fetch_1_predict_pc; // @ Fetch.scala l260
   assign predict_valid = fetch_1_predict_valid; // @ Fetch.scala l261
-  assign predict_imm = fetch_1_predict_imm; // @ Fetch.scala l263
-  assign predict_jal = fetch_1_predict_jal; // @ Fetch.scala l264
-  assign predict_branch = fetch_1_predict_branch; // @ Fetch.scala l265
   always @(posedge clk or posedge reset) begin
     if(reset) begin
       src_stream_fork2_logic_linkEnable_0 <= 1'b1; // @ Data.scala l400
@@ -24889,6 +24875,12 @@ module Sram_2ports (
   reg [7:0] tmp_memsymbol_read_7;
 
   assign tmp_mem_port = (ports_0_cmd_valid && ports_0_cmd_wen);
+  initial begin
+    $readmemb("Tulip.v_toplevel_icache_sram_4_mem_symbol0.bin",mem_symbol0);
+    $readmemb("Tulip.v_toplevel_icache_sram_4_mem_symbol1.bin",mem_symbol1);
+    $readmemb("Tulip.v_toplevel_icache_sram_4_mem_symbol2.bin",mem_symbol2);
+    $readmemb("Tulip.v_toplevel_icache_sram_4_mem_symbol3.bin",mem_symbol3);
+  end
   always @(*) begin
     tmp_mem_port1 = {tmp_memsymbol_read_3, tmp_memsymbol_read_2, tmp_memsymbol_read_1, tmp_memsymbol_read};
   end
@@ -25032,9 +25024,6 @@ module Fetch_kernel (
   output     [31:0]   fch_dst_branch_pc,
   output              fch_dst_branch_taken,
   output     [63:0]   fch_dst_instr,
-  output     [63:0]   predict_imm,
-  output              predict_jal,
-  output              predict_branch,
   input               clk,
   input               reset
 );
@@ -25052,18 +25041,10 @@ module Fetch_kernel (
   wire       [63:0]   instr_stream_fifo_ports_m_ports_payload;
   wire                instr_stream_fifo_ports_s_ports_ready;
   wire                instr_stream_fifo_has_space;
-  wire                branch_pc_stream_fifo_ports_m_ports_valid;
-  wire       [31:0]   branch_pc_stream_fifo_ports_m_ports_payload;
-  wire                branch_pc_stream_fifo_ports_s_ports_ready;
-  wire                branch_pc_stream_fifo_has_space;
   wire                branch_taken_fifo_ports_m_ports_valid;
   wire                branch_taken_fifo_ports_m_ports_payload;
   wire                branch_taken_fifo_ports_s_ports_ready;
   wire                branch_taken_fifo_has_space;
-  wire       [19:0]   tmp_tmp_predict_imm_2;
-  wire       [11:0]   tmp_tmp_predict_imm_4;
-  wire                tmp_predict_imm_6;
-  wire                tmp_predict_imm_7;
   reg        [31:0]   pc;
   reg                 fetch_valid;
   reg                 rsp_flush;
@@ -25079,12 +25060,6 @@ module Fetch_kernel (
   wire                instr_out_stream_valid;
   wire                instr_out_stream_ready;
   wire       [63:0]   instr_out_stream_payload;
-  wire                branch_pc_in_stream_valid;
-  wire                branch_pc_in_stream_ready;
-  wire       [31:0]   branch_pc_in_stream_payload;
-  wire                branch_pc_out_stream_valid;
-  wire                branch_pc_out_stream_ready;
-  wire       [31:0]   branch_pc_out_stream_payload;
   wire                taken_in_stream_valid;
   wire                taken_in_stream_ready;
   wire                taken_in_stream_payload;
@@ -25101,16 +25076,9 @@ module Fetch_kernel (
   wire                icache_ports_cmd_fire_1;
   wire                fch_dst_fire;
   wire                fch_dst_fire_1;
-  wire                fch_dst_fire_2;
-  wire                fch_dst_fire_3;
-  wire                tmp_predict_imm;
-  wire                tmp_predict_imm_1;
-  wire                tmp_predict_imm_2;
-  reg        [42:0]   tmp_predict_imm_3;
-  wire                tmp_predict_imm_4;
-  reg        [50:0]   tmp_predict_imm_5;
   wire                icache_ports_cmd_fire_2;
-  reg        [31:0]   pc_regNextWhen;
+  wire                fch_dst_fire_2;
+  wire                icache_ports_cmd_fire_3;
   reg        [31:0]   fetch_stall_cnt;
   wire                icache_ports_cmd_isStall_1;
   `ifndef SYNTHESIS
@@ -25119,10 +25087,6 @@ module Fetch_kernel (
   `endif
 
 
-  assign tmp_tmp_predict_imm_2 = {{{icache_ports_rsp_data[31],icache_ports_rsp_data[19 : 12]},icache_ports_rsp_data[20]},icache_ports_rsp_data[30 : 21]};
-  assign tmp_tmp_predict_imm_4 = {{{icache_ports_rsp_data[31],icache_ports_rsp_data[7]},icache_ports_rsp_data[30 : 25]},icache_ports_rsp_data[11 : 8]};
-  assign tmp_predict_imm_6 = icache_ports_rsp_data[31];
-  assign tmp_predict_imm_7 = icache_ports_rsp_data[7];
   FIFO pc_stream_fifo (
     .ports_s_ports_valid   (pc_in_stream_valid                        ), //i
     .ports_s_ports_ready   (pc_stream_fifo_ports_s_ports_ready        ), //o
@@ -25149,19 +25113,7 @@ module Fetch_kernel (
     .clk                   (clk                                          ), //i
     .reset                 (reset                                        )  //i
   );
-  FIFO_2 branch_pc_stream_fifo (
-    .ports_s_ports_valid   (branch_pc_in_stream_valid                        ), //i
-    .ports_s_ports_ready   (branch_pc_stream_fifo_ports_s_ports_ready        ), //o
-    .ports_s_ports_payload (branch_pc_in_stream_payload[31:0]                ), //i
-    .ports_m_ports_valid   (branch_pc_stream_fifo_ports_m_ports_valid        ), //o
-    .ports_m_ports_ready   (branch_pc_out_stream_ready                       ), //i
-    .ports_m_ports_payload (branch_pc_stream_fifo_ports_m_ports_payload[31:0]), //o
-    .flush                 (flush                                            ), //i
-    .has_space             (branch_pc_stream_fifo_has_space                  ), //o
-    .clk                   (clk                                              ), //i
-    .reset                 (reset                                            )  //i
-  );
-  FIFO_3 branch_taken_fifo (
+  FIFO_2 branch_taken_fifo (
     .ports_s_ports_valid   (taken_in_stream_valid                  ), //i
     .ports_s_ports_ready   (branch_taken_fifo_ports_s_ports_ready  ), //o
     .ports_s_ports_payload (taken_in_stream_payload                ), //i
@@ -25192,7 +25144,7 @@ module Fetch_kernel (
   end
   `endif
 
-  assign fifo_all_valid = ((pc_out_stream_valid && instr_out_stream_valid) && branch_pc_out_stream_valid); // @ Fetch.scala l53
+  assign fifo_all_valid = ((pc_out_stream_valid && instr_out_stream_valid) && pc_stream_fifo_next_valid); // @ Fetch.scala l50
   assign fifo_all_ready = ((pc_stream_fifo_has_space && branch_taken_fifo_has_space) && instr_stream_fifo_has_space); // @ BaseType.scala l305
   assign fch_dst_isStall = (fch_dst_valid && (! fch_dst_ready)); // @ BaseType.scala l305
   always @(*) begin
@@ -25238,17 +25190,11 @@ module Fetch_kernel (
   assign instr_in_stream_ready = instr_stream_fifo_ports_s_ports_ready; // @ Fetch.scala l137
   assign instr_out_stream_valid = instr_stream_fifo_ports_m_ports_valid; // @ Fetch.scala l138
   assign instr_out_stream_payload = instr_stream_fifo_ports_m_ports_payload; // @ Fetch.scala l138
-  assign branch_pc_in_stream_valid = instr_in_stream_valid; // @ Fetch.scala l143
-  assign branch_pc_in_stream_payload = branch_pc; // @ Fetch.scala l144
-  assign fch_dst_fire_2 = (fch_dst_valid && fch_dst_ready); // @ BaseType.scala l305
-  assign branch_pc_out_stream_ready = fch_dst_fire_2; // @ Fetch.scala l145
-  assign branch_pc_in_stream_ready = branch_pc_stream_fifo_ports_s_ports_ready; // @ Fetch.scala l146
-  assign branch_pc_out_stream_valid = branch_pc_stream_fifo_ports_m_ports_valid; // @ Fetch.scala l147
-  assign branch_pc_out_stream_payload = branch_pc_stream_fifo_ports_m_ports_payload; // @ Fetch.scala l147
-  assign taken_in_stream_valid = instr_in_stream_valid; // @ Fetch.scala l150
+  assign icache_ports_cmd_fire_2 = (icache_ports_cmd_valid && icache_ports_cmd_ready); // @ BaseType.scala l305
+  assign taken_in_stream_valid = icache_ports_cmd_fire_2; // @ Fetch.scala l153
   assign taken_in_stream_payload = branch_taken; // @ Fetch.scala l157
-  assign fch_dst_fire_3 = (fch_dst_valid && fch_dst_ready); // @ BaseType.scala l305
-  assign taken_out_stream_ready = fch_dst_fire_3; // @ Fetch.scala l158
+  assign fch_dst_fire_2 = (fch_dst_valid && fch_dst_ready); // @ BaseType.scala l305
+  assign taken_out_stream_ready = fch_dst_fire_2; // @ Fetch.scala l158
   assign taken_in_stream_ready = branch_taken_fifo_ports_s_ports_ready; // @ Fetch.scala l159
   assign taken_out_stream_valid = branch_taken_fifo_ports_m_ports_valid; // @ Fetch.scala l160
   assign taken_out_stream_payload = branch_taken_fifo_ports_m_ports_payload; // @ Fetch.scala l160
@@ -25256,118 +25202,11 @@ module Fetch_kernel (
   assign fch_dst_instr = instr_out_stream_payload; // @ Fetch.scala l165
   assign fch_dst_branch_taken = taken_out_stream_payload; // @ Fetch.scala l166
   assign fch_dst_valid = (fifo_all_valid && (! flush)); // @ Fetch.scala l167
-  assign tmp_predict_imm = (icache_ports_rsp_data[6 : 0] == 7'h6f); // @ BaseType.scala l305
-  assign tmp_predict_imm_1 = (icache_ports_rsp_data[6 : 0] == 7'h63); // @ BaseType.scala l305
-  assign tmp_predict_imm_2 = tmp_tmp_predict_imm_2[19]; // @ BaseType.scala l305
-  always @(*) begin
-    tmp_predict_imm_3[42] = tmp_predict_imm_2; // @ Literal.scala l87
-    tmp_predict_imm_3[41] = tmp_predict_imm_2; // @ Literal.scala l87
-    tmp_predict_imm_3[40] = tmp_predict_imm_2; // @ Literal.scala l87
-    tmp_predict_imm_3[39] = tmp_predict_imm_2; // @ Literal.scala l87
-    tmp_predict_imm_3[38] = tmp_predict_imm_2; // @ Literal.scala l87
-    tmp_predict_imm_3[37] = tmp_predict_imm_2; // @ Literal.scala l87
-    tmp_predict_imm_3[36] = tmp_predict_imm_2; // @ Literal.scala l87
-    tmp_predict_imm_3[35] = tmp_predict_imm_2; // @ Literal.scala l87
-    tmp_predict_imm_3[34] = tmp_predict_imm_2; // @ Literal.scala l87
-    tmp_predict_imm_3[33] = tmp_predict_imm_2; // @ Literal.scala l87
-    tmp_predict_imm_3[32] = tmp_predict_imm_2; // @ Literal.scala l87
-    tmp_predict_imm_3[31] = tmp_predict_imm_2; // @ Literal.scala l87
-    tmp_predict_imm_3[30] = tmp_predict_imm_2; // @ Literal.scala l87
-    tmp_predict_imm_3[29] = tmp_predict_imm_2; // @ Literal.scala l87
-    tmp_predict_imm_3[28] = tmp_predict_imm_2; // @ Literal.scala l87
-    tmp_predict_imm_3[27] = tmp_predict_imm_2; // @ Literal.scala l87
-    tmp_predict_imm_3[26] = tmp_predict_imm_2; // @ Literal.scala l87
-    tmp_predict_imm_3[25] = tmp_predict_imm_2; // @ Literal.scala l87
-    tmp_predict_imm_3[24] = tmp_predict_imm_2; // @ Literal.scala l87
-    tmp_predict_imm_3[23] = tmp_predict_imm_2; // @ Literal.scala l87
-    tmp_predict_imm_3[22] = tmp_predict_imm_2; // @ Literal.scala l87
-    tmp_predict_imm_3[21] = tmp_predict_imm_2; // @ Literal.scala l87
-    tmp_predict_imm_3[20] = tmp_predict_imm_2; // @ Literal.scala l87
-    tmp_predict_imm_3[19] = tmp_predict_imm_2; // @ Literal.scala l87
-    tmp_predict_imm_3[18] = tmp_predict_imm_2; // @ Literal.scala l87
-    tmp_predict_imm_3[17] = tmp_predict_imm_2; // @ Literal.scala l87
-    tmp_predict_imm_3[16] = tmp_predict_imm_2; // @ Literal.scala l87
-    tmp_predict_imm_3[15] = tmp_predict_imm_2; // @ Literal.scala l87
-    tmp_predict_imm_3[14] = tmp_predict_imm_2; // @ Literal.scala l87
-    tmp_predict_imm_3[13] = tmp_predict_imm_2; // @ Literal.scala l87
-    tmp_predict_imm_3[12] = tmp_predict_imm_2; // @ Literal.scala l87
-    tmp_predict_imm_3[11] = tmp_predict_imm_2; // @ Literal.scala l87
-    tmp_predict_imm_3[10] = tmp_predict_imm_2; // @ Literal.scala l87
-    tmp_predict_imm_3[9] = tmp_predict_imm_2; // @ Literal.scala l87
-    tmp_predict_imm_3[8] = tmp_predict_imm_2; // @ Literal.scala l87
-    tmp_predict_imm_3[7] = tmp_predict_imm_2; // @ Literal.scala l87
-    tmp_predict_imm_3[6] = tmp_predict_imm_2; // @ Literal.scala l87
-    tmp_predict_imm_3[5] = tmp_predict_imm_2; // @ Literal.scala l87
-    tmp_predict_imm_3[4] = tmp_predict_imm_2; // @ Literal.scala l87
-    tmp_predict_imm_3[3] = tmp_predict_imm_2; // @ Literal.scala l87
-    tmp_predict_imm_3[2] = tmp_predict_imm_2; // @ Literal.scala l87
-    tmp_predict_imm_3[1] = tmp_predict_imm_2; // @ Literal.scala l87
-    tmp_predict_imm_3[0] = tmp_predict_imm_2; // @ Literal.scala l87
-  end
-
-  assign tmp_predict_imm_4 = tmp_tmp_predict_imm_4[11]; // @ BaseType.scala l305
-  always @(*) begin
-    tmp_predict_imm_5[50] = tmp_predict_imm_4; // @ Literal.scala l87
-    tmp_predict_imm_5[49] = tmp_predict_imm_4; // @ Literal.scala l87
-    tmp_predict_imm_5[48] = tmp_predict_imm_4; // @ Literal.scala l87
-    tmp_predict_imm_5[47] = tmp_predict_imm_4; // @ Literal.scala l87
-    tmp_predict_imm_5[46] = tmp_predict_imm_4; // @ Literal.scala l87
-    tmp_predict_imm_5[45] = tmp_predict_imm_4; // @ Literal.scala l87
-    tmp_predict_imm_5[44] = tmp_predict_imm_4; // @ Literal.scala l87
-    tmp_predict_imm_5[43] = tmp_predict_imm_4; // @ Literal.scala l87
-    tmp_predict_imm_5[42] = tmp_predict_imm_4; // @ Literal.scala l87
-    tmp_predict_imm_5[41] = tmp_predict_imm_4; // @ Literal.scala l87
-    tmp_predict_imm_5[40] = tmp_predict_imm_4; // @ Literal.scala l87
-    tmp_predict_imm_5[39] = tmp_predict_imm_4; // @ Literal.scala l87
-    tmp_predict_imm_5[38] = tmp_predict_imm_4; // @ Literal.scala l87
-    tmp_predict_imm_5[37] = tmp_predict_imm_4; // @ Literal.scala l87
-    tmp_predict_imm_5[36] = tmp_predict_imm_4; // @ Literal.scala l87
-    tmp_predict_imm_5[35] = tmp_predict_imm_4; // @ Literal.scala l87
-    tmp_predict_imm_5[34] = tmp_predict_imm_4; // @ Literal.scala l87
-    tmp_predict_imm_5[33] = tmp_predict_imm_4; // @ Literal.scala l87
-    tmp_predict_imm_5[32] = tmp_predict_imm_4; // @ Literal.scala l87
-    tmp_predict_imm_5[31] = tmp_predict_imm_4; // @ Literal.scala l87
-    tmp_predict_imm_5[30] = tmp_predict_imm_4; // @ Literal.scala l87
-    tmp_predict_imm_5[29] = tmp_predict_imm_4; // @ Literal.scala l87
-    tmp_predict_imm_5[28] = tmp_predict_imm_4; // @ Literal.scala l87
-    tmp_predict_imm_5[27] = tmp_predict_imm_4; // @ Literal.scala l87
-    tmp_predict_imm_5[26] = tmp_predict_imm_4; // @ Literal.scala l87
-    tmp_predict_imm_5[25] = tmp_predict_imm_4; // @ Literal.scala l87
-    tmp_predict_imm_5[24] = tmp_predict_imm_4; // @ Literal.scala l87
-    tmp_predict_imm_5[23] = tmp_predict_imm_4; // @ Literal.scala l87
-    tmp_predict_imm_5[22] = tmp_predict_imm_4; // @ Literal.scala l87
-    tmp_predict_imm_5[21] = tmp_predict_imm_4; // @ Literal.scala l87
-    tmp_predict_imm_5[20] = tmp_predict_imm_4; // @ Literal.scala l87
-    tmp_predict_imm_5[19] = tmp_predict_imm_4; // @ Literal.scala l87
-    tmp_predict_imm_5[18] = tmp_predict_imm_4; // @ Literal.scala l87
-    tmp_predict_imm_5[17] = tmp_predict_imm_4; // @ Literal.scala l87
-    tmp_predict_imm_5[16] = tmp_predict_imm_4; // @ Literal.scala l87
-    tmp_predict_imm_5[15] = tmp_predict_imm_4; // @ Literal.scala l87
-    tmp_predict_imm_5[14] = tmp_predict_imm_4; // @ Literal.scala l87
-    tmp_predict_imm_5[13] = tmp_predict_imm_4; // @ Literal.scala l87
-    tmp_predict_imm_5[12] = tmp_predict_imm_4; // @ Literal.scala l87
-    tmp_predict_imm_5[11] = tmp_predict_imm_4; // @ Literal.scala l87
-    tmp_predict_imm_5[10] = tmp_predict_imm_4; // @ Literal.scala l87
-    tmp_predict_imm_5[9] = tmp_predict_imm_4; // @ Literal.scala l87
-    tmp_predict_imm_5[8] = tmp_predict_imm_4; // @ Literal.scala l87
-    tmp_predict_imm_5[7] = tmp_predict_imm_4; // @ Literal.scala l87
-    tmp_predict_imm_5[6] = tmp_predict_imm_4; // @ Literal.scala l87
-    tmp_predict_imm_5[5] = tmp_predict_imm_4; // @ Literal.scala l87
-    tmp_predict_imm_5[4] = tmp_predict_imm_4; // @ Literal.scala l87
-    tmp_predict_imm_5[3] = tmp_predict_imm_4; // @ Literal.scala l87
-    tmp_predict_imm_5[2] = tmp_predict_imm_4; // @ Literal.scala l87
-    tmp_predict_imm_5[1] = tmp_predict_imm_4; // @ Literal.scala l87
-    tmp_predict_imm_5[0] = tmp_predict_imm_4; // @ Literal.scala l87
-  end
-
-  assign predict_imm = (tmp_predict_imm ? {{tmp_predict_imm_3,{{{icache_ports_rsp_data[31],icache_ports_rsp_data[19 : 12]},icache_ports_rsp_data[20]},icache_ports_rsp_data[30 : 21]}},1'b0} : (tmp_predict_imm_1 ? {{tmp_predict_imm_5,{{{tmp_predict_imm_6,tmp_predict_imm_7},icache_ports_rsp_data[30 : 25]},icache_ports_rsp_data[11 : 8]}},1'b0} : 64'h0)); // @ Fetch.scala l174
-  assign predict_jal = tmp_predict_imm; // @ Fetch.scala l175
-  assign predict_branch = tmp_predict_imm_1; // @ Fetch.scala l176
-  assign predict_valid = instr_in_stream_valid; // @ Fetch.scala l177
-  assign icache_ports_cmd_fire_2 = (icache_ports_cmd_valid && icache_ports_cmd_ready); // @ BaseType.scala l305
-  assign predict_pc = pc_regNextWhen; // @ Fetch.scala l178
-  assign fch_dst_branch_pc = branch_pc_out_stream_payload; // @ Fetch.scala l180
-  assign icache_ports_cmd_valid = ((fetch_valid && (! flush)) && (! branch_taken)); // @ Fetch.scala l182
+  assign icache_ports_cmd_fire_3 = (icache_ports_cmd_valid && icache_ports_cmd_ready); // @ BaseType.scala l305
+  assign predict_valid = icache_ports_cmd_fire_3; // @ Fetch.scala l186
+  assign predict_pc = pc; // @ Fetch.scala l187
+  assign fch_dst_branch_pc = pc_stream_fifo_next_payload; // @ Fetch.scala l189
+  assign icache_ports_cmd_valid = (fetch_valid && (! flush)); // @ Fetch.scala l191
   assign icache_ports_cmd_addr = pc; // @ Fetch.scala l195
   assign icache_ports_cmd_isStall_1 = (icache_ports_cmd_valid && (! icache_ports_cmd_ready)); // @ BaseType.scala l305
   always @(posedge clk or posedge reset) begin
@@ -25406,15 +25245,9 @@ module Fetch_kernel (
           end
         end
       end
-      if((icache_ports_cmd_isStall_1 || (! fifo_all_ready))) begin
+      if(icache_ports_cmd_isStall_1) begin
         fetch_stall_cnt <= (fetch_stall_cnt + 32'h00000001); // @ Fetch.scala l199
       end
-    end
-  end
-
-  always @(posedge clk) begin
-    if(icache_ports_cmd_fire_2) begin
-      pc_regNextWhen <= pc; // @ Fetch.scala l178
     end
   end
 
@@ -25780,7 +25613,7 @@ module CsrRegfile (
 
 endmodule
 
-module FIFO_3 (
+module FIFO_2 (
   input               ports_s_ports_valid,
   output              ports_s_ports_ready,
   input               ports_s_ports_payload,
@@ -25794,22 +25627,26 @@ module FIFO_3 (
 );
 
   reg                 tmp_ports_m_ports_payload;
-  reg        [2:0]    read_ptr;
-  reg        [2:0]    write_ptr;
-  wire       [1:0]    read_addr;
-  wire       [1:0]    next_read_addr;
-  wire       [1:0]    write_addr;
+  reg        [3:0]    read_ptr;
+  reg        [3:0]    write_ptr;
+  wire       [2:0]    read_addr;
+  wire       [2:0]    next_read_addr;
+  wire       [2:0]    write_addr;
   wire                fifo_empty;
   wire                fifo_full;
   reg                 fifo_ram_0;
   reg                 fifo_ram_1;
   reg                 fifo_ram_2;
   reg                 fifo_ram_3;
+  reg                 fifo_ram_4;
+  reg                 fifo_ram_5;
+  reg                 fifo_ram_6;
+  reg                 fifo_ram_7;
   wire                ports_m_ports_fire;
-  wire       [3:0]    tmp_1;
+  wire       [7:0]    tmp_1;
   wire                ports_s_ports_fire;
-  reg        [2:0]    empty_entry_cnt;
-  reg        [2:0]    empty_entry_cnt_next;
+  reg        [3:0]    empty_entry_cnt;
+  reg        [3:0]    empty_entry_cnt_next;
   wire                ports_s_ports_fire_1;
   wire                ports_m_ports_fire_1;
   wire                ports_s_ports_fire_2;
@@ -25817,29 +25654,33 @@ module FIFO_3 (
 
   always @(*) begin
     case(read_addr)
-      2'b00 : tmp_ports_m_ports_payload = fifo_ram_0;
-      2'b01 : tmp_ports_m_ports_payload = fifo_ram_1;
-      2'b10 : tmp_ports_m_ports_payload = fifo_ram_2;
-      default : tmp_ports_m_ports_payload = fifo_ram_3;
+      3'b000 : tmp_ports_m_ports_payload = fifo_ram_0;
+      3'b001 : tmp_ports_m_ports_payload = fifo_ram_1;
+      3'b010 : tmp_ports_m_ports_payload = fifo_ram_2;
+      3'b011 : tmp_ports_m_ports_payload = fifo_ram_3;
+      3'b100 : tmp_ports_m_ports_payload = fifo_ram_4;
+      3'b101 : tmp_ports_m_ports_payload = fifo_ram_5;
+      3'b110 : tmp_ports_m_ports_payload = fifo_ram_6;
+      default : tmp_ports_m_ports_payload = fifo_ram_7;
     endcase
   end
 
-  assign read_addr = read_ptr[1 : 0]; // @ BaseType.scala l299
-  assign next_read_addr = (read_addr + 2'b01); // @ BaseType.scala l299
-  assign write_addr = write_ptr[1 : 0]; // @ BaseType.scala l299
+  assign read_addr = read_ptr[2 : 0]; // @ BaseType.scala l299
+  assign next_read_addr = (read_addr + 3'b001); // @ BaseType.scala l299
+  assign write_addr = write_ptr[2 : 0]; // @ BaseType.scala l299
   assign fifo_empty = (read_ptr == write_ptr); // @ BaseType.scala l305
-  assign fifo_full = ((read_addr == write_addr) && (read_ptr[2] != write_ptr[2])); // @ BaseType.scala l305
+  assign fifo_full = ((read_addr == write_addr) && (read_ptr[3] != write_ptr[3])); // @ BaseType.scala l305
   assign ports_m_ports_fire = (ports_m_ports_valid && ports_m_ports_ready); // @ BaseType.scala l305
-  assign tmp_1 = ({3'd0,1'b1} <<< write_addr); // @ BaseType.scala l299
+  assign tmp_1 = ({7'd0,1'b1} <<< write_addr); // @ BaseType.scala l299
   assign ports_s_ports_fire = (ports_s_ports_valid && ports_s_ports_ready); // @ BaseType.scala l305
   assign ports_s_ports_fire_1 = (ports_s_ports_valid && ports_s_ports_ready); // @ BaseType.scala l305
   assign ports_m_ports_fire_1 = (ports_m_ports_valid && ports_m_ports_ready); // @ BaseType.scala l305
   always @(*) begin
     if((ports_s_ports_fire_1 && (! ports_m_ports_fire_1))) begin
-      empty_entry_cnt_next = (empty_entry_cnt - 3'b001); // @ FIFO.scala l51
+      empty_entry_cnt_next = (empty_entry_cnt - 4'b0001); // @ FIFO.scala l51
     end else begin
       if(((! ports_s_ports_fire_2) && ports_m_ports_fire_2)) begin
-        empty_entry_cnt_next = (empty_entry_cnt + 3'b001); // @ FIFO.scala l54
+        empty_entry_cnt_next = (empty_entry_cnt + 4'b0001); // @ FIFO.scala l54
       end else begin
         empty_entry_cnt_next = empty_entry_cnt; // @ FIFO.scala l57
       end
@@ -25851,29 +25692,29 @@ module FIFO_3 (
   assign ports_s_ports_ready = (! fifo_full); // @ FIFO.scala l68
   assign ports_m_ports_valid = (! fifo_empty); // @ FIFO.scala l69
   assign ports_m_ports_payload = tmp_ports_m_ports_payload; // @ FIFO.scala l70
-  assign has_space = (3'b001 < empty_entry_cnt_next); // @ FIFO.scala l71
+  assign has_space = (4'b0001 < empty_entry_cnt_next); // @ FIFO.scala l71
   always @(posedge clk or posedge reset) begin
     if(reset) begin
-      read_ptr <= 3'b000; // @ Data.scala l400
-      write_ptr <= 3'b000; // @ Data.scala l400
-      empty_entry_cnt <= 3'b100; // @ Data.scala l400
+      read_ptr <= 4'b0000; // @ Data.scala l400
+      write_ptr <= 4'b0000; // @ Data.scala l400
+      empty_entry_cnt <= 4'b1000; // @ Data.scala l400
     end else begin
       if(flush) begin
-        read_ptr <= 3'b000; // @ FIFO.scala l34
+        read_ptr <= 4'b0000; // @ FIFO.scala l34
       end else begin
         if(ports_m_ports_fire) begin
-          read_ptr <= (read_ptr + 3'b001); // @ FIFO.scala l37
+          read_ptr <= (read_ptr + 4'b0001); // @ FIFO.scala l37
         end
       end
       if(flush) begin
-        write_ptr <= 3'b000; // @ FIFO.scala l40
+        write_ptr <= 4'b0000; // @ FIFO.scala l40
       end else begin
         if(ports_s_ports_fire) begin
-          write_ptr <= (write_ptr + 3'b001); // @ FIFO.scala l43
+          write_ptr <= (write_ptr + 4'b0001); // @ FIFO.scala l43
         end
       end
       if(flush) begin
-        empty_entry_cnt <= 3'b100; // @ FIFO.scala l60
+        empty_entry_cnt <= 4'b1000; // @ FIFO.scala l60
       end else begin
         empty_entry_cnt <= empty_entry_cnt_next; // @ FIFO.scala l63
       end
@@ -25895,117 +25736,17 @@ module FIFO_3 (
         if(tmp_1[3]) begin
           fifo_ram_3 <= ports_s_ports_payload; // @ FIFO.scala l44
         end
-      end
-    end
-  end
-
-
-endmodule
-
-module FIFO_2 (
-  input               ports_s_ports_valid,
-  output              ports_s_ports_ready,
-  input      [31:0]   ports_s_ports_payload,
-  output              ports_m_ports_valid,
-  input               ports_m_ports_ready,
-  output     [31:0]   ports_m_ports_payload,
-  input               flush,
-  output              has_space,
-  input               clk,
-  input               reset
-);
-
-  reg        [31:0]   tmp_ports_m_ports_payload;
-  reg        [1:0]    read_ptr;
-  reg        [1:0]    write_ptr;
-  wire       [0:0]    read_addr;
-  wire       [0:0]    next_read_addr;
-  wire       [0:0]    write_addr;
-  wire                fifo_empty;
-  wire                fifo_full;
-  reg        [31:0]   fifo_ram_0;
-  reg        [31:0]   fifo_ram_1;
-  wire                ports_m_ports_fire;
-  wire       [1:0]    tmp_1;
-  wire                ports_s_ports_fire;
-  reg        [1:0]    empty_entry_cnt;
-  reg        [1:0]    empty_entry_cnt_next;
-  wire                ports_s_ports_fire_1;
-  wire                ports_m_ports_fire_1;
-  wire                ports_s_ports_fire_2;
-  wire                ports_m_ports_fire_2;
-
-  always @(*) begin
-    case(read_addr)
-      1'b0 : tmp_ports_m_ports_payload = fifo_ram_0;
-      default : tmp_ports_m_ports_payload = fifo_ram_1;
-    endcase
-  end
-
-  assign read_addr = read_ptr[0 : 0]; // @ BaseType.scala l299
-  assign next_read_addr = (read_addr + 1'b1); // @ BaseType.scala l299
-  assign write_addr = write_ptr[0 : 0]; // @ BaseType.scala l299
-  assign fifo_empty = (read_ptr == write_ptr); // @ BaseType.scala l305
-  assign fifo_full = ((read_addr == write_addr) && (read_ptr[1] != write_ptr[1])); // @ BaseType.scala l305
-  assign ports_m_ports_fire = (ports_m_ports_valid && ports_m_ports_ready); // @ BaseType.scala l305
-  assign tmp_1 = ({1'd0,1'b1} <<< write_addr); // @ BaseType.scala l299
-  assign ports_s_ports_fire = (ports_s_ports_valid && ports_s_ports_ready); // @ BaseType.scala l305
-  assign ports_s_ports_fire_1 = (ports_s_ports_valid && ports_s_ports_ready); // @ BaseType.scala l305
-  assign ports_m_ports_fire_1 = (ports_m_ports_valid && ports_m_ports_ready); // @ BaseType.scala l305
-  always @(*) begin
-    if((ports_s_ports_fire_1 && (! ports_m_ports_fire_1))) begin
-      empty_entry_cnt_next = (empty_entry_cnt - 2'b01); // @ FIFO.scala l51
-    end else begin
-      if(((! ports_s_ports_fire_2) && ports_m_ports_fire_2)) begin
-        empty_entry_cnt_next = (empty_entry_cnt + 2'b01); // @ FIFO.scala l54
-      end else begin
-        empty_entry_cnt_next = empty_entry_cnt; // @ FIFO.scala l57
-      end
-    end
-  end
-
-  assign ports_s_ports_fire_2 = (ports_s_ports_valid && ports_s_ports_ready); // @ BaseType.scala l305
-  assign ports_m_ports_fire_2 = (ports_m_ports_valid && ports_m_ports_ready); // @ BaseType.scala l305
-  assign ports_s_ports_ready = (! fifo_full); // @ FIFO.scala l68
-  assign ports_m_ports_valid = (! fifo_empty); // @ FIFO.scala l69
-  assign ports_m_ports_payload = tmp_ports_m_ports_payload; // @ FIFO.scala l70
-  assign has_space = (2'b01 < empty_entry_cnt_next); // @ FIFO.scala l71
-  always @(posedge clk or posedge reset) begin
-    if(reset) begin
-      read_ptr <= 2'b00; // @ Data.scala l400
-      write_ptr <= 2'b00; // @ Data.scala l400
-      empty_entry_cnt <= 2'b10; // @ Data.scala l400
-    end else begin
-      if(flush) begin
-        read_ptr <= 2'b00; // @ FIFO.scala l34
-      end else begin
-        if(ports_m_ports_fire) begin
-          read_ptr <= (read_ptr + 2'b01); // @ FIFO.scala l37
+        if(tmp_1[4]) begin
+          fifo_ram_4 <= ports_s_ports_payload; // @ FIFO.scala l44
         end
-      end
-      if(flush) begin
-        write_ptr <= 2'b00; // @ FIFO.scala l40
-      end else begin
-        if(ports_s_ports_fire) begin
-          write_ptr <= (write_ptr + 2'b01); // @ FIFO.scala l43
+        if(tmp_1[5]) begin
+          fifo_ram_5 <= ports_s_ports_payload; // @ FIFO.scala l44
         end
-      end
-      if(flush) begin
-        empty_entry_cnt <= 2'b10; // @ FIFO.scala l60
-      end else begin
-        empty_entry_cnt <= empty_entry_cnt_next; // @ FIFO.scala l63
-      end
-    end
-  end
-
-  always @(posedge clk) begin
-    if(!flush) begin
-      if(ports_s_ports_fire) begin
-        if(tmp_1[0]) begin
-          fifo_ram_0 <= ports_s_ports_payload; // @ FIFO.scala l44
+        if(tmp_1[6]) begin
+          fifo_ram_6 <= ports_s_ports_payload; // @ FIFO.scala l44
         end
-        if(tmp_1[1]) begin
-          fifo_ram_1 <= ports_s_ports_payload; // @ FIFO.scala l44
+        if(tmp_1[7]) begin
+          fifo_ram_7 <= ports_s_ports_payload; // @ FIFO.scala l44
         end
       end
     end
@@ -26028,22 +25769,26 @@ module FIFO_1 (
 );
 
   reg        [63:0]   tmp_ports_m_ports_payload;
-  reg        [2:0]    read_ptr;
-  reg        [2:0]    write_ptr;
-  wire       [1:0]    read_addr;
-  wire       [1:0]    next_read_addr;
-  wire       [1:0]    write_addr;
+  reg        [3:0]    read_ptr;
+  reg        [3:0]    write_ptr;
+  wire       [2:0]    read_addr;
+  wire       [2:0]    next_read_addr;
+  wire       [2:0]    write_addr;
   wire                fifo_empty;
   wire                fifo_full;
   reg        [63:0]   fifo_ram_0;
   reg        [63:0]   fifo_ram_1;
   reg        [63:0]   fifo_ram_2;
   reg        [63:0]   fifo_ram_3;
+  reg        [63:0]   fifo_ram_4;
+  reg        [63:0]   fifo_ram_5;
+  reg        [63:0]   fifo_ram_6;
+  reg        [63:0]   fifo_ram_7;
   wire                ports_m_ports_fire;
-  wire       [3:0]    tmp_1;
+  wire       [7:0]    tmp_1;
   wire                ports_s_ports_fire;
-  reg        [2:0]    empty_entry_cnt;
-  reg        [2:0]    empty_entry_cnt_next;
+  reg        [3:0]    empty_entry_cnt;
+  reg        [3:0]    empty_entry_cnt_next;
   wire                ports_s_ports_fire_1;
   wire                ports_m_ports_fire_1;
   wire                ports_s_ports_fire_2;
@@ -26051,29 +25796,33 @@ module FIFO_1 (
 
   always @(*) begin
     case(read_addr)
-      2'b00 : tmp_ports_m_ports_payload = fifo_ram_0;
-      2'b01 : tmp_ports_m_ports_payload = fifo_ram_1;
-      2'b10 : tmp_ports_m_ports_payload = fifo_ram_2;
-      default : tmp_ports_m_ports_payload = fifo_ram_3;
+      3'b000 : tmp_ports_m_ports_payload = fifo_ram_0;
+      3'b001 : tmp_ports_m_ports_payload = fifo_ram_1;
+      3'b010 : tmp_ports_m_ports_payload = fifo_ram_2;
+      3'b011 : tmp_ports_m_ports_payload = fifo_ram_3;
+      3'b100 : tmp_ports_m_ports_payload = fifo_ram_4;
+      3'b101 : tmp_ports_m_ports_payload = fifo_ram_5;
+      3'b110 : tmp_ports_m_ports_payload = fifo_ram_6;
+      default : tmp_ports_m_ports_payload = fifo_ram_7;
     endcase
   end
 
-  assign read_addr = read_ptr[1 : 0]; // @ BaseType.scala l299
-  assign next_read_addr = (read_addr + 2'b01); // @ BaseType.scala l299
-  assign write_addr = write_ptr[1 : 0]; // @ BaseType.scala l299
+  assign read_addr = read_ptr[2 : 0]; // @ BaseType.scala l299
+  assign next_read_addr = (read_addr + 3'b001); // @ BaseType.scala l299
+  assign write_addr = write_ptr[2 : 0]; // @ BaseType.scala l299
   assign fifo_empty = (read_ptr == write_ptr); // @ BaseType.scala l305
-  assign fifo_full = ((read_addr == write_addr) && (read_ptr[2] != write_ptr[2])); // @ BaseType.scala l305
+  assign fifo_full = ((read_addr == write_addr) && (read_ptr[3] != write_ptr[3])); // @ BaseType.scala l305
   assign ports_m_ports_fire = (ports_m_ports_valid && ports_m_ports_ready); // @ BaseType.scala l305
-  assign tmp_1 = ({3'd0,1'b1} <<< write_addr); // @ BaseType.scala l299
+  assign tmp_1 = ({7'd0,1'b1} <<< write_addr); // @ BaseType.scala l299
   assign ports_s_ports_fire = (ports_s_ports_valid && ports_s_ports_ready); // @ BaseType.scala l305
   assign ports_s_ports_fire_1 = (ports_s_ports_valid && ports_s_ports_ready); // @ BaseType.scala l305
   assign ports_m_ports_fire_1 = (ports_m_ports_valid && ports_m_ports_ready); // @ BaseType.scala l305
   always @(*) begin
     if((ports_s_ports_fire_1 && (! ports_m_ports_fire_1))) begin
-      empty_entry_cnt_next = (empty_entry_cnt - 3'b001); // @ FIFO.scala l51
+      empty_entry_cnt_next = (empty_entry_cnt - 4'b0001); // @ FIFO.scala l51
     end else begin
       if(((! ports_s_ports_fire_2) && ports_m_ports_fire_2)) begin
-        empty_entry_cnt_next = (empty_entry_cnt + 3'b001); // @ FIFO.scala l54
+        empty_entry_cnt_next = (empty_entry_cnt + 4'b0001); // @ FIFO.scala l54
       end else begin
         empty_entry_cnt_next = empty_entry_cnt; // @ FIFO.scala l57
       end
@@ -26085,29 +25834,29 @@ module FIFO_1 (
   assign ports_s_ports_ready = (! fifo_full); // @ FIFO.scala l68
   assign ports_m_ports_valid = (! fifo_empty); // @ FIFO.scala l69
   assign ports_m_ports_payload = tmp_ports_m_ports_payload; // @ FIFO.scala l70
-  assign has_space = (3'b001 < empty_entry_cnt_next); // @ FIFO.scala l71
+  assign has_space = (4'b0001 < empty_entry_cnt_next); // @ FIFO.scala l71
   always @(posedge clk or posedge reset) begin
     if(reset) begin
-      read_ptr <= 3'b000; // @ Data.scala l400
-      write_ptr <= 3'b000; // @ Data.scala l400
-      empty_entry_cnt <= 3'b100; // @ Data.scala l400
+      read_ptr <= 4'b0000; // @ Data.scala l400
+      write_ptr <= 4'b0000; // @ Data.scala l400
+      empty_entry_cnt <= 4'b1000; // @ Data.scala l400
     end else begin
       if(flush) begin
-        read_ptr <= 3'b000; // @ FIFO.scala l34
+        read_ptr <= 4'b0000; // @ FIFO.scala l34
       end else begin
         if(ports_m_ports_fire) begin
-          read_ptr <= (read_ptr + 3'b001); // @ FIFO.scala l37
+          read_ptr <= (read_ptr + 4'b0001); // @ FIFO.scala l37
         end
       end
       if(flush) begin
-        write_ptr <= 3'b000; // @ FIFO.scala l40
+        write_ptr <= 4'b0000; // @ FIFO.scala l40
       end else begin
         if(ports_s_ports_fire) begin
-          write_ptr <= (write_ptr + 3'b001); // @ FIFO.scala l43
+          write_ptr <= (write_ptr + 4'b0001); // @ FIFO.scala l43
         end
       end
       if(flush) begin
-        empty_entry_cnt <= 3'b100; // @ FIFO.scala l60
+        empty_entry_cnt <= 4'b1000; // @ FIFO.scala l60
       end else begin
         empty_entry_cnt <= empty_entry_cnt_next; // @ FIFO.scala l63
       end
@@ -26128,6 +25877,18 @@ module FIFO_1 (
         end
         if(tmp_1[3]) begin
           fifo_ram_3 <= ports_s_ports_payload; // @ FIFO.scala l44
+        end
+        if(tmp_1[4]) begin
+          fifo_ram_4 <= ports_s_ports_payload; // @ FIFO.scala l44
+        end
+        if(tmp_1[5]) begin
+          fifo_ram_5 <= ports_s_ports_payload; // @ FIFO.scala l44
+        end
+        if(tmp_1[6]) begin
+          fifo_ram_6 <= ports_s_ports_payload; // @ FIFO.scala l44
+        end
+        if(tmp_1[7]) begin
+          fifo_ram_7 <= ports_s_ports_payload; // @ FIFO.scala l44
         end
       end
     end
@@ -26153,27 +25914,31 @@ module FIFO (
 
   reg        [31:0]   tmp_ports_m_ports_payload;
   reg        [31:0]   tmp_next_payload;
-  reg        [2:0]    read_ptr;
-  reg        [2:0]    write_ptr;
-  wire       [1:0]    read_addr;
-  wire       [1:0]    next_read_addr;
-  wire       [1:0]    write_addr;
+  reg        [3:0]    read_ptr;
+  reg        [3:0]    write_ptr;
+  wire       [2:0]    read_addr;
+  wire       [2:0]    next_read_addr;
+  wire       [2:0]    write_addr;
   wire                fifo_empty;
   wire                fifo_full;
   reg        [31:0]   fifo_ram_0;
   reg        [31:0]   fifo_ram_1;
   reg        [31:0]   fifo_ram_2;
   reg        [31:0]   fifo_ram_3;
+  reg        [31:0]   fifo_ram_4;
+  reg        [31:0]   fifo_ram_5;
+  reg        [31:0]   fifo_ram_6;
+  reg        [31:0]   fifo_ram_7;
   wire                ports_m_ports_fire;
-  wire       [3:0]    tmp_1;
+  wire       [7:0]    tmp_1;
   wire                ports_s_ports_fire;
-  reg        [2:0]    empty_entry_cnt;
-  reg        [2:0]    empty_entry_cnt_next;
+  reg        [3:0]    empty_entry_cnt;
+  reg        [3:0]    empty_entry_cnt_next;
   wire                ports_s_ports_fire_1;
   wire                ports_m_ports_fire_1;
   wire                ports_s_ports_fire_2;
   wire                ports_m_ports_fire_2;
-  reg        [2:0]    fifo_cnt;
+  reg        [3:0]    fifo_cnt;
   wire                ports_s_ports_fire_3;
   wire                ports_m_ports_fire_3;
   wire                ports_s_ports_fire_4;
@@ -26181,38 +25946,46 @@ module FIFO (
 
   always @(*) begin
     case(read_addr)
-      2'b00 : tmp_ports_m_ports_payload = fifo_ram_0;
-      2'b01 : tmp_ports_m_ports_payload = fifo_ram_1;
-      2'b10 : tmp_ports_m_ports_payload = fifo_ram_2;
-      default : tmp_ports_m_ports_payload = fifo_ram_3;
+      3'b000 : tmp_ports_m_ports_payload = fifo_ram_0;
+      3'b001 : tmp_ports_m_ports_payload = fifo_ram_1;
+      3'b010 : tmp_ports_m_ports_payload = fifo_ram_2;
+      3'b011 : tmp_ports_m_ports_payload = fifo_ram_3;
+      3'b100 : tmp_ports_m_ports_payload = fifo_ram_4;
+      3'b101 : tmp_ports_m_ports_payload = fifo_ram_5;
+      3'b110 : tmp_ports_m_ports_payload = fifo_ram_6;
+      default : tmp_ports_m_ports_payload = fifo_ram_7;
     endcase
   end
 
   always @(*) begin
     case(next_read_addr)
-      2'b00 : tmp_next_payload = fifo_ram_0;
-      2'b01 : tmp_next_payload = fifo_ram_1;
-      2'b10 : tmp_next_payload = fifo_ram_2;
-      default : tmp_next_payload = fifo_ram_3;
+      3'b000 : tmp_next_payload = fifo_ram_0;
+      3'b001 : tmp_next_payload = fifo_ram_1;
+      3'b010 : tmp_next_payload = fifo_ram_2;
+      3'b011 : tmp_next_payload = fifo_ram_3;
+      3'b100 : tmp_next_payload = fifo_ram_4;
+      3'b101 : tmp_next_payload = fifo_ram_5;
+      3'b110 : tmp_next_payload = fifo_ram_6;
+      default : tmp_next_payload = fifo_ram_7;
     endcase
   end
 
-  assign read_addr = read_ptr[1 : 0]; // @ BaseType.scala l299
-  assign next_read_addr = (read_addr + 2'b01); // @ BaseType.scala l299
-  assign write_addr = write_ptr[1 : 0]; // @ BaseType.scala l299
+  assign read_addr = read_ptr[2 : 0]; // @ BaseType.scala l299
+  assign next_read_addr = (read_addr + 3'b001); // @ BaseType.scala l299
+  assign write_addr = write_ptr[2 : 0]; // @ BaseType.scala l299
   assign fifo_empty = (read_ptr == write_ptr); // @ BaseType.scala l305
-  assign fifo_full = ((read_addr == write_addr) && (read_ptr[2] != write_ptr[2])); // @ BaseType.scala l305
+  assign fifo_full = ((read_addr == write_addr) && (read_ptr[3] != write_ptr[3])); // @ BaseType.scala l305
   assign ports_m_ports_fire = (ports_m_ports_valid && ports_m_ports_ready); // @ BaseType.scala l305
-  assign tmp_1 = ({3'd0,1'b1} <<< write_addr); // @ BaseType.scala l299
+  assign tmp_1 = ({7'd0,1'b1} <<< write_addr); // @ BaseType.scala l299
   assign ports_s_ports_fire = (ports_s_ports_valid && ports_s_ports_ready); // @ BaseType.scala l305
   assign ports_s_ports_fire_1 = (ports_s_ports_valid && ports_s_ports_ready); // @ BaseType.scala l305
   assign ports_m_ports_fire_1 = (ports_m_ports_valid && ports_m_ports_ready); // @ BaseType.scala l305
   always @(*) begin
     if((ports_s_ports_fire_1 && (! ports_m_ports_fire_1))) begin
-      empty_entry_cnt_next = (empty_entry_cnt - 3'b001); // @ FIFO.scala l51
+      empty_entry_cnt_next = (empty_entry_cnt - 4'b0001); // @ FIFO.scala l51
     end else begin
       if(((! ports_s_ports_fire_2) && ports_m_ports_fire_2)) begin
-        empty_entry_cnt_next = (empty_entry_cnt + 3'b001); // @ FIFO.scala l54
+        empty_entry_cnt_next = (empty_entry_cnt + 4'b0001); // @ FIFO.scala l54
       end else begin
         empty_entry_cnt_next = empty_entry_cnt; // @ FIFO.scala l57
       end
@@ -26224,47 +25997,47 @@ module FIFO (
   assign ports_s_ports_ready = (! fifo_full); // @ FIFO.scala l68
   assign ports_m_ports_valid = (! fifo_empty); // @ FIFO.scala l69
   assign ports_m_ports_payload = tmp_ports_m_ports_payload; // @ FIFO.scala l70
-  assign has_space = (3'b001 < empty_entry_cnt_next); // @ FIFO.scala l71
+  assign has_space = (4'b0001 < empty_entry_cnt_next); // @ FIFO.scala l71
   assign next_payload = tmp_next_payload; // @ FIFO.scala l78
   assign ports_s_ports_fire_3 = (ports_s_ports_valid && ports_s_ports_ready); // @ BaseType.scala l305
   assign ports_m_ports_fire_3 = (ports_m_ports_valid && ports_m_ports_ready); // @ BaseType.scala l305
   assign ports_s_ports_fire_4 = (ports_s_ports_valid && ports_s_ports_ready); // @ BaseType.scala l305
   assign ports_m_ports_fire_4 = (ports_m_ports_valid && ports_m_ports_ready); // @ BaseType.scala l305
-  assign next_valid = (3'b010 <= fifo_cnt); // @ FIFO.scala l90
+  assign next_valid = (4'b0010 <= fifo_cnt); // @ FIFO.scala l90
   always @(posedge clk or posedge reset) begin
     if(reset) begin
-      read_ptr <= 3'b000; // @ Data.scala l400
-      write_ptr <= 3'b000; // @ Data.scala l400
-      empty_entry_cnt <= 3'b100; // @ Data.scala l400
-      fifo_cnt <= 3'b000; // @ Data.scala l400
+      read_ptr <= 4'b0000; // @ Data.scala l400
+      write_ptr <= 4'b0000; // @ Data.scala l400
+      empty_entry_cnt <= 4'b1000; // @ Data.scala l400
+      fifo_cnt <= 4'b0000; // @ Data.scala l400
     end else begin
       if(flush) begin
-        read_ptr <= 3'b000; // @ FIFO.scala l34
+        read_ptr <= 4'b0000; // @ FIFO.scala l34
       end else begin
         if(ports_m_ports_fire) begin
-          read_ptr <= (read_ptr + 3'b001); // @ FIFO.scala l37
+          read_ptr <= (read_ptr + 4'b0001); // @ FIFO.scala l37
         end
       end
       if(flush) begin
-        write_ptr <= 3'b000; // @ FIFO.scala l40
+        write_ptr <= 4'b0000; // @ FIFO.scala l40
       end else begin
         if(ports_s_ports_fire) begin
-          write_ptr <= (write_ptr + 3'b001); // @ FIFO.scala l43
+          write_ptr <= (write_ptr + 4'b0001); // @ FIFO.scala l43
         end
       end
       if(flush) begin
-        empty_entry_cnt <= 3'b100; // @ FIFO.scala l60
+        empty_entry_cnt <= 4'b1000; // @ FIFO.scala l60
       end else begin
         empty_entry_cnt <= empty_entry_cnt_next; // @ FIFO.scala l63
       end
       if(flush) begin
-        fifo_cnt <= 3'b000; // @ FIFO.scala l80
+        fifo_cnt <= 4'b0000; // @ FIFO.scala l80
       end else begin
         if((ports_s_ports_fire_3 && (! ports_m_ports_fire_3))) begin
-          fifo_cnt <= (fifo_cnt + 3'b001); // @ FIFO.scala l83
+          fifo_cnt <= (fifo_cnt + 4'b0001); // @ FIFO.scala l83
         end else begin
           if(((! ports_s_ports_fire_4) && ports_m_ports_fire_4)) begin
-            fifo_cnt <= (fifo_cnt - 3'b001); // @ FIFO.scala l86
+            fifo_cnt <= (fifo_cnt - 4'b0001); // @ FIFO.scala l86
           end
         end
       end
@@ -26285,6 +26058,18 @@ module FIFO (
         end
         if(tmp_1[3]) begin
           fifo_ram_3 <= ports_s_ports_payload; // @ FIFO.scala l44
+        end
+        if(tmp_1[4]) begin
+          fifo_ram_4 <= ports_s_ports_payload; // @ FIFO.scala l44
+        end
+        if(tmp_1[5]) begin
+          fifo_ram_5 <= ports_s_ports_payload; // @ FIFO.scala l44
+        end
+        if(tmp_1[6]) begin
+          fifo_ram_6 <= ports_s_ports_payload; // @ FIFO.scala l44
+        end
+        if(tmp_1[7]) begin
+          fifo_ram_7 <= ports_s_ports_payload; // @ FIFO.scala l44
         end
       end
     end

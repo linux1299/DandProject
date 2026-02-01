@@ -33,17 +33,17 @@ case class Fetch_kernel(resetVector : BigInt) extends Component {
   
   val pc_in_stream          = Stream(UInt(32 bits))
   val pc_out_stream         = Stream(UInt(32 bits))
-  val pc_stream_fifo        = FIFO(UInt(32 bits), 4, true)
+  val pc_stream_fifo        = FIFO(UInt(32 bits), 8, true)
   val instr_in_stream       = Stream(Bits(64 bits))
   val instr_out_stream      = Stream(Bits(64 bits))
-  val instr_stream_fifo     = FIFO(Bits(64 bits), 4)
+  val instr_stream_fifo     = FIFO(Bits(64 bits), 8)
 
   val branch_pc_in_stream   = (BPU_TYPE=="static") generate Stream(UInt(32 bits))
   val branch_pc_out_stream  = (BPU_TYPE=="static") generate Stream(UInt(32 bits))
-  val branch_pc_stream_fifo = (BPU_TYPE=="static") generate FIFO(UInt(32 bits))
+  val branch_pc_stream_fifo = (BPU_TYPE=="static") generate FIFO(UInt(32 bits), 8)
   val taken_in_stream       = Stream(Bool())
   val taken_out_stream      = Stream(Bool())
-  val branch_taken_fifo     = FIFO(Bool(), 4)
+  val branch_taken_fifo     = FIFO(Bool(), 8)
   
   val fifo_all_valid = Bool()
   if(BPU_TYPE=="gshare"){
@@ -196,7 +196,7 @@ case class Fetch_kernel(resetVector : BigInt) extends Component {
 
   // ==================== perf cnt =============================
   val fetch_stall_cnt = Reg(UInt(32 bits)) init(0)
-  when(icache_ports.cmd.isStall || !fifo_all_ready) {fetch_stall_cnt := fetch_stall_cnt + 1}
+  when(icache_ports.cmd.isStall) {fetch_stall_cnt := fetch_stall_cnt + 1}
 
 }
 

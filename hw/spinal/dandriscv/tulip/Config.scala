@@ -63,8 +63,8 @@ case class DCacheConfig(cacheSize    : Int, // bytes
 // ================ Cpu ===============
 object CpuConfig{
   def XLEN = 64
-  def BPU_TYPE = "static"
-  // def BPU_TYPE = "gshare"
+  // def BPU_TYPE = "static"
+  def BPU_TYPE = "gshare"
   def BPU_HISTORY_LEN = 5
   def DIFFTEST = true
 }

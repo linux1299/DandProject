@@ -140,8 +140,10 @@ case class Tulip() extends Component {
   dispat.commit_fifo_ready   := commit.commit_fifo_ready
   dispat.tail_adr_older      := commit.tail_adr_older
   dispat.tail_adr_newer      := commit.tail_adr_newer
+  // val issue_bju_stall = (issue.iss_dst(0).valid && issue.iss_dst(0).iss_pkg.exe_sel===ExeSelEnum.BJU && issue.iss_dst(1).iss_pkg.exe_sel===ExeSelEnum.LSU)
+  val issue_bju_stall = (issue.iss_dst(0).valid && issue.iss_dst(0).iss_pkg.exe_sel===ExeSelEnum.BJU)
   dispat.dis_src(0) << issue.iss_dst(0).throwWhen(change_flow).haltWhen(commit.dis_stall)
-  dispat.dis_src(1) << issue.iss_dst(1).throwWhen(change_flow || branch_valid).haltWhen(commit.dis_stall || (issue.iss_dst(0).valid && issue.iss_dst(0).iss_pkg.exe_sel===ExeSelEnum.BJU))
+  dispat.dis_src(1) << issue.iss_dst(1).throwWhen(change_flow || branch_valid).haltWhen(commit.dis_stall || issue_bju_stall)
 
   dispat.wbc_rd_wen(0) := bju_0.bju_dst.fire && bju_0.bju_dst.rd_wen
   dispat.wbc_rd_wen(1) := alu_1.alu_dst.fire && alu_1.alu_dst.rd_wen && !commit.flush_al1
@@ -189,26 +191,26 @@ case class Tulip() extends Component {
   bju_0.timer_int      := lsu_4.timer_int
 
   // ================= ALU 1 ===============
-  val al1_to_head_distance = alu_1.alu_src.tail_adr - commit.head_adr_out
-  val al1_branch_flush     = branch_valid && (al1_to_head_distance > bju_to_head_distance)
-  val al1_flush            = commit.flush || al1_branch_flush
-  alu_1.alu_src   << dispat.dis_to_al1.throwWhen(al1_flush)
+  alu_1.alu_src   << dispat.dis_to_al1
+  val al1_flush = False
+  val al2_flush = False
 
   // ================= ALU 2 ===============
-  val al2_to_head_distance = alu_2.alu_src.tail_adr - commit.head_adr_out
-  val al2_branch_flush     = branch_valid && (al2_to_head_distance > bju_to_head_distance)
-  val al2_flush            = commit.flush || al2_branch_flush
-  alu_2.alu_src   << dispat.dis_to_al2.throwWhen(al2_flush)
+  alu_2.alu_src   << dispat.dis_to_al2
 
   // ================= DIV ===============
   val div_to_head_distance = div_3.div_src.tail_adr - commit.head_adr_out
   val div_branch_flush     = branch_valid && (div_to_head_distance > bju_to_head_distance)
-  div_3.flush     := commit.flush || div_branch_flush
+  // div_3.flush     := commit.flush || div_branch_flush
+  div_3.flush     := False
   div_3.div_src   << dispat.dis_to_div.throwWhen(div_3.flush)
 
   // ================= LSU ===============
   val lsu_to_head_distance = lsu_4.lsu_src.tail_adr - commit.head_adr_out
-  lsu_4.lsu_src          << dispat.dis_to_lsu.throwWhen((change_flow || branch_valid) && (lsu_to_head_distance > bju_to_head_distance)).haltWhen(dispat.dis_to_bju.valid && ((lsu_to_head_distance > bju_to_head_distance)))
+  val lsu_stall = dispat.dis_to_bju.valid && ((lsu_to_head_distance > bju_to_head_distance))
+  val lsu_flush = (change_flow || branch_valid) && (lsu_to_head_distance > bju_to_head_distance)
+  // val lsu_flush = False
+  lsu_4.lsu_src          << dispat.dis_to_lsu.throwWhen(lsu_flush).haltWhen(lsu_stall)
   lsu_4.dcache_ports.rsp << dcache.dcache_src.rsp
 
   dispat.al1_flush := al1_flush
@@ -216,7 +218,8 @@ case class Tulip() extends Component {
   dispat.div_flush := div_3.flush
 
   // ================= Commit ===============
-  commit.change_flow     := (change_flow || branch_valid)
+  // commit.change_flow     := (change_flow || branch_valid)
+  commit.change_flow     := (change_flow)
   commit.change_flow_adr := bju_0.bju_src.tail_adr
   commit.wbc_src(0) << bju_0.bju_dst
   commit.wbc_src(1) << alu_1.alu_dst.throwWhen(commit.flush_al1)
@@ -252,6 +255,63 @@ case class Tulip() extends Component {
   dcacheWriter.w  << dcache.dcacheWriter.w
   dcacheWriter.b  >> dcache.dcacheWriter.b
   
+  // ================= perf cnt ===============
+  val cycle_cnt = Reg(UInt(32 bits)) init(0)
+  val instr_cnt = Reg(UInt(32 bits)) init(0)
+
+  val dispatch_stall_cnt = Reg(UInt(32 bits)) init(0)
+  val change_flow_cnt = Reg(UInt(32 bits)) init(0)
+  val issue_bju_stall_cnt = Reg(UInt(32 bits)) init(0)
+  val bju_instr_cnt = Reg(UInt(32 bits)) init(0)
+
+  val fetch_dst0_valid_duty_cycle = Reg(UInt(32 bits)) init(0)
+  val fetch_dst1_valid_duty_cycle = Reg(UInt(32 bits)) init(0)
+  val fetch_dst0_ready_duty_cycle = Reg(UInt(32 bits)) init(0)
+  val fetch_dst1_ready_duty_cycle = Reg(UInt(32 bits)) init(0)
+  val fetch_dst0_fire_duty_cycle = Reg(UInt(32 bits)) init(0)
+  val fetch_dst1_fire_duty_cycle = Reg(UInt(32 bits)) init(0)
+  val issue_dst0_valid_duty_cycle = Reg(UInt(32 bits)) init(0)
+  val issue_dst1_valid_duty_cycle = Reg(UInt(32 bits)) init(0)
+  val issue_dst0_ready_duty_cycle = Reg(UInt(32 bits)) init(0)
+  val issue_dst1_ready_duty_cycle = Reg(UInt(32 bits)) init(0)
+  val issue_dst0_fire_duty_cycle = Reg(UInt(32 bits)) init(0)
+  val issue_dst1_fire_duty_cycle = Reg(UInt(32 bits)) init(0)
+
+  val dispatch_src0_valid_duty_cycle = Reg(UInt(32 bits)) init(0)
+  val dispatch_src1_valid_duty_cycle = Reg(UInt(32 bits)) init(0)
+  val dispatch_src0_ready_duty_cycle = Reg(UInt(32 bits)) init(0)
+  val dispatch_src1_ready_duty_cycle = Reg(UInt(32 bits)) init(0)
+  val dispatch_src0_fire_duty_cycle = Reg(UInt(32 bits)) init(0)
+  val dispatch_src1_fire_duty_cycle = Reg(UInt(32 bits)) init(0)
+
+  cycle_cnt := cycle_cnt + 1
+  instr_cnt := instr_cnt + commit.wbc_dst(0).fire.asUInt + commit.wbc_dst(1).fire.asUInt
+
+  when(commit.dis_stall) {dispatch_stall_cnt := dispatch_stall_cnt + 1}
+  when(change_flow) {change_flow_cnt := change_flow_cnt + 1}
+  when(issue_bju_stall) {issue_bju_stall_cnt := issue_bju_stall_cnt + 1}
+  when(bju_0.bju_dst.fire) {bju_instr_cnt := bju_instr_cnt + 1}
+
+  when(fetch.fch_dst(0).valid) {fetch_dst0_valid_duty_cycle := fetch_dst0_valid_duty_cycle + 1}
+  when(fetch.fch_dst(1).valid) {fetch_dst1_valid_duty_cycle := fetch_dst1_valid_duty_cycle + 1}
+  when(fetch.fch_dst(0).ready) {fetch_dst0_ready_duty_cycle := fetch_dst0_ready_duty_cycle + 1}
+  when(fetch.fch_dst(1).ready) {fetch_dst1_ready_duty_cycle := fetch_dst1_ready_duty_cycle + 1}
+  when(fetch.fch_dst(0).fire) {fetch_dst0_fire_duty_cycle := fetch_dst0_fire_duty_cycle + 1}
+  when(fetch.fch_dst(1).fire) {fetch_dst1_fire_duty_cycle := fetch_dst1_fire_duty_cycle + 1}
+
+  when(issue.iss_dst(0).valid) {issue_dst0_valid_duty_cycle := issue_dst0_valid_duty_cycle + 1}
+  when(issue.iss_dst(1).valid) {issue_dst1_valid_duty_cycle := issue_dst1_valid_duty_cycle + 1}
+  when(issue.iss_dst(0).ready) {issue_dst0_ready_duty_cycle := issue_dst0_ready_duty_cycle + 1}
+  when(issue.iss_dst(1).ready) {issue_dst1_ready_duty_cycle := issue_dst1_ready_duty_cycle + 1}
+  when(issue.iss_dst(0).fire) {issue_dst0_fire_duty_cycle := issue_dst0_fire_duty_cycle + 1}
+  when(issue.iss_dst(1).fire) {issue_dst1_fire_duty_cycle := issue_dst1_fire_duty_cycle + 1}
+
+  when(dispat.dis_src(0).valid) {dispatch_src0_valid_duty_cycle := dispatch_src0_valid_duty_cycle + 1}
+  when(dispat.dis_src(1).valid) {dispatch_src1_valid_duty_cycle := dispatch_src1_valid_duty_cycle + 1}
+  when(dispat.dis_src(0).ready) {dispatch_src0_ready_duty_cycle := dispatch_src0_ready_duty_cycle + 1}
+  when(dispat.dis_src(1).ready) {dispatch_src1_ready_duty_cycle := dispatch_src1_ready_duty_cycle + 1}
+  when(dispat.dis_src(0).fire) {dispatch_src0_fire_duty_cycle := dispatch_src0_fire_duty_cycle + 1}
+  when(dispat.dis_src(1).fire) {dispatch_src1_fire_duty_cycle := dispatch_src1_fire_duty_cycle + 1}
 }
 
 
