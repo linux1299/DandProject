@@ -74,7 +74,7 @@ case class DIV() extends Component {
   val rd_addr_reg    = RegNextWhen(div_src.rd_addr, div_src.fire) init(0)
   val pc_reg         = RegNextWhen(div_src.pc, div_src.fire) init(0)
   val instr_reg      = RegNextWhen(div_src.instr, div_src.fire) init(0)
-  val tail_adr_reg   = RegNextWhen(div_src.tail_adr, div_src.fire) init(0)
+  val tail_adr_reg   = RegNextWhen(div_src.entry_adr, div_src.fire) init(0)
   val alu_is_quo_reg = RegNextWhen(alu_is_quo, div_src.fire) init(false)
   val alu_is_rem_reg = RegNextWhen(alu_is_rem, div_src.fire) init(false)
 
@@ -86,7 +86,7 @@ case class DIV() extends Component {
   dst_stream.rd_data  := alu_is_quo_reg ? div_result_quotient | div_result_remainder
   dst_stream.pc       := pc_reg
   dst_stream.instr    := instr_reg
-  dst_stream.tail_adr := tail_adr_reg
+  dst_stream.entry_adr := tail_adr_reg
 
   dst_stream >-> div_dst
 

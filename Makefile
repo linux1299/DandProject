@@ -1,5 +1,5 @@
 clean:
-	rm -rf  *simv*  *.vpd DVEfiles csrc simv* ucli* *.log *novas*  vpd2fsdb* v* V* *fsdb* verdilog* *bin* *stack.info* novas.conf novas.rc
+	rm -rf  *simv*  *.vpd DVEfiles csrc simv* ucli* *.log *novas*  vpd2fsdb* v* V* *fsdb* verdilog* *bin* *stack.info* novas.conf novas.rc *.txt
 
 all: clean com sim
 re: com sim

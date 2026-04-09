@@ -275,14 +275,14 @@ case class BJU() extends Component {
   branch_valid            := bju_kernel.branch_valid
 
   // =================== output ===================
-  bju_src.ready      := dst_stream.ready
-  dst_stream.valid   := bju_src.valid
-  dst_stream.rd_data := bju_kernel.rd_data
-  dst_stream.rd_addr := bju_src.rd_addr
-  dst_stream.rd_wen  := bju_src.uop_com.rd_wen
-  dst_stream.pc      := bju_src.pc
-  dst_stream.instr   := bju_src.instr
-  dst_stream.tail_adr := bju_src.tail_adr
+  bju_src.ready        := dst_stream.ready
+  dst_stream.valid     := bju_src.valid
+  dst_stream.rd_data   := bju_kernel.rd_data
+  dst_stream.rd_addr   := bju_src.rd_addr
+  dst_stream.rd_wen    := bju_src.uop_com.rd_wen
+  dst_stream.pc        := bju_src.pc
+  dst_stream.instr     := bju_src.instr
+  dst_stream.entry_adr := bju_src.entry_adr
 
   dst_stream >-> bju_dst
 

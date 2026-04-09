@@ -135,14 +135,14 @@ case class ALU() extends Component {
   val mul_result      = dataMux(mul_sel, mul_data)
 
   // ================= stream control =====================
-  alu_src.ready       := dst_stream.ready
-  dst_stream.valid    := alu_src.valid
-  dst_stream.rd_wen   := alu_src.uop_com.rd_wen
-  dst_stream.rd_addr  := alu_src.rd_addr
-  dst_stream.rd_data  := alu_is_mul ? mul_result | alu_result
-  dst_stream.pc       := alu_src.pc
-  dst_stream.instr    := alu_src.instr
-  dst_stream.tail_adr := alu_src.tail_adr
+  alu_src.ready        := dst_stream.ready
+  dst_stream.valid     := alu_src.valid
+  dst_stream.rd_wen    := alu_src.uop_com.rd_wen
+  dst_stream.rd_addr   := alu_src.rd_addr
+  dst_stream.rd_data   := alu_is_mul ? mul_result | alu_result
+  dst_stream.pc        := alu_src.pc
+  dst_stream.instr     := alu_src.instr
+  dst_stream.entry_adr := alu_src.entry_adr
 
   dst_stream >-> alu_dst
 

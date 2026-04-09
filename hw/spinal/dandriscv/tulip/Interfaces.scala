@@ -105,8 +105,8 @@ case class IssueSrc() extends Bundle {
 }
 
 case class IssueDst() extends Bundle {
-  val iss_pkg    = IssueSrc()
-  val exe_sel_oh = Bits(5 bits)
+  val iss_pkg = IssueSrc()
+  val exe_oh  = Bits(5 bits)
 }
 
 // ========================= Dispatch <-> Exe =======================
@@ -117,7 +117,7 @@ case class ExeSrc(Type: String) extends Bundle {
   val rd_addr      = UInt(5 bits)
   val pc           = UInt(32 bits)
   val instr        = Bits(32 bits)
-  val tail_adr     = UInt(3 bits)
+  val entry_adr     = UInt(3 bits)
   // alu
   val uop_alu      = (Type=="ALU" || Type=="ALL") generate MicroOpAlu()
   // bju
@@ -135,7 +135,7 @@ case class ExeDst() extends Bundle {
   val rd_wen      = Bool()
   val pc          = UInt(32 bits)
   val instr       = Bits(32 bits)
-  val tail_adr    = UInt(3 bits)
+  val entry_adr    = UInt(3 bits)
 }
 
 // ====================== reg file ports ====================

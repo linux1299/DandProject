@@ -28,6 +28,8 @@ extern unsigned char rom_f1_nes[];
 extern unsigned int rom_f1_nes_len;
 extern unsigned char rom_castlevania_nes[];
 extern unsigned int rom_castlevania_nes_len;
+extern unsigned char rom_mighty_final_fight_nes[];
+extern unsigned int rom_mighty_final_fight_nes_len;
 extern unsigned char rom_loderunner_nes[];
 extern unsigned int rom_loderunner_nes_len;
 extern unsigned char rom_stargate_nes[];
@@ -63,6 +65,7 @@ struct rom roms[] = {
   { .name = "pacman", .body = rom_pacman_nes, .size = &rom_pacman_nes_len, },
   { .name = "f1", .body = rom_f1_nes, .size = &rom_f1_nes_len, },
   { .name = "castlevania", .body = rom_castlevania_nes, .size = &rom_castlevania_nes_len, },
+  { .name = "mighty_final_fight", .body = rom_mighty_final_fight_nes, .size = &rom_mighty_final_fight_nes_len, },
   { .name = "loderunner", .body = rom_loderunner_nes, .size = &rom_loderunner_nes_len, },
   { .name = "stargate", .body = rom_stargate_nes, .size = &rom_stargate_nes_len, },
   { .name = "spartanx", .body = rom_spartanx_nes, .size = &rom_spartanx_nes_len, },
@@ -70,4 +73,4 @@ struct rom roms[] = {
   { .name = "circus", .body = rom_circus_nes, .size = &rom_circus_nes_len, },
   { .name = "pinball", .body = rom_pinball_nes, .size = &rom_pinball_nes_len, },
 };
-int nroms = 21;
+int nroms = 22;
