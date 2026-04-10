@@ -210,7 +210,7 @@ case class LSU() extends Component {
   val older_reg    = Reg(Bool()) init(false)
   val pc_reg       = Reg(UInt(32 bits)) init(0)
   val instr_reg    = Reg(Bits(32 bits)) init(0)
-  val tail_adr_reg = Reg(UInt(3 bits)) init(0)
+  val tail_adr_reg = Reg(UInt(ROB_ADR_W bits)) init(0)
   val is_timer_reg = Reg(Bool()) init(false)
 
   when(lsu_src.fire){

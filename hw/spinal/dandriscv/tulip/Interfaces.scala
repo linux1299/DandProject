@@ -117,7 +117,7 @@ case class ExeSrc(Type: String) extends Bundle {
   val rd_addr      = UInt(5 bits)
   val pc           = UInt(32 bits)
   val instr        = Bits(32 bits)
-  val entry_adr     = UInt(3 bits)
+  val entry_adr    = UInt(ROB_ADR_W bits)
   // alu
   val uop_alu      = (Type=="ALU" || Type=="ALL") generate MicroOpAlu()
   // bju
@@ -135,7 +135,7 @@ case class ExeDst() extends Bundle {
   val rd_wen      = Bool()
   val pc          = UInt(32 bits)
   val instr       = Bits(32 bits)
-  val entry_adr    = UInt(3 bits)
+  val entry_adr    = UInt(ROB_ADR_W bits)
 }
 
 // ====================== reg file ports ====================

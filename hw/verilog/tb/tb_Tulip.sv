@@ -354,18 +354,18 @@ wire        wb_wen [1:0];
 wire [4:0]  wb_addr[1:0];
 wire [63:0] wb_data[1:0];
 
-assign wb_valid[0] = tb_Tulip.u_Tulip.commit_1.wbc_dst_0_valid;
-assign wb_valid[1] = tb_Tulip.u_Tulip.commit_1.wbc_dst_1_valid;
-assign wb_pc[0]    = tb_Tulip.u_Tulip.commit_1.wbc_dst_0_pc[31:0];
-assign wb_pc[1]    = tb_Tulip.u_Tulip.commit_1.wbc_dst_1_pc[31:0];
-assign wb_inst[0]  = tb_Tulip.u_Tulip.commit_1.wbc_dst_0_instr[31:0];
-assign wb_inst[1]  = tb_Tulip.u_Tulip.commit_1.wbc_dst_1_instr[31:0];
-assign wb_wen[0]   = tb_Tulip.u_Tulip.commit_1.wbc_dst_0_rd_wen;
-assign wb_wen[1]   = tb_Tulip.u_Tulip.commit_1.wbc_dst_1_rd_wen;
-assign wb_addr[0]  = tb_Tulip.u_Tulip.commit_1.wbc_dst_0_rd_addr;
-assign wb_addr[1]  = tb_Tulip.u_Tulip.commit_1.wbc_dst_1_rd_addr;
-assign wb_data[0]  = tb_Tulip.u_Tulip.commit_1.wbc_dst_0_rd_data;
-assign wb_data[1]  = tb_Tulip.u_Tulip.commit_1.wbc_dst_1_rd_data;
+assign wb_valid[0] = tb_Tulip.u_Tulip.commit_1.retire_0_valid;
+assign wb_valid[1] = tb_Tulip.u_Tulip.commit_1.retire_1_valid;
+assign wb_pc[0]    = tb_Tulip.u_Tulip.commit_1.retire_0_pc[31:0];
+assign wb_pc[1]    = tb_Tulip.u_Tulip.commit_1.retire_1_pc[31:0];
+assign wb_inst[0]  = tb_Tulip.u_Tulip.commit_1.retire_0_instr[31:0];
+assign wb_inst[1]  = tb_Tulip.u_Tulip.commit_1.retire_1_instr[31:0];
+assign wb_wen[0]   = tb_Tulip.u_Tulip.commit_1.retire_0_rd_wen;
+assign wb_wen[1]   = tb_Tulip.u_Tulip.commit_1.retire_1_rd_wen;
+assign wb_addr[0]  = tb_Tulip.u_Tulip.commit_1.retire_0_rd_addr;
+assign wb_addr[1]  = tb_Tulip.u_Tulip.commit_1.retire_1_rd_addr;
+assign wb_data[0]  = tb_Tulip.u_Tulip.commit_1.retire_0_rd_data;
+assign wb_data[1]  = tb_Tulip.u_Tulip.commit_1.retire_1_rd_data;
 
 always@(posedge clk_axi_in) begin
   if (wb_valid[0]) begin

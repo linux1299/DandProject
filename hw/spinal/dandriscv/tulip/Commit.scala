@@ -9,88 +9,64 @@ import BundleImplicit._
 
 // Commit 2 instructions/cycle
 case class Commit() extends Component{
+  import CpuConfig._
 
   // =================== IO ===================
-  // wbc stage, write to entry
-  val wbc_src   = Vec(slave(Stream(ExeDst())), 5)
-
-  // ret stage, write to ARF
-  val wbc_dst   = Vec(master(Stream(ExeDst())), 2) 
-
   // dispatch stage, write entry
   val dis_fire       = Vec(in Bool(), 2)
   val dis_pc         = Vec(in UInt(32 bits), 2)
+  val dis_rd_addr    = Vec(in UInt(5 bits), 2)
+  val dis_rd_wen     = Vec(in Bool(), 2)
+  val dis_instr      = Vec(in Bits(32 bits), 2)
 
-  // control info
-  val commit_fifo_ready = out Bool()
-  val tail_adr_older    = out UInt(3 bits)
-  val tail_adr_newer    = out UInt(3 bits)
-  val head_adr_out      = out UInt(3 bits)
+  // wbc stage, write to entry
+  val wbc_src   = Vec(slave(Stream(ExeDst())), 5)
+
+  // complete stage, read from entry
+  val complete    = Vec(Stream(ExeDst()), 2)
+  val cpl_rd_wen  = Vec(out Bool(), 2)
+  val cpl_rd_addr = Vec(out UInt(5 bits), 2)
+  val cpl_rd_data = Vec(out Bits(64 bits), 2)
+
+  // ret stage, write to ARF
+  val retire   = Vec(master(Stream(ExeDst())), 2) 
+
+  // control info output
+  val rob_is_ready   = out Bool()
+  val tail_adr_older = out UInt(ROB_ADR_W bits)
+  val tail_adr_newer = out UInt(ROB_ADR_W bits)
+  val head_adr_out   = out UInt(ROB_ADR_W bits)
 
   // =============== Entries of Commit =================
-  val head_ptr_curr = Reg(UInt(4 bits)) init(0)
-  val tail_ptr_curr = Reg(UInt(4 bits)) init(0)
-  val head_ptr_next = UInt(4 bits)
-  val tail_ptr_next = UInt(4 bits)
-  val head_ptr_plus = UInt(4 bits)
-  val tail_ptr_plus = UInt(4 bits)
-  val head_adr_curr = head_ptr_curr(2 downto 0)
-  val tail_adr_curr = tail_ptr_curr(2 downto 0)
-  val head_adr_plus = head_ptr_plus(2 downto 0)
-  val tail_adr_plus = tail_ptr_plus(2 downto 0)
+  val head_ptr_curr = Reg(UInt(ROB_ADR_W+1 bits)) init(0)
+  val tail_ptr_curr = Reg(UInt(ROB_ADR_W+1 bits)) init(0)
+  val head_ptr_next = UInt(ROB_ADR_W+1 bits)
+  val tail_ptr_next = UInt(ROB_ADR_W+1 bits)
+  val head_ptr_plus = UInt(ROB_ADR_W+1 bits)
+  val tail_ptr_plus = UInt(ROB_ADR_W+1 bits)
+  val head_adr_curr = head_ptr_curr(ROB_ADR_W-1 downto 0)
+  val tail_adr_curr = tail_ptr_curr(ROB_ADR_W-1 downto 0)
+  val head_adr_plus = head_ptr_plus(ROB_ADR_W-1 downto 0)
+  val tail_adr_plus = tail_ptr_plus(ROB_ADR_W-1 downto 0)
   val entry         = new Area{
-    val pc          = Vec(Reg(UInt(32 bits)) init(0), 8)
-    val valid       = Vec(RegInit(False), 8)
+    val pc          = Vec(Reg(UInt(32 bits)) init(0), ROB_DEPTH)
+    val instr       = Vec(Reg(Bits(32 bits)) init(0), ROB_DEPTH)
+    val valid       = Vec(RegInit(False), ROB_DEPTH)
+    val rd_data     = Vec(Reg(Bits(64 bits)) init(0), ROB_DEPTH)
+    val rd_vld      = Vec(RegInit(False), ROB_DEPTH)
+    val rd_addr     = Vec(Reg(UInt(5 bits)) init(0), ROB_DEPTH)
+    val rd_wen      = Vec(RegInit(False), ROB_DEPTH)
   }
   val entry_cnt        = Reg(UInt(4 bits)) init(0)
   val dis_fire_num     = UInt(2 bits)
-  val wbc_fire_num     = UInt(2 bits)
-  val head_pc_older    = UInt(32 bits)
-  val head_pc_newer    = UInt(32 bits)
-  val wbc_eq_head_older = Bits(5 bits)
-  val wbc_eq_head_newer = Bits(5 bits)
-  val wbc_src_valid    = Bits(5 bits)
-  val wbc_src_rd_data = wbc_src(4).rd_data ##
-                        wbc_src(3).rd_data ##
-                        wbc_src(2).rd_data ##
-                        wbc_src(1).rd_data ##
-                        wbc_src(0).rd_data
-  val wbc_src_rd_addr = wbc_src(4).rd_addr ##
-                        wbc_src(3).rd_addr ##
-                        wbc_src(2).rd_addr ##
-                        wbc_src(1).rd_addr ##
-                        wbc_src(0).rd_addr
-  val wbc_src_rd_wen  = wbc_src(4).rd_wen ##
-                        wbc_src(3).rd_wen ##
-                        wbc_src(2).rd_wen ##
-                        wbc_src(1).rd_wen ##
-                        wbc_src(0).rd_wen
-  val wbc_src_pc      = wbc_src(4).pc ##
-                        wbc_src(3).pc ##
-                        wbc_src(2).pc ##
-                        wbc_src(1).pc ##
-                        wbc_src(0).pc
-  val wbc_src_instr   = wbc_src(4).instr ##
-                        wbc_src(3).instr ##
-                        wbc_src(2).instr ##
-                        wbc_src(1).instr ##
-                        wbc_src(0).instr
-
-  // =============== Stream =================
-  val wbc_stream = Vec(Stream(ExeDst()), 2) // wbc stage
-  
-  val wbc_src_fire_num = UInt(3 bits)
-  wbc_src_fire_num := (wbc_src(0).fire && (wbc_src(0).entry_adr===head_adr_curr || wbc_src(0).entry_adr===head_adr_plus)).asUInt.resize(3 bits) + 
-                      (wbc_src(1).fire && (wbc_src(1).entry_adr===head_adr_curr || wbc_src(1).entry_adr===head_adr_plus)).asUInt.resize(3 bits) + 
-                      (wbc_src(2).fire && (wbc_src(2).entry_adr===head_adr_curr || wbc_src(2).entry_adr===head_adr_plus)).asUInt.resize(3 bits) + 
-                      (wbc_src(3).fire && (wbc_src(3).entry_adr===head_adr_curr || wbc_src(3).entry_adr===head_adr_plus)).asUInt.resize(3 bits) + 
-                      (wbc_src(4).fire && (wbc_src(4).entry_adr===head_adr_curr || wbc_src(4).entry_adr===head_adr_plus)).asUInt.resize(3 bits)
-  wbc_fire_num := wbc_src_fire_num.resize(2 bits)
+  val cpl_fire_num     = UInt(2 bits)
+  val wbc_src_fire     = Bits(5 bits)
 
   // =============== Update head ptr =================
   head_ptr_curr := head_ptr_next
-
-  head_ptr_next := head_ptr_curr + wbc_fire_num
+  cpl_fire_num  := (complete(0).fire && complete(1).fire) ? U(2, 2 bits) | 
+                   ((complete(0).fire || complete(1).fire)? U(1, 2 bits) | U(0, 2 bits))
+  head_ptr_next := head_ptr_curr + cpl_fire_num
   head_ptr_plus := head_ptr_curr + 1
 
   // =============== Update tail ptr =================
@@ -99,79 +75,116 @@ case class Commit() extends Component{
   tail_ptr_next := tail_ptr_curr + dis_fire_num
   tail_ptr_plus := tail_ptr_curr + 1
 
+  // =============== write back to entry(ROB) ===============
+  for(i <- 0 until 5){
+    wbc_src(i).ready := True // ensure write back has an entry match
+    wbc_src_fire(i)  := wbc_src(i).fire && entry.valid(wbc_src(i).entry_adr)
+  } 
+
   // =============== Update Entry =================
-  for(i <- 0 until 8){
+  for(i <- 0 until ROB_DEPTH){
+    //-------------- dispatch -----------------
     when(dis_fire_num===U(2) && tail_adr_plus===U(i)){ // dispatch 2 instr, write to tail_adr_plus
       entry.pc(i)     := dis_pc(1)
+      entry.instr(i)  := dis_instr(1)
+      entry.rd_addr(i):= dis_rd_addr(1)
+      entry.rd_wen(i) := dis_rd_wen(1)
       entry.valid(i)  := True
     }
     .elsewhen(dis_fire_num===U(2) && tail_adr_curr===U(i)){ // dispatch 2 instr, write to tail_adr_curr
       entry.pc(i)     := dis_pc(0)
+      entry.instr(i)  := dis_instr(0)
+      entry.rd_addr(i):= dis_rd_addr(0)
+      entry.rd_wen(i) := dis_rd_wen(0)
       entry.valid(i)  := True
     }
     .elsewhen(dis_fire_num===U(1) && tail_adr_curr===U(i) && dis_fire(0)){ // dispatch 1 instr, from older, write tail_adr_curr
       entry.pc(i)     := dis_pc(0)
+      entry.instr(i)  := dis_instr(0)
+      entry.rd_addr(i):= dis_rd_addr(0)
+      entry.rd_wen(i) := dis_rd_wen(0)
       entry.valid(i)  := True
     }
     .elsewhen(dis_fire_num===U(1) && tail_adr_curr===U(i) && dis_fire(1)){ // dispatch 1 instr, from newer, write tail_adr_curr
       entry.pc(i)     := dis_pc(1)
+      entry.instr(i)  := dis_instr(1)
+      entry.rd_addr(i):= dis_rd_addr(1)
+      entry.rd_wen(i) := dis_rd_wen(1)
       entry.valid(i)  := True
     }
 
-    when((wbc_stream(0).fire && wbc_stream(1).fire) && head_adr_plus===U(i)){ // pop 2 instr, head_adr_plus
+    //-------------- writeback -----------------
+    when(wbc_src_fire(0) && wbc_src(0).entry_adr===U(i)){
+      entry.rd_vld(i) := True
+      entry.rd_data(i):= wbc_src(0).rd_data
+    }
+    .elsewhen(wbc_src_fire(1) && wbc_src(1).entry_adr===U(i)){
+      entry.rd_vld(i) := True
+      entry.rd_data(i):= wbc_src(1).rd_data
+    }
+    .elsewhen(wbc_src_fire(2) && wbc_src(2).entry_adr===U(i)){
+      entry.rd_vld(i) := True
+      entry.rd_data(i):= wbc_src(2).rd_data
+    }
+    .elsewhen(wbc_src_fire(3) && wbc_src(3).entry_adr===U(i)){
+      entry.rd_vld(i) := True
+      entry.rd_data(i):= wbc_src(3).rd_data
+    }
+    .elsewhen(wbc_src_fire(4) && wbc_src(4).entry_adr===U(i)){
+      entry.rd_vld(i) := True
+      entry.rd_data(i):= wbc_src(4).rd_data
+    }
+
+    //-------------- complete -----------------
+    when((complete(0).fire && complete(1).fire) && head_adr_plus===U(i)){ // complete 2 instr, clear head +1
+      entry.rd_vld(i) := False
+      entry.rd_data(i):= B(0, 64 bits)
       entry.pc(i)     := U(0)
       entry.valid(i)  := False
     }
-    .elsewhen((wbc_stream(0).fire || wbc_stream(1).fire) && head_adr_curr===U(i)){ // pop 1 instr, head_adr_curr
+    .elsewhen((complete(0).fire || complete(1).fire) && head_adr_curr===U(i)){ // complete 1 instr, clear head
+      entry.rd_vld(i) := False
+      entry.rd_data(i):= B(0, 64 bits)
       entry.pc(i)     := U(0)
       entry.valid(i)  := False
     }
 
   }
 
-  head_pc_older := entry.pc(head_adr_curr)
-  head_pc_newer := entry.pc(head_adr_plus)
-
-  entry_cnt := entry_cnt + dis_fire_num - wbc_fire_num
-
-
   // =================== Output ===================
 
-  // return ready to wbc_src
-  for(i <- 0 until 5){
-    wbc_src_valid(i) := wbc_src(i).valid && entry.valid(wbc_src(i).entry_adr)
+  // compelte
+  complete(0).valid     := entry.valid(head_adr_curr) && entry.rd_vld(head_adr_curr)
+  complete(0).rd_data   := entry.rd_data(head_adr_curr)
+  complete(0).rd_addr   := entry.rd_addr(head_adr_curr)
+  complete(0).rd_wen    := entry.rd_wen(head_adr_curr)
+  complete(0).pc        := entry.pc(head_adr_curr)
+  complete(0).instr     := entry.instr(head_adr_curr)
+  complete(0).entry_adr := head_adr_curr
 
-    wbc_eq_head_older(i) := (head_adr_curr===wbc_src(i).entry_adr) && wbc_src_valid(i)
-    wbc_eq_head_newer(i) := (head_adr_plus===wbc_src(i).entry_adr) && wbc_src_valid(i)
+  complete(1).valid     := complete(0).valid && entry.valid(head_adr_plus) && entry.rd_vld(head_adr_plus)
+  complete(1).rd_data   := entry.rd_data(head_adr_plus)
+  complete(1).rd_addr   := entry.rd_addr(head_adr_plus)
+  complete(1).rd_wen    := entry.rd_wen(head_adr_plus)
+  complete(1).pc        := entry.pc(head_adr_plus)
+  complete(1).instr     := entry.instr(head_adr_plus)
+  complete(1).entry_adr := head_adr_plus
 
-    wbc_src(i).ready := (wbc_stream(0).fire && wbc_eq_head_older(i)) || 
-                        (wbc_stream(1).fire && wbc_eq_head_newer(i))
-
-    
-  } 
-
-  // prepare data to retire stage
-  wbc_stream(0).valid   := (wbc_eq_head_older & wbc_src_valid).orR
-  wbc_stream(1).valid   := (wbc_eq_head_newer & wbc_src_valid).orR && wbc_stream(0).fire
-  wbc_stream(0).rd_data := dataMux(wbc_eq_head_older, wbc_src_rd_data)
-  wbc_stream(1).rd_data := dataMux(wbc_eq_head_newer, wbc_src_rd_data)
-  wbc_stream(0).rd_addr := dataMux(wbc_eq_head_older, wbc_src_rd_addr).asUInt
-  wbc_stream(1).rd_addr := dataMux(wbc_eq_head_newer, wbc_src_rd_addr).asUInt
-  wbc_stream(0).rd_wen  := dataMux(wbc_eq_head_older, wbc_src_rd_wen).asBool
-  wbc_stream(1).rd_wen  := dataMux(wbc_eq_head_newer, wbc_src_rd_wen).asBool
-  wbc_stream(0).pc      := dataMux(wbc_eq_head_older, wbc_src_pc).asUInt
-  wbc_stream(1).pc      := dataMux(wbc_eq_head_newer, wbc_src_pc).asUInt
-  wbc_stream(0).instr   := dataMux(wbc_eq_head_older, wbc_src_instr)
-  wbc_stream(1).instr   := dataMux(wbc_eq_head_newer, wbc_src_instr)
-
-  wbc_stream(0) >-> wbc_dst(0)
-  wbc_stream(1) >-> wbc_dst(1)
+  // complete to retire
+  complete(0) >-> retire(0)
+  complete(1) >-> retire(1)
 
   // control info
   tail_adr_older := tail_adr_curr
   tail_adr_newer := tail_adr_plus
   head_adr_out   := head_adr_curr
-  commit_fifo_ready := (entry_cnt <= U(6))
+  entry_cnt      := entry_cnt + dis_fire_num - cpl_fire_num
+  rob_is_ready   := entry_cnt <= (ROB_DEPTH - 2)
+  for(i <- 0 until 2){
+    cpl_rd_wen(i) := complete(i).fire && complete(i).rd_wen
+    cpl_rd_addr(i):= complete(i).rd_addr
+    cpl_rd_data(i):= complete(i).rd_data
+  }
 
   StreamRenameUtil(this)
 }

@@ -67,6 +67,8 @@ object CpuConfig{
   def BPU_TYPE = "gshare"
   def BPU_HISTORY_LEN = 5
   def DIFFTEST = true
+  def ROB_DEPTH = 16
+  def ROB_ADR_W = 4
 }
 
 // ================ Gshare ==================

@@ -136,9 +136,9 @@ case class Tulip() extends Component {
   issue.iss_src(1) << decode.dec_dst(1)
 
   // ================= Dispatch ===============
-  dispat.commit_fifo_ready   := commit.commit_fifo_ready
-  dispat.tail_adr_older      := commit.tail_adr_older
-  dispat.tail_adr_newer      := commit.tail_adr_newer
+  dispat.rob_is_ready   := commit.rob_is_ready
+  dispat.tail_adr_older := commit.tail_adr_older
+  dispat.tail_adr_newer := commit.tail_adr_newer
 
   val issue0_dst_is_bju = issue.iss_dst(0).valid && issue.iss_dst(0).iss_pkg.exe_sel===ExeSelEnum.BJU
   val issue0_dst_stall  = dispat.dis_to_bju.isStall
@@ -165,26 +165,31 @@ case class Tulip() extends Component {
   dispat.wbc_rd_data(3) := div_3.div_dst.rd_data
   dispat.wbc_rd_data(4) := lsu_4.lsu_dst.rd_data
 
-  dispat.ret_rd_wen(0) := commit.wbc_dst(0).fire && commit.wbc_dst(0).rd_wen
-  dispat.ret_rd_wen(1) := commit.wbc_dst(1).fire && commit.wbc_dst(1).rd_wen
+  dispat.cpl_rd_wen(0)  := commit.cpl_rd_wen(0) 
+  dispat.cpl_rd_wen(1)  := commit.cpl_rd_wen(1) 
+  dispat.cpl_rd_addr(0) := commit.cpl_rd_addr(0)
+  dispat.cpl_rd_addr(1) := commit.cpl_rd_addr(1)
+  dispat.cpl_rd_data(0) := commit.cpl_rd_data(0)
+  dispat.cpl_rd_data(1) := commit.cpl_rd_data(1)
 
-  dispat.ret_rd_addr(0) := commit.wbc_dst(0).rd_addr
-  dispat.ret_rd_addr(1) := commit.wbc_dst(1).rd_addr
-
-  dispat.ret_rd_data(0) := commit.wbc_dst(0).rd_data
-  dispat.ret_rd_data(1) := commit.wbc_dst(1).rd_data
+  dispat.ret_rd_wen(0)  := commit.retire(0).fire && commit.retire(0).rd_wen
+  dispat.ret_rd_wen(1)  := commit.retire(1).fire && commit.retire(1).rd_wen
+  dispat.ret_rd_addr(0) := commit.retire(0).rd_addr
+  dispat.ret_rd_addr(1) := commit.retire(1).rd_addr
+  dispat.ret_rd_data(0) := commit.retire(0).rd_data
+  dispat.ret_rd_data(1) := commit.retire(1).rd_data
 
 
 
   // =============== regfile ===============
   regfile.read_0 <> dispat.read_regfile(0)
   regfile.read_1 <> dispat.read_regfile(1)
-  regfile.write_0.rd_wen  := commit.wbc_dst(0).fire && commit.wbc_dst(0).rd_wen
-  regfile.write_1.rd_wen  := commit.wbc_dst(1).fire && commit.wbc_dst(1).rd_wen
-  regfile.write_0.rd_addr := commit.wbc_dst(0).rd_addr
-  regfile.write_1.rd_addr := commit.wbc_dst(1).rd_addr
-  regfile.write_0.rd_data := commit.wbc_dst(0).rd_data
-  regfile.write_1.rd_data := commit.wbc_dst(1).rd_data
+  regfile.write_0.rd_wen  := commit.retire(0).fire && commit.retire(0).rd_wen
+  regfile.write_1.rd_wen  := commit.retire(1).fire && commit.retire(1).rd_wen
+  regfile.write_0.rd_addr := commit.retire(0).rd_addr
+  regfile.write_1.rd_addr := commit.retire(1).rd_addr
+  regfile.write_0.rd_data := commit.retire(0).rd_data
+  regfile.write_1.rd_data := commit.retire(1).rd_data
 
 
   // ================= BJU ===============
@@ -212,13 +217,19 @@ case class Tulip() extends Component {
   commit.wbc_src(3) << div_3.div_dst
   commit.wbc_src(4) << lsu_4.lsu_dst
 
-  commit.dis_fire(0)  := dispat.dis_src(0).fire
-  commit.dis_fire(1)  := dispat.dis_src(1).fire
-  commit.dis_pc(0)    := dispat.dis_src(0).iss_pkg.pc
-  commit.dis_pc(1)    := dispat.dis_src(1).iss_pkg.pc
+  commit.dis_fire(0)    := dispat.dis_src(0).fire
+  commit.dis_fire(1)    := dispat.dis_src(1).fire
+  commit.dis_pc(0)      := dispat.dis_src(0).iss_pkg.pc
+  commit.dis_pc(1)      := dispat.dis_src(1).iss_pkg.pc
+  commit.dis_rd_addr(0) := dispat.dis_src(0).iss_pkg.rd_addr
+  commit.dis_rd_addr(1) := dispat.dis_src(1).iss_pkg.rd_addr
+  commit.dis_rd_wen(0)  := dispat.dis_src(0).iss_pkg.micro_op.uop_com.rd_wen
+  commit.dis_rd_wen(1)  := dispat.dis_src(1).iss_pkg.micro_op.uop_com.rd_wen
+  commit.dis_instr(0)   := dispat.dis_src(0).iss_pkg.instr
+  commit.dis_instr(1)   := dispat.dis_src(1).iss_pkg.instr
 
-  commit.wbc_dst(0).ready := retire_ready_0
-  commit.wbc_dst(1).ready := retire_ready_1
+  commit.retire(0).ready := retire_ready_0
+  commit.retire(1).ready := retire_ready_1
 
 
   // ================= DCache ===============
@@ -273,7 +284,7 @@ case class Tulip() extends Component {
   
 
   cycle_cnt := cycle_cnt + 1
-  instr_cnt := instr_cnt + commit.wbc_dst(0).fire.asUInt + commit.wbc_dst(1).fire.asUInt
+  instr_cnt := instr_cnt + commit.retire(0).fire.asUInt + commit.retire(1).fire.asUInt
 
   when(change_flow) {change_flow_cnt := change_flow_cnt + 1}
   when(issue0_dst_is_bju) {issue1_stall_of_bju_cnt := issue1_stall_of_bju_cnt + 1}
