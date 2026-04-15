@@ -139,6 +139,24 @@ initial begin
   end
 end
 
+reg [7:0] dram_tmp [0:4096*8-1];
+integer dfd;
+integer dtmp;
+initial begin
+  dfd = $fopen ("/home/lin/DandProject/dv/bin/mytests/benchmarks/coremark/coremark-riscv64-nemu.bin", "rb");
+  dtmp = $fread(dram_tmp, dfd);
+  for (i = 0; i < 4096; i = i + 1) begin
+    SimTop.u_Tulip.dcache.sram_5.mem_symbol0[i] = dram_tmp[i*4 + 0][7:0];
+    SimTop.u_Tulip.dcache.sram_5.mem_symbol1[i] = dram_tmp[i*4 + 1][7:0];
+    SimTop.u_Tulip.dcache.sram_5.mem_symbol2[i] = dram_tmp[i*4 + 2][7:0];
+    SimTop.u_Tulip.dcache.sram_5.mem_symbol3[i] = dram_tmp[i*4 + 3][7:0];
+    SimTop.u_Tulip.dcache.sram_5.mem_symbol4[i] = dram_tmp[i*4 + 4][7:0];
+    SimTop.u_Tulip.dcache.sram_5.mem_symbol5[i] = dram_tmp[i*4 + 5][7:0];
+    SimTop.u_Tulip.dcache.sram_5.mem_symbol6[i] = dram_tmp[i*4 + 6][7:0];
+    SimTop.u_Tulip.dcache.sram_5.mem_symbol7[i] = dram_tmp[i*4 + 7][7:0];
+  end
+end
+
 // ------------- cpu core -----------------
 Tulip u_Tulip(
     .icache_ar_valid         ( icache_ar_valid                ),
