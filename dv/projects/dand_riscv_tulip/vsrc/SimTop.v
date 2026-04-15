@@ -128,7 +128,7 @@ initial begin
   end
 end
 
-reg [7:0] dram_tmp [0:4096*8-1];
+reg [7:0] dram_tmp [0:4096*16-1];
 integer dfd;
 integer dtmp;
 integer k;
@@ -136,14 +136,14 @@ initial begin
   dfd = $fopen ("/home/lin/DandProject/dv/bin/mytests/benchmarks/coremark/coremark-riscv64-nemu.bin", "rb");
   dtmp = $fread(dram_tmp, dfd);
   for (k = 0; k < 4096; k = k + 1) begin
-    SimTop.u_Tulip.dcache.sram_5.mem_symbol0[k] = dram_tmp[k*4 + 0][7:0];
-    SimTop.u_Tulip.dcache.sram_5.mem_symbol1[k] = dram_tmp[k*4 + 1][7:0];
-    SimTop.u_Tulip.dcache.sram_5.mem_symbol2[k] = dram_tmp[k*4 + 2][7:0];
-    SimTop.u_Tulip.dcache.sram_5.mem_symbol3[k] = dram_tmp[k*4 + 3][7:0];
-    SimTop.u_Tulip.dcache.sram_5.mem_symbol4[k] = dram_tmp[k*4 + 4][7:0];
-    SimTop.u_Tulip.dcache.sram_5.mem_symbol5[k] = dram_tmp[k*4 + 5][7:0];
-    SimTop.u_Tulip.dcache.sram_5.mem_symbol6[k] = dram_tmp[k*4 + 6][7:0];
-    SimTop.u_Tulip.dcache.sram_5.mem_symbol7[k] = dram_tmp[k*4 + 7][7:0];
+    SimTop.u_Tulip.dcache.sram_5.mem_symbol0[k] = dram_tmp[k*8 + 0][7:0];
+    SimTop.u_Tulip.dcache.sram_5.mem_symbol1[k] = dram_tmp[k*8 + 1][7:0];
+    SimTop.u_Tulip.dcache.sram_5.mem_symbol2[k] = dram_tmp[k*8 + 2][7:0];
+    SimTop.u_Tulip.dcache.sram_5.mem_symbol3[k] = dram_tmp[k*8 + 3][7:0];
+    SimTop.u_Tulip.dcache.sram_5.mem_symbol4[k] = dram_tmp[k*8 + 4][7:0];
+    SimTop.u_Tulip.dcache.sram_5.mem_symbol5[k] = dram_tmp[k*8 + 5][7:0];
+    SimTop.u_Tulip.dcache.sram_5.mem_symbol6[k] = dram_tmp[k*8 + 6][7:0];
+    SimTop.u_Tulip.dcache.sram_5.mem_symbol7[k] = dram_tmp[k*8 + 7][7:0];
   end
 end
 
