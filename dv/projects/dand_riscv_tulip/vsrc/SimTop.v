@@ -126,17 +126,6 @@ initial begin
     SimTop.u_Tulip.icache.sram_5.mem_symbol2[i] = ram_tmp[i*4 + 2][7:0];
     SimTop.u_Tulip.icache.sram_5.mem_symbol3[i] = ram_tmp[i*4 + 3][7:0];
   end
-
-  for (i = 0; i < 4096; i = i + 1) begin
-    SimTop.u_Tulip.dcache.sram_5.mem_symbol0[i] = ram_tmp[i*4 + 0][7:0];
-    SimTop.u_Tulip.dcache.sram_5.mem_symbol1[i] = ram_tmp[i*4 + 1][7:0];
-    SimTop.u_Tulip.dcache.sram_5.mem_symbol2[i] = ram_tmp[i*4 + 2][7:0];
-    SimTop.u_Tulip.dcache.sram_5.mem_symbol3[i] = ram_tmp[i*4 + 3][7:0];
-    SimTop.u_Tulip.dcache.sram_5.mem_symbol4[i] = ram_tmp[i*4 + 4][7:0];
-    SimTop.u_Tulip.dcache.sram_5.mem_symbol5[i] = ram_tmp[i*4 + 5][7:0];
-    SimTop.u_Tulip.dcache.sram_5.mem_symbol6[i] = ram_tmp[i*4 + 6][7:0];
-    SimTop.u_Tulip.dcache.sram_5.mem_symbol7[i] = ram_tmp[i*4 + 7][7:0];
-  end
 end
 
 reg [7:0] dram_tmp [0:4096*8-1];
