@@ -1,5 +1,5 @@
-// ./hw/gen/SuperScalar.v
-./hw/gen/DandMaxFreq.v
+./hw/gen/SuperScalar.v
+// ./hw/gen/DandMaxFreq.v
 
 ./hw/verilog/tb/tb_SuperScalar.sv
 

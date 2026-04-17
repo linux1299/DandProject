@@ -244,6 +244,11 @@ case class BJU() extends Component {
   val interrupt_valid = out Bool()
   val interrupt_pc    = out UInt(32 bits)
   val timer_int       = in Bool()
+  // for forward
+  val bju_exe_rd_wen  = out Bool()
+  val bju_exe_rd_data = out Bits(64 bits)
+  val bju_exe_rd_addr = out UInt(5 bits)
+  val bju_exe_rob_adr = out UInt(ROB_ADR_W bits)
 
   // =================== Stream ===================
   val dst_stream = Stream(ExeDst())
@@ -282,9 +287,14 @@ case class BJU() extends Component {
   dst_stream.rd_wen    := bju_src.uop_com.rd_wen
   dst_stream.pc        := bju_src.pc
   dst_stream.instr     := bju_src.instr
-  dst_stream.entry_adr := bju_src.entry_adr
+  dst_stream.rob_adr   := bju_src.rob_adr
 
   dst_stream >-> bju_dst
+
+  bju_exe_rd_wen  := dst_stream.fire && dst_stream.rd_wen
+  bju_exe_rd_data := dst_stream.rd_data
+  bju_exe_rd_addr := dst_stream.rd_addr
+  bju_exe_rob_adr := dst_stream.rob_adr
 
   StreamRenameUtil(this)
 }

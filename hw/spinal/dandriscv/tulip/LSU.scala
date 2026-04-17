@@ -218,7 +218,7 @@ case class LSU() extends Component {
     rd_addr_reg  := lsu_src.rd_addr
     pc_reg       := lsu_src.pc
     instr_reg    := lsu_src.instr
-    tail_adr_reg := lsu_src.entry_adr
+    tail_adr_reg := lsu_src.rob_adr
     is_timer_reg := lsu_addr_is_timer
   }
 
@@ -230,7 +230,7 @@ case class LSU() extends Component {
   dst_stream.rd_addr := rd_addr_reg
   dst_stream.pc      := pc_reg
   dst_stream.instr   := instr_reg
-  dst_stream.entry_adr := tail_adr_reg
+  dst_stream.rob_adr := tail_adr_reg
 
   dst_stream >-> lsu_dst
 

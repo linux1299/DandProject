@@ -191,19 +191,19 @@ wire[63:0] writeback_data;
 // assign writeback_addr  = u_SuperScalar.rob.arf_1.write_ports_a_rd_wen ? u_SuperScalar.rob.arf_1.write_ports_a_rd_addr : u_SuperScalar.rob.arf_1.write_ports_b_rd_addr;
 // assign writeback_data  = u_SuperScalar.rob.arf_1.write_ports_a_rd_wen ? u_SuperScalar.rob.arf_1.write_ports_a_rd_data : u_SuperScalar.rob.arf_1.write_ports_b_rd_data;
 
-// assign writeback_wen   = u_SuperScalar.rob.arf_1.write_ports_rd_wen;
-// assign writeback_pc    = u_SuperScalar.rob.de_rob_payload_pc;
-// assign writeback_inst  = u_SuperScalar.rob.de_rob_payload_instruction;
-// assign writeback_valid = u_SuperScalar.rob.de_rob_fire;
-// assign writeback_addr  = u_SuperScalar.rob.arf_1.write_ports_rd_addr;
-// assign writeback_data  = u_SuperScalar.rob.arf_1.write_ports_rd_data;
+assign writeback_wen   = u_SuperScalar.rob.arf_1.write_ports_rd_wen;
+assign writeback_pc    = u_SuperScalar.rob.de_rob_payload_pc;
+assign writeback_inst  = u_SuperScalar.rob.de_rob_payload_instruction;
+assign writeback_valid = u_SuperScalar.rob.de_rob_fire;
+assign writeback_addr  = u_SuperScalar.rob.arf_1.write_ports_rd_addr;
+assign writeback_data  = u_SuperScalar.rob.arf_1.write_ports_rd_data;
 
-assign writeback_wen   = u_SuperScalar.control_1.write_back_payload_rd_wen;
-assign writeback_pc    = u_SuperScalar.control_1.write_back_payload_pc;
-assign writeback_inst  = u_SuperScalar.control_1.write_back_payload_instruction;
-assign writeback_valid = u_SuperScalar.control_1.write_back_fire;
-assign writeback_addr  = u_SuperScalar.control_1.write_back_payload_rd_addr;
-assign writeback_data  = u_SuperScalar.control_1.write_back_payload_rd_data;
+// assign writeback_wen   = u_SuperScalar.control_1.write_back_payload_rd_wen;
+// assign writeback_pc    = u_SuperScalar.control_1.write_back_payload_pc;
+// assign writeback_inst  = u_SuperScalar.control_1.write_back_payload_instruction;
+// assign writeback_valid = u_SuperScalar.control_1.write_back_fire;
+// assign writeback_addr  = u_SuperScalar.control_1.write_back_payload_rd_addr;
+// assign writeback_data  = u_SuperScalar.control_1.write_back_payload_rd_data;
 
 always@(posedge clk_axi_in) begin
   if(!rst_n) begin
@@ -216,8 +216,8 @@ always@(posedge clk_axi_in) begin
   end
 end
 
-// SuperScalar u_SuperScalar(
-DandMaxFreq u_SuperScalar(
+SuperScalar u_SuperScalar(
+// DandMaxFreq u_SuperScalar(
     .icache_ar_valid         ( icache_ar_valid                ),
     .icache_ar_ready         ( icache_ar_ready                ),
     .icache_ar_payload_addr  ( icache_ar_payload_addr         ),
@@ -398,8 +398,8 @@ axi_slave_mem#(
 logic [31:0] instrCnt = 0;
 always@(posedge clk_axi_in) begin
   // if(u_SuperScalar.rob.de_rob_a_fire || u_SuperScalar.rob.de_rob_b_fire)
-  // if(u_SuperScalar.rob.de_rob_fire)
-  if(u_SuperScalar.control_1.write_back_fire)
+  if(u_SuperScalar.rob.de_rob_fire)
+  // if(u_SuperScalar.control_1.write_back_fire)
     instrCnt <= instrCnt+1;
 end
 

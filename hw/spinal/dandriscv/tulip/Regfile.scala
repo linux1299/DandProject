@@ -28,11 +28,11 @@ case class Regfile() extends Component{
     wen_0(i) := (write_0.rd_wen && write_0.rd_addr===U(i))
     wen_1(i) := (write_1.rd_wen && write_1.rd_addr===U(i))
 
-    when(wen_0(i)){
-      reg(i) := write_0.rd_data
-    }
-    .elsewhen(wen_1(i)){
+    when(wen_1(i)){
       reg(i) := write_1.rd_data
+    }
+    .elsewhen(wen_0(i)){
+      reg(i) := write_0.rd_data
     }
   }
 

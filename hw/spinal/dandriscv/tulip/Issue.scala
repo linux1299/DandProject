@@ -61,7 +61,12 @@ case class Issue() extends Component{
 
     iss_dst(i).iss_pkg := entry(i).iss_pkg
     iss_dst(i).exe_oh  := entry(i).exe_oh
+
   }
+  // =================== perf ===================
+  val issue0_stall_of_entry1_not_ready = iss_src(0).isStall && !entry(1).ready
+  val issue0_stall_of_entry1_not_ready_cnt = Reg(UInt(32 bits)) init(0)
+  when(issue0_stall_of_entry1_not_ready) {issue0_stall_of_entry1_not_ready_cnt := issue0_stall_of_entry1_not_ready_cnt+1}
 
   StreamRenameUtil(this)
 }

@@ -10,10 +10,15 @@ import scala.util.Random
 case class ALU() extends Component {
   import AluCtrlEnum._
   import MyUtils._
+  import CpuConfig._
 
   // =================== IO ===================
   val alu_src = slave(Stream(ExeSrc("ALU")))
   val alu_dst = master(Stream(ExeDst()))
+  val alu_exe_rd_wen  = out Bool()
+  val alu_exe_rd_data = out Bits(64 bits)
+  val alu_exe_rd_addr = out UInt(5 bits)
+  val alu_exe_rob_adr = out UInt(ROB_ADR_W bits)
 
   // =================== signals ===================
   val src1        = alu_src.src1_data
@@ -142,9 +147,14 @@ case class ALU() extends Component {
   dst_stream.rd_data   := alu_is_mul ? mul_result | alu_result
   dst_stream.pc        := alu_src.pc
   dst_stream.instr     := alu_src.instr
-  dst_stream.entry_adr := alu_src.entry_adr
+  dst_stream.rob_adr   := alu_src.rob_adr
 
   dst_stream >-> alu_dst
+
+  alu_exe_rd_wen  := dst_stream.fire && dst_stream.rd_wen
+  alu_exe_rd_data := dst_stream.rd_data
+  alu_exe_rd_addr := dst_stream.rd_addr
+  alu_exe_rob_adr := dst_stream.rob_adr
 
   StreamRenameUtil(this)
 

@@ -389,23 +389,11 @@ case class BIU(p : DCacheConfig) extends Component{
   val cpu_bypass = master(DCachePorts(32, 64))
 
   // cpu related
-  val cpu_cmd_ready   = RegInit(True)
-  val cpu_addr = cpu.cmd.addr
-  val cpu_wstrb = cpu.cmd.wstrb
-  val cpu_wdata = cpu.cmd.wdata
-  val cpu_wen = cpu.cmd.wen
-  val bypass = cpu.cmd.fire
-  // val bypass_rsp_valid_d1 = Delay(cpu_bypass.rsp.valid, 1)
-  // val bypass_rsp_data_d1 = Delay(cpu_bypass.rsp.data, 1)
+  val cpu_cmd_ready       = RegInit(True)
+  val bypass              = cpu.cmd.fire
   val bypass_rsp_valid_d1 = RegInit(False)
-  val bypass_rsp_data_d1 = Reg(Bits(64 bits)) init(0)
-  cpu_bypass.cmd.valid := bypass
-  cpu_bypass.cmd.addr  := cpu.cmd.addr
-  cpu_bypass.cmd.wen   := cpu.cmd.wen
-  cpu_bypass.cmd.wdata := cpu.cmd.wdata
-  cpu_bypass.cmd.wstrb := cpu.cmd.wstrb
-  cpu_bypass.cmd.size  := cpu.cmd.size
-
+  val bypass_rsp_data_d1  = Reg(Bits(64 bits)) init(0)
+  
   // resp to cpu ports
   when(bypass){
     cpu_cmd_ready := False
@@ -422,11 +410,17 @@ case class BIU(p : DCacheConfig) extends Component{
     bypass_rsp_data_d1  := cpu_bypass.rsp.data
   }
 
-  cpu_bypass.rsp.ready := cpu.rsp.ready
-  cpu.rsp.data     := bypass_rsp_data_d1
-  cpu.rsp.valid    := bypass_rsp_valid_d1
-  cpu.cmd.ready    := cpu_cmd_ready
-  stall            := (!cpu.cmd.ready && !bypass_rsp_valid_d1) || bypass
+  cpu_bypass.cmd.valid   := bypass
+  cpu_bypass.cmd.addr    := cpu.cmd.addr
+  cpu_bypass.cmd.wen     := cpu.cmd.wen
+  cpu_bypass.cmd.wdata   := cpu.cmd.wdata
+  cpu_bypass.cmd.wstrb   := cpu.cmd.wstrb
+  cpu_bypass.cmd.size    := cpu.cmd.size
+  cpu_bypass.rsp.ready   := cpu.rsp.ready
+  cpu.rsp.data           := bypass_rsp_data_d1
+  cpu.rsp.valid          := bypass_rsp_valid_d1
+  cpu.cmd.ready          := cpu_cmd_ready
+  stall                  := (!cpu.cmd.ready && !bypass_rsp_valid_d1) || bypass
 }
 // ===============================================
 // BIU Top Module
@@ -571,6 +565,67 @@ case class BIUTop(val config : DCacheConfig, val axiConfig : Axi4Config) extends
   biu.cpu_bypass.rsp.data  := dcacheReader.r.data
 }
 
+
+
+// ===============================================
+// DTCM Top Module
+// ===============================================
+case class DTCM(val config : DCacheConfig, val axiConfig : Axi4Config) extends Component {
+
+  import config._
+  // ============================= IO =============================
+  val stall = out Bool()
+  val flush = in Bool()
+  val dcache_src = slave(DCachePorts(32, 64))
+  val dcacheReader = master(Axi4ReadOnly(axiConfig)).setName("dcache")
+  val dcacheWriter = master(Axi4WriteOnly(axiConfig)).setName("dcache")
+
+  // connect biu and cpu ports
+  val biu = new BIU(config)
+  dcache_src.cmd <> biu.cpu.cmd
+  dcache_src.rsp <> biu.cpu.rsp
+  biu.flush := flush
+  dcache_src.stall <> biu.stall
+
+  // data ram
+  val sram = new Sram(64, 12) // 8 byte * 2^12 = 32KB
+  sram.ports.cmd.valid := biu.cpu_bypass.cmd.valid
+  sram.ports.cmd.addr  := biu.cpu_bypass.cmd.addr(14 downto 3)
+  sram.ports.cmd.wen   := biu.cpu_bypass.cmd.wen
+  sram.ports.cmd.wdata := biu.cpu_bypass.cmd.wdata
+  sram.ports.cmd.wstrb := biu.cpu_bypass.cmd.wstrb
+
+  // ar channel
+  dcacheReader.ar.valid := False
+  dcacheReader.ar.id := 0
+  dcacheReader.ar.len := 0
+  dcacheReader.ar.size := 0
+  dcacheReader.ar.burst := 0
+  dcacheReader.ar.addr := 0
+  // r channel
+  dcacheReader.r.ready := True
+  // aw channel      
+  dcacheWriter.aw.valid := False
+  dcacheWriter.aw.id := 0
+  dcacheWriter.aw.len := 0
+  dcacheWriter.aw.size := 0
+  dcacheWriter.aw.burst := 0
+  dcacheWriter.aw.addr := 0
+  // w channel
+  dcacheWriter.w.valid := False
+  dcacheWriter.w.data := 0
+  dcacheWriter.w.strb := 0
+  dcacheWriter.w.last := False
+  // b channel
+  dcacheWriter.b.ready := True
+
+  // to biu signal
+  biu.cpu_bypass.cmd.ready := True
+  // biu.cpu_bypass.rsp.valid := Delay(sram.ports.cmd.valid, 1)
+  // biu.cpu_bypass.rsp.data  := sram.ports.rsp.data
+  biu.cpu_bypass.rsp.valid := sram.ports.cmd.valid
+  biu.cpu_bypass.rsp.data  := sram.ports.rsp.data
+}
 
 object GenDCacheTop extends App {
   val dcache_config = DCacheConfig(

@@ -92,7 +92,8 @@ case class Tulip() extends Component {
   val div_3  = new DIV()
   val lsu_4  = new LSU()
   // val dcache = new DCacheTop(dcache_config, dcache_axi_config)
-  val dcache = new BIUTop(dcache_config, dcache_axi_config)
+  // val dcache = new BIUTop(dcache_config, dcache_axi_config)
+  val dcache = new DTCM(dcache_config, dcache_axi_config)
 
   // ================= Top Signals ===============
   val change_flow   = bju_0.interrupt_valid || bju_0.redirect_valid
@@ -147,6 +148,22 @@ case class Tulip() extends Component {
   dispat.dis_src(0) << issue.iss_dst(0).throwWhen(change_flow).haltWhen(issue0_dst_stall)
   dispat.dis_src(1) << issue.iss_dst(1).throwWhen(change_flow || branch_valid).haltWhen(issue1_dst_stall)
 
+  dispat.exe_rd_wen(0)  := bju_0.bju_exe_rd_wen
+  dispat.exe_rd_data(0) := bju_0.bju_exe_rd_data
+  dispat.exe_rd_addr(0) := bju_0.bju_exe_rd_addr
+  dispat.exe_rob_adr(0) := bju_0.bju_exe_rob_adr
+  dispat.exe_rob_order(0) := bju_0.bju_exe_rob_adr - commit.head_adr_out
+  dispat.exe_rd_wen(1)  := alu_1.alu_exe_rd_wen
+  dispat.exe_rd_data(1) := alu_1.alu_exe_rd_data
+  dispat.exe_rd_addr(1) := alu_1.alu_exe_rd_addr
+  dispat.exe_rob_order(1) := alu_1.alu_exe_rob_adr - commit.head_adr_out
+  dispat.exe_rob_adr(1) := alu_1.alu_exe_rob_adr
+  dispat.exe_rd_wen(2)  := alu_2.alu_exe_rd_wen
+  dispat.exe_rd_data(2) := alu_2.alu_exe_rd_data
+  dispat.exe_rd_addr(2) := alu_2.alu_exe_rd_addr
+  dispat.exe_rob_order(2) := alu_2.alu_exe_rob_adr - commit.head_adr_out
+  dispat.exe_rob_adr(2) := alu_2.alu_exe_rob_adr
+
   dispat.wbc_rd_wen(0) := bju_0.bju_dst.fire && bju_0.bju_dst.rd_wen
   dispat.wbc_rd_wen(1) := alu_1.alu_dst.fire && alu_1.alu_dst.rd_wen
   dispat.wbc_rd_wen(2) := alu_2.alu_dst.fire && alu_2.alu_dst.rd_wen
@@ -159,6 +176,12 @@ case class Tulip() extends Component {
   dispat.wbc_rd_addr(3) := div_3.div_dst.rd_addr
   dispat.wbc_rd_addr(4) := lsu_4.lsu_dst.rd_addr
 
+  dispat.wbc_rob_adr(0) := bju_0.bju_dst.rob_adr
+  dispat.wbc_rob_adr(1) := alu_1.alu_dst.rob_adr
+  dispat.wbc_rob_adr(2) := alu_2.alu_dst.rob_adr
+  dispat.wbc_rob_adr(3) := div_3.div_dst.rob_adr
+  dispat.wbc_rob_adr(4) := lsu_4.lsu_dst.rob_adr
+
   dispat.wbc_rd_data(0) := bju_0.bju_dst.rd_data
   dispat.wbc_rd_data(1) := alu_1.alu_dst.rd_data
   dispat.wbc_rd_data(2) := alu_2.alu_dst.rd_data
@@ -169,13 +192,19 @@ case class Tulip() extends Component {
   dispat.cpl_rd_wen(1)  := commit.cpl_rd_wen(1) 
   dispat.cpl_rd_addr(0) := commit.cpl_rd_addr(0)
   dispat.cpl_rd_addr(1) := commit.cpl_rd_addr(1)
-  dispat.cpl_rd_data(0) := commit.cpl_rd_data(0)
-  dispat.cpl_rd_data(1) := commit.cpl_rd_data(1)
+  dispat.cpl_rob_adr(0) := commit.cpl_rob_adr(0)
+  dispat.cpl_rob_adr(1) := commit.cpl_rob_adr(1)
+  dispat.rob_rs1_data(0) := commit.rob_rs1_data(0)
+  dispat.rob_rs1_data(1) := commit.rob_rs1_data(1)
+  dispat.rob_rs2_data(0) := commit.rob_rs2_data(0)
+  dispat.rob_rs2_data(1) := commit.rob_rs2_data(1)
 
   dispat.ret_rd_wen(0)  := commit.retire(0).fire && commit.retire(0).rd_wen
   dispat.ret_rd_wen(1)  := commit.retire(1).fire && commit.retire(1).rd_wen
   dispat.ret_rd_addr(0) := commit.retire(0).rd_addr
   dispat.ret_rd_addr(1) := commit.retire(1).rd_addr
+  dispat.ret_rob_adr(0) := commit.retire(0).rob_adr
+  dispat.ret_rob_adr(1) := commit.retire(1).rob_adr
   dispat.ret_rd_data(0) := commit.retire(0).rd_data
   dispat.ret_rd_data(1) := commit.retire(1).rd_data
 
@@ -217,16 +246,15 @@ case class Tulip() extends Component {
   commit.wbc_src(3) << div_3.div_dst
   commit.wbc_src(4) << lsu_4.lsu_dst
 
-  commit.dis_fire(0)    := dispat.dis_src(0).fire
-  commit.dis_fire(1)    := dispat.dis_src(1).fire
-  commit.dis_pc(0)      := dispat.dis_src(0).iss_pkg.pc
-  commit.dis_pc(1)      := dispat.dis_src(1).iss_pkg.pc
-  commit.dis_rd_addr(0) := dispat.dis_src(0).iss_pkg.rd_addr
-  commit.dis_rd_addr(1) := dispat.dis_src(1).iss_pkg.rd_addr
-  commit.dis_rd_wen(0)  := dispat.dis_src(0).iss_pkg.micro_op.uop_com.rd_wen
-  commit.dis_rd_wen(1)  := dispat.dis_src(1).iss_pkg.micro_op.uop_com.rd_wen
-  commit.dis_instr(0)   := dispat.dis_src(0).iss_pkg.instr
-  commit.dis_instr(1)   := dispat.dis_src(1).iss_pkg.instr
+  for(i <- 0 until 2){
+    commit.dis_fire(i)    := dispat.dis_src(i).fire
+    commit.dis_pc(i)      := dispat.dis_src(i).iss_pkg.pc
+    commit.dis_rd_addr(i) := dispat.dis_src(i).iss_pkg.rd_addr
+    commit.dis_rd_wen(i)  := dispat.dis_src(i).iss_pkg.micro_op.uop_com.rd_wen
+    commit.dis_instr(i)   := dispat.dis_src(i).iss_pkg.instr
+    commit.rob_rs1_addr(i):= dispat.rob_rs1_addr(i)
+    commit.rob_rs2_addr(i):= dispat.rob_rs2_addr(i)
+  }
 
   commit.retire(0).ready := retire_ready_0
   commit.retire(1).ready := retire_ready_1
@@ -329,6 +357,7 @@ object GenTulipWithMemoryInit{
     GenConfig.spinal.generateVerilog({
       val toplevel = new Tulip()
       BinTools.initRam(toplevel.icache.sram.mem, "/home/lin/DandProject/dv/bin/mytests/benchmarks/coremark/coremark-riscv64-nemu.bin", false)
+      BinTools.initRam(toplevel.dcache.sram.mem, "/home/lin/DandProject/dv/bin/mytests/benchmarks/coremark/coremark-riscv64-nemu.bin", false)
       toplevel
     })
   }
