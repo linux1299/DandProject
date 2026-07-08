@@ -367,6 +367,7 @@ reg [63:0] regs_diff [0:31];
 // cpu write back
 wire[31:0] writeback_pc;
 wire       writeback_wen;
+wire       writeback_after_bju;
 wire[31:0] writeback_inst;
 wire       writeback_valid;
 wire[4:0]  writeback_addr;
@@ -413,20 +414,20 @@ wire fifo_empty, fifo_full;
 fifo_2write#(
     .PTR_WIDTH  ( 16 ),
     .FIFO_DEPTH ( 1024 ),
-    .FIFO_WIDTH ( 1+32+32+5+64 )
+    .FIFO_WIDTH ( 1+1+32+32+5+64 )
 )u_fifo_2write(
     .clk        ( clock      ),
     .rst_n      ( !reset     ),
     .read       ( writeback_valid ),
     .write_0    ( SimTop.u_BiotCore.commit_1.retire_0_valid && SimTop.u_BiotCore.commit_1.retire_0_ready   ),
     .write_1    ( SimTop.u_BiotCore.commit_1.retire_1_valid && SimTop.u_BiotCore.commit_1.retire_1_ready   ),
-    .fifo_in_0  ( {SimTop.u_BiotCore.commit_1.retire_0_rd_wen, SimTop.u_BiotCore.commit_1.retire_0_pc, SimTop.u_BiotCore.commit_1.retire_0_instr, SimTop.u_BiotCore.commit_1.retire_0_rd_addr, SimTop.u_BiotCore.commit_1.retire_0_rd_data}  ),
-    .fifo_in_1  ( {SimTop.u_BiotCore.commit_1.retire_1_rd_wen, SimTop.u_BiotCore.commit_1.retire_1_pc, SimTop.u_BiotCore.commit_1.retire_1_instr, SimTop.u_BiotCore.commit_1.retire_1_rd_addr, SimTop.u_BiotCore.commit_1.retire_1_rd_data}  ),
-    .fifo_out   ( {writeback_wen, writeback_pc, writeback_inst, writeback_addr, writeback_data}   ),
+    .fifo_in_0  ( {SimTop.u_BiotCore.commit_1.retire_0_after_bju, SimTop.u_BiotCore.commit_1.retire_0_rd_wen, SimTop.u_BiotCore.commit_1.retire_0_pc, SimTop.u_BiotCore.commit_1.retire_0_instr, SimTop.u_BiotCore.commit_1.retire_0_rd_addr, SimTop.u_BiotCore.commit_1.retire_0_rd_data}  ),
+    .fifo_in_1  ( {SimTop.u_BiotCore.commit_1.retire_1_after_bju, SimTop.u_BiotCore.commit_1.retire_1_pc, SimTop.u_BiotCore.commit_1.retire_1_instr, SimTop.u_BiotCore.commit_1.retire_1_rd_addr, SimTop.u_BiotCore.commit_1.retire_1_rd_data}  ),
+    .fifo_out   ( {writeback_after_bju, writeback_wen, writeback_pc, writeback_inst, writeback_addr, writeback_data}   ),
     .fifo_empty ( fifo_empty ),
     .fifo_full  ( fifo_full  )
 );
-assign writeback_valid = ~fifo_empty;
+assign writeback_valid = ~fifo_empty && !writeback_after_bju;
 
 always @(posedge clock) begin
   if (reset) begin
