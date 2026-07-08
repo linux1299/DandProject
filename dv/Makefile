@@ -36,3 +36,10 @@ tulipw:
 	./build.sh -e dand_riscv_tulip -d -s -a "-i mytests/benchmarks/coremark/coremark-riscv64-nemu.bin --dump-wave -b 0" -m "EMU_TRACE=1" -b
 tulipww:
 	./build.sh -e dand_riscv_tulip -d -w
+
+biot:
+	./build.sh -e dand_riscv_biot -d -s -a "-i mytests/benchmarks/coremark/coremark-riscv64-nemu.bin -b 0" -m "EMU_TRACE=1" -b
+biotw:
+	./build.sh -e dand_riscv_biot -d -s -a "-i mytests/benchmarks/coremark/coremark-riscv64-nemu.bin --dump-wave -b 0" -m "EMU_TRACE=1" -b
+biotww:
+	./build.sh -e dand_riscv_biot -d -w
