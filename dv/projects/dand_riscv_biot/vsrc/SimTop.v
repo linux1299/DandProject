@@ -418,7 +418,7 @@ fifo_2write#(
 )u_fifo_2write(
     .clk        ( clock      ),
     .rst_n      ( !reset     ),
-    .read       ( writeback_valid ),
+    .read       ( ~fifo_empty ),
     .write_0    ( SimTop.u_BiotCore.commit_1.retire_0_valid && SimTop.u_BiotCore.commit_1.retire_0_ready   ),
     .write_1    ( SimTop.u_BiotCore.commit_1.retire_1_valid && SimTop.u_BiotCore.commit_1.retire_1_ready   ),
     .fifo_in_0  ( {SimTop.u_BiotCore.commit_1.retire_0_after_bju, SimTop.u_BiotCore.commit_1.retire_0_rd_wen, SimTop.u_BiotCore.commit_1.retire_0_pc, SimTop.u_BiotCore.commit_1.retire_0_instr, SimTop.u_BiotCore.commit_1.retire_0_rd_addr, SimTop.u_BiotCore.commit_1.retire_0_rd_data}  ),
