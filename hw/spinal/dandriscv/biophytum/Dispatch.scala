@@ -11,6 +11,7 @@ case class Dispatch() extends Component{
   import CpuConfig._
   import ExeSelEnum._
   import ScoreBoardEnum._
+  import BjuCtrlEnum._
 
   // =================== IO ===================
   val dis_src = Vec(slave(Stream(InstrPkg())), 2) // read ibuffer
@@ -48,6 +49,8 @@ case class Dispatch() extends Component{
   val rd_addr               = Vec(UInt(5 bits), 2)
   val dis_rs1_addr          = Vec(UInt(5 bits), 5)
   val dis_rs2_addr          = Vec(UInt(5 bits), 5)
+  val dis_rs1_rob_adr       = Vec(UInt(ROB_ADR_W bits), 5)
+  val dis_rs2_rob_adr       = Vec(UInt(ROB_ADR_W bits), 5)
   val dis_rs1_stall_forward = Vec(Bool(), 5)
   val dis_rs2_stall_forward = Vec(Bool(), 5)
   val dis_rs1_stall_forward_data = Vec(Bits(64 bits), 5)
@@ -72,17 +75,27 @@ case class Dispatch() extends Component{
   // =================== BJU Stall Logic ===================
   // After a BJU instruction is dispatched, stall subsequent dispatch
   // until the BJU executes (bju_exe_valid) or a change-of-flow occurs.
-  val dis0_is_bju   = (dis_src(0).fire && dis_src(0).exe_sel===BJU)
-  val dis1_is_bju   = (dis_src(1).fire && dis_src(1).exe_sel===BJU)
-  val dis0_is_bju_comb = dis_src(0).valid && dis_src(0).exe_sel===BJU
+  val dis0_is_bju   = dis_src(0).fire && dis_src(0).exe_sel===BJU && !(dis_src(0).micro_op.uop_bju.bju_ctrl_op===AUIPC)
+  val dis1_is_bju   = dis_src(1).fire && dis_src(1).exe_sel===BJU && !(dis_src(1).micro_op.uop_bju.bju_ctrl_op===AUIPC)
+  val dis0_is_bju_comb = dis_src(0).valid && dis_src(0).exe_sel===BJU && !(dis_src(0).micro_op.uop_bju.bju_ctrl_op===AUIPC)
+
+  // val dis0_is_bju   = dis_src(0).fire && dis_src(0).exe_sel===BJU
+  // val dis1_is_bju   = dis_src(1).fire && dis_src(1).exe_sel===BJU
+  
 
   val bju_pending = RegInit(False)
   when(dis0_is_bju || dis1_is_bju){
     bju_pending := True
   }
-  .elsewhen(bju_exe_valid || bju_change_flow){
+  .elsewhen((bju_exe_valid || bju_change_flow) && bju_pending){
     bju_pending := False
   }
+
+  // retire forward to issue stall
+  val ret0_forward_to_issue_rs1 = Vec(Bool(), 5)
+  val ret1_forward_to_issue_rs1 = Vec(Bool(), 5)
+  val ret0_forward_to_issue_rs2 = Vec(Bool(), 5)
+  val ret1_forward_to_issue_rs2 = Vec(Bool(), 5)
 
   // ============== bypass older rd to rs1/rs2 ==============
   val dis1_rs1_from_dis0_rd = dis_src(0).fire && (dis_src(0).rd_addr===dis_src(1).rs1_addr) && dis_src(0).micro_op.uop_com.rd_wen
@@ -187,19 +200,19 @@ case class Dispatch() extends Component{
                         scb.ret_fire1(rs1_addr(0)) ||
                         !scb.is_in_rob(rs1_addr(0))
 
-  dis_src1_valid(1) :=  scb.ret_fire0(rs1_addr(1)) ||
-                        scb.ret_fire1(rs1_addr(1)) ||
-                        (dis1_rs1_from_dis0_rd ? False | !scb.is_in_rob(rs1_addr(1)))
+  dis_src1_valid(1) :=  (scb.ret_fire0(rs1_addr(1)) ||
+                         scb.ret_fire1(rs1_addr(1)) ||
+                        !scb.is_in_rob(rs1_addr(1))  ) &&
+                        !dis1_rs1_from_dis0_rd
 
-  dis_src2_valid(0) :=  scb.ret_fire0(rs2_addr(0)) ||
-                        scb.ret_fire1(rs2_addr(0)) ||
-                        !scb.is_in_rob(rs2_addr(0))                         ||
+  dis_src2_valid(0) :=   scb.ret_fire0(rs2_addr(0)) ||
+                         scb.ret_fire1(rs2_addr(0)) ||
+                        !scb.is_in_rob(rs2_addr(0)) ||
                          dis0_src2_use_imm
 
-  dis_src2_valid(1) :=  scb.ret_fire0(rs2_addr(1)) ||
-                        scb.ret_fire1(rs2_addr(1)) ||
-                        (dis1_rs2_from_dis0_rd ? False | !scb.is_in_rob(rs2_addr(1))) ||
-                         dis1_src2_use_imm
+  dis_src2_valid(1) :=  ((scb.ret_fire0(rs2_addr(1)) ||
+                          scb.ret_fire1(rs2_addr(1)) ||
+                         !scb.is_in_rob(rs2_addr(1)) ) && !dis1_rs2_from_dis0_rd) || dis1_src2_use_imm
 
   dis_src1_data(0)  := scb.ret_fire1(rs1_addr(0)) ? ret_forward(1).data |
                       (scb.ret_fire0(rs1_addr(0)) ? ret_forward(0).data | rd_regfile(0).rs1_data)
@@ -240,10 +253,18 @@ case class Dispatch() extends Component{
     // when stall and instr retire, forward that
     dis_rs1_addr(id) := dis_dst(id).instr_pkg.rs1_addr
     dis_rs2_addr(id) := dis_dst(id).instr_pkg.rs2_addr
-    dis_rs1_stall_forward(id) := (scb.ret_fire0(dis_rs1_addr(id)) || scb.ret_fire1(dis_rs1_addr(id))) && !dis_dst(id).src1_valid && dis_dst(id).isStall
-    dis_rs2_stall_forward(id) := (scb.ret_fire0(dis_rs2_addr(id)) || scb.ret_fire1(dis_rs2_addr(id))) && !dis_dst(id).src2_valid && dis_dst(id).isStall
-    dis_rs1_stall_forward_data(id) := scb.ret_fire1(dis_rs1_addr(id)) ? ret_forward(1).data | ret_forward(0).data
-    dis_rs2_stall_forward_data(id) := scb.ret_fire1(dis_rs2_addr(id)) ? ret_forward(1).data | ret_forward(0).data
+    dis_rs1_rob_adr(id) := dis_dst(id).src1_rob_adr
+    dis_rs2_rob_adr(id) := dis_dst(id).src2_rob_adr
+
+    ret0_forward_to_issue_rs1(id) := ret_forward(0).valid && ret_forward(0).addr===dis_rs1_addr(id) && ret_forward(0).rob_adr===dis_rs1_rob_adr(id)
+    ret0_forward_to_issue_rs2(id) := ret_forward(0).valid && ret_forward(0).addr===dis_rs2_addr(id) && ret_forward(0).rob_adr===dis_rs2_rob_adr(id)
+    ret1_forward_to_issue_rs1(id) := ret_forward(1).valid && ret_forward(1).addr===dis_rs1_addr(id) && ret_forward(1).rob_adr===dis_rs1_rob_adr(id)
+    ret1_forward_to_issue_rs2(id) := ret_forward(1).valid && ret_forward(1).addr===dis_rs2_addr(id) && ret_forward(1).rob_adr===dis_rs2_rob_adr(id)
+
+    dis_rs1_stall_forward(id) := (ret0_forward_to_issue_rs1(id) || ret1_forward_to_issue_rs1(id)) && !dis_dst(id).src1_valid && dis_dst(id).isStall
+    dis_rs2_stall_forward(id) := (ret0_forward_to_issue_rs2(id) || ret1_forward_to_issue_rs2(id)) && !dis_dst(id).src2_valid && dis_dst(id).isStall
+    dis_rs1_stall_forward_data(id) := ret1_forward_to_issue_rs1(id) ? ret_forward(1).data | ret_forward(0).data
+    dis_rs2_stall_forward_data(id) := ret1_forward_to_issue_rs2(id) ? ret_forward(1).data | ret_forward(0).data
 
     dis_dst(id).src1_valid.removeAssignments()
     dis_dst(id).src1_data.removeAssignments()

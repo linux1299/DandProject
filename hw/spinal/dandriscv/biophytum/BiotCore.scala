@@ -7,6 +7,7 @@ import spinal.lib.misc._
 
 case class BiotCore() extends Component {
   import CpuConfig._
+  import BjuCtrlEnum._
 
   
 
@@ -315,6 +316,8 @@ case class BiotCore() extends Component {
   val dispatch_src1_ready_duty_cycle = Reg(UInt(32 bits)) init(0)
   val dispatch_src0_fire_duty_cycle = Reg(UInt(32 bits)) init(0)
   val dispatch_src1_fire_duty_cycle = Reg(UInt(32 bits)) init(0)
+  val dispatch_src0_stall_duty_cycle = Reg(UInt(32 bits)) init(0)
+  val dispatch_src1_stall_duty_cycle = Reg(UInt(32 bits)) init(0)
 
   val bju_0_dst_stall_cnt = Reg(UInt(32 bits)) init(0)
   val alu_1_dst_stall_cnt = Reg(UInt(32 bits)) init(0)
@@ -328,7 +331,7 @@ case class BiotCore() extends Component {
   instr_cnt := instr_cnt + commit.retire(0).fire.asUInt + commit.retire(1).fire.asUInt
 
   when(change_flow) {change_flow_cnt := change_flow_cnt + 1}
-  when(bju_0.bju_dst.fire) {bju_instr_cnt := bju_instr_cnt + 1}
+  when(bju_0.bju_src.fire && !(bju_0.bju_src.uop_bju.bju_ctrl_op===AUIPC)) {bju_instr_cnt := bju_instr_cnt + 1}
 
   when(fetch.fch_dst(0).valid) {fetch_dst0_valid_duty_cycle := fetch_dst0_valid_duty_cycle + 1}
   when(fetch.fch_dst(1).valid) {fetch_dst1_valid_duty_cycle := fetch_dst1_valid_duty_cycle + 1}
@@ -343,6 +346,8 @@ case class BiotCore() extends Component {
   when(dispat.dis_src(1).ready) {dispatch_src1_ready_duty_cycle := dispatch_src1_ready_duty_cycle + 1}
   when(dispat.dis_src(0).fire) {dispatch_src0_fire_duty_cycle := dispatch_src0_fire_duty_cycle + 1}
   when(dispat.dis_src(1).fire) {dispatch_src1_fire_duty_cycle := dispatch_src1_fire_duty_cycle + 1}
+  when(dispat.dis_src(0).isStall) {dispatch_src0_stall_duty_cycle := dispatch_src0_stall_duty_cycle + 1}
+  when(dispat.dis_src(1).isStall) {dispatch_src1_stall_duty_cycle := dispatch_src1_stall_duty_cycle + 1}
 
   when(bju_0.bju_dst.isStall) {bju_0_dst_stall_cnt := bju_0_dst_stall_cnt + 1}
   when(alu_1.alu_dst.isStall) {alu_1_dst_stall_cnt := alu_1_dst_stall_cnt + 1}

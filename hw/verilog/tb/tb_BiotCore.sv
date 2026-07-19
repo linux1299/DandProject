@@ -381,16 +381,19 @@ assign wb_addr[1]  = tb_BiotCore.u_BiotCore.commit_1.retire_1_rd_addr;
 assign wb_data[0]  = tb_BiotCore.u_BiotCore.commit_1.retire_0_rd_data;
 assign wb_data[1]  = tb_BiotCore.u_BiotCore.commit_1.retire_1_rd_data;
 
-always@(posedge clk_axi_in) begin
-  if (wb_valid[0]) begin
-    $display("pc:%h, inst:%h, cmt_wen:%b rd_addr:%h, rd_data:%h", wb_pc[0], wb_inst[0], wb_wen[0], wb_addr[0], wb_data[0]);
-  end
-  if (wb_valid[1]) begin
-    $display("pc:%h, inst:%h, cmt_wen:%b rd_addr:%h, rd_data:%h", wb_pc[1], wb_inst[1], wb_wen[1], wb_addr[1], wb_data[1]);
-  end
-end
+// always@(posedge clk_axi_in) begin
+//   if (wb_valid[0]) begin
+//     $display("pc:%h, inst:%h, cmt_wen:%b rd_addr:%h, rd_data:%h", wb_pc[0], wb_inst[0], wb_wen[0], wb_addr[0], wb_data[0]);
+//   end
+//   if (wb_valid[1]) begin
+//     $display("pc:%h, inst:%h, cmt_wen:%b rd_addr:%h, rd_data:%h", wb_pc[1], wb_inst[1], wb_wen[1], wb_addr[1], wb_data[1]);
+//   end
+// end
 
-
+// always@(posedge clk_axi_in) begin
+//   if (tb_BiotCore.u_BiotCore.dcache.dcache_src_cmd_valid && tb_BiotCore.u_BiotCore.dcache.dcache_src_cmd_ready && tb_BiotCore.u_BiotCore.dcache.dcache_src_cmd_payload_wen)
+//     $display("pc:%h dcache write addr:%h data:%h", tb_BiotCore.u_BiotCore.lsu_4.lsu_src_pc[31:0], tb_BiotCore.u_BiotCore.dcache.dcache_src_cmd_payload_addr[31:0], tb_BiotCore.u_BiotCore.dcache.dcache_src_cmd_payload_wdata[63:0]);
+// end
 
 always@(posedge clk_axi_in) begin
   if (wb_valid[0] && wb_valid[1]) begin
