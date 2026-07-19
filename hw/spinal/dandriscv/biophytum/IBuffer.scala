@@ -83,8 +83,8 @@ case class IBuffer() extends Component{
 
   val entry_cnt        = Reg(UInt(IBF_ADR_W+1 bits)) init(0)
   entry_cnt            := flush ? U(0) | (entry_cnt + push_ibuffer_num - pop_ibuffer_num)
-  ibf_src(0).ready     := entry_cnt <= (IBF_DEPTH-2)
-  ibf_src(1).ready     := entry_cnt <= (IBF_DEPTH-2)
+  ibf_src(0).ready     := (entry_cnt <= (IBF_DEPTH-2)) && !flush
+  ibf_src(1).ready     := (entry_cnt <= (IBF_DEPTH-2)) && !flush
 
   StreamRenameUtil(this)
 }

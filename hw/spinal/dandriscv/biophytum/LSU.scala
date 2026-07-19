@@ -51,8 +51,8 @@ case class LSU() extends Component {
   val lsu_src      = slave(Stream(ExeSrc("LSU")))
   val lsu_dst      = master(Stream(ExeDst()))
   val dcache_ports = master(DCachePorts(32, 64))
-  val lsu_done     = out Bool()
-  val lsu_wbc_forward = master(Flow(Foward("WithData")))
+  val exe_forward  = master(Flow(Forward("Ctrl")))
+  val wbc_forward = master(Flow(Forward("WithData")))
 
   // =========== stream control ================
   val dst_stream    = Stream(ExeDst())
@@ -236,11 +236,14 @@ case class LSU() extends Component {
 
   dst_stream >-> lsu_dst
 
-  lsu_done := dst_stream.fire
-  lsu_wbc_forward.valid   := lsu_dst.fire && lsu_dst.rd_wen
-  lsu_wbc_forward.rob_adr := lsu_dst.rob_adr
-  lsu_wbc_forward.data    := lsu_dst.rd_data
-  lsu_wbc_forward.addr    := lsu_dst.rd_addr
+  wbc_forward.valid   := lsu_dst.fire && lsu_dst.rd_wen
+  wbc_forward.rob_adr := lsu_dst.rob_adr
+  wbc_forward.data    := lsu_dst.rd_data
+  wbc_forward.addr    := lsu_dst.rd_addr
+
+  exe_forward.valid   := dst_stream.fire
+  exe_forward.rob_adr := dst_stream.rob_adr
+  exe_forward.addr    := dst_stream.rd_addr
   
   StreamRenameUtil(this)
 }

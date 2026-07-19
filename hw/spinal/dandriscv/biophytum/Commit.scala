@@ -10,6 +10,7 @@ import BundleImplicit._
 // Commit 2 instructions/cycle
 case class Commit() extends Component{
   import CpuConfig._
+  import ScoreBoardEnum._
 
   // =================== IO ===================
   // dispatch stage, write rob
@@ -17,11 +18,20 @@ case class Commit() extends Component{
   val dis_pc         = Vec(in UInt(32 bits), 2)
   val dis_rd_addr    = Vec(in UInt(5 bits), 2)
   val dis_rd_wen     = Vec(in Bool(), 2)
-  val dis_after_bju  = Vec(in Bool(), 2)
   val dis_instr      = Vec(in Bits(32 bits), 2)
 
   // wbc stage, write to rob
   val wbc_src   = Vec(slave(Stream(ExeDst())), 5)
+
+  // forward
+  val iss_forward = Vec(slave(Flow(Forward("Ctrl"))), 5)
+  val exe_forward = Vec(slave(Flow(Forward("Ctrl"))), 5) // BJU + 2ALU / DIV + LSU
+  val wbc_forward = Vec(slave(Flow(Forward("Ctrl"))), 5)
+  val ret_forward = Vec(slave(Flow(Forward("Ctrl"))), 2)
+
+  // read state from iq
+  val head_rd_state = Vec(slave(ReadState()), 5)
+  val skid_rd_state = Vec(slave(ReadState()), 5)
 
   // ret stage, write to ARF
   val retire   = Vec(master(Stream(ExeDst())), 2) 
@@ -31,8 +41,10 @@ case class Commit() extends Component{
   val tail_adr_older = out UInt(ROB_ADR_W bits)
   val tail_adr_newer = out UInt(ROB_ADR_W bits)
   val head_adr_out   = out UInt(ROB_ADR_W bits)
+  val bju_change_flow= in Bool()
+  val bju_rob_adr = in UInt(ROB_ADR_W bits)
 
-  val rob_forward = Vec(master(Flow(Foward("WithData"))), ROB_DEPTH)
+  val rob_forward = Vec(master(Flow(Forward("WithData"))), ROB_DEPTH)
   // =================== IO ===================
 
 
@@ -58,7 +70,8 @@ case class Commit() extends Component{
     val rd_vld      = Vec(RegInit(False), ROB_DEPTH)
     val rd_addr     = Vec(Reg(UInt(5 bits)) init(0), ROB_DEPTH)
     val rd_wen      = Vec(RegInit(False), ROB_DEPTH)
-    val after_bju   = Vec(RegInit(False), ROB_DEPTH)
+    val state       = Vec(Reg(ScoreBoardEnum()) init(ARF), ROB_DEPTH)
+    val state_nxt   = Vec(ScoreBoardEnum(), 32)
   }
   val entry_cnt        = Reg(UInt(ROB_ADR_W+1 bits)) init(0)
   val dis_fire_num     = UInt(2 bits)
@@ -86,13 +99,20 @@ case class Commit() extends Component{
 
   // =============== Update Entry =================
   for(i <- 0 until ROB_DEPTH){
+    //-------------- clear entry when retire-----------------
+    when((retire(0).fire && retire(0).rob_adr===U(i)) || (retire(1).fire && retire(1).rob_adr===U(i))){
+      rob.rd_vld(i) := False
+      rob.rd_data(i):= B(0, 64 bits)
+      rob.pc(i)     := U(0)
+      rob.valid(i)  := False
+    }
+
     //-------------- dispatch -----------------
     when(dis_fire_num===U(2) && tail_adr_plus===U(i)){ // dispatch 2 instr, write to tail_adr_plus
       rob.pc(i)     := dis_pc(1)
       rob.instr(i)  := dis_instr(1)
       rob.rd_addr(i):= dis_rd_addr(1)
       rob.rd_wen(i) := dis_rd_wen(1)
-      rob.after_bju(i) := dis_after_bju(1)
       rob.valid(i)  := True
     }
     .elsewhen(dis_fire_num===U(2) && tail_adr_curr===U(i)){ // dispatch 2 instr, write to tail_adr_curr
@@ -100,7 +120,6 @@ case class Commit() extends Component{
       rob.instr(i)  := dis_instr(0)
       rob.rd_addr(i):= dis_rd_addr(0)
       rob.rd_wen(i) := dis_rd_wen(0)
-      rob.after_bju(i) := dis_after_bju(0)
       rob.valid(i)  := True
     }
     .elsewhen(dis_fire_num===U(1) && tail_adr_curr===U(i) && dis_fire(0)){ // dispatch 1 instr, from older, write tail_adr_curr
@@ -108,7 +127,6 @@ case class Commit() extends Component{
       rob.instr(i)  := dis_instr(0)
       rob.rd_addr(i):= dis_rd_addr(0)
       rob.rd_wen(i) := dis_rd_wen(0)
-      rob.after_bju(i) := dis_after_bju(0)
       rob.valid(i)  := True
     }
     .elsewhen(dis_fire_num===U(1) && tail_adr_curr===U(i) && dis_fire(1)){ // dispatch 1 instr, from newer, write tail_adr_curr
@@ -116,7 +134,6 @@ case class Commit() extends Component{
       rob.instr(i)  := dis_instr(1)
       rob.rd_addr(i):= dis_rd_addr(1)
       rob.rd_wen(i) := dis_rd_wen(1)
-      rob.after_bju(i) := dis_after_bju(1)
       rob.valid(i)  := True
     }
 
@@ -142,14 +159,6 @@ case class Commit() extends Component{
       rob.rd_data(i):= wbc_src(4).rd_data
     }
 
-    //-------------- clear entry when retire-----------------
-    when((retire(0).fire && retire(0).rob_adr===U(i)) || (retire(1).fire && retire(1).rob_adr===U(i))){
-      rob.rd_vld(i) := False
-      rob.rd_data(i):= B(0, 64 bits)
-      rob.pc(i)     := U(0)
-      rob.after_bju(i) := False
-      rob.valid(i)  := False
-    }
 
     //-------------- forward data -----------------
     rob_forward(i).valid := rob.valid(i) && rob.rd_vld(i)
@@ -157,6 +166,113 @@ case class Commit() extends Component{
     rob_forward(i).rob_adr := U(i)
     rob_forward(i).data := rob.rd_data(i)
 
+  }
+
+  val rob_fsm = new Area {
+    // Aggregate fire signals per ROB entry (matched by rob_adr only)
+    val dis_fire = Vec(Bool(), ROB_DEPTH)
+    val iss_fire = Vec(Bool(), ROB_DEPTH)
+    val exe_fire = Vec(Bool(), ROB_DEPTH)
+    val exe_done = Vec(Bool(), ROB_DEPTH)
+    val wbc_fire = Vec(Bool(), ROB_DEPTH)
+    val ret_fire = Vec(Bool(), ROB_DEPTH)
+    val dis_fire_of_0 = Vec(Bool(), ROB_DEPTH)
+    val dis_fire_of_1 = Vec(Bool(), ROB_DEPTH)
+    val iss_fire_short = Vec(Bool(), ROB_DEPTH)  // 新增：端口 0-2 (BJU/ALU)
+    val iss_fire_long  = Vec(Bool(), ROB_DEPTH)  // 新增：端口 3-4 (DIV/LSU)
+    
+    for (i <- 0 until ROB_DEPTH) {
+      // ---- Fire signal generation (rob_adr match only) ----
+      iss_fire(i) := (0 until 5).map(j =>
+        iss_forward(j).valid && iss_forward(j).rob_adr === U(i)
+      ).reduce(_ || _)
+
+      iss_fire_short(i) := (0 until 3).map(j =>
+        iss_forward(j).valid && iss_forward(j).rob_adr === U(i)
+      ).reduce(_ || _)
+
+      iss_fire_long(i) := (3 until 5).map(j =>
+        iss_forward(j).valid && iss_forward(j).rob_adr === U(i)
+      ).reduce(_ || _)
+
+      exe_fire(i) := (0 until 3).map(j =>
+        exe_forward(j).valid && exe_forward(j).rob_adr === U(i)
+      ).reduce(_ || _)
+
+      exe_done(i) := (3 until 5).map(j =>
+        exe_forward(j).valid && exe_forward(j).rob_adr === U(i)
+      ).reduce(_ || _)
+
+      wbc_fire(i) := (0 until 5).map(j =>
+        wbc_forward(j).valid && wbc_forward(j).rob_adr === U(i)
+      ).reduce(_ || _)
+
+      ret_fire(i) := (0 until 2).map(j =>
+        ret_forward(j).valid && ret_forward(j).rob_adr === U(i)
+      ).reduce(_ || _)
+
+      // Dispatch fire: ROB entry is being written by dispatch
+      dis_fire_of_0(i) := (dis_fire_num === U(2) && tail_adr_curr === U(i) && dis_rd_wen(0)) ||
+                          (dis_fire_num === U(1) && tail_adr_curr === U(i) && dis_rd_wen(0))
+      dis_fire_of_1(i) := (dis_fire_num === U(2) && tail_adr_plus === U(i) && dis_rd_wen(1))
+      dis_fire(i) := dis_fire_of_0(i) || dis_fire_of_1(i)
+
+      // ---- State FSM ----
+      rob.state_nxt(i) := rob.state(i)
+      switch(rob.state(i)) {
+        is(ARF) {
+          // stays ARF until dispatched
+          when(dis_fire(i)){
+            rob.state_nxt(i) := ISS
+          }
+        }
+        is(ISS) {
+          when(dis_fire(i)) {
+            rob.state_nxt(i) := ISS  // overwritten by newer dispatch to same entry (unlikely but safe)
+          }
+          .elsewhen(iss_fire_short(i)) {
+            rob.state_nxt(i) := EXE   // BJU / ALU → single-cycle execute
+          }
+          .elsewhen(iss_fire_long(i)) {
+            rob.state_nxt(i) := DLY   // DIV / LSU → multi-cycle
+          }
+        }
+        is(EXE) {
+          when(dis_fire(i)) {
+            rob.state_nxt(i) := ISS   // new instruction writing same rd, allocated same ROB entry
+          }
+          .elsewhen(exe_fire(i)) {
+            rob.state_nxt(i) := WBC
+          }
+        }
+        is(DLY) {
+          when(dis_fire(i)) {
+            rob.state_nxt(i) := ISS
+          }
+          .elsewhen(exe_done(i)) {
+            rob.state_nxt(i) := WBC
+          }
+        }
+        is(WBC) {
+          when(dis_fire(i)) {
+            rob.state_nxt(i) := ISS
+          }
+          .elsewhen(wbc_fire(i)) {
+            rob.state_nxt(i) := ROB
+          }
+        }
+        is(ROB) {
+          when(dis_fire(i)) {
+            rob.state_nxt(i) := ISS
+          }
+          .elsewhen(ret_fire(i)) {
+            rob.state_nxt(i) := ARF
+          }
+        }
+      }
+
+      rob.state(i) := rob.state_nxt(i)
+    }
   }
 
   // =================== Output ===================
@@ -168,7 +284,6 @@ case class Commit() extends Component{
   complete(0).pc      := rob.pc(head_adr_curr)
   complete(0).instr   := rob.instr(head_adr_curr)
   complete(0).rob_adr := head_adr_curr
-  complete(0).after_bju := rob.after_bju(head_adr_curr)
 
   complete(1).valid   := complete(0).valid && rob.valid(head_adr_plus) && rob.rd_vld(head_adr_plus)
   complete(1).rd_data := rob.rd_data(head_adr_plus)
@@ -177,11 +292,18 @@ case class Commit() extends Component{
   complete(1).pc      := rob.pc(head_adr_plus)
   complete(1).instr   := rob.instr(head_adr_plus)
   complete(1).rob_adr := head_adr_plus
-  complete(1).after_bju := rob.after_bju(head_adr_plus)
 
   // complete to retire
   complete(0) >-> retire(0)
   complete(1) >-> retire(1)
+
+  // read state from issue queue/ issue stage
+  for(id <- 0 until 5){ // issue queue id from 0 to 4
+    head_rd_state(id).rs1_state := rob.state(head_rd_state(id).rs1_rob_adr)
+    head_rd_state(id).rs2_state := rob.state(head_rd_state(id).rs2_rob_adr)
+    skid_rd_state(id).rs1_state := rob.state(skid_rd_state(id).rs1_rob_adr)
+    skid_rd_state(id).rs2_state := rob.state(skid_rd_state(id).rs2_rob_adr)
+  }
 
   // control info
   tail_adr_older := tail_adr_curr

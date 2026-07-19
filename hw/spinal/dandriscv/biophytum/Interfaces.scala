@@ -115,33 +115,28 @@ case class IssuePkg() extends Bundle {
   val src1_data    = Bits(64 bits)
   val src2_valid   = Bool()
   val src2_data    = Bits(64 bits)
-  val src1_state   = ScoreBoardEnum()
-  val src2_state   = ScoreBoardEnum()
   val src1_exe_oh  = Bits(5 bits)
   val src2_exe_oh  = Bits(5 bits)
   val src1_rob_adr = UInt(ROB_ADR_W bits)
   val src2_rob_adr = UInt(ROB_ADR_W bits)
   val rd_rob_adr   = UInt(ROB_ADR_W bits)
-  val after_bju    = Bool()
-  val bju_rob_adr  = UInt(ROB_ADR_W bits)
 }
 
-case class Foward(Type: String) extends Bundle {
+case class Forward(Type: String) extends Bundle {
   val addr    = UInt(5 bits)
   val rob_adr = UInt(ROB_ADR_W bits)
   val data    = (Type=="WithData") generate Bits(64 bits)
-  
 }
 
 // ====================== Read State ports ====================
 case class ReadState() extends Bundle with IMasterSlave{
   val rs1_state = ScoreBoardEnum()
   val rs2_state = ScoreBoardEnum()
-  val rs1_addr = UInt(5 bits)
-  val rs2_addr = UInt(5 bits)
+  val rs1_rob_adr = UInt(ROB_ADR_W bits)
+  val rs2_rob_adr = UInt(ROB_ADR_W bits)
 
   override def asMaster(): Unit = {
-    out(rs1_addr, rs2_addr)
+    out(rs1_rob_adr, rs2_rob_adr)
     in(rs1_state, rs2_state)
   }
 }
@@ -173,7 +168,6 @@ case class ExeDst() extends Bundle {
   val pc          = UInt(32 bits)
   val instr       = Bits(32 bits)
   val rob_adr     = UInt(ROB_ADR_W bits)
-  val after_bju   = Bool()
 }
 
 // ====================== reg file ports ====================

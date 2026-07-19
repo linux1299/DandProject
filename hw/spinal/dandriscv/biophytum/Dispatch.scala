@@ -19,22 +19,17 @@ case class Dispatch() extends Component{
   val rob_is_ready   = in Bool() // if rob is full, stall
   val tail_adr_older = in UInt(ROB_ADR_W bits)
   val tail_adr_newer = in UInt(ROB_ADR_W bits)
-  // forward
-  val iss_forward = Vec(slave(Flow(Foward("Ctrl"))), 5)
-  val exe_forward = Vec(slave(Flow(Foward("Ctrl"))), 5) // BJU + 2ALU / DIV + LSU
-  val wbc_forward = Vec(slave(Flow(Foward("Ctrl"))), 5)
-  val ret_forward = Vec(slave(Flow(Foward("Ctrl"))), 2)
+
   // read regfile
   val rd_regfile  = Vec(master(ReadRegfile()), 2)
-  // read state from iq
-  val head_rd_state_nxt = Vec(slave(ReadState()), 5)
-  val skid_rd_state_nxt = Vec(slave(ReadState()), 5)
+
   // BJU
   val bju_change_flow = in Bool()
   val bju_exe_valid   = in Bool()
   val bju_rob_adr     = in UInt(ROB_ADR_W bits)
-  // to commit
-  val dis_is_after_bju = Vec(out Bool(), 2)
+  val branch_valid    = in Bool()
+  // retire valid to clear
+  val ret_forward = Vec(slave(Flow(Forward("WithData"))), 2)
 
   // =================== Signals ===================
   val dis_src_fire_scb      = Vec(Bits(32 bits), 2)
@@ -46,101 +41,91 @@ case class Dispatch() extends Component{
   val dis_src_trap_or_print = Bits(2 bits)
   val dis_src1_valid        = Bits(2 bits)
   val dis_src2_valid        = Bits(2 bits)
+  val dis_src1_data         = Vec(Bits(64 bits), 2)
+  val dis_src2_data         = Vec(Bits(64 bits), 2)
   val rs1_addr              = Vec(UInt(5 bits), 2)
   val rs2_addr              = Vec(UInt(5 bits), 2)
   val rd_addr               = Vec(UInt(5 bits), 2)
+  val dis_rs1_addr          = Vec(UInt(5 bits), 5)
+  val dis_rs2_addr          = Vec(UInt(5 bits), 5)
+  val dis_rs1_stall_forward = Vec(Bool(), 5)
+  val dis_rs2_stall_forward = Vec(Bool(), 5)
+  val dis_rs1_stall_forward_data = Vec(Bits(64 bits), 5)
+  val dis_rs2_stall_forward_data = Vec(Bits(64 bits), 5)
 
   // =================== ScoreBaord ===================
   val scb = new Area{
     // current
-    val state     = Vec(Reg(ScoreBoardEnum()) init(ARF), 32)
     val exe_oh    = Vec(Reg(Bits(5 bits)) init(0), 32)
     val rob_adr   = Vec(Reg(UInt(ROB_ADR_W bits)) init(0), 32)
-    val after_bju = Vec(RegInit(False), 32)
     val is_in_rob = Vec(RegInit(False), 32)
     // next
     val is_in_rob_nxt = Vec(Bool(), 32)
-    val state_nxt     = Vec(ScoreBoardEnum(), 32)
     val exe_oh_nxt    = Vec(Bits(5 bits), 32)
     val rob_adr_nxt   = Vec(UInt(ROB_ADR_W bits), 32)
-    val after_bju_nxt = Vec(Bool(), 32)
-    // comb logic
-    val dis_fire = Vec(Bool(), 32)
-    val iss_fire = Vec(Bool(), 32)
-    val exe_fire = Vec(Bool(), 32)
-    val exe_done = Vec(Bool(), 32)
-    val wbc_fire = Vec(Bool(), 32)
-    val ret_fire = Vec(Bool(), 32)
+
+    val ret_fire0 = Vec(Bool(), 32)
+    val ret_fire1 = Vec(Bool(), 32)
+    val ret_fire  = Vec(Bool(), 32)
   }
 
-  // =================== Record After BJU state ===================
-  val is_after_bju      = RegInit(False)
-  val bju_rob_adr_r     = Reg(UInt(ROB_ADR_W bits)) init(0)
-  val is_after_bju_clr  = is_after_bju && bju_exe_valid && bju_rob_adr===bju_rob_adr_r
-  val is_after_bju_en   = dis_src(0).fire && dis_src(0).exe_sel===BJU
-  val is_after_bju_vld  = is_after_bju && !is_after_bju_clr
+  // =================== BJU Stall Logic ===================
+  // After a BJU instruction is dispatched, stall subsequent dispatch
+  // until the BJU executes (bju_exe_valid) or a change-of-flow occurs.
+  val dis0_is_bju   = (dis_src(0).fire && dis_src(0).exe_sel===BJU)
+  val dis1_is_bju   = (dis_src(1).fire && dis_src(1).exe_sel===BJU)
+  val dis0_is_bju_comb = dis_src(0).valid && dis_src(0).exe_sel===BJU
 
-  when(is_after_bju_clr){
-    is_after_bju := False
+  val bju_pending = RegInit(False)
+  when(dis0_is_bju || dis1_is_bju){
+    bju_pending := True
   }
-  .elsewhen(is_after_bju_en){
-    is_after_bju  := True
-    bju_rob_adr_r := tail_adr_older
+  .elsewhen(bju_exe_valid || bju_change_flow){
+    bju_pending := False
   }
+
+  // ============== bypass older rd to rs1/rs2 ==============
+  val dis1_rs1_from_dis0_rd = dis_src(0).fire && (dis_src(0).rd_addr===dis_src(1).rs1_addr) && dis_src(0).micro_op.uop_com.rd_wen
+  val dis1_rs2_from_dis0_rd = dis_src(0).fire && (dis_src(0).rd_addr===dis_src(1).rs2_addr) && dis_src(0).micro_op.uop_com.rd_wen
+
+  val dis0_src1_rob_adr = UInt(ROB_ADR_W bits)
+  val dis0_src2_rob_adr = UInt(ROB_ADR_W bits)
+  val dis1_src1_rob_adr = UInt(ROB_ADR_W bits)
+  val dis1_src2_rob_adr = UInt(ROB_ADR_W bits)
+
+  dis0_src1_rob_adr := scb.rob_adr(rs1_addr(0))
+  dis0_src2_rob_adr := scb.rob_adr(rs2_addr(0))
+  dis1_src1_rob_adr := dis1_rs1_from_dis0_rd ? tail_adr_older | scb.rob_adr(rs1_addr(1))
+  dis1_src2_rob_adr := dis1_rs2_from_dis0_rd ? tail_adr_older | scb.rob_adr(rs2_addr(1))
+
+  // ============== src2 use imm ==============
+  val dis0_src2_use_imm = (dis_src_is_store(0) ? False | dis_src_src2_is_imm(0))
+  val dis1_src2_use_imm = (dis_src_is_store(1) ? False | dis_src_src2_is_imm(1))
 
   // =================== ScoreBaord FSM ===================
-  scb.state(0)        := scb.state_nxt(0)
   scb.exe_oh(0)       := scb.exe_oh_nxt(0)
   scb.rob_adr(0)      := scb.rob_adr_nxt(0)
-  scb.after_bju(0)    := scb.after_bju_nxt(0)
   scb.is_in_rob(0)    := scb.is_in_rob_nxt(0)
-  scb.state_nxt(0)    := ARF
-  scb.is_in_rob_nxt   := False
+  scb.is_in_rob_nxt(0):= False
   scb.exe_oh_nxt(0)   := B(0, 5 bits)
   scb.rob_adr_nxt(0)  := U(0, ROB_ADR_W bits)
-  scb.after_bju_nxt(0):= False
-  scb.dis_fire(0)     := False
-  scb.iss_fire(0)     := False
-  scb.exe_fire(0)     := False
-  scb.exe_done(0)     := False
-  scb.wbc_fire(0)     := False
-  scb.ret_fire(0)     := False
   dis_src_fire_scb(0)(0) := False
   dis_src_fire_scb(1)(0) := False
+  scb.ret_fire(0)     := False
+  scb.ret_fire0(0)    := False
+  scb.ret_fire1(0)    := False
 
   for(i <- 1 until 32){
     dis_src_fire_scb(0)(i) := dis_src(0).fire && dis_src(0).micro_op.uop_com.rd_wen && dis_src(0).rd_addr===U(i)
     dis_src_fire_scb(1)(i) := dis_src(1).fire && dis_src(1).micro_op.uop_com.rd_wen && dis_src(1).rd_addr===U(i)
 
-    scb.dis_fire(i) := dis_src_fire_scb(0)(i) || dis_src_fire_scb(1)(i)
-                       
-    scb.iss_fire(i) := iss_forward(0).valid && iss_forward(0).addr===U(i) && iss_forward(0).rob_adr===scb.rob_adr(i) ||
-                       iss_forward(1).valid && iss_forward(1).addr===U(i) && iss_forward(1).rob_adr===scb.rob_adr(i) ||
-                       iss_forward(2).valid && iss_forward(2).addr===U(i) && iss_forward(2).rob_adr===scb.rob_adr(i) ||
-                       iss_forward(3).valid && iss_forward(3).addr===U(i) && iss_forward(3).rob_adr===scb.rob_adr(i) ||
-                       iss_forward(4).valid && iss_forward(4).addr===U(i) && iss_forward(4).rob_adr===scb.rob_adr(i)
-
-    scb.exe_fire(i) := exe_forward(0).valid && exe_forward(0).addr===U(i) && exe_forward(0).rob_adr===scb.rob_adr(i) || 
-                       exe_forward(1).valid && exe_forward(1).addr===U(i) && exe_forward(1).rob_adr===scb.rob_adr(i) || 
-                       exe_forward(2).valid && exe_forward(2).addr===U(i) && exe_forward(2).rob_adr===scb.rob_adr(i)
-
-    scb.exe_done(i) := exe_forward(3).valid && exe_forward(3).addr===U(i) && exe_forward(3).rob_adr===scb.rob_adr(i) || 
-                       exe_forward(4).valid && exe_forward(4).addr===U(i) && exe_forward(4).rob_adr===scb.rob_adr(i)
-
-    scb.wbc_fire(i) := wbc_forward(0).valid && wbc_forward(0).addr===U(i) && wbc_forward(0).rob_adr===scb.rob_adr(i) ||
-                       wbc_forward(1).valid && wbc_forward(1).addr===U(i) && wbc_forward(1).rob_adr===scb.rob_adr(i) ||
-                       wbc_forward(2).valid && wbc_forward(2).addr===U(i) && wbc_forward(2).rob_adr===scb.rob_adr(i) ||
-                       wbc_forward(3).valid && wbc_forward(3).addr===U(i) && wbc_forward(3).rob_adr===scb.rob_adr(i) ||
-                       wbc_forward(4).valid && wbc_forward(4).addr===U(i) && wbc_forward(4).rob_adr===scb.rob_adr(i)
-
-    scb.ret_fire(i) := ret_forward(0).valid && ret_forward(0).addr===U(i) && ret_forward(0).rob_adr===scb.rob_adr(i) || 
-                       ret_forward(1).valid && ret_forward(1).addr===U(i) && ret_forward(1).rob_adr===scb.rob_adr(i)
-
-    scb.state(i)    := scb.state_nxt(i)
     scb.exe_oh(i)   := scb.exe_oh_nxt(i)
     scb.rob_adr(i)  := scb.rob_adr_nxt(i)
-    scb.after_bju(i):= scb.after_bju_nxt(i)
     scb.is_in_rob(i):= scb.is_in_rob_nxt(i)
+
+    scb.ret_fire0(i):= ret_forward(0).valid && ret_forward(0).addr===U(i) && ret_forward(0).rob_adr===scb.rob_adr(i)
+    scb.ret_fire1(i):= ret_forward(1).valid && ret_forward(1).addr===U(i) && ret_forward(1).rob_adr===scb.rob_adr(i)
+    scb.ret_fire(i) := scb.ret_fire0(i) || scb.ret_fire1(i)
 
     when(dis_src_fire_scb(1)(i)){
       scb.exe_oh_nxt(i)    := dis_src_exe_oh(1)
@@ -157,78 +142,6 @@ case class Dispatch() extends Component{
       scb.rob_adr_nxt(i)   := scb.rob_adr(i)
       scb.is_in_rob_nxt(i) := scb.ret_fire(i) ? False | scb.is_in_rob(i)
     }
-
-    when(bju_change_flow && scb.after_bju(i)){
-      scb.after_bju_nxt(i) := False
-    }
-    .elsewhen(dis_src_fire_scb(0)(i)){
-      scb.after_bju_nxt(i) := is_after_bju_vld
-    }
-    .elsewhen(dis_src_fire_scb(1)(i)){
-      scb.after_bju_nxt(i) := is_after_bju_en || is_after_bju_vld
-    }
-    .otherwise{
-      scb.after_bju_nxt(i) := scb.after_bju(i)
-    }
-
-    scb.state_nxt(i) := scb.state(i)
-    switch(scb.state(i)){
-      is(ARF){
-        when(scb.dis_fire(i)){
-          scb.state_nxt(i) := ISS
-        }
-      }
-      is(ISS){
-        when(scb.dis_fire(i)){
-          scb.state_nxt(i) := ISS
-        }
-        .elsewhen(scb.iss_fire(i) && ((scb.exe_oh(i)===B"5'b000001") || (scb.exe_oh(i)===B"5'b000010") || (scb.exe_oh(i)===B"5'b000100"))){
-          scb.state_nxt(i) := EXE // BJU / ALU
-        }
-        .elsewhen(scb.iss_fire(i) && ((scb.exe_oh(i)===B"5'b01000") || (scb.exe_oh(i)===B"5'b10000"))){
-          scb.state_nxt(i) := DLY // DIV / LSU
-        }
-      }
-      is(EXE){
-        when(scb.dis_fire(i)){
-          scb.state_nxt(i) := ISS
-        }
-        .elsewhen(scb.exe_fire(i)){
-          scb.state_nxt(i) := WBC
-        }
-      }
-      is(DLY){
-        when(scb.dis_fire(i)){
-          scb.state_nxt(i) := ISS
-        }
-        .elsewhen(scb.exe_done(i)){
-          scb.state_nxt(i) := WBC
-        }
-      }
-      is(WBC){
-        when(scb.dis_fire(i)){
-          scb.state_nxt(i) := ISS
-        }
-        .elsewhen(scb.wbc_fire(i)){
-          scb.state_nxt(i) := ROB
-        }
-      }
-      is(ROB){
-        when(scb.dis_fire(i)){
-          scb.state_nxt(i) := ISS
-        }
-        .elsewhen(scb.ret_fire(i)){
-          scb.state_nxt(i) := ARF
-        }
-      }
-    }
-
-    // recovery state to ARF
-    when(bju_change_flow && scb.after_bju(i)){
-      scb.state_nxt(i) := ARF
-    }
-
-    
   }
 
   // =================== dispatch to issue queue ===================
@@ -270,71 +183,103 @@ case class Dispatch() extends Component{
 
   
 
-  dis_src1_valid(0) := scb.state_nxt(rs1_addr(0))===ARF || // if instr rs1==rd (a1=a1+a1) , rs1 should be valid
-                      (scb.state(rs1_addr(0))===ARF && dis_src_fire_scb(0).asBools(rs1_addr(0))) ||
-                      (scb.state(rs1_addr(0))===ARF && dis_src_fire_scb(1).asBools(rs1_addr(0)))
+  dis_src1_valid(0) :=  scb.ret_fire0(rs1_addr(0)) ||
+                        scb.ret_fire1(rs1_addr(0)) ||
+                        !scb.is_in_rob(rs1_addr(0))
 
-  dis_src1_valid(1) := scb.state_nxt(rs1_addr(1))===ARF || 
-                      (scb.state(rs1_addr(1))===ARF && dis_src_fire_scb(1).asBools(rs1_addr(1)))
+  dis_src1_valid(1) :=  scb.ret_fire0(rs1_addr(1)) ||
+                        scb.ret_fire1(rs1_addr(1)) ||
+                        (dis1_rs1_from_dis0_rd ? False | !scb.is_in_rob(rs1_addr(1)))
 
-  dis_src2_valid(0) := scb.state_nxt(rs2_addr(0))===ARF || // if instr rs2==rd (a1=a1+a1) , rs2 should be valid
-                      (scb.state(rs2_addr(0))===ARF && dis_src_fire_scb(0).asBools(rs2_addr(0))) ||
-                      (scb.state(rs2_addr(0))===ARF && dis_src_fire_scb(1).asBools(rs2_addr(0))) ||
-                      (dis_src_is_store(0) ? False | dis_src_src2_is_imm(0))
+  dis_src2_valid(0) :=  scb.ret_fire0(rs2_addr(0)) ||
+                        scb.ret_fire1(rs2_addr(0)) ||
+                        !scb.is_in_rob(rs2_addr(0))                         ||
+                         dis0_src2_use_imm
 
-  dis_src2_valid(1) := scb.state_nxt(rs2_addr(1))===ARF || 
-                      (scb.state(rs2_addr(1))===ARF && dis_src_fire_scb(1).asBools(rs2_addr(1))) ||
-                      (dis_src_is_store(1) ? False | dis_src_src2_is_imm(1))
+  dis_src2_valid(1) :=  scb.ret_fire0(rs2_addr(1)) ||
+                        scb.ret_fire1(rs2_addr(1)) ||
+                        (dis1_rs2_from_dis0_rd ? False | !scb.is_in_rob(rs2_addr(1))) ||
+                         dis1_src2_use_imm
+
+  dis_src1_data(0)  := scb.ret_fire1(rs1_addr(0)) ? ret_forward(1).data |
+                      (scb.ret_fire0(rs1_addr(0)) ? ret_forward(0).data | rd_regfile(0).rs1_data)
+
+  dis_src1_data(1)  := scb.ret_fire1(rs1_addr(1)) ? ret_forward(1).data |
+                      (scb.ret_fire0(rs1_addr(1)) ? ret_forward(0).data | rd_regfile(1).rs1_data)
+
+  dis_src2_data(0)  := dis0_src2_use_imm ? dis_src(0).imm |
+                      (scb.ret_fire1(rs2_addr(0)) ? ret_forward(1).data |
+                      (scb.ret_fire0(rs2_addr(0)) ? ret_forward(0).data | rd_regfile(0).rs2_data))
+
+  dis_src2_data(1)  := dis1_src2_use_imm ? dis_src(1).imm |
+                      (scb.ret_fire1(rs2_addr(1)) ? ret_forward(1).data |
+                      (scb.ret_fire0(rs2_addr(1)) ? ret_forward(0).data | rd_regfile(1).rs2_data))
 
   // =================== output ===================
   val dis_stream = Vec(Stream(IssuePkg()), 5)
-  val dis_dst_src1_state_r = Vec(Reg(ScoreBoardEnum()) init(ARF), 5)
-  val dis_dst_src2_state_r = Vec(Reg(ScoreBoardEnum()) init(ARF), 5)
 
   for(id <- 0 until 5){ // id from 0 to 4
-    dis_src_to_dst_valid(0)(id) := dis_src(0).valid && dis_src_to_dst_id(0)===U(id) && rob_is_ready
-    dis_src_to_dst_valid(1)(id) := dis_src(1).valid && dis_src_to_dst_id(1)===U(id) && rob_is_ready && (dis_src(0).fire || !dis_src(0).valid)
+    dis_src_to_dst_valid(0)(id) := dis_src(0).valid && dis_src_to_dst_id(0)===U(id) && rob_is_ready && !bju_pending
+    dis_src_to_dst_valid(1)(id) := dis_src(1).valid && dis_src_to_dst_id(1)===U(id) && rob_is_ready && (dis_src(0).fire || !dis_src(0).valid) && !(dis_src(0).valid && dis_src_to_dst_id(1)===dis_src_to_dst_id(0)) && !bju_pending && !dis0_is_bju_comb
 
     dis_stream(id).valid        := dis_src_to_dst_valid(0)(id) || dis_src_to_dst_valid(1)(id)
-    dis_stream(id).instr_pkg    := dis_src_to_dst_valid(0)(id) ? dis_src(0).payload         | dis_src(1).payload
-    dis_stream(id).src1_valid   := dis_src_to_dst_valid(0)(id) ? dis_src1_valid(0)          | dis_src1_valid(1)
-    dis_stream(id).src1_data    := dis_src_to_dst_valid(0)(id) ? rd_regfile(0).rs1_data     | rd_regfile(1).rs1_data
-    dis_stream(id).src2_valid   := dis_src_to_dst_valid(0)(id) ? dis_src2_valid(0)          | dis_src2_valid(1)
-    dis_stream(id).src2_data    := dis_src_to_dst_valid(0)(id) ? ((dis_src_src2_is_imm(0) && !dis_src_is_store(0)) ? dis_src(0).imm | rd_regfile(0).rs2_data) | 
-                                                                 ((dis_src_src2_is_imm(1) && !dis_src_is_store(1)) ? dis_src(1).imm | rd_regfile(1).rs2_data)
-    dis_stream(id).src1_state   := dis_src_to_dst_valid(0)(id) ? scb.state_nxt(rs1_addr(0)) | scb.state_nxt(rs1_addr(1))
-    dis_stream(id).src2_state   := dis_src_to_dst_valid(0)(id) ? scb.state_nxt(rs2_addr(0)) | scb.state_nxt(rs2_addr(1))
+    dis_stream(id).instr_pkg    := dis_src_to_dst_valid(0)(id) ? dis_src(0).payload | dis_src(1).payload
+    dis_stream(id).src1_valid   := dis_src_to_dst_valid(0)(id) ? dis_src1_valid(0)  | dis_src1_valid(1)
+    dis_stream(id).src1_data    := dis_src_to_dst_valid(0)(id) ? dis_src1_data(0)   | dis_src1_data(1)
+    dis_stream(id).src2_valid   := dis_src_to_dst_valid(0)(id) ? dis_src2_valid(0)  | dis_src2_valid(1)
+    dis_stream(id).src2_data    := dis_src_to_dst_valid(0)(id) ? dis_src2_data(0)   | dis_src2_data(1)
+                                                                 
     dis_stream(id).src1_exe_oh  := dis_src_to_dst_valid(0)(id) ? scb.exe_oh(rs1_addr(0)) | scb.exe_oh(rs1_addr(1))
     dis_stream(id).src2_exe_oh  := dis_src_to_dst_valid(0)(id) ? scb.exe_oh(rs2_addr(0)) | scb.exe_oh(rs2_addr(1))
-    dis_stream(id).src1_rob_adr := dis_src_to_dst_valid(0)(id) ? scb.rob_adr_nxt(rs1_addr(0)) | scb.rob_adr_nxt(rs1_addr(1))
-    dis_stream(id).src2_rob_adr := dis_src_to_dst_valid(0)(id) ? scb.rob_adr_nxt(rs2_addr(0)) | scb.rob_adr_nxt(rs2_addr(1))
+    dis_stream(id).src1_rob_adr := dis_src_to_dst_valid(0)(id) ? dis0_src1_rob_adr | dis1_src1_rob_adr
+    dis_stream(id).src2_rob_adr := dis_src_to_dst_valid(0)(id) ? dis0_src2_rob_adr | dis1_src2_rob_adr
     dis_stream(id).rd_rob_adr   := (dis_src(0).fire && dis_src(1).fire && dis_src_to_dst_valid(1)(id)) ? tail_adr_newer | tail_adr_older
-    dis_stream(id).after_bju    := dis_src_to_dst_valid(0)(id) ? is_after_bju_vld           | (is_after_bju_en || is_after_bju_vld)
-    dis_stream(id).bju_rob_adr  := bju_rob_adr_r
     dis_stream(id) >-> dis_dst(id)
-    dis_dst(id).src1_state.removeAssignments()
-    dis_dst(id).src2_state.removeAssignments()
-    dis_dst_src1_state_r(id) := dis_stream(id).src1_state
-    dis_dst_src2_state_r(id) := dis_stream(id).src2_state
-    dis_dst(id).src1_state   := dis_dst_src1_state_r(id)
-    dis_dst(id).src2_state   := dis_dst_src2_state_r(id)
-    
-    head_rd_state_nxt(id).rs1_state := scb.state_nxt(head_rd_state_nxt(id).rs1_addr)
-    head_rd_state_nxt(id).rs2_state := scb.state_nxt(head_rd_state_nxt(id).rs2_addr)
-    skid_rd_state_nxt(id).rs1_state := scb.state_nxt(skid_rd_state_nxt(id).rs1_addr)
-    skid_rd_state_nxt(id).rs2_state := scb.state_nxt(skid_rd_state_nxt(id).rs2_addr)
+
+
+    // when stall and instr retire, forward that
+    dis_rs1_addr(id) := dis_dst(id).instr_pkg.rs1_addr
+    dis_rs2_addr(id) := dis_dst(id).instr_pkg.rs2_addr
+    dis_rs1_stall_forward(id) := (scb.ret_fire0(dis_rs1_addr(id)) || scb.ret_fire1(dis_rs1_addr(id))) && !dis_dst(id).src1_valid && dis_dst(id).isStall
+    dis_rs2_stall_forward(id) := (scb.ret_fire0(dis_rs2_addr(id)) || scb.ret_fire1(dis_rs2_addr(id))) && !dis_dst(id).src2_valid && dis_dst(id).isStall
+    dis_rs1_stall_forward_data(id) := scb.ret_fire1(dis_rs1_addr(id)) ? ret_forward(1).data | ret_forward(0).data
+    dis_rs2_stall_forward_data(id) := scb.ret_fire1(dis_rs2_addr(id)) ? ret_forward(1).data | ret_forward(0).data
+
+    dis_dst(id).src1_valid.removeAssignments()
+    dis_dst(id).src1_data.removeAssignments()
+    dis_dst(id).src1_valid.setAsReg() init(False)
+    dis_dst(id).src1_data.setAsReg() init(0)
+    when(dis_rs1_stall_forward(id)){
+      dis_dst(id).src1_valid := True
+      dis_dst(id).src1_data  := dis_rs1_stall_forward_data(id)
+    }
+    .elsewhen(dis_stream(id).fire){
+      dis_dst(id).src1_valid := dis_stream(id).src1_valid
+      dis_dst(id).src1_data  := dis_stream(id).src1_data
+    }
+
+
+    dis_dst(id).src2_valid.removeAssignments()
+    dis_dst(id).src2_data.removeAssignments()
+    dis_dst(id).src2_valid.setAsReg() init(False)
+    dis_dst(id).src2_data.setAsReg() init(0)
+    when(dis_rs2_stall_forward(id)){
+      dis_dst(id).src2_valid := True
+      dis_dst(id).src2_data  := dis_rs2_stall_forward_data(id)
+    }
+    .elsewhen(dis_stream(id).fire){
+      dis_dst(id).src2_valid := dis_stream(id).src2_valid
+      dis_dst(id).src2_data  := dis_stream(id).src2_data
+    }
   }
 
-  rd_regfile(0).rs1_addr := dis_src(0).rs1_addr
-  rd_regfile(0).rs2_addr := dis_src(0).rs2_addr
-  rd_regfile(1).rs1_addr := dis_src(1).rs1_addr
-  rd_regfile(1).rs2_addr := dis_src(1).rs2_addr
+  rd_regfile(0).rs1_addr := rs1_addr(0)
+  rd_regfile(0).rs2_addr := rs2_addr(0)
+  rd_regfile(1).rs1_addr := rs1_addr(1)
+  rd_regfile(1).rs2_addr := rs2_addr(1)
 
-  dis_src(0).ready := dis_stream(dis_src_to_dst_id(0)).ready
-  dis_src(1).ready := dis_stream(dis_src_to_dst_id(1)).ready
-
-  dis_is_after_bju(0) := dis_src(0).fire && is_after_bju_vld
-  dis_is_after_bju(1) := dis_src(1).fire && (is_after_bju_en || is_after_bju_vld)
+  dis_src(0).ready := dis_stream(dis_src_to_dst_id(0)).ready && rob_is_ready && !bju_pending
+  dis_src(1).ready := dis_stream(dis_src_to_dst_id(1)).ready && rob_is_ready && !(dis_src(0).valid && dis_src_to_dst_id(1)===dis_src_to_dst_id(0)) && dis_src(0).ready && !dis0_is_bju_comb
 
   StreamRenameUtil(this)
 }

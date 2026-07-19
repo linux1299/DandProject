@@ -14,8 +14,9 @@ case class DIV() extends Component {
   // =================== IO ===================
   val div_src = slave(Stream(ExeSrc("ALU")))
   val div_dst = master(Stream(ExeDst()))
-  val div_wbc_forward = master(Flow(Foward("WithData")))
+  val wbc_forward = master(Flow(Forward("WithData")))
   val div_done= out Bool()
+  val exe_forward  = master(Flow(Forward("Ctrl")))
 
   // =================== signals ===================
   val src1        = div_src.src1_data
@@ -139,10 +140,14 @@ case class DIV() extends Component {
   dst_stream >-> div_dst
   div_done := dst_stream.valid
 
-  div_wbc_forward.valid   := div_dst.fire && div_dst.rd_wen
-  div_wbc_forward.rob_adr := div_dst.rob_adr
-  div_wbc_forward.data    := div_dst.rd_data
-  div_wbc_forward.addr    := div_dst.rd_addr
+  wbc_forward.valid   := div_dst.fire && div_dst.rd_wen
+  wbc_forward.rob_adr := div_dst.rob_adr
+  wbc_forward.data    := div_dst.rd_data
+  wbc_forward.addr    := div_dst.rd_addr
+
+  exe_forward.valid   := dst_stream.fire
+  exe_forward.rob_adr := dst_stream.rob_adr
+  exe_forward.addr    := dst_stream.rd_addr
 
   StreamRenameUtil(this)
 

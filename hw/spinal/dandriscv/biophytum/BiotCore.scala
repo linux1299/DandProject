@@ -103,6 +103,7 @@ case class BiotCore() extends Component {
   // ================= Top Signals ===============
   val change_flow   = bju_0.interrupt_valid || bju_0.redirect_valid
   val branch_valid  = bju_0.branch_valid
+  val bju_to_head_distance = bju_0.bju_src.rob_adr - commit.head_adr_out
 
   // ================= Fetch ===============
   fetch.flush             := change_flow
@@ -145,113 +146,62 @@ case class BiotCore() extends Component {
   dispat.bju_change_flow := change_flow
   dispat.bju_exe_valid   := bju_0.bju_src.fire
   dispat.bju_rob_adr     := bju_0.bju_src.rob_adr
+  dispat.branch_valid    := branch_valid
   dispat.dis_src(0)      << ibuffer.ibf_dst(0).throwWhen(change_flow)
   dispat.dis_src(1)      << ibuffer.ibf_dst(1).throwWhen(change_flow)
   dispat.rob_is_ready   := commit.rob_is_ready
   dispat.tail_adr_older := commit.tail_adr_older
   dispat.tail_adr_newer := commit.tail_adr_newer
-  dispat.iss_forward(0).valid   := iq_bju_0.iss_src.fire && iq_bju_0.iss_src.instr_pkg.micro_op.uop_com.rd_wen
-  dispat.iss_forward(0).addr    := iq_bju_0.iss_src.instr_pkg.rd_addr
-  dispat.iss_forward(0).rob_adr := iq_bju_0.iss_src.rd_rob_adr
-  dispat.iss_forward(1).valid   := iq_alu_1.iss_src.fire && iq_alu_1.iss_src.instr_pkg.micro_op.uop_com.rd_wen
-  dispat.iss_forward(1).addr    := iq_alu_1.iss_src.instr_pkg.rd_addr
-  dispat.iss_forward(1).rob_adr := iq_alu_1.iss_src.rd_rob_adr
-  dispat.iss_forward(2).valid   := iq_alu_2.iss_src.fire && iq_alu_2.iss_src.instr_pkg.micro_op.uop_com.rd_wen
-  dispat.iss_forward(2).addr    := iq_alu_2.iss_src.instr_pkg.rd_addr
-  dispat.iss_forward(2).rob_adr := iq_alu_2.iss_src.rd_rob_adr
-  dispat.iss_forward(3).valid   := iq_div_3.iss_src.fire && iq_div_3.iss_src.instr_pkg.micro_op.uop_com.rd_wen
-  dispat.iss_forward(3).addr    := iq_div_3.iss_src.instr_pkg.rd_addr
-  dispat.iss_forward(3).rob_adr := iq_div_3.iss_src.rd_rob_adr
-  dispat.iss_forward(4).valid   := iq_lsu_4.iss_src.fire && iq_lsu_4.iss_src.instr_pkg.micro_op.uop_com.rd_wen
-  dispat.iss_forward(4).addr    := iq_lsu_4.iss_src.instr_pkg.rd_addr
-  dispat.iss_forward(4).rob_adr := iq_lsu_4.iss_src.rd_rob_adr
-  
-  dispat.exe_forward(0).valid   := bju_0.bju_src.fire && bju_0.bju_src.uop_com.rd_wen
-  dispat.exe_forward(0).addr    := bju_0.bju_src.rd_addr
-  dispat.exe_forward(0).rob_adr := bju_0.bju_src.rob_adr
-  dispat.exe_forward(1).valid   := alu_1.alu_src.fire && alu_1.alu_src.uop_com.rd_wen
-  dispat.exe_forward(1).addr    := alu_1.alu_src.rd_addr
-  dispat.exe_forward(1).rob_adr := alu_1.alu_src.rob_adr
-  dispat.exe_forward(2).valid   := alu_2.alu_src.fire && alu_2.alu_src.uop_com.rd_wen
-  dispat.exe_forward(2).addr    := alu_2.alu_src.rd_addr
-  dispat.exe_forward(2).rob_adr := alu_2.alu_src.rob_adr
-  dispat.exe_forward(3).valid   := div_3.div_done
-  dispat.exe_forward(3).addr    := div_3.div_src.rd_addr
-  dispat.exe_forward(3).rob_adr := div_3.div_src.rob_adr
-  dispat.exe_forward(4).valid   := lsu_4.lsu_done
-  dispat.exe_forward(4).addr    := lsu_4.lsu_src.rd_addr
-  dispat.exe_forward(4).rob_adr := lsu_4.lsu_src.rob_adr
-
-  dispat.wbc_forward(0).valid   := bju_0.bju_dst.fire && bju_0.bju_dst.rd_wen
-  dispat.wbc_forward(0).addr    := bju_0.bju_dst.rd_addr
-  dispat.wbc_forward(0).rob_adr := bju_0.bju_dst.rob_adr
-  dispat.wbc_forward(1).valid   := alu_1.alu_dst.fire && alu_1.alu_dst.rd_wen
-  dispat.wbc_forward(1).addr    := alu_1.alu_dst.rd_addr
-  dispat.wbc_forward(1).rob_adr := alu_1.alu_dst.rob_adr
-  dispat.wbc_forward(2).valid   := alu_2.alu_dst.fire && alu_2.alu_dst.rd_wen
-  dispat.wbc_forward(2).addr    := alu_2.alu_dst.rd_addr
-  dispat.wbc_forward(2).rob_adr := alu_2.alu_dst.rob_adr
-  dispat.wbc_forward(3).valid   := div_3.div_dst.fire && div_3.div_dst.rd_wen
-  dispat.wbc_forward(3).addr    := div_3.div_dst.rd_addr
-  dispat.wbc_forward(3).rob_adr := div_3.div_dst.rob_adr
-  dispat.wbc_forward(4).valid   := lsu_4.lsu_dst.fire && lsu_4.lsu_dst.rd_wen
-  dispat.wbc_forward(4).addr    := lsu_4.lsu_dst.rd_addr
-  dispat.wbc_forward(4).rob_adr := lsu_4.lsu_dst.rob_adr
 
   dispat.ret_forward(0).valid   := commit.retire(0).fire && commit.retire(0).rd_wen
   dispat.ret_forward(0).addr    := commit.retire(0).rd_addr
   dispat.ret_forward(0).rob_adr := commit.retire(0).rob_adr
+  dispat.ret_forward(0).data    := commit.retire(0).rd_data
   dispat.ret_forward(1).valid   := commit.retire(1).fire && commit.retire(1).rd_wen
   dispat.ret_forward(1).addr    := commit.retire(1).rd_addr
   dispat.ret_forward(1).rob_adr := commit.retire(1).rob_adr
-
-  dispat.head_rd_state_nxt(0) <> iq_bju_0.head_rd_state_nxt
-  dispat.skid_rd_state_nxt(0) <> iq_bju_0.skid_rd_state_nxt
-  dispat.head_rd_state_nxt(1) <> iq_alu_1.head_rd_state_nxt
-  dispat.skid_rd_state_nxt(1) <> iq_alu_1.skid_rd_state_nxt
-  dispat.head_rd_state_nxt(2) <> iq_alu_2.head_rd_state_nxt
-  dispat.skid_rd_state_nxt(2) <> iq_alu_2.skid_rd_state_nxt
-  dispat.head_rd_state_nxt(3) <> iq_div_3.head_rd_state_nxt
-  dispat.skid_rd_state_nxt(3) <> iq_div_3.skid_rd_state_nxt
-  dispat.head_rd_state_nxt(4) <> iq_lsu_4.head_rd_state_nxt
-  dispat.skid_rd_state_nxt(4) <> iq_lsu_4.skid_rd_state_nxt
+  dispat.ret_forward(1).data    := commit.retire(1).rd_data
 
   // =============== regfile ===============
   regfile.read(0) <> dispat.rd_regfile(0)
   regfile.read(1) <> dispat.rd_regfile(1)
-  regfile.write(0).rd_wen  := commit.retire(0).fire && commit.retire(0).rd_wen && !commit.retire(0).after_bju
-  regfile.write(1).rd_wen  := commit.retire(1).fire && commit.retire(1).rd_wen && !commit.retire(1).after_bju
+  regfile.write(0).rd_wen  := commit.retire(0).fire && commit.retire(0).rd_wen
+  regfile.write(1).rd_wen  := commit.retire(1).fire && commit.retire(1).rd_wen
   regfile.write(0).rd_addr := commit.retire(0).rd_addr
   regfile.write(1).rd_addr := commit.retire(1).rd_addr
   regfile.write(0).rd_data := commit.retire(0).rd_data
   regfile.write(1).rd_data := commit.retire(1).rd_data
 
   // ================= ISSUE ===============
-  iq_bju_0.iss_src << dispat.dis_dst(0).throwWhen(change_flow)
-  iq_alu_1.iss_src << dispat.dis_dst(1).throwWhen(change_flow)
-  iq_alu_2.iss_src << dispat.dis_dst(2).throwWhen(change_flow)
-  iq_div_3.iss_src << dispat.dis_dst(3).throwWhen(change_flow)
-  iq_lsu_4.iss_src << dispat.dis_dst(4).throwWhen(change_flow)
+  val iq0_src_flush = change_flow && (bju_to_head_distance < (dispat.dis_dst(0).rd_rob_adr - commit.head_adr_out))
+  val iq1_src_flush = change_flow && (bju_to_head_distance < (dispat.dis_dst(1).rd_rob_adr - commit.head_adr_out))
+  val iq2_src_flush = change_flow && (bju_to_head_distance < (dispat.dis_dst(2).rd_rob_adr - commit.head_adr_out))
+  val iq3_src_flush = change_flow && (bju_to_head_distance < (dispat.dis_dst(3).rd_rob_adr - commit.head_adr_out))
+  val iq4_src_flush = change_flow && (bju_to_head_distance < (dispat.dis_dst(4).rd_rob_adr - commit.head_adr_out))
+
+  iq_bju_0.iss_src << dispat.dis_dst(0).throwWhen(iq0_src_flush)
+  iq_alu_1.iss_src << dispat.dis_dst(1).throwWhen(iq1_src_flush)
+  iq_alu_2.iss_src << dispat.dis_dst(2).throwWhen(iq2_src_flush)
+  iq_div_3.iss_src << dispat.dis_dst(3).throwWhen(iq3_src_flush)
+  iq_lsu_4.iss_src << dispat.dis_dst(4).throwWhen(iq4_src_flush)
   val iq = Seq(iq_bju_0, iq_alu_1, iq_alu_2, iq_div_3, iq_lsu_4)
   for(q <- iq){
     q.flush      := change_flow
-    q.exe_forward(0) << bju_0.bju_forward
-    q.exe_forward(1) << alu_1.alu_forward
-    q.exe_forward(2) << alu_2.alu_forward
+    q.bju_to_head_distance := bju_to_head_distance
+    q.rob_head_adr := commit.head_adr_out
+    q.exe_forward(0) << bju_0.exe_forward
+    q.exe_forward(1) << alu_1.exe_forward
+    q.exe_forward(2) << alu_2.exe_forward
 
-    q.wbc_forward(0) << bju_0.bju_wbc_forward
-    q.wbc_forward(1) << alu_1.alu_wbc_forward
-    q.wbc_forward(2) << alu_2.alu_wbc_forward
-    q.wbc_forward(3) << div_3.div_wbc_forward
-    q.wbc_forward(4) << lsu_4.lsu_wbc_forward
+    q.wbc_forward(0) << bju_0.wbc_forward
+    q.wbc_forward(1) << alu_1.wbc_forward
+    q.wbc_forward(2) << alu_2.wbc_forward
+    q.wbc_forward(3) << div_3.wbc_forward
+    q.wbc_forward(4) << lsu_4.wbc_forward
 
     for(i <- 0 until ROB_DEPTH){
       q.rob_forward(i) << commit.rob_forward(i)
     }
-
-    q.bju_change_flow := change_flow
-    q.bju_exe_valid   := bju_0.bju_src.fire
-    q.bju_rob_adr     := bju_0.bju_src.rob_adr
   }
 
 
@@ -280,16 +230,54 @@ case class BiotCore() extends Component {
   commit.wbc_src(4) << lsu_4.lsu_dst
 
   for(i <- 0 until 2){
-    commit.dis_fire(i)    := dispat.dis_src(i).fire
-    commit.dis_pc(i)      := dispat.dis_src(i).pc
-    commit.dis_rd_addr(i) := dispat.dis_src(i).rd_addr
-    commit.dis_rd_wen(i)  := dispat.dis_src(i).micro_op.uop_com.rd_wen
-    commit.dis_instr(i)   := dispat.dis_src(i).instr
-    commit.dis_after_bju(i) := dispat.dis_is_after_bju(i)
+    commit.dis_fire(i)      := dispat.dis_src(i).fire
+    commit.dis_pc(i)        := dispat.dis_src(i).pc
+    commit.dis_rd_addr(i)   := dispat.dis_src(i).rd_addr
+    commit.dis_rd_wen(i)    := dispat.dis_src(i).micro_op.uop_com.rd_wen
+    commit.dis_instr(i)     := dispat.dis_src(i).instr
   }
 
   commit.retire(0).ready := retire_ready_0
   commit.retire(1).ready := retire_ready_1
+
+  commit.iss_forward(0) << iq_bju_0.iss_forward
+  commit.iss_forward(1) << iq_alu_1.iss_forward
+  commit.iss_forward(2) << iq_alu_2.iss_forward
+  commit.iss_forward(3) << iq_div_3.iss_forward
+  commit.iss_forward(4) << iq_lsu_4.iss_forward
+
+  commit.exe_forward(0) << bju_0.exe_forward
+  commit.exe_forward(1) << alu_1.exe_forward
+  commit.exe_forward(2) << alu_2.exe_forward
+  commit.exe_forward(3) << div_3.exe_forward
+  commit.exe_forward(4) << lsu_4.exe_forward
+
+  commit.wbc_forward(0) << bju_0.wbc_forward
+  commit.wbc_forward(1) << alu_1.wbc_forward
+  commit.wbc_forward(2) << alu_2.wbc_forward
+  commit.wbc_forward(3) << div_3.wbc_forward
+  commit.wbc_forward(4) << lsu_4.wbc_forward
+
+  commit.ret_forward(0).valid   := commit.retire(0).fire && commit.retire(0).rd_wen
+  commit.ret_forward(0).addr    := commit.retire(0).rd_addr
+  commit.ret_forward(0).rob_adr := commit.retire(0).rob_adr
+  commit.ret_forward(1).valid   := commit.retire(1).fire && commit.retire(1).rd_wen
+  commit.ret_forward(1).addr    := commit.retire(1).rd_addr
+  commit.ret_forward(1).rob_adr := commit.retire(1).rob_adr
+
+  commit.head_rd_state(0) <> iq_bju_0.head_rd_state
+  commit.skid_rd_state(0) <> iq_bju_0.skid_rd_state
+  commit.head_rd_state(1) <> iq_alu_1.head_rd_state
+  commit.skid_rd_state(1) <> iq_alu_1.skid_rd_state
+  commit.head_rd_state(2) <> iq_alu_2.head_rd_state
+  commit.skid_rd_state(2) <> iq_alu_2.skid_rd_state
+  commit.head_rd_state(3) <> iq_div_3.head_rd_state
+  commit.skid_rd_state(3) <> iq_div_3.skid_rd_state
+  commit.head_rd_state(4) <> iq_lsu_4.head_rd_state
+  commit.skid_rd_state(4) <> iq_lsu_4.skid_rd_state
+
+  commit.bju_change_flow := change_flow
+  commit.bju_rob_adr := bju_0.bju_src.rob_adr
 
 
   // ================= DCache ===============

@@ -15,8 +15,8 @@ case class ALU() extends Component {
   // =================== IO ===================
   val alu_src = slave(Stream(ExeSrc("ALU")))
   val alu_dst = master(Stream(ExeDst()))
-  val alu_forward = master(Flow(Foward("WithData")))
-  val alu_wbc_forward = master(Flow(Foward("WithData")))
+  val exe_forward = master(Flow(Forward("WithData")))
+  val wbc_forward = master(Flow(Forward("WithData")))
   val alu_done = out Bool()
 
   // =================== signals ===================
@@ -122,15 +122,15 @@ case class ALU() extends Component {
 
   dst_stream >-> alu_dst
 
-  alu_forward.valid   := dst_stream.fire && dst_stream.rd_wen
-  alu_forward.rob_adr := dst_stream.rob_adr
-  alu_forward.data    := dst_stream.rd_data
-  alu_forward.addr    := dst_stream.rd_addr
+  exe_forward.valid   := dst_stream.fire && dst_stream.rd_wen
+  exe_forward.rob_adr := dst_stream.rob_adr
+  exe_forward.data    := dst_stream.rd_data
+  exe_forward.addr    := dst_stream.rd_addr
 
-  alu_wbc_forward.valid   := alu_dst.fire && alu_dst.rd_wen
-  alu_wbc_forward.rob_adr := alu_dst.rob_adr
-  alu_wbc_forward.data    := alu_dst.rd_data
-  alu_wbc_forward.addr    := alu_dst.rd_addr
+  wbc_forward.valid   := alu_dst.fire && alu_dst.rd_wen
+  wbc_forward.rob_adr := alu_dst.rob_adr
+  wbc_forward.data    := alu_dst.rd_data
+  wbc_forward.addr    := alu_dst.rd_addr
 
   alu_done := alu_src.fire
 

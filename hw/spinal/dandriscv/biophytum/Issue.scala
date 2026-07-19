@@ -18,31 +18,25 @@ case class IssueEntry() extends Area{
   val src1_valid   = RegInit(False)
   val src1_data    = Reg(Bits(64 bits)) init(0)
   val src1_rob_adr = Reg(UInt(ROB_ADR_W bits)) init(0)
-  val src1_state   = Reg(ScoreBoardEnum()) init(ARF)
+  val src1_state   = ScoreBoardEnum()
   val src1_exe_oh  = Reg(Bits(5 bits)) init(0)
 
   val src1_valid_nxt = Bool()
   val src1_data_nxt  = Bits(64 bits)
-  val src1_state_nxt = ScoreBoardEnum()
   // src2
   val src2_valid   = RegInit(False)
   val src2_data    = Reg(Bits(64 bits)) init(0)
   val src2_rob_adr = Reg(UInt(ROB_ADR_W bits)) init(0)
-  val src2_state   = Reg(ScoreBoardEnum()) init(ARF)
+  val src2_state   = ScoreBoardEnum()
   val src2_exe_oh  = Reg(Bits(5 bits)) init(0)
 
   val src2_valid_nxt = Bool()
   val src2_data_nxt  = Bits(64 bits)
-  val src2_state_nxt = ScoreBoardEnum()
 
   val src_all_valid= RegInit(False)
 
   val rd_rob_adr   = Reg(UInt(ROB_ADR_W bits)) init(0)
-  val after_bju    = RegInit(False)
-  val after_bju_nxt= Bool()
-  val bju_rob_adr  = Reg(UInt(ROB_ADR_W bits)) init(0)
-
-  val flush_valid  = Bool()
+  val to_head_distance = UInt(ROB_ADR_W bits)
 }
 
 // staging max 2 instr; in FIFO order
@@ -55,22 +49,24 @@ case class IssueQueue(Type: String) extends Component{
   val iss_src = slave(Stream(IssuePkg()))
   val iss_dst = master(Stream(ExeSrc(Type: String)))
   // forward
-  val exe_forward = Vec(slave(Flow(Foward("WithData"))), 3) // BJU + 2ALU
-  val wbc_forward = Vec(slave(Flow(Foward("WithData"))), 5)
-  val rob_forward = Vec(slave(Flow(Foward("WithData"))), ROB_DEPTH)
+  val exe_forward = Vec(slave(Flow(Forward("WithData"))), 3) // BJU + 2ALU
+  val wbc_forward = Vec(slave(Flow(Forward("WithData"))), 5)
+  val rob_forward = Vec(slave(Flow(Forward("WithData"))), ROB_DEPTH)
+  val iss_forward = master(Flow(Forward("Ctrl")))
   // state nxt
-  val head_rd_state_nxt = master(ReadState())
-  val skid_rd_state_nxt = master(ReadState())
-  // BJU
-  val bju_change_flow = in Bool()
-  val bju_exe_valid   = in Bool()
-  val bju_rob_adr     = in UInt(ROB_ADR_W bits)
+  val head_rd_state = master(ReadState())
+  val skid_rd_state = master(ReadState())
+
+  val rob_head_adr = in UInt(ROB_ADR_W bits)
+  val bju_to_head_distance = in UInt(ROB_ADR_W bits)
 
 
 
   // =============== Entries of Issue =================
   val head = new IssueEntry()
   val skid = new IssueEntry()
+  val head_flush_valid = Bool()
+  val skid_flush_valid = Bool()
 
   // val head_trap_or_print = (DIFFTEST) generate ((iss_src.instr===B"32'h6b" || iss_src.instr===B"32'h7b"))
   // val skid_trap_or_print = (DIFFTEST) generate ((skid.instr_pkg.instr===B"32'h6b" || skid.instr_pkg.instr===B"32'h7b"))
@@ -182,9 +178,81 @@ case class IssueQueue(Type: String) extends Component{
   skid_src1_rob_data := dataMux(skid_src1_rob_sel, rob_data.asBits)
   skid_src2_rob_data := dataMux(skid_src2_rob_sel, rob_data.asBits)
 
+  val skid_src1_exe_valid = skid_src1_exe_sel.asBits.orR
+  val skid_src1_wbc_valid = skid_src1_wbc_sel.asBits.orR
+  val skid_src1_rob_valid = skid_src1_rob_sel.asBits.orR
+  val skid_src2_exe_valid = skid_src2_exe_sel.asBits.orR
+  val skid_src2_wbc_valid = skid_src2_wbc_sel.asBits.orR
+  val skid_src2_rob_valid = skid_src2_rob_sel.asBits.orR
+
+  val iss_src1_exe_valid = iss_src1_exe_sel.asBits.orR
+  val iss_src1_wbc_valid = iss_src1_wbc_sel.asBits.orR
+  val iss_src1_rob_valid = iss_src1_rob_sel.asBits.orR
+  val iss_src2_exe_valid = iss_src2_exe_sel.asBits.orR
+  val iss_src2_wbc_valid = iss_src2_wbc_sel.asBits.orR
+  val iss_src2_rob_valid = iss_src2_rob_sel.asBits.orR
+
+  val skid_src1_forward_data = Bits(64 bits)
+  val skid_src2_forward_data = Bits(64 bits)
+  val iss_src1_forward_data = Bits(64 bits)
+  val iss_src2_forward_data = Bits(64 bits)
+
+  when(skid_src1_exe_valid){
+    skid_src1_forward_data := skid_src1_exe_data
+  }
+  .elsewhen(skid_src1_wbc_valid){
+    skid_src1_forward_data := skid_src1_wbc_data
+  }
+  .elsewhen(skid_src1_rob_valid){
+    skid_src1_forward_data := skid_src1_rob_data
+  }
+  .otherwise{
+    skid_src1_forward_data := B(0)
+  }
+
+  when(skid_src2_exe_valid){
+    skid_src2_forward_data := skid_src2_exe_data
+  }
+  .elsewhen(skid_src2_wbc_valid){
+    skid_src2_forward_data := skid_src2_wbc_data
+  }
+  .elsewhen(skid_src2_rob_valid){
+    skid_src2_forward_data := skid_src2_rob_data
+  }
+  .otherwise{
+    skid_src2_forward_data := B(0)
+  }
+
+  when(iss_src1_exe_valid){
+    iss_src1_forward_data := iss_src1_exe_data
+  }
+  .elsewhen(iss_src1_wbc_valid){
+    iss_src1_forward_data := iss_src1_wbc_data
+  }
+  .elsewhen(iss_src1_rob_valid){
+    iss_src1_forward_data := iss_src1_rob_data
+  }
+  .otherwise{
+    iss_src1_forward_data := B(0)
+  }
+
+  when(iss_src2_exe_valid){
+    iss_src2_forward_data := iss_src2_exe_data
+  }
+  .elsewhen(iss_src2_wbc_valid){
+    iss_src2_forward_data := iss_src2_wbc_data
+  }
+  .elsewhen(iss_src2_rob_valid){
+    iss_src2_forward_data := iss_src2_rob_data
+  }
+  .otherwise{
+    iss_src2_forward_data := B(0)
+  }
+
+
   // =============== Update Head entry valid =================
-  head.flush_valid := flush && head.valid && head.after_bju
-  when(head.flush_valid){
+  head_flush_valid := flush && ((bju_to_head_distance < head.to_head_distance) || (head.ready && skid.valid && (bju_to_head_distance < skid.to_head_distance) ) )
+  when(head_flush_valid){
     head.valid := False
   }
   .elsewhen(!skid.valid){ // skid is empty, into head
@@ -197,95 +265,115 @@ case class IssueQueue(Type: String) extends Component{
   head.ready := !head.valid || (iss_dst.ready && head.src_all_valid)
 
   // =============== Update Head entry valid =================
-  head_rd_state_nxt.rs1_addr := U(0)
-  head_rd_state_nxt.rs2_addr := U(0)
   head.src1_valid_nxt := head.src1_valid
   head.src1_data_nxt  := head.src1_data
-  head.src1_state_nxt := head.src1_state
   head.src2_valid_nxt := head.src2_valid
   head.src2_data_nxt  := head.src2_data
-  head.src2_state_nxt := head.src2_state
-  head.after_bju_nxt  := head.after_bju
+
+  head_rd_state.rs1_rob_adr := head.src1_rob_adr
+  head_rd_state.rs2_rob_adr := head.src2_rob_adr
+  head.src1_state     := head_rd_state.rs1_state
+  head.src2_state     := head_rd_state.rs2_state
+  head.to_head_distance := head.rd_rob_adr - rob_head_adr
 
   when(head.ready){
     when(skid.valid){ // from skid buffer
       head.instr_pkg      := skid.instr_pkg
-      head.after_bju      := skid.after_bju_nxt
-      head.bju_rob_adr    := skid.bju_rob_adr
       head.rd_rob_adr     := skid.rd_rob_adr
 
-      // src1
-      head.src1_valid     := skid.src1_valid_nxt
-      head.src1_data      := skid.src1_data_nxt
-      head.src1_state     := skid.src1_state_nxt
-      
+      // ============= src1 =============
+      head.src1_valid_nxt :=  skid_src1_exe_valid ||
+                              skid_src1_wbc_valid ||
+                              skid_src1_rob_valid ||
+                              skid.src1_valid
+      head.src1_valid     := head.src1_valid_nxt
+
+      head.src1_data_nxt  := skid.src1_valid ? skid.src1_data | skid_src1_forward_data
+      head.src1_data      := head.src1_data_nxt
       head.src1_rob_adr   := skid.src1_rob_adr
       head.src1_exe_oh    := skid.src1_exe_oh 
-      // src2
-      head.src2_valid     := skid.src2_valid_nxt
-      head.src2_data      := skid.src2_data_nxt
-      head.src2_state     := skid.src2_state_nxt
+      
+      // ============= src2 =============
+      head.src2_valid_nxt :=  skid_src2_exe_valid ||
+                              skid_src2_wbc_valid ||
+                              skid_src2_rob_valid ||
+                              skid.src2_valid
+      head.src2_valid     := head.src2_valid_nxt
 
+      head.src2_data_nxt  := skid.src2_valid ? skid.src2_data | skid_src2_forward_data
+      head.src2_data      := head.src2_data_nxt
       head.src2_rob_adr   := skid.src2_rob_adr
       head.src2_exe_oh    := skid.src2_exe_oh 
     }
     .elsewhen(iss_src.valid){ // from issue input
 
       head.instr_pkg      := iss_src.instr_pkg
-      head.after_bju_nxt  := (iss_src.after_bju && (iss_src.bju_rob_adr===bju_rob_adr) && bju_exe_valid) ? False | iss_src.after_bju
-      head.after_bju      := head.after_bju_nxt
       head.rd_rob_adr     := iss_src.rd_rob_adr
-      head.bju_rob_adr    := iss_src.bju_rob_adr
       
-      // src1
-      head.src1_valid_nxt := iss_src.src1_valid || iss_src1_exe_sel.asBits.orR
-      when(iss_src.src1_state===ARF){
+      // ============= src1 =============
+      head.src1_valid_nxt := iss_src.src1_valid  || 
+                             iss_src1_exe_valid  ||
+                             iss_src1_wbc_valid  ||
+                             iss_src1_rob_valid  ||
+                             head.src1_state===ARF
+      
+      when(iss_src.src1_valid){
         head.src1_data_nxt  := iss_src.src1_data
       }
-      .elsewhen(iss_src.src1_state===EXE){
+      .elsewhen(head.src1_state===EXE){
         head.src1_data_nxt  := iss_src1_exe_data
       }
-      .elsewhen(iss_src.src1_state===WBC){
+      .elsewhen(head.src1_state===WBC){
         head.src1_data_nxt  := iss_src1_wbc_data
       }
-      .elsewhen(iss_src.src1_state===ROB){
+      .elsewhen(head.src1_state===ROB){
         head.src1_data_nxt  := iss_src1_rob_data
+      }
+      .elsewhen(head.src1_state===ARF){
+        head.src1_data_nxt  := iss_src.src1_data
       }
       .otherwise{
         head.src1_data_nxt  := B(0)
       }
-      head.src1_state_nxt := head_rd_state_nxt.rs1_state
-      head_rd_state_nxt.rs1_addr := iss_src.instr_pkg.rs1_addr
+
+      head_rd_state.rs1_rob_adr := iss_src.src1_rob_adr
 
       head.src1_valid     := head.src1_valid_nxt
       head.src1_data      := head.src1_data_nxt
-      head.src1_state     := head.src1_state_nxt
       
       head.src1_rob_adr   := iss_src.src1_rob_adr
       head.src1_exe_oh    := iss_src.src1_exe_oh 
-      // src2
-      head.src2_valid_nxt := iss_src.src2_valid || iss_src2_exe_sel.asBits.orR
-      when(iss_src.src2_state===ARF){
+
+      // ============= src2 =============
+      head.src2_valid_nxt := iss_src.src2_valid  || 
+                             iss_src2_exe_valid  || 
+                             iss_src2_wbc_valid  ||
+                             iss_src2_rob_valid  ||
+                             head.src2_state===ARF
+      
+      when(iss_src.src2_valid){
         head.src2_data_nxt  := iss_src.src2_data
       }
-      .elsewhen(iss_src.src2_state===EXE){
+      .elsewhen(head.src2_state===EXE){
         head.src2_data_nxt  := iss_src2_exe_data
       }
-      .elsewhen(iss_src.src2_state===WBC){
+      .elsewhen(head.src2_state===WBC){
         head.src2_data_nxt  := iss_src2_wbc_data
       }
-      .elsewhen(iss_src.src2_state===ROB){
+      .elsewhen(head.src2_state===ROB){
         head.src2_data_nxt  := iss_src2_rob_data
+      }
+      .elsewhen(head.src2_state===ARF){
+        head.src2_data_nxt  := iss_src.src2_data
       }
       .otherwise{
         head.src2_data_nxt  := B(0)
       }
-      head.src2_state_nxt := head_rd_state_nxt.rs2_state
-      head_rd_state_nxt.rs2_addr := iss_src.instr_pkg.rs2_addr
+
+      head_rd_state.rs2_rob_adr := iss_src.src2_rob_adr
 
       head.src2_valid     := head.src2_valid_nxt
       head.src2_data      := head.src2_data_nxt
-      head.src2_state     := head.src2_state_nxt
 
       head.src2_rob_adr   := iss_src.src2_rob_adr
       head.src2_exe_oh    := iss_src.src2_exe_oh 
@@ -293,14 +381,11 @@ case class IssueQueue(Type: String) extends Component{
   }
   .otherwise{
 
-    head.after_bju_nxt  := (head.after_bju && (head.bju_rob_adr===bju_rob_adr) && bju_exe_valid) ? False | head.after_bju
-    head.after_bju      := head.after_bju_nxt
-
-    // src1
+    // ============= src1 =============
     when(head.valid && !head.src1_valid){
-      head.src1_valid_nxt   := ((head.src1_state_nxt===EXE) && head_src1_exe_sel.asBits.orR) ||
-                               ((head.src1_state_nxt===WBC) && head_src1_wbc_sel.asBits.orR) ||
-                               ((head.src1_state_nxt===ROB) && head_src1_rob_sel.asBits.orR)
+      head.src1_valid_nxt   := ((head.src1_state===EXE) && head_src1_exe_sel.asBits.orR) ||
+                               ((head.src1_state===WBC) && head_src1_wbc_sel.asBits.orR) ||
+                               ((head.src1_state===ROB) && head_src1_rob_sel.asBits.orR)
       when(head.src1_state===EXE){
         head.src1_data_nxt  := head_src1_exe_data
       }
@@ -313,18 +398,15 @@ case class IssueQueue(Type: String) extends Component{
       .otherwise{
         head.src1_data_nxt  := B(0)
       }
-      head.src1_state_nxt   := head_rd_state_nxt.rs1_state
-      head_rd_state_nxt.rs1_addr := head.instr_pkg.rs1_addr
     }
     head.src1_valid := head.src1_valid_nxt
     head.src1_data  := head.src1_data_nxt  
-    head.src1_state := head.src1_state_nxt
 
-    // src2
+    // ============= src2 =============
     when(head.valid && !head.src2_valid){
-      head.src2_valid_nxt   := ((head.src2_state_nxt===EXE) && head_src2_exe_sel.asBits.orR) ||
-                               ((head.src2_state_nxt===WBC) && head_src2_wbc_sel.asBits.orR) ||
-                               ((head.src2_state_nxt===ROB) && head_src2_rob_sel.asBits.orR)
+      head.src2_valid_nxt   := ((head.src2_state===EXE) && head_src2_exe_sel.asBits.orR) ||
+                               ((head.src2_state===WBC) && head_src2_wbc_sel.asBits.orR) ||
+                               ((head.src2_state===ROB) && head_src2_rob_sel.asBits.orR)
       when(head.src2_state===EXE){
         head.src2_data_nxt  := head_src2_exe_data
       }
@@ -337,20 +419,17 @@ case class IssueQueue(Type: String) extends Component{
       .otherwise{
         head.src2_data_nxt  := B(0)
       }
-      head.src2_state_nxt   := head_rd_state_nxt.rs2_state
-      head_rd_state_nxt.rs2_addr := head.instr_pkg.rs2_addr
     }
     head.src2_valid := head.src2_valid_nxt
     head.src2_data  := head.src2_data_nxt  
-    head.src2_state := head.src2_state_nxt
   }
 
-  head.src_all_valid := head.flush_valid ? False | (head.src1_valid_nxt && head.src2_valid_nxt && !head.after_bju_nxt)
+  head.src_all_valid := head_flush_valid ? False | (head.src1_valid_nxt && head.src2_valid_nxt)
 
 
   // =============== Update Skid entry =================
-  skid.flush_valid := flush && skid.valid && skid.after_bju
-  when(skid.flush_valid){
+  skid_flush_valid := flush && (bju_to_head_distance < skid.to_head_distance)
+  when(skid_flush_valid){
     skid.valid := False
   }
   .elsewhen(!head.ready || (head.ready && skid.valid)){
@@ -360,89 +439,99 @@ case class IssueQueue(Type: String) extends Component{
   skid.ready  := !skid.valid || head.ready
 
   // skid buffer update
-  skid_rd_state_nxt.rs1_addr := U(0)
-  skid_rd_state_nxt.rs2_addr := U(0)
   skid.src1_valid_nxt := skid.src1_valid
   skid.src1_data_nxt  := skid.src1_data
-  skid.src1_state_nxt := skid.src1_state
   skid.src2_valid_nxt := skid.src2_valid
   skid.src2_data_nxt  := skid.src2_data
-  skid.src2_state_nxt := skid.src2_state
-  skid.after_bju_nxt  := skid.after_bju
+
+  skid_rd_state.rs1_rob_adr := skid.src1_rob_adr
+  skid_rd_state.rs2_rob_adr := skid.src2_rob_adr
+  skid.src1_state     := skid_rd_state.rs1_state
+  skid.src2_state     := skid_rd_state.rs2_state
+  skid.to_head_distance := skid.rd_rob_adr - rob_head_adr
 
   when(skid.ready){
     when(iss_src.valid){ // from issue input
 
       skid.instr_pkg      := iss_src.instr_pkg
-      skid.after_bju_nxt  := (iss_src.after_bju && (iss_src.bju_rob_adr===bju_rob_adr) && bju_exe_valid) ? False | iss_src.after_bju
-      skid.after_bju      := skid.after_bju_nxt
       skid.rd_rob_adr     := iss_src.rd_rob_adr
-      skid.bju_rob_adr    := iss_src.bju_rob_adr
       
-      // src1
-      skid.src1_valid_nxt := iss_src.src1_valid || iss_src1_exe_sel.asBits.orR
-      when(iss_src.src1_state===ARF){
+      // ============= src1 =============
+      skid.src1_valid_nxt := iss_src.src1_valid           || 
+                             iss_src1_exe_sel.asBits.orR  ||
+                             iss_src1_wbc_sel.asBits.orR  ||
+                             iss_src1_rob_sel.asBits.orR  ||
+                             skid.src1_state===ARF
+      
+      when(iss_src.src1_valid){
         skid.src1_data_nxt  := iss_src.src1_data
       }
-      .elsewhen(iss_src.src1_state===EXE){
+      .elsewhen(skid.src1_state===EXE){
         skid.src1_data_nxt  := iss_src1_exe_data
       }
-      .elsewhen(iss_src.src1_state===WBC){
+      .elsewhen(skid.src1_state===WBC){
         skid.src1_data_nxt  := iss_src1_wbc_data
       }
-      .elsewhen(iss_src.src1_state===ROB){
+      .elsewhen(skid.src1_state===ROB){
         skid.src1_data_nxt  := iss_src1_rob_data
+      }
+      .elsewhen(skid.src1_state===ARF){
+        skid.src1_data_nxt  := iss_src.src1_data
       }
       .otherwise{
         skid.src1_data_nxt  := B(0)
       }
-      skid.src1_state_nxt := skid_rd_state_nxt.rs1_state
-      skid_rd_state_nxt.rs1_addr := iss_src.instr_pkg.rs1_addr
+
+      skid_rd_state.rs1_rob_adr := iss_src.src1_rob_adr
 
       skid.src1_valid     := skid.src1_valid_nxt
       skid.src1_data      := skid.src1_data_nxt
-      skid.src1_state     := skid.src1_state_nxt
       
       skid.src1_rob_adr   := iss_src.src1_rob_adr
       skid.src1_exe_oh    := iss_src.src1_exe_oh 
-      // src2
-      skid.src2_valid_nxt := iss_src.src2_valid || iss_src2_exe_sel.asBits.orR
-      when(iss_src.src2_state===ARF){
+
+      // ============= src2 =============
+      skid.src2_valid_nxt := iss_src.src2_valid           || 
+                             iss_src2_exe_sel.asBits.orR  ||
+                             iss_src2_wbc_sel.asBits.orR  ||
+                             iss_src2_rob_sel.asBits.orR  ||
+                             skid.src2_state===ARF
+      
+      when(iss_src.src2_valid){
         skid.src2_data_nxt  := iss_src.src2_data
       }
-      .elsewhen(iss_src.src2_state===EXE){
+      .elsewhen(skid.src2_state===EXE){
         skid.src2_data_nxt  := iss_src2_exe_data
       }
-      .elsewhen(iss_src.src2_state===WBC){
+      .elsewhen(skid.src2_state===WBC){
         skid.src2_data_nxt  := iss_src2_wbc_data
       }
-      .elsewhen(iss_src.src2_state===ROB){
+      .elsewhen(skid.src2_state===ROB){
         skid.src2_data_nxt  := iss_src2_rob_data
+      }
+      .elsewhen(skid.src2_state===ARF){
+        skid.src2_data_nxt  := iss_src.src2_data
       }
       .otherwise{
         skid.src2_data_nxt  := B(0)
       }
-      skid.src2_state_nxt := skid_rd_state_nxt.rs2_state
-      skid_rd_state_nxt.rs2_addr := iss_src.instr_pkg.rs2_addr
+
+      skid_rd_state.rs2_rob_adr := iss_src.src2_rob_adr
 
       skid.src2_valid     := skid.src2_valid_nxt
       skid.src2_data      := skid.src2_data_nxt
-      skid.src2_state     := skid.src2_state_nxt
 
       skid.src2_rob_adr   := iss_src.src2_rob_adr
-      skid.src2_exe_oh    := iss_src.src2_exe_oh 
+      skid.src2_exe_oh    := iss_src.src2_exe_oh
     }
   }
   .otherwise{
 
-    skid.after_bju_nxt  := (skid.after_bju && (skid.bju_rob_adr===bju_rob_adr) && bju_exe_valid) ? False | skid.after_bju
-    skid.after_bju      := skid.after_bju_nxt
-
-    // src1
+    // ============= src1 =============
     when(skid.valid && !skid.src1_valid){
-      skid.src1_valid_nxt   := ((skid.src1_state_nxt===EXE) && skid_src1_exe_sel.asBits.orR) ||
-                               ((skid.src1_state_nxt===WBC) && skid_src1_wbc_sel.asBits.orR) ||
-                               ((skid.src1_state_nxt===ROB) && skid_src1_rob_sel.asBits.orR)
+      skid.src1_valid_nxt   := ((skid.src1_state===EXE) && skid_src1_exe_sel.asBits.orR) ||
+                               ((skid.src1_state===WBC) && skid_src1_wbc_sel.asBits.orR) ||
+                               ((skid.src1_state===ROB) && skid_src1_rob_sel.asBits.orR)
       when(skid.src1_state===EXE){
         skid.src1_data_nxt  := skid_src1_exe_data
       }
@@ -455,18 +544,15 @@ case class IssueQueue(Type: String) extends Component{
       .otherwise{
         skid.src1_data_nxt  := B(0)
       }
-      skid.src1_state_nxt   := skid_rd_state_nxt.rs1_state
-      skid_rd_state_nxt.rs1_addr := skid.instr_pkg.rs1_addr
     }
     skid.src1_valid := skid.src1_valid_nxt
     skid.src1_data  := skid.src1_data_nxt  
-    skid.src1_state := skid.src1_state_nxt
 
-    // src2
+    // ============= src2 =============
     when(skid.valid && !skid.src2_valid){
-      skid.src2_valid_nxt   := ((skid.src2_state_nxt===EXE) && skid_src2_exe_sel.asBits.orR) ||
-                               ((skid.src2_state_nxt===WBC) && skid_src2_wbc_sel.asBits.orR) ||
-                               ((skid.src2_state_nxt===ROB) && skid_src2_rob_sel.asBits.orR)
+      skid.src2_valid_nxt   := ((skid.src2_state===EXE) && skid_src2_exe_sel.asBits.orR) ||
+                               ((skid.src2_state===WBC) && skid_src2_wbc_sel.asBits.orR) ||
+                               ((skid.src2_state===ROB) && skid_src2_rob_sel.asBits.orR)
       when(skid.src2_state===EXE){
         skid.src2_data_nxt  := skid_src2_exe_data
       }
@@ -479,15 +565,12 @@ case class IssueQueue(Type: String) extends Component{
       .otherwise{
         skid.src2_data_nxt  := B(0)
       }
-      skid.src2_state_nxt   := skid_rd_state_nxt.rs2_state
-      skid_rd_state_nxt.rs2_addr := skid.instr_pkg.rs2_addr
     }
     skid.src2_valid := skid.src2_valid_nxt
     skid.src2_data  := skid.src2_data_nxt  
-    skid.src2_state := skid.src2_state_nxt
   }
 
-  skid.src_all_valid := skid.flush_valid ? False | (skid.src1_valid_nxt && skid.src2_valid_nxt && !skid.after_bju_nxt)
+  skid.src_all_valid := skid_flush_valid ? False | (skid.src1_valid_nxt && skid.src2_valid_nxt)
 
  
   // =================== Output ===================
@@ -513,6 +596,10 @@ case class IssueQueue(Type: String) extends Component{
     iss_dst.imm     := head.instr_pkg.imm
     iss_dst.uop_lsu := head.instr_pkg.micro_op.uop_lsu
   }
+
+  iss_forward.valid := iss_src.fire && iss_src.instr_pkg.micro_op.uop_com.rd_wen
+  iss_forward.addr  := iss_src.instr_pkg.rd_addr
+  iss_forward.rob_adr := iss_src.rd_rob_adr
 
   StreamRenameUtil(this)
 }
