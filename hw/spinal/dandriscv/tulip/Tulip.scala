@@ -60,10 +60,11 @@ case class Tulip() extends Component {
     useStrb=true
   )
   val gshare_config = PredictorConfig(
-    RAS_ENTRIES = 4, 
-    BTB_ENTRIES = 4, 
+    RAS_ENTRIES = 4,
+    BTB_ENTRIES = 4,
     PHT_ENTRIES = 32
   )
+  val tage_config = TageConfig()
 
 
   // ================= IO ===============
@@ -80,7 +81,7 @@ case class Tulip() extends Component {
   // ================= Instance ===============
   val fetch  = new Fetch(0x80000000l)
   val icache = new ICacheTop(itcm_en=true, icache_config, icache_axi_config)
-  val bpu    = new gshare_predictor(gshare_config)
+  val bpu    = new Predictor(gshare_config, tage_config)
   val decode = new Decode()
   val issue  = new Issue()
   val dispat = new Dispatch()
@@ -115,6 +116,7 @@ case class Tulip() extends Component {
   icache.icache_src.cmd  << fetch.icache_ports.cmd
   
   // ================= BPU ===============
+  // ---- TAGE / dynamic predictor ----
   bpu.predict_pc         := fetch.predict_pc
   bpu.predict_valid      := fetch.predict_valid
   bpu.train_valid        := bju_0.train_valid
@@ -126,6 +128,12 @@ case class Tulip() extends Component {
   bpu.train_is_call      := bju_0.train_is_call
   bpu.train_is_ret       := bju_0.train_is_ret
   bpu.train_is_jmp       := bju_0.train_is_jmp
+  // ---- static predictor ----
+  bpu.static_predict_pc     := fetch.static_predict_pc
+  bpu.static_predict_valid  := fetch.static_predict_valid
+  bpu.static_predict_imm    := fetch.predict_imm(31 downto 0)
+  bpu.static_predict_jal    := fetch.predict_jal
+  bpu.static_predict_branch := fetch.predict_branch
 
   // ================= Decode ===============
   decode.dec_src(0)      << fetch.fch_dst(0).throwWhen(change_flow)
@@ -146,7 +154,12 @@ case class Tulip() extends Component {
   val issue1_dst_stall  = issue0_dst_is_bju || dispat.dis_to_bju.isStall
   
   dispat.dis_src(0) << issue.iss_dst(0).throwWhen(change_flow).haltWhen(issue0_dst_stall)
-  dispat.dis_src(1) << issue.iss_dst(1).throwWhen(change_flow || branch_valid).haltWhen(issue1_dst_stall)
+  // dispat.dis_src(1) << issue.iss_dst(1).throwWhen(change_flow || branch_valid).haltWhen(issue1_dst_stall)
+  val issue0_is_branch_taken =  issue0_dst_is_bju &&
+                                issue.iss_dst(0).iss_pkg.branch_taken && 
+                                (issue.iss_dst(0).iss_pkg.instr=/=B"32'h6b") && 
+                                (issue.iss_dst(0).iss_pkg.instr=/=B"32'h7b")
+  dispat.dis_src(1) << issue.iss_dst(1).throwWhen(change_flow || issue0_is_branch_taken).haltWhen(issue1_dst_stall)
 
   dispat.exe_rd_wen(0)  := bju_0.bju_exe_rd_wen
   dispat.exe_rd_data(0) := bju_0.bju_exe_rd_data

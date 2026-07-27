@@ -73,13 +73,32 @@ object CpuConfig{
 
 // ================ Gshare ==================
 case class PredictorConfig(
-                          RAS_ENTRIES : Int=4, 
-                          BTB_ENTRIES : Int=4, 
+                          RAS_ENTRIES : Int=4,
+                          BTB_ENTRIES : Int=4,
                           PHT_ENTRIES : Int=128
                           ){
   def BTB_ENTRIES_WIDTH = log2Up(BTB_ENTRIES)
   def RAS_ENTRIES_WIDTH = log2Up(RAS_ENTRIES)
   def HISTORY_LEN       = log2Up(PHT_ENTRIES)
+}
+
+// ================ TAGE ==================
+case class TageConfig(
+  BIMODAL_SIZE: Int = 256,                      // bimodal table entries (power of 2)
+  TAG_TABLE_SIZES: Seq[Int] = Seq(128, 128, 64, 64, 32),  // entries per tagged table
+  TABLE_HISTORY_LENS: Seq[Int] = Seq(4, 8, 16, 32, 64),   // per-table history length (geometric)
+  TAG_WIDTH: Int = 8,                            // tag width in bits
+  PRED_CTR_BITS: Int = 3,                        // prediction counter width (>=2)
+  USEFUL_CTR_BITS: Int = 2,                      // useful counter width (>=1)
+  RAND_BITS: Int = 8                             // LFSR width for allocation
+) {
+  def maxHistoryLen: Int = if (TABLE_HISTORY_LENS.isEmpty) 0 else TABLE_HISTORY_LENS.max
+  def numTables: Int = TAG_TABLE_SIZES.length
+  require(TAG_TABLE_SIZES.length == TABLE_HISTORY_LENS.length,
+    "TAG_TABLE_SIZES and TABLE_HISTORY_LENS must have same length")
+  require(numTables > 0, "TAGE needs at least one tagged table")
+  require(PRED_CTR_BITS >= 2, "PRED_CTR_BITS must be >= 2")
+  require(USEFUL_CTR_BITS >= 1, "USEFUL_CTR_BITS must be >= 1")
 }
 
 object GenConfig {

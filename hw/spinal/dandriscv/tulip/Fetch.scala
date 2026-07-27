@@ -15,15 +15,18 @@ case class Fetch_kernel(resetVector : BigInt) extends Component {
   val redirect_vld  = in Bool()
   val redirect_pc   = in UInt(32 bits)
   val icache_ports  = master(ICachePorts(32, 64))
+  // ---- TAGE / dynamic predictor (early: when PC is sent to ICache) ----
   val predict_pc    = out UInt(32 bits)
   val predict_valid = out Bool()
   val branch_taken  = in Bool()
   val branch_pc     = in UInt(32 bits)
   val fch_dst       = master(Stream(FchDst()))
-  // static BP
-  val predict_imm    = (BPU_TYPE=="static") generate (out Bits(64 bits))
-  val predict_jal    = (BPU_TYPE=="static") generate (out Bool())
-  val predict_branch = (BPU_TYPE=="static") generate (out Bool())
+  // ---- static predictor (decode time: when instruction arrives) ----
+  val static_predict_pc     = out UInt(32 bits)
+  val static_predict_valid  = out Bool()
+  val predict_imm    = out Bits(64 bits)
+  val predict_jal    = out Bool()
+  val predict_branch = out Bool()
   
 
   // ==================== internal signals =============================
@@ -38,20 +41,14 @@ case class Fetch_kernel(resetVector : BigInt) extends Component {
   val instr_out_stream      = Stream(Bits(64 bits))
   val instr_stream_fifo     = FIFO(Bits(64 bits), 8)
 
-  val branch_pc_in_stream   = (BPU_TYPE=="static") generate Stream(UInt(32 bits))
-  val branch_pc_out_stream  = (BPU_TYPE=="static") generate Stream(UInt(32 bits))
-  val branch_pc_stream_fifo = (BPU_TYPE=="static") generate FIFO(UInt(32 bits), 8)
+  val branch_pc_in_stream   = Stream(UInt(32 bits))
+  val branch_pc_out_stream  = Stream(UInt(32 bits))
+  val branch_pc_stream_fifo = FIFO(UInt(32 bits), 8)
   val taken_in_stream       = Stream(Bool())
   val taken_out_stream      = Stream(Bool())
   val branch_taken_fifo     = FIFO(Bool(), 8)
   
-  val fifo_all_valid = Bool()
-  if(BPU_TYPE=="gshare"){
-    fifo_all_valid := pc_out_stream.valid && instr_out_stream.valid && pc_stream_fifo.next_valid
-  }
-  else if(BPU_TYPE=="static"){
-    fifo_all_valid := pc_out_stream.valid && instr_out_stream.valid && branch_pc_out_stream.valid
-  }
+  val fifo_all_valid = pc_out_stream.valid && instr_out_stream.valid && branch_pc_out_stream.valid
   val fifo_all_ready = pc_stream_fifo.has_space && branch_taken_fifo.has_space && instr_stream_fifo.has_space
   
   val fetchFSM = new Area{
@@ -139,21 +136,17 @@ case class Fetch_kernel(resetVector : BigInt) extends Component {
   instr_stream_fifo.flush := flush
 
   // BRANCH PC FIFO
-  if(BPU_TYPE=="static"){
-    branch_pc_in_stream.valid   := instr_in_stream.valid
-    branch_pc_in_stream.payload := branch_pc
-    branch_pc_out_stream.ready  := fch_dst.fire
-    branch_pc_in_stream         <> branch_pc_stream_fifo.ports.s_ports
-    branch_pc_out_stream        <> branch_pc_stream_fifo.ports.m_ports
-    branch_pc_stream_fifo.flush := flush
+  branch_pc_in_stream.valid   := instr_in_stream.valid
+  branch_pc_in_stream.payload := branch_pc
+  branch_pc_out_stream.ready  := fch_dst.fire
+  branch_pc_in_stream         <> branch_pc_stream_fifo.ports.s_ports
+  branch_pc_out_stream        <> branch_pc_stream_fifo.ports.m_ports
+  branch_pc_stream_fifo.flush := flush
+  
 
-    taken_in_stream.valid       := instr_in_stream.valid
-  }
-  else if(BPU_TYPE=="gshare"){
-    taken_in_stream.valid       := icache_ports.cmd.fire
-  }
 
   // BPU taken FIFO
+  taken_in_stream.valid   := instr_in_stream.valid
   taken_in_stream.payload := branch_taken
   taken_out_stream.ready  := fch_dst.fire
   taken_in_stream         <> branch_taken_fifo.ports.s_ports
@@ -166,30 +159,26 @@ case class Fetch_kernel(resetVector : BigInt) extends Component {
   fch_dst.branch_taken := taken_out_stream.payload
   fch_dst.valid        := fifo_all_valid && !flush
 
-  if(BPU_TYPE=="static"){
-    // to BPU
-    val op_is_jal          = (icache_ports.rsp.data(opcodeRange)===OP_JAL)
-    val op_is_branch       = (icache_ports.rsp.data(opcodeRange)===OP_BRANCH)
-    val imm_all            = IMM_ALL(icache_ports.rsp.data, 64)
-    predict_imm            := op_is_jal ? imm_all.j_sext | (op_is_branch ? imm_all.b_sext | B(0))
-    predict_jal            := op_is_jal
-    predict_branch         := op_is_branch
-    predict_valid          := instr_in_stream.valid
-    predict_pc             := RegNextWhen(pc, icache_ports.cmd.fire)
-    // fetch dst
-    fch_dst.branch_pc      := branch_pc_out_stream.payload
-    // to icache
-    icache_ports.cmd.valid := fetch_valid && !flush && !branch_taken
-  }
-  else if(BPU_TYPE=="gshare"){
-    // to BPU
-    predict_valid          := icache_ports.cmd.fire
-    predict_pc             := pc
-    // fetch dst
-    fch_dst.branch_pc      := pc_stream_fifo.next_payload
-    // to icache
-    icache_ports.cmd.valid := fetch_valid && !flush
-  }
+  // to static predictor (decode time, aligned with ICache response)
+  val op_is_jal          = (icache_ports.rsp.data(opcodeRange)===OP_JAL)
+  val op_is_branch       = (icache_ports.rsp.data(opcodeRange)===OP_BRANCH)
+  val imm_all            = IMM_ALL(icache_ports.rsp.data, 64)
+  predict_imm            := op_is_jal ? imm_all.j_sext | (op_is_branch ? imm_all.b_sext | B(0))
+  predict_jal            := op_is_jal
+  predict_branch         := op_is_branch
+  static_predict_valid   := instr_in_stream.valid
+  static_predict_pc      := RegNextWhen(pc, icache_ports.cmd.fire)
+
+  // to TAGE predictor (early: when PC is sent to ICache, before instruction arrives)
+  predict_valid := icache_ports.cmd.fire
+  predict_pc    := pc
+
+
+  //============= output ===================
+  // fetch dst
+  fch_dst.branch_pc      := branch_pc_out_stream.payload
+  // to icache
+  icache_ports.cmd.valid := fetch_valid && !flush && !branch_taken
 
   // send cmd to icache_ports
   icache_ports.cmd.addr  := pc
@@ -210,15 +199,18 @@ case class Fetch(resetVector : BigInt) extends Component {
   val redirect_vld  = in Bool()
   val redirect_pc   = in UInt(32 bits)
   val icache_ports  = master(ICachePorts(32, 64))
+  // ---- TAGE / dynamic predictor ----
   val predict_pc    = out UInt(32 bits)
   val predict_valid = out Bool()
   val branch_taken  = in Bool()
   val branch_pc     = in UInt(32 bits)
   val fch_dst       = Vec(master(Stream(DecSrc())), 2)
-  // static BP
-  val predict_imm    = (BPU_TYPE=="static") generate (out Bits(64 bits))
-  val predict_jal    = (BPU_TYPE=="static") generate (out Bool())
-  val predict_branch = (BPU_TYPE=="static") generate (out Bool())
+  // ---- static predictor ----
+  val static_predict_pc     = out UInt(32 bits)
+  val static_predict_valid  = out Bool()
+  val predict_imm    = out Bits(64 bits)
+  val predict_jal    = out Bool()
+  val predict_branch = out Bool()
 
   // ==================== inst =============================
   val fetch           = new Fetch_kernel(resetVector)
@@ -259,11 +251,11 @@ case class Fetch(resetVector : BigInt) extends Component {
   dec_stream(1) >-> fch_dst(1)
   predict_pc    := fetch.predict_pc
   predict_valid := fetch.predict_valid
-  if(BPU_TYPE=="static"){
-    predict_imm    := fetch.predict_imm
-    predict_jal    := fetch.predict_jal
-    predict_branch := fetch.predict_branch
-  }
+  static_predict_pc    := fetch.static_predict_pc
+  static_predict_valid := fetch.static_predict_valid
+  predict_imm    := fetch.predict_imm
+  predict_jal    := fetch.predict_jal
+  predict_branch := fetch.predict_branch
 
   
   
