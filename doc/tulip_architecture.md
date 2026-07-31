@@ -67,9 +67,9 @@ Tulip 的流水线分为以下 7 个阶段：
   - 实例化 2 个 DecodeComb 并行译码
   - 输出 Stream[IssueSrc] 至发射阶段
 
-#### 3. 发射阶段 (I) — `Issue.scala`
+#### 3. 发射阶段 (I) — `PreDispatchBuffer.scala`
 
-- 2 项发射缓冲区（`IssueEntry`)
+- 2 项发射缓冲区（`PreDispatchEntry`)
 - 指令进入条件：两条发射槽都 ready 才同时更新
 - 分配执行单元编码（exe_oh，5-bit onehot）：
   - BJU → `00001`（固定槽 0）
@@ -197,7 +197,7 @@ Tulip 的流水线分为以下 7 个阶段：
 ### 顶层连接 — `Tulip.scala`
 
 ```
-Fetch → Decode → Issue → Dispatch → [BJU, ALU0, ALU1, DIV, LSU] → Commit → Regfile
+Fetch → Decode → PreDispatchBuffer → Dispatch → [BJU, ALU0, ALU1, DIV, LSU] → Commit → Regfile
                            ↑                 ↓                              ↓
                            └───── 旁路网络 (Forwarding) ←───────────────────┘
 ```
@@ -377,7 +377,7 @@ Tulip 在顶层集成了大量性能计数器：
 | Interfaces.scala | 所有接口 Bundle 定义和控制枚举 |
 | Fetch.scala | 取指阶段 |
 | Decode.scala | 译码阶段 |
-| Issue.scala | 发射阶段 |
+| PreDispatchBuffer.scala | 发射阶段 |
 | Dispatch.scala | 调度/分发阶段（含寄存器状态表） |
 | Commit.scala | 退休阶段（ROB 管理） |
 | Regfile.scala | 架构寄存器文件 |

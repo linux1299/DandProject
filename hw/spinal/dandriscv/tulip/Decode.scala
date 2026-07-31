@@ -258,7 +258,7 @@ case class DecodeComb() extends Component {
   when(load || store){
     exe_sel := ExeSelEnum.LSU
   }
-  .elsewhen(div || divu || rem || remu || divw || divuw || remw || remuw){
+  .elsewhen(div || divu || rem || remu || divw || divuw || remw || remuw || mul || mulh || mulhsu || mulhu || mulw){
     exe_sel := ExeSelEnum.DIV
   }
   .elsewhen(op_is_imm || op_is_alu || op_is_lui || op_is_word || op_is_wordi){

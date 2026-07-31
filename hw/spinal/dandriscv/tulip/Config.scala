@@ -32,6 +32,7 @@ case class ICacheConfig(cacheSize    : Int, // bytes
 // ================ DCache ==================
 case class DCacheConfig(cacheSize    : Int, // bytes
                         wayCount     : Int,
+                        mshrEntries  : Int = 1,
                         bypassAddrLow0  : BigInt,
                         bypassAddrHigh0 : BigInt,
                         bypassAddrLow1  : BigInt,
@@ -57,6 +58,8 @@ case class DCacheConfig(cacheSize    : Int, // bytes
   def bankIndexRange = 2 downto 2
 
   assert(wayCount>=2)
+  require(mshrEntries == 1,
+    "Tulip DCache currently implements exactly one active MSHR")
   
 }
 

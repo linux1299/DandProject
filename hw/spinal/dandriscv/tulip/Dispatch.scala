@@ -45,7 +45,6 @@ case class Dispatch() extends Component{
   val ret_rd_addr    = Vec(in UInt(5 bits), 2)
   val ret_rob_adr    = Vec(in UInt(ROB_ADR_W bits), 2)
   val ret_rd_data    = Vec(in Bits(64 bits), 2)
-  val read_regfile   = Vec(master(ReadRegfile()), 2)
   val rob_is_ready   = in Bool()
   val tail_adr_older = in UInt(ROB_ADR_W bits)
   val tail_adr_newer = in UInt(ROB_ADR_W bits)
@@ -108,7 +107,7 @@ case class Dispatch() extends Component{
   src1_valid(0) := (entry.state(rs1_addr(0))=/=EXE && entry.state(rs1_addr(0))=/=WBC) || 
                    (entry.state(rs1_addr(0))===EXE && entry.alu_or_bju(rs1_addr(0))) // wbc can't forward
 
-  src2_valid(0) := ((entry.state(rs2_addr(0))=/=EXE && entry.state(rs2_addr(0))=/=WBC) || (entry.state(rs2_addr(0))===EXE && entry.alu_or_bju(rs2_addr(0))))
+  src2_valid(0) := ((entry.state(rs2_addr(0))=/=EXE && entry.state(rs2_addr(0))=/=WBC) || (entry.state(rs2_addr(0))===EXE && entry.alu_or_bju(rs2_addr(0)))) ||
                    (dis_src(0).iss_pkg.micro_op.uop_lsu.lsu_is_store ? False | dis_src(0).iss_pkg.micro_op.uop_com.src2_is_imm)
 
   src1_valid(1) := (rs1_addr(1) =/= rd_addr(0) || !dis_src(0).valid) && // if issue1 depends on issue0, stall
@@ -130,10 +129,10 @@ case class Dispatch() extends Component{
                       B(5 bits, default -> dis_src(1).valid) & 
                       ~exe_oh_valid(0)
 
-  rs1_arf_data(0) := read_regfile(0).rs1_data
-  rs2_arf_data(0) := read_regfile(0).rs2_data
-  rs1_arf_data(1) := read_regfile(1).rs1_data
-  rs2_arf_data(1) := read_regfile(1).rs2_data
+  rs1_arf_data(0) := dis_src(0).rs1_data
+  rs2_arf_data(0) := dis_src(0).rs2_data
+  rs1_arf_data(1) := dis_src(1).rs1_data
+  rs2_arf_data(1) := dis_src(1).rs2_data
 
   rs1_wbc_sel(0)  := entry.exe_oh(rs1_addr(0))
   rs2_wbc_sel(0)  := entry.exe_oh(rs2_addr(0))
@@ -415,8 +414,6 @@ case class Dispatch() extends Component{
   dis_to_lsu <-< lsu_stream
   
   for(i <- 0 until 2){
-    read_regfile(i).rs1_addr := rs1_addr(i)
-    read_regfile(i).rs2_addr := rs2_addr(i)
     rob_rs1_addr(i) := entry.rob_adr(rs1_addr(i))
     rob_rs2_addr(i) := entry.rob_adr(rs2_addr(i))
   }

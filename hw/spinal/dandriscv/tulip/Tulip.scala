@@ -18,6 +18,9 @@ case class Tulip() extends Component {
   val dcache_config = DCacheConfig(
     cacheSize = 16*1024, // 16 KB
     wayCount = 2,
+    // DCache.scala implements one active MSHR.  Keep the integration
+    // configuration honest until multi-entry allocation is implemented.
+    mshrEntries = 1,
     bypassAddrLow0  = 0x10000000l,
     bypassAddrHigh0 = 0x3fffffffl,
     bypassAddrLow1  = 0x10001000l,
@@ -83,7 +86,7 @@ case class Tulip() extends Component {
   val icache = new ICacheTop(itcm_en=true, icache_config, icache_axi_config)
   val bpu    = new Predictor(gshare_config, tage_config)
   val decode = new Decode()
-  val issue  = new Issue()
+  val pre_disp = new PreDispatchBuffer()
   val dispat = new Dispatch()
   val regfile= new Regfile()
   val commit = new Commit()
@@ -92,9 +95,8 @@ case class Tulip() extends Component {
   val alu_2  = new ALU()
   val div_3  = new DIV()
   val lsu_4  = new LSU()
-  // val dcache = new DCacheTop(dcache_config, dcache_axi_config)
+  val dcache = new DCacheTop(dcache_config, dcache_axi_config)
   // val dcache = new BIUTop(dcache_config, dcache_axi_config)
-  val dcache = new DTCM(dcache_config, dcache_axi_config)
 
   // ================= Top Signals ===============
   val change_flow   = bju_0.interrupt_valid || bju_0.redirect_valid
@@ -140,26 +142,26 @@ case class Tulip() extends Component {
   decode.dec_src(1)      << fetch.fch_dst(1).throwWhen(change_flow)
 
   // ================= ISSUE ===============
-  issue.flush      := change_flow
-  issue.iss_src(0) << decode.dec_dst(0)
-  issue.iss_src(1) << decode.dec_dst(1)
+  pre_disp.flush      := change_flow
+  pre_disp.iss_src(0) << decode.dec_dst(0)
+  pre_disp.iss_src(1) << decode.dec_dst(1)
 
   // ================= Dispatch ===============
   dispat.rob_is_ready   := commit.rob_is_ready
   dispat.tail_adr_older := commit.tail_adr_older
   dispat.tail_adr_newer := commit.tail_adr_newer
 
-  val issue0_dst_is_bju = issue.iss_dst(0).valid && issue.iss_dst(0).iss_pkg.exe_sel===ExeSelEnum.BJU
+  val issue0_dst_is_bju = pre_disp.iss_dst(0).valid && pre_disp.iss_dst(0).iss_pkg.exe_sel===ExeSelEnum.BJU
   val issue0_dst_stall  = dispat.dis_to_bju.isStall
   val issue1_dst_stall  = issue0_dst_is_bju || dispat.dis_to_bju.isStall
   
-  dispat.dis_src(0) << issue.iss_dst(0).throwWhen(change_flow).haltWhen(issue0_dst_stall)
-  // dispat.dis_src(1) << issue.iss_dst(1).throwWhen(change_flow || branch_valid).haltWhen(issue1_dst_stall)
+  dispat.dis_src(0) << pre_disp.iss_dst(0).throwWhen(change_flow).haltWhen(issue0_dst_stall)
+  // dispat.dis_src(1) << pre_disp.iss_dst(1).throwWhen(change_flow || branch_valid).haltWhen(issue1_dst_stall)
   val issue0_is_branch_taken =  issue0_dst_is_bju &&
-                                issue.iss_dst(0).iss_pkg.branch_taken && 
-                                (issue.iss_dst(0).iss_pkg.instr=/=B"32'h6b") && 
-                                (issue.iss_dst(0).iss_pkg.instr=/=B"32'h7b")
-  dispat.dis_src(1) << issue.iss_dst(1).throwWhen(change_flow || issue0_is_branch_taken).haltWhen(issue1_dst_stall)
+                                pre_disp.iss_dst(0).iss_pkg.branch_taken && 
+                                (pre_disp.iss_dst(0).iss_pkg.instr=/=B"32'h6b") && 
+                                (pre_disp.iss_dst(0).iss_pkg.instr=/=B"32'h7b")
+  dispat.dis_src(1) << pre_disp.iss_dst(1).throwWhen(change_flow || issue0_is_branch_taken).haltWhen(issue1_dst_stall)
 
   dispat.exe_rd_wen(0)  := bju_0.bju_exe_rd_wen
   dispat.exe_rd_data(0) := bju_0.bju_exe_rd_data
@@ -224,14 +226,22 @@ case class Tulip() extends Component {
 
 
   // =============== regfile ===============
-  regfile.read_0 <> dispat.read_regfile(0)
-  regfile.read_1 <> dispat.read_regfile(1)
+  regfile.read_0 <> pre_disp.read_regfile(0)
+  regfile.read_1 <> pre_disp.read_regfile(1)
   regfile.write_0.rd_wen  := commit.retire(0).fire && commit.retire(0).rd_wen
   regfile.write_1.rd_wen  := commit.retire(1).fire && commit.retire(1).rd_wen
   regfile.write_0.rd_addr := commit.retire(0).rd_addr
   regfile.write_1.rd_addr := commit.retire(1).rd_addr
   regfile.write_0.rd_data := commit.retire(0).rd_data
   regfile.write_1.rd_data := commit.retire(1).rd_data
+
+  // =============== retire forward to PreDispatchBuffer ===============
+  pre_disp.ret_rd_wen(0)  := commit.retire(0).fire && commit.retire(0).rd_wen
+  pre_disp.ret_rd_wen(1)  := commit.retire(1).fire && commit.retire(1).rd_wen
+  pre_disp.ret_rd_addr(0) := commit.retire(0).rd_addr
+  pre_disp.ret_rd_addr(1) := commit.retire(1).rd_addr
+  pre_disp.ret_rd_data(0) := commit.retire(0).rd_data
+  pre_disp.ret_rd_data(1) := commit.retire(1).rd_data
 
 
   // ================= BJU ===============
@@ -338,12 +348,12 @@ case class Tulip() extends Component {
   when(fetch.fch_dst(0).fire) {fetch_dst0_fire_duty_cycle := fetch_dst0_fire_duty_cycle + 1}
   when(fetch.fch_dst(1).fire) {fetch_dst1_fire_duty_cycle := fetch_dst1_fire_duty_cycle + 1}
 
-  when(issue.iss_dst(0).valid) {issue_dst0_valid_duty_cycle := issue_dst0_valid_duty_cycle + 1}
-  when(issue.iss_dst(1).valid) {issue_dst1_valid_duty_cycle := issue_dst1_valid_duty_cycle + 1}
-  when(issue.iss_dst(0).ready) {issue_dst0_ready_duty_cycle := issue_dst0_ready_duty_cycle + 1}
-  when(issue.iss_dst(1).ready) {issue_dst1_ready_duty_cycle := issue_dst1_ready_duty_cycle + 1}
-  when(issue.iss_dst(0).fire) {issue_dst0_fire_duty_cycle := issue_dst0_fire_duty_cycle + 1}
-  when(issue.iss_dst(1).fire) {issue_dst1_fire_duty_cycle := issue_dst1_fire_duty_cycle + 1}
+  when(pre_disp.iss_dst(0).valid) {issue_dst0_valid_duty_cycle := issue_dst0_valid_duty_cycle + 1}
+  when(pre_disp.iss_dst(1).valid) {issue_dst1_valid_duty_cycle := issue_dst1_valid_duty_cycle + 1}
+  when(pre_disp.iss_dst(0).ready) {issue_dst0_ready_duty_cycle := issue_dst0_ready_duty_cycle + 1}
+  when(pre_disp.iss_dst(1).ready) {issue_dst1_ready_duty_cycle := issue_dst1_ready_duty_cycle + 1}
+  when(pre_disp.iss_dst(0).fire) {issue_dst0_fire_duty_cycle := issue_dst0_fire_duty_cycle + 1}
+  when(pre_disp.iss_dst(1).fire) {issue_dst1_fire_duty_cycle := issue_dst1_fire_duty_cycle + 1}
 
   when(dispat.dis_src(0).valid) {dispatch_src0_valid_duty_cycle := dispatch_src0_valid_duty_cycle + 1}
   when(dispat.dis_src(1).valid) {dispatch_src1_valid_duty_cycle := dispatch_src1_valid_duty_cycle + 1}
@@ -370,7 +380,6 @@ object GenTulipWithMemoryInit{
     GenConfig.spinal.generateVerilog({
       val toplevel = new Tulip()
       BinTools.initRam(toplevel.icache.sram.mem, "/home/lin/DandProject/dv/bin/mytests/benchmarks/coremark/coremark-riscv64-nemu.bin", false)
-      BinTools.initRam(toplevel.dcache.sram.mem, "/home/lin/DandProject/dv/bin/mytests/benchmarks/coremark/coremark-riscv64-nemu.bin", false)
       toplevel
     })
   }

@@ -18,9 +18,8 @@ case class Sram(bankWidth : Int = 64, bankDepthBits : Int = 6) extends Component
     mask    = ports.cmd.wstrb
   )
 
-  // ports.rsp.data := mem.readSync(
-  ports.rsp.data := mem.readAsync(
-    // enable  = ports.cmd.valid,
+  ports.rsp.data := mem.readSync(
+    enable  = ports.cmd.valid,
     address = ports.cmd.addr
   )
 

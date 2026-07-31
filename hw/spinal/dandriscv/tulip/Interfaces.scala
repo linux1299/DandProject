@@ -105,8 +105,10 @@ case class IssueSrc() extends Bundle {
 }
 
 case class IssueDst() extends Bundle {
-  val iss_pkg = IssueSrc()
-  val exe_oh  = Bits(5 bits)
+  val iss_pkg  = IssueSrc()
+  val exe_oh   = Bits(5 bits)
+  val rs1_data = Bits(64 bits)
+  val rs2_data = Bits(64 bits)
 }
 
 // ========================= Dispatch <-> Exe =======================
@@ -200,9 +202,29 @@ case class DCacheCmd(AW: Int, DW: Int) extends Bundle {
   val wdata= Bits(DW bits)
   val wstrb= Bits(DW/8 bits)
   val size = UInt(3 bits)
+  // sideband info forwarded through DCache (for LSU -> d$ -> LSU round-trip)
+  val rd_wen    = Bool()
+  val rd_addr   = UInt(5 bits)
+  val pc        = UInt(32 bits)
+  val instr     = Bits(32 bits)
+  val rob_adr   = UInt(ROB_ADR_W bits)
+  // LSU-local state that survives DCache round-trip (hit-under-miss safe)
+  val lsu_ctrl  = Bits(4 bits)  // LsuCtrlEnum encoding
+  val addr_off  = UInt(3 bits)  // lsu_addr_offset for data alignment
+  val is_timer  = Bool()        // timer vs dcache data source
 }
 case class DCacheRsp(DW: Int) extends Bundle {
   val data = Bits(DW bits)
+  // sideband returned from DCache
+  val rd_wen    = Bool()
+  val rd_addr   = UInt(5 bits)
+  val pc        = UInt(32 bits)
+  val instr     = Bits(32 bits)
+  val rob_adr   = UInt(ROB_ADR_W bits)
+  // LSU-local state
+  val lsu_ctrl  = Bits(4 bits)
+  val addr_off  = UInt(3 bits)
+  val is_timer  = Bool()
 }
 case class DCachePorts(AW: Int, DW: Int) extends Bundle with IMasterSlave{
   val cmd = Stream(DCacheCmd(AW, DW))
@@ -225,6 +247,7 @@ case class DCacheNextLevelCmd(AW: Int, DW: Int) extends Bundle{
   val wen  = Bool()
   val wdata= Bits(DW bits)
   val wstrb= Bits(DW/8 bits)
+  val is_wb = Bool() // write-back burst flag
 }
 case class DCacheNextLevelRsp(DW: Int) extends Bundle{
   val data = Bits(DW bits)

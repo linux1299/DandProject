@@ -77,8 +77,8 @@ case class LSU() extends Component {
   val dcache_size       = UInt(3 bits)
 
   // =================== stage 1 logic ===================
-  val lsu_addr_offset_reg = RegNextWhen(lsu_addr_offset, lsu_src.fire)
-  val dcache_rdata        = dcache_ports.rsp.data |>> (lsu_addr_offset_reg << 3)
+  // addr_offset comes from DCache sideband (survives hit-under-miss)
+  val dcache_rdata = dcache_ports.rsp.data |>> (dcache_ports.rsp.addr_off << 3)
   val dcache_rdata_lb     = B((XLEN-8-1 downto 0) -> dcache_rdata(7)) ## dcache_rdata(7 downto 0)
   val dcache_rdata_lbu    = B((XLEN-8-1 downto 0) -> False) ## dcache_rdata(7 downto 0)
   val dcache_rdata_lh     = B((XLEN-16-1 downto 0) -> dcache_rdata(15)) ## dcache_rdata(15 downto 0)
@@ -86,12 +86,30 @@ case class LSU() extends Component {
   val dcache_rdata_lw     = B((XLEN-32-1 downto 0) -> dcache_rdata(31)) ## dcache_rdata(31 downto 0)
   val dcache_rdata_lwu    = B((XLEN-32-1 downto 0) -> False) ## dcache_rdata(31 downto 0)
   val lsu_rdata           = Bits(64 bits)
-  val lsu_ctrl_op_reg     = RegNextWhen(uop_lsu.lsu_ctrl_op, lsu_src.fire)
+
+  // Timer accesses bypass DCache, but they still need to obey the same
+  // request/response contract as a cached access.  Keep one response entry
+  // so a timer load/store cannot disappear while the next LSU request is
+  // being issued.
+  val timer_rsp_valid   = RegInit(False)
+  val timer_rsp_data    = Reg(Bits(64 bits)) init(0)
+  val timer_rsp_rd_wen  = Reg(Bool()) init(False)
+  val timer_rsp_rd_addr = Reg(UInt(5 bits)) init(0)
+  val timer_rsp_pc      = Reg(UInt(32 bits)) init(0)
+  val timer_rsp_instr   = Reg(Bits(32 bits)) init(0)
+  val timer_rsp_rob_adr = Reg(UInt(ROB_ADR_W bits)) init(0)
+  val timer_rsp_fire    = timer_rsp_valid && !dcache_ports.rsp.valid && dst_stream.ready
+  val timer_access      = lsu_src.valid && lsu_cen && lsu_addr_is_timer
+  // Give an already-returning DCache operation priority.  That keeps the
+  // single LSU completion stream ordered and prevents two responses in one
+  // cycle.
+  val timer_cmd_ready   = !timer_rsp_valid && !dcache_ports.rsp.valid
+  val timer_fire        = timer_access && timer_cmd_ready
 
   // =========== timer ================
   val timer        = new Timer()
-  val timer_cen    = lsu_addr_is_timer && lsu_cen
-  val timer_wen    = uop_lsu.lsu_is_store
+  val timer_cen    = timer_fire
+  val timer_wen    = timer_fire && uop_lsu.lsu_is_store
   val timer_addr   = dcache_addr
   val timer_wdata  = dcache_wdata
   val timer_rdata  = timer.rdata
@@ -102,6 +120,19 @@ case class LSU() extends Component {
   timer.wdata := timer_wdata
   timer_int   := timer.timer_int
 
+  when(timer_rsp_fire){
+    timer_rsp_valid := False
+  }
+  when(timer_fire){
+    timer_rsp_valid   := True
+    timer_rsp_data    := timer_rdata
+    timer_rsp_rd_wen  := lsu_src.uop_com.rd_wen
+    timer_rsp_rd_addr := lsu_src.rd_addr
+    timer_rsp_pc      := lsu_src.pc
+    timer_rsp_instr   := lsu_src.instr
+    timer_rsp_rob_adr := lsu_src.rob_adr
+  }
+
   // =================== stage 0 access dcache ===================
   dcache_stream.valid := dcache_cen && lsu_src.valid
   dcache_stream.addr  := dcache_addr
@@ -109,6 +140,16 @@ case class LSU() extends Component {
   dcache_stream.wdata := dcache_wdata
   dcache_stream.wstrb := dcache_wstrb
   dcache_stream.size  := dcache_size
+  // sideband forwarded through DCache to avoid pipeline registers in LSU
+  dcache_stream.rd_wen   := lsu_src.uop_com.rd_wen
+  dcache_stream.rd_addr  := lsu_src.rd_addr
+  dcache_stream.pc       := lsu_src.pc
+  dcache_stream.instr    := lsu_src.instr
+  dcache_stream.rob_adr  := lsu_src.rob_adr
+  // LSU-local state for data alignment and timer detection
+  dcache_stream.lsu_ctrl := uop_lsu.lsu_ctrl_op.asBits.resized
+  dcache_stream.addr_off := lsu_addr_offset
+  dcache_stream.is_timer := lsu_addr_is_timer
   dcache_stream       >> dcache_ports.cmd
 
   switch(uop_lsu.lsu_ctrl_op){
@@ -175,7 +216,10 @@ case class LSU() extends Component {
 
   
   // =================== stage 1 ===================
-  switch(lsu_ctrl_op_reg){
+  // lsu_ctrl comes from DCache sideband — safe under hit-under-miss
+  val lsu_ctrl_rsp = cloneOf(uop_lsu.lsu_ctrl_op)
+  lsu_ctrl_rsp.assignFromBits(dcache_ports.rsp.lsu_ctrl)
+  switch(lsu_ctrl_rsp){
     is(LB){
       lsu_rdata := dcache_rdata_lb
     }
@@ -205,32 +249,15 @@ case class LSU() extends Component {
   
 
   // =========== output ================
-  val rd_wen_reg   = Reg(Bool()) init(false)
-  val rd_addr_reg  = Reg(UInt(5 bits)) init(0)
-  val older_reg    = Reg(Bool()) init(false)
-  val pc_reg       = Reg(UInt(32 bits)) init(0)
-  val instr_reg    = Reg(Bits(32 bits)) init(0)
-  val tail_adr_reg = Reg(UInt(ROB_ADR_W bits)) init(0)
-  val is_timer_reg = Reg(Bool()) init(false)
-
-  when(lsu_src.fire){
-    rd_wen_reg   := lsu_src.uop_com.rd_wen
-    rd_addr_reg  := lsu_src.rd_addr
-    pc_reg       := lsu_src.pc
-    instr_reg    := lsu_src.instr
-    tail_adr_reg := lsu_src.rob_adr
-    is_timer_reg := lsu_addr_is_timer
-  }
-
-  lsu_src.ready      := dcache_stream.ready
+  lsu_src.ready      := lsu_addr_is_timer ? timer_cmd_ready | dcache_stream.ready
   dcache_ports.rsp.ready := dst_stream.ready
-  dst_stream.valid   := dcache_ports.rsp.valid
-  dst_stream.rd_data := is_timer_reg ? timer_rdata | lsu_rdata
-  dst_stream.rd_wen  := rd_wen_reg
-  dst_stream.rd_addr := rd_addr_reg
-  dst_stream.pc      := pc_reg
-  dst_stream.instr   := instr_reg
-  dst_stream.rob_adr := tail_adr_reg
+  dst_stream.valid   := dcache_ports.rsp.valid || timer_rsp_valid
+  dst_stream.rd_data := dcache_ports.rsp.valid ? lsu_rdata | timer_rsp_data
+  dst_stream.rd_wen  := dcache_ports.rsp.valid ? dcache_ports.rsp.rd_wen | timer_rsp_rd_wen
+  dst_stream.rd_addr := dcache_ports.rsp.valid ? dcache_ports.rsp.rd_addr | timer_rsp_rd_addr
+  dst_stream.pc      := dcache_ports.rsp.valid ? dcache_ports.rsp.pc | timer_rsp_pc
+  dst_stream.instr   := dcache_ports.rsp.valid ? dcache_ports.rsp.instr | timer_rsp_instr
+  dst_stream.rob_adr := dcache_ports.rsp.valid ? dcache_ports.rsp.rob_adr | timer_rsp_rob_adr
 
   dst_stream >-> lsu_dst
 
