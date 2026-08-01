@@ -110,17 +110,20 @@ wire [63:0] dram_wmask={{8{ram_d_mem_strb[7]}},
                         {8{ram_d_mem_strb[2]}}, 
                         {8{ram_d_mem_strb[1]}}, 
                         {8{ram_d_mem_strb[0]}}};
-
-reg [7:0] ram_tmp [0:4096*4-1];
+// 65536 *4B = 256KB
+// 4096 * 4B = 16KB
+reg [7:0] ram_tmp [0:65536*4-1];
 integer fd;
 integer tmp;
 integer i;
 integer j;
 
 initial begin
-  fd = $fopen ("/home/lin/DandProject/dv/bin/mytests/benchmarks/coremark/coremark-riscv64-nemu.bin", "rb");
+  // fd = $fopen ("/home/lin/DandProject/dv/bin/mytests/benchmarks/coremark/coremark-riscv64-nemu.bin", "rb");
+  fd = $fopen ("/home/lin/DandProject/dv/bin/mytests/fc_tests/mario/fceux-riscv64-nemu.txt", "rb");
+  
   tmp = $fread(ram_tmp, fd);
-  for (i = 0; i < 4096; i = i + 1) begin
+  for (i = 0; i < 65536; i = i + 1) begin
     SimTop.u_Tulip.icache.sram_6.mem_symbol0[i] = ram_tmp[i*4 + 0][7:0];
     SimTop.u_Tulip.icache.sram_6.mem_symbol1[i] = ram_tmp[i*4 + 1][7:0];
     SimTop.u_Tulip.icache.sram_6.mem_symbol2[i] = ram_tmp[i*4 + 2][7:0];
