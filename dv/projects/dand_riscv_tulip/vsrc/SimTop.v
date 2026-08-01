@@ -124,10 +124,14 @@ initial begin
   
   tmp = $fread(ram_tmp, fd);
   for (i = 0; i < 65536; i = i + 1) begin
-    SimTop.u_Tulip.icache.sram_6.mem_symbol0[i] = ram_tmp[i*4 + 0][7:0];
-    SimTop.u_Tulip.icache.sram_6.mem_symbol1[i] = ram_tmp[i*4 + 1][7:0];
-    SimTop.u_Tulip.icache.sram_6.mem_symbol2[i] = ram_tmp[i*4 + 2][7:0];
-    SimTop.u_Tulip.icache.sram_6.mem_symbol3[i] = ram_tmp[i*4 + 3][7:0];
+    // SimTop.u_Tulip.icache.sram_6.mem_symbol0[i] = ram_tmp[i*4 + 0][7:0];
+    // SimTop.u_Tulip.icache.sram_6.mem_symbol1[i] = ram_tmp[i*4 + 1][7:0];
+    // SimTop.u_Tulip.icache.sram_6.mem_symbol2[i] = ram_tmp[i*4 + 2][7:0];
+    // SimTop.u_Tulip.icache.sram_6.mem_symbol3[i] = ram_tmp[i*4 + 3][7:0];
+    SimTop.u_Tulip.icache.sram_8.mem_symbol0[i] = ram_tmp[i*4 + 0][7:0];
+    SimTop.u_Tulip.icache.sram_8.mem_symbol1[i] = ram_tmp[i*4 + 1][7:0];
+    SimTop.u_Tulip.icache.sram_8.mem_symbol2[i] = ram_tmp[i*4 + 2][7:0];
+    SimTop.u_Tulip.icache.sram_8.mem_symbol3[i] = ram_tmp[i*4 + 3][7:0];
   end
 end
 
