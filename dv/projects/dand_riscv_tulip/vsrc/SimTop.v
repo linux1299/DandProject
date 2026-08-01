@@ -120,7 +120,7 @@ integer j;
 
 initial begin
   // fd = $fopen ("/home/lin/DandProject/dv/bin/mytests/benchmarks/coremark/coremark-riscv64-nemu.bin", "rb");
-  fd = $fopen ("/home/lin/DandProject/dv/bin/mytests/fc_tests/mario/fceux-riscv64-nemu.txt", "rb");
+  fd = $fopen ("/home/lin/DandProject/dv/bin/mytests/fc_tests/mario/fceux-riscv64-nemu.bin", "rb");
   
   tmp = $fread(ram_tmp, fd);
   for (i = 0; i < 65536; i = i + 1) begin
