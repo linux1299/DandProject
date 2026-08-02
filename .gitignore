@@ -16,3 +16,4 @@ csrc
 verdiLog
 dv/bin/*
 sw/abstract-machine/am/build/*
+hw/gen/*

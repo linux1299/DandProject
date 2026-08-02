@@ -182,7 +182,10 @@ object DandSocV2WithMemoryInit{
   def main(args: Array[String]) {
     GenDandSocSimpleConfig.spinal.generateVerilog({
       val toplevel = new DandSocV2(DandConfig.default)
+      // ====================== for tulip ======================
       BinTools.initRam(toplevel.axi.cpu_area.cpu.icache.sram.mem, "/home/lin/DandProject/sw/am-kernels/benchmarks/coremark/build/coremark-riscv64-nemu.bin", false)
+      // BinTools.initRam(toplevel.axi.cpu_area.cpu.icache.sram.mem, "/home/lin/DandProject/sw/am-kernels/kernels/vga_test/build/vga_test-riscv64-nemu.bin", false)
+      
       toplevel
     })
   }

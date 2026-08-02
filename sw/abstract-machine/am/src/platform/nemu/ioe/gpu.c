@@ -10,18 +10,18 @@ void __am_gpu_init() {
   int w = W;
   int h = H;
   uint32_t *fb = (uint32_t *)(uintptr_t)FB_ADDR;
+  // for (i = 0; i < w * h; i ++){
   for (i = 0; i < w * h; i ++){
-  // for (i = 0; i < w * h / 300; i ++){
-    fb[i] = 0;
+    // fb[i] = 0;
 
-    // if(i/40000==0)
-    //   fb[i] = 0xff0000; // R
-    // if(i/40000==1)
-    //   fb[i] = 0x00ff00; // G
-    // if(i/40000==2)
-    //   fb[i] = 0x0000ff; // B
+    if(i/40000==0)
+      fb[i] = 0xff0000; // R
+    if(i/40000==1)
+      fb[i] = 0x00ff00; // G
+    if(i/40000==2)
+      fb[i] = 0x0000ff; // B
   }
-  // outl(SYNC_ADDR, 1);
+  outl(SYNC_ADDR, 1);
 }
 
 void __am_gpu_config(AM_GPU_CONFIG_T *cfg) {

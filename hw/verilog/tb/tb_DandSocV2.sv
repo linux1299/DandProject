@@ -8,7 +8,7 @@ import "DPI-C" function void cleanup_display();
 logic              clk_axi_in;
 logic              rst_n;
 logic              io_axi_frame_buff_aw_valid;
-logic              io_axi_frame_buff_aw_ready = 1;
+logic              io_axi_frame_buff_aw_ready;
 logic     [31:0]   io_axi_frame_buff_aw_payload_addr;
 logic     [3:0]    io_axi_frame_buff_aw_payload_id;
 logic     [3:0]    io_axi_frame_buff_aw_payload_region;
@@ -20,16 +20,16 @@ logic     [3:0]    io_axi_frame_buff_aw_payload_cache;
 logic     [3:0]    io_axi_frame_buff_aw_payload_qos;
 logic     [2:0]    io_axi_frame_buff_aw_payload_prot;
 logic              io_axi_frame_buff_w_valid;
-logic              io_axi_frame_buff_w_ready = 1;
+logic              io_axi_frame_buff_w_ready;
 logic     [31:0]   io_axi_frame_buff_w_payload_data;
 logic     [3:0]    io_axi_frame_buff_w_payload_strb;
 logic              io_axi_frame_buff_w_payload_last;
-logic              io_axi_frame_buff_b_valid = 0;
+logic              io_axi_frame_buff_b_valid;
 logic              io_axi_frame_buff_b_ready;
-logic     [3:0]    io_axi_frame_buff_b_payload_id = 0;
-logic     [1:0]    io_axi_frame_buff_b_payload_resp = 0;
+logic     [3:0]    io_axi_frame_buff_b_payload_id;
+logic     [1:0]    io_axi_frame_buff_b_payload_resp;
 logic              io_axi_frame_buff_ar_valid;
-logic              io_axi_frame_buff_ar_ready = 1;
+logic              io_axi_frame_buff_ar_ready;
 logic     [31:0]   io_axi_frame_buff_ar_payload_addr;
 logic     [3:0]    io_axi_frame_buff_ar_payload_id;
 logic     [3:0]    io_axi_frame_buff_ar_payload_region;
@@ -40,12 +40,12 @@ logic     [0:0]    io_axi_frame_buff_ar_payload_lock;
 logic     [3:0]    io_axi_frame_buff_ar_payload_cache;
 logic     [3:0]    io_axi_frame_buff_ar_payload_qos;
 logic     [2:0]    io_axi_frame_buff_ar_payload_prot;
-logic              io_axi_frame_buff_r_valid = 0;
+logic              io_axi_frame_buff_r_valid;
 logic              io_axi_frame_buff_r_ready;
-logic     [31:0]   io_axi_frame_buff_r_payload_data = 0;
-logic     [3:0]    io_axi_frame_buff_r_payload_id = 0;
-logic     [1:0]    io_axi_frame_buff_r_payload_resp = 0;
-logic              io_axi_frame_buff_r_payload_last = 0;
+logic     [31:0]   io_axi_frame_buff_r_payload_data;
+logic     [3:0]    io_axi_frame_buff_r_payload_id;
+logic     [1:0]    io_axi_frame_buff_r_payload_resp;
+logic              io_axi_frame_buff_r_payload_last;
 
 logic              io_axi_ddr_aw_valid;
 logic              io_axi_ddr_aw_ready;
@@ -436,7 +436,7 @@ logic [32-1:0] fb_bit_mask;
 reg [32-1:0] frame_buff [0:(300*400-1)];
 
 always@(*) begin
-  axi_mem_rdata = frame_buff[axi_mem_rdaddr];
+  frame_buffer_rdata = frame_buff[frame_buffer_rdaddr];
 end
 
 for(k=0; k<32/8; k=k+1) begin: assign_fb_mask
@@ -445,7 +445,8 @@ end
 
 always @(posedge clk_axi_in) begin
   if (frame_buffer_wren) begin
-    frame_buff[frame_buffer_wraddr] <= (frame_buffer_wdata & fb_bit_mask) | (frame_buff[frame_buffer_wraddr] & ~fb_bit_mask);
+    frame_buff[frame_buffer_wraddr] <= (frame_buffer_wdata & fb_bit_mask) | 
+                                       (frame_buff[frame_buffer_wraddr] & ~fb_bit_mask);
   end
 end
 
@@ -476,39 +477,29 @@ end
 // ========================== Time out =============================
 initial begin
   init_display();
- #2000000000000000000
+ #20000000000000000
   $display("\n============== TimeOut ! Simulation finish ! ============\n");
   cleanup_display();
   $finish;
 end
 
 
-// ==================== write file ========================
-integer file_handle;
-initial begin
-    file_handle = $fopen("pc.log", "w");
-    if (!file_handle) begin
-        $display("Error: Failed to open file!");
-        $finish;
-    end
-end
-// always @(posedge clk_axi_in) begin
-//     if (tb_DandSocV2.u_DandSocV2.axi_cpu_area_cpu.control_1.write_back_fire) begin
-//         $fwrite(file_handle, "pc=%h, rd=%h, rd_wdata=%h, rd_wen=%h\n", 
-//                               tb_DandSocV2.u_DandSocV2.axi_cpu_area_cpu.control_1.write_back_payload_pc, 
-//                               tb_DandSocV2.u_DandSocV2.axi_cpu_area_cpu.control_1.write_back_payload_rd_addr, 
-//                               tb_DandSocV2.u_DandSocV2.axi_cpu_area_cpu.control_1.write_back_payload_rd_data,
-//                               tb_DandSocV2.u_DandSocV2.axi_cpu_area_cpu.control_1.write_back_payload_rd_wen); 
-//     end
-// end
-final begin
-    $fclose(file_handle);
-    $display("File closed.");
-end
+// ==================== display ========================
+wire [9:0] x;  // 0-399
+wire [8:0] y;  // 0-299
+wire [16:0]fb_addr;
+wire [31:0]fb_data;
+
+assign fb_addr = tb_DandSocV2.u_DandSocV2.io_axi_frame_buff_aw_payload_addr[18:2];
+assign fb_data = tb_DandSocV2.u_DandSocV2.io_axi_frame_buff_w_payload_data[31:0];
+assign x = fb_addr%400;
+assign y = fb_addr/400;
 
 always @(posedge clk_axi_in) begin
-    if (tb_DandSocV2.u_DandSocV2.io_axi_frame_buff_w_payload_data) begin
-        update_pixel(x, y, tb_DandSocV2.u_DandSocV2.io_axi_frame_buff_w_payload_data[31:0]);
+    if (tb_DandSocV2.u_DandSocV2.io_axi_frame_buff_w_valid) begin
+        update_pixel(x, y, fb_data);
+        // if(|fb_data)
+          $display("x=%d y=%d wdata=%h", x, y, fb_data);
         refresh_screen();
     end
 end
@@ -523,7 +514,7 @@ integer j;
 
 initial begin
   // fd = $fopen ("/home/lin/DandProject/sw/am-kernels/benchmarks/coremark/build/coremark-riscv64-nemu.bin", "rb");
-  fd = $fopen ("", "rb");
+  fd = $fopen ("/home/lin/DandProject/sw/am-kernels/kernels/vga_test/build/vga_test-riscv64-nemu.bin", "rb"); // tulip 882K cycles
   tmp = $fread(ram_tmp, fd);
   for (i = 0; i < (2*1024*1024/4); i = i + 1) begin
     ddr[i][7:0]   = ram_tmp[i*(32/8) + 0];

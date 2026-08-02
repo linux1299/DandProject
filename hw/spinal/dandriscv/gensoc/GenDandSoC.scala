@@ -157,7 +157,7 @@ class DandSoc(val config: DandConfig) extends Component{
   io.uart           <> axi.uartCtrl.io.uart
 }
 
-class DandSoc(val config: DandConfig) extends Component{
+class DandSocV1(val config: DandConfig) extends Component{
 
   // ================================ Config ===============================
   val Axi4Cfg64_id2 = Axi4Config(
@@ -305,7 +305,7 @@ class DandSoc(val config: DandConfig) extends Component{
 object DandSocWithMemoryInit{
   def main(args: Array[String]) {
     GenDandSocSimpleConfig.spinal.generateVerilog({
-      val toplevel = new DandSoc(DandConfig.default)
+      val toplevel = new DandSocV1(DandConfig.default)
       // BinTools.initRam(toplevel.axi.ram.ram, "/home/lin/SpinalProjects/DandRiscvSoC/ysyx-workbench/am-kernels/benchmarks/coremark/build/coremark-riscv64-nemu.bin", false)
       // BinTools.initRam(toplevel.axi.ram.ram, "/home/lin/SpinalProjects/DandRiscvSoC/ysyx-workbench/am-kernels/kernels/vga_test/build/vga_test-riscv64-nemu.bin", false)
       // BinTools.initRam(toplevel.axi.ram.ram, "/home/lin/SpinalProjects/DandRiscvSoC/ysyx-workbench/am-kernels/kernels/snake/build/snake-riscv64-nemu.bin", false)
