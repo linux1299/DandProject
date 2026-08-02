@@ -215,19 +215,20 @@ case class ITCM(p : ICacheConfig) extends Component{
   val flush   = in Bool()
   val cpu     = slave(ICachePorts(32, 64))
   val sram    = for(i<-0 until 2) yield new Area{
-    val ports = master(SramPorts(12, 32))
+    // val ports = master(SramPorts(12, 32)) // 2^12 * 32bits = 4KB
+    val ports = master(SramPorts(18, 32)) // 2^18 * 32bits = 256KB
   }
   val next_level = master(ICacheNextLevelPorts(AW=32, DW=64))
 
   // sram
   sram(0).ports.cmd.valid := cpu.cmd.valid
-  sram(0).ports.cmd.addr  := cpu.cmd.addr(13 downto 2)
+  sram(0).ports.cmd.addr  := cpu.cmd.addr(19 downto 2)
   sram(0).ports.cmd.wen   := False
   sram(0).ports.cmd.wdata := B(0, 32 bits)
   sram(0).ports.cmd.wstrb := B(0, 32/8 bits)
 
   sram(1).ports.cmd.valid := cpu.cmd.valid
-  sram(1).ports.cmd.addr  := cpu.cmd.addr(13 downto 2) + 1
+  sram(1).ports.cmd.addr  := cpu.cmd.addr(19 downto 2) + 1
   sram(1).ports.cmd.wen   := False
   sram(1).ports.cmd.wdata := B(0, 32 bits)
   sram(1).ports.cmd.wstrb := B(0, 32/8 bits)
@@ -258,7 +259,7 @@ case class ICacheTop(val itcm_en : Boolean, val config : ICacheConfig, val axiCo
 
   val icache = ifGen(!itcm_en) (new ICache(config))
   val itcm   = ifGen(itcm_en) (new ITCM(config))
-  val sram = ifGen(itcm_en) (new Sram_2ports(bankWidth=32, bankDepthBits=12)).setName("sram")
+  val sram = ifGen(itcm_en) (new Sram_2ports(bankWidth=32, bankDepthBits=18)).setName("sram")
   val sram_area = ifGen(itcm_en) (for(i<-0 until wayCount*2) yield new Area{
     val sram = new Sram(32, banAddrWidth)
   })

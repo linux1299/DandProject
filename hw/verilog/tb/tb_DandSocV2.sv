@@ -1,5 +1,9 @@
 module tb_DandSocV2();
 
+import "DPI-C" function void update_pixel(input int x, input int y, input int rgb);
+import "DPI-C" function void refresh_screen();
+import "DPI-C" function void init_display();
+import "DPI-C" function void cleanup_display();
 
 logic              clk_axi_in;
 logic              rst_n;
@@ -130,6 +134,15 @@ logic          axi_mem_wren;
 logic [4-1:0]  axi_mem_wmask;
 logic [32-1:0] axi_mem_wdata;
 logic [32-1:0] axi_mem_rdata;
+
+
+logic [19-1:0] frame_buffer_wraddr;
+logic [19-1:0] frame_buffer_rdaddr;
+logic          frame_buffer_rden;
+logic          frame_buffer_wren;
+logic [4-1:0]  frame_buffer_wmask;
+logic [32-1:0] frame_buffer_wdata;
+logic [32-1:0] frame_buffer_rdata;
 
 reg cpu_start_n;
 reg cpu_start_flag_d0;
@@ -335,6 +348,7 @@ axi_slave_mem#(
     .axi_mem_rdata     ( axi_mem_rdata     )
 );
 
+//=============================== ddr =========================
 logic [32-1:0] bit_mask;
 genvar  k;
 reg [32-1:0] ddr [0:(2*1024*1024/4-1)];
@@ -353,11 +367,92 @@ always @(posedge clk_axi_in) begin
   end
 end
 
+//============================== frame buffer =========================
+axi_slave_mem#(
+    .AXI_DATA_WIDTH    ( 32 ),
+    .AXI_ADDR_WIDTH    ( 32 ),
+    .AXI_ID_WIDTH      ( 4  ),
+    .AXI_STRB_WIDTH    ( 32/8 ),
+    .AXI_USER_WIDTH    ( 1 ),
+    .WRITE_BUFFER_SIZE ( 2*1024*1024 ),
+    .READ_BUFFER_SIZE  ( 2*1024*1024 )
+)u_frame_buffer(
+    .clk               ( clk_axi_in        ),
+    .rst_n             ( rst_n             ),
+    .aw_addr           ( io_axi_frame_buff_aw_payload_addr           ),
+    .aw_prot           ( io_axi_frame_buff_aw_payload_prot           ),
+    .aw_region         ( io_axi_frame_buff_aw_payload_region         ),
+    .aw_len            ( io_axi_frame_buff_aw_payload_len            ),
+    .aw_size           ( io_axi_frame_buff_aw_payload_size           ),
+    .aw_burst          ( io_axi_frame_buff_aw_payload_burst          ),
+    .aw_lock           ( io_axi_frame_buff_aw_payload_lock           ),
+    .aw_cache          ( io_axi_frame_buff_aw_payload_cache          ),
+    .aw_qos            ( io_axi_frame_buff_aw_payload_qos            ),
+    .aw_id             ( io_axi_frame_buff_aw_payload_id             ),
+    .aw_user           ( 1'b0                                        ),
+    .aw_ready          ( io_axi_frame_buff_aw_ready                  ),
+    .aw_valid          ( io_axi_frame_buff_aw_valid                  ),
+    .ar_addr           ( io_axi_frame_buff_ar_payload_addr           ),
+    .ar_prot           ( io_axi_frame_buff_ar_payload_prot           ),
+    .ar_region         ( io_axi_frame_buff_ar_payload_region         ),
+    .ar_len            ( io_axi_frame_buff_ar_payload_len            ),
+    .ar_size           ( io_axi_frame_buff_ar_payload_size           ),
+    .ar_burst          ( io_axi_frame_buff_ar_payload_burst          ),
+    .ar_lock           ( io_axi_frame_buff_ar_payload_lock           ),
+    .ar_cache          ( io_axi_frame_buff_ar_payload_cache          ),
+    .ar_qos            ( io_axi_frame_buff_ar_payload_qos            ),
+    .ar_id             ( io_axi_frame_buff_ar_payload_id             ),
+    .ar_user           ( 1'b0                                        ),
+    .ar_ready          ( io_axi_frame_buff_ar_ready                  ),
+    .ar_valid          ( io_axi_frame_buff_ar_valid                  ),
+    .w_valid           ( io_axi_frame_buff_w_valid                   ),
+    .w_data            ( io_axi_frame_buff_w_payload_data            ),
+    .w_strb            ( io_axi_frame_buff_w_payload_strb            ),
+    .w_user            ( 1'b0                                        ),
+    .w_last            ( io_axi_frame_buff_w_payload_last            ),
+    .w_ready           ( io_axi_frame_buff_w_ready                   ),
+    .r_data            ( io_axi_frame_buff_r_payload_data            ),
+    .r_resp            ( io_axi_frame_buff_r_payload_resp            ),
+    .r_last            ( io_axi_frame_buff_r_payload_last            ),
+    .r_id              ( io_axi_frame_buff_r_payload_id              ),
+    .r_user            ( io_axi_frame_buff_r_payload_user            ),
+    .r_ready           ( io_axi_frame_buff_r_ready                   ),
+    .r_valid           ( io_axi_frame_buff_r_valid                   ),
+    .b_resp            ( io_axi_frame_buff_b_payload_resp            ),
+    .b_id              ( io_axi_frame_buff_b_payload_id              ),
+    .b_user            ( io_axi_frame_buff_b_payload_user            ),
+    .b_ready           ( io_axi_frame_buff_b_ready                   ),
+    .b_valid           ( io_axi_frame_buff_b_valid                   ),
+    .axi_mem_wraddr    ( frame_buffer_wraddr    ),
+    .axi_mem_rdaddr    ( frame_buffer_rdaddr    ),
+    .axi_mem_rden      ( frame_buffer_rden      ),
+    .axi_mem_wren      ( frame_buffer_wren      ),
+    .axi_mem_wmask     ( frame_buffer_wmask     ),
+    .axi_mem_wdata     ( frame_buffer_wdata     ),
+    .axi_mem_rdata     ( frame_buffer_rdata     )
+);
+
+logic [32-1:0] fb_bit_mask;
+reg [32-1:0] frame_buff [0:(300*400-1)];
+
+always@(*) begin
+  axi_mem_rdata = frame_buff[axi_mem_rdaddr];
+end
+
+for(k=0; k<32/8; k=k+1) begin: assign_fb_mask
+  assign fb_bit_mask[k*8+:8] = {8{frame_buffer_wmask[k]}};
+end
+
+always @(posedge clk_axi_in) begin
+  if (frame_buffer_wren) begin
+    frame_buff[frame_buffer_wraddr] <= (frame_buffer_wdata & fb_bit_mask) | (frame_buff[frame_buffer_wraddr] & ~fb_bit_mask);
+  end
+end
 
 // ============================== dump fsdb =============================
 initial begin
 	$display("\n================== Time:%d, Dump Start ================\n",$time);
-	$fsdbDumpfile("./simWorkspace/tb_DandSocV2/tb_DandSocV2.fsdb");
+	$fsdbDumpfile("./tb_DandSocV2.fsdb");
 	$fsdbDumpvars(0, "tb_DandSocV2", "+mda");
 end
 
@@ -380,8 +475,10 @@ end
 
 // ========================== Time out =============================
 initial begin
- #20000000
+  init_display();
+ #2000000000000000000
   $display("\n============== TimeOut ! Simulation finish ! ============\n");
+  cleanup_display();
   $finish;
 end
 
@@ -395,18 +492,25 @@ initial begin
         $finish;
     end
 end
-always @(posedge clk_axi_in) begin
-    if (tb_DandSocV2.u_DandSocV2.axi_cpu_area_cpu.control_1.write_back_fire) begin
-        $fwrite(file_handle, "pc=%h, rd=%h, rd_wdata=%h, rd_wen=%h\n", 
-                              tb_DandSocV2.u_DandSocV2.axi_cpu_area_cpu.control_1.write_back_payload_pc, 
-                              tb_DandSocV2.u_DandSocV2.axi_cpu_area_cpu.control_1.write_back_payload_rd_addr, 
-                              tb_DandSocV2.u_DandSocV2.axi_cpu_area_cpu.control_1.write_back_payload_rd_data,
-                              tb_DandSocV2.u_DandSocV2.axi_cpu_area_cpu.control_1.write_back_payload_rd_wen); 
-    end
-end
+// always @(posedge clk_axi_in) begin
+//     if (tb_DandSocV2.u_DandSocV2.axi_cpu_area_cpu.control_1.write_back_fire) begin
+//         $fwrite(file_handle, "pc=%h, rd=%h, rd_wdata=%h, rd_wen=%h\n", 
+//                               tb_DandSocV2.u_DandSocV2.axi_cpu_area_cpu.control_1.write_back_payload_pc, 
+//                               tb_DandSocV2.u_DandSocV2.axi_cpu_area_cpu.control_1.write_back_payload_rd_addr, 
+//                               tb_DandSocV2.u_DandSocV2.axi_cpu_area_cpu.control_1.write_back_payload_rd_data,
+//                               tb_DandSocV2.u_DandSocV2.axi_cpu_area_cpu.control_1.write_back_payload_rd_wen); 
+//     end
+// end
 final begin
     $fclose(file_handle);
     $display("File closed.");
+end
+
+always @(posedge clk_axi_in) begin
+    if (tb_DandSocV2.u_DandSocV2.io_axi_frame_buff_w_payload_data) begin
+        update_pixel(x, y, tb_DandSocV2.u_DandSocV2.io_axi_frame_buff_w_payload_data[31:0]);
+        refresh_screen();
+    end
 end
 
 
@@ -418,7 +522,8 @@ integer i;
 integer j;
 
 initial begin
-  fd = $fopen ("/home/lin/DandProject/sw/am-kernels/benchmarks/coremark/build/coremark-riscv64-nemu.bin", "rb");
+  // fd = $fopen ("/home/lin/DandProject/sw/am-kernels/benchmarks/coremark/build/coremark-riscv64-nemu.bin", "rb");
+  fd = $fopen ("", "rb");
   tmp = $fread(ram_tmp, fd);
   for (i = 0; i < (2*1024*1024/4); i = i + 1) begin
     ddr[i][7:0]   = ram_tmp[i*(32/8) + 0];

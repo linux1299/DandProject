@@ -219,11 +219,17 @@ case class DCache(p : DCacheConfig) extends Component{
     cache_lru(wayId)   := !ways(wayId).metas(cpu_set).mru
   }
 
+  // OHToUInt is an encoder, not an arbiter: a multi-hot input can encode a
+  // way which was not requested.  This occurs naturally with four ways while
+  // several entries are invalid, and also for the non-MRU replacement mask.
+  // Reduce each candidate mask to exactly one bit before encoding it.
+  val cache_invld_grant = OHMasking.first(cache_invld.asBits)
+  val cache_lru_grant   = OHMasking.first(cache_lru.asBits)
   val evict_id = UInt(log2Up(wayCount) bits)
   when(cache_invld.asBits.orR){
-    evict_id := OHToUInt(cache_invld.asBits)
+    evict_id := OHToUInt(cache_invld_grant)
   }.otherwise{
-    evict_id := OHToUInt(cache_lru.asBits)
+    evict_id := OHToUInt(cache_lru_grant)
   }
   val victim_is_dirty = cache_dirty(evict_id)
 
@@ -588,8 +594,8 @@ case class DCache(p : DCacheConfig) extends Component{
   // =================== Meta Update ===================
   for(wayId <- 0 until wayCount){
     when(is_hit){
-      // Keep exactly one MRU bit per set.  Letting both ways remain MRU
-      // makes the later LRU one-hot encoder select an arbitrary victim.
+      // Keep exactly one MRU bit per set so the replacement grant can always
+      // choose a valid non-MRU candidate, independent of the associativity.
       ways(wayId).metas(cpu_set).mru := U(wayId) === hit_id_enc
       when(cpu_wen && U(wayId) === hit_id_enc){
         ways(wayId).metas(cpu_set).dirty := True

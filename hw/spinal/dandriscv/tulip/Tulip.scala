@@ -379,7 +379,9 @@ object GenTulipWithMemoryInit{
   def main(args: Array[String]) {
     GenConfig.spinal.generateVerilog({
       val toplevel = new Tulip()
-      BinTools.initRam(toplevel.icache.sram.mem, "/home/lin/DandProject/dv/bin/mytests/benchmarks/coremark/coremark-riscv64-nemu.bin", false)
+      // BinTools.initRam(toplevel.icache.sram.mem, "/home/lin/DandProject/dv/bin/mytests/benchmarks/coremark/coremark-riscv64-nemu.bin", false)
+      // BinTools.initRam(toplevel.icache.sram.mem, "/home/lin/DandProject/dv/bin/mytests/fc_tests/mario/fceux-riscv64-nemu.bin", false)
+      BinTools.initRam(toplevel.icache.sram.mem, "/home/lin/DandProject/sw/am-kernels/benchmarks/coremark/build/coremark-riscv64-nemu.bin", false)
       toplevel
     })
   }
