@@ -1,394 +1,363 @@
 # Tulip CPU 架构文档
 
-## 概述
+本文描述 `hw/spinal/dandriscv/tulip` 中的当前实现，默认配置以
+`Tulip.scala`、`Config.scala` 和 `Predictor.scala` 为准。独立模块生成器可能采用不同容量，
+例如 `GenDCacheTop` 生成 32 KiB DCache，而 Tulip 核内实际配置为 16 KiB。
 
-Tulip 是一个使用 SpinalHDL 硬件描述语言实现的 **顺序双发射 RISC-V (RV64)** CPU 处理器核。它采用 **7 级流水线**设计，支持**按序发射（In-Order Dispatch）**、**乱序写回（Out-of-Order Writeback）** 并通过 **ROB（ReOrder Buffer）** 实现**按序退休（In-Order Commit）**。
+## 1. 架构定位
 
-### 核心参数
+Tulip 是一个使用 SpinalHDL 实现的 RV64 顺序双发射处理器核。前端、调度和 ROB 分配保持
+程序顺序；5 个执行端口可以以不同延迟完成并写回；16 项 ROB 最终按序、每周期最多退休
+2 条指令。
+
+Tulip 没有物理寄存器文件和空闲列表。`Dispatch` 维护的是每个架构寄存器的最新生产者、
+ROB 地址和所在阶段，因此更准确的描述是“记分牌式依赖跟踪”，而不是完整的物理寄存器重命名。
+
+### 当前默认参数
+
+| 参数 | 当前值 |
+|------|--------|
+| 实现语言 | Scala 2.13.11 + SpinalHDL 1.8.1 |
+| 数据宽度 | XLEN = 64 |
+| PC / 存储地址宽度 | 32 bit |
+| 复位入口 | `0x8000_0000` |
+| 指令范围 | RV64 整数运算、M 扩展乘除法、分支/访存，以及部分 M-mode CSR/系统指令 |
+| 前端宽度 | 每次取 64 bit，拆成 2 条 32-bit 指令 |
+| Dispatch / Commit 宽度 | 最多 2 条/周期 |
+| ROB | 16 项 |
+| 架构寄存器文件 | 32 × 64 bit，4 读 2 写，`x0` 恒为 0 |
+| 执行端口 | BJU ×1、ALU ×2、MUL/DIV ×1、LSU ×1 |
+| 分支预测 | 双 PC TAGE + BTB + RAS；译码期静态 JAL 预测可覆盖动态结果 |
+| 指令存储 | 默认启用 ITCM：`2^18 × 32 bit` 双端口 SRAM，即 1 MiB |
+| 数据缓存 | 16 KiB、2-way、64 B/line、write-back、write-allocate、1 个 MSHR |
+| 下级总线 | 指令 AXI4 ReadOnly + 数据 AXI4 ReadOnly/WriteOnly，32-bit 地址、64-bit 数据 |
+| 特权范围 | M mode；ECALL、EBREAK、MRET 和 machine timer interrupt |
+
+这里的“7 级流水”是逻辑分段：
+
+```text
+Fetch -> Decode -> PreDispatch -> Dispatch -> Execute -> Writeback -> Commit
+  F        D           I            R          E           W          C
+```
+
+模块之间使用 SpinalHDL `Stream` 的 valid/ready 反压。缓存 miss、除法和下游退休反压会让
+实际指令延迟超过 7 拍。
+
+## 2. 顶层数据流
+
+```text
+                     +---------------- Predictor ----------------+
+                     |       TAGE + BTB + RAS + static JAL       |
+                     +------------------+-------------------------+
+                                        |
+                                        v
+ITCM/ICache -> Fetch -> Decode -> PreDispatch -> Dispatch
+                                                      |
+                   +---------------+------------------+----------+----------+
+                   |               |                  |          |          |
+                  BJU             ALU0               ALU1      MUL/DIV     LSU
+                   |               |                  |          |          |
+                   +---------------+------------------+----------+----------+
+                                        |
+                                  5 路 Writeback
+                                        |
+                                   16-entry ROB
+                                        |
+                                  双路 Commit -> ARF
+                                                                    |
+                                               DCache/Timer <-------+
+                                                     |
+                                                  AXI4 data
+```
+
+顶层 `change_flow` 由 BJU 的异常/中断跳转或分支重定向产生。它会清空 Fetch FIFO 和
+`PreDispatchBuffer`，并在 Decode/Dispatch 输入处丢弃错误路径指令。两路指令都可以映射到
+唯一的 BJU；当 slot 0 本身是 BJU 时，顶层会阻止同组 slot 1 前进，从而简化控制流恢复。
+
+## 3. 流水线
+
+### 3.1 Fetch — `Fetch.scala`
+
+`Fetch_kernel` 从 `0x8000_0000` 开始取指，每次向指令存储发送一个 64-bit 请求；顺序路径
+的 PC 每次增加 8。取指状态机为 `IDLE -> FETCH <-> HALT`，在指令端反压或内部 FIFO
+空间不足时进入 `HALT`。
+
+Fetch 使用 4 组深度为 8 的 FIFO 对齐：
+
+- 取指 PC；
+- 64-bit 指令数据；
+- 预测目标 PC；
+- taken 预测结果。
+
+64-bit 返回数据随后拆为两路：slot 0 为低 32 bit、PC 为基地址；slot 1 为高 32 bit、
+PC 为基地址加 4。中断优先于分支重定向，分支重定向优先于预测跳转。
+
+### 3.2 Decode — `Decode.scala`
+
+两套 `DecodeComb` 并行解析 opcode、funct、寄存器和立即数，输出 `MicroOp` 与执行单元选择。
+当前可见的主要指令组为：
+
+- RV64 整数算术、逻辑、移位和 word 运算；
+- `MUL/MULH/MULHSU/MULHU/MULW` 与 `DIV/REM` 的有符号、无符号和 word 变体；
+- `LB/LBU/LH/LHU/LW/LWU/LD` 与 `SB/SH/SW/SD`；
+- `BEQ/BNE/BLT/BGE/BLTU/BGEU/JAL/JALR/AUIPC`；
+- `CSRRW/CSRRS/CSRRC` 及立即数变体、`ECALL/EBREAK/MRET`。
+
+浮点、原子和压缩指令没有执行路径；FENCE 和非法指令异常也尚未完整实现。因此本文不把
+Tulip 标记为完整的 RV64IMAFD 实现。
+
+### 3.3 PreDispatch — `PreDispatchBuffer.scala`
+
+该模块包含两个锁步更新的 entry，并在指令进入时读取 ARF。若同拍有退休写回命中源寄存器，
+退休数据优先于 ARF 读值，以消除读写同拍歧义。
+
+它还把指令编码到 5 个执行端口：
+
+| `exe_oh` | 执行端口 | 分配规则 |
+|----------|----------|----------|
+| `00001` | BJU | 分支、跳转、CSR、异常和 Difftest 特殊指令 |
+| `00010` | ALU0 | slot 0 的普通 ALU 指令 |
+| `00100` | ALU1 | slot 1 的普通 ALU 指令 |
+| `01000` | MUL/DIV | 两个 slot 共享 |
+| `10000` | LSU | 两个 slot 共享 |
+
+### 3.4 Dispatch — `Dispatch.scala`
+
+Dispatch 每周期最多接受两条指令，并保证新指令只有在老指令已经可分发或不存在时才能分发。
+同一执行端口冲突时老指令优先；同组 slot 1 对 slot 0 的 RAW 依赖会阻塞。ROB 少于两个空项
+时，`rob_is_ready` 拉低，停止新分配。
+
+每个架构寄存器有一个状态：
+
+```text
+ARF -> EXE -> BUF/WBC -> ROB -> RET -> ARF
+```
+
+| 状态 | 含义与取数方式 |
+|------|----------------|
+| `ARF` | 已提交值位于架构寄存器文件 |
+| `EXE` | 最新生产者已分发；ALU/BJU 可走执行旁路，MUL/DIV/LSU 需要等待 |
+| `BUF` | ALU/BJU 结果暂存在 3 项执行结果 buffer，可旁路 |
+| `WBC` | 长延迟单元等待写回；依赖者保持阻塞 |
+| `ROB` | 结果已写入 ROB，可从 ROB 读端口取数 |
+| `RET` | 已从 ROB 完成，退休数据可在写回 ARF 前旁路 |
+
+ROB 地址与寄存器号共同区分同一架构寄存器的不同版本，避免旧写回覆盖新生产者状态。
+
+### 3.5 Execute / Writeback
+
+执行单元可以独立完成，统一通过 5 路 `ExeDst` Stream 写入 ROB：
+
+- BJU 和两个 ALU 提供组合执行旁路，并各有一个结果保持路径；
+- 乘法在共享 MUL/DIV 单元中计算并寄存结果；
+- 除法通过 `Divider.scala` 包装的 `div_gen_0` RTL/IP 完成，是多周期操作；
+- LSU 的完成时间由 timer、DCache hit、bypass 或 refill 决定。
+
+### 3.6 Commit — `Commit.scala`
+
+ROB 使用带回卷位的 head/tail 指针管理 16 项循环队列。Dispatch 按程序顺序分配一项或两项；
+5 个执行端口按 ROB 地址写回结果；只有 head 以及紧随其后的 head+1 都已完成时，才能依次退休。
+
+`retire_ready_0/1` 是顶层测试接口。退休 Stream 被反压时，ROB head 保持不动；退休成功后，
+最多两个结果写回 ARF，并同步更新 Dispatch 的寄存器状态。
+
+## 4. 执行单元
+
+### BJU
+
+`BJU.scala` 完成条件分支、JAL/JALR、AUIPC、CSR 和异常/返回处理。它比较真实的 taken/target
+与随指令携带的预测结果：不一致时产生 `redirect_valid` 和正确目标，并向预测器提供训练信息。
+
+CSR/CLINT 逻辑位于 `Exception.scala`，内部状态覆盖 `mstatus`、`mie`、`mtvec`、`mepc`、
+`mcause`、`mtval`、`mip`、`mcycle`、`mhartid` 和 `mscratch` 等寄存器，但各 CSR 的读写支持
+并不完全对称。异常与中断在 BJU 执行阶段触发，并不代表已经实现完整的 RISC-V 特权架构或
+所有精确异常场景。
+
+### ALU ×2
+
+两个 ALU 支持加减、比较、逻辑、移位、LUI 及 RV64 word 结果的符号扩展。slot 0 和 slot 1
+分别静态映射到 ALU0 和 ALU1，因此两条无依赖 ALU 指令可以同拍分发。
+
+### MUL/DIV
+
+M 扩展共享一个端口。乘法覆盖 low/high、signed/unsigned 和 `MULW`；除法器包装
+`hw/verilog/exu/div_gen_0.v`，并在 busy 期间阻止下一条 MUL/DIV 指令进入。
+
+### LSU
+
+LSU 第一级计算 64-bit 有效地址、访问大小、store 数据与 byte strobe，再把地址缩为 32 bit
+送入 DCache。DCache 返回的 `addr_off` 和 LSU 操作类型 sideband 用于第二级 load 对齐及符号/
+零扩展。
+
+`mtime` 和 `mtimecmp` 由 LSU 内部 Timer 处理，不进入 DCache：
+
+| 寄存器 | 地址 |
+|--------|------|
+| `mtime` | `0x0200_bff8` |
+| `mtimecmp` | `0x0200_4000` |
+
+timer 与 DCache 返回都使用一项 response holding buffer，在 ROB 反压时保持结果直到握手。
+
+## 5. 分支预测
+
+当前 `Tulip.scala` 实例化统一 `Predictor`，其动态预测器是 `tage_predictor`，不是同目录中保留的
+旧 `gshare_predictor`。`CpuConfig.BPU_TYPE = "gshare"` 也是遗留配置，当前没有控制顶层实例选择。
+
+### TAGE 默认配置
 
 | 参数 | 值 |
 |------|-----|
-| ISA | RV64（IMAFD 子集，M 模式） |
-| 发射宽度 | 2 条指令/周期 |
-| 流水线级数 | 7 级 |
-| ROB 深度 | 16 项 |
-| 寄存器文件 | 32 × 64 位（x0 恒为 0） |
-| 分支预测器 | Gshare（默认）或静态预测 |
-| 分支历史长度 | 5 位 |
-| PHT 项数 | 32 项 |
-| BTB 项数 | 4 项 |
-| RAS 深度 | 4 项 |
-| ICache | 16KB，2 路组相联（64B/行），AXI 接口 |
-| DCache | 16KB，2 路组相联（64B/行），AXI 接口（带 bypass 区域） |
-| 特权级 | 仅 M 模式（Machine Mode） |
-| 中断/异常 | ECALL, EBREAK, MRET, 定时器中断 (MTIME/MTIMECMP) |
+| Bimodal table | 256 项，2-bit counter |
+| Tagged tables | 5 张 |
+| 每表项数 | 128、128、64、64、32 |
+| 历史长度 | 4、8、16、32、64 |
+| Tag 宽度 | 8 bit |
+| 预测计数器 | 3 bit |
+| Useful 计数器 | 2 bit |
+| BTB | 4 项 |
+| RAS | 4 项 |
 
----
+TAGE 同时查询 `PC` 和 `PC+4`：slot 0 预测 taken 时优先选择 slot 0，否则允许 slot 1 的
+BTB/TAGE 结果改变下一个 64-bit 取指地址。预测结果经过一级寄存器以改善时序。
 
-## 流水线结构
+BTB 记录源 PC、目标 PC 以及 call/ret/jump 类型；RAS 同时维护推测指针和执行阶段确认指针，
+在误预测训练时恢复。取指数据返回后，静态预测器识别 JAL 并可覆盖动态预测结果。条件分支、
+JALR 和跳转在 BJU 执行时训练 TAGE/BTB/RAS。
 
-Tulip 的流水线分为以下 7 个阶段：
+## 6. 存储系统
 
-```
-取指(F) → 译码(D) → 发射(I) → 调度(Dispatch/R) → 执行(E) → 写回(W) → 退休(Commit/C)
-```
+### 指令侧：当前为 ITCM
 
-### 流水线阶段详解
+顶层构造为 `ICacheTop(itcm_en = true, ...)`。当前路径是一块 `2^18 × 32 bit` 双端口同步
+SRAM；两个端口读取相邻 32-bit word，合并为 64-bit fetch bundle。SRAM 索引使用
+`PC[19:2]`，容量为 1 MiB；更高地址位不参与索引，因此不同的 1 MiB 地址窗口会发生别名。
+仿真环境通常直接初始化该 SRAM。
 
-#### 1. 取指阶段 (F) — `Fetch.scala`
+`ICache.scala` 仍包含可选的 16 KiB、2-way、64 B/line cache 实现；只有把 `itcm_en` 改为
+`false` 才会通过 instruction AXI 发起 8-beat refill。默认 ITCM 配置下顶层仍保留 instruction
+AXI 端口，但不会产生 AR 请求。
 
-- **Fetch_kernel**: 核心取指逻辑
-  - PC 寄存器初始化为 `0x80000000`
-  - 每个周期向 ICache 发送 8 字节读取命令（地址按 8 递增）
-  - 使用 FSM 管理取指状态（IDLE → FETCH → HALT）
-  - 包含三个 FIFO（各深度 8）分别缓存 PC、指令、分支预测结果
-  - 支持刷新（Flush）：中断、重定向（预测错误）时清空 FIFO
+### 数据侧：16 KiB DCache
 
-- **Fetch**（外层封装）:
-  - 将 Fetch_kernel 输出的 64 位指令流通过 `StreamFork2` 拆分为两路 32 位指令
-  - 指令 0 = `fch_dst.instr[31:0]`，指令 1 = `fch_dst.instr[63:32]`（PC+4）
-  - 向 BPU 提供 `predict_pc` 和 `predict_valid` 信号
-  - 接收 BPU 的 `branch_taken` 和 `branch_pc` 做分支预测取指
+Tulip 当前实例化 `DCacheTop`，不再实例化 `DTCM` 或 `BIUTop`。16 KiB 配置的地址分解为：
 
-#### 2. 译码阶段 (D) — `Decode.scala`
-
-- **DecodeComb**: 单条指令的组合逻辑译码器
-  - 解析 RISC-V 标准指令格式（opcode, rd, rs1, rs2, func3, func7）
-  - 生成 `MicroOp`（微操作码），包含：
-    - `MicroOpCommon`: `rd_wen`, `src2_is_imm`
-    - `MicroOpAlu`: `alu_ctrl_op`, `alu_is_word`
-    - `MicroOpBju`: `bju_ctrl_op`, `exp_ctrl_op`, CSR 地址等
-    - `MicroOpLsu`: `lsu_ctrl_op`, `is_load`, `is_store`
-  - 选择执行单元：LSU / DIV / ALU / BJU
-  - 立即数生成：支持 I/S/B/U/J/CSR 类型立即数
-  - 所有算术/逻辑/分支/访存指令全覆盖
-
-- **Decode**（外层封装）:
-  - 实例化 2 个 DecodeComb 并行译码
-  - 输出 Stream[IssueSrc] 至发射阶段
-
-#### 3. 发射阶段 (I) — `PreDispatchBuffer.scala`
-
-- 2 项发射缓冲区（`PreDispatchEntry`)
-- 指令进入条件：两条发射槽都 ready 才同时更新
-- 分配执行单元编码（exe_oh，5-bit onehot）：
-  - BJU → `00001`（固定槽 0）
-  - ALU → `00010`（槽 1）/ `00100`（槽 2）
-  - DIV → `01000`（槽 3）
-  - LSU → `10000`（槽 4）
-- 发射优先级：同时准备好时，两条指令同时发射
-- 槽 1 的 `exe_oh` 编码时 ALU0/ALU1 按序号分配
-
-#### 4. 调度阶段 (Dispatch/R) — `Dispatch.scala`
-
-这是 Tulip 最复杂的阶段，负责**寄存器重命名/依赖追踪**和**操作数准备**。
-
-- **物理状态表（32 项）**:
-  - 每个架构寄存器（x0–x31）都有一个当前状态
-  - 状态机：`ARF → EXE → BUF → WBC → ROB → RET`
-    - **ARF**: 值在架构寄存器文件中
-    - **EXE**: 正在执行单元中计算
-    - **BUF**: 执行完成但写回缓冲暂存（ALU/BJU 的一次缓存）
-    - **WBC**: 回写至 ROB
-    - **ROB**: 已写回 ROB，等待退休
-    - **RET**: 已退休，写回 ARF
-
-- **操作数准备**:
-  - 从多个源转发数据：
-    - ARF（寄存器文件）+ EXE（执行旁路）+ BUF（写回缓冲）+ WBC + ROB + RET
-  - 通过 `dataMux` 多路选择器进行数据选择
-  - `src1_valid`/`src2_valid` 指示操作数是否就绪
-
-- **执行单元分发**:
-  - 将指令分发到 5 个执行单元的 Stream：
-    - BJU 流、ALU1 流、ALU2 流、DIV 流、LSU 流
-  - 两条发射槽中的旧指令（issue0）优先级更高
-  - 槽 1 检测与槽 0 的寄存器依赖性（RAW 冲突）
-
-- **写回缓冲（BUF）**:
-  - 为 ALU/BJU 执行结果提供 3 项旁路缓冲
-  - 解决执行结果到调度的额外转发延迟
-  - 包含老化仲裁（rob_order 比较，新值覆盖旧值）
-
-#### 5. 执行阶段 (E)
-
-##### BJU (Branch/Jump Unit) — `BJU.scala`
-
-处理所有分支/跳转和 CSR 指令：
-- 分支指令：BEQ, BNE, BLT, BGE, BLTU, BGEU
-- 跳转指令：JAL, JALR
-- AUIPC 指令
-- CSR 读写指令
-- 异常指令：ECALL, EBREAK, MRET
-
-**功能**：
-- 计算实际跳转目标地址并比较预测结果
-- `redirect_valid`: 预测错误时通知 Fetch 重定向
-- 更新分支历史用于 BPU 训练
-- RAS（返回地址栈）的 push/pop 逻辑
-- 中断/异常产生
-
-**CSR 子系统**：
-- `CsrRegfile`: M 模式标准 CSR（mstatus, mie, mtvec, mepc, mcause 等）
-- `Clint`: 核心本地中断控制器，处理 ECALL/EBREAK/Timer/MRET
-
-##### ALU — `ALU.scala`
-
-两个相同的 ALU 实例（alu_1, alu_2）：
-- 算术运算：ADD, SUB, SLT, SLTU
-- 逻辑运算：XOR, SLL, SRL, SRA, AND, OR
-- LUI 指令
-- 乘法运算：MUL, MULH, MULHSU, MULHU, MULW（组合逻辑实现）
-- Word 模式：ADDW, SUBW, SLLW, SRLW, SRAW 等
-
-##### DIV — `DIV.scala`
-
-独立除法单元：
-- 除法/取模：DIV, DIVU, REM, REMU，以及 Word 变体
-- 调用 Xilinx IP 核（div_gen_0）通过黑盒（BlackBox）例化
-- 多周期操作，提供 busy/done 握手
-
-##### LSU (Load/Store Unit) — `LSU.scala`
-
-2 级流水线的访存单元：
-- **Stage 0**:
-  - 计算虚拟地址（基址 + 偏移）
-  - 处理写数据对齐（SB/SH/SW/SD 的字节掩码和移位）
-  - 发送请求到 DCache
-  - 检测是否为 Timer 地址（MTIME/MTIMECMP）
-- **Stage 1**:
-  - 数据对齐和符号/零扩展（LB→LBU, LH→LHU, LW→LWU 等）
-  - 支持所有 RV64 访存操作
-
-**Timer 模块**：
-- 内部集成 memory-mapped 定时器
-- mtime 每个周期递增
-- 当 mtime ≥ mtimecmp 时触发中断
-
-#### 6. 写回阶段 (W)
-
-写回阶段整合在执行单元的出口（`ExeDst` Stream）：
-- 执行单元完成计算后将结果发送至 ROB
-- 同时旁路给 Dispatch 阶段用于后续指令的 RAW 解决
-- Commit 模块的 `wbc_src` 接收 5 个执行单元的写回结果
-
-#### 7. 退休阶段 (Commit/C) — `Commit.scala`
-
-基于 ROB 的按序退休机制：
-
-- **ROB 结构**: 16 项循环缓冲区
-  - 每项存：PC, 指令, valid, rd_data, rd_vld, rd_addr, rd_wen
-  - `head_ptr`（退役指针）和 `tail_ptr`（分配指针）管理
-
-- **工作流程**:
-  1. **分配**: Dispatch 阶段送入指令信息 → 写入 tail_ptr 位置
-  2. **写回**: 执行单元完成 → 标记 `rd_vld`
-  3. **完成(Complete)**: head_ptr 位置的指令已写回 → 可以退休
-  4. **退休(Retire)**: 两路每周期退休 2 条指令 → 写回 ARF 寄存器文件
-
-- **控制信号**:
-  - `rob_is_ready`: ROB 有空闲空间
-  - `tail_adr_older`/`tail_adr_newer`: 分配地址（供 Dispatch 分配 ROB 槽位）
-
----
-
-## 模块互联与数据流
-
-### 顶层连接 — `Tulip.scala`
-
-```
-Fetch → Decode → PreDispatchBuffer → Dispatch → [BJU, ALU0, ALU1, DIV, LSU] → Commit → Regfile
-                           ↑                 ↓                              ↓
-                           └───── 旁路网络 (Forwarding) ←───────────────────┘
+```text
+|31:13 tag (19b)|12:6 set (7b)|5:3 beat (3b)|2:0 byte (3b)|
 ```
 
-**关键连接**：
+主要特性：
 
-1. **取指路径**: `fetch → icache`（指令缓存读）
-2. **刷新/重定向**: `bju_0.interrupt_valid` 和 `bju_0.redirect_valid` 组成 `change_flow`，全局刷新流水线
-3. **分支预测**: `fetch → bpu → fetch`（预测环）
-4. **发射控制**:
-   - 槽 0 为 BJU 时（`issue0_dst_is_bju`），槽 1 暂停
-   - `branch_valid` 时丢弃槽 1 的指令（分支后的指令无效）
-5. **写回分发**: 5 个执行单元的结果 → Commit（WBC 输入）
-6. **退休写回**: Commit → Regfile（两路写端口）
+- 2-way set associative，64 B/line，8 个 64-bit beat；
+- write-back + write-allocate；invalid way 优先，否则选择非 MRU way；
+- 1 个有效 MSHR，refill 和 writeback 均为 8-beat AXI burst；
+- refill 期间允许同 cache line 的 store 按 byte strobe 合并；
+- MSHR 活跃时不支持普通 hit-under-miss，其他请求串行等待；
+- 一项 CPU response holding buffer，保证下游反压时响应不丢失；
+- `0x1000_0000` 到 `0x3fff_ffff` 为有效 bypass 区域，直接执行单 beat AXI 访问。
 
-### 执行单元槽位分配
+更完整的状态机、反压修复、回归覆盖和限制见
+[DCache 架构与验证文档](dcache_architecture.md)。
 
-| 槽位 | 执行单元 | exe_oh 编码 |
-|------|---------|------------|
-| 0 | BJU | 5'b00001 |
-| 1 | ALU_1 | 5'b00010 |
-| 2 | ALU_2 | 5'b00100 |
-| 3 | DIV | 5'b01000 |
-| 4 | LSU | 5'b10000 |
+### 顶层 AXI 接口
 
-- 映射为 Dispatch 中的 5 路分发 Stream
-- BJU 固定在槽 0，保证分支指令第一时间处理
-- 两条 ALU（槽 1 和槽 2）提供双发射 ALU 吞吐
-- 长延迟操作（DIV、LSU）不影响其他执行单元的 forward
+| 接口 | 类型 | 当前用途 |
+|------|------|----------|
+| `icache` | AXI4 ReadOnly，64-bit data | ITCM 模式下保持空闲；cache 模式用于 refill |
+| `dcache` read | AXI4 ReadOnly，64-bit data | DCache refill 与 bypass load |
+| `dcache` write | AXI4 WriteOnly，64-bit data + strobe | dirty writeback 与 bypass store |
 
----
+所有地址接口均为 32 bit，AXI ID 宽度为 2 bit。
 
-## 寄存器文件与旁路网络
+## 7. 控制流、异常与退休约束
 
-### 架构寄存器文件 (ARF) — `Regfile.scala`
+控制流优先级为：
 
-- 32 × 64 位寄存器，x0 硬连线为 0
-- 2 读端口 + 2 写端口
-- 写端口来自 Commit 阶段的退休指令
-
-### 旁路网络 (Forwarding)
-
-Dispatch 阶段实现了完整的 7 路数据转发：
-
-| 转发源 | 来源阶段 | 优先级 |
-|--------|---------|-------|
-| ARF | 寄存器文件 | 最低 |
-| EXE | ALU/BJU 执行单元输出（组合逻辑旁路） | 中高 |
-| BUF | 写回缓冲（暂存执行结果） | 中 |
-| WBC | 写回至 ROB（通过 exe_dst fire） | 中 |
-| ROB | ROB 中的指令数据 | 中低 |
-| RET | 退休阶段写回的数据 | 低 |
-
-- Dispatch 检测源寄存器状态（`entry.state(rs1/2_addr)`）选择正确的转发路径
-- 对于 `EXE` 状态的寄存器，ALU/BJU 的 1 拍结果可通过 EXE 和 BUF 转发
-
----
-
-## 存储子系统
-
-### ICache — `ICache.scala`
-
-- 配置：16KB，2 路组相联，每行 64 字节
-- 替换策略：MRU（Most Recently Used）
-- 使用 2 个 bank（32 位宽）组成 64 位读取
-- 二级接口：AXI4 只读（64 位数据总线，支持 INCR burst）
-- 支持 **ITCM 模式**：直接 TCM SRAM 访问（当前配置启用）
-
-### DCache — `DCache.scala`
-
-- 配置：16KB，2 路组相联，每行 64 字节
-- 替换策略：MRU + Round-Robin 仲裁（OHMasking）
-- 支持写回和写分配
-- **Bypass 区域**：配置为 IO 地址空间时绕过缓存直接传至 AXI
-- 二级接口：AXI4 读写分离（每个通道独立 ID）
-- 当前使用 **DTCM 模式**：直接 SRAM 访问（非 Cache 模式）
-
-### 存储层次
-
-```
-CPU Core
-   ├── ICache (ITCM 模式) ───→ AXI4 Read ───→ 外部内存
-   │        └── 16KB SRAM (2 个 32-bit bank)
-   └── LSU ───→ DTCM ───→ 32KB SRAM
-                  └── 同时连接 AXI4（Addr 在 bypass 区域时使用）
+```text
+interrupt > redirect/mispredict > predicted taken > sequential PC+8
 ```
 
----
+当前异常/中断范围：
 
-## 分支预测器 — `Predictor.scala`
+| 类型 | `mcause` |
+|------|----------|
+| ECALL from M-mode | 11 |
+| EBREAK | 3 |
+| Machine timer interrupt | `0x8000_0000_0000_0007` |
 
-### Gshare 预测器
+`MRET` 跳转至 `mepc` 并恢复 `mstatus.MIE`。Tulip 没有外部中断输入，也未实现 S/U mode、
+页表、地址翻译或完整的非法指令/访存错误异常。
 
-- 5 位全局分支历史寄存器（GBR）
-- 32 项模式历史表（PHT），2-bit 饱和计数器（初始为 01，"weakly taken"）
-- 预测索引 = `PC[6:2] ^ GBR`（异或折叠）
-- 训练在执行阶段进行，更新 PHT 和 GBR
+## 8. 性能计数器
 
-### BTB (Branch Target Buffer)
+`Tulip.scala` 和部分流水级中保留了面向仿真的内部计数器，包括：
 
-- 4 项，记录：有效位、源 PC、目标 PC、call/ret/jmp 类型标志
-- Miss 时轮转分配（Counter）
-- 提供目标 PC 用于取指阶段
+- cycle 与 retired instruction 计数；
+- Fetch、PreDispatch、Dispatch 两个 slot 的 valid/ready/fire 计数；
+- 分支改流、BJU 指令和 slot 1 因 BJU 停顿计数；
+- 5 个执行端口及汇总写回停顿计数；
+- Dispatch 操作数未就绪、端口竞争和顺序约束停顿计数。
 
-### RAS (Return Address Stack)
+这些计数器当前不是软件可见 CSR，也没有独立顶层输出，主要通过仿真层次路径观察。
 
-- 4 项，用于函数调用/返回预测
-- 双指针系统：推测指针（预测用）和真实指针（训练用）
-- 预测错误时回滚至真实指针
+## 9. 生成与验证
 
-### 预测输出
+从仓库根目录生成 Tulip Verilog：
 
+```bash
+sbt "runMain dandriscv.tulip.GenTulip"
 ```
-predict_taken = predict_valid && BTB命中 && (PHT预测跳转 || BTB.jmp || BTB.call || BTB.ret)
-target_pc = RAS.ret命中 ? RAS.ret_addr |
-            (BTB命中且跳转) ? BTB.target_pc |
-            PC+4
+
+输出位于 `hw/gen/Tulip.v`。`GenTulipWithMemoryInit` 会使用源码中写死的 CoreMark 二进制路径
+初始化 ITCM，仅适合本仓库当前目录布局和对应软件产物。
+
+Tulip 的 Verilator + Difftest 入口：
+
+```bash
+source ./env.sh
+make -C dv tulip
 ```
 
----
+DCache 单体与 LSU-DCache 集成回归需要先生成对应 RTL：
 
-## 性能计数器
+```bash
+sbt "runMain dandriscv.tulip.GenDCacheTop"
+sbt "runMain dandriscv.tulip.GenLSUDCacheTop"
+make -C simWorkspace/DCache all
+make -C simWorkspace/DCache test-lsu
+```
 
-Tulip 在顶层集成了大量性能计数器：
-- 周期计数、指令计数
-- 流水线各阶段 valid/ready/fire 统计
-- 流水线停顿统计（各执行单元写回停顿）
-- 分支预测/刷新统计
-- 发射槽 1 因 BJU 停顿计数
+## 10. 已知限制
 
----
+1. 数据和指令地址接口只有 32 bit；LSU 的 64-bit 有效地址会截断到低 32 bit。
+2. 默认指令侧依赖 ITCM 预加载，instruction AXI 在当前配置下不取外部程序；ITCM 忽略
+   `PC[31:20]`，不同 1 MiB 窗口会映射到同一 SRAM 内容。
+3. 未实现浮点、原子、压缩、虚拟内存、S/U mode 和完整的非法指令异常。
+4. 非对齐或跨 64-bit beat 的 load/store 不会拆分，也没有 address-misaligned exception。
+5. DCache 只有 1 个 MSHR，不支持普通 hit-under-miss；dirty flush 尚不会先写回脏行。
+6. AXI R/B error 没有形成 CPU 可见异常。
+7. 除法依赖仓库内 `div_gen_0.v`/对应 IP 行为，移植时必须一起纳入 RTL 文件列表。
+8. `BPU_TYPE` 与旧 `gshare_predictor.scala` 当前未参与顶层选择，修改预测器应直接检查
+   `Predictor.scala` 和 `Tulip.scala`。
 
-## 异常与中断处理
+## 11. 文件索引
 
-### 异常类型
-
-| 类型 | mcause 编码 | 同步/异步 |
-|------|------------|----------|
-| ECALL | 11 | 同步 |
-| EBREAK | 3 | 同步 |
-| Timer 中断 | 0x80000007 | 异步 |
-
-### 流程
-
-1. BJU 中的 Clint 模块检测异常/中断条件
-2. 更新 CSR 寄存器（mepc, mcause, mstatus）
-3. 产生 `interrupt_valid` + `interrupt_pc`（mtvec/mepc）
-4. Fetch 重定向到中断向量
-5. 全局刷新（`change_flow`）清空流水线
-
-### MRET
-
-从 M 模式异常返回：
-- 恢复 mstatus.MIE = mstatus.MPIE
-- PC ← mepc
-
----
-
-## 设计特点与注意事项
-
-1. **顺序双发射**：指令按程序顺序发射，但不同执行单元的写回时间可能不同
-2. **Slot 0 独占 BJU**: 分支指令始终占据槽 0，保证了分支预测错误的快速恢复
-3. **Slot 1 的依赖处理**：当槽 1 依赖槽 0 结果时，Dispatch 检测到 `rs1/2_addr == rd_addr(0)` 则暂停
-4. **BUF 暂存器**：为 ALU/BJU 的执行结果提供额外的流水级缓冲，缓解写回冲突
-5. **ROB 驱动退休**：所有指令必须按序退休，ROB 满时 Dispatch 暂停
-6. **M 模式实现**：仅实现 Machine 模式，不支持 OS 需要的 S/U 模式
-7. **DTCM 直连**：当前配置跳过真实 DCache 使用 DTCM SRAM，属于简化实现
-
----
-
-## 代码文件索引
-
-| 文件 | 功能 |
+| 文件 | 作用 |
 |------|------|
-| Tulip.scala | 顶层模块，实例化所有子模块并连接 |
-| Config.scala | 配置参数（Cache/CPU/BPU）和工具函数 |
-| Interfaces.scala | 所有接口 Bundle 定义和控制枚举 |
-| Fetch.scala | 取指阶段 |
-| Decode.scala | 译码阶段 |
-| PreDispatchBuffer.scala | 发射阶段 |
-| Dispatch.scala | 调度/分发阶段（含寄存器状态表） |
-| Commit.scala | 退休阶段（ROB 管理） |
-| Regfile.scala | 架构寄存器文件 |
-| BJU.scala | 分支/跳转/CSR 执行单元 |
-| ALU.scala | 算术逻辑单元 |
-| LSU.scala | 访存单元 |
-| DIV.scala | 除法单元 |
-| Divider.scala | 除法器 IP 包装 |
-| Exception.scala | CSR 寄存器文件和中断控制器 |
-| Predictor.scala | 分支预测器（Gshare + BTB + RAS） |
-| ICache.scala | 指令缓存 |
-| DCache.scala | 数据缓存 |
-| FIFO.scala | 通用 FIFO 队列 |
-| Sram.scala | SRAM 包装器 |
+| `Tulip.scala` | 顶层实例化、互联、AXI 端口与性能计数器 |
+| `Config.scala` | CPU、cache、TAGE/BTB/RAS 配置和生成参数 |
+| `Interfaces.scala` | 流水线、缓存和执行单元 Bundle/枚举 |
+| `Fetch.scala` | 64-bit 取指、FIFO 对齐和双路拆分 |
+| `Decode.scala` | 双路组合译码与 MicroOp 生成 |
+| `PreDispatchBuffer.scala` | 两项预分发 buffer、ARF 读取和端口编码 |
+| `Dispatch.scala` | 顺序双分发、记分牌、依赖检查和旁路 |
+| `Commit.scala` | 16 项 ROB、5 路写回和双路按序退休 |
+| `Predictor.scala` | 当前 TAGE、双 PC BTB/RAS 和静态 JAL 预测 |
+| `gshare_predictor.scala` | 保留但未由 Tulip 顶层使用的旧 Gshare 实现 |
+| `BJU.scala` / `Exception.scala` | 控制流、CSR、异常与 timer interrupt |
+| `ALU.scala` | 两个整数 ALU 使用的实现 |
+| `DIV.scala` / `Divider.scala` | 共享 MUL/DIV 执行端口与除法 IP 包装 |
+| `LSU.scala` | 地址生成、对齐、Timer 和 DCache sideband |
+| `DCache.scala` | 当前 write-back DCache、MSHR、bypass 与 AXI wrapper |
+| `ICache.scala` | 默认 ITCM 和可选 ICache |
+| `Sram.scala` | 同步 SRAM 包装 |
+| `LSUDCacheTop.scala` | LSU-DCache 联调生成顶层 |
